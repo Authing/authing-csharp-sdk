@@ -1,0 +1,83 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFrameworks>net40;net45;netstandard2.0</TargetFrameworks>
+		<Product>Authing.CSharp.SDK</Product>
+		<Description>通过简单、安全的接口使用 Authing 提供的功能。
+</Description>
+		<PackageId>Authing.CSharp.SDK</PackageId>
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<PackageReleaseNotes>Version 0.0.1
+- SDK 改版升级，支持 V3 版本的接口
+Version 0.0.2
+- SDK 改版升级，支持 V3 版本的接口</PackageReleaseNotes>
+		<Version>0.0.2</Version>
+		<PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+		<FileVersion>0.0.2</FileVersion>
+		<Company>Authing</Company>
+		<AssemblyVersion>0.0.2</AssemblyVersion>
+		<Authors>Authing</Authors>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<Copyright>Beijing Steamory Technology Co. Ltd.</Copyright>
+		<PackageIcon>AuthingIcon.png</PackageIcon>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net5.0|AnyCPU'">
+	  <DocumentationFile>..\Authing.CSharp.SDK.xml</DocumentationFile>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net5.0|AnyCPU'">
+	  <DocumentationFile>D:\Authing\SDK\V3\authing-csharp-sdk\Authing.CSharp.SDK\Authing.CSharp.SDK\Authing.CSharp.SDK.xml</DocumentationFile>
+	  <OutputPath>build\</OutputPath>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<Compile Remove="logo\**" />
+		<Compile Remove="Models\BackUp\**" />
+		<EmbeddedResource Remove="logo\**" />
+		<EmbeddedResource Remove="Models\BackUp\**" />
+		<None Remove="logo\**" />
+		<None Remove="Models\BackUp\**" />
+		<None Include=".\build\AuthingIcon.png">
+			<Pack>True</Pack>
+			<PackagePath />
+		</None>
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="jose-jwt" Version="4.0.0" />
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+	</ItemGroup>
+
+	<ItemGroup Condition=" '$(TargetFramework)'=='net40'">
+		<PackageReference Include="Polly.Net40Async" Version="5.9.0" />
+		<Reference Include="System.Web" />
+	</ItemGroup>
+	
+	<ItemGroup Condition=" '$(TargetFramework)'=='net45'">
+		<Reference Include="System.Web" />
+	</ItemGroup>
+
+
+	<ItemGroup>
+		<Compile Remove="Services\ManagementService.cs" />
+		<Compile Remove="UtilsImpl\HttpService.cs" />
+	</ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Models\BaseModels\" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(TargetFramework)' == 'net5.0'">
+    <PackageReference Include="Microsoft.AspNetCore.Http">
+      <Version>2.2.2</Version>
+    </PackageReference>
+  </ItemGroup>
+
+	<ItemGroup Condition="'$(TargetFramework)' == 'netcoreapp3.1'">
+		<PackageReference Include="Microsoft.AspNetCore.Http">
+			<Version>2.2.2</Version>
+		</PackageReference>
+	</ItemGroup>
+
+</Project>
