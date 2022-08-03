@@ -7,15 +7,18 @@
 </Description>
 		<PackageId>Authing.CSharp.SDK</PackageId>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-		<PackageReleaseNotes>Version 0.0.1
-- SDK 改版升级，支持 V3 版本的接口
+		<PackageReleaseNotes>Version 0.0.3
+- 修复语言设置失效的错误
 Version 0.0.2
-- SDK 改版升级，支持 V3 版本的接口</PackageReleaseNotes>
-		<Version>0.0.2</Version>
+- SDK 改版升级，支持 V3 版本的接口
+Version 0.0.1
+- SDK 改版升级，支持 V3 版本的接口
+</PackageReleaseNotes>
+		<Version>0.0.3</Version>
 		<PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
-		<FileVersion>0.0.2</FileVersion>
+		<FileVersion>0.0.3</FileVersion>
 		<Company>Authing</Company>
-		<AssemblyVersion>0.0.2</AssemblyVersion>
+		<AssemblyVersion>0.0.3</AssemblyVersion>
 		<Authors>Authing</Authors>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<Copyright>Beijing Steamory Technology Co. Ltd.</Copyright>
