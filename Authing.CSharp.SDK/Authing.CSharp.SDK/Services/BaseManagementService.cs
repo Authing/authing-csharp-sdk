@@ -1,6 +1,7 @@
 ﻿using Authing.CSharp.SDK.Extensions;
 using Authing.CSharp.SDK.Models;
 using Authing.CSharp.SDK.Utils;
+using Authing.CSharp.SDK.Utils.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,6 +20,8 @@ namespace Authing.CSharp.SDK.Services
 
         protected readonly string m_BaseUrl;
 
+        protected ClientLang clientLang;
+
         public BaseManagementService(ManagementClientOptions options) : base(new JsonService())
         {
             m_UserPoolId =options.AccessKeyId;
@@ -30,6 +33,8 @@ namespace Authing.CSharp.SDK.Services
             {
                 m_BaseUrl = options.Host;
             }
+
+            clientLang = options.Lang;
           
         }
 
@@ -80,7 +85,8 @@ namespace Authing.CSharp.SDK.Services
             m_HttpService.SetBearerToken(m_TokenInfo.Data.Access_token);
             m_HttpService.SetHeader("x-authing-userpool-id", m_UserPoolId);
             m_HttpService.SetHeader("x-authing-request-from", "SDK");
-            m_HttpService.SetHeader("x-authing-sdk-version", "c-sharp:5.0.0");
+            m_HttpService.SetHeader("x-authing-sdk-version", "c-sharp:5.0.2");
+            m_HttpService.SetHeader("x-authing-lang", clientLang.GetDescription());
         }
 
 

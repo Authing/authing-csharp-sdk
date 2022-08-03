@@ -24,7 +24,8 @@ namespace Authing.CSharp.SDK.Framework.Test
             ManagementClientOptions options = new ManagementClientOptions()
             {
                 AccessKeyId = "613189b2eed393affbbf396e",
-                AccessKeySecret = "ccf4951a33e5d54d64e145782a65f0a7"
+                AccessKeySecret = "ccf4951a33e5d54d64e145782a65f0a7",
+                Lang=ClientLang.CH
             };
 
             managementClient = new ManagementClient(options);
@@ -37,7 +38,7 @@ namespace Authing.CSharp.SDK.Framework.Test
             using (CancellationTokenSource cts = new CancellationTokenSource())
             {
 
-                GroupSingleRespDto dto =await managementClient.GetGroup("testgroup_Add");
+                GroupSingleRespDto dto =await managementClient.GetGroup("testgroup_Add111");
 
                 Assert.IsTrue(dto.Data.Name == "testgroup_Add");
             }

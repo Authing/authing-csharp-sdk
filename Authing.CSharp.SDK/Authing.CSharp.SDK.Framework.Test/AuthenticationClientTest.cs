@@ -11,9 +11,9 @@ namespace Authing.CSharp.SDK.Framework.Test
 {
     public class AuthenticationClientTest
     {
-        string loginCallbackUrl = @"https://console.authing.cn/console/get-started/62e73520801b92ac74752791";
+        string loginCallbackUrl = @"https://console.authing.cn/console/get-started/62e9e47185d7e275e3113072";
         AuthenticationClient client;
-        string code = @"P-kFRuV2oDgN9CfaBQLTmewv-XOQNKlpGHGfrP2Ugq7";
+        string code = @"bqiehGlmOkmfq3T1qJ-M_aSfjY_6Gkj19RQjnoh01Ac";
 
         [SetUp]
         public void TestGetJWKS()
@@ -24,10 +24,10 @@ namespace Authing.CSharp.SDK.Framework.Test
                 //AppSecret = "325d96c907a989b9f6b67584e1632909",
                 //Domain = @"https://authinglogindemo.authing.cn",
                 //RediretUri = loginCallbackUrl,
-                AppId = "62e73520801b92ac74752791",
-                AppSecret = "1d332f59c61745fbfaa321ba3c600b0d",
-                Domain = @"https://4399.authing.cn",
-                RediretUri = "https://console.authing.cn/console/get-started/62e73520801b92ac74752791",
+                AppId = "62e9e47185d7e275e3113072",
+                AppSecret = "ec85cae80fd60b796d926d62915f275e",
+                Domain = @"https://logintest5566.authing.cn",
+                RediretUri = "https://console.authing.cn/console/get-started/62e9e47185d7e275e3113072",
             });
         }
 
@@ -51,7 +51,7 @@ namespace Authing.CSharp.SDK.Framework.Test
         [Description("填入登录成功后的 code 的值")]
         public async Task GetUserInfoTest()
         {
-            var loginState = await client.GetLoginStateByAuthCode(@"AJ87C_3gvFuc6tiDpUZPd-ABj7RHuNUaflZeS-FYEYu", loginCallbackUrl);
+            var loginState = await client.GetLoginStateByAuthCode(code, loginCallbackUrl);
 
             var userInfo = await client.GetUserInfo(loginState.AccessToken);
 

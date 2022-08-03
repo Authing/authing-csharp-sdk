@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -37,14 +38,16 @@ namespace Authing.CSharp.SDK.Models
     /// 返回内容的枚举
     /// </summary>
     public enum ClientLang
-    { 
+    {
         /// <summary>
         /// 中文
         /// </summary>
+        [Description("zh-CH")]
         CH,
         /// <summary>
         /// 英文
         /// </summary>
+        [Description("en-US")]
         US
     }
 }
