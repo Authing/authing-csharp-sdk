@@ -7,43 +7,44 @@
   <a href="https://docs.authing.cn/v2/reference/ui-components/" target="_blank"><img src="https://img.shields.io/badge/docs-passing-brightgreen" /></a>
   <a href="javascript:;"><img src="https://img.shields.io/badge/License-MIT-success" alt="License"></a>
 </div>
- English| [简体中文](./README-zh_CN.md) |
 
-The Authing Python SDK is comprised of two parts: `ManagementClient` and `AuthenticationClient`. All operations in `ManagementClient` are performed as an administrator, including managing users, managing roles, managing authority policies, and managing user pool configuration. 
+[English](./README.md) | 简体中文 |
+
+[Authing](https://authing.cn) 身份云 `CSharp` 语言客户端，包含 [Authing Open API](https://api.authing.cn/openapi/) 所有 Management API 的请求方法。
+
+此模块一般用于后端服务器环境，以管理员（Administrator）的身份进行请求，用于管理 Authing 用户、角色、分组、组织机构等资源；
 
 
 
-## 🌍 Ecosystem
+## 🌍 生态系统
 
 | 项目   | 状态                                                         | 描述       |
 | ------ | ------------------------------------------------------------ | ---------- |
 | csharp | [![NuGet version (Newtonsoft.Json)](https://img.shields.io/nuget/v/Authing.CSharp.SDK.svg?style=flat-square)](https://www.nuget.org/packages/Authing.CSharp.SDK/) | csharp sdk |
 
-## 👀 Online preview
+## 👀 在线体验
 
 点击查看 [sample-sso.authing.cn]([Authing - C# | Authing 文档](https://docs.authing.cn/v2/reference/sdk-for-csharp/))
 
-## 📚 Documentation
+## 📚 文档
 
-To check out live examples and docs, visit[官方文档]([Authing - C# | Authing 文档](https://docs.authing.cn/v2/reference/sdk-for-csharp/))
+更多示例和使用说明可参考[官方文档]([Authing - C# | Authing 文档](https://docs.authing.cn/v2/reference/sdk-for-csharp/))
 
 ## ❓ Questions
 
-For questions and support please use the [official forum](https://forum.authing.cn/). The issue list of this repo is exclusively for bug reports and feature requests.
+如果需要在线技术支持，可访问[官方论坛](https://forum.authing.cn/). 此仓库的 issue 仅用于上报 Bug 和提交新功能特性。
 
-## 🤝 Contribution
+## 🤝 开源共建
 
-- Fork it
-- Create your feature branch (git checkout -b my-new-feature)
-- Commit your changes (git commit -am 'Add some feature')
-- Push to the branch (git push -u origin my-new-feature)
-- Create new Pull Request
+- Fork 此仓库
+- 创建自己的 git 分支 (git checkout -b my-new-feature)
+- 提交你的修改 (git commit -am 'Add some feature')
+- 将修改内容推送到远程分支 (git push -u origin my-new-feature)
+- 创建一个 Pull Request
 
-Thank you to all the people who already contributed to CSharp SDK !
+感谢所有为 CSharp SDK 做出贡献的人！
 
-- https://forum.authing.cn/)
-
-## 🎁 License
+## 🎁 开源许可
 
 [MIT](https://opensource.org/licenses/MIT)
 
