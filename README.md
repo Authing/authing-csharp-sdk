@@ -9,7 +9,7 @@
 </div>
  English| [简体中文](./README-zh_CN.md) |
 
-The Authing Python SDK is comprised of two parts: `ManagementClient` and `AuthenticationClient`. All operations in `ManagementClient` are performed as an administrator, including managing users, managing roles, managing authority policies, and managing user pool configuration. 
+The Authing CSharp SDK is comprised of two parts: `ManagementClient` and `AuthenticationClient`. All operations in `ManagementClient` are performed as an administrator, including managing users, managing roles, managing authority policies, and managing user pool configuration. 
 
 
 
@@ -21,11 +21,11 @@ The Authing Python SDK is comprised of two parts: `ManagementClient` and `Authen
 
 ## 👀 Online preview
 
-点击查看 [sample-sso.authing.cn]([Authing - C# | Authing 文档](https://docs.authing.cn/v2/reference/sdk-for-csharp/))
+点击查看 [Authing - C# | Authing 文档](https://docs.authing.cn/v2/reference/sdk-for-csharp/)
 
 ## 📚 Documentation
 
-To check out live examples and docs, visit[官方文档]([Authing - C# | Authing 文档](https://docs.authing.cn/v2/reference/sdk-for-csharp/))
+To check out live examples and docs, [官方文档](https://docs.authing.cn/v2/reference/sdk-for-csharp/)
 
 ## ❓ Questions
 
