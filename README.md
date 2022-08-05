@@ -15,13 +15,13 @@ The Authing CSharp SDK is comprised of two parts: `ManagementClient` and `Authen
 
 ## 🌍 Ecosystem
 
-| 项目   | 状态                                                         | 描述       |
-| ------ | ------------------------------------------------------------ | ---------- |
-| csharp | [![NuGet version (Newtonsoft.Json)](https://img.shields.io/nuget/v/Authing.CSharp.SDK.svg?style=flat-square)](https://www.nuget.org/packages/Authing.CSharp.SDK/) | csharp sdk |
+| Project | Status                                                       | Description |
+| ------- | ------------------------------------------------------------ | ----------- |
+| csharp  | [![NuGet version (Newtonsoft.Json)](https://img.shields.io/nuget/v/Authing.CSharp.SDK.svg?style=flat-square)](https://www.nuget.org/packages/Authing.CSharp.SDK/) | csharp sdk  |
 
 ## 👀 Online preview
 
-点击查看 [Authing - C# | Authing 文档](https://docs.authing.cn/v2/reference/sdk-for-csharp/)
+Click to [Authing - C# | Authing 文档](https://docs.authing.cn/v2/reference/sdk-for-csharp/)
 
 ## 📚 Documentation
 
