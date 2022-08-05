@@ -29,7 +29,7 @@ To check out live examples and docs, [docs](https://docs.authing.cn/v2/en/refere
 
 ## ❓ Questions
 
-For questions and support please use the [official forum](https://forum.authing.cn/). The issue list of this repo is exclusively for bug reports and feature requests.
+For questions and support please use the [official forum](https://forum.authing.cn/). The issue list of this repo is exclusively for bug reports and feature requests.  
 
 ## 🤝 Contribution
 
