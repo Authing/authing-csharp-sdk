@@ -7,7 +7,8 @@
   <a href="https://docs.authing.cn/v2/reference/ui-components/" target="_blank"><img src="https://img.shields.io/badge/docs-passing-brightgreen" /></a>
   <a href="javascript:;"><img src="https://img.shields.io/badge/License-MIT-success" alt="License"></a>
 </div>
- English| [简体中文](./README-zh_CN.md) |
+
+ English|  [简体中文](./README-zh_CN.md) |
 
 The Authing CSharp SDK is comprised of two parts: `ManagementClient` and `AuthenticationClient`. All operations in `ManagementClient` are performed as an administrator, including managing users, managing roles, managing authority policies, and managing user pool configuration. 
 
@@ -15,21 +16,21 @@ The Authing CSharp SDK is comprised of two parts: `ManagementClient` and `Authen
 
 ## 🌍 Ecosystem
 
-| 项目   | 状态                                                         | 描述       |
-| ------ | ------------------------------------------------------------ | ---------- |
-| csharp | [![NuGet version (Newtonsoft.Json)](https://img.shields.io/nuget/v/Authing.CSharp.SDK.svg?style=flat-square)](https://www.nuget.org/packages/Authing.CSharp.SDK/) | csharp sdk |
+| Project | Status                                                       | Description |
+| ------- | ------------------------------------------------------------ | ----------- |
+| csharp  | [![NuGet version (Newtonsoft.Json)](https://img.shields.io/nuget/v/Authing.CSharp.SDK.svg?style=flat-square)](https://www.nuget.org/packages/Authing.CSharp.SDK/) | csharp sdk  |
 
 ## 👀 Online preview
 
-点击查看 [Authing - C# | Authing 文档](https://docs.authing.cn/v2/reference/sdk-for-csharp/)
+Click to [docs](https://docs.authing.cn/v2/en/reference/sdk-for-csharp/)
 
 ## 📚 Documentation
 
-To check out live examples and docs, [官方文档](https://docs.authing.cn/v2/reference/sdk-for-csharp/)
+To check out live examples and docs, [docs](https://docs.authing.cn/v2/en/reference/sdk-for-csharp/)
 
 ## ❓ Questions
 
-For questions and support please use the [official forum](https://forum.authing.cn/). The issue list of this repo is exclusively for bug reports and feature requests.
+For questions and support please use the [official forum](https://forum.authing.cn/). The issue list of this repo is exclusively for bug reports and feature requests.  
 
 ## 🤝 Contribution
 
