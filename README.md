@@ -21,11 +21,11 @@ The Authing CSharp SDK is comprised of two parts: `ManagementClient` and `Authen
 
 ## 👀 Online preview
 
-Click to [Authing - C# | Authing 文档](https://docs.authing.cn/v2/reference/sdk-for-csharp/)
+Click to [docs](https://docs.authing.cn/v2/en/reference/sdk-for-csharp/)
 
 ## 📚 Documentation
 
-To check out live examples and docs, [官方文档](https://docs.authing.cn/v2/reference/sdk-for-csharp/)
+To check out live examples and docs, [docs](https://docs.authing.cn/v2/en/reference/sdk-for-csharp/)
 
 ## ❓ Questions
 
