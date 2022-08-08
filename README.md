@@ -8,7 +8,7 @@
   <a href="javascript:;"><img src="https://img.shields.io/badge/License-MIT-success" alt="License"></a>
 </div>
 
- English|  [简体中文](./README-zh_CN.md) |
+ English | [简体中文](./README-zh_CN.md)
 
 The Authing CSharp SDK is comprised of two parts: `ManagementClient` and `AuthenticationClient`. All operations in `ManagementClient` are performed as an administrator, including managing users, managing roles, managing authority policies, and managing user pool configuration. 
 
@@ -42,7 +42,7 @@ For questions and support please use the [official forum](https://forum.authing.
 
 Thank you to all the people who already contributed to CSharp SDK !
 
-- https://forum.authing.cn/)
+[开源规范](https://github.com/Authing/.github/blob/main/CONTRIBUTING.md#English)
 
 ## 🎁 License
 
