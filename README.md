@@ -42,7 +42,7 @@ For questions and support please use the [official forum](https://forum.authing.
 
 Thank you to all the people who already contributed to CSharp SDK !
 
-[开源规范](https://github.com/Authing/.github/blob/main/CONTRIBUTING.md#English)
+[Contributing to Authing Open Source Repos](https://github.com/Authing/.github/blob/main/CONTRIBUTING.md#English)
 
 ## 🎁 License
 
