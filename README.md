@@ -4,7 +4,7 @@
 <div align="center">
   <a href="javascript:;"><img src="https://img.shields.io/badge/test-passing-brightgreen" /></a>
   <a href="https://forum.authing.cn/" target="_blank"><img src="https://img.shields.io/badge/chat-forum-blue" /></a>
-  <a href="https://docs.authing.cn/v2/reference/ui-components/" target="_blank"><img src="https://img.shields.io/badge/docs-passing-brightgreen" /></a>
+  <a href="https://console.authing.cn/openapi/" target="_blank"><img src="https://img.shields.io/badge/docs-passing-brightgreen" /></a>
   <a href="javascript:;"><img src="https://img.shields.io/badge/License-MIT-success" alt="License"></a>
 </div>
 
@@ -22,11 +22,11 @@ The Authing CSharp SDK is comprised of two parts: `ManagementClient` and `Authen
 
 ## 👀 Online preview
 
-Click to [docs](https://docs.authing.cn/v2/en/reference/sdk-for-csharp/)
+Click to [docs](https://console.authing.cn/openapi/)
 
 ## 📚 Documentation
 
-To check out live examples and docs, [docs](https://docs.authing.cn/v2/en/reference/sdk-for-csharp/)
+To check out live examples and docs, [docs](https://console.authing.cn/openapi/)
 
 ## ❓ Questions
 
