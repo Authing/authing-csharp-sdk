@@ -44,7 +44,7 @@
 
 感谢所有为 CSharp SDK 做出贡献的人！
 
-[开源规范](https://github.com/Authing/.github/blob/main/CONTRIBUTING.md#简体中文)
+[贡献代码到 Authing 开源项目](https://github.com/Authing/.github/blob/main/CONTRIBUTING.md#简体中文)
 
 ## 🎁 开源许可
 
