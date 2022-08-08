@@ -8,7 +8,7 @@
   <a href="javascript:;"><img src="https://img.shields.io/badge/License-MIT-success" alt="License"></a>
 </div>
 
-[English](./README.md) | 简体中文 |
+[English](./README.md) | 简体中文
 
 [Authing](https://authing.cn) 身份云 `CSharp` 语言客户端，包含 [Authing Open API](https://api.authing.cn/openapi/) 所有 Management API 的请求方法。
 
@@ -43,6 +43,8 @@
 - 创建一个 Pull Request
 
 感谢所有为 CSharp SDK 做出贡献的人！
+
+[开源规范](https://github.com/Authing/.github/blob/main/CONTRIBUTING.md#%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87)
 
 ## 🎁 开源许可
 
