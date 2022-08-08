@@ -24,11 +24,11 @@
 
 ## 👀 在线体验
 
-点击查看 [官方文档]([Authing - C# | Authing 文档](https://docs.authing.cn/v2/reference/sdk-for-csharp/))
+点击查看 [官方文档](https://console.authing.cn/openapi/)
 
 ## 📚 文档
 
-更多示例和使用说明可参考[官方文档]([Authing - C# | Authing 文档](https://console.authing.cn/openapi/#/))
+更多示例和使用说明可参考[官方文档](https://console.authing.cn/openapi/)
 
 ## ❓ Questions
 
