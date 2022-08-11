@@ -24,7 +24,7 @@
 
 ## 👀 在线体验
 
-点击查看 [sample-sso.authing.cn]([Authing - C# | Authing 文档](https://docs.authing.cn/v2/reference/sdk-for-csharp/))
+点击查看 [官方文档]([Authing - C# | Authing 文档](https://docs.authing.cn/v2/reference/sdk-for-csharp/))
 
 ## 📚 文档
 
