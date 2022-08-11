@@ -4,11 +4,11 @@
 <div align="center">
   <a href="javascript:;"><img src="https://img.shields.io/badge/test-passing-brightgreen" /></a>
   <a href="https://forum.authing.cn/" target="_blank"><img src="https://img.shields.io/badge/chat-forum-blue" /></a>
-  <a href="https://docs.authing.cn/v2/reference/ui-components/" target="_blank"><img src="https://img.shields.io/badge/docs-passing-brightgreen" /></a>
+  <a href="https://console.authing.cn/openapi/#/" target="_blank"><img src="https://img.shields.io/badge/docs-passing-brightgreen" /></a>
   <a href="javascript:;"><img src="https://img.shields.io/badge/License-MIT-success" alt="License"></a>
 </div>
 
-[English](./README.md) | 简体中文 |
+[English](./README.md) | 简体中文
 
 [Authing](https://authing.cn) 身份云 `CSharp` 语言客户端，包含 [Authing Open API](https://api.authing.cn/openapi/) 所有 Management API 的请求方法。
 
@@ -24,11 +24,11 @@
 
 ## 👀 在线体验
 
-点击查看 [官方文档]([Authing - C# | Authing 文档](https://docs.authing.cn/v2/reference/sdk-for-csharp/))
+点击查看 [官方文档](https://console.authing.cn/openapi/)
 
 ## 📚 文档
 
-更多示例和使用说明可参考[官方文档]([Authing - C# | Authing 文档](https://docs.authing.cn/v2/reference/sdk-for-csharp/))
+更多示例和使用说明可参考[官方文档](https://console.authing.cn/openapi/)
 
 ## ❓ Questions
 
@@ -43,6 +43,8 @@
 - 创建一个 Pull Request
 
 感谢所有为 CSharp SDK 做出贡献的人！
+
+[为 Authing 开源仓库做出贡献](https://github.com/Authing/.github/blob/main/CONTRIBUTING.md#简体中文)
 
 ## 🎁 开源许可
 
