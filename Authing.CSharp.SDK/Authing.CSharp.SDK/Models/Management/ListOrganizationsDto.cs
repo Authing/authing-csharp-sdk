@@ -18,16 +18,16 @@ namespace Authing.CSharp.SDK.Models
         ///  当前页数，从 1 开始
         /// </summary>
         [JsonProperty("page")]
-        public    object   Page    {get;set;}
+        public object Page { get; set; }
         /// <summary>
         ///  每页数目，最大不能超过 50，默认为 10
         /// </summary>
         [JsonProperty("limit")]
-        public    object   Limit    {get;set;}
+        public object Limit { get; set; }
         /// <summary>
         ///  拉取所有
         /// </summary>
         [JsonProperty("fetchAll")]
-        public    object   FetchAll    {get;set;}
+        public object FetchAll { get; set; }
     }
 }

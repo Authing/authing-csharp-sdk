@@ -18,6 +18,6 @@ namespace Authing.CSharp.SDK.Models
         ///  用户是否存在
         /// </summary>
         [JsonProperty("exists")]
-        public    bool   Exists    {get;set;}
+        public bool Exists { get; set; }
     }
 }

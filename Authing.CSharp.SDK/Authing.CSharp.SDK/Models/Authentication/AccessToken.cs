@@ -56,7 +56,7 @@ namespace Authing.CSharp.SDK.Models.Authentication
 
     public class JoseKey
     {
-        public List<Dictionary<string,string>> keys { get; set; }
+        public List<Dictionary<string, string>> keys { get; set; }
     }
 
     public class Key

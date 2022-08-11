@@ -132,7 +132,7 @@ namespace Authing.CSharp.SDK.Utils
             }
         }
 
-        public async Task<string> PostFormAsync(string baseUrl, string apiPath, Dictionary<string,string> param, CancellationToken cancellationToken, string bearerToken = null)
+        public async Task<string> PostFormAsync(string baseUrl, string apiPath, Dictionary<string, string> param, CancellationToken cancellationToken, string bearerToken = null)
         {
             try
             {
@@ -154,7 +154,7 @@ namespace Authing.CSharp.SDK.Utils
                     stringBuilder.AppendFormat("&{0}={1}", item.Key, item.Value);
                 }
 
-                stringBuilder =new StringBuilder( stringBuilder.ToString().Trim('&'));
+                stringBuilder = new StringBuilder(stringBuilder.ToString().Trim('&'));
 
                 byte[] content = Encoding.UTF8.GetBytes(stringBuilder.ToString());
                 request.ContentLength = content.Length;

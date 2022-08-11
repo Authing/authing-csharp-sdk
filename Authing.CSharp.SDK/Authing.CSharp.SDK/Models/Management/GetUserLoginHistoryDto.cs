@@ -18,36 +18,41 @@ namespace Authing.CSharp.SDK.Models
         ///  用户 ID
         /// </summary>
         [JsonProperty("userId")]
-        public    object   UserId    {get;set;}
+        public object UserId { get; set; }
+        /// <summary>
+        ///  用户 ID 类型，可以指定为用户 ID、手机号、邮箱、用户名和 externalId。
+        /// </summary>
+        [JsonProperty("userIdType")]
+        public object UserIdType { get; set; }
         /// <summary>
         ///  应用 ID
         /// </summary>
         [JsonProperty("appId")]
-        public    object   AppId    {get;set;}
+        public object AppId { get; set; }
         /// <summary>
         ///  客户端 IP
         /// </summary>
         [JsonProperty("clientIp")]
-        public    object   ClientIp    {get;set;}
+        public object ClientIp { get; set; }
         /// <summary>
         ///  开始时间戳（毫秒）
         /// </summary>
         [JsonProperty("start")]
-        public    object   Start    {get;set;}
+        public object Start { get; set; }
         /// <summary>
         ///  结束时间戳（毫秒）
         /// </summary>
         [JsonProperty("end")]
-        public    object   End    {get;set;}
+        public object End { get; set; }
         /// <summary>
         ///  当前页数，从 1 开始
         /// </summary>
         [JsonProperty("page")]
-        public    object   Page    {get;set;}
+        public object Page { get; set; }
         /// <summary>
         ///  每页数目，最大不能超过 50，默认为 10
         /// </summary>
         [JsonProperty("limit")]
-        public    object   Limit    {get;set;}
+        public object Limit { get; set; }
     }
 }

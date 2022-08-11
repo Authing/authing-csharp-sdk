@@ -18,6 +18,6 @@ namespace Authing.CSharp.SDK.Models
         ///  租户 ID
         /// </summary>
         [JsonProperty("tenantId")]
-        public    object   TenantId    {get;set;}
+        public object TenantId { get; set; }
     }
 }

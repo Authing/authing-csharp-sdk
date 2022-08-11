@@ -36,25 +36,19 @@ namespace Authing.CSharp.SDK.Services
         /// 获取用户信息
         ///</summary>
         /// <param name="userId">用户 ID</param>
+        /// <param name="userIdType">用户 ID 类型，可以指定为用户 ID、手机号、邮箱、用户名和 externalId。</param>
         /// <param name="withCustomData">是否获取自定义数据</param>
         /// <param name="withIdentities">是否获取 identities</param>
         /// <param name="withDepartmentIds">是否获取部门 ID 列表</param>
-        /// <param name="phone">手机号</param>
-        /// <param name="email">邮箱</param>
-        /// <param name="username">用户名</param>
-        /// <param name="externalId">原系统 ID</param>
         ///<returns>UserSingleRespDto</returns>
-        public async Task<UserSingleRespDto> GetUser(string userId, bool withCustomData = false, bool withIdentities = false, bool withDepartmentIds = false, string phone = null, string email = null, string username = null, string externalId = null)
+        public async Task<UserSingleRespDto> GetUser(string userId, string userIdType = "user_id", bool withCustomData = false, bool withIdentities = false, bool withDepartmentIds = false)
         {
             string httpResponse = await Request("GET", "/api/v3/get-user", new Dictionary<string, object> {
+            {"userId",userId },
+            {"userIdType",userIdType },
             {"withCustomData",withCustomData },
             {"withIdentities",withIdentities },
             {"withDepartmentIds",withDepartmentIds },
-            {"userId",userId },
-            {"phone",phone },
-            {"email",email },
-            {"username",username },
-            {"externalId",externalId },
         }).ConfigureAwait(false);
             UserSingleRespDto result = m_JsonService.DeserializeObject<UserSingleRespDto>(httpResponse);
             return result;
@@ -63,17 +57,19 @@ namespace Authing.CSharp.SDK.Services
         /// 批量获取用户信息
         ///</summary>
         /// <param name="userIds">用户 ID 数组</param>
+        /// <param name="userIdType">用户 ID 类型，可以指定为用户 ID、手机号、邮箱、用户名和 externalId。</param>
         /// <param name="withCustomData">是否获取自定义数据</param>
         /// <param name="withIdentities">是否获取 identities</param>
         /// <param name="withDepartmentIds">是否获取部门 ID 列表</param>
         ///<returns>UserListRespDto</returns>
-        public async Task<UserListRespDto> GetUserBatch(string userIds, bool withCustomData = false, bool withIdentities = false, bool withDepartmentIds = false)
+        public async Task<UserListRespDto> GetUserBatch(string userIds, string userIdType = "user_id", bool withCustomData = false, bool withIdentities = false, bool withDepartmentIds = false)
         {
             string httpResponse = await Request("GET", "/api/v3/get-user-batch", new Dictionary<string, object> {
+            {"userIds",userIds },
+            {"userIdType",userIdType },
             {"withCustomData",withCustomData },
             {"withIdentities",withIdentities },
             {"withDepartmentIds",withDepartmentIds },
-            {"userIds",userIds },
         }).ConfigureAwait(false);
             UserListRespDto result = m_JsonService.DeserializeObject<UserListRespDto>(httpResponse);
             return result;
@@ -83,15 +79,21 @@ namespace Authing.CSharp.SDK.Services
         ///</summary>
         /// <param name="page">当前页数，从 1 开始</param>
         /// <param name="limit">每页数目，最大不能超过 50，默认为 10</param>
+        /// <param name="status">账户当前状态，如 已停用、已离职、正常状态、已归档</param>
+        /// <param name="updatedAtStart">用户创建、修改开始时间，为精确到秒的 UNIX 时间戳；支持获取从某一段时间之后的增量数据</param>
+        /// <param name="updatedAtEnd">用户创建、修改终止时间，为精确到秒的 UNIX 时间戳；支持获取某一段时间内的增量数据。默认为当前时间</param>
         /// <param name="withCustomData">是否获取自定义数据</param>
         /// <param name="withIdentities">是否获取 identities</param>
         /// <param name="withDepartmentIds">是否获取部门 ID 列表</param>
         ///<returns>UserPaginatedRespDto</returns>
-        public async Task<UserPaginatedRespDto> ListUsers(long page = 1, long limit = 10, bool withCustomData = false, bool withIdentities = false, bool withDepartmentIds = false)
+        public async Task<UserPaginatedRespDto> ListUsers(long page = 1, long limit = 10, string status = null, long updatedAtStart = 0, long updatedAtEnd = 0, bool withCustomData = false, bool withIdentities = false, bool withDepartmentIds = false)
         {
             string httpResponse = await Request("GET", "/api/v3/list-users", new Dictionary<string, object> {
             {"page",page },
             {"limit",limit },
+            {"status",status },
+            {"updatedAtStart",updatedAtStart },
+            {"updatedAtEnd",updatedAtEnd },
             {"withCustomData",withCustomData },
             {"withIdentities",withIdentities },
             {"withDepartmentIds",withDepartmentIds },
@@ -103,11 +105,13 @@ namespace Authing.CSharp.SDK.Services
         /// 获取用户的外部身份源
         ///</summary>
         /// <param name="userId">用户 ID</param>
+        /// <param name="userIdType">用户 ID 类型，可以指定为用户 ID、手机号、邮箱、用户名和 externalId。</param>
         ///<returns>IdentityListRespDto</returns>
-        public async Task<IdentityListRespDto> GetUserIdentities(string userId)
+        public async Task<IdentityListRespDto> GetUserIdentities(string userId, string userIdType = "user_id")
         {
             string httpResponse = await Request("GET", "/api/v3/get-user-identities", new Dictionary<string, object> {
             {"userId",userId },
+            {"userIdType",userIdType },
         }).ConfigureAwait(false);
             IdentityListRespDto result = m_JsonService.DeserializeObject<IdentityListRespDto>(httpResponse);
             return result;
@@ -116,12 +120,14 @@ namespace Authing.CSharp.SDK.Services
         /// 获取用户角色列表
         ///</summary>
         /// <param name="userId">用户 ID</param>
+        /// <param name="userIdType">用户 ID 类型，可以指定为用户 ID、手机号、邮箱、用户名和 externalId。</param>
         /// <param name="nameSpace">所属权限分组的 code</param>
         ///<returns>RolePaginatedRespDto</returns>
-        public async Task<RolePaginatedRespDto> GetUserRoles(string userId, string nameSpace = null)
+        public async Task<RolePaginatedRespDto> GetUserRoles(string userId, string userIdType = "user_id", string nameSpace = null)
         {
             string httpResponse = await Request("GET", "/api/v3/get-user-roles", new Dictionary<string, object> {
             {"userId",userId },
+            {"userIdType",userIdType },
             {"namespace",nameSpace },
         }).ConfigureAwait(false);
             RolePaginatedRespDto result = m_JsonService.DeserializeObject<RolePaginatedRespDto>(httpResponse);
@@ -131,11 +137,13 @@ namespace Authing.CSharp.SDK.Services
         /// 获取用户实名认证信息
         ///</summary>
         /// <param name="userId">用户 ID</param>
+        /// <param name="userIdType">用户 ID 类型，可以指定为用户 ID、手机号、邮箱、用户名和 externalId。</param>
         ///<returns>PrincipalAuthenticationInfoPaginatedRespDto</returns>
-        public async Task<PrincipalAuthenticationInfoPaginatedRespDto> GetUserPrincipalAuthenticationInfo(string userId)
+        public async Task<PrincipalAuthenticationInfoPaginatedRespDto> GetUserPrincipalAuthenticationInfo(string userId, string userIdType = "user_id")
         {
             string httpResponse = await Request("GET", "/api/v3/get-user-principal-authentication-info", new Dictionary<string, object> {
             {"userId",userId },
+            {"userIdType",userIdType },
         }).ConfigureAwait(false);
             PrincipalAuthenticationInfoPaginatedRespDto result = m_JsonService.DeserializeObject<PrincipalAuthenticationInfoPaginatedRespDto>(httpResponse);
             return result;
@@ -156,11 +164,23 @@ namespace Authing.CSharp.SDK.Services
         /// 获取用户部门列表
         ///</summary>
         /// <param name="userId">用户 ID</param>
+        /// <param name="userIdType">用户 ID 类型，可以指定为用户 ID、手机号、邮箱、用户名和 externalId。</param>
+        /// <param name="page">当前页数，从 1 开始</param>
+        /// <param name="limit">每页数目，最大不能超过 50，默认为 10</param>
+        /// <param name="withCustomData">是否获取自定义数据</param>
+        /// <param name="sortBy">排序依据，如 部门创建时间、加入部门时间、部门名称、部门标志符</param>
+        /// <param name="orderBy">增序或降序</param>
         ///<returns>UserDepartmentPaginatedRespDto</returns>
-        public async Task<UserDepartmentPaginatedRespDto> GetUserDepartments(string userId)
+        public async Task<UserDepartmentPaginatedRespDto> GetUserDepartments(string userId, string userIdType = "user_id", long page = 1, long limit = 10, bool withCustomData = false, string sortBy = "JoinDepartmentAt", string orderBy = "Desc")
         {
             string httpResponse = await Request("GET", "/api/v3/get-user-departments", new Dictionary<string, object> {
         {"userId",userId },
+        {"userIdType",userIdType },
+        {"page",page },
+        {"limit",limit },
+        {"withCustomData",withCustomData },
+        {"sortBy",sortBy },
+        {"orderBy",orderBy },
     }).ConfigureAwait(false);
             UserDepartmentPaginatedRespDto result = m_JsonService.DeserializeObject<UserDepartmentPaginatedRespDto>(httpResponse);
             return result;
@@ -170,7 +190,7 @@ namespace Authing.CSharp.SDK.Services
         ///</summary>
         /// <param name="requestBody"></param>
         ///<returns>IsSuccessRespDto</returns>
-        public async Task<IsSuccessRespDto> SetUserDepartment(SetUserDepartmentsDto requestBody
+        public async Task<IsSuccessRespDto> SetUserDepartments(SetUserDepartmentsDto requestBody
         )
         {
             string httpResponse = await Request("POST", "/api/v3/set-user-departments", requestBody).ConfigureAwait(false);
@@ -181,11 +201,13 @@ namespace Authing.CSharp.SDK.Services
         /// 获取用户分组列表
         ///</summary>
         /// <param name="userId">用户 ID</param>
+        /// <param name="userIdType">用户 ID 类型，可以指定为用户 ID、手机号、邮箱、用户名和 externalId。</param>
         ///<returns>GroupPaginatedRespDto</returns>
-        public async Task<GroupPaginatedRespDto> GetUserGroups(string userId)
+        public async Task<GroupPaginatedRespDto> GetUserGroups(string userId, string userIdType = "user_id")
         {
             string httpResponse = await Request("GET", "/api/v3/get-user-groups", new Dictionary<string, object> {
         {"userId",userId },
+        {"userIdType",userIdType },
     }).ConfigureAwait(false);
             GroupPaginatedRespDto result = m_JsonService.DeserializeObject<GroupPaginatedRespDto>(httpResponse);
             return result;
@@ -206,11 +228,13 @@ namespace Authing.CSharp.SDK.Services
         /// 获取用户 MFA 绑定信息
         ///</summary>
         /// <param name="userId">用户 ID</param>
+        /// <param name="userIdType">用户 ID 类型，可以指定为用户 ID、手机号、邮箱、用户名和 externalId。</param>
         ///<returns>UserMfaSingleRespDto</returns>
-        public async Task<UserMfaSingleRespDto> GetUserMfaInfo(string userId)
+        public async Task<UserMfaSingleRespDto> GetUserMfaInfo(string userId, string userIdType = "user_id")
         {
             string httpResponse = await Request("GET", "/api/v3/get-user-mfa-info", new Dictionary<string, object> {
         {"userId",userId },
+        {"userIdType",userIdType },
     }).ConfigureAwait(false);
             UserMfaSingleRespDto result = m_JsonService.DeserializeObject<UserMfaSingleRespDto>(httpResponse);
             return result;
@@ -220,12 +244,14 @@ namespace Authing.CSharp.SDK.Services
         ///</summary>
         /// <param name="page">当前页数，从 1 开始</param>
         /// <param name="limit">每页数目，最大不能超过 50，默认为 10</param>
+        /// <param name="startAt">开始时间，为精确到秒的 UNIX 时间戳，默认不指定</param>
         ///<returns>ListArchivedUsersSingleRespDto</returns>
-        public async Task<ListArchivedUsersSingleRespDto> ListArchivedUsers(long page = 1, long limit = 10)
+        public async Task<ListArchivedUsersSingleRespDto> ListArchivedUsers(long page = 1, long limit = 10, long startAt = 0)
         {
             string httpResponse = await Request("GET", "/api/v3/list-archived-users", new Dictionary<string, object> {
         {"page",page },
         {"limit",limit },
+        {"startAt",startAt },
     }).ConfigureAwait(false);
             ListArchivedUsersSingleRespDto result = m_JsonService.DeserializeObject<ListArchivedUsersSingleRespDto>(httpResponse);
             return result;
@@ -271,7 +297,7 @@ namespace Authing.CSharp.SDK.Services
         ///</summary>
         /// <param name="requestBody"></param>
         ///<returns>UserListRespDto</returns>
-        public async Task<UserListRespDto> CreateUserBatch(CreateUserBatchReqDto requestBody
+        public async Task<UserListRespDto> CreateUsersBatch(CreateUserBatchReqDto requestBody
         )
         {
             string httpResponse = await Request("POST", "/api/v3/create-users-batch", requestBody).ConfigureAwait(false);
@@ -291,14 +317,16 @@ namespace Authing.CSharp.SDK.Services
             return result;
         }
         ///<summary>
-        /// 获取用户可访问应用
+        /// 获取用户可访问的应用
         ///</summary>
         /// <param name="userId">用户 ID</param>
+        /// <param name="userIdType">用户 ID 类型，可以指定为用户 ID、手机号、邮箱、用户名和 externalId。</param>
         ///<returns>AppListRespDto</returns>
-        public async Task<AppListRespDto> GetUserAccessibleApps(string userId)
+        public async Task<AppListRespDto> GetUserAccessibleApps(string userId, string userIdType = "user_id")
         {
             string httpResponse = await Request("GET", "/api/v3/get-user-accessible-apps", new Dictionary<string, object> {
         {"userId",userId },
+        {"userIdType",userIdType },
     }).ConfigureAwait(false);
             AppListRespDto result = m_JsonService.DeserializeObject<AppListRespDto>(httpResponse);
             return result;
@@ -307,11 +335,13 @@ namespace Authing.CSharp.SDK.Services
         /// 获取用户授权的应用
         ///</summary>
         /// <param name="userId">用户 ID</param>
+        /// <param name="userIdType">用户 ID 类型，可以指定为用户 ID、手机号、邮箱、用户名和 externalId。</param>
         ///<returns>AppListRespDto</returns>
-        public async Task<AppListRespDto> GetUserAuthorizedApps(string userId)
+        public async Task<AppListRespDto> GetUserAuthorizedApps(string userId, string userIdType = "user_id")
         {
             string httpResponse = await Request("GET", "/api/v3/get-user-authorized-apps", new Dictionary<string, object> {
         {"userId",userId },
+        {"userIdType",userIdType },
     }).ConfigureAwait(false);
             AppListRespDto result = m_JsonService.DeserializeObject<AppListRespDto>(httpResponse);
             return result;
@@ -332,6 +362,7 @@ namespace Authing.CSharp.SDK.Services
         /// 获取用户的登录历史记录
         ///</summary>
         /// <param name="userId">用户 ID</param>
+        /// <param name="userIdType">用户 ID 类型，可以指定为用户 ID、手机号、邮箱、用户名和 externalId。</param>
         /// <param name="appId">应用 ID</param>
         /// <param name="clientIp">客户端 IP</param>
         /// <param name="start">开始时间戳（毫秒）</param>
@@ -339,10 +370,11 @@ namespace Authing.CSharp.SDK.Services
         /// <param name="page">当前页数，从 1 开始</param>
         /// <param name="limit">每页数目，最大不能超过 50，默认为 10</param>
         ///<returns>UserLoginHistoryPaginatedRespDto</returns>
-        public async Task<UserLoginHistoryPaginatedRespDto> GetUserLoginHistory(string userId, string appId = null, string clientIp = null, long start = 0, long end = 0, long page = 1, long limit = 10)
+        public async Task<UserLoginHistoryPaginatedRespDto> GetUserLoginHistory(string userId, string userIdType = "user_id", string appId = null, string clientIp = null, long start = 0, long end = 0, long page = 1, long limit = 10)
         {
             string httpResponse = await Request("GET", "/api/v3/get-user-login-history", new Dictionary<string, object> {
         {"userId",userId },
+        {"userIdType",userIdType },
         {"appId",appId },
         {"clientIp",clientIp },
         {"start",start },
@@ -354,27 +386,31 @@ namespace Authing.CSharp.SDK.Services
             return result;
         }
         ///<summary>
-        /// 获取用户曾经登录过的应用
+        /// 通过用户 ID，获取用户曾经登录过的应用，可以选择指定用户 ID 类型等。
         ///</summary>
         /// <param name="userId">用户 ID</param>
+        /// <param name="userIdType">用户 ID 类型，可以指定为用户 ID、手机号、邮箱、用户名和 externalId。</param>
         ///<returns>UserLoggedInAppsListRespDto</returns>
-        public async Task<UserLoggedInAppsListRespDto> GetUserLoggedInApps(string userId)
+        public async Task<UserLoggedInAppsListRespDto> GetUserLoggedinApps(string userId, string userIdType = "user_id")
         {
             string httpResponse = await Request("GET", "/api/v3/get-user-loggedin-apps", new Dictionary<string, object> {
         {"userId",userId },
+        {"userIdType",userIdType },
     }).ConfigureAwait(false);
             UserLoggedInAppsListRespDto result = m_JsonService.DeserializeObject<UserLoggedInAppsListRespDto>(httpResponse);
             return result;
         }
         ///<summary>
-        /// 获取用户曾经登录过的身份源
+        /// 通过用户 ID，获取用户曾经登录过的身份源，可以选择指定用户 ID 类型等。
         ///</summary>
         /// <param name="userId">用户 ID</param>
+        /// <param name="userIdType">用户 ID 类型，可以指定为用户 ID、手机号、邮箱、用户名和 externalId。</param>
         ///<returns>UserLoggedInIdentitiesRespDto</returns>
-        public async Task<UserLoggedInIdentitiesRespDto> GetUserLoggedInIdentities(string userId)
+        public async Task<UserLoggedInIdentitiesRespDto> GetUserLoggedinIdentities(string userId, string userIdType = "user_id")
         {
             string httpResponse = await Request("GET", "/api/v3/get-user-logged-in-identities", new Dictionary<string, object> {
         {"userId",userId },
+        {"userIdType",userIdType },
     }).ConfigureAwait(false);
             UserLoggedInIdentitiesRespDto result = m_JsonService.DeserializeObject<UserLoggedInIdentitiesRespDto>(httpResponse);
             return result;
@@ -383,13 +419,15 @@ namespace Authing.CSharp.SDK.Services
         /// 获取用户被授权的所有资源
         ///</summary>
         /// <param name="userId">用户 ID</param>
+        /// <param name="userIdType">用户 ID 类型，可以指定为用户 ID、手机号、邮箱、用户名和 externalId。</param>
         /// <param name="nameSpace">所属权限分组的 code</param>
-        /// <param name="resourceType">资源类型</param>
+        /// <param name="resourceType">资源类型，如 数据、API、菜单、按钮</param>
         ///<returns>AuthorizedResourcePaginatedRespDto</returns>
-        public async Task<AuthorizedResourcePaginatedRespDto> GetUserAuthorizedResources(string userId, string nameSpace = null, string resourceType = null)
+        public async Task<AuthorizedResourcePaginatedRespDto> GetUserAuthorizedResources(string userId, string userIdType = "user_id", string nameSpace = null, string resourceType = null)
         {
             string httpResponse = await Request("GET", "/api/v3/get-user-authorized-resources", new Dictionary<string, object> {
         {"userId",userId },
+        {"userIdType",userIdType },
         {"namespace",nameSpace },
         {"resourceType",resourceType },
     }).ConfigureAwait(false);
@@ -412,12 +450,14 @@ namespace Authing.CSharp.SDK.Services
         ///<summary>
         /// 获取分组列表
         ///</summary>
+        /// <param name="keywords">搜索分组 code 或分组名称</param>
         /// <param name="page">当前页数，从 1 开始</param>
         /// <param name="limit">每页数目，最大不能超过 50，默认为 10</param>
         ///<returns>GroupPaginatedRespDto</returns>
-        public async Task<GroupPaginatedRespDto> ListGroups(long page = 1, long limit = 10)
+        public async Task<GroupPaginatedRespDto> ListGroups(string keywords = null, long page = 1, long limit = 10)
         {
             string httpResponse = await Request("GET", "/api/v3/list-groups", new Dictionary<string, object> {
+        {"keywords",keywords },
         {"page",page },
         {"limit",limit },
     }).ConfigureAwait(false);
@@ -576,11 +616,11 @@ namespace Authing.CSharp.SDK.Services
             return result;
         }
         ///<summary>
-        /// 角色被授权的资源列表
+        /// 获取角色被授权的资源列表
         ///</summary>
         /// <param name="code">权限分组内角色的唯一标识符</param>
         /// <param name="nameSpace">所属权限分组的 code</param>
-        /// <param name="resourceType">资源类型</param>
+        /// <param name="resourceType">资源类型，如 数据、API、按钮、菜单</param>
         ///<returns>RoleAuthorizedResourcePaginatedRespDto</returns>
         public async Task<RoleAuthorizedResourcePaginatedRespDto> GetRoleAuthorizedResources(string code, string nameSpace = null, string resourceType = null)
         {
@@ -651,13 +691,15 @@ namespace Authing.CSharp.SDK.Services
         ///<summary>
         /// 获取角色列表
         ///</summary>
+        /// <param name="keywords">搜索角色 code</param>
         /// <param name="nameSpace">所属权限分组的 code</param>
         /// <param name="page">当前页数，从 1 开始</param>
         /// <param name="limit">每页数目，最大不能超过 50，默认为 10</param>
         ///<returns>RolePaginatedRespDto</returns>
-        public async Task<RolePaginatedRespDto> ListRoles(string nameSpace = "default", long page = 1, long limit = 10)
+        public async Task<RolePaginatedRespDto> ListRoles(string keywords = null, string nameSpace = "default", long page = 1, long limit = 10)
         {
             string httpResponse = await Request("GET", "/api/v3/list-roles", new Dictionary<string, object> {
+        {"keywords",keywords },
         {"namespace",nameSpace },
         {"page",page },
         {"limit",limit },
@@ -666,7 +708,7 @@ namespace Authing.CSharp.SDK.Services
             return result;
         }
         ///<summary>
-        /// （批量）删除角色
+        /// 删除角色
         ///</summary>
         /// <param name="requestBody"></param>
         ///<returns>IsSuccessRespDto</returns>
@@ -755,18 +797,39 @@ namespace Authing.CSharp.SDK.Services
             return result;
         }
         ///<summary>
+        /// 搜索顶层组织机构列表
+        ///</summary>
+        /// <param name="keywords">搜索关键词，如组织机构名称</param>
+        /// <param name="page">当前页数，从 1 开始</param>
+        /// <param name="limit">每页数目，最大不能超过 50，默认为 10</param>
+        ///<returns>OrganizationPaginatedRespDto</returns>
+        public async Task<OrganizationPaginatedRespDto> SearchOrganizations(string keywords, long page = 1, long limit = 10)
+        {
+            string httpResponse = await Request("GET", "/api/v3/search-organizations", new Dictionary<string, object> {
+        {"keywords",keywords },
+        {"page",page },
+        {"limit",limit },
+    }).ConfigureAwait(false);
+            OrganizationPaginatedRespDto result = m_JsonService.DeserializeObject<OrganizationPaginatedRespDto>(httpResponse);
+            return result;
+        }
+        ///<summary>
         /// 获取部门信息
         ///</summary>
         /// <param name="organizationCode">组织 code</param>
-        /// <param name="departmentId">部门 id，根部门传 `root`</param>
+        /// <param name="departmentId">部门 ID，根部门传 `root`。departmentId 和 departmentCode 必传其一。</param>
+        /// <param name="departmentCode">部门 code。departmentId 和 departmentCode 必传其一。</param>
         /// <param name="departmentIdType">此次调用中使用的部门 ID 的类型</param>
+        /// <param name="withCustomData">是否获取自定义数据</param>
         ///<returns>DepartmentSingleRespDto</returns>
-        public async Task<DepartmentSingleRespDto> GetDepartment(string departmentId, string organizationCode, string departmentIdType = "department_id")
+        public async Task<DepartmentSingleRespDto> GetDepartment(string organizationCode, string departmentId = null, string departmentCode = null, string departmentIdType = "department_id", bool withCustomData = false)
         {
             string httpResponse = await Request("GET", "/api/v3/get-department", new Dictionary<string, object> {
         {"organizationCode",organizationCode },
         {"departmentId",departmentId },
+        {"departmentCode",departmentCode },
         {"departmentIdType",departmentIdType },
+        {"withCustomData",withCustomData },
     }).ConfigureAwait(false);
             DepartmentSingleRespDto result = m_JsonService.DeserializeObject<DepartmentSingleRespDto>(httpResponse);
             return result;
@@ -822,16 +885,22 @@ namespace Authing.CSharp.SDK.Services
         ///<summary>
         /// 获取子部门列表
         ///</summary>
-        /// <param name="departmentId">需要获取的部门 ID</param>
         /// <param name="organizationCode">组织 code</param>
+        /// <param name="departmentId">需要获取的部门 ID</param>
         /// <param name="departmentIdType">此次调用中使用的部门 ID 的类型</param>
+        /// <param name="excludeVirtualNode">是否要排除虚拟组织</param>
+        /// <param name="onlyVirtualNode">是否只包含虚拟组织</param>
+        /// <param name="withCustomData">是否获取自定义数据</param>
         ///<returns>DepartmentPaginatedRespDto</returns>
-        public async Task<DepartmentPaginatedRespDto> ListChildrenDepartments(string organizationCode, string departmentId, string departmentIdType = "department_id")
+        public async Task<DepartmentPaginatedRespDto> ListChildrenDepartments(string departmentId, string organizationCode, string departmentIdType = "department_id", bool excludeVirtualNode = false, bool onlyVirtualNode = false, bool withCustomData = false)
         {
             string httpResponse = await Request("GET", "/api/v3/list-children-departments", new Dictionary<string, object> {
+        {"organizationCode",organizationCode },
         {"departmentId",departmentId },
         {"departmentIdType",departmentIdType },
-        {"organizationCode",organizationCode },
+        {"excludeVirtualNode",excludeVirtualNode },
+        {"onlyVirtualNode",onlyVirtualNode },
+        {"withCustomData",withCustomData },
     }).ConfigureAwait(false);
             DepartmentPaginatedRespDto result = m_JsonService.DeserializeObject<DepartmentPaginatedRespDto>(httpResponse);
             return result;
@@ -840,7 +909,7 @@ namespace Authing.CSharp.SDK.Services
         /// 获取部门成员列表
         ///</summary>
         /// <param name="organizationCode">组织 code</param>
-        /// <param name="departmentId">部门 id，根部门传 `root`</param>
+        /// <param name="departmentId">部门 ID，根部门传 `root`</param>
         /// <param name="departmentIdType">此次调用中使用的部门 ID 的类型</param>
         /// <param name="includeChildrenDepartments">是否包含子部门的成员</param>
         /// <param name="page">当前页数，从 1 开始</param>
@@ -848,8 +917,10 @@ namespace Authing.CSharp.SDK.Services
         /// <param name="withCustomData">是否获取自定义数据</param>
         /// <param name="withIdentities">是否获取 identities</param>
         /// <param name="withDepartmentIds">是否获取部门 ID 列表</param>
+        /// <param name="sortBy">排序依据</param>
+        /// <param name="orderBy">增序还是倒序</param>
         ///<returns>UserPaginatedRespDto</returns>
-        public async Task<UserPaginatedRespDto> ListDepartmentMembers(string departmentId, string organizationCode, string departmentIdType = "department_id", bool includeChildrenDepartments = false, long page = 1, long limit = 10, bool withCustomData = false, bool withIdentities = false, bool withDepartmentIds = false)
+        public async Task<UserPaginatedRespDto> ListDepartmentMembers(string departmentId, string organizationCode, string departmentIdType = "department_id", bool includeChildrenDepartments = false, long page = 1, long limit = 10, bool withCustomData = false, bool withIdentities = false, bool withDepartmentIds = false, string sortBy = "JoinDepartmentAt", string orderBy = "Desc")
         {
             string httpResponse = await Request("GET", "/api/v3/list-department-members", new Dictionary<string, object> {
         {"organizationCode",organizationCode },
@@ -861,6 +932,8 @@ namespace Authing.CSharp.SDK.Services
         {"withCustomData",withCustomData },
         {"withIdentities",withIdentities },
         {"withDepartmentIds",withDepartmentIds },
+        {"sortBy",sortBy },
+        {"orderBy",orderBy },
     }).ConfigureAwait(false);
             UserPaginatedRespDto result = m_JsonService.DeserializeObject<UserPaginatedRespDto>(httpResponse);
             return result;
@@ -869,7 +942,7 @@ namespace Authing.CSharp.SDK.Services
         /// 获取部门直属成员 ID 列表
         ///</summary>
         /// <param name="organizationCode">组织 code</param>
-        /// <param name="departmentId">部门 id，根部门传 `root`</param>
+        /// <param name="departmentId">部门 ID，根部门传 `root`</param>
         /// <param name="departmentIdType">此次调用中使用的部门 ID 的类型</param>
         ///<returns>UserIdListRespDto</returns>
         public async Task<UserIdListRespDto> ListDepartmentMemberIds(string departmentId, string organizationCode, string departmentIdType = "department_id")
@@ -880,6 +953,37 @@ namespace Authing.CSharp.SDK.Services
         {"departmentIdType",departmentIdType },
     }).ConfigureAwait(false);
             UserIdListRespDto result = m_JsonService.DeserializeObject<UserIdListRespDto>(httpResponse);
+            return result;
+        }
+        ///<summary>
+        /// 搜索部门下的成员
+        ///</summary>
+        /// <param name="organizationCode">组织 code</param>
+        /// <param name="departmentId">部门 ID，根部门传 `root`</param>
+        /// <param name="keywords">搜索关键词，如成员名称</param>
+        /// <param name="page">当前页数，从 1 开始</param>
+        /// <param name="limit">每页数目，最大不能超过 50，默认为 10</param>
+        /// <param name="departmentIdType">此次调用中使用的部门 ID 的类型</param>
+        /// <param name="includeChildrenDepartments">是否包含子部门的成员</param>
+        /// <param name="withCustomData">是否获取自定义数据</param>
+        /// <param name="withIdentities">是否获取 identities</param>
+        /// <param name="withDepartmentIds">是否获取部门 ID 列表</param>
+        ///<returns>UserPaginatedRespDto</returns>
+        public async Task<UserPaginatedRespDto> SearchDepartmentMembers(string keywords, string departmentId, string organizationCode, long page = 1, long limit = 10, string departmentIdType = "department_id", bool includeChildrenDepartments = false, bool withCustomData = false, bool withIdentities = false, bool withDepartmentIds = false)
+        {
+            string httpResponse = await Request("GET", "/api/v3/search-department-members", new Dictionary<string, object> {
+        {"organizationCode",organizationCode },
+        {"departmentId",departmentId },
+        {"keywords",keywords },
+        {"page",page },
+        {"limit",limit },
+        {"departmentIdType",departmentIdType },
+        {"includeChildrenDepartments",includeChildrenDepartments },
+        {"withCustomData",withCustomData },
+        {"withIdentities",withIdentities },
+        {"withDepartmentIds",withDepartmentIds },
+    }).ConfigureAwait(false);
+            UserPaginatedRespDto result = m_JsonService.DeserializeObject<UserPaginatedRespDto>(httpResponse);
             return result;
         }
         ///<summary>
@@ -910,17 +1014,40 @@ namespace Authing.CSharp.SDK.Services
         /// 获取父部门信息
         ///</summary>
         /// <param name="organizationCode">组织 code</param>
-        /// <param name="departmentId">部门 id</param>
+        /// <param name="departmentId">部门 ID</param>
         /// <param name="departmentIdType">此次调用中使用的部门 ID 的类型</param>
+        /// <param name="withCustomData">是否获取自定义数据</param>
         ///<returns>DepartmentSingleRespDto</returns>
-        public async Task<DepartmentSingleRespDto> GetParentDepartment(string departmentId, string organizationCode, string departmentIdType = "department_id")
+        public async Task<DepartmentSingleRespDto> GetParentDepartment(string departmentId, string organizationCode, string departmentIdType = "department_id", bool withCustomData = false)
         {
             string httpResponse = await Request("GET", "/api/v3/get-parent-department", new Dictionary<string, object> {
         {"organizationCode",organizationCode },
         {"departmentId",departmentId },
         {"departmentIdType",departmentIdType },
+        {"withCustomData",withCustomData },
     }).ConfigureAwait(false);
             DepartmentSingleRespDto result = m_JsonService.DeserializeObject<DepartmentSingleRespDto>(httpResponse);
+            return result;
+        }
+        ///<summary>
+        /// 判断用户是否在某个部门下
+        ///</summary>
+        /// <param name="userId">用户 ID</param>
+        /// <param name="organizationCode">组织 code</param>
+        /// <param name="departmentId">部门 ID，根部门传 `root`。departmentId 和 departmentCode 必传其一。</param>
+        /// <param name="departmentIdType">此次调用中使用的部门 ID 的类型</param>
+        /// <param name="includeChildrenDepartments">是否包含子部门</param>
+        ///<returns>IsUserInDepartmentRespDto</returns>
+        public async Task<IsUserInDepartmentRespDto> IsUserInDepartment(string departmentId, string organizationCode, string userId, string departmentIdType = "department_id", bool includeChildrenDepartments = false)
+        {
+            string httpResponse = await Request("GET", "/api/v3/is-user-in-department", new Dictionary<string, object> {
+        {"userId",userId },
+        {"organizationCode",organizationCode },
+        {"departmentId",departmentId },
+        {"departmentIdType",departmentIdType },
+        {"includeChildrenDepartments",includeChildrenDepartments },
+    }).ConfigureAwait(false);
+            IsUserInDepartmentRespDto result = m_JsonService.DeserializeObject<IsUserInDepartmentRespDto>(httpResponse);
             return result;
         }
         ///<summary>
@@ -939,7 +1066,7 @@ namespace Authing.CSharp.SDK.Services
         ///<summary>
         /// 获取身份源详情
         ///</summary>
-        /// <param name="id">身份源 id</param>
+        /// <param name="id">身份源 ID</param>
         /// <param name="tenantId">租户 ID</param>
         ///<returns>ExtIdpDetailSingleRespDto</returns>
         public async Task<ExtIdpDetailSingleRespDto> GetExtIdp(string id, string tenantId = null)
@@ -1038,7 +1165,7 @@ namespace Authing.CSharp.SDK.Services
         ///<summary>
         /// 获取用户池配置的自定义字段列表
         ///</summary>
-        /// <param name="targetType">主体类型，目前支持用户、角色、分组和部门</param>
+        /// <param name="targetType">主体类型，目前支持用户、角色、分组、部门</param>
         ///<returns>CustomFieldListRespDto</returns>
         public async Task<CustomFieldListRespDto> GetCustomFields(string targetType)
         {
@@ -1075,9 +1202,9 @@ namespace Authing.CSharp.SDK.Services
         ///<summary>
         /// 获取用户、分组、角色、组织机构的自定义字段值
         ///</summary>
-        /// <param name="targetType">主体类型，目前支持用户、角色、分组和部门</param>
+        /// <param name="targetType">主体类型，目前支持用户、角色、分组、部门</param>
         /// <param name="targetIdentifier">目标对象唯一标志符</param>
-        /// <param name="nameSpace">所属权限分组的 code，当 targetType 为角色的时候需要填写，否则可以忽略。</param>
+        /// <param name="nameSpace">所属权限分组的 code，当 targetType 为角色的时候需要填写，否则可以忽略</param>
         ///<returns>GetCustomDataRespDto</returns>
         public async Task<GetCustomDataRespDto> GetCustomData(string targetIdentifier, string targetType, string nameSpace = null)
         {
@@ -1131,7 +1258,7 @@ namespace Authing.CSharp.SDK.Services
         ///<summary>
         /// 批量获取资源详情
         ///</summary>
-        /// <param name="codeList">资源 code 列表,批量可以使用逗号分隔</param>
+        /// <param name="codeList">资源 code 列表，批量可以使用逗号分隔</param>
         /// <param name="nameSpace">所属权限分组的 code</param>
         ///<returns>ResourceListRespDto</returns>
         public async Task<ResourceListRespDto> GetResourcesBatch(string codeList, string nameSpace = null)
@@ -1238,7 +1365,7 @@ namespace Authing.CSharp.SDK.Services
         ///<summary>
         /// 批量获取权限分组详情
         ///</summary>
-        /// <param name="codeList">资源 code 列表,批量可以使用逗号分隔</param>
+        /// <param name="codeList">资源 code 列表，批量可以使用逗号分隔</param>
         ///<returns>NamespaceListRespDto</returns>
         public async Task<NamespaceListRespDto> GetNamespacesBatch(string codeList)
         {
@@ -1302,19 +1429,33 @@ namespace Authing.CSharp.SDK.Services
         /// <param name="targetType">目标对象类型</param>
         /// <param name="targetIdentifier">目标对象唯一标志符</param>
         /// <param name="nameSpace">所属权限分组的 code</param>
-        /// <param name="resourceType">资源类型，如数据、API、按钮、菜单</param>
+        /// <param name="resourceType">限定资源类型，如数据、API、按钮、菜单</param>
+        /// <param name="resourceList">限定查询的资源列表，如果指定，只会返回所指定的资源列表。</param>
         /// <param name="withDenied">是否获取被拒绝的资源</param>
         ///<returns>AuthorizedResourcePaginatedRespDto</returns>
-        public async Task<AuthorizedResourcePaginatedRespDto> GetTargetAuthorizedResources(string targetIdentifier, string targetType, string nameSpace = null, string resourceType = null, bool withDenied = false)
+        public async Task<AuthorizedResourcePaginatedRespDto> GetAuthorizedResources(string targetIdentifier, string targetType, string nameSpace = null, string resourceType = null, string resourceList = null, bool withDenied = false)
         {
             string httpResponse = await Request("GET", "/api/v3/get-authorized-resources", new Dictionary<string, object> {
         {"namespace",nameSpace },
         {"targetType",targetType },
         {"targetIdentifier",targetIdentifier },
         {"resourceType",resourceType },
+        {"resourceList",resourceList },
         {"withDenied",withDenied },
     }).ConfigureAwait(false);
             AuthorizedResourcePaginatedRespDto result = m_JsonService.DeserializeObject<AuthorizedResourcePaginatedRespDto>(httpResponse);
+            return result;
+        }
+        ///<summary>
+        /// 判断用户是否对某个资源的某个操作有权限
+        ///</summary>
+        /// <param name="requestBody"></param>
+        ///<returns>IsActionAllowedRespDtp</returns>
+        public async Task<IsActionAllowedRespDtp> IsActionAllowed(IsActionAllowedDto requestBody
+        )
+        {
+            string httpResponse = await Request("POST", "/api/v3/is-action-allowed", requestBody).ConfigureAwait(false);
+            IsActionAllowedRespDtp result = m_JsonService.DeserializeObject<IsActionAllowedRespDtp>(httpResponse);
             return result;
         }
     }

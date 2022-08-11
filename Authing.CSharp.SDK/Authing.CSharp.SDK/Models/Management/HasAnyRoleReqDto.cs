@@ -18,11 +18,16 @@ namespace Authing.CSharp.SDK.Models
         ///  角色列表
         /// </summary>
         [JsonProperty("roles")]
-        public    List<HasRoleRolesDto>   Roles    {get;set;}
+        public List<HasRoleRolesDto> Roles { get; set; }
         /// <summary>
         ///  用户 ID
         /// </summary>
         [JsonProperty("userId")]
-        public    string   UserId    {get;set;}
+        public string UserId { get; set; }
+        /// <summary>
+        ///  可选参数
+        /// </summary>
+        [JsonProperty("options")]
+        public HasAnyRoleOptionsDto Options { get; set; }
     }
 }

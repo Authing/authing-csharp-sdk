@@ -8,6 +8,6 @@ namespace Authing.CSharp.SDK.Utils
 {
     public interface IDateTimeService
     {
-       long DateTimeToLongTimeStamp(DateTime dateTime);
+        long DateTimeToLongTimeStamp(DateTime dateTime);
     }
 }

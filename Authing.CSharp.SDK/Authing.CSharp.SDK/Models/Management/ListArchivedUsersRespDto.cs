@@ -18,6 +18,11 @@ namespace Authing.CSharp.SDK.Models
         ///  用户 ID
         /// </summary>
         [JsonProperty("userId")]
-        public    string   UserId    {get;set;}
+        public string UserId { get; set; }
+        /// <summary>
+        ///  归档时间
+        /// </summary>
+        [JsonProperty("archivedAt")]
+        public string ArchivedAt { get; set; }
     }
 }

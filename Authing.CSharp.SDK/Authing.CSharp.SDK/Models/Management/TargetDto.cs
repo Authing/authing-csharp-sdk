@@ -18,12 +18,12 @@ namespace Authing.CSharp.SDK.Models
         ///  目标类型，接受用户，部门
         /// </summary>
         [JsonProperty("targetType")]
-        public    TargetDto.targetType   TargetType    {get;set;}
+        public targetType TargetType { get; set; }
         /// <summary>
         ///  目标的 ID
         /// </summary>
         [JsonProperty("targetIdentifier")]
-        public    string   TargetIdentifier    {get;set;}
+        public string TargetIdentifier { get; set; }
     }
     public partial class TargetDto
     {
@@ -32,13 +32,13 @@ namespace Authing.CSharp.SDK.Models
         /// </summary>
         public enum targetType
         {
-            [EnumMember(Value="USER")]
+            [EnumMember(Value = "USER")]
             USER,
-            [EnumMember(Value="ROLE")]
+            [EnumMember(Value = "ROLE")]
             ROLE,
-            [EnumMember(Value="GROUP")]
+            [EnumMember(Value = "GROUP")]
             GROUP,
-            [EnumMember(Value="DEPARTMENT")]
+            [EnumMember(Value = "DEPARTMENT")]
             DEPARTMENT,
         }
     }

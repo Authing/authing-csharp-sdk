@@ -12,6 +12,6 @@ namespace Authing.CSharp.SDK.Utils
         /// <param name="domain">域名</param>
         /// <returns>标准化后的域名</returns>
         string DomainC14n(string domain);
-       
+
     }
 }
