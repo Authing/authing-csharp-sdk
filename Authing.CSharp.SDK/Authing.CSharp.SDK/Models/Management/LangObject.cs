@@ -18,11 +18,11 @@ namespace Authing.CSharp.SDK.Models
         ///  多语言的中文内容
         /// </summary>
         [JsonProperty("zh-CN")]
-        public    LangUnit   zhch   {get;set;}
+        public LangUnit ZhCN { get; set; }
         /// <summary>
         ///  多语言的英文内容
         /// </summary>
         [JsonProperty("en-US")]
-        public    LangUnit   enUS    {get;set;}
+        public LangUnit EnUS { get; set; }
     }
 }

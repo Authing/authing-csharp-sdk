@@ -15,9 +15,9 @@ namespace Authing.CSharp.SDK.Models
     public partial class GetNamespacesBatchDto
     {
         /// <summary>
-        ///  资源 code 列表,批量可以使用逗号分隔
+        ///  资源 code 列表，批量可以使用逗号分隔
         /// </summary>
         [JsonProperty("codeList")]
-        public    object   CodeList    {get;set;}
+        public object CodeList { get; set; }
     }
 }

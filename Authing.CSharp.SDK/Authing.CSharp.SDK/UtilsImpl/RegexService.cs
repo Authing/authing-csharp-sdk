@@ -16,7 +16,7 @@ namespace Authing.CSharp.SDK.UtilsImpl
             domainExp = @"(http|http(s)?://)?([\w-]+\.)+[\w-]+[.com|.in|.org]+(\[\?%&=]*)?";
 
             Regex regex = new Regex(domainExp);
-            var isMatch=regex.IsMatch(domain);
+            var isMatch = regex.IsMatch(domain);
             if (isMatch)
             {
                 return domain;

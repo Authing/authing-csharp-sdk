@@ -18,11 +18,16 @@ namespace Authing.CSharp.SDK.Models
         ///  部门信息
         /// </summary>
         [JsonProperty("departments")]
-        public    List<SetUserDepartmentDto>   Departments    {get;set;}
+        public List<SetUserDepartmentDto> Departments { get; set; }
         /// <summary>
         ///  用户 ID
         /// </summary>
         [JsonProperty("userId")]
-        public    string   UserId    {get;set;}
+        public string UserId { get; set; }
+        /// <summary>
+        ///  可选参数
+        /// </summary>
+        [JsonProperty("options")]
+        public SetUserDepartmentsOptionsDto Options { get; set; }
     }
 }

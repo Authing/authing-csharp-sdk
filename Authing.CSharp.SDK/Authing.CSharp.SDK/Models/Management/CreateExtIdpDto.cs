@@ -18,17 +18,17 @@ namespace Authing.CSharp.SDK.Models
         ///  身份源连接类型
         /// </summary>
         [JsonProperty("type")]
-        public    CreateExtIdpDto.type   Type    {get;set;}
+        public type Type { get; set; }
         /// <summary>
         ///  身份源名称
         /// </summary>
         [JsonProperty("name")]
-        public    string   Name    {get;set;}
+        public string Name { get; set; }
         /// <summary>
         ///  租户 ID
         /// </summary>
         [JsonProperty("tenantId")]
-        public    string   TenantId    {get;set;}
+        public string TenantId { get; set; }
     }
     public partial class CreateExtIdpDto
     {
@@ -37,60 +37,62 @@ namespace Authing.CSharp.SDK.Models
         /// </summary>
         public enum type
         {
-            [EnumMember(Value="oidc")]
+            [EnumMember(Value = "oidc")]
             OIDC,
-            [EnumMember(Value="oauth2")]
+            [EnumMember(Value = "oauth2")]
             OAUTH2,
-            [EnumMember(Value="saml")]
+            [EnumMember(Value = "saml")]
             SAML,
-            [EnumMember(Value="ldap")]
+            [EnumMember(Value = "ldap")]
             LDAP,
-            [EnumMember(Value="ad")]
+            [EnumMember(Value = "ad")]
             AD,
-            [EnumMember(Value="cas")]
+            [EnumMember(Value = "cas")]
             CAS,
-            [EnumMember(Value="azure-ad")]
+            [EnumMember(Value = "azure-ad")]
             AZURE_AD,
-            [EnumMember(Value="wechat")]
+            [EnumMember(Value = "wechat")]
             WECHAT,
-            [EnumMember(Value="google")]
+            [EnumMember(Value = "google")]
             GOOGLE,
-            [EnumMember(Value="qq")]
+            [EnumMember(Value = "qq")]
             QQ,
-            [EnumMember(Value="wechatwork")]
+            [EnumMember(Value = "wechatwork")]
             WECHATWORK,
-            [EnumMember(Value="dingtalk")]
+            [EnumMember(Value = "dingtalk")]
             DINGTALK,
-            [EnumMember(Value="weibo")]
+            [EnumMember(Value = "weibo")]
             WEIBO,
-            [EnumMember(Value="github")]
+            [EnumMember(Value = "github")]
             GITHUB,
-            [EnumMember(Value="alipay")]
+            [EnumMember(Value = "alipay")]
             ALIPAY,
-            [EnumMember(Value="apple")]
+            [EnumMember(Value = "apple")]
             APPLE,
-            [EnumMember(Value="baidu")]
+            [EnumMember(Value = "baidu")]
             BAIDU,
-            [EnumMember(Value="lark")]
+            [EnumMember(Value = "lark")]
             LARK,
-            [EnumMember(Value="gitlab")]
+            [EnumMember(Value = "gitlab")]
             GITLAB,
-            [EnumMember(Value="twitter")]
+            [EnumMember(Value = "twitter")]
             TWITTER,
-            [EnumMember(Value="facebook")]
+            [EnumMember(Value = "facebook")]
             FACEBOOK,
-            [EnumMember(Value="slack")]
+            [EnumMember(Value = "slack")]
             SLACK,
-            [EnumMember(Value="linkedin")]
+            [EnumMember(Value = "linkedin")]
             LINKEDIN,
-            [EnumMember(Value="yidun")]
+            [EnumMember(Value = "yidun")]
             YIDUN,
-            [EnumMember(Value="qingcloud")]
+            [EnumMember(Value = "qingcloud")]
             QINGCLOUD,
-            [EnumMember(Value="gitee")]
+            [EnumMember(Value = "gitee")]
             GITEE,
-            [EnumMember(Value="instagram")]
+            [EnumMember(Value = "instagram")]
             INSTAGRAM,
+            [EnumMember(Value = "welink")]
+            WELINK,
         }
     }
 }

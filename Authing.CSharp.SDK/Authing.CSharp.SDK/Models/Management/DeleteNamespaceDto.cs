@@ -18,6 +18,6 @@ namespace Authing.CSharp.SDK.Models
         ///  权限分组唯一标志符
         /// </summary>
         [JsonProperty("code")]
-        public    string   Code    {get;set;}
+        public string Code { get; set; }
     }
 }

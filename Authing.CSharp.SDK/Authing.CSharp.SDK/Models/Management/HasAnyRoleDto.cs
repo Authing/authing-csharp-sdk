@@ -18,6 +18,6 @@ namespace Authing.CSharp.SDK.Models
         ///  是否拥有其中某一个角色
         /// </summary>
         [JsonProperty("hasAnyRole")]
-        public    bool   HasAnyRole    {get;set;}
+        public bool HasAnyRole { get; set; }
     }
 }

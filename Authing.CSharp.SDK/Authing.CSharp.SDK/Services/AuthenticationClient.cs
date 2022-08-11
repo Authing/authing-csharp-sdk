@@ -436,12 +436,12 @@ namespace Authing.CSharp.SDK.Services
             string jsonStr = "";
             try
             {
-                IDictionary<string,object> dic = Jose.JWT.Headers(token);
+                IDictionary<string, object> dic = Jose.JWT.Headers(token);
                 if (dic.ContainsKey("alg"))
                 {
                     if (dic["alg"].ToString() == "RS256")
                     {
-                      jsonStr=  Jose.JWT.Decode(token, jwks.First(), Jose.JWT.DefaultSettings);
+                        jsonStr = Jose.JWT.Decode(token, jwks.First(), Jose.JWT.DefaultSettings);
                     }
                     else
                     {

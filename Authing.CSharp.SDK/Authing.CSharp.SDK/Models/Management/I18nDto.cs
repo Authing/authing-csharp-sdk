@@ -18,6 +18,6 @@ namespace Authing.CSharp.SDK.Models
         ///  支持多语言的字段
         /// </summary>
         [JsonProperty("name")]
-        public    LangObject   Name    {get;set;}
+        public LangObject Name { get; set; }
     }
 }

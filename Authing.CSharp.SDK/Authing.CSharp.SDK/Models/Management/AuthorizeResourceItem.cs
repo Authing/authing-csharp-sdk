@@ -18,17 +18,17 @@ namespace Authing.CSharp.SDK.Models
         ///  目标对象类型
         /// </summary>
         [JsonProperty("targetType")]
-        public    AuthorizeResourceItem.targetType   TargetType    {get;set;}
+        public targetType TargetType { get; set; }
         /// <summary>
         ///  目标对象唯一标志符
         /// </summary>
         [JsonProperty("targetIdentifiers")]
-        public    List<string>   TargetIdentifiers    {get;set;}
+        public List<string> TargetIdentifiers { get; set; }
         /// <summary>
         ///  授权的资源列表
         /// </summary>
         [JsonProperty("resources")]
-        public    List<ResourceItemDto>   Resources    {get;set;}
+        public List<ResourceItemDto> Resources { get; set; }
     }
     public partial class AuthorizeResourceItem
     {
@@ -37,13 +37,13 @@ namespace Authing.CSharp.SDK.Models
         /// </summary>
         public enum targetType
         {
-            [EnumMember(Value="USER")]
+            [EnumMember(Value = "USER")]
             USER,
-            [EnumMember(Value="ROLE")]
+            [EnumMember(Value = "ROLE")]
             ROLE,
-            [EnumMember(Value="GROUP")]
+            [EnumMember(Value = "GROUP")]
             GROUP,
-            [EnumMember(Value="DEPARTMENT")]
+            [EnumMember(Value = "DEPARTMENT")]
             DEPARTMENT,
         }
     }
