@@ -15,13 +15,32 @@ namespace Authing.CSharp.SDK.Infrastructure
 
         public override bool ReadJson(JsonReader reader, Type objectType, bool existingValue, bool hasExistingValue, JsonSerializer serializer)
         {
-            if (reader.ValueType==typeof(string))
+            if (reader.ValueType == typeof(string))
             {
-                if (reader.Value!=null)
+                if (reader.Value != null)
                 {
                     if (reader.Value.ToString() == trueValue || reader.Value.ToString() == falseValue)
                     {
                         return reader.Value.ToString() == trueValue;
+                    }
+                    if (objectType == typeof(bool))
+                    {
+                        //文档定义值为 bool，但是传过来的 json 值为 字符串
+                        return reader.Value.ToString() == trueValue;
+                    }
+                }
+            }
+            else if (reader.ValueType == typeof(bool))
+            {
+                if (reader.Value != null)
+                {
+                    if (reader.Value.ToString() == "True" || reader.Value.ToString() == "False")
+                    {
+                        return reader.Value.ToString() == "True";
+                    }
+                    else if (string.IsNullOrEmpty(reader.Value.ToString()))
+                    {
+                        return false;
                     }
                 }
             }

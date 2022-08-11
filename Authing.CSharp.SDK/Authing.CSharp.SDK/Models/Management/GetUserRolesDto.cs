@@ -18,11 +18,16 @@ namespace Authing.CSharp.SDK.Models
         ///  用户 ID
         /// </summary>
         [JsonProperty("userId")]
-        public    object   UserId    {get;set;}
+        public object UserId { get; set; }
+        /// <summary>
+        ///  用户 ID 类型，可以指定为用户 ID、手机号、邮箱、用户名和 externalId。
+        /// </summary>
+        [JsonProperty("userIdType")]
+        public object UserIdType { get; set; }
         /// <summary>
         ///  所属权限分组的 code
         /// </summary>
         [JsonProperty("namespace")]
-        public    object   Namespace    {get;set;}
+        public object Namespace { get; set; }
     }
 }

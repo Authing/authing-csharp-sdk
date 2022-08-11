@@ -18,37 +18,37 @@ namespace Authing.CSharp.SDK.Models
         ///  连接的自定义配置信息
         /// </summary>
         [JsonProperty("fields")]
-        public    object   Fields    {get;set;}
+        public object Fields { get; set; }
         /// <summary>
         ///  连接在登录页的显示名称
         /// </summary>
         [JsonProperty("displayName")]
-        public    string   DisplayName    {get;set;}
+        public string DisplayName { get; set; }
         /// <summary>
         ///  身份源连接标识
         /// </summary>
         [JsonProperty("identifier")]
-        public    string   Identifier    {get;set;}
+        public string Identifier { get; set; }
         /// <summary>
         ///  身份源连接类型
         /// </summary>
         [JsonProperty("type")]
-        public    CreateExtIdpConnDto.type   Type    {get;set;}
+        public type Type { get; set; }
         /// <summary>
-        ///  身份源连接 id
+        ///  身份源连接 ID
         /// </summary>
         [JsonProperty("extIdpId")]
-        public    string   ExtIdpId    {get;set;}
+        public string ExtIdpId { get; set; }
         /// <summary>
         ///  是否只支持登录
         /// </summary>
         [JsonProperty("loginOnly")]
-        public    bool   LoginOnly    {get;set;}
+        public bool LoginOnly { get; set; }
         /// <summary>
         ///  身份源图标
         /// </summary>
         [JsonProperty("logo")]
-        public    string   Logo    {get;set;}
+        public string Logo { get; set; }
     }
     public partial class CreateExtIdpConnDto
     {
@@ -57,84 +57,88 @@ namespace Authing.CSharp.SDK.Models
         /// </summary>
         public enum type
         {
-            [EnumMember(Value="oidc")]
+            [EnumMember(Value = "oidc")]
             OIDC,
-            [EnumMember(Value="oauth")]
+            [EnumMember(Value = "oauth")]
             OAUTH,
-            [EnumMember(Value="saml")]
+            [EnumMember(Value = "saml")]
             SAML,
-            [EnumMember(Value="ldap")]
+            [EnumMember(Value = "ldap")]
             LDAP,
-            [EnumMember(Value="ad")]
+            [EnumMember(Value = "ad")]
             AD,
-            [EnumMember(Value="cas")]
+            [EnumMember(Value = "cas")]
             CAS,
-            [EnumMember(Value="azure-ad")]
+            [EnumMember(Value = "azure-ad")]
             AZURE_AD,
-            [EnumMember(Value="alipay")]
+            [EnumMember(Value = "alipay")]
             ALIPAY,
-            [EnumMember(Value="facebook")]
+            [EnumMember(Value = "facebook")]
             FACEBOOK,
-            [EnumMember(Value="twitter")]
+            [EnumMember(Value = "twitter")]
             TWITTER,
-            [EnumMember(Value="google")]
+            [EnumMember(Value = "google")]
             GOOGLE,
-            [EnumMember(Value="wechat:pc")]
+            [EnumMember(Value = "wechat:pc")]
             WECHAT_PC,
-            [EnumMember(Value="wechat:mobile")]
+            [EnumMember(Value = "wechat:mobile")]
             WECHAT_MOBILE,
-            [EnumMember(Value="wechat:webpage-authorization")]
+            [EnumMember(Value = "wechat:webpage-authorization")]
             WECHAT_WEBPAGE_AUTHORIZATION,
-            [EnumMember(Value="wechatmp-qrcode")]
+            [EnumMember(Value = "wechatmp-qrcode")]
             WECHATMP_QRCODE,
-            [EnumMember(Value="wechat:miniprogram:default")]
+            [EnumMember(Value = "wechat:miniprogram:default")]
             WECHAT_MINIPROGRAM_DEFAULT,
-            [EnumMember(Value="wechat:miniprogram:qrconnect")]
+            [EnumMember(Value = "wechat:miniprogram:qrconnect")]
             WECHAT_MINIPROGRAM_QRCONNECT,
-            [EnumMember(Value="wechat:miniprogram:app-launch")]
+            [EnumMember(Value = "wechat:miniprogram:app-launch")]
             WECHAT_MINIPROGRAM_APP_LAUNCH,
-            [EnumMember(Value="github")]
+            [EnumMember(Value = "github")]
             GITHUB,
-            [EnumMember(Value="qq")]
+            [EnumMember(Value = "qq")]
             QQ,
-            [EnumMember(Value="wechatwork:corp:qrconnect")]
+            [EnumMember(Value = "wechatwork:corp:qrconnect")]
             WECHATWORK_CORP_QRCONNECT,
-            [EnumMember(Value="wechatwork:agency:qrconnect")]
+            [EnumMember(Value = "wechatwork:agency:qrconnect")]
             WECHATWORK_AGENCY_QRCONNECT,
-            [EnumMember(Value="wechatwork:service-provider:qrconnect")]
+            [EnumMember(Value = "wechatwork:service-provider:qrconnect")]
             WECHATWORK_SERVICE_PROVIDER_QRCONNECT,
-            [EnumMember(Value="wechatwork:mobile")]
+            [EnumMember(Value = "wechatwork:mobile")]
             WECHATWORK_MOBILE,
-            [EnumMember(Value="dingtalk")]
+            [EnumMember(Value = "wechatwork:agency:mobile")]
+            WECHATWORK_AGENCY_MOBILE,
+            [EnumMember(Value = "dingtalk")]
             DINGTALK,
-            [EnumMember(Value="dingtalk:provider")]
+            [EnumMember(Value = "dingtalk:provider")]
             DINGTALK_PROVIDER,
-            [EnumMember(Value="weibo")]
+            [EnumMember(Value = "weibo")]
             WEIBO,
-            [EnumMember(Value="apple")]
+            [EnumMember(Value = "apple")]
             APPLE,
-            [EnumMember(Value="apple:web")]
+            [EnumMember(Value = "apple:web")]
             APPLE_WEB,
-            [EnumMember(Value="baidu")]
+            [EnumMember(Value = "baidu")]
             BAIDU,
-            [EnumMember(Value="lark-internal")]
+            [EnumMember(Value = "lark-internal")]
             LARK_INTERNAL,
-            [EnumMember(Value="lark-public")]
+            [EnumMember(Value = "lark-public")]
             LARK_PUBLIC,
-            [EnumMember(Value="gitlab")]
+            [EnumMember(Value = "gitlab")]
             GITLAB,
-            [EnumMember(Value="linkedin")]
+            [EnumMember(Value = "linkedin")]
             LINKEDIN,
-            [EnumMember(Value="slack")]
+            [EnumMember(Value = "slack")]
             SLACK,
-            [EnumMember(Value="yidun")]
+            [EnumMember(Value = "yidun")]
             YIDUN,
-            [EnumMember(Value="qingcloud")]
+            [EnumMember(Value = "qingcloud")]
             QINGCLOUD,
-            [EnumMember(Value="gitee")]
+            [EnumMember(Value = "gitee")]
             GITEE,
-            [EnumMember(Value="instagram")]
+            [EnumMember(Value = "instagram")]
             INSTAGRAM,
+            [EnumMember(Value = "welink")]
+            WELINK,
         }
     }
 }

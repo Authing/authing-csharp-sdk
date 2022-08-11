@@ -18,6 +18,6 @@ namespace Authing.CSharp.SDK.Models
         ///  角色列表
         /// </summary>
         [JsonProperty("list")]
-        public    List<RoleListItem>   List    {get;set;}
+        public List<RoleListItem> List { get; set; }
     }
 }

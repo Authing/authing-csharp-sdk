@@ -24,7 +24,7 @@ namespace Authing.CSharp.SDK.Services
 
         public BaseManagementService(ManagementClientOptions options) : base(new JsonService())
         {
-            m_UserPoolId =options.AccessKeyId;
+            m_UserPoolId = options.AccessKeyId;
             m_Secret = options.AccessKeySecret;
 
             m_BaseUrl = ConfigService.BASE_URL;
@@ -35,7 +35,7 @@ namespace Authing.CSharp.SDK.Services
             }
 
             clientLang = options.Lang;
-          
+
         }
 
         protected async Task<string> PostAsync(string apiPath, string param)
@@ -47,20 +47,20 @@ namespace Authing.CSharp.SDK.Services
         }
 
 
-        protected async Task<string> Request(string method, string apiPath, Dictionary<string, object> pairs,bool withToken=true)
+        protected async Task<string> Request(string method, string apiPath, Dictionary<string, object> pairs, bool withToken = true)
         {
             if (withToken)
             {
                 await CheckToken().ConfigureAwait(false);
             }
 
-            Dictionary<string, string> dic = pairs.ToDictionary((keyItem) => keyItem.Key, (valueItem) => valueItem.Value==null?"":valueItem.Value.ToString());
+            Dictionary<string, string> dic = pairs.ToDictionary((keyItem) => keyItem.Key, (valueItem) => valueItem.Value == null ? "" : valueItem.Value.ToString());
 
             string httpResponse = await m_HttpService.GetAsync(m_BaseUrl, apiPath, dic, default).ConfigureAwait(false);
             return httpResponse;
         }
 
-        protected async Task<string> Request<T>(string method,string apiPath, T dto,bool withToken=true)
+        protected async Task<string> Request<T>(string method, string apiPath, T dto, bool withToken = true)
         {
             if (withToken)
             {
@@ -73,7 +73,7 @@ namespace Authing.CSharp.SDK.Services
             return httpResponse;
         }
 
-        
+
 
         private async Task CheckToken()
         {

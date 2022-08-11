@@ -14,7 +14,7 @@ namespace Authing.CSharp.SDK.Utils
         /// <param name="s"></param>
         /// <param name="encoding"></param>
         /// <returns></returns>
-        string B64Decode(string s, Encoding encoding=null);
+        string B64Decode(string s, Encoding encoding = null);
 
         /// <summary>
         ///  b46 编码
@@ -22,6 +22,6 @@ namespace Authing.CSharp.SDK.Utils
         /// <param name="s"></param>
         /// <param name="encoding"></param>
         /// <returns></returns>
-        string B64Encode(string s, Encoding encoding=null);
+        string B64Encode(string s, Encoding encoding = null);
     }
 }

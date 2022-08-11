@@ -15,14 +15,14 @@ namespace Authing.CSharp.SDK.Models
     public partial class GetExtIdpDto
     {
         /// <summary>
-        ///  身份源 id
+        ///  身份源 ID
         /// </summary>
         [JsonProperty("id")]
-        public    object   Id    {get;set;}
+        public object Id { get; set; }
         /// <summary>
         ///  租户 ID
         /// </summary>
         [JsonProperty("tenantId")]
-        public    object   TenantId    {get;set;}
+        public object TenantId { get; set; }
     }
 }

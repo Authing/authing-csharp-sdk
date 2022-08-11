@@ -18,11 +18,11 @@ namespace Authing.CSharp.SDK.Models
         ///  移除角色的目标列表
         /// </summary>
         [JsonProperty("targets")]
-        public    List<TargetDto>   Targets    {get;set;}
+        public List<TargetDto> Targets { get; set; }
         /// <summary>
         ///  角色信息列表
         /// </summary>
         [JsonProperty("roles")]
-        public    List<RoleCodeDto>   Roles    {get;set;}
+        public List<RoleCodeDto> Roles { get; set; }
     }
 }
