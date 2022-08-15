@@ -16,7 +16,7 @@ namespace Authing.CSharp.SDK.Services
     /// <summary>
     /// 认证
     /// </summary>
-    public class AuthenticationClient : BaseAuthenticationService
+    public partial class AuthenticationClient : BaseAuthenticationService
     {
         private const string DEFAULT_COOKIE_KEY = "X-Authing-Node-OIDC-State";
         private const string DEFAULT_SCOPE = "openid profile";
@@ -639,6 +639,12 @@ namespace Authing.CSharp.SDK.Services
             return false;
         }
 
+        public async Task Signin()
+        { 
+            
+        }
+
     }
+
 }
 
