@@ -57,6 +57,10 @@ namespace Authing.CSharp.SDK.Services
             return res;
         }
 
+        /// <summary>
+        /// 获取应用开启的外部身份源列表
+        /// </summary>
+        /// <returns>GetExtIdpsRespDto</returns>
         public async Task<GetExtIdpsRespDto> GetExtIdps()
         {
             string json = await GetWithBearerTokenAsync($"{domain}/api/v3/get-extidps", "", AccessToken).ConfigureAwait(false);
