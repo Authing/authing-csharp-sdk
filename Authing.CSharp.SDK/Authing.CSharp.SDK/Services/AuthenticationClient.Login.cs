@@ -161,5 +161,20 @@ namespace Authing.CSharp.SDK.Services
             CheckQRCodeStatusRespDto result = m_JsonService.DeserializeObject<CheckQRCodeStatusRespDto>(json);
             return result;
         }
+
+        /// <summary>
+        /// 使用二维码 ticket 换取 TokenSet
+        /// </summary>
+        /// <param name="ticket"></param>
+        /// <returns></returns>
+        public async Task<LoginTokenRespDto> ExchangeTokensetWithQrcodeTicket(string ticket)
+        {
+            string json = await GetAsync("/api/v3/exchange-tokenset-with-qrcode-ticket", m_JsonService.SerializeObject(new { ticket = ticket }), AccessToken);
+
+            LoginTokenRespDto result = m_JsonService.DeserializeObject<LoginTokenRespDto>(json);
+            return result;
+        }
+
+
     }
 }
