@@ -34,7 +34,7 @@ namespace Authing.CSharp.SDK.Services
         /// </summary>
         /// <param name="options"></param>
         public AuthenticationClient(AuthenticationClientInitOptions options)
-            : base(options.Domain)
+            : base(options)
         {
             if (string.IsNullOrWhiteSpace(options.CookieKey))
             {
@@ -372,7 +372,7 @@ namespace Authing.CSharp.SDK.Services
         /// <returns></returns>
         public async Task<UserInfo> GetUserInfo(string accessToken)
         {
-            string json = await GetWithBearerTokenAsync("/oidc/me", "", accessToken).ConfigureAwait(false);
+            string json = await GetAsync("/oidc/me", "", accessToken).ConfigureAwait(false);
             UserInfo info = jsonService.DeserializeObject<UserInfo>(json);
             return info;
         }
@@ -393,7 +393,7 @@ namespace Authing.CSharp.SDK.Services
                 GrantType = "refresh_token"
             };
 
-            string json = await PostAsync("POST", "/oidc/token", param).ConfigureAwait(false);
+            string json = await PostAsync("/oidc/token", param).ConfigureAwait(false);
             OIDCTokenResponse res = jsonService.DeserializeObject<OIDCTokenResponse>(json);
             return BuildLoginState(res);
         }
@@ -567,7 +567,7 @@ namespace Authing.CSharp.SDK.Services
         /// <returns></returns>
         private async Task<OIDCTokenResponse> GetToken(CodeToTokenParams tokenParam)
         {
-            string json = await PostAsync("POST", "/oidc/token", tokenParam).ConfigureAwait(false);
+            string json = await PostAsync("/oidc/token", tokenParam).ConfigureAwait(false);
             OIDCTokenResponse res = jsonService.DeserializeObject<OIDCTokenResponse>(json);
             return res;
         }
@@ -627,7 +627,7 @@ namespace Authing.CSharp.SDK.Services
 
         private async Task<bool> CheckAccessToken(string acccessToken)
         {
-            string json = await PostAsync("POST", "/oidc/token/introspection", new { token = acccessToken, token_type_hint = "access_token", client_id = options.AppId, client_secret = options.AppSecret });
+            string json = await PostAsync("/oidc/token/introspection", new { token = acccessToken, token_type_hint = "access_token", client_id = options.AppId, client_secret = options.AppSecret });
 
             return false;
         }

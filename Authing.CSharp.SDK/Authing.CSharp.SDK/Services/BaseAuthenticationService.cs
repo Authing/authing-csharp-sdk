@@ -1,4 +1,5 @@
-﻿using Authing.CSharp.SDK.Utils;
+﻿using Authing.CSharp.SDK.Models.Authentication;
+using Authing.CSharp.SDK.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,26 +12,29 @@ namespace Authing.CSharp.SDK.Services
     {
         protected readonly string m_BaseUrl;
 
-        public BaseAuthenticationService(string domain) : base(new JsonService())
+        protected readonly string m_AppId;
+
+        public BaseAuthenticationService(AuthenticationClientInitOptions options) : base(new JsonService())
         {
             m_BaseUrl = ConfigService.BASE_URL;
 
-            if (!string.IsNullOrWhiteSpace(domain))
+            if (!string.IsNullOrWhiteSpace(options.Domain))
             {
-                m_BaseUrl = domain;
+                m_BaseUrl = options.Domain;
             }
+
+            m_AppId = options.AppId;
         }
 
         protected async Task<string> GetAsync(string apiPath, string param)
         {
-
             var dic = m_JsonService.DeserializeObject<Dictionary<string, string>>(param);
 
             string httpResponse = await m_HttpService.GetAsync(m_BaseUrl, apiPath, dic, default).ConfigureAwait(false);
             return httpResponse;
         }
 
-        protected async Task<string> GetWithBearerTokenAsync(string apiPath, string param, string accessToken)
+        protected async Task<string> GetAsync(string apiPath, string param, string accessToken)
         {
             if (string.IsNullOrWhiteSpace(param))
             {
@@ -47,7 +51,7 @@ namespace Authing.CSharp.SDK.Services
             return httpResponse;
         }
 
-        protected async Task<string> PostAsync<T>(string method, string apiPath, T dto, Dictionary<string, string> headers = null)
+        protected async Task<string> PostAsync<T>(string apiPath, T dto, Dictionary<string, string> headers = null)
         {
             string json = m_JsonService.SerializeObject(dto);
             Dictionary<string, string> dic = m_JsonService.DeserializeObject<Dictionary<string, string>>(json);
@@ -58,7 +62,7 @@ namespace Authing.CSharp.SDK.Services
             return httpResponse;
         }
 
-        protected async Task<string> PostAsync<T>(string method, string apiPath, T dto, string accesstoken,Dictionary<string,string> headers=null)
+        protected async Task<string> PostAsync<T>(string apiPath, T dto, string accesstoken, Dictionary<string, string> headers = null)
         {
             string json = m_JsonService.SerializeObject(dto);
             Dictionary<string, string> dic = m_JsonService.DeserializeObject<Dictionary<string, string>>(json);
@@ -70,7 +74,7 @@ namespace Authing.CSharp.SDK.Services
             return httpResponse;
         }
 
-        private void SetHeaders(Dictionary<string,string> headers=null)
+        private void SetHeaders(Dictionary<string, string> headers = null)
         {
             foreach (var item in headers)
             {
@@ -79,6 +83,7 @@ namespace Authing.CSharp.SDK.Services
 
             m_HttpService.SetHeader("x-authing-request-from", "SDK");
             m_HttpService.SetHeader("x-authing-sdk-version", "c-sharp:5.0.0");
+            m_HttpService.SetHeader("x-authing-app-id", m_AppId);
         }
     }
 }
