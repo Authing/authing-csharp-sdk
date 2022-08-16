@@ -5,14 +5,14 @@ using System.Text;
 
 namespace Authing.CSharp.SDK.Models
 {
-    public class UpdatePhoneVerifyDto
+    public class DeleteAccountVerifyDto
     {
         /// <summary>
         /// 验证方式
         /// </summary>
         public string VerifyMethod { get; set; }
         /// <summary>
-        /// 原始密码
+        /// 验证数据
         /// </summary>
         public string VerifyData { get; set; }
     }

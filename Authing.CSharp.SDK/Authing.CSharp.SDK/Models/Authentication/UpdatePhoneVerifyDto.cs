@@ -12,7 +12,7 @@ namespace Authing.CSharp.SDK.Models
         /// </summary>
         public string VerifyMethod { get; set; }
         /// <summary>
-        /// 原始密码
+        /// 验证数据
         /// </summary>
         public string VerifyData { get; set; }
     }

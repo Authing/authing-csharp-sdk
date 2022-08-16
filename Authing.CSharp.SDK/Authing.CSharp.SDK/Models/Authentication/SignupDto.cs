@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using Authing.CSharp.SDK.Models.Authentication;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,7 +33,7 @@ namespace Authing.CSharp.SDK.Models
         /// <summary>
         /// 可选参数
         /// </summary>
-        public Options Options { get; set; }
+        public SignupOptions Options { get; set; }
     }
 
     public class PasswordPayload
@@ -172,7 +173,7 @@ namespace Authing.CSharp.SDK.Models
         public object CustomData { get; set; }
     }
 
-    public class Options
+    public class SignupOptions
     {
         /// <summary>
         /// 客户端 IP

@@ -5,15 +5,15 @@ using System.Text;
 
 namespace Authing.CSharp.SDK.Models
 {
-    public class UpdatePhoneVerifyDto
+    public class ResetPasswordDto
     {
         /// <summary>
-        /// 验证方式
+        /// 重置密码的 token
         /// </summary>
-        public string VerifyMethod { get; set; }
+        public string PasswordResetToken { get; set; }
         /// <summary>
-        /// 原始密码
+        /// 密码
         /// </summary>
-        public string VerifyData { get; set; }
+        public string Password { get; set; }
     }
 }
