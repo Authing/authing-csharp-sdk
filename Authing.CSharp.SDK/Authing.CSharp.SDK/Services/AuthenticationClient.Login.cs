@@ -147,5 +147,19 @@ namespace Authing.CSharp.SDK.Services
 
             return result;
         }
+
+        /// <summary>
+        /// 查询二维码状态
+        /// 按照用户扫码顺序，共分为未扫码、已扫码等待用户确认、用户同意/取消授权、二维码过期以及未知错误六种状态，前端应该通过不同的状态给到用户不同的反馈。你可以通过下面这篇文章了解扫码登录详细的流程：https://docs.authing.cn/v2/concepts/how-qrcode-works.html.
+        /// </summary>
+        /// <param name="qrcodeId"></param>
+        /// <returns></returns>
+        public async Task<CheckQRCodeStatusRespDto> CheckQrcodeStatus(string qrcodeId)
+        {
+            string json = await GetAsync("/api/v3/check-qrcode-status", m_JsonService.SerializeObject(new { qrcodeId=qrcodeId}),AccessToken);
+
+            CheckQRCodeStatusRespDto result = m_JsonService.DeserializeObject<CheckQRCodeStatusRespDto>(json);
+            return result;
+        }
     }
 }
