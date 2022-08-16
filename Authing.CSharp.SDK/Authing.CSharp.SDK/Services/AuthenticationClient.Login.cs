@@ -32,7 +32,7 @@ namespace Authing.CSharp.SDK.Services
                 throw new ArgumentException("LDAPPayLoad.Password 不能为空");
             }
 
-            string json = await PostAsync("Post", "api/v3/signin", loginByCredentialsDto);
+            string json = await PostAsync("api/v3/signin", loginByCredentialsDto);
         }
     }
 }
