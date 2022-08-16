@@ -219,15 +219,19 @@ namespace Authing.CSharp.SDK.Utils
             }
 
             string connector = "?";
-            foreach (var x in param)
-            {
-                if (string.IsNullOrWhiteSpace(x.Value))
-                {
-                    continue;
-                }
 
-                result += $"{connector}{x.Key}={x.Value}";
-                connector = "&";
+            if (param != null)
+            {
+                foreach (var x in param)
+                {
+                    if (string.IsNullOrWhiteSpace(x.Value))
+                    {
+                        continue;
+                    }
+
+                    result += $"{connector}{x.Key}={x.Value}";
+                    connector = "&";
+                }
             }
             return result;
         }

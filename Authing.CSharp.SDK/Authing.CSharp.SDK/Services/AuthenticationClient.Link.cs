@@ -20,7 +20,15 @@ namespace Authing.CSharp.SDK.Services
         /// <returns>CommonResponseDto</returns>
         public async Task<CommonResponseDto> LinkExtIdp(LinkExtIdpParams param)
         {
-            string json = await GetWithBearerTokenAsync($"{domain}/api/v3/link-extidp?{CreateQueryParams(param)}", "", AccessToken).ConfigureAwait(false);
+
+            LinkExtIdpParams param = new LinkExtIdpParams()
+            {
+                ExtIdpConnIdentifier = extIdpConnIdentifier,
+                AppId = appId,
+                IdToken = idToken
+            };
+            string json = await GetAsync($"{domain}/api/v3/link-extidp?{CreateQueryParams(param)}", "", AccessToken).ConfigureAwait(false);
+
             CommonResponseDto res = jsonService.DeserializeObject<CommonResponseDto>(json);
             return res;
         }
@@ -34,7 +42,9 @@ namespace Authing.CSharp.SDK.Services
         public async Task<CommonResponseDto> ULinkExtIdp(string extIdpId)
         {
             ULinkExtIdpParams param = new ULinkExtIdpParams() { ExtIdpId = extIdpId };
-            string json = await PostAsync("POST", "/api/v3/unlink-extidp", param, AccessToken).ConfigureAwait(false);
+
+            string json = await PostAsync("/api/v3/unlink-extidp", param).ConfigureAwait(false);
+
             CommonResponseDto res = jsonService.DeserializeObject<CommonResponseDto>(json);
             return res;
         }
@@ -45,7 +55,7 @@ namespace Authing.CSharp.SDK.Services
         /// <returns>GetIdentitiesRespDto</returns>
         public async Task<GetIdentitiesRespDto> GetIdentities()
         {
-            string json = await GetWithBearerTokenAsync($"{domain}/api/v3/get-identities", "", AccessToken).ConfigureAwait(false);
+            string json = await GetAsync($"{domain}/api/v3/get-identities", "", AccessToken).ConfigureAwait(false);
             GetIdentitiesRespDto res = jsonService.DeserializeObject<GetIdentitiesRespDto>(json);
             return res;
         }
@@ -56,7 +66,7 @@ namespace Authing.CSharp.SDK.Services
         /// <returns>GetExtIdpsRespDto</returns>
         public async Task<GetExtIdpsRespDto> GetExtIdps()
         {
-            string json = await GetWithBearerTokenAsync($"{domain}/api/v3/get-extidps", "", AccessToken).ConfigureAwait(false);
+            string json = await GetAsync($"{domain}/api/v3/get-extidps", "", AccessToken).ConfigureAwait(false);
             GetExtIdpsRespDto res = jsonService.DeserializeObject<GetExtIdpsRespDto>(json);
             return res;
         }
