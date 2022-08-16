@@ -13,15 +13,14 @@ namespace Authing.CSharp.SDK.Services
         [JsonProperty("accessToken")]
         public string AccessToken { get; set; }
 
+        //TODO:方法返回值须修改
         /// <summary>
         /// 绑定外部身份源
         /// </summary>
-        /// <param name="extIdpConnIdentifier">外部身份源连接唯一标志</param>
-        /// <param name="appId">Authing 应用 ID</param>
-        /// <param name="idToken">用户的 id_token</param>
         /// <returns>CommonResponseDto</returns>
-        public async Task<CommonResponseDto> LinkExtIdp(string extIdpConnIdentifier, string appId, string idToken)
+        public async Task<CommonResponseDto> LinkExtIdp(LinkExtIdpParams param)
         {
+
             LinkExtIdpParams param = new LinkExtIdpParams()
             {
                 ExtIdpConnIdentifier = extIdpConnIdentifier,
@@ -29,10 +28,12 @@ namespace Authing.CSharp.SDK.Services
                 IdToken = idToken
             };
             string json = await GetAsync($"{domain}/api/v3/link-extidp?{CreateQueryParams(param)}", "", AccessToken).ConfigureAwait(false);
+
             CommonResponseDto res = jsonService.DeserializeObject<CommonResponseDto>(json);
             return res;
         }
 
+        //TODO:方法返回值须修改
         /// <summary>
         /// 解绑外部身份源
         /// </summary>
@@ -41,7 +42,9 @@ namespace Authing.CSharp.SDK.Services
         public async Task<CommonResponseDto> ULinkExtIdp(string extIdpId)
         {
             ULinkExtIdpParams param = new ULinkExtIdpParams() { ExtIdpId = extIdpId };
+
             string json = await PostAsync("/api/v3/unlink-extidp", param).ConfigureAwait(false);
+
             CommonResponseDto res = jsonService.DeserializeObject<CommonResponseDto>(json);
             return res;
         }
