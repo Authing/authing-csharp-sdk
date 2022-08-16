@@ -20,13 +20,6 @@ namespace Authing.CSharp.SDK.Services
         /// <returns>CommonResponseDto</returns>
         public async Task<CommonResponseDto> LinkExtIdp(LinkExtIdpParams param)
         {
-
-            LinkExtIdpParams param = new LinkExtIdpParams()
-            {
-                ExtIdpConnIdentifier = extIdpConnIdentifier,
-                AppId = appId,
-                IdToken = idToken
-            };
             string json = await GetAsync($"{domain}/api/v3/link-extidp?{CreateQueryParams(param)}", "", AccessToken).ConfigureAwait(false);
 
             CommonResponseDto res = jsonService.DeserializeObject<CommonResponseDto>(json);
