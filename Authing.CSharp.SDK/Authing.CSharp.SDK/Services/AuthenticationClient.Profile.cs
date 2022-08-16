@@ -21,5 +21,19 @@ namespace Authing.CSharp.SDK.Services
 
             return result;
         }
+
+        /// <summary>
+        /// 修改用户资料
+        /// </summary>
+        /// <param name="updateUserReqDto"></param>
+        /// <returns></returns>
+        public async Task<UserSingleRespDto> UpdateProfile(UpdateUserReqDto updateUserReqDto)
+        {
+            string json = await PostAsync("/api/v3/update-profile", updateUserReqDto, AccessToken);
+
+            UserSingleRespDto result = m_JsonService.DeserializeObject<UserSingleRespDto>(json);
+
+            return result;
+        }
     }
 }
