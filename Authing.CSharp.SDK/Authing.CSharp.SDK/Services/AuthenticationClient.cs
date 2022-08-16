@@ -639,6 +639,12 @@ namespace Authing.CSharp.SDK.Services
             return false;
         }
 
+        public async Task Signin()
+        { 
+            
+        }
+
     }
+
 }
 
