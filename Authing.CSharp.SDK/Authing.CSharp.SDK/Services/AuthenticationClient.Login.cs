@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -127,7 +128,7 @@ namespace Authing.CSharp.SDK.Services
                 }
             }
 
-            string json = await PostAsync("/api/v3/signin-by-mobile", mobileSignInDto, AccessToken);
+            string json = await PostAsync("/api/v3/signin-by-mobile", mobileSignInDto);
 
             LoginTokenRespDto result = m_JsonService.DeserializeObject<LoginTokenRespDto>(json);
 
@@ -141,7 +142,7 @@ namespace Authing.CSharp.SDK.Services
         /// <returns></returns>
         public async Task<GeneQRCodeRespDto> GeneQrcode(GenerateQrcodeDto generateQrcodeDto)
         {
-            string json = await PostAsync("api/v3/gene-qrcode", generateQrcodeDto, AccessToken);
+            string json = await PostAsync("api/v3/gene-qrcode", generateQrcodeDto);
 
             GeneQRCodeRespDto result = m_JsonService.DeserializeObject<GeneQRCodeRespDto>(json);
 
@@ -156,7 +157,7 @@ namespace Authing.CSharp.SDK.Services
         /// <returns></returns>
         public async Task<CheckQRCodeStatusRespDto> CheckQrcodeStatus(string qrcodeId)
         {
-            string json = await GetAsync("/api/v3/check-qrcode-status", m_JsonService.SerializeObject(new { qrcodeId=qrcodeId}),AccessToken);
+            string json = await GetAsync("/api/v3/check-qrcode-status", m_JsonService.SerializeObject(new { qrcodeId=qrcodeId}));
 
             CheckQRCodeStatusRespDto result = m_JsonService.DeserializeObject<CheckQRCodeStatusRespDto>(json);
             return result;
@@ -169,12 +170,24 @@ namespace Authing.CSharp.SDK.Services
         /// <returns></returns>
         public async Task<LoginTokenRespDto> ExchangeTokensetWithQrcodeTicket(string ticket)
         {
-            string json = await GetAsync("/api/v3/exchange-tokenset-with-qrcode-ticket", m_JsonService.SerializeObject(new { ticket = ticket }), AccessToken);
+            string json = await PostAsync("/api/v3/exchange-tokenset-with-qrcode-ticket", new { });
 
             LoginTokenRespDto result = m_JsonService.DeserializeObject<LoginTokenRespDto>(json);
             return result;
         }
 
+        /// <summary>
+        /// 生成图形验证码
+        /// </summary>
+        /// <param name="randomStr">随机字符串或者时间戳，防止浏览器缓存</param>
+        /// <returns></returns>
+        public async Task<LoginTokenRespDto> CaptchaCode(string randomStr)
+        {
+            string json = await GetAsync("/api/v3/captcha-code", m_JsonService.SerializeObject(new { r = randomStr }));
+
+            LoginTokenRespDto result = m_JsonService.DeserializeObject<LoginTokenRespDto>(json);
+            return result;
+        }
 
     }
 }
