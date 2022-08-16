@@ -393,7 +393,7 @@ namespace Authing.CSharp.SDK.Services
                 GrantType = "refresh_token"
             };
 
-            string json = await PostFormAsync("POST", "/oidc/token", param).ConfigureAwait(false);
+            string json = await PostAsync("POST", "/oidc/token", param).ConfigureAwait(false);
             OIDCTokenResponse res = jsonService.DeserializeObject<OIDCTokenResponse>(json);
             return BuildLoginState(res);
         }
@@ -567,7 +567,7 @@ namespace Authing.CSharp.SDK.Services
         /// <returns></returns>
         private async Task<OIDCTokenResponse> GetToken(CodeToTokenParams tokenParam)
         {
-            string json = await PostFormAsync("POST", "/oidc/token", tokenParam).ConfigureAwait(false);
+            string json = await PostAsync("POST", "/oidc/token", tokenParam).ConfigureAwait(false);
             OIDCTokenResponse res = jsonService.DeserializeObject<OIDCTokenResponse>(json);
             return res;
         }
@@ -627,7 +627,7 @@ namespace Authing.CSharp.SDK.Services
 
         private async Task<bool> CheckAccessToken(string acccessToken)
         {
-            string json = await PostFormAsync("POST", "/oidc/token/introspection", new { token = acccessToken, token_type_hint = "access_token", client_id = options.AppId, client_secret = options.AppSecret });
+            string json = await PostAsync("POST", "/oidc/token/introspection", new { token = acccessToken, token_type_hint = "access_token", client_id = options.AppId, client_secret = options.AppSecret });
 
             return false;
         }
@@ -639,10 +639,7 @@ namespace Authing.CSharp.SDK.Services
             return false;
         }
 
-        public async Task Signin()
-        { 
-            
-        }
+
 
     }
 

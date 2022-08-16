@@ -47,19 +47,36 @@ namespace Authing.CSharp.SDK.Services
             return httpResponse;
         }
 
-        protected async Task<string> PostFormAsync<T>(string method, string apiPath, T dto, Dictionary<string, string> headers = null)
+        protected async Task<string> PostAsync<T>(string method, string apiPath, T dto, Dictionary<string, string> headers = null)
         {
             string json = m_JsonService.SerializeObject(dto);
             Dictionary<string, string> dic = m_JsonService.DeserializeObject<Dictionary<string, string>>(json);
 
-            SetHeaders();
+            SetHeaders(headers);
 
             string httpResponse = await m_HttpService.PostFormAsync(m_BaseUrl, apiPath, dic, default).ConfigureAwait(false);
             return httpResponse;
         }
 
-        private void SetHeaders()
+        protected async Task<string> PostAsync<T>(string method, string apiPath, T dto, string accesstoken,Dictionary<string,string> headers=null)
         {
+            string json = m_JsonService.SerializeObject(dto);
+            Dictionary<string, string> dic = m_JsonService.DeserializeObject<Dictionary<string, string>>(json);
+
+            m_HttpService.SetBearerToken(accesstoken);
+            SetHeaders(headers);
+
+            string httpResponse = await m_HttpService.PostFormAsync(m_BaseUrl, apiPath, dic, default).ConfigureAwait(false);
+            return httpResponse;
+        }
+
+        private void SetHeaders(Dictionary<string,string> headers=null)
+        {
+            foreach (var item in headers)
+            {
+                m_HttpService.SetHeader(item.Key, item.Value);
+            }
+
             m_HttpService.SetHeader("x-authing-request-from", "SDK");
             m_HttpService.SetHeader("x-authing-sdk-version", "c-sharp:5.0.0");
         }
