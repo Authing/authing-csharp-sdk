@@ -35,5 +35,18 @@ namespace Authing.CSharp.SDK.Services
 
             return result;
         }
+
+        /// <summary>
+        /// 绑定邮箱
+        /// </summary>
+        /// <param name="bindEmailDto"></param>
+        /// <returns></returns>
+        public async Task<IsSuccessRespDto> BindEmail(BindEmailDto bindEmailDto)
+        {
+            string json = await PostAsync("/api/v3/bind-email", bindEmailDto, AccessToken);
+
+            IsSuccessRespDto result = m_JsonService.DeserializeObject<IsSuccessRespDto>(json);
+            return result;
+        }
     }
 }
