@@ -133,5 +133,19 @@ namespace Authing.CSharp.SDK.Services
 
             return result;
         }
+
+        /// <summary>
+        /// 生成用于登录的二维码，目前支持生成微信公众号扫码登录、小程序扫码登录、自建移动 APP 扫码登录的二维码。
+        /// </summary>
+        /// <param name="generateQrcodeDto"></param>
+        /// <returns></returns>
+        public async Task<GeneQRCodeRespDto> GeneQrcode(GenerateQrcodeDto generateQrcodeDto)
+        {
+            string json = await PostAsync("api/v3/gene-qrcode", generateQrcodeDto, AccessToken);
+
+            GeneQRCodeRespDto result = m_JsonService.DeserializeObject<GeneQRCodeRespDto>(json);
+
+            return result;
+        }
     }
 }
