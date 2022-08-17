@@ -13,7 +13,7 @@ namespace Authing.CSharp.SDK.Services
         /// <returns></returns>
         public async Task<CommonResponseDto> GetLoginHistory(GetLoginHistoryDto param)
         {
-            string json = await PostAsync("POST", "/api/v3/get-login-history", param, AccessToken).ConfigureAwait(false);
+            string json = await PostAsync("/api/v3/get-login-history", param, AccessToken).ConfigureAwait(false);
             CommonResponseDto res = jsonService.DeserializeObject<CommonResponseDto>(json);
             return res;
         }
