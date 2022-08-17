@@ -17,7 +17,7 @@ namespace Authing.CSharp.SDK.Services
         /// <returns>CommonResponseDto</returns>
         public async Task<CommonResponseDto> SendSms(SendSMSDto param)
         {
-            string json = await PostAsync("POST", "/api/v3/send-sms", param, AccessToken).ConfigureAwait(false);
+            string json = await PostAsync("/api/v3/send-sms", param, AccessToken).ConfigureAwait(false);
             CommonResponseDto res = jsonService.DeserializeObject<CommonResponseDto>(json);
             return res;
         }
@@ -29,7 +29,7 @@ namespace Authing.CSharp.SDK.Services
         /// <returns>CommonResponseDto</returns>
         public async Task<CommonResponseDto> SendEmail(SendEmailDto param)
         {
-            string json = await PostAsync("POST", "/api/v3/send-email", param, AccessToken).ConfigureAwait(false);
+            string json = await PostAsync("/api/v3/send-email", param, AccessToken).ConfigureAwait(false);
             CommonResponseDto res = jsonService.DeserializeObject<CommonResponseDto>(json);
             return res;
         }

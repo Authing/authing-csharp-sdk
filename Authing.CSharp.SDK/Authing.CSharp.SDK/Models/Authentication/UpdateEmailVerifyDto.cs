@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Authing.CSharp.SDK.Models
 {
-    public class UpdatePhoneVerifyDto
+    public class UpdateEmailVerifyDto
     {
         /// <summary>
         /// 验证方式

@@ -27,10 +27,10 @@ namespace Authing.CSharp.SDK.Models
         public long ApiCode { get; set; }
 
         [JsonProperty("data")]
-        public UpdateEmailVerifyDto Data { get; set; }
+        public UpdateEmailVerifyResp Data { get; set; }
     }
 
-    public class UpdateEmailVerifyDto
+    public class UpdateEmailVerifyResp
     {
         /// <summary>
         /// 用于修改当前邮箱 token
