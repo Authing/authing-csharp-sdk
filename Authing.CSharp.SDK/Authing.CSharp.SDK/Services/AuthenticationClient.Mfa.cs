@@ -52,7 +52,7 @@ namespace Authing.CSharp.SDK.Services
         /// <returns>ListEnrolledFactorsRespDto</returns>
         public async Task<ListEnrolledFactorsRespDto> ListEnrolledFactors()
         {
-            string json = await GetAsync($"{domain}/api/v3/list-enrolled-factors", "", AccessToken).ConfigureAwait(false);
+            string json = await GetAsync($"/api/v3/list-enrolled-factors", "", AccessToken).ConfigureAwait(false);
             ListEnrolledFactorsRespDto res = jsonService.DeserializeObject<ListEnrolledFactorsRespDto>(json);
             return res;
         }
@@ -64,7 +64,7 @@ namespace Authing.CSharp.SDK.Services
         /// <returns></returns>
         public async Task<GetFactorRespDto> GetFactor(string factorId)
         {
-            string json = await GetAsync($"{domain}/api/v3/list-enrolled-factors?factorId={factorId}", "", AccessToken).ConfigureAwait(false);
+            string json = await GetAsync($"/api/v3/list-enrolled-factors?factorId={factorId}", "", AccessToken).ConfigureAwait(false);
             GetFactorRespDto res = jsonService.DeserializeObject<GetFactorRespDto>(json);
             return res;
         }
@@ -75,7 +75,7 @@ namespace Authing.CSharp.SDK.Services
         /// <returns></returns>
         public async Task<ListFactorsToEnrollRespDto> ListFactorsToEnroll()
         {
-            string json = await GetAsync($"{domain}/api/v3/list-factors-to-enroll", "", AccessToken).ConfigureAwait(false);
+            string json = await GetAsync($"/api/v3/list-factors-to-enroll", "", AccessToken).ConfigureAwait(false);
             ListFactorsToEnrollRespDto res = jsonService.DeserializeObject<ListFactorsToEnrollRespDto>(json);
             return res;
         }
