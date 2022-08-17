@@ -6,6 +6,7 @@ namespace Authing.CSharp.SDK.Services
 {
     public partial class AuthenticationClient
     {
+        //TODO:返回值待修改
         /// <summary>
         /// 获取登录日志
         /// </summary>

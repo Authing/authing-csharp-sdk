@@ -20,7 +20,7 @@ namespace Authing.CSharp.SDK.Services
         /// <returns>CommonResponseDto</returns>
         public async Task<CommonResponseDto> LinkExtIdp(LinkExtIdpParams param)
         {
-            string json = await GetAsync($"{domain}/api/v3/link-extidp?{CreateQueryParams(param)}", "", AccessToken).ConfigureAwait(false);
+            string json = await GetAsync($"/api/v3/link-extidp?{CreateQueryParams(param)}", "", AccessToken).ConfigureAwait(false);
 
             CommonResponseDto res = jsonService.DeserializeObject<CommonResponseDto>(json);
             return res;
@@ -48,7 +48,7 @@ namespace Authing.CSharp.SDK.Services
         /// <returns>GetIdentitiesRespDto</returns>
         public async Task<GetIdentitiesRespDto> GetIdentities()
         {
-            string json = await GetAsync($"{domain}/api/v3/get-identities", "", AccessToken).ConfigureAwait(false);
+            string json = await GetAsync($"/api/v3/get-identities", "", AccessToken).ConfigureAwait(false);
             GetIdentitiesRespDto res = jsonService.DeserializeObject<GetIdentitiesRespDto>(json);
             return res;
         }
@@ -59,7 +59,7 @@ namespace Authing.CSharp.SDK.Services
         /// <returns>GetExtIdpsRespDto</returns>
         public async Task<GetExtIdpsRespDto> GetExtIdps()
         {
-            string json = await GetAsync($"{domain}/api/v3/get-extidps", "", AccessToken).ConfigureAwait(false);
+            string json = await GetAsync($"/api/v3/get-extidps", "", AccessToken).ConfigureAwait(false);
             GetExtIdpsRespDto res = jsonService.DeserializeObject<GetExtIdpsRespDto>(json);
             return res;
         }
