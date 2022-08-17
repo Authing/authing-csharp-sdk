@@ -26,6 +26,12 @@ namespace Authing.CSharp.SDK.Services
             m_AppId = options.AppId;
         }
 
+        protected async Task<string> GetAsync(string apiPath)
+        {
+            string httpResponse = await m_HttpService.GetAsync(m_BaseUrl, apiPath, default, default).ConfigureAwait(false);
+            return httpResponse;
+        }
+
         protected async Task<string> GetAsync(string apiPath, string param)
         {
             var dic = m_JsonService.DeserializeObject<Dictionary<string, string>>(param);
