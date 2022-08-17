@@ -153,7 +153,7 @@ namespace Authing.CSharp.SDK.Framework.Test
                     }
                 };
 
-                IsSuccessRespDto isSuccessRespDto = managementClient.SetUserDepartment(setUserDepartmentDto).Result;
+                IsSuccessRespDto isSuccessRespDto = managementClient.SetUserDepartments(setUserDepartmentDto).Result;
 
                 Assert.IsTrue(isSuccessRespDto.Data.Success);
             }
@@ -291,7 +291,7 @@ namespace Authing.CSharp.SDK.Framework.Test
 
 
 
-                UserListRespDto userListRespDto = managementClient.CreateUserBatch(reqDto).Result;
+                UserListRespDto userListRespDto = managementClient.CreateUsersBatch(reqDto).Result;
 
                 Assert.IsTrue(userListRespDto.Data.Count == 2);
             }
@@ -369,7 +369,7 @@ namespace Authing.CSharp.SDK.Framework.Test
                 long beginTime = dateTimeService.DateTimeToLongTimeStamp(DateTime.Parse("2020-12-12 00:00:00"));
                 long endTime = dateTimeService.DateTimeToLongTimeStamp(DateTime.Parse("2023-12-12 00:00:00"));
 
-                UserLoginHistoryPaginatedRespDto dto = managementClient.GetUserLoginHistory(UserId, null, null, beginTime, endTime).Result;
+                UserLoginHistoryPaginatedRespDto dto = managementClient.GetUserLoginHistory(UserId, null, null,"", beginTime, endTime).Result;
 
                 Assert.IsTrue(dto.Data.List.Count > 0);
             }
@@ -382,7 +382,7 @@ namespace Authing.CSharp.SDK.Framework.Test
             {
                 string UserId = UserOneId;
 
-                UserLoggedInAppsListRespDto dto = managementClient.GetUserLoggedInApps(UserId).Result;
+                UserLoggedInAppsListRespDto dto = managementClient.GetUserLoggedinApps(UserId).Result;
 
                 Assert.IsTrue(dto.Data.Count > 0);
             }
