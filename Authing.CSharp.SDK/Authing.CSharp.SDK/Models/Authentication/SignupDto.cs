@@ -1,5 +1,6 @@
 ﻿using Authing.CSharp.SDK.Models.Authentication;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,14 @@ namespace Authing.CSharp.SDK.Models
 {
     public class SignupDto
     {
+        public SignupDto()
+        {
+            Profile = new SignupProfile();
+            Options = new SignupOptions();
+            PasswordPayload = new SignupPasswordPayload();
+            PassCodePayload = new SignupPassCodePayload();
+        }
+
         /// <summary>
         /// 注册方式
         /// </summary>
@@ -18,26 +27,36 @@ namespace Authing.CSharp.SDK.Models
         /// <summary>
         /// 当注册方式为 PASSWORD 时此参数必填
         /// </summary>
-        public PasswordPayLoad PasswordPayLoad { get; set; }
+        [JsonProperty("passwordPayload")]
+        public SignupPasswordPayload PasswordPayload { get; set; }
 
         /// <summary>
         /// 当认证方式为 PASSCODE 时此参数必填
         /// </summary>
-        public PassCodePayLoad PassCodePayLoad { get; set; }
+        [JsonProperty("passCodePayload")]
+        public SignupPassCodePayload PassCodePayload { get; set; }
 
         /// <summary>
         /// 用户资料
         /// </summary>
-        public SignupConnection Profile { get; set; }
+        [JsonProperty("profile")]
+        public SignupProfile Profile { get; set; }
 
         /// <summary>
         /// 可选参数
         /// </summary>
+        [JsonProperty("options")]
         public SignupOptions Options { get; set; }
     }
 
-    public class PasswordPayload
+    public class SignupPasswordPayload
     {
+        public SignupPasswordPayload()
+        {
+            Password = "";
+            Email = "";
+        }
+
         /// <summary>
         /// 用户密码，默认不加密。Authing 所有 API 均通过 HTTPS 协议对密码进行安全传输，可以在一定程度上保证安全性。 如果你还需要更高级别的安全性，我们还支持 RSA256 和国密 SM2 的密码加密方式。详情见可选参数 options.passwordEncryptType
         /// </summary>
@@ -48,8 +67,16 @@ namespace Authing.CSharp.SDK.Models
         public string Email { get; set; }
     }
 
-    public class PassCodePayload
+    public class SignupPassCodePayload
     {
+        public SignupPassCodePayload()
+        {
+            PassCode = "";
+            Email = "";
+            Phone = "";
+            PhoneCountryCode = "";
+        }
+
         /// <summary>
         /// 一次性临时验证码，你需要先调用发送短信或者发送邮件接口获取验证码。
         /// </summary>
@@ -187,6 +214,8 @@ namespace Authing.CSharp.SDK.Models
         /// <summary>
         /// 密码加密类型，支持 sm2 和 rsa。默认可以不加密。
         /// </summary>
+        [JsonProperty("passwordEncryptType")]
+        [JsonConverter(typeof(StringEnumConverter))]
         public PasswordEncryptType PasswordEncryptType { get; set; }
     }
 

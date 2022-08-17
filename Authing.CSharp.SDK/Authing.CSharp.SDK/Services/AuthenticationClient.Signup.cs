@@ -20,16 +20,16 @@ namespace Authing.CSharp.SDK.Services
         /// <returns></returns>
         public async Task<UserSingleRespDto> Signup(SignupDto signupDto)
         {
-            if (signupDto.Connection == SignupConnection.PASSWORD && string.IsNullOrWhiteSpace(signupDto.PasswordPayLoad.Password))
+            if (signupDto.Connection == SignupConnection.PASSWORD && string.IsNullOrWhiteSpace(signupDto.PasswordPayload.Password))
             {
-                throw new ArgumentException("PasswordPayLoad.Password 不能为空");
+                throw new ArgumentException("PasswordPayload.Password 不能为空");
             }
-            if (signupDto.Connection == SignupConnection.PASSCODE && string.IsNullOrWhiteSpace(signupDto.PassCodePayLoad.PassCode))
+            if (signupDto.Connection == SignupConnection.PASSCODE && string.IsNullOrWhiteSpace(signupDto.PassCodePayload.PassCode))
             {
-                throw new ArgumentException("PassCodePayLoad.PassCode 不能为空");
+                throw new ArgumentException("PassCodePayload.PassCode 不能为空");
             }
 
-            string json = await PostAsync("/api/v3/signup", signupDto);
+            string json = await PostAsync("/api/v3/signup", m_JsonService.SerializeObjectCamelCase(signupDto),"");
 
             UserSingleRespDto result = m_JsonService.DeserializeObject<UserSingleRespDto>(json);
 

@@ -30,13 +30,29 @@ namespace Authing.CSharp.SDK.Utils
             {
                 NullValueHandling = NullValueHandling.Ignore,
                 MissingMemberHandling = MissingMemberHandling.Ignore,
-                Converters = converters
+                Converters = converters,
+                ContractResolver = new Newtonsoft.Json.Serialization.CamelCasePropertyNamesContractResolver()
             };
         }
 
         public string SerializeObject(object obj)
         {
             string result = JsonConvert.SerializeObject(obj, stringEnumConverter);
+            return result;
+        }
+
+        public string SerializeObjectCamelCase(object obj)
+        {
+            settings = new JsonSerializerSettings
+            {
+                ContractResolver = new Newtonsoft.Json.Serialization.CamelCasePropertyNamesContractResolver(),
+                Converters = new List<JsonConverter>() 
+                {
+                    new StringEnumConverter()
+                }
+            };
+
+            string result = JsonConvert.SerializeObject(obj, settings);
             return result;
         }
 

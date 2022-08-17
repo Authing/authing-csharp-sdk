@@ -20,27 +20,29 @@ namespace Authing.CSharp.SDK.Services
         public async Task<LoginTokenRespDto> Signin(LoginByCredentialsDto loginByCredentialsDto)
         {
             if (loginByCredentialsDto.Connection == Connection.PASSWORD &&
-                string.IsNullOrWhiteSpace(loginByCredentialsDto.PasswordPayLoad.Password))
+                string.IsNullOrWhiteSpace(loginByCredentialsDto.PasswordPayload.Password))
             {
                 throw new ArgumentException("PasswodPayLoad.Password 不能为空");
             }
             else if (loginByCredentialsDto.Connection == Connection.PASSCODE &&
-                string.IsNullOrWhiteSpace(loginByCredentialsDto.PassCodePayLoad.PassCode))
+                string.IsNullOrWhiteSpace(loginByCredentialsDto.PassCodePayload.PassCode))
             {
                 throw new ArgumentException("PassCodePayLoad.PassCode 不能为空");
             }
             else if (loginByCredentialsDto.Connection == Connection.AD &&
-                 string.IsNullOrWhiteSpace(loginByCredentialsDto.ADPayLoad.PassCode))
+                 string.IsNullOrWhiteSpace(loginByCredentialsDto.ADPayload.PassCode))
             {
                 throw new ArgumentException("ADPayLoad.PassCode 不能为空");
             }
             else if (loginByCredentialsDto.Connection == Connection.LDAP &&
-                 string.IsNullOrWhiteSpace(loginByCredentialsDto.LDAPPayLoad.Password))
+                 string.IsNullOrWhiteSpace(loginByCredentialsDto.LDAPPayload.Password))
             {
                 throw new ArgumentException("LDAPPayLoad.Password 不能为空");
             }
 
-            string json = await PostAsync("api/v3/signin", loginByCredentialsDto);
+            byte[] ss = Encoding.UTF8.GetBytes($"{options.AppId}:{options.AppSecret}");
+
+            string json = await PostAsync("api/v3/signin", m_JsonService.SerializeObjectCamelCase(loginByCredentialsDto),"Basic"+Convert.ToBase64String(ss));
 
             LoginTokenRespDto result = m_JsonService.DeserializeObject<LoginTokenRespDto>(json);
 

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Authing.CSharp.SDK.Framework.Test
 {
-    public class AuthenticationClientTest
+    public class AuthenticationClientAuthTest
     {
         string loginCallbackUrl = @"https://console.authing.cn/console/get-started/62e9e47185d7e275e3113072";
         AuthenticationClient client;

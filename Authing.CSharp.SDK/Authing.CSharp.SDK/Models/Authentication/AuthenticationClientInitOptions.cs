@@ -55,5 +55,7 @@ namespace Authing.CSharp.SDK.Models.Authentication
         /// 存储认证上下文的 Cookie 名称
         /// </summary>
         public string CookieKey { get; set; }
+
+        public string Host { get; set; }
     }
 }

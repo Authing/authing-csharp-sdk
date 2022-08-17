@@ -3,12 +3,22 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 
 namespace Authing.CSharp.SDK.Models
 {
     public class LoginByCredentialsDto
     {
+        public LoginByCredentialsDto()
+        {
+            PasswordPayload = new PasswordPayload();
+            PassCodePayload = new PassCodePayload();
+            ADPayload = new ADPayload();
+            LDAPPayload = new LDAPPayload();
+            Options = new Options();
+        }
+
         [JsonProperty("connection")]
         public Connection Connection { get; set; }
 
@@ -16,25 +26,25 @@ namespace Authing.CSharp.SDK.Models
         /// 当认证方式为 PASSWORD 时此参数必填
         /// </summary>
        [JsonProperty("passwordPayload")]
-        public PasswordPayLoad PasswordPayLoad { get; set; }
+        public PasswordPayload PasswordPayload { get; set; }
 
         /// <summary>
         /// 当认证方式为 PASSCODE 时此参数必填
         /// </summary>
         [JsonProperty("passCodePayload")]
-        public PassCodePayLoad PassCodePayLoad { get; set; }
+        public PassCodePayload PassCodePayload { get; set; }
 
         /// <summary>
         /// 当认证方式为 AD 时此参数必填
         /// </summary>
         [JsonProperty("adPayload")]
-        public ADPayLoad ADPayLoad { get; set; }
+        public ADPayload ADPayload { get; set; }
 
         /// <summary>
         /// 当认证方式为 LDAP 时此参数必填
         /// </summary>
         [JsonProperty("ldapPayload")]
-        public LDAPPayLoad LDAPPayLoad { get; set; }
+        public LDAPPayload LDAPPayload { get; set; }
 
         /// <summary>
         /// 可选参数
@@ -43,8 +53,17 @@ namespace Authing.CSharp.SDK.Models
         public Options Options { get; set; }
     }
 
-    public class PasswordPayLoad
+    public class PasswordPayload
     {
+        public PasswordPayload()
+        {
+            Password = "";
+            Account = "";
+            Email = "";
+            UserName = "";
+            Phone = "";
+        }
+
         /// <summary>
         /// 用户密码，默认不加密。Authing 所有 API 均通过 HTTPS 协议对密码进行安全传输，可以在一定程度上保证安全性。 如果你还需要更高级别的安全性，我们还支持 RSA256 和国密 SM2 的密码加密方式。详情见可选参数 options.passwordEncryptType
         /// </summary>
@@ -76,8 +95,16 @@ namespace Authing.CSharp.SDK.Models
         public string Phone { get; set; }
     }
 
-    public class PassCodePayLoad
+    public class PassCodePayload
     {
+        public PassCodePayload()
+        {
+            PassCode = "";
+            Email = "";
+            Phone = "";
+            PhoneCountryCode = "";
+        }
+
         /// <summary>
         /// 一次性临时验证码，你需要先调用发送短信或者发送邮件接口获取验证码
         /// </summary>
@@ -102,8 +129,16 @@ namespace Authing.CSharp.SDK.Models
         public string PhoneCountryCode { get; set; }
     }
 
-    public class ADPayLoad
+    public class ADPayload
     {
+        public ADPayload()
+        {
+            PassCode = "";
+            Email = "";
+            Phone = "";
+            PhoneCountryCode = "";
+        }
+
         /// <summary>
         /// 一次性临时验证码，你需要先调用发送短信或者发送邮件接口获取验证码
         /// </summary>
@@ -129,8 +164,13 @@ namespace Authing.CSharp.SDK.Models
         public string PhoneCountryCode { get; set; }
     }
 
-    public class LDAPPayLoad
+    public class LDAPPayload
     {
+        public LDAPPayload()
+        {
+            Password = "";
+            sAMAccountName = "";
+        }
         /// <summary>
         /// 用户密码，默认不加密。Authing 所有 API 均通过 HTTPS 协议对密码进行安全传输，可以在一定程度上保证安全性。 如果你还需要更高级别的安全性，我们还支持 RSA256 和国密 SM2 的密码加密方式。详情见可选参数 options.passwordEncryptType
         /// </summary>
@@ -218,14 +258,17 @@ namespace Authing.CSharp.SDK.Models
         /// <summary>
         /// 不对密码进行加密，使用明文进行传输
         /// </summary>
+        [EnumMember(Value ="none")]
         None,
         /// <summary>
         /// 使用 RSA256 算法对密码进行加密，需要使用 Authing 服务的 RSA 公钥进行加密
         /// </summary>
+        [EnumMember(Value = "rsa")]
         RSA,
         /// <summary>
         /// 使用 国密 SM2 算法 对密码进行加密，需要使用 Authing 服务的 SM2 公钥进行加密
         /// </summary>
+        [EnumMember(Value = "sm2")]
         SM2,
     }
 }

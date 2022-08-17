@@ -18,9 +18,9 @@ namespace Authing.CSharp.SDK.Services
         {
             m_BaseUrl = ConfigService.BASE_URL;
 
-            if (!string.IsNullOrWhiteSpace(options.Domain))
+            if (!string.IsNullOrWhiteSpace(options.Host))
             {
-                m_BaseUrl = options.Domain;
+                m_BaseUrl = options.Host;
             }
 
             m_AppId = options.AppId;
@@ -57,6 +57,14 @@ namespace Authing.CSharp.SDK.Services
             return httpResponse;
         }
 
+        /// <summary>
+        /// 表单请求
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="apiPath"></param>
+        /// <param name="dto"></param>
+        /// <param name="headers"></param>
+        /// <returns></returns>
         protected async Task<string> PostAsync<T>(string apiPath, T dto, Dictionary<string, string> headers = null)
         {
             string json = m_JsonService.SerializeObject(dto);
@@ -65,6 +73,22 @@ namespace Authing.CSharp.SDK.Services
             SetHeaders(headers);
 
             string httpResponse = await m_HttpService.PostFormAsync(m_BaseUrl, apiPath, dic, default).ConfigureAwait(false);
+            return httpResponse;
+        }
+
+        /// <summary>
+        /// Json 参数的请求
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="apiPath"></param>
+        /// <param name="jsonParam"></param>
+        /// <param name="headers"></param>
+        /// <returns></returns>
+        protected async Task<string> PostAsync(string apiPath, string  jsonParam,string accessToken, Dictionary<string, string> headers = null)
+        {
+            SetHeaders(headers);
+
+            string httpResponse = await m_HttpService.PostAsync(m_BaseUrl, apiPath, jsonParam, default).ConfigureAwait(false);
             return httpResponse;
         }
 
@@ -82,9 +106,12 @@ namespace Authing.CSharp.SDK.Services
 
         private void SetHeaders(Dictionary<string, string> headers = null)
         {
-            foreach (var item in headers)
+            if (headers != null)
             {
-                m_HttpService.SetHeader(item.Key, item.Value);
+                foreach (var item in headers)
+                {
+                    m_HttpService.SetHeader(item.Key, item.Value);
+                }
             }
 
             m_HttpService.SetHeader("x-authing-request-from", "SDK");
