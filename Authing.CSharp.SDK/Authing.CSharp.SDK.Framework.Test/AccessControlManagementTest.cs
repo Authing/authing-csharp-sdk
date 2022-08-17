@@ -347,7 +347,7 @@ namespace Authing.CSharp.SDK.Framework.Test
         {
             using (CancellationTokenSource cts = new CancellationTokenSource())
             {
-                AuthorizedResourcePaginatedRespDto dto =await managementClient.GetTargetAuthorizedResources("61c1866a342c23ec8a6431fe", "USER", "default", "API");
+                AuthorizedResourcePaginatedRespDto dto =await managementClient.GetAuthorizedResources("61c1866a342c23ec8a6431fe", "USER", "default", "API");
 
                 Assert.IsTrue(dto.Data.List.Count>0);
             }
