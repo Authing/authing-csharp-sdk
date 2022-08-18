@@ -10,7 +10,7 @@ using NUnit.Framework;
 
 namespace Authing.CSharp.SDK.Framework.Test.AuthenticationClientTest
 {
-    public class MfaAuthenticationClientTest:TestBase
+    public class MfaAuthenticationClientTest:AuthenticationClientTestBase
     {
         [Test]
         public async Task SendEnroolFactorRequestTest()
@@ -19,8 +19,8 @@ namespace Authing.CSharp.SDK.Framework.Test.AuthenticationClientTest
             dto.Connection = Connection.PASSWORD;
             dto.PasswordPayload = new PasswordPayload
             {
-                Email = "test@test.com",
-                Password= "88886666"
+                Email = "2481452007@qq.com",
+                Password= "12345678"
             };
 
             LoginTokenRespDto loginTokenRespDto=  await client.Signin(dto);

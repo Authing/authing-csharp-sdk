@@ -89,4 +89,16 @@ Version 0.0.1
 		</PackageReference>
 	</ItemGroup>
 
+	<ItemGroup Condition="'$(TargetFramework)' == 'net45'">
+	  <PackageReference Include="System.Net.Http">
+	    <Version>4.3.4</Version>
+	  </PackageReference>
+	</ItemGroup>
+
+	<ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
+	  <PackageReference Include="System.Net.Http">
+	    <Version>4.3.4</Version>
+	  </PackageReference>
+	</ItemGroup>
+
 </Project>

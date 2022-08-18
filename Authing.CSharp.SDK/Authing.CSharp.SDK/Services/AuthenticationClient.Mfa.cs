@@ -19,7 +19,7 @@ namespace Authing.CSharp.SDK.Services
         {
             var dic = new Dictionary<string, string>();
             dic.Add("Authorization", $"Bearer {AccessToken}");
-            string json = await PostAsync("/api/v3/send-enroll-factor-request", m_JsonService.SerializeObjectCamelCase(param), AccessToken).ConfigureAwait(false);
+            string json = await PostAsync("/api/v3/send-enroll-factor-request", m_JsonService.SerializeObjectCamelCase(param),dic).ConfigureAwait(false);
             SendEnrollFactorRequestRespDto res = jsonService.DeserializeObject<SendEnrollFactorRequestRespDto>(json);
             return res;
         }

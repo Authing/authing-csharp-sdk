@@ -64,6 +64,15 @@ namespace Authing.CSharp.SDK.Framework.Test
             LoginTokenRespDto loginTokenRespDto = await client.Signin(loginDto);
 
             Assert.IsNotEmpty(loginTokenRespDto.Data.AccessToken);
+
+            signupDto = new SignupDto() { };
+            signupDto.Connection = SignupConnection.PASSWORD;
+            signupDto.PasswordPayload = new SignupPasswordPayload
+            {
+
+                Email = "2481452007@qq.com",
+                Password = "12345678"
+            };
         }
 
         /// <summary>
