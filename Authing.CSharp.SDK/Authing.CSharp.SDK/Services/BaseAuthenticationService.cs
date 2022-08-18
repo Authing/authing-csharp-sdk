@@ -84,10 +84,9 @@ namespace Authing.CSharp.SDK.Services
         /// <param name="jsonParam"></param>
         /// <param name="headers"></param>
         /// <returns></returns>
-        protected async Task<string> PostAsync(string apiPath, string  jsonParam,string accessToken=null, Dictionary<string, string> headers = null)
+        protected async Task<string> PostAsync(string apiPath, string  jsonParam ,Dictionary<string, string> headers = null)
         {
             SetHeaders(headers);
-            m_HttpService.SetBearerToken(accessToken);
 
             string httpResponse = await m_HttpService.PostAsync(m_BaseUrl, apiPath, jsonParam, default).ConfigureAwait(false);
             return httpResponse;

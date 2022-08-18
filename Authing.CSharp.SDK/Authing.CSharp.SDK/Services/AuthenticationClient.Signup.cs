@@ -54,7 +54,7 @@ namespace Authing.CSharp.SDK.Services
             }
 
 
-            string json = await PostAsync("/api/v3/signup", m_JsonService.SerializeObjectCamelCase(signupDto), "");
+            string json = await PostAsync("/api/v3/signup", m_JsonService.SerializeObjectCamelCase(signupDto));
 
             UserSingleRespDto result = m_JsonService.DeserializeObject<UserSingleRespDto>(json);
 
