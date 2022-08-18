@@ -42,7 +42,7 @@ namespace Authing.CSharp.SDK.Services
 
             byte[] ss = Encoding.UTF8.GetBytes($"{options.AppId}:{options.AppSecret}");
 
-            string json = await PostAsync("api/v3/signin", m_JsonService.SerializeObjectCamelCase(loginByCredentialsDto),"",new Dictionary<string, string> { { "Authorization", "Basic " + Convert.ToBase64String(ss) } });
+            string json = await PostAsync("api/v3/signin", m_JsonService.SerializeObjectCamelCase(loginByCredentialsDto),new Dictionary<string, string> { { "Authorization", "Basic " + Convert.ToBase64String(ss) } });
 
             LoginTokenRespDto result = m_JsonService.DeserializeObject<LoginTokenRespDto>(json);
 
