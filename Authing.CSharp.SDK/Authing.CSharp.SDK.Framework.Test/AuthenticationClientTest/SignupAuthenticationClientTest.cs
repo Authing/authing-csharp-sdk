@@ -31,6 +31,11 @@ namespace Authing.CSharp.SDK.Framework.Test
             });
         }
 
+        /// <summary>
+        /// 邮箱和密码注册
+        /// 2022-8-18 测试通过
+        /// </summary>
+        /// <returns></returns>
         [Test]
         public async Task PasswordPayloadSignupTest()
         {
@@ -58,6 +63,7 @@ namespace Authing.CSharp.SDK.Framework.Test
 
         /// <summary>
         /// 邮箱验证码注册单元测试
+        /// 2022-8-18 测试通过
         /// </summary>
         /// <returns></returns>
         [Test]
@@ -95,6 +101,7 @@ namespace Authing.CSharp.SDK.Framework.Test
 
         /// <summary>
         /// 手机验证码注册单元测试
+        /// 2022-8-18 测试通过
         /// </summary>
         /// <returns></returns>
         [Test]

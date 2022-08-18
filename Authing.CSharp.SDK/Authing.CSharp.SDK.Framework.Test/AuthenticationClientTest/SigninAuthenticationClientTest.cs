@@ -33,10 +33,11 @@ namespace Authing.CSharp.SDK.Framework.Test
 
         /// <summary>
         /// 登录测试
+        /// 2022-8-18 测试通过
         /// </summary>
         /// <returns></returns>
         [Test]
-        public async Task SigninTest()
+        public async Task Signin_Email_Password_Test()
         {
             SignupDto signupDto = new SignupDto() { };
             signupDto.Connection = SignupConnection.PASSWORD;
@@ -58,6 +59,47 @@ namespace Authing.CSharp.SDK.Framework.Test
             {
                 Email = "2481452007@qq.com",
                 Password = "12345678"
+            };
+
+            LoginTokenRespDto loginTokenRespDto = await client.Signin(loginDto);
+
+            Assert.IsNotEmpty(loginTokenRespDto.Data.AccessToken);
+        }
+
+        /// <summary>
+        /// 账号密码登录测试
+        /// </summary>
+        /// <returns></returns>
+        [Test]
+        public async Task Signin_Account_Password_Test()
+        {
+            LoginByCredentialsDto loginDto = new LoginByCredentialsDto { };
+            loginDto.Connection = Connection.PASSWORD;
+            loginDto.PasswordPayload = new PasswordPayload 
+            {
+                Account="qidong1122",
+                Password="3866364"
+            };
+
+            LoginTokenRespDto loginTokenRespDto = await client.Signin(loginDto);
+
+            Assert.IsNotEmpty(loginTokenRespDto.Data.AccessToken);
+        }
+
+        /// <summary>
+        /// 用户名密码登录测试
+        /// 2022-8-18 测试通过
+        /// </summary>
+        /// <returns></returns>
+        [Test]
+        public async Task Signin_Username_Password_Test()
+        {
+            LoginByCredentialsDto loginDto = new LoginByCredentialsDto { };
+            loginDto.Connection = Connection.PASSWORD;
+            loginDto.PasswordPayload = new PasswordPayload
+            {
+                UserName = "qidong1122",
+                Password = "3866364"
             };
 
             LoginTokenRespDto loginTokenRespDto = await client.Signin(loginDto);
