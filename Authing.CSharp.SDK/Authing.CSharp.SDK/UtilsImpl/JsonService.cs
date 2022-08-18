@@ -45,6 +45,7 @@ namespace Authing.CSharp.SDK.Utils
         {
             settings = new JsonSerializerSettings
             {
+                NullValueHandling=NullValueHandling.Ignore,
                 ContractResolver = new Newtonsoft.Json.Serialization.CamelCasePropertyNamesContractResolver(),
                 Converters = new List<JsonConverter>() 
                 {

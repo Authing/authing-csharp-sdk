@@ -60,7 +60,7 @@ namespace Authing.CSharp.SDK.Models
         /// <summary>
         /// 过期时间 单位是秒
         /// </summary>
-        [JsonProperty("expire_in")]
+        [JsonProperty("expires_in")]
         public string ExpireIn { get; set; }
     }
 

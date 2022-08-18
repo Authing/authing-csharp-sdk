@@ -31,18 +31,38 @@ namespace Authing.CSharp.SDK.Framework.Test
             });
         }
 
+        /// <summary>
+        /// 登录测试
+        /// </summary>
+        /// <returns></returns>
         [Test]
         public async Task SigninTest()
         {
-            LoginByCredentialsDto dto = new LoginByCredentialsDto { };
-            dto.Connection = Connection.PASSWORD;
-            dto.PasswordPayload = new PasswordPayload
+            SignupDto signupDto = new SignupDto() { };
+            signupDto.Connection = SignupConnection.PASSWORD;
+            signupDto.PasswordPayload = new SignupPasswordPayload
             {
+
                 Email = "2481452007@qq.com",
-                Password= "12345678"
+                Password = "12345678"
             };
 
-          LoginTokenRespDto loginTokenRespDto=  await client.Signin(dto);
+
+            UserSingleRespDto dto = await client.Signup(signupDto);
+
+            Assert.IsTrue(dto.StatusCode == 200);
+
+            LoginByCredentialsDto loginDto = new LoginByCredentialsDto { };
+            loginDto.Connection = Connection.PASSWORD;
+            loginDto.PasswordPayload = new PasswordPayload
+            {
+                Email = "2481452007@qq.com",
+                Password = "12345678"
+            };
+
+            LoginTokenRespDto loginTokenRespDto = await client.Signin(loginDto);
+
+            Assert.IsNotEmpty(loginTokenRespDto.Data.AccessToken);
         }
     }
 }

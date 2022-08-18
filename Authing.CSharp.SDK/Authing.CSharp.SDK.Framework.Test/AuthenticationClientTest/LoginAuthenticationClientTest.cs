@@ -1,4 +1,5 @@
-﻿using Authing.CSharp.SDK.Models.Authentication;
+﻿using Authing.CSharp.SDK.Models;
+using Authing.CSharp.SDK.Models.Authentication;
 using Authing.CSharp.SDK.Services;
 using NUnit.Framework;
 using System;
@@ -30,19 +31,25 @@ namespace Authing.CSharp.SDK.Framework.Test.AuthenticationClientTest
             });
         }
 
+        /// <summary>
+        /// 登录测试
+        /// </summary>
+        /// <returns></returns>
         [Test]
         public async Task LoginTest()
         {
-            //SignupDto signupDto = new SignupDto() { };
-            //signupDto.Connection = SignupConnection.PASSWORD;
-            //signupDto.PasswordPayload = new SignupPasswordPayload
+            //SignupDto
+
+            //LoginByCredentialsDto loginByCredentialsDto = new LoginByCredentialsDto() { };
+            //loginByCredentialsDto.Connection = Connection.PASSWORD;
+            //loginByCredentialsDto.PasswordPayload = new PasswordPayload() 
             //{
-            //    Email = "2481452007@qq.com",
-            //    Password = "12345678"
+            //    Password="12345678",
+            //    Email="2481452007@qq.com",
             //};
 
 
-            //UserSingleRespDto dto = await client.Login(signupDto);
+            //UserSingleRespDto dto = await client.Signin(signupDto);
         }
     }
 }

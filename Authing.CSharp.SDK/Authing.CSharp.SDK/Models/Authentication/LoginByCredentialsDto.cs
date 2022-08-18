@@ -12,10 +12,6 @@ namespace Authing.CSharp.SDK.Models
     {
         public LoginByCredentialsDto()
         {
-            PasswordPayload = new PasswordPayload();
-            PassCodePayload = new PassCodePayload();
-            ADPayload = new ADPayload();
-            LDAPPayload = new LDAPPayload();
             Options = new Options();
         }
 
@@ -243,8 +239,8 @@ namespace Authing.CSharp.SDK.Models
         /// <summary>
         /// Captcha 图形验证码，不区分大小写。当安全策略设置为验证码且触发登录失败次数限制时，下次登录需要填写图形验证码
         /// </summary>
-        [JsonProperty("")]
-        public bool CaptchaCode { get; set; }
+        [JsonProperty("captchaCode")]
+        public string CaptchaCode { get; set; }
 
         /// <summary>
         /// 密码加密类型，支持 sm2 和 rsa。默认可以不加密
