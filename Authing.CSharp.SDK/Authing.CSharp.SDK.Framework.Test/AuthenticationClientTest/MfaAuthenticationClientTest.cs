@@ -10,8 +10,12 @@ using NUnit.Framework;
 
 namespace Authing.CSharp.SDK.Framework.Test.AuthenticationClientTest
 {
-    public class MfaAuthenticationClientTest:AuthenticationClientTestBase
+    public class MfaAuthenticationClientTest : AuthenticationClientTestBase
     {
+        /// <summary>
+        /// 2022-8-18 测试不通过
+        /// </summary>
+        /// <returns></returns>
         [Test]
         public async Task SendEnroolFactorRequestTest()
         {
@@ -19,11 +23,11 @@ namespace Authing.CSharp.SDK.Framework.Test.AuthenticationClientTest
             dto.Connection = Connection.PASSWORD;
             dto.PasswordPayload = new PasswordPayload
             {
-                Email = "2481452007@qq.com",
-                Password= "12345678"
+                Email = "test@test.com",
+                Password = "88886666"
             };
 
-            LoginTokenRespDto loginTokenRespDto=  await client.Signin(dto);
+            LoginTokenRespDto loginTokenRespDto = await client.Signin(dto);
 
             Assert.IsNotNull(loginTokenRespDto);
 
