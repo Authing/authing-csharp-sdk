@@ -20,16 +20,41 @@ namespace Authing.CSharp.SDK.Services
         /// <returns></returns>
         public async Task<UserSingleRespDto> Signup(SignupDto signupDto)
         {
-            if (signupDto.Connection == SignupConnection.PASSWORD && string.IsNullOrWhiteSpace(signupDto.PasswordPayload.Password))
+            if (signupDto.Connection == SignupConnection.PASSWORD)
             {
-                throw new ArgumentException("PasswordPayload.Password 不能为空");
-            }
-            if (signupDto.Connection == SignupConnection.PASSCODE && string.IsNullOrWhiteSpace(signupDto.PassCodePayload.PassCode))
-            {
-                throw new ArgumentException("PassCodePayload.PassCode 不能为空");
+                if (string.IsNullOrWhiteSpace(signupDto.PasswordPayload.Password))
+                {
+                    throw new ArgumentException("PasswordPayload.Password 不能为空");
+                }
+
+                if (string.IsNullOrWhiteSpace(signupDto.Profile.Email))
+                {
+                    signupDto.Profile.Email = signupDto.PasswordPayload.Email;
+                    signupDto.PassCodePayload.Email = signupDto.PasswordPayload.Email;
+                }
             }
 
-            string json = await PostAsync("/api/v3/signup", m_JsonService.SerializeObjectCamelCase(signupDto),"");
+            if (signupDto.Connection == SignupConnection.PASSCODE)
+            {
+                if (string.IsNullOrWhiteSpace(signupDto.PassCodePayload.PassCode))
+                {
+                    throw new ArgumentException("PassCodePayload.PassCode 不能为空");
+                }
+
+                if (string.IsNullOrWhiteSpace(signupDto.Profile.Email) && !string.IsNullOrWhiteSpace(signupDto.PassCodePayload.Email))
+                {
+                    signupDto.Profile.Email = signupDto.PassCodePayload.Email;
+                    signupDto.PasswordPayload.Email = signupDto.PassCodePayload.Email;
+                }
+
+                if (string.IsNullOrWhiteSpace(signupDto.Profile.Phone) && !string.IsNullOrWhiteSpace(signupDto.PassCodePayload.Phone))
+                {
+                    signupDto.Profile.Phone = signupDto.PassCodePayload.Phone;
+                }
+            }
+
+
+            string json = await PostAsync("/api/v3/signup", m_JsonService.SerializeObjectCamelCase(signupDto), "");
 
             UserSingleRespDto result = m_JsonService.DeserializeObject<UserSingleRespDto>(json);
 

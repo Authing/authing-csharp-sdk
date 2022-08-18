@@ -130,7 +130,7 @@ namespace Authing.CSharp.SDK.Services
                 }
             }
 
-            string json = await PostAsync("/api/v3/signin-by-mobile", mobileSignInDto);
+            string json = await PostFormAsync("/api/v3/signin-by-mobile", mobileSignInDto);
 
             LoginTokenRespDto result = m_JsonService.DeserializeObject<LoginTokenRespDto>(json);
 
@@ -144,7 +144,7 @@ namespace Authing.CSharp.SDK.Services
         /// <returns></returns>
         public async Task<GeneQRCodeRespDto> GeneQrcode(GenerateQrcodeDto generateQrcodeDto)
         {
-            string json = await PostAsync("api/v3/gene-qrcode", generateQrcodeDto);
+            string json = await PostFormAsync("api/v3/gene-qrcode", generateQrcodeDto);
 
             GeneQRCodeRespDto result = m_JsonService.DeserializeObject<GeneQRCodeRespDto>(json);
 
@@ -172,7 +172,7 @@ namespace Authing.CSharp.SDK.Services
         /// <returns></returns>
         public async Task<LoginTokenRespDto> ExchangeTokensetWithQrcodeTicket(string ticket)
         {
-            string json = await PostAsync("/api/v3/exchange-tokenset-with-qrcode-ticket", new { });
+            string json = await PostFormAsync("/api/v3/exchange-tokenset-with-qrcode-ticket", new { });
 
             LoginTokenRespDto result = m_JsonService.DeserializeObject<LoginTokenRespDto>(json);
             return result;

@@ -24,7 +24,7 @@ namespace Authing.CSharp.SDK.Services
         /// <returns></returns>
         public async Task MePost()
         {
-            string json = await PostAsync("/oidc/me", "");
+            string json = await PostFormAsync("/oidc/me", "");
         }
 
         /// <summary>

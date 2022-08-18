@@ -46,7 +46,7 @@ namespace Authing.CSharp.SDK.Services
         /// <returns></returns>
         public async Task<CommonResponseDto> PostCasLogin()
         {
-            string json = await PostAsync($"/interaction/cas-idp/login", AccessToken).ConfigureAwait(false);
+            string json = await PostFormAsync($"/interaction/cas-idp/login", AccessToken).ConfigureAwait(false);
             CommonResponseDto res = jsonService.DeserializeObject<CommonResponseDto>(json);
             return res;
         }

@@ -35,7 +35,7 @@ namespace Authing.CSharp.SDK.Services
         /// <returns></returns>
         public async Task<CommonResponseDto> PostSaml(string appId)
         {
-            string json = await PostAsync($"/api/v3/saml-idp/{appId}", AccessToken).ConfigureAwait(false);
+            string json = await PostFormAsync($"/api/v3/saml-idp/{appId}", AccessToken).ConfigureAwait(false);
             CommonResponseDto res = jsonService.DeserializeObject<CommonResponseDto>(json);
             return res;
         }
@@ -61,7 +61,7 @@ namespace Authing.CSharp.SDK.Services
         /// <returns></returns>
         public async Task<CommonResponseDto> PostSamlInteractionkeyLogin(string interactionkey)
         {
-            string json = await PostAsync($"/api/v3/saml-idp/{interactionkey}/login", AccessToken).ConfigureAwait(false);
+            string json = await PostFormAsync($"/api/v3/saml-idp/{interactionkey}/login", AccessToken).ConfigureAwait(false);
             CommonResponseDto res = jsonService.DeserializeObject<CommonResponseDto>(json);
             return res;
         }

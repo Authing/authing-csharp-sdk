@@ -18,7 +18,7 @@ namespace Authing.CSharp.SDK.Services
         /// <returns></returns>
         public async Task<CommonResponseDto> DecryptWechatMiniprogramData(DecryptWechatMiniProgramDataDto param)
         {
-            string json = await PostAsync("/api/v3/decrypt-wechat-miniprogram-data", param, AccessToken).ConfigureAwait(false);
+            string json = await PostFormAsync("/api/v3/decrypt-wechat-miniprogram-data", param, AccessToken).ConfigureAwait(false);
             CommonResponseDto res = jsonService.DeserializeObject<CommonResponseDto>(json);
             return res;
         }

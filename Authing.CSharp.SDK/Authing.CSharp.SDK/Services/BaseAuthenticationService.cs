@@ -65,7 +65,7 @@ namespace Authing.CSharp.SDK.Services
         /// <param name="dto"></param>
         /// <param name="headers"></param>
         /// <returns></returns>
-        protected async Task<string> PostAsync<T>(string apiPath, T dto, Dictionary<string, string> headers = null)
+        protected async Task<string> PostFormAsync<T>(string apiPath, T dto, Dictionary<string, string> headers = null)
         {
             string json = m_JsonService.SerializeObject(dto);
             Dictionary<string, string> dic = m_JsonService.DeserializeObject<Dictionary<string, string>>(json);
@@ -84,7 +84,7 @@ namespace Authing.CSharp.SDK.Services
         /// <param name="jsonParam"></param>
         /// <param name="headers"></param>
         /// <returns></returns>
-        protected async Task<string> PostAsync(string apiPath, string  jsonParam,string accessToken, Dictionary<string, string> headers = null)
+        protected async Task<string> PostAsync(string apiPath, string  jsonParam,string accessToken=null, Dictionary<string, string> headers = null)
         {
             SetHeaders(headers);
 
@@ -92,7 +92,16 @@ namespace Authing.CSharp.SDK.Services
             return httpResponse;
         }
 
-        protected async Task<string> PostAsync<T>(string apiPath, T dto, string accesstoken, Dictionary<string, string> headers = null)
+        /// <summary>
+        /// 表单请求
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="apiPath"></param>
+        /// <param name="dto"></param>
+        /// <param name="accesstoken"></param>
+        /// <param name="headers"></param>
+        /// <returns></returns>
+        protected async Task<string> PostFormAsync<T>(string apiPath, T dto, string accesstoken, Dictionary<string, string> headers = null)
         {
             string json = m_JsonService.SerializeObject(dto);
             Dictionary<string, string> dic = m_JsonService.DeserializeObject<Dictionary<string, string>>(json);

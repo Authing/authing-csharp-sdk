@@ -17,7 +17,7 @@ namespace Authing.CSharp.SDK.Services
         /// <returns>SendEnrollFactorRequestRespDto</returns>
         public async Task<SendEnrollFactorRequestRespDto> SendEnroolFactorRequest(SendEnrollFactorRequestDto param)
         {
-            string json = await PostAsync("/api/v3/send-enroll-factor-request", param, AccessToken).ConfigureAwait(false);
+            string json = await PostFormAsync("/api/v3/send-enroll-factor-request", param, AccessToken).ConfigureAwait(false);
             SendEnrollFactorRequestRespDto res = jsonService.DeserializeObject<SendEnrollFactorRequestRespDto>(json);
             return res;
         }
@@ -29,7 +29,7 @@ namespace Authing.CSharp.SDK.Services
         /// <returns>CommonResponseDto</returns>
         public async Task<CommonResponseDto> EnrollFactor(EnrollFactorDto param)
         {
-            string json = await PostAsync("/api/v3/enroll-factor", param, AccessToken).ConfigureAwait(false);
+            string json = await PostFormAsync("/api/v3/enroll-factor", param, AccessToken).ConfigureAwait(false);
             CommonResponseDto res = jsonService.DeserializeObject<CommonResponseDto>(json);
             return res;
         }
@@ -41,7 +41,7 @@ namespace Authing.CSharp.SDK.Services
         /// <returns></returns>
         public async Task<CommonResponseDto> ResetFactor(RestFactorDto param)
         {
-            string json = await PostAsync("/api/v3/enroll-factor", param, AccessToken).ConfigureAwait(false);
+            string json = await PostFormAsync("/api/v3/enroll-factor", param, AccessToken).ConfigureAwait(false);
             CommonResponseDto res = jsonService.DeserializeObject<CommonResponseDto>(json);
             return res;
         }

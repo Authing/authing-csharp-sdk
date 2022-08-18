@@ -19,17 +19,17 @@ namespace Authing.CSharp.SDK.Services
 
         public async Task Token()
         {
-            string json = await PostAsync<object>("/oauth/token",null);
+            string json = await PostFormAsync<object>("/oauth/token",null);
         }
 
         public async Task Introspection()
         {
-            string json = await PostAsync<object>("/oauth/token/introspection", null);
+            string json = await PostFormAsync<object>("/oauth/token/introspection", null);
         }
 
         public async Task Revocation()
         {
-            string json = await PostAsync<object>("/oauth/token/revocation", null);
+            string json = await PostFormAsync<object>("/oauth/token/revocation", null);
         }
 
         public async Task Authenticate()
@@ -44,12 +44,12 @@ namespace Authing.CSharp.SDK.Services
 
         public async Task Login()
         {
-            string json = await PostAsync<object>("/interaction/oauth/login",null);
+            string json = await PostFormAsync<object>("/interaction/oauth/login",null);
         }
 
         public async Task Confirm()
         {
-            string json = await PostAsync<object>("/interaction/oauth/confirm", null);
+            string json = await PostFormAsync<object>("/interaction/oauth/confirm", null);
         }
     }
 }

@@ -29,7 +29,7 @@ namespace Authing.CSharp.SDK.Services
         /// <returns></returns>
         public async Task<UserSingleRespDto> UpdateProfile(UpdateUserReqDto updateUserReqDto)
         {
-            string json = await PostAsync("/api/v3/update-profile", updateUserReqDto, AccessToken);
+            string json = await PostFormAsync("/api/v3/update-profile", updateUserReqDto, AccessToken);
 
             UserSingleRespDto result = m_JsonService.DeserializeObject<UserSingleRespDto>(json);
 
@@ -43,7 +43,7 @@ namespace Authing.CSharp.SDK.Services
         /// <returns></returns>
         public async Task<IsSuccessRespDto> BindEmail(BindEmailDto bindEmailDto)
         {
-            string json = await PostAsync("/api/v3/bind-email", bindEmailDto, AccessToken);
+            string json = await PostFormAsync("/api/v3/bind-email", bindEmailDto, AccessToken);
 
             IsSuccessRespDto result = m_JsonService.DeserializeObject<IsSuccessRespDto>(json);
             return result;
@@ -56,7 +56,7 @@ namespace Authing.CSharp.SDK.Services
         /// <returns></returns>
         public async Task<IsSuccessRespDto> BindPhone(BindPhoneDto bindPhoneDto)
         {
-            string json = await PostAsync("/api/v3/bind-phone", bindPhoneDto, AccessToken);
+            string json = await PostFormAsync("/api/v3/bind-phone", bindPhoneDto, AccessToken);
 
             IsSuccessRespDto result = m_JsonService.DeserializeObject<IsSuccessRespDto>(json);
             return result;
@@ -81,7 +81,7 @@ namespace Authing.CSharp.SDK.Services
         /// <returns></returns>
         public async Task<IsSuccessRespDto> UpdatePassword(UpdatePasswordDto updatePasswordDto)
         {
-            string json = await PostAsync("/api/v3/update-password", updatePasswordDto, AccessToken);
+            string json = await PostFormAsync("/api/v3/update-password", updatePasswordDto, AccessToken);
 
             IsSuccessRespDto result = m_JsonService.DeserializeObject<IsSuccessRespDto>(json);
             return result;
@@ -94,7 +94,7 @@ namespace Authing.CSharp.SDK.Services
         /// <returns></returns>
         public async Task<UpdateEmailVerifyRespDto> VerifyUpdateEmailRequest(UpdateEmailVerifyDto updateEmailVerifyDto)
         {
-            string json = await PostAsync("/api/v3/veirfy-update-email-request", updateEmailVerifyDto, AccessToken);
+            string json = await PostFormAsync("/api/v3/veirfy-update-email-request", updateEmailVerifyDto, AccessToken);
 
             UpdateEmailVerifyRespDto result = m_JsonService.DeserializeObject<UpdateEmailVerifyRespDto>(json);
             return result;
@@ -107,7 +107,7 @@ namespace Authing.CSharp.SDK.Services
         /// <returns></returns>
         public async Task<IsSuccessRespDto> UpdateEmail(UpdateEmailDto updateEmailDto)
         {
-            string json = await PostAsync("/api/v3/update-email", updateEmailDto, AccessToken);
+            string json = await PostFormAsync("/api/v3/update-email", updateEmailDto, AccessToken);
 
             IsSuccessRespDto result = m_JsonService.DeserializeObject<IsSuccessRespDto>(json);
             return result;
@@ -120,7 +120,7 @@ namespace Authing.CSharp.SDK.Services
         /// <returns></returns>
         public async Task<UpdateTokenVerifyRespDto> VerifyUpdatePhoneRequest(UpdatePhoneVerifyDto updatePhoneVerifyDto)
         {
-            string json = await PostAsync("/api/v3/veirfy-update-phone-request", updatePhoneVerifyDto, AccessToken);
+            string json = await PostFormAsync("/api/v3/veirfy-update-phone-request", updatePhoneVerifyDto, AccessToken);
 
             UpdateTokenVerifyRespDto result = m_JsonService.DeserializeObject<UpdateTokenVerifyRespDto>(json);
             return result;
@@ -134,7 +134,7 @@ namespace Authing.CSharp.SDK.Services
         /// <returns></returns>
         public async Task<IsSuccessRespDto> UpdatePhone(UpdatePhoneDto updatePhoneDto)
         {
-            string json = await PostAsync("/api/v3/update-phone", updatePhoneDto, AccessToken);
+            string json = await PostFormAsync("/api/v3/update-phone", updatePhoneDto, AccessToken);
 
             IsSuccessRespDto result = m_JsonService.DeserializeObject<IsSuccessRespDto>(json);
             return result;
@@ -147,7 +147,7 @@ namespace Authing.CSharp.SDK.Services
         /// <returns></returns>
         public async Task<PasswordResetVerifyRespDto> VerifyResetPasswordRequest(ResetPasswordVerifyDto resetPasswordVerifyDto)
         {
-            string json = await PostAsync("/api/v3/verify-reset-password-request", resetPasswordVerifyDto,AccessToken);
+            string json = await PostFormAsync("/api/v3/verify-reset-password-request", resetPasswordVerifyDto,AccessToken);
 
             PasswordResetVerifyRespDto result = m_JsonService.DeserializeObject<PasswordResetVerifyRespDto>(json);
             return result;
@@ -160,7 +160,7 @@ namespace Authing.CSharp.SDK.Services
         /// <returns></returns>
         public async Task<IsSuccessRespDto> ResetPassword(ResetPasswordDto resetPasswordDto)
         {
-            string json = await PostAsync("/api/v3/reset-password", resetPasswordDto, AccessToken);
+            string json = await PostFormAsync("/api/v3/reset-password", resetPasswordDto, AccessToken);
 
             IsSuccessRespDto result = m_JsonService.DeserializeObject<IsSuccessRespDto>(json);
             return result;
@@ -173,7 +173,7 @@ namespace Authing.CSharp.SDK.Services
         /// <returns></returns>
         public async Task<DeleteAccountVerifyRespDto> VerifyDeleteAccountRequest(DeleteAccountVerifyDto deleteAccountVerifyDto)
         {
-            string json = await PostAsync("/api/v3/verify-delete-account-request", deleteAccountVerifyDto, AccessToken);
+            string json = await PostFormAsync("/api/v3/verify-delete-account-request", deleteAccountVerifyDto, AccessToken);
 
             DeleteAccountVerifyRespDto result = m_JsonService.DeserializeObject<DeleteAccountVerifyRespDto>(json);
             return result;
@@ -186,7 +186,7 @@ namespace Authing.CSharp.SDK.Services
         /// <returns></returns>
         public async Task<IsSuccessRespDto> DeleteAccount(DeleteAccounDto deleteAccounDto)
         {
-            string json = await PostAsync("/api/v3/delete-account", deleteAccounDto, AccessToken);
+            string json = await PostFormAsync("/api/v3/delete-account", deleteAccounDto, AccessToken);
 
             IsSuccessRespDto result = m_JsonService.DeserializeObject<IsSuccessRespDto>(json);
             return result;
