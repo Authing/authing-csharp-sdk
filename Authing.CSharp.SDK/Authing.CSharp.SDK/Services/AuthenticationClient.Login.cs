@@ -46,6 +46,13 @@ namespace Authing.CSharp.SDK.Services
 
             LoginTokenRespDto result = m_JsonService.DeserializeObject<LoginTokenRespDto>(json);
 
+            if (result.Data != null)
+            {
+                AccessToken = result.Data.AccessToken;
+                IdToken = result.Data.IdToken;
+                ExpireTime = result.Data.ExpireIn;
+            }
+
             return result;
         }
 

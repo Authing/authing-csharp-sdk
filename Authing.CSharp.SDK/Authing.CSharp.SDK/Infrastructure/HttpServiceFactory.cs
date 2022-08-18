@@ -1,6 +1,7 @@
 ﻿using Authing.CSharp.SDK.Enums;
 using Authing.CSharp.SDK.IServices;
 using Authing.CSharp.SDK.Utils;
+using Authing.CSharp.SDK.UtilsImpl;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,6 +18,9 @@ namespace Authing.CSharp.SDK.Infrastructure
             {
                 case HttpServiceType.HTTPWEBREQUEST: return new HttpWebService(jsonService);
 
+#if NET45_OR_GREATER
+                case HttpServiceType.HTTPCLIENT:return new HttpClienService(jsonService);
+#endif
             }
             return new HttpWebService(jsonService);
         }

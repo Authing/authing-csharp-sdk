@@ -72,7 +72,7 @@ namespace Authing.CSharp.SDK.Services
 
             SetHeaders(headers);
 
-            string httpResponse = await m_HttpService.PostFormAsync(m_BaseUrl, apiPath, dic, default).ConfigureAwait(false);
+            string httpResponse = await m_HttpService.PostAsync(m_BaseUrl, apiPath, dic, default).ConfigureAwait(false);
             return httpResponse;
         }
 
@@ -109,7 +109,7 @@ namespace Authing.CSharp.SDK.Services
             m_HttpService.SetBearerToken(accesstoken);
             SetHeaders(headers);
 
-            string httpResponse = await m_HttpService.PostFormAsync(m_BaseUrl, apiPath, dic, default).ConfigureAwait(false);
+            string httpResponse = await m_HttpService.PostAsync(m_BaseUrl, apiPath, dic, default).ConfigureAwait(false);
             return httpResponse;
         }
 

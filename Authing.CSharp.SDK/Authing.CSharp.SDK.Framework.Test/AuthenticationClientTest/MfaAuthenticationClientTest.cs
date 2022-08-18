@@ -27,7 +27,7 @@ namespace Authing.CSharp.SDK.Framework.Test.AuthenticationClientTest
 
             Assert.IsNotNull(loginTokenRespDto);
 
-            client.AccessToken = loginTokenRespDto.Data.AccessToken;
+            //client.AccessToken = loginTokenRespDto.Data.AccessToken;
 
             var res = await client.SendEnroolFactorRequest(new SendEnrollFactorRequestDto()
             {

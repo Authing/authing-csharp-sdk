@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Authing.CSharp.SDK.IServices;
 using Jose;
+using Newtonsoft.Json;
 
 namespace Authing.CSharp.SDK.Services
 {
@@ -28,6 +29,10 @@ namespace Authing.CSharp.SDK.Services
         private IRegexService regexService = new RegexService();
         private IJsonService jsonService = new JsonService();
         private IStringService stringService = new StringService();
+
+        public string AccessToken { get;private set; }
+        public string IdToken { get; private set; }
+        public string ExpireTime { get; private set; }
 
         /// <summary>
         /// 构造函数

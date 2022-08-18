@@ -7,12 +7,6 @@ namespace Authing.CSharp.SDK.Services
 {
     public partial class AuthenticationClient
     {
-        /// <summary>
-        /// 用户 Token
-        /// </summary>
-        [JsonProperty("accessToken")]
-        public string AccessToken { get; set; }
-
         //TODO:方法返回值须修改
         /// <summary>
         /// 绑定外部身份源
