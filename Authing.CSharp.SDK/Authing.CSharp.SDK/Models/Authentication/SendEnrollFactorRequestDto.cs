@@ -37,7 +37,7 @@ namespace Authing.CSharp.SDK.Models.Authentication
         /// 你需要在 Authing 控制台配置对应的国际短信服务。完整的手机区号列表可参阅 https://en.wikipedia.org/wiki/List_of_country_calling_codes
         /// </summary>
         [JsonProperty("phoneCountryCode")]
-        public string PhoneCountryCode { get; set; }
+        public string PhoneCountryCode { get; set; } = "+86";
 
         /// <summary>
         /// 当发起绑定邮箱验证码认证要素时，此参数必传。需要传递用户希望绑定的邮箱。Authing 服务器会向此邮箱发送邮箱验证码，要求用户在绑定 MFA 阶段提供验证码。一个邮箱在一分钟内只能请求一次

@@ -17,7 +17,9 @@ namespace Authing.CSharp.SDK.Services
         /// <returns>SendEnrollFactorRequestRespDto</returns>
         public async Task<SendEnrollFactorRequestRespDto> SendEnroolFactorRequest(SendEnrollFactorRequestDto param)
         {
-            string json = await PostFormAsync("/api/v3/send-enroll-factor-request", param, AccessToken).ConfigureAwait(false);
+            var dic = new Dictionary<string, string>();
+            dic.Add("Authorization", $"Bearer {AccessToken}");
+            string json = await PostAsync("/api/v3/send-enroll-factor-request", m_JsonService.SerializeObjectCamelCase(param), AccessToken).ConfigureAwait(false);
             SendEnrollFactorRequestRespDto res = jsonService.DeserializeObject<SendEnrollFactorRequestRespDto>(json);
             return res;
         }
