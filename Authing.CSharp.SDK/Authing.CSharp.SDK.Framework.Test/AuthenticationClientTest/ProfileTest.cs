@@ -207,7 +207,69 @@ namespace Authing.CSharp.SDK.Framework.Test.AuthenticationClientTest
             Assert.IsTrue(updateEmailResult.StatusCode == 200);
         }
 
+        /// <summary>
+        /// 发起修改手机号请求
+        /// 2022-08-22 测试通过
+        /// </summary>
+        /// <returns></returns>
+        [Test]
         public async Task UpdatePhoneRequestTest()
+        {
+            var loginResult = await Login();
+
+            Assert.IsTrue(loginResult.StatusCode == 200);
+
+            SendSMSDto unbinddto = new SendSMSDto 
+            {
+                Channel=SmsChannel.CHANNEL_UNBIND_PHONE,
+                PhoneNumber="13348926753"
+            };
+
+            var unbindResult = await client.SendSms(unbinddto);
+
+            Assert.IsTrue(unbindResult.StatusCode == 200);
+
+            SendSMSDto binddto = new SendSMSDto 
+            {
+                Channel=SmsChannel.CHANNEL_BIND_PHONE,
+                PhoneNumber="13734908267"
+            };
+
+            var bindResult=await client.SendSms(binddto);
+
+            Assert.IsTrue(bindResult.StatusCode == 200);
+
+            UpdatePhoneVerifyDto updatePhoneVerifyDto = new UpdatePhoneVerifyDto();
+            updatePhoneVerifyDto.VerifyMethod = VerifyPhoneMethod.PHONE_PASSCODE;
+            updatePhoneVerifyDto.PhonePassCodePayload = new PhonePassCodePayload 
+            {
+                OldPhoneNumber="13348926753",
+                OldPhonePassCode="1811",
+                NewPhoneNumber="13734908267",
+                NewPhonePassCode="1301"
+            };
+          
+
+            var result=   await client.VerifyUpdatePhoneRequest(updatePhoneVerifyDto);
+
+            Assert.IsTrue(result.StatusCode==200);
+
+            UpdatePhoneDto updatePhoneDto = new UpdatePhoneDto
+            {
+                UpdatePhoneToken = result.Data.UpdatePhoneToken
+            };
+
+            var updateResult = await client.UpdatePhone(updatePhoneDto);
+
+            Assert.IsTrue(updateResult.StatusCode == 200);
+        }
+
+        /// <summary>
+        /// 重置密码请求测试
+        /// </summary>
+        /// <returns></returns>
+        [Test]
+        public async Task ResetPasswordRequestTest()
         { 
             
         }

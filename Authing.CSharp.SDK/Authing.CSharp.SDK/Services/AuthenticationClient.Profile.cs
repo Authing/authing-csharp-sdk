@@ -120,7 +120,7 @@ namespace Authing.CSharp.SDK.Services
         /// <returns></returns>
         public async Task<UpdateTokenVerifyRespDto> VerifyUpdatePhoneRequest(UpdatePhoneVerifyDto updatePhoneVerifyDto)
         {
-            string json = await PostAsync("/api/v3/veirfy-update-phone-request", m_JsonService.SerializeObjectCamelCase(updatePhoneVerifyDto));
+            string json = await PostAsync("/api/v3/veirfy-update-phone-request", m_JsonService.SerializeObjectCamelCase(updatePhoneVerifyDto),AccessToken);
 
             UpdateTokenVerifyRespDto result = m_JsonService.DeserializeObject<UpdateTokenVerifyRespDto>(json);
             return result;
@@ -134,7 +134,7 @@ namespace Authing.CSharp.SDK.Services
         /// <returns></returns>
         public async Task<IsSuccessRespDto> UpdatePhone(UpdatePhoneDto updatePhoneDto)
         {
-            string json = await PostAsync("/api/v3/update-phone", m_JsonService.SerializeObjectCamelCase(updatePhoneDto));
+            string json = await PostAsync("/api/v3/update-phone", m_JsonService.SerializeObjectCamelCase(updatePhoneDto),AccessToken);
 
             IsSuccessRespDto result = m_JsonService.DeserializeObject<IsSuccessRespDto>(json);
             return result;
