@@ -12,32 +12,14 @@ using System.Threading.Tasks;
 
 namespace Authing.CSharp.SDK.Framework.Test
 {
-    class ExternalIdentifyProviderManagementTest
+    class ExternalIdentifyProviderManagementTest : ManagementClientBaseTest
     {
-        ManagementClient managementClient;
-
-        IDateTimeService dateTimeService;
-
-        [SetUp]
-        public void Setup()
-        {
-            ManagementClientOptions options = new ManagementClientOptions()
-            {
-                AccessKeyId = "613189b2eed393affbbf396e",
-                AccessKeySecret = "ccf4951a33e5d54d64e145782a65f0a7"
-            };
-
-            managementClient = new ManagementClient(options);
-            dateTimeService = new DateTimeService();
-        }
-
-
         [Test]
         public async Task ListExtIdpTest()
         {
             using (CancellationTokenSource cts = new CancellationTokenSource())
             {
-                ExtIdpListPaginatedRespDto dto =await managementClient.ListExtIdp();
+                ExtIdpListPaginatedRespDto dto = await managementClient.ListExtIdp();
 
                 Assert.IsTrue(dto.Data.List.Count > 0);
             }
@@ -48,7 +30,7 @@ namespace Authing.CSharp.SDK.Framework.Test
         {
             using (CancellationTokenSource cts = new CancellationTokenSource())
             {
-                ExtIdpDetailSingleRespDto dto =await managementClient.GetExtIdp("62982b6aedad16dc3cbafad4", "62987fc95fdc00c85410105f");
+                ExtIdpDetailSingleRespDto dto = await managementClient.GetExtIdp("62982b6aedad16dc3cbafad4", "62987fc95fdc00c85410105f");
 
                 Assert.IsTrue(dto.Data.Id == "62982b6aedad16dc3cbafad4");
             }
@@ -64,10 +46,10 @@ namespace Authing.CSharp.SDK.Framework.Test
                     Name = "1111111111",
                     TenantId = "62987fc95fdc00c85410105f",
                     Type = CreateExtIdpDto.type.AD
-                    
+
                 };
 
-                ExtIdpSingleRespDto dto =await managementClient.CreateExtIdp(createExtIdpDto);
+                ExtIdpSingleRespDto dto = await managementClient.CreateExtIdp(createExtIdpDto);
 
                 Assert.IsTrue(dto.Data.Name == "exampleName");
             }
@@ -84,7 +66,7 @@ namespace Authing.CSharp.SDK.Framework.Test
                     Id = "629881be0953a5fee9057154",
                 };
 
-                ExtIdpSingleRespDto dto =await managementClient.UpdateExtIdp(updateExtIdpDto);
+                ExtIdpSingleRespDto dto = await managementClient.UpdateExtIdp(updateExtIdpDto);
 
                 Assert.IsTrue(dto.Data.Name == "exampleNameUpdate");
             }
@@ -100,7 +82,7 @@ namespace Authing.CSharp.SDK.Framework.Test
                     Id = "629881be0953a5fee9057154"
                 };
 
-                IsSuccessRespDto dto =await managementClient.DeleteExtIdp(deleteExtIdpDto);
+                IsSuccessRespDto dto = await managementClient.DeleteExtIdp(deleteExtIdpDto);
 
                 Assert.IsTrue(dto.Data.Success);
             }
@@ -111,13 +93,13 @@ namespace Authing.CSharp.SDK.Framework.Test
         {
             using (CancellationTokenSource cts = new CancellationTokenSource())
             {
-                CreateExtIdpConnDto createExtIdpConnDto = new CreateExtIdpConnDto() 
+                CreateExtIdpConnDto createExtIdpConnDto = new CreateExtIdpConnDto()
                 {
-                    ExtIdpId = "62988bbe50d0bec8b2eaf055", 
-                    DisplayName = "AuthingV3TestConn", 
-                    Identifier = "62988bbe826931c2a6f03add", 
+                    ExtIdpId = "62988bbe50d0bec8b2eaf055",
+                    DisplayName = "AuthingV3TestConn",
+                    Identifier = "62988bbe826931c2a6f03add",
                     LoginOnly = false,
-                    Logo = "https://files.authing.co/authing-console/social-connections/icon_xiaochengxu@2x.png", 
+                    Logo = "https://files.authing.co/authing-console/social-connections/icon_xiaochengxu@2x.png",
                     Type = CreateExtIdpConnDto.type.AD,
                     Fields = new { clientId = "619dffb8406749dd88491111", clientSecret = "2222222 " }
                 };
@@ -136,7 +118,7 @@ namespace Authing.CSharp.SDK.Framework.Test
                     DisplayName = "AuthingV3TestConnUpdate",
                     LoginOnly = false,
                     Fields = new { clientId = "619dffb8406749dd88491111", clientSecret = "4444444 " },
-                    Logo= "https://files.authing.co/authing-console/social-connections/icon_xiaochengxu@2x.png",
+                    Logo = "https://files.authing.co/authing-console/social-connections/icon_xiaochengxu@2x.png",
                     Id = "62988de9f76fe95fc6ad0074",
                 };
 

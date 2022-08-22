@@ -11,25 +11,8 @@ using System.Threading;
 
 namespace Authing.CSharp.SDK.Framework.Test
 {
-    class CustomFieldsManagementTest
+    class CustomFieldsManagementTest: ManagementClientBaseTest
     {
-        ManagementClient managementClient;
-
-        IDateTimeService dateTimeService;
-
-        [SetUp]
-        public void Setup()
-        {
-            ManagementClientOptions options = new ManagementClientOptions()
-            {
-                AccessKeyId = "613189b2eed393affbbf396e",
-                AccessKeySecret = "ccf4951a33e5d54d64e145782a65f0a7"
-            };
-
-            managementClient = new ManagementClient(options);
-            dateTimeService = new DateTimeService();
-        }
-
 
         [Test]
         public void GetCustomFieldsTest()

@@ -12,25 +12,8 @@ using System.Threading.Tasks;
 
 namespace Authing.CSharp.SDK.Framework.Test
 {
-    class GroupManagementTest
+    class GroupManagementTest: ManagementClientBaseTest
     {
-        ManagementClient managementClient;
-
-        IDateTimeService dateTimeService;
-
-        [SetUp]
-        public void Setup()
-        {
-            ManagementClientOptions options = new ManagementClientOptions()
-            {
-                AccessKeyId = "613189b2eed393affbbf396e",
-                AccessKeySecret = "ccf4951a33e5d54d64e145782a65f0a7",
-                Lang=ClientLang.CH
-            };
-
-            managementClient = new ManagementClient(options);
-            dateTimeService = new DateTimeService();
-        }
 
         [Test]
         public async Task GetGroupTest()

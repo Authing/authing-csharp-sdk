@@ -11,40 +11,8 @@ using System.Threading;
 
 namespace Authing.CSharp.SDK.Framework.Test
 {
-    class UserManagementUnitTest
+    class UserManagementUnitTest:ManagementClientBaseTest
     {
-        ManagementClient managementClient;
-
-        IDateTimeService dateTimeService;
-
-        private string UserOneId = "629487c14604f5ca85cbff80";
-        private string UserTwoId = "61c17bd024917805ae85e397";
-
-        [SetUp]
-        public void Setup()
-        {
-            ManagementClientOptions options = new ManagementClientOptions()
-            {
-                AccessKeyId = "613189b2eed393affbbf396e",
-                AccessKeySecret = "ccf4951a33e5d54d64e145782a65f0a7"
-            };
-
-            managementClient = new ManagementClient(options);
-
-            dateTimeService = new DateTimeService();
-        }
-
-        [Test]
-        public void GetUserTest()
-        {
-            using (CancellationTokenSource cts = new CancellationTokenSource())
-            {
-
-                UserSingleRespDto userSingleRespDto = managementClient.GetUser(UserOneId).Result;
-
-                Assert.IsFalse(string.IsNullOrWhiteSpace(userSingleRespDto.Data.UserId));
-            }
-        }
 
         [Test]
         public void GetUserBatchTest()
