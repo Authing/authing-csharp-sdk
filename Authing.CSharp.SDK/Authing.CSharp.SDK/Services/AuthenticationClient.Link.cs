@@ -30,7 +30,7 @@ namespace Authing.CSharp.SDK.Services
         {
             ULinkExtIdpParams param = new ULinkExtIdpParams() { ExtIdpId = extIdpId };
 
-            string json = await PostFormAsync("/api/v3/unlink-extidp", param).ConfigureAwait(false);
+            string json = await PostFormAsync("/api/v3/unlink-extidp", param,AccessToken).ConfigureAwait(false);
 
             CommonResponseDto res = jsonService.DeserializeObject<CommonResponseDto>(json);
             return res;
