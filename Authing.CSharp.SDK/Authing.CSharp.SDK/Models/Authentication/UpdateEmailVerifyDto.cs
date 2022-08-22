@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 
 namespace Authing.CSharp.SDK.Models
@@ -10,10 +11,26 @@ namespace Authing.CSharp.SDK.Models
         /// <summary>
         /// 验证方式
         /// </summary>
-        public string VerifyMethod { get; set; }
+        public VerifyMethod VerifyMethod { get; set; }
+
         /// <summary>
-        /// 原始密码
+        /// 使用邮箱验证码方式验证的数据
         /// </summary>
-        public string VerifyData { get; set; }
+        public EmailPasscodePayload EmailPasscodePayload { get; set; }
+
+    }
+
+    public class EmailPasscodePayload
+    { 
+        public string NewEmail { get; set; }
+        public string NewEmailPassCode { get; set; }
+        public string OldEmail { get; set; }
+        public string OldEmailPassCode { get; set; }
+    }
+
+    public enum VerifyMethod
+    {
+        [EnumMember(Value = "EMAIL_PASSCODE")]
+        EMAIL_PASSCODE
     }
 }

@@ -10,17 +10,19 @@ namespace Authing.CSharp.SDK.Framework.Test.AuthenticationClientTest
 {
     public class ProfileTest : AuthenticationClientTestBase
     {
-        private async Task Login()
+        private async Task<LoginTokenRespDto> Login()
         {
             LoginByCredentialsDto loginDto = new LoginByCredentialsDto { };
             loginDto.Connection = Connection.PASSWORD;
             loginDto.PasswordPayload = new PasswordPayload
             {
                 UserName = "qidong1122",
-                Password = "3866364"
+                Password = "12345678"
             };
 
             LoginTokenRespDto loginTokenRespDto = await client.Signin(loginDto);
+
+            return loginTokenRespDto;
         }
 
         /// <summary>
@@ -67,9 +69,9 @@ namespace Authing.CSharp.SDK.Framework.Test.AuthenticationClientTest
         {
             await Login();
 
-            Models.Authentication.SendEmailDto sendEmailDto = new Models.Authentication.SendEmailDto();
+            SendEmailDto sendEmailDto = new SendEmailDto();
             sendEmailDto.Email = "qidong5566@outlook.com";
-            sendEmailDto.Channel = Models.Authentication.EmailChannel.CHANNEL_BIND_EMAIL;
+            sendEmailDto.Channel = EmailChannel.CHANNEL_BIND_EMAIL;
 
             var result = await client.SendEmail(sendEmailDto);
 
@@ -96,9 +98,9 @@ namespace Authing.CSharp.SDK.Framework.Test.AuthenticationClientTest
         {
             await Login();
 
-            Models.Authentication.SendSMSDto sendSMSDto = new Models.Authentication.SendSMSDto();
+            SendSMSDto sendSMSDto = new SendSMSDto();
             sendSMSDto.PhoneNumber = "13348926753";
-            sendSMSDto.Channel = Models.Authentication.SmsChannel.CHANNEL_BIND_PHONE;
+            sendSMSDto.Channel = SmsChannel.CHANNEL_BIND_PHONE;
 
             var result = await client.SendSms(sendSMSDto);
 
@@ -150,7 +152,65 @@ namespace Authing.CSharp.SDK.Framework.Test.AuthenticationClientTest
             Assert.IsTrue(result.StatusCode == 200);
         }
 
-        public async Task
+        /// <summary>
+        /// 发起修改邮箱请求
+        /// 2022-08-22 测试通过
+        /// </summary>
+        /// <returns></returns>
+        [Test]
+        public async Task UpdateEmailRequestTest()
+        {
+            var loginResult = await Login();
+
+            Assert.IsTrue(loginResult.StatusCode == 200);
+
+            SendEmailDto sendEmailDto = new SendEmailDto()
+            {
+                Email = "qidong5566@outlook.com",
+                Channel = EmailChannel.CHANNEL_UNBIND_EMAIL,
+            };
+
+            var unBindResult = await client.SendEmail(sendEmailDto);
+
+            Assert.IsTrue(unBindResult.StatusCode == 200);
+
+            SendEmailDto bindEmailDt = new SendEmailDto()
+            {
+                Email = "635877990@qq.com",
+                Channel = EmailChannel.CHANNEL_BIND_EMAIL
+            };
+
+            var bindResult = await client.SendEmail(bindEmailDt);
+
+            Assert.IsTrue(bindResult.StatusCode == 200);
+
+
+            UpdateEmailVerifyDto updateEmailVerifyDto = new UpdateEmailVerifyDto();
+            updateEmailVerifyDto.VerifyMethod = VerifyMethod.EMAIL_PASSCODE;
+            updateEmailVerifyDto.EmailPasscodePayload = new EmailPasscodePayload
+            {
+                OldEmail = "qidong5566@outlook.com",
+                OldEmailPassCode = "1758",
+                NewEmail = "635877990@qq.com",
+                NewEmailPassCode = "2553",
+            };
+
+            var verifyEmailResult = await client.VerifyUpdateEmailRequest(updateEmailVerifyDto);
+
+            Assert.IsTrue(verifyEmailResult.StatusCode == 200);
+
+            UpdateEmailDto updateEmailDto = new UpdateEmailDto();
+            updateEmailDto.UpdateEmailToken = verifyEmailResult.Data.UpdateEmailToken;
+
+            var updateEmailResult = await client.UpdateEmail(updateEmailDto);
+
+            Assert.IsTrue(updateEmailResult.StatusCode == 200);
+        }
+
+        public async Task UpdatePhoneRequestTest()
+        { 
+            
+        }
 
     }
 }

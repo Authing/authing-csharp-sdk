@@ -25,7 +25,7 @@ namespace Authing.CSharp.SDK.Framework.Test
         {
             ManagementClientOptions options = new ManagementClientOptions()
             {
-                AccessKeyId = "613189b2eed393affbbf396e",
+                AccessKeyId = "AUTHING_USERPOOL_ID",
                 AccessKeySecret = "AUTHING_SECRET"
             };
 

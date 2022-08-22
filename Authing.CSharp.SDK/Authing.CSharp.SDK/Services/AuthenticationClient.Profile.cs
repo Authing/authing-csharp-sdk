@@ -94,7 +94,7 @@ namespace Authing.CSharp.SDK.Services
         /// <returns></returns>
         public async Task<UpdateEmailVerifyRespDto> VerifyUpdateEmailRequest(UpdateEmailVerifyDto updateEmailVerifyDto)
         {
-            string json = await PostAsync("/api/v3/veirfy-update-email-request", m_JsonService.SerializeObjectCamelCase(updateEmailVerifyDto));
+            string json = await PostAsync("/api/v3/veirfy-update-email-request", m_JsonService.SerializeObjectCamelCase(updateEmailVerifyDto),AccessToken);
 
             UpdateEmailVerifyRespDto result = m_JsonService.DeserializeObject<UpdateEmailVerifyRespDto>(json);
             return result;
@@ -107,7 +107,7 @@ namespace Authing.CSharp.SDK.Services
         /// <returns></returns>
         public async Task<IsSuccessRespDto> UpdateEmail(UpdateEmailDto updateEmailDto)
         {
-            string json = await PostAsync("/api/v3/update-email", m_JsonService.SerializeObjectCamelCase(updateEmailDto));
+            string json = await PostAsync("/api/v3/update-email", m_JsonService.SerializeObjectCamelCase(updateEmailDto),AccessToken);
 
             IsSuccessRespDto result = m_JsonService.DeserializeObject<IsSuccessRespDto>(json);
             return result;

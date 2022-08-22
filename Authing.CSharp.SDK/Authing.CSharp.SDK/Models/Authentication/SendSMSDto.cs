@@ -5,7 +5,7 @@ using System.Text;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
-namespace Authing.CSharp.SDK.Models.Authentication
+namespace Authing.CSharp.SDK.Models
 {
     /// <summary>
     /// 发送短信参数类
