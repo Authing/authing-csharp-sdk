@@ -31,7 +31,7 @@ namespace Authing.CSharp.SDK.Models
         /// 完整的手机区号列表可参阅 https://en.wikipedia.org/wiki/List_of_country_calling_codes
         /// </summary>
         [JsonProperty("phoneCountryCode")]
-        public string PhoneCountryCode { get; set; }
+        public string PhoneCountryCode { get; set; } = "+86";
     }
 
     public enum SmsChannel
