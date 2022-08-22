@@ -12,12 +12,8 @@ namespace Authing.CSharp.SDK.Framework.Test.AuthenticationClientTest
 {
     public class MfaAuthenticationClientTest : AuthenticationClientTestBase
     {
-        /// <summary>
-        /// 2022-8-22 测试不通过
-        /// </summary>
-        /// <returns></returns>
-        [Test]
-        public async Task<SendEnrollFactorRequestRespDto> SendEnroolFactorRequestTest()
+        [SetUp]
+        public async Task LoginTemp()
         {
             LoginByCredentialsDto dto = new LoginByCredentialsDto { };
             dto.Connection = Connection.PASSWORD;
@@ -30,9 +26,15 @@ namespace Authing.CSharp.SDK.Framework.Test.AuthenticationClientTest
             LoginTokenRespDto loginTokenRespDto = await client.Signin(dto);
 
             Assert.IsNotNull(loginTokenRespDto);
+        }
 
-            //client.AccessToken = loginTokenRespDto.Data.AccessToken;
-
+        /// <summary>
+        /// 2022-8-22 测试不通过
+        /// </summary>
+        /// <returns></returns>
+        [Test]
+        public async Task SendEnroolFactorRequestTest()
+        {
             var res = await client.SendEnroolFactorRequest(new SendEnrollFactorRequestDto()
             {
                 FactorType = FactorType.SMS,
@@ -42,16 +44,25 @@ namespace Authing.CSharp.SDK.Framework.Test.AuthenticationClientTest
                     PhoneNumber = "17665662048",
                 }
             });
-            return res;
         }
 
         /// <summary>
         /// 2022-8-22 测试不通过
         /// </summary>
         /// <returns></returns>
+        [Test]
         public async Task EnrollFactorTest()
         {
-            var res = await SendEnroolFactorRequestTest();
+            var res = await client.SendEnroolFactorRequest(new SendEnrollFactorRequestDto()
+            {
+                FactorType = FactorType.SMS,
+                Profile = new SendEnrollFactorProfileDto()
+                {
+                    PhoneCountryCode = "+86",
+                    PhoneNumber = "17665662048",
+                }
+            });
+
             EnrollFactorDto param = new EnrollFactorDto
             {
                 EnrollmentToken = res.Data.EnrollmentToken,
@@ -66,31 +77,36 @@ namespace Authing.CSharp.SDK.Framework.Test.AuthenticationClientTest
         }
 
         /// <summary>
-        /// 2022-8-22 测试不通过
+        /// 2022-8-22 测试通过
         /// </summary>
         /// <returns></returns>
+        [Test]
         public async Task ResetFactorTest()
         {
+
             var lists = await client.ListEnrolledFactors();
-            var target = lists.Data.FirstOrDefault(i => i.FactorId == "12345");
+            var target = lists.Data.FirstOrDefault(i => i.FactorId.Contains("email"));
             var res = await client.ResetFactor(new RestFactorDto { FactorId = target.FactorId });
             Assert.IsTrue(res.StatusCode == 200);
         }
 
         /// <summary>
-        /// 2022-8-22 测试不通过
+        /// 2022-8-22 测试通过
         /// </summary>
         /// <returns></returns>
+        [Test]
         public async Task GetFactorTest()
         {
-            var res = await client.GetFactor("1234");
-            Assert.NotNull(res);
+            var lists = await client.ListEnrolledFactors();
+            var res = await client.GetFactor(lists.Data.First().FactorId);
+            Assert.NotNull(res.Data);
         }
 
         /// <summary>
-        /// 2022-8-22 测试不通过
+        /// 2022-8-22 测试通过
         /// </summary>
         /// <returns></returns>
+        [Test]
         public async Task ListFactorsToEnrollTest()
         {
             var lists = await client.ListFactorsToEnroll();

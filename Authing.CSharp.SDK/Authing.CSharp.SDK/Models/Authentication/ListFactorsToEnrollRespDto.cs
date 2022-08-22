@@ -33,7 +33,7 @@ namespace Authing.CSharp.SDK.Models.Authentication
         ///  获取可绑定的 MFA 认证要素返回结果类
         /// </summary>
         [JsonProperty("data")]
-        public FactorToEnrollDto Data { get; set; }
+        public IEnumerable<FactorToEnrollDto> Data { get; set; }
     }
 
     /// <summary>

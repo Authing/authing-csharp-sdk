@@ -33,7 +33,7 @@ namespace Authing.CSharp.SDK.Models.Authentication
         ///  MFA Factor 详情
         /// </summary>
         [JsonProperty("data")]
-        public GetFactorDto Data { get; set; }
+        public IEnumerable<GetFactorDto> Data { get; set; }
     }
 
     /// <summary>
@@ -57,6 +57,28 @@ namespace Authing.CSharp.SDK.Models.Authentication
         /// MFA 认证要素信息
         /// </summary>
         [JsonProperty("profile")]
-        public object Profile { get; set; }
+        public FactorProfileDto Profile { get; set; }
+    }
+
+    public class FactorProfileDto
+    {
+        /// <summary>
+        /// 绑定的手机号
+        /// </summary>
+        [JsonProperty("phoneNumber")]
+        public string PhoneNumber { get; set; }
+
+        /// <summary>
+        /// 绑定的手机号国家代码，默认为 +86，中国大陆手机区号。Authing 短信服务暂不内置支持国际手机号
+        /// 你需要在 Authing 控制台配置对应的国际短信服务。完整的手机区号列表可参阅 https://en.wikipedia.org/wiki/List_of_country_calling_codes
+        /// </summary>
+        [JsonProperty("phoneCountryCode")]
+        public string PhoneCountryCode { get; set; } = "+86";
+
+        /// <summary>
+        /// 绑定的邮箱
+        /// </summary>
+        [JsonProperty("email")]
+        public string Email { get; set; }
     }
 }
