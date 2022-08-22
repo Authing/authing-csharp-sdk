@@ -199,6 +199,11 @@ namespace Authing.CSharp.SDK.Utils
             }
         }
 
+        public void ClearHeader()
+        {
+            m_HeadderDic.Clear();
+        }
+
         private string UrlCombine(string baseUrl, string apiUrl, Dictionary<string, string> param)
         {
             if (string.IsNullOrWhiteSpace(baseUrl))

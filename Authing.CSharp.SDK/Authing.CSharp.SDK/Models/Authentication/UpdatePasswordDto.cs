@@ -15,5 +15,10 @@ namespace Authing.CSharp.SDK.Models
         /// 原始密码
         /// </summary>
         public string OldPassword { get; set; }
+
+        /// <summary>
+        /// 密码加密类型
+        /// </summary>
+        public PasswordEncryptType PasswordEncryptType { get; set; }
     }
 }

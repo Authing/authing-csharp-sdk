@@ -58,6 +58,39 @@ namespace Authing.CSharp.SDK.Services
         }
 
         /// <summary>
+        /// Post 方法
+        /// </summary>
+        /// <param name="apiPath"></param>
+        /// <param name="jsonParam"></param>
+        /// <param name="accessToken">登录成功后，返回的 AccessToken </param>
+        /// <returns></returns>
+        protected async Task<string> PostAsync(string apiPath, string jsonParam, string accessToken)
+        {
+            m_HttpService.SetBearerToken(accessToken);
+
+            SetHeaders();
+
+            string httpResponse = await m_HttpService.PostAsync(m_BaseUrl, apiPath, jsonParam, default).ConfigureAwait(false);
+            return httpResponse;
+        }
+
+        /// <summary>
+        /// Json 参数的请求
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="apiPath"></param>
+        /// <param name="jsonParam"></param>
+        /// <param name="headers"></param>
+        /// <returns></returns>
+        protected async Task<string> PostAsync(string apiPath, string jsonParam, Dictionary<string, string> headers = null)
+        {
+            SetHeaders(headers);
+
+            string httpResponse = await m_HttpService.PostAsync(m_BaseUrl, apiPath, jsonParam, default).ConfigureAwait(false);
+            return httpResponse;
+        }
+
+        /// <summary>
         /// 表单请求
         /// </summary>
         /// <typeparam name="T"></typeparam>
@@ -73,22 +106,6 @@ namespace Authing.CSharp.SDK.Services
             SetHeaders(headers);
 
             string httpResponse = await m_HttpService.PostAsync(m_BaseUrl, apiPath, dic, default).ConfigureAwait(false);
-            return httpResponse;
-        }
-
-        /// <summary>
-        /// Json 参数的请求
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="apiPath"></param>
-        /// <param name="jsonParam"></param>
-        /// <param name="headers"></param>
-        /// <returns></returns>
-        protected async Task<string> PostAsync(string apiPath, string  jsonParam ,Dictionary<string, string> headers = null)
-        {
-            SetHeaders(headers);
-
-            string httpResponse = await m_HttpService.PostAsync(m_BaseUrl, apiPath, jsonParam, default).ConfigureAwait(false);
             return httpResponse;
         }
 
@@ -115,6 +132,8 @@ namespace Authing.CSharp.SDK.Services
 
         private void SetHeaders(Dictionary<string, string> headers = null)
         {
+            m_HttpService.ClearHeader();
+
             if (headers != null)
             {
                 foreach (var item in headers)

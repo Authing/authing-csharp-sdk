@@ -10,7 +10,7 @@ namespace Authing.CSharp.SDK.Models
         /// <summary>
         /// 手机
         /// </summary>
-        public string Phone { get; set; }
+        public string PhoneNumber { get; set; }
         /// <summary>
         /// 验证码
         /// </summary>

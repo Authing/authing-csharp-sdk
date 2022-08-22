@@ -54,5 +54,11 @@ namespace Authing.CSharp.SDK.IServices
         /// <param name="key"></param>
         /// <param name="value"></param>
         void SetHeader(string key, string value);
+
+
+        /// <summary>
+        /// 删除键值对
+        /// </summary>
+        void ClearHeader();
     }
 }

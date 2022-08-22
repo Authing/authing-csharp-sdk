@@ -142,12 +142,12 @@ namespace Authing.CSharp.SDK.Models
         /// </summary>
         public enum status
         {
+            [EnumMember(Value = "Activated")]
+            ACTIVATED,
             [EnumMember(Value = "Suspended")]
             SUSPENDED,
             [EnumMember(Value = "Resigned")]
             RESIGNED,
-            [EnumMember(Value = "Activated")]
-            ACTIVATED,
             [EnumMember(Value = "Archived")]
             ARCHIVED,
         }
@@ -168,12 +168,12 @@ namespace Authing.CSharp.SDK.Models
         /// </summary>
         public enum passwordEncryptType
         {
+            [EnumMember(Value = "none")]
+            NONE,
             [EnumMember(Value = "sm2")]
             SM2,
             [EnumMember(Value = "rsa")]
             RSA,
-            [EnumMember(Value = "none")]
-            NONE,
         }
     }
 }

@@ -18,7 +18,7 @@ namespace Authing.CSharp.SDK.Infrastructure
             {
                 case HttpServiceType.HTTPWEBREQUEST: return new HttpWebService(jsonService);
 
-#if NET45_OR_GREATER
+#if NETSTANDARD2_0_OR_GREATER
                 case HttpServiceType.HTTPCLIENT:return new HttpClienService(jsonService);
 #endif
             }

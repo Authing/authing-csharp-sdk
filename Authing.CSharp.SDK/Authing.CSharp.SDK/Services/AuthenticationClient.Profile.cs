@@ -15,7 +15,7 @@ namespace Authing.CSharp.SDK.Services
         /// <returns></returns>
         public async Task<UserSingleRespDto> GetProfile()
         {
-            string json = await GetAsync("/api/v3/get-profile", string.Empty,AccessToken);
+            string json = await GetAsync("/api/v3/get-profile", string.Empty, AccessToken);
 
             UserSingleRespDto result = m_JsonService.DeserializeObject<UserSingleRespDto>(json);
 
@@ -29,7 +29,7 @@ namespace Authing.CSharp.SDK.Services
         /// <returns></returns>
         public async Task<UserSingleRespDto> UpdateProfile(UpdateUserReqDto updateUserReqDto)
         {
-            string json = await PostAsync("/api/v3/update-profile", m_JsonService.SerializeObjectCamelCase(updateUserReqDto));
+            string json = await PostAsync("/api/v3/update-profile", m_JsonService.SerializeObjectCamelCase(updateUserReqDto), new Dictionary<string, string> { { "Authorization", "Bearer " + AccessToken } });
 
             UserSingleRespDto result = m_JsonService.DeserializeObject<UserSingleRespDto>(json);
 
@@ -43,7 +43,7 @@ namespace Authing.CSharp.SDK.Services
         /// <returns></returns>
         public async Task<IsSuccessRespDto> BindEmail(BindEmailDto bindEmailDto)
         {
-            string json = await PostAsync("/api/v3/bind-email", m_JsonService.SerializeObjectCamelCase(bindEmailDto));
+            string json = await PostAsync("/api/v3/bind-email", m_JsonService.SerializeObjectCamelCase(bindEmailDto), new Dictionary<string, string> { { "Authorization", "Bearer " + AccessToken } });
 
             IsSuccessRespDto result = m_JsonService.DeserializeObject<IsSuccessRespDto>(json);
             return result;
@@ -56,7 +56,7 @@ namespace Authing.CSharp.SDK.Services
         /// <returns></returns>
         public async Task<IsSuccessRespDto> BindPhone(BindPhoneDto bindPhoneDto)
         {
-            string json = await PostAsync("/api/v3/bind-phone", m_JsonService.SerializeObjectCamelCase(bindPhoneDto));
+            string json = await PostAsync("/api/v3/bind-phone", m_JsonService.SerializeObjectCamelCase(bindPhoneDto), new Dictionary<string, string> { { "Authorization", "Bearer " + AccessToken } });
 
             IsSuccessRespDto result = m_JsonService.DeserializeObject<IsSuccessRespDto>(json);
             return result;
@@ -68,7 +68,7 @@ namespace Authing.CSharp.SDK.Services
         /// <returns></returns>
         public async Task<GetSecurityInfoRespDto> GetSecurityInfo()
         {
-            string json = await GetAsync("/api/v3/get-security-info", string.Empty);
+            string json = await GetAsync("/api/v3/get-security-info", "",AccessToken);
 
             GetSecurityInfoRespDto result = m_JsonService.DeserializeObject<GetSecurityInfoRespDto>(json);
             return result;
@@ -81,7 +81,7 @@ namespace Authing.CSharp.SDK.Services
         /// <returns></returns>
         public async Task<IsSuccessRespDto> UpdatePassword(UpdatePasswordDto updatePasswordDto)
         {
-            string json = await PostAsync("/api/v3/update-password", m_JsonService.SerializeObjectCamelCase(updatePasswordDto));
+            string json = await PostAsync("/api/v3/update-password", m_JsonService.SerializeObjectCamelCase(updatePasswordDto),AccessToken);
 
             IsSuccessRespDto result = m_JsonService.DeserializeObject<IsSuccessRespDto>(json);
             return result;
@@ -134,7 +134,7 @@ namespace Authing.CSharp.SDK.Services
         /// <returns></returns>
         public async Task<IsSuccessRespDto> UpdatePhone(UpdatePhoneDto updatePhoneDto)
         {
-            string json = await PostAsync("/api/v3/update-phone", m_JsonService.SerializeObjectCamelCase(updatePhoneDto) );
+            string json = await PostAsync("/api/v3/update-phone", m_JsonService.SerializeObjectCamelCase(updatePhoneDto));
 
             IsSuccessRespDto result = m_JsonService.DeserializeObject<IsSuccessRespDto>(json);
             return result;

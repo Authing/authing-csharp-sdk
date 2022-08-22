@@ -1,4 +1,4 @@
-﻿#if NET45_OR_GREATER
+﻿#if NETSTANDARD2_0_OR_GREATER
 
 using Authing.CSharp.SDK.IServices;
 using System;
@@ -11,7 +11,6 @@ using System.Threading;
 
 using System.Net.Http;
 
-
 namespace Authing.CSharp.SDK.UtilsImpl
 {
     public class HttpClienService : IHttpService
@@ -20,6 +19,7 @@ namespace Authing.CSharp.SDK.UtilsImpl
         private readonly IJsonService m_JsonService;
         private Dictionary<string, string> m_HeadderDic;
         private string m_BearerToken;
+        private readonly IServiceProvider m_ServiceProvider;
         static HttpClienService()
         {
             ServicePointManager.DefaultConnectionLimit = 1024;
@@ -27,6 +27,7 @@ namespace Authing.CSharp.SDK.UtilsImpl
             {
                 Proxy = null,
                 UseProxy = false,
+                ServerCertificateCustomValidationCallback = delegate { return true; }
             });
         }
 
@@ -126,6 +127,11 @@ namespace Authing.CSharp.SDK.UtilsImpl
         public void SetBearerToken(string token)
         {
             throw new NotImplementedException();
+        }
+
+        public void ClearHeader()
+        {
+            m_HeadderDic.Clear();
         }
 
         public void SetHeader(string key, string value)
