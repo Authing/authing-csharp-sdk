@@ -48,6 +48,29 @@ namespace Authing.CSharp.SDK.Models.Authentication
         /// 发起绑定 OTP 类型认证要素时，接口会返回此数据
         /// </summary>
         [JsonProperty("otpData")]
-        public object OtpData { get; set; }
+        public OtpData OtpData { get; set; }
     }
+
+
+    public class OtpData
+    {
+        /// <summary>
+        /// OTP Auth Uri
+        /// </summary>
+        [JsonProperty("qrCodeUri")]
+        public string QrCodeUri { get; set; }
+
+        /// <summary>
+        /// Base64 编码的 OTP 二维码，前端可以用此渲染二维码
+        /// </summary>
+        [JsonProperty("qrCodeDataUrl")]
+        public string QrCodeDataUrl { get; set; }
+
+        /// <summary>
+        /// OTP Recovery Code
+        /// </summary>
+        [JsonProperty("recoveryCode")]
+        public string RecoveryCode { get; set; }
+    }
+
 }
