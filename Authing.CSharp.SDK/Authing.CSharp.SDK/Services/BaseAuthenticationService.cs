@@ -40,6 +40,14 @@ namespace Authing.CSharp.SDK.Services
             return httpResponse;
         }
 
+        protected async Task<string> GetAsync(string apiPath, Dictionary<string, string> dics,Dictionary<string,string> headers=null)
+        {
+            SetHeaders(headers);
+
+            string httpResponse = await m_HttpService.GetAsync(m_BaseUrl, apiPath, dics,default).ConfigureAwait(false);
+            return httpResponse;
+        }
+
         protected async Task<string> GetAsync(string apiPath, string param, string accessToken)
         {
             if (string.IsNullOrWhiteSpace(param))
@@ -130,7 +138,7 @@ namespace Authing.CSharp.SDK.Services
             return httpResponse;
         }
 
-        private void SetHeaders(Dictionary<string, string> headers = null)
+        protected void SetHeaders(Dictionary<string, string> headers = null)
         {
             m_HttpService.ClearHeader();
 

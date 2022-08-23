@@ -25,6 +25,7 @@ Version 0.0.1
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<Copyright>Beijing Steamory Technology Co. Ltd.</Copyright>
 		<PackageIcon>AuthingIcon.png</PackageIcon>
+		<LangVersion>latest</LangVersion>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net5.0|AnyCPU'">

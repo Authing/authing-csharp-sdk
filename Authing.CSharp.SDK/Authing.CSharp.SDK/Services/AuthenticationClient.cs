@@ -101,7 +101,7 @@ namespace Authing.CSharp.SDK.Services
             {
                 State = string.IsNullOrWhiteSpace(state) ? authUrlResult.State : state,
                 Nonce = string.IsNullOrWhiteSpace(nonce) ? authUrlResult.Nonce : nonce,
-                RedirectUri = string.IsNullOrWhiteSpace(redirectUri) ? options.RediretUri : redirectUri
+                RedirectUri = string.IsNullOrWhiteSpace(redirectUri) ? options.RedirectUri : redirectUri
             };
 
             string base64Str = stringService.B64Encode(jsonService.SerializeObject(loginTransaction));
@@ -318,7 +318,7 @@ namespace Authing.CSharp.SDK.Services
 
             AuthURLParams authURLParams = new AuthURLParams()
             {
-                RedirectUri = string.IsNullOrWhiteSpace(redirectUri) ? this.options.RediretUri : redirectUri,
+                RedirectUri = string.IsNullOrWhiteSpace(redirectUri) ? this.options.RedirectUri : redirectUri,
                 ResponseMode = "query",
                 ResponseType = "code",
                 ClientId = this.options.AppId,

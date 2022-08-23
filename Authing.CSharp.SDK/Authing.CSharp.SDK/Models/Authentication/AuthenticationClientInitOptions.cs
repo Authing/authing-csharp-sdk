@@ -30,7 +30,7 @@ namespace Authing.CSharp.SDK.Models.Authentication
         /// <summary>
         /// 认证完成后的重定向目标 URL 
         /// </summary>
-        public string RediretUri { get; set; }
+        public string RedirectUri { get; set; }
 
         /// <summary>
         /// 登出完成后的重定向目标 URL
@@ -57,5 +57,24 @@ namespace Authing.CSharp.SDK.Models.Authentication
         public string CookieKey { get; set; }
 
         public string Host { get; set; }
+
+        /// <summary>
+        /// 密码传输加密公钥
+        /// </summary>
+        public string PublicKey { get; set; }
+
+        /// <summary>
+        /// 应用身份协议
+        /// </summary>
+        public Protocol Protocol { get; set; } = Protocol.OIDC;
+
+        public TokenEndPointAuthMethod TokenEndPointAuthMethod { get; set; } =
+            TokenEndPointAuthMethod.CLIENT_SECRET_POST;
+
+        public TokenEndPointAuthMethod IntrospectionEndPointAuthMethod { get; set; } =
+            TokenEndPointAuthMethod.CLIENT_SECRET_POST;
+
+        public TokenEndPointAuthMethod RevocationEndPointAuthMethod { get; set; } =
+            TokenEndPointAuthMethod.CLIENT_SECRET_POST;
     }
 }

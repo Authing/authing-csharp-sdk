@@ -23,5 +23,12 @@ namespace Authing.CSharp.SDK.Utils
         /// <param name="encoding"></param>
         /// <returns></returns>
         string B64Encode(string s, Encoding encoding = null);
+
+        /// <summary>
+        /// 生成随机字符串
+        /// </summary>
+        /// <param name="length"></param>
+        /// <returns></returns>
+        string GenerateRandomString(int length = 30);
     }
 }
