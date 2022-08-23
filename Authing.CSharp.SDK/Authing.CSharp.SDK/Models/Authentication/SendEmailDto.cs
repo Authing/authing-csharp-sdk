@@ -29,23 +29,23 @@ namespace Authing.CSharp.SDK.Models
         /// <summary>
         /// 登录
         /// </summary>
-        CHANNEL_LOGIN, 
+        CHANNEL_LOGIN,
         /// <summary>
         /// 注册
         /// </summary>
-        CHANNEL_REGISTER, 
+        CHANNEL_REGISTER,
         /// <summary>
         /// 重置密码
         /// </summary>
-        CHANNEL_RESET_PASSWORD, 
+        CHANNEL_RESET_PASSWORD,
         /// <summary>
         /// 验证邮箱
         /// </summary>
-        CHANNEL_VERIFY_EMAIL_LINK, 
+        CHANNEL_VERIFY_EMAIL_LINK,
         /// <summary>
         /// 绑定邮箱
         /// </summary>
-        CHANNEL_BIND_EMAIL, 
+        CHANNEL_BIND_EMAIL,
         /// <summary>
         /// 解绑邮箱
         /// </summary>
@@ -57,11 +57,19 @@ namespace Authing.CSharp.SDK.Models
         /// <summary>
         /// 解锁账户
         /// </summary>
-        CHANNEL_UNLOCK_ACCOUNT, 
+        CHANNEL_UNLOCK_ACCOUNT,
         /// <summary>
         /// 
         /// </summary>
-        CHANNEL_COMPLETE_EMAIL 
+        CHANNEL_COMPLETE_EMAIL,
+        /// <summary>
+        /// 实人认证
+        /// </summary>
+        CHANNEL_IDENTITY_VERIFICATION,
+        /// <summary>
+        /// 注销账户
+        /// </summary>
+        CHANNEL_DELETE_ACCOUNT
     }
 
 }

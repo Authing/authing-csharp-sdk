@@ -10,7 +10,7 @@ namespace Authing.CSharp.SDK.IServices
     {
         string SerializeObject(object obj);
 
-        string SerializeObjectCamelCase(object obj);
+        string SerializeObjectCamelCase(object obj,bool ingoreNull=true);
         T DeserializeObject<T>(string jsonStr);
     }
 }

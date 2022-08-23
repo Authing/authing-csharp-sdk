@@ -219,40 +219,40 @@ namespace Authing.CSharp.SDK.Framework.Test.AuthenticationClientTest
 
             Assert.IsTrue(loginResult.StatusCode == 200);
 
-            SendSMSDto unbinddto = new SendSMSDto 
+            SendSMSDto unbinddto = new SendSMSDto
             {
-                Channel=SmsChannel.CHANNEL_UNBIND_PHONE,
-                PhoneNumber="13348926753"
+                Channel = SmsChannel.CHANNEL_UNBIND_PHONE,
+                PhoneNumber = "13348926753"
             };
 
             var unbindResult = await client.SendSms(unbinddto);
 
             Assert.IsTrue(unbindResult.StatusCode == 200);
 
-            SendSMSDto binddto = new SendSMSDto 
+            SendSMSDto binddto = new SendSMSDto
             {
-                Channel=SmsChannel.CHANNEL_BIND_PHONE,
-                PhoneNumber="13734908267"
+                Channel = SmsChannel.CHANNEL_BIND_PHONE,
+                PhoneNumber = "13734908267"
             };
 
-            var bindResult=await client.SendSms(binddto);
+            var bindResult = await client.SendSms(binddto);
 
             Assert.IsTrue(bindResult.StatusCode == 200);
 
             UpdatePhoneVerifyDto updatePhoneVerifyDto = new UpdatePhoneVerifyDto();
-            updatePhoneVerifyDto.VerifyMethod = VerifyPhoneMethod.PHONE_PASSCODE;
-            updatePhoneVerifyDto.PhonePassCodePayload = new PhonePassCodePayload 
+            updatePhoneVerifyDto.VerifyMethod = VerifyMethod.PHONE_PASSCODE;
+            updatePhoneVerifyDto.PhonePassCodePayload = new PhonePassCodePayload
             {
-                OldPhoneNumber="13348926753",
-                OldPhonePassCode="1811",
-                NewPhoneNumber="13734908267",
-                NewPhonePassCode="1301"
+                OldPhoneNumber = "13348926753",
+                OldPhonePassCode = "1811",
+                NewPhoneNumber = "13734908267",
+                NewPhonePassCode = "1301"
             };
-          
 
-            var result=   await client.VerifyUpdatePhoneRequest(updatePhoneVerifyDto);
 
-            Assert.IsTrue(result.StatusCode==200);
+            var result = await client.VerifyUpdatePhoneRequest(updatePhoneVerifyDto);
+
+            Assert.IsTrue(result.StatusCode == 200);
 
             UpdatePhoneDto updatePhoneDto = new UpdatePhoneDto
             {
@@ -265,14 +265,197 @@ namespace Authing.CSharp.SDK.Framework.Test.AuthenticationClientTest
         }
 
         /// <summary>
-        /// 重置密码请求测试
+        /// 重置密码请求测试,通过邮箱验证码进行重置
+        /// 2022-08-22 测试未通过
         /// </summary>
         /// <returns></returns>
         [Test]
-        public async Task ResetPasswordRequestTest()
-        { 
-            
+        public async Task ResetPasswordRequest_EmailPasscode_Test()
+        {
+            var loginResult = await Login();
+
+            Assert.IsTrue(loginResult.StatusCode == 200);
+
+            SendEmailDto sendEmailDto = new SendEmailDto()
+            {
+                Email = "635877990@qq.com",
+                Channel = EmailChannel.CHANNEL_RESET_PASSWORD
+            };
+
+            var sendEmailResult = await client.SendEmail(sendEmailDto);
+            Assert.IsTrue(sendEmailResult.StatusCode == 200);
+
+            ResetPasswordVerifyDto resetPasswordVerifyDto = new ResetPasswordVerifyDto();
+            resetPasswordVerifyDto.VerifyMethod = VerifyMethod.EMAIL_PASSCODE;
+            resetPasswordVerifyDto.EmailPassCodePayload = new ResetPasswordEmailPassCodePayload
+            {
+                Email = "635877990@qq.com",
+                PassCode = "8007",
+            };
+
+            var result = await client.VerifyResetPasswordRequest(resetPasswordVerifyDto);
+            Assert.IsTrue(result.StatusCode == 200);
+
+            ResetPasswordDto resetPasswordDto = new ResetPasswordDto();
+            resetPasswordDto.Password = "3866364";
+            resetPasswordDto.PasswordResetToken = result.Data.PasswordResetToken;
+
+            var resetResult = await client.ResetPassword(resetPasswordDto);
+
+            Assert.IsTrue(resetResult.StatusCode == 200);
         }
 
+        /// <summary>
+        /// 重置密码请求测试,通过手机验证码进行重置
+        /// 2022-08-22 测试未通过
+        /// </summary>
+        /// <returns></returns>
+        [Test]
+        public async Task ResetPasswordRequest_PhonePassCode_Test()
+        {
+            var loginResult = await Login();
+
+            Assert.IsTrue(loginResult.StatusCode == 200);
+
+            SendSMSDto sendSMSDto = new SendSMSDto()
+            {
+                PhoneNumber = "13734908267",
+                Channel = SmsChannel.CHANNEL_RESET_PASSWORD
+            };
+
+            var sendEmailResult = await client.SendSms(sendSMSDto);
+            Assert.IsTrue(sendEmailResult.StatusCode == 200);
+
+            ResetPasswordVerifyDto resetPasswordVerifyDto = new ResetPasswordVerifyDto();
+            resetPasswordVerifyDto.VerifyMethod = VerifyMethod.PHONE_PASSCODE;
+            resetPasswordVerifyDto.PhonePassCodePayload = new ResetPasswordPhonePassCodePayload
+            {
+                PhoneNumber = "13734908267",
+                PassCode = "1956",
+            };
+
+            var result = await client.VerifyResetPasswordRequest(resetPasswordVerifyDto);
+            Assert.IsTrue(result.StatusCode == 200);
+
+            ResetPasswordDto resetPasswordDto = new ResetPasswordDto();
+            resetPasswordDto.Password = "3866364";
+            resetPasswordDto.PasswordResetToken = result.Data.PasswordResetToken;
+
+            var resetResult = await client.ResetPassword(resetPasswordDto);
+
+            Assert.IsTrue(resetResult.StatusCode == 200);
+        }
+
+        /// <summary>
+        /// 注销账户测试，邮箱验证码
+        /// </summary>
+        /// <returns></returns>
+        [Test]
+        public async Task DeleteAccountTest()
+        {
+            var loginResult = await Login();
+
+            Assert.IsTrue(loginResult.StatusCode == 200);
+
+            SendEmailDto sendEmailDto = new SendEmailDto() 
+            {
+                Email="635877990@qq.com",
+                Channel=EmailChannel.CHANNEL_DELETE_ACCOUNT
+            };
+            var sendEmailResult = await client.SendEmail(sendEmailDto);
+
+            Assert.IsTrue(sendEmailResult.StatusCode == 200);
+
+
+            DeleteAccountVerifyDto deleteAccountVerifyDto = new DeleteAccountVerifyDto();
+            deleteAccountVerifyDto.VerifyMethod = VerifyMethod.EMAIL_PASSCODE;
+            deleteAccountVerifyDto.EmailPassCodePayload = new DeleteAccountEmailPassCodePayload()
+            {
+                Email = "635877990@qq.com",
+                PassCode = "",
+            };
+
+
+            var requestResult = await client.VerifyDeleteAccountRequest(deleteAccountVerifyDto);
+
+            Assert.IsTrue(requestResult.StatusCode == 200);
+
+            DeleteAccountDto deleteAccountDto = new DeleteAccountDto { DeleteAccountToken = requestResult.Data.deleteAccountToken };
+
+            var result = await client.DeleteAccount(deleteAccountDto);
+
+            Assert.IsTrue(requestResult.StatusCode == 200);
+        }
+
+        /// <summary>
+        /// 注销账户测试,手机号验证码
+        /// </summary>
+        /// <returns></returns>
+        [Test]
+        public async Task DeleteAccount_Phone_PassCode_Test()
+        {
+            var loginResult = await Login();
+
+            Assert.IsTrue(loginResult.StatusCode == 200);
+
+            SendSMSDto  sendSMSDto= new SendSMSDto()
+            {
+                PhoneNumber = "13348926753",
+                Channel =SmsChannel.CHANNEL_DELETE_ACCOUNT
+            };
+            var sendEmailResult = await client.SendSms(sendSMSDto);
+
+            Assert.IsTrue(sendEmailResult.StatusCode == 200);
+
+
+            DeleteAccountVerifyDto deleteAccountVerifyDto = new DeleteAccountVerifyDto();
+            deleteAccountVerifyDto.VerifyMethod = VerifyMethod.PHONE_PASSCODE;
+            deleteAccountVerifyDto.PhonePassCodePayload = new DeleteAccountPhonePassCodePayload()
+            {
+                PhoneNumber = "13348926753",
+                PassCode = "8092",
+            };
+
+
+            var requestResult = await client.VerifyDeleteAccountRequest(deleteAccountVerifyDto);
+
+            Assert.IsTrue(requestResult.StatusCode == 200);
+
+            DeleteAccountDto deleteAccountDto = new DeleteAccountDto { DeleteAccountToken = requestResult.Data.deleteAccountToken };
+
+            var result = await client.DeleteAccount(deleteAccountDto);
+
+            Assert.IsTrue(requestResult.StatusCode == 200);
+        }
+
+        /// <summary>
+        /// 注销账户测试,手机号验证码
+        /// </summary>
+        /// <returns></returns>
+        [Test]
+        public async Task DeleteAccount_Password_Test()
+        {
+            var loginResult = await Login();
+
+            Assert.IsTrue(loginResult.StatusCode == 200);
+
+            DeleteAccountVerifyDto deleteAccountVerifyDto = new DeleteAccountVerifyDto();
+            deleteAccountVerifyDto.VerifyMethod = VerifyMethod.PASSWORD;
+            deleteAccountVerifyDto.PasswordPayload = new DeleteAccountPasswordPayload()
+            {
+                Password = "12345678",
+            };
+
+
+            var requestResult = await client.VerifyDeleteAccountRequest(deleteAccountVerifyDto);
+
+            Assert.IsTrue(requestResult.StatusCode == 200);
+
+            DeleteAccountDto deleteAccountDto = new DeleteAccountDto { DeleteAccountToken = requestResult.Data.deleteAccountToken };
+
+            var result = await client.DeleteAccount(deleteAccountDto);
+
+            Assert.IsTrue(requestResult.StatusCode == 200);
+        }
     }
 }

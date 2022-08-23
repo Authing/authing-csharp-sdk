@@ -147,7 +147,7 @@ namespace Authing.CSharp.SDK.Services
         /// <returns></returns>
         public async Task<PasswordResetVerifyRespDto> VerifyResetPasswordRequest(ResetPasswordVerifyDto resetPasswordVerifyDto)
         {
-            string json = await PostAsync("/api/v3/verify-reset-password-request", m_JsonService.SerializeObjectCamelCase(resetPasswordVerifyDto));
+            string json = await PostAsync("/api/v3/verify-reset-password-request", m_JsonService.SerializeObjectCamelCase(resetPasswordVerifyDto),AccessToken);
 
             PasswordResetVerifyRespDto result = m_JsonService.DeserializeObject<PasswordResetVerifyRespDto>(json);
             return result;
@@ -173,7 +173,7 @@ namespace Authing.CSharp.SDK.Services
         /// <returns></returns>
         public async Task<DeleteAccountVerifyRespDto> VerifyDeleteAccountRequest(DeleteAccountVerifyDto deleteAccountVerifyDto)
         {
-            string json = await PostAsync("/api/v3/verify-delete-account-request", m_JsonService.SerializeObjectCamelCase(deleteAccountVerifyDto));
+            string json = await PostAsync("/api/v3/verify-delete-account-request", m_JsonService.SerializeObjectCamelCase(deleteAccountVerifyDto,false),AccessToken);
 
             DeleteAccountVerifyRespDto result = m_JsonService.DeserializeObject<DeleteAccountVerifyRespDto>(json);
             return result;
@@ -184,9 +184,9 @@ namespace Authing.CSharp.SDK.Services
         /// </summary>
         /// <param name="deleteAccounDto"></param>
         /// <returns></returns>
-        public async Task<IsSuccessRespDto> DeleteAccount(DeleteAccounDto deleteAccounDto)
+        public async Task<IsSuccessRespDto> DeleteAccount(DeleteAccountDto deleteAccounDto)
         {
-            string json = await PostAsync("/api/v3/delete-account", m_JsonService.SerializeObjectCamelCase(deleteAccounDto));
+            string json = await PostAsync("/api/v3/delete-account", m_JsonService.SerializeObjectCamelCase(deleteAccounDto),AccessToken);
 
             IsSuccessRespDto result = m_JsonService.DeserializeObject<IsSuccessRespDto>(json);
             return result;

@@ -11,7 +11,7 @@ namespace Authing.CSharp.SDK.Models
         /// <summary>
         /// 验证方式
         /// </summary>
-        public VerifyPhoneMethod VerifyMethod { get; set; }
+        public VerifyMethod VerifyMethod { get; set; }
         /// <summary>
         /// 验证数据
         /// </summary>
@@ -45,11 +45,4 @@ namespace Authing.CSharp.SDK.Models
         /// </summary>
         public string OldPhoneCountryCode { get; set; }
     }
-
-    public enum VerifyPhoneMethod
-    {
-        [EnumMember(Value = "PHONE_PASSCODE")]
-        PHONE_PASSCODE
-    }
-
 }

@@ -14,8 +14,8 @@ namespace Authing.CSharp.SDK.Models
         {
             Profile = new SignupProfile();
             Options = new SignupOptions();
-            PasswordPayload = new SignupPasswordPayload();
-            PassCodePayload = new SignupPassCodePayload();
+            //PasswordPayload = new SignupPasswordPayload();
+            //PassCodePayload = new SignupPassCodePayload();
         }
 
         /// <summary>

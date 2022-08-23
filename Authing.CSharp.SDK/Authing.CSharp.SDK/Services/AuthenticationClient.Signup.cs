@@ -27,11 +27,10 @@ namespace Authing.CSharp.SDK.Services
                     throw new ArgumentException("PasswordPayload.Password 不能为空");
                 }
 
-                if (string.IsNullOrWhiteSpace(signupDto.Profile.Email))
-                {
-                    signupDto.Profile.Email = signupDto.PasswordPayload.Email;
-                    signupDto.PassCodePayload.Email = signupDto.PasswordPayload.Email;
-                }
+                //if (string.IsNullOrWhiteSpace(signupDto.Profile.Email))
+                //{
+                //    signupDto.Profile.Email = signupDto.PasswordPayload.Email;
+                //}
             }
 
             if (signupDto.Connection == SignupConnection.PASSCODE)
@@ -41,16 +40,15 @@ namespace Authing.CSharp.SDK.Services
                     throw new ArgumentException("PassCodePayload.PassCode 不能为空");
                 }
 
-                if (string.IsNullOrWhiteSpace(signupDto.Profile.Email) && !string.IsNullOrWhiteSpace(signupDto.PassCodePayload.Email))
-                {
-                    signupDto.Profile.Email = signupDto.PassCodePayload.Email;
-                    signupDto.PasswordPayload.Email = signupDto.PassCodePayload.Email;
-                }
+                //if (string.IsNullOrWhiteSpace(signupDto.Profile.Email) && !string.IsNullOrWhiteSpace(signupDto.PassCodePayload.Email))
+                //{
+                //    signupDto.Profile.Email = signupDto.PassCodePayload.Email;
+                //}
 
-                if (string.IsNullOrWhiteSpace(signupDto.Profile.Phone) && !string.IsNullOrWhiteSpace(signupDto.PassCodePayload.Phone))
-                {
-                    signupDto.Profile.Phone = signupDto.PassCodePayload.Phone;
-                }
+                //if (string.IsNullOrWhiteSpace(signupDto.Profile.Phone) && !string.IsNullOrWhiteSpace(signupDto.PassCodePayload.Phone))
+                //{
+                //    signupDto.Profile.Phone = signupDto.PassCodePayload.Phone;
+                //}
             }
 
 

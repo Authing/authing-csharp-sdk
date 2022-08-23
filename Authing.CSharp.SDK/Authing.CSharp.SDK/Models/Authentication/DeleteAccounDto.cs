@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Authing.CSharp.SDK.Models
 {
-    public class DeleteAccounDto
+    public class DeleteAccountDto
     {
         /// <summary>
         /// 注销账户的 token
