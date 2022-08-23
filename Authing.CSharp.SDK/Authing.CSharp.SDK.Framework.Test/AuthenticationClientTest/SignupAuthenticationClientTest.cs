@@ -44,6 +44,31 @@ namespace Authing.CSharp.SDK.Framework.Test
         }
 
         /// <summary>
+        /// 邮箱和密码注册，添加用户名
+        /// </summary>
+        /// <returns></returns>
+        [Test]
+        public async Task PasswordPayloadSignup_With_Username_Test()
+        {
+            SignupDto signupDto = new SignupDto { };
+            signupDto.Connection = SignupConnection.PASSWORD;
+            signupDto.PasswordPayload = new SignupPasswordPayload
+            {
+                Email = "2481452007@qq.com",
+                Password="12345678 "
+            };
+
+            signupDto.Profile = new SignupProfile 
+            {
+                Name="qidong"
+            };
+
+            UserSingleRespDto dto = await client.Signup(signupDto);
+
+            Assert.IsTrue(dto.StatusCode == 200);
+        }
+
+        /// <summary>
         /// 邮箱验证码注册单元测试
         /// 2022-8-18 测试通过
         /// </summary>
