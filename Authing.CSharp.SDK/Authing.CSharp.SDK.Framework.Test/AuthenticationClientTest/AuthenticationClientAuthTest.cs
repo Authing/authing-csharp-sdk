@@ -27,7 +27,7 @@ namespace Authing.CSharp.SDK.Framework.Test
                 AppId = "62e9e47185d7e275e3113072",
                 AppSecret = "ec85cae80fd60b796d926d62915f275e",
                 Domain = @"https://logintest5566.authing.cn",
-                RediretUri = "https://console.authing.cn/console/get-started/62e9e47185d7e275e3113072",
+                RedirectUri = "https://console.authing.cn/console/get-started/62e9e47185d7e275e3113072",
             });
         }
 

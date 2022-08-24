@@ -29,6 +29,7 @@ namespace Authing.CSharp.SDK.Services
         private IRegexService regexService = new RegexService();
         private IJsonService jsonService = new JsonService();
         private IStringService stringService = new StringService();
+        private IEncryptService encryptService = new EncryptService();
 
         public string AccessToken { get;private set; }
         public string IdToken { get; private set; }
