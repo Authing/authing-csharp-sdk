@@ -81,7 +81,7 @@ namespace Authing.CSharp.SDK.Services
             }
         }
 
-#if NETFRAMEWORK
+#if NET45
 
         /// <summary>
         /// 将用户浏览器重定向到 Authing 的认证发起 URL 进行认证，利用 Cookie 将上下文信息传递到应用回调端点
@@ -287,7 +287,7 @@ namespace Authing.CSharp.SDK.Services
         /// <returns></returns>
         public async Task<JwkSet> GetJWKSJSONAsync()
         {
-            string json = await GetAsync("/oidc/.well-known/jwks.json", "").ConfigureAwait(false);
+            string json = await GetWithHostAsync(domain,"/oidc/.well-known/jwks.json").ConfigureAwait(false);
 
             var jwks = Jose.JwkSet.FromJson(json, Jose.JWT.DefaultSettings.JsonMapper);
             return jwks;

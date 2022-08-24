@@ -57,38 +57,44 @@ namespace Authing.CSharp.SDK.Utils
 
         public async Task<string> PostAsync(string baseUrl, string apiPath, Dictionary<string, string> param, CancellationToken cancellationToken, string bearerToken = null)
         {
-            ServicePointManager.ServerCertificateValidationCallback += (s, cert, chain, sslPolicyErrors) => true;
-            ServicePointManager.SecurityProtocol = (SecurityProtocolType)192 | (SecurityProtocolType)768 | (SecurityProtocolType)3072;
-
-            string url = UrlCombine(baseUrl, apiPath, null);
-            string pa = m_JsonService.SerializeObject(param);
-
-            HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create(url);
-            request.Method = "POST";
-            request.ContentType = "application/json";
-
-
-            SetWebRequestHeader(request, bearerToken);
-
-            byte[] content = Encoding.UTF8.GetBytes(pa);
-            request.ContentLength = content.Length;
-
-            using (Stream reqStream = request.GetRequestStream())
+            try
             {
-                reqStream.Write(content, 0, content.Length);
+                ServicePointManager.ServerCertificateValidationCallback += (s, cert, chain, sslPolicyErrors) => true;
+                ServicePointManager.SecurityProtocol = (SecurityProtocolType)192 | (SecurityProtocolType)768 | (SecurityProtocolType)3072;
+
+                string url = UrlCombine(baseUrl, apiPath, null);
+                string pa = m_JsonService.SerializeObject(param);
+
+                HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create(url);
+                request.Method = "POST";
+                request.ContentType = "application/json";
+
+
+                SetWebRequestHeader(request, bearerToken);
+
+                byte[] content = Encoding.UTF8.GetBytes(pa);
+                request.ContentLength = content.Length;
+
+                using (Stream reqStream = request.GetRequestStream())
+                {
+                    reqStream.Write(content, 0, content.Length);
+                }
+
+                WebResponse response = await request.GetResponseAsync().ConfigureAwait(false);
+
+                byte[] responseBytes = new byte[response.ContentLength];
+
+                await response.GetResponseStream().ReadAsync(responseBytes, 0, (int)response.ContentLength).ConfigureAwait(false);
+
+                string result = Encoding.UTF8.GetString(responseBytes);
+
+
+                return result;
             }
-
-            WebResponse response = await request.GetResponseAsync().ConfigureAwait(false);
-
-            byte[] responseBytes = new byte[response.ContentLength];
-
-            await response.GetResponseStream().ReadAsync(responseBytes, 0, (int)response.ContentLength).ConfigureAwait(false);
-
-            string result = Encoding.UTF8.GetString(responseBytes);
-
-
-            return result;
-
+            catch (Exception exp)
+            {
+                throw new Exception(exp.Message);
+            }
         }
 
         public async Task<string> PostAsync(string baseUrl, string apiPath, string jsonParam, CancellationToken cancellationToken, string bearerToken = null)

@@ -10,17 +10,28 @@ namespace Authing.CSharp.SDK.Services
 {
     public class BaseAuthenticationService : ServiceBase
     {
-        protected readonly string m_BaseUrl;
+        /// <summary>
+        /// 控制台 Host
+        /// </summary>
+        protected readonly string m_Host;
+
+        /// <summary>
+        /// App Host
+        /// </summary>
+        protected readonly string m_AppHost;
+
 
         protected readonly string m_AppId;
 
         public BaseAuthenticationService(AuthenticationClientInitOptions options) : base(new JsonService())
         {
-            m_BaseUrl = ConfigService.BASE_URL;
+            m_AppHost = options.Domain;
+
+            m_Host = ConfigService.BASE_URL;
 
             if (!string.IsNullOrWhiteSpace(options.Host))
             {
-                m_BaseUrl = options.Host;
+                m_Host = options.Host;
             }
 
             m_AppId = options.AppId;
@@ -28,7 +39,13 @@ namespace Authing.CSharp.SDK.Services
 
         protected async Task<string> GetAsync(string apiPath)
         {
-            string httpResponse = await m_HttpService.GetAsync(m_BaseUrl, apiPath, default, default).ConfigureAwait(false);
+            string httpResponse = await m_HttpService.GetAsync(m_Host, apiPath, default, default).ConfigureAwait(false);
+            return httpResponse;
+        }
+
+        protected async Task<string> GetWithHostAsync(string host,string apiPath)
+        {
+            string httpResponse = await m_HttpService.GetAsync(host, apiPath, default, default).ConfigureAwait(false);
             return httpResponse;
         }
 
@@ -36,7 +53,7 @@ namespace Authing.CSharp.SDK.Services
         {
             var dic = m_JsonService.DeserializeObject<Dictionary<string, string>>(param);
 
-            string httpResponse = await m_HttpService.GetAsync(m_BaseUrl, apiPath, dic, default).ConfigureAwait(false);
+            string httpResponse = await m_HttpService.GetAsync(m_Host, apiPath, dic, default).ConfigureAwait(false);
             return httpResponse;
         }
 
@@ -44,7 +61,7 @@ namespace Authing.CSharp.SDK.Services
         {
             SetHeaders(headers);
 
-            string httpResponse = await m_HttpService.GetAsync(m_BaseUrl, apiPath, dics,default).ConfigureAwait(false);
+            string httpResponse = await m_HttpService.GetAsync(m_Host, apiPath, dics,default).ConfigureAwait(false);
             return httpResponse;
         }
 
@@ -61,7 +78,7 @@ namespace Authing.CSharp.SDK.Services
 
             SetHeaders();
 
-            string httpResponse = await m_HttpService.GetAsync(m_BaseUrl, apiPath, dic, default).ConfigureAwait(false);
+            string httpResponse = await m_HttpService.GetAsync(m_Host, apiPath, dic, default).ConfigureAwait(false);
             return httpResponse;
         }
 
@@ -78,7 +95,7 @@ namespace Authing.CSharp.SDK.Services
 
             SetHeaders();
 
-            string httpResponse = await m_HttpService.PostAsync(m_BaseUrl, apiPath, jsonParam, default).ConfigureAwait(false);
+            string httpResponse = await m_HttpService.PostAsync(m_Host, apiPath, jsonParam, default).ConfigureAwait(false);
             return httpResponse;
         }
 
@@ -94,7 +111,7 @@ namespace Authing.CSharp.SDK.Services
         {
             SetHeaders(headers);
 
-            string httpResponse = await m_HttpService.PostAsync(m_BaseUrl, apiPath, jsonParam, default).ConfigureAwait(false);
+            string httpResponse = await m_HttpService.PostAsync(m_Host, apiPath, jsonParam, default).ConfigureAwait(false);
             return httpResponse;
         }
 
@@ -113,7 +130,7 @@ namespace Authing.CSharp.SDK.Services
 
             SetHeaders(headers);
 
-            string httpResponse = await m_HttpService.PostAsync(m_BaseUrl, apiPath, dic, default).ConfigureAwait(false);
+            string httpResponse = await m_HttpService.PostFormAsync(m_Host, apiPath, dic, default).ConfigureAwait(false);
             return httpResponse;
         }
 
@@ -134,7 +151,7 @@ namespace Authing.CSharp.SDK.Services
             m_HttpService.SetBearerToken(accesstoken);
             SetHeaders(headers);
 
-            string httpResponse = await m_HttpService.PostAsync(m_BaseUrl, apiPath, dic, default).ConfigureAwait(false);
+            string httpResponse = await m_HttpService.PostFormAsync(m_Host, apiPath, dic, default).ConfigureAwait(false);
             return httpResponse;
         }
 

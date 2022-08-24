@@ -56,6 +56,10 @@ namespace Authing.CSharp.SDK.Models.Authentication
         /// </summary>
         public string CookieKey { get; set; }
 
+        /// <summary>
+        /// Authing 服务器地址，默认为 https://core.authing.cn
+        /// </summary>
+
         public string Host { get; set; }
 
         /// <summary>

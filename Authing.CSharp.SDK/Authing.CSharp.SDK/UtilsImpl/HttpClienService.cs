@@ -1,4 +1,4 @@
-﻿#if NETSTANDARD2_0_OR_GREATER
+﻿#if NET48
 
 using Authing.CSharp.SDK.IServices;
 using System;
@@ -25,9 +25,9 @@ namespace Authing.CSharp.SDK.UtilsImpl
             ServicePointManager.DefaultConnectionLimit = 1024;
             m_HttpClient = new HttpClient(new HttpClientHandler()
             {
-                Proxy = null,
-                UseProxy = false,
-                ServerCertificateCustomValidationCallback = delegate { return true; }
+                //Proxy = null,
+                //UseProxy = false,
+                //ServerCertificateCustomValidationCallback = delegate { return true; }
             });
         }
 
@@ -124,6 +124,36 @@ namespace Authing.CSharp.SDK.UtilsImpl
             }
         }
 
+        public async Task<string> PostFormAsync(string baseUrl, string apiPath, Dictionary<string, string> param, CancellationToken cancellationToken, string bearerToken = null)
+        {
+            string json = m_JsonService.SerializeObject(param);
+
+            try
+            {
+                string finalUrl = UrlCombine(baseUrl, apiPath, null);
+                using (HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, finalUrl)
+                {
+                    Content = new FormUrlEncodedContent(param),
+                })
+                {
+                    SetWebRequestHeader(request, bearerToken);
+                    using (HttpResponseMessage response = await m_HttpClient.SendAsync(request, cancellationToken).ConfigureAwait(false))
+                    {
+                        if (!response.IsSuccessStatusCode)
+                        {
+                            throw new Exception($"代码:{(int)response.StatusCode}");
+                        }
+
+                        return await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+                    }
+                }
+            }
+            catch (TaskCanceledException)
+            {
+                throw new Exception("网络连接超时");
+            }
+        }
+
         public void SetBearerToken(string token)
         {
             throw new NotImplementedException();
@@ -194,6 +224,7 @@ namespace Authing.CSharp.SDK.UtilsImpl
 
             return result;
         }
+
     }
 
 }

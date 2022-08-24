@@ -11,9 +11,9 @@ namespace Authing.CSharp.SDK.Framework.Test
 {
     public class AuthenticationClientAuthTest
     {
-        string loginCallbackUrl = @"https://console.authing.cn/console/get-started/62e9e47185d7e275e3113072";
+        string loginCallbackUrl = @"https://www.baidu.com";
         AuthenticationClient client;
-        string code = @"bqiehGlmOkmfq3T1qJ-M_aSfjY_6Gkj19RQjnoh01Ac";
+        string code = @"Vg-wCoxIcCWroW18sSB0E0JWwsKsFfeOBMDy0j4SUAD";
 
         [SetUp]
         public void TestGetJWKS()
@@ -24,10 +24,10 @@ namespace Authing.CSharp.SDK.Framework.Test
                 //AppSecret = "325d96c907a989b9f6b67584e1632909",
                 //Domain = @"https://authinglogindemo.authing.cn",
                 //RediretUri = loginCallbackUrl,
-                AppId = "62e9e47185d7e275e3113072",
-                AppSecret = "ec85cae80fd60b796d926d62915f275e",
-                Domain = @"https://logintest5566.authing.cn",
-                RedirectUri = "https://console.authing.cn/console/get-started/62e9e47185d7e275e3113072",
+                AppId = "62a9902a80f55c22346eb296",
+                AppSecret = "d453ef11f873527eb4a8a084f4b5e059",
+                Domain = @"https://qidongtest.authing.cn",
+                RedirectUri = loginCallbackUrl,
             });
         }
 

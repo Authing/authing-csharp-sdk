@@ -43,6 +43,17 @@ namespace Authing.CSharp.SDK.IServices
         Task<string> PostAsync(string baseUrl, string apiPath, string jsonParam, CancellationToken cancellationToken, string bearerToken = null);
 
         /// <summary>
+        /// Post 表单请求
+        /// </summary>
+        /// <param name="baseUrl"></param>
+        /// <param name="apiPath"></param>
+        /// <param name="param"></param>
+        /// <param name="cancellationToken"></param>
+        /// <param name="bearerToken"></param>
+        /// <returns></returns>
+        Task<string> PostFormAsync(string baseUrl, string apiPath, Dictionary<string, string> param, CancellationToken cancellationToken, string bearerToken = null);
+
+        /// <summary>
         /// 设置Token，以后每次请求都带这个token
         /// </summary>
         /// <param name="token"></param>
