@@ -328,7 +328,7 @@ namespace Authing.CSharp.SDK.Services
 
         private async Task<IntrospectTokenRes> IntrospectTokenWithClientSecretPost(string url, string token)
         {
-            var json = await GetAsync(url, new Dictionary<string, string>()
+            var json = await PostFormAsync(url, new Dictionary<string, string>()
             {
                 { "client_id", options.AppId },
                 { "client_secret", options.AppSecret },
@@ -364,6 +364,13 @@ namespace Authing.CSharp.SDK.Services
             return m_JsonService.DeserializeObject<IntrospectTokenRes>(result);
         }
 
+        /// <summary>
+        /// 校验 Token 合法性
+        /// </summary>
+        /// <param name="param"></param>
+        /// <returns></returns>
+        /// <exception cref="AggregateException"></exception>
+        /// <exception cref="ArgumentException"></exception>
         public async Task<ValidateTokenRes> ValidateToken(ValidateTokenParams param)
         {
             if (string.IsNullOrWhiteSpace(param.AccessToken) && string.IsNullOrWhiteSpace(param.IdToken))
@@ -481,7 +488,7 @@ namespace Authing.CSharp.SDK.Services
 
         private async Task<string> RevokeTokenWithClientSecretPost(string url, string token)
         {
-            var result = await GetAsync(
+            var result = await PostFormAsync(
                 url,
                 new Dictionary<string, string>()
                 {
