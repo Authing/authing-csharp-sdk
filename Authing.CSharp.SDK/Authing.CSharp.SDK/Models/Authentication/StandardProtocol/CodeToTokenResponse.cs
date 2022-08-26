@@ -8,7 +8,7 @@ using System.Text;
 namespace Authing.CSharp.SDK.Models
 {
     [JsonObject(NamingStrategyType = typeof(SnakeCaseNamingStrategy))]
-    public class CodeToTokenRes
+    public class CodeToTokenResponse
     {
         [JsonProperty("access_token")]
         public string AccessToken { get; set; }

@@ -3,10 +3,12 @@ using Authing.CSharp.SDK.Models;
 using Authing.CSharp.SDK.Models.Authentication;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net.Mime;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace Authing.CSharp.SDK.Services
 {
@@ -93,13 +95,13 @@ namespace Authing.CSharp.SDK.Services
         private string BuildCasAuthorizeUrl(CasOption option)
         {
             return option.Service is null
-                ? $"{options.Host}/cas-idp/{options.AppId}"
-                : $"{options.Host}/cas-idp/{options.AppId}?service={option.Service}";
+                ? $"{options.Domain}/cas-idp/{options.AppId}/login"
+                : $"{options.Domain}/cas-idp/{options.AppId}/login?service={option.Service}";
         }
 
-        public string BuildSamlAuthorizeUrl()
+        private string BuildSamlAuthorizeUrl()
         {
-            return $"{options.Host}/api/v2/saml-idp/{options.AppId}";
+            return $"{options.Domain}/api/v2/saml-idp/{options.AppId}";
         }
 
         /// <summary>
@@ -109,7 +111,7 @@ namespace Authing.CSharp.SDK.Services
         /// <returns></returns>
         /// <exception cref="ArgumentException"></exception>
         /// <exception cref="ArgumentOutOfRangeException"></exception>
-        public async Task<CodeToTokenRes> GetAccessTokenByCode(string code)
+        public async Task<CodeToTokenResponse> GetAccessTokenByCode(string code)
         {
             if (string.IsNullOrWhiteSpace(options.AppSecret) &&
                options.TokenEndPointAuthMethod != TokenEndPointAuthMethod.NONE)
@@ -130,7 +132,7 @@ namespace Authing.CSharp.SDK.Services
                         { "code", code },
                         { "redirect_uri", options.RedirectUri },
                     }).ConfigureAwait(false);
-                    return m_JsonService.DeserializeObject<CodeToTokenRes>(jsonResult);
+                    return m_JsonService.DeserializeObject<CodeToTokenResponse>(jsonResult);
                 case TokenEndPointAuthMethod.CLIENT_SECRET_BASIC:
 
                     jsonResult = await PostFormAsync(url, new Dictionary<string, string>()
@@ -140,7 +142,7 @@ namespace Authing.CSharp.SDK.Services
                             { "redirect_uri", options.RedirectUri },
                         }, new Dictionary<string, string> { { "Authorization",
                         $"Basic {Convert.ToBase64String(Encoding.UTF8.GetBytes($"{options.AppId}:{options.AppSecret}"))}"} }).ConfigureAwait(false);
-                    return m_JsonService.DeserializeObject<CodeToTokenRes>(jsonResult);
+                    return m_JsonService.DeserializeObject<CodeToTokenResponse>(jsonResult);
                 case TokenEndPointAuthMethod.NONE:
                     jsonResult = await PostFormAsync(url, new Dictionary<string, string>()
                     {
@@ -150,7 +152,7 @@ namespace Authing.CSharp.SDK.Services
                         { "code", code },
                         { "redirect_uri", options.RedirectUri },
                     }).ConfigureAwait(false);
-                    return m_JsonService.DeserializeObject<CodeToTokenRes>(jsonResult);
+                    return m_JsonService.DeserializeObject<CodeToTokenResponse>(jsonResult);
                 default:
                     throw new ArgumentOutOfRangeException();
             }
@@ -190,7 +192,7 @@ namespace Authing.CSharp.SDK.Services
             return res;
         }
 
-        public async Task<RefreshTokenRes> GetNewAccessTokenByRefreshToken(string refreshToken)
+        public async Task<RefreshTokenResponse> GetNewAccessTokenByRefreshToken(string refreshToken)
         {
             var _ = options?.Protocol switch
             {
@@ -221,7 +223,7 @@ namespace Authing.CSharp.SDK.Services
             throw new ArgumentException("请检查参数 TokenEndPointAuthMethod");
         }
 
-        private async Task<RefreshTokenRes> GetNewAccessTokenByRefreshTokenWithClientSecretPost(string refreshToken)
+        private async Task<RefreshTokenResponse> GetNewAccessTokenByRefreshTokenWithClientSecretPost(string refreshToken)
         {
             var api = options.Protocol switch
             {
@@ -240,12 +242,12 @@ namespace Authing.CSharp.SDK.Services
             };
             string json = await PostFormAsync(api, param).ConfigureAwait(false);
 
-            var result = m_JsonService.DeserializeObject<RefreshTokenRes>(json);
+            var result = m_JsonService.DeserializeObject<RefreshTokenResponse>(json);
 
             return result;
         }
 
-        private async Task<RefreshTokenRes> GetNewAccessTokenByRefreshTokenWithClientSecretBasic(string refreshToken)
+        private async Task<RefreshTokenResponse> GetNewAccessTokenByRefreshTokenWithClientSecretBasic(string refreshToken)
         {
             var api = options.Protocol switch
             {
@@ -261,12 +263,12 @@ namespace Authing.CSharp.SDK.Services
             };
             string json = await PostFormAsync(api, param).ConfigureAwait(false);
 
-            var result = m_JsonService.DeserializeObject<RefreshTokenRes>(json);
+            var result = m_JsonService.DeserializeObject<RefreshTokenResponse>(json);
 
             return result;
         }
 
-        private async Task<RefreshTokenRes> GetNewAccessTokenByRefreshTokenWithNone(string refreshToken)
+        private async Task<RefreshTokenResponse> GetNewAccessTokenByRefreshTokenWithNone(string refreshToken)
         {
             var api = options.Protocol switch
             {
@@ -284,7 +286,7 @@ namespace Authing.CSharp.SDK.Services
 
             string json = await PostFormAsync(api, param).ConfigureAwait(false);
 
-            RefreshTokenRes result = m_JsonService.DeserializeObject<RefreshTokenRes>(json);
+            RefreshTokenResponse result = m_JsonService.DeserializeObject<RefreshTokenResponse>(json);
 
             return result;
         }
@@ -294,7 +296,7 @@ namespace Authing.CSharp.SDK.Services
         /// </summary>
         /// <param name="token">用户的 Refresh token 或 Access token</param>
         /// <returns></returns>
-        public async Task<IntrospectTokenRes> IntrospectToken(string token)
+        public async Task<IntrospectTokenResponse> IntrospectToken(string token)
         {
             var api = options?.Protocol switch
             {
@@ -326,7 +328,7 @@ namespace Authing.CSharp.SDK.Services
                 "初始化 AuthenticationClient 时传入的 revocationEndPointAuthMethod 参数可选值为 client_secret_base、client_secret_post、none，请检查参数");
         }
 
-        private async Task<IntrospectTokenRes> IntrospectTokenWithClientSecretPost(string url, string token)
+        private async Task<IntrospectTokenResponse> IntrospectTokenWithClientSecretPost(string url, string token)
         {
             var json = await PostFormAsync(url, new Dictionary<string, string>()
             {
@@ -334,10 +336,10 @@ namespace Authing.CSharp.SDK.Services
                 { "client_secret", options.AppSecret },
                 { "token", token },
             }).ConfigureAwait(false);
-            return m_JsonService.DeserializeObject<IntrospectTokenRes>(json);
+            return m_JsonService.DeserializeObject<IntrospectTokenResponse>(json);
         }
 
-        private async Task<IntrospectTokenRes> IntrospectTokenWithClientSecretBasic(string url, string token)
+        private async Task<IntrospectTokenResponse> IntrospectTokenWithClientSecretBasic(string url, string token)
         {
             var json = await GetAsync(url, new Dictionary<string, string>()
                 {
@@ -351,17 +353,17 @@ namespace Authing.CSharp.SDK.Services
                     }
                 }).ConfigureAwait(false);
 
-            return m_JsonService.DeserializeObject<IntrospectTokenRes>(json);
+            return m_JsonService.DeserializeObject<IntrospectTokenResponse>(json);
         }
 
-        private async Task<IntrospectTokenRes> IntrospectTokenWithNone(string url, string token)
+        private async Task<IntrospectTokenResponse> IntrospectTokenWithNone(string url, string token)
         {
             var result = await GetAsync(url, new Dictionary<string, string>()
             {
                 { "client_id", options.AppId },
                 { "token", token },
             }).ConfigureAwait(false);
-            return m_JsonService.DeserializeObject<IntrospectTokenRes>(result);
+            return m_JsonService.DeserializeObject<IntrospectTokenResponse>(result);
         }
 
         /// <summary>
@@ -371,7 +373,7 @@ namespace Authing.CSharp.SDK.Services
         /// <returns></returns>
         /// <exception cref="AggregateException"></exception>
         /// <exception cref="ArgumentException"></exception>
-        public async Task<ValidateTokenRes> ValidateToken(ValidateTokenParams param)
+        public async Task<ValidateTokenResponse> ValidateToken(ValidateTokenParams param)
         {
             if (string.IsNullOrWhiteSpace(param.AccessToken) && string.IsNullOrWhiteSpace(param.IdToken))
                 throw new AggregateException("请在传入的参数对象中包含 accessToken 或 idToken 属性");
@@ -382,7 +384,7 @@ namespace Authing.CSharp.SDK.Services
             url += !string.IsNullOrWhiteSpace(param.AccessToken) ? $"?access_token={param.AccessToken}" : $"?id_token={param.IdToken}";
 
             var result = await GetAsync(url).ConfigureAwait(false);
-            return m_JsonService.DeserializeObject<ValidateTokenRes>(result);
+            return m_JsonService.DeserializeObject<ValidateTokenResponse>(result);
         }
 
         /// <summary>
@@ -428,8 +430,8 @@ namespace Authing.CSharp.SDK.Services
         private string BuildCasLogoutUrl(LogoutParams options)
         {
             return string.IsNullOrWhiteSpace(options.RedirectUri)
-                ? $"{m_AppHost}/cas-idp/logout"
-                : $"{m_AppHost}/cas-idp/logout?url={options.RedirectUri}";
+                ? $"{m_AppHost}/cas-idp/{this.options.AppId}/logout"
+                : $"{m_AppHost}/cas-idp/{this.options.AppId}/logout?url={options.RedirectUri}";
         }
 
         /// <summary>
@@ -536,19 +538,18 @@ namespace Authing.CSharp.SDK.Services
         /// <param name="ticker"></param>
         /// <param name="service"></param>
         /// <returns></returns>
-        public async Task<ValidateTicketV1Res> ValidateTicketV1(string ticket, string service)
+        public async Task<ValidateTicketV1Response> ValidateTicketV1(string ticket, string service)
         {
-            var json = await GetAsync($"cas-idp/${m_AppHost}/validate/?ticket={ticket}&service={service}").ConfigureAwait(false);
+            var json = await GetWithHostAsync(m_AppHost, $"cas-idp/${m_AppId}/validate/?ticket={ticket}&service={service}").ConfigureAwait(false);
 
-            ValidateTicketV1Response result = m_JsonService.DeserializeObject<ValidateTicketV1Response>(json);
 
-            if (result.Result.Split('\n').Contains("yes"))
+            if (json.Trim().Contains("yes"))
             {
-                return new ValidateTicketV1Res() { Valid = true };
+                return new ValidateTicketV1Response() { Valid = true };
             }
             else
             {
-                return new ValidateTicketV1Res() { Valid = false, Message = "ticket 不合格" };
+                return new ValidateTicketV1Response() { Valid = false, Message = "ticket 不合格" };
             }
 
         }
@@ -586,17 +587,33 @@ namespace Authing.CSharp.SDK.Services
         }
 
         /// <summary>
-        /// 通过远端服务验证票据合法性
+        /// 检验 CAS 2.0 Ticket 合法性
         /// </summary>
         /// <param name="ticket"></param>
         /// <param name="service"></param>
         /// <param name="validateTicketFormat"></param>
         /// <returns></returns>
-        public async Task<string> ValidateTicketV2(string ticket, string service, ValidateTicketFormat validateTicketFormat)
+        public async Task<ValidateTicketV2Response> ValidateTicketV2Json(string ticket, string service)
         {
-            var result = await GetAsync($"cas-idp/{options.AppId}/serviceValidate/?ticket={ticket}&service={service}&format={validateTicketFormat}").ConfigureAwait(false);
+            var json = await GetWithHostAsync(m_AppHost, $"cas-idp/{options.AppId}/serviceValidate/?ticket={ticket}&service={service}&format={ValidateTicketFormat.JSON}").ConfigureAwait(false);
+
+            var result = m_JsonService.DeserializeObject<ValidateTicketV2Response>(json);
 
             return result;
+        }
+
+        /// <summary>
+        /// 检验 CAS 2.0 Ticket 合法性
+        /// </summary>
+        /// <param name="ticket"></param>
+        /// <param name="service"></param>
+        /// <param name="validateTicketFormat"></param>
+        /// <returns></returns>
+        public async Task<string> ValidateTicketV2XML(string ticket, string service)
+        {
+            var xml = await GetWithHostAsync(m_AppHost, $"cas-idp/{options.AppId}/serviceValidate/?ticket={ticket}&service={service}&format={ValidateTicketFormat.XML}").ConfigureAwait(false);
+
+            return xml;
         }
 
         public async Task<UserInfo> TrackSession()

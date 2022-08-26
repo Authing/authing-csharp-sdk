@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Authing.CSharp.SDK.Models
 {
-    public class RefreshTokenRes
+    public class RefreshTokenResponse
     {
         [JsonProperty("access_token")]
         public string AccessToken { get; set; }

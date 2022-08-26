@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Authing.CSharp.SDK.Models
 {
-    public class ValidateTokenRes
+    public class ValidateTokenResponse
     {
         [JsonProperty("jti")]
         public string jti { get; set; }

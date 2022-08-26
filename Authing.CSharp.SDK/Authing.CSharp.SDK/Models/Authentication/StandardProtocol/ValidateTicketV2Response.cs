@@ -8,7 +8,25 @@ namespace Authing.CSharp.SDK.Models
 {
     public class ValidateTicketV2Response
     {
-        [JsonProperty("Result")]
-        public string Result { get; set; }
+        public Serviceresponse ServiceResponse { get; set; }
+    }
+
+    public class Serviceresponse
+    {
+        public Authenticationsuccess AuthenticationSuccess { get; set; }
+
+        public AuthenticationFailure AuthenticationFailure { get; set; }
+    }
+
+    public class Authenticationsuccess
+    {
+        public string user { get; set; }
+        public dynamic attributes { get; set; }
+    }
+
+    public class AuthenticationFailure
+    {
+        public string Code { get; set; }
+        public string Description { get; set; }
     }
 }

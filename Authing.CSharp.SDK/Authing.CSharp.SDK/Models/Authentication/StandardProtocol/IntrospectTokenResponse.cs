@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Authing.CSharp.SDK.Models
 {
-    public class IntrospectTokenRes
+    public class IntrospectTokenResponse
     {
         [JsonProperty("active")]
         public bool Active { get; set; }
