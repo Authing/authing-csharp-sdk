@@ -25,7 +25,7 @@ namespace Authing.CSharp.SDK.Services
 
         public BaseAuthenticationService(AuthenticationClientInitOptions options) : base(new JsonService())
         {
-            m_AppHost = options.Domain;
+            m_AppHost = options.AppHost;
 
             m_Host = ConfigService.BASE_URL;
 
@@ -43,9 +43,11 @@ namespace Authing.CSharp.SDK.Services
             return httpResponse;
         }
 
-        protected async Task<string> GetWithHostAsync(string host,string apiPath)
+        protected async Task<string> GetWithHostAsync(string host, string apiPath,Dictionary<string,string> headers=default,Dictionary<string,string> param=default)
         {
-            string httpResponse = await m_HttpService.GetAsync(host, apiPath, default, default).ConfigureAwait(false);
+            SetHeaders(headers);
+
+            string httpResponse = await m_HttpService.GetAsync(host, apiPath, param, default).ConfigureAwait(false);
             return httpResponse;
         }
 
@@ -57,11 +59,11 @@ namespace Authing.CSharp.SDK.Services
             return httpResponse;
         }
 
-        protected async Task<string> GetAsync(string apiPath, Dictionary<string, string> dics,Dictionary<string,string> headers=null)
+        protected async Task<string> GetAsync(string apiPath, Dictionary<string, string> dics, Dictionary<string, string> headers = null)
         {
             SetHeaders(headers);
 
-            string httpResponse = await m_HttpService.GetAsync(m_Host, apiPath, dics,default).ConfigureAwait(false);
+            string httpResponse = await m_HttpService.GetAsync(m_Host, apiPath, dics, default).ConfigureAwait(false);
             return httpResponse;
         }
 
@@ -140,6 +142,25 @@ namespace Authing.CSharp.SDK.Services
         /// <typeparam name="T"></typeparam>
         /// <param name="apiPath"></param>
         /// <param name="dto"></param>
+        /// <param name="headers"></param>
+        /// <returns></returns>
+        protected async Task<string> PostFormAsyncWithHost<T>(string host,string apiPath, T dto, Dictionary<string, string> headers = null)
+        {
+            string json = m_JsonService.SerializeObject(dto);
+            Dictionary<string, string> dic = m_JsonService.DeserializeObject<Dictionary<string, string>>(json);
+
+            SetHeaders(headers);
+
+            string httpResponse = await m_HttpService.PostFormAsync(host, apiPath, dic, default).ConfigureAwait(false);
+            return httpResponse;
+        }
+
+        /// <summary>
+        /// 表单请求
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="apiPath"></param>
+        /// <param name="dto"></param>
         /// <param name="accesstoken"></param>
         /// <param name="headers"></param>
         /// <returns></returns>
@@ -148,7 +169,10 @@ namespace Authing.CSharp.SDK.Services
             string json = m_JsonService.SerializeObject(dto);
             Dictionary<string, string> dic = m_JsonService.DeserializeObject<Dictionary<string, string>>(json);
 
-            m_HttpService.SetBearerToken(accesstoken);
+            if (!string.IsNullOrWhiteSpace(accesstoken))
+            {
+                m_HttpService.SetBearerToken(accesstoken);
+            }
             SetHeaders(headers);
 
             string httpResponse = await m_HttpService.PostFormAsync(m_Host, apiPath, dic, default).ConfigureAwait(false);

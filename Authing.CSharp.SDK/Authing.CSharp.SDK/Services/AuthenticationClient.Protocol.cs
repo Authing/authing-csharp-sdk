@@ -64,7 +64,7 @@ namespace Authing.CSharp.SDK.Services
                 prompt = option.Scope.Contains("offline_access") ? "consent" : "",
             }.Convert2QueryParams();
 
-            return $"{options.Host ?? ConfigService.BASE_URL}/oidc/auth{res}";
+            return $"{m_AppHost??options.Host}/oidc/auth{res}";
         }
 
         /// <summary>
@@ -84,7 +84,7 @@ namespace Authing.CSharp.SDK.Services
                 response_type = !(option.ResponseType is null) ? option.ResponseType.ToString().ToLower() : "code",
             }.Convert2QueryParams();
 
-            return $"{options.Host}/oauth/auth{param}";
+            return $"{m_AppHost}/oauth/auth{param}";
         }
 
         /// <summary>
@@ -95,13 +95,13 @@ namespace Authing.CSharp.SDK.Services
         private string BuildCasAuthorizeUrl(CasOption option)
         {
             return option.Service is null
-                ? $"{options.Domain}/cas-idp/{options.AppId}/login"
-                : $"{options.Domain}/cas-idp/{options.AppId}/login?service={option.Service}";
+                ? $"{options.AppHost}/cas-idp/{options.AppId}/login"
+                : $"{options.AppHost}/cas-idp/{options.AppId}/login?service={option.Service}";
         }
 
         private string BuildSamlAuthorizeUrl()
         {
-            return $"{options.Domain}/api/v2/saml-idp/{options.AppId}";
+            return $"{options.AppHost}/api/v2/saml-idp/{options.AppId}";
         }
 
         /// <summary>
@@ -124,7 +124,7 @@ namespace Authing.CSharp.SDK.Services
             switch (options.TokenEndPointAuthMethod)
             {
                 case TokenEndPointAuthMethod.CLIENT_SECRET_POST:
-                    jsonResult = await PostFormAsync(url, new Dictionary<string, string>()
+                    jsonResult = await PostFormAsyncWithHost(m_AppHost,url, new Dictionary<string, string>()
                     {
                         { "client_id", options.AppId },
                         { "client_secret", options.AppSecret },
@@ -135,7 +135,7 @@ namespace Authing.CSharp.SDK.Services
                     return m_JsonService.DeserializeObject<CodeToTokenResponse>(jsonResult);
                 case TokenEndPointAuthMethod.CLIENT_SECRET_BASIC:
 
-                    jsonResult = await PostFormAsync(url, new Dictionary<string, string>()
+                    jsonResult = await PostFormAsyncWithHost(m_AppHost,url, new Dictionary<string, string>()
                         {
                             { "grant_type", "authorization_code" },
                             { "code", code },
@@ -144,7 +144,7 @@ namespace Authing.CSharp.SDK.Services
                         $"Basic {Convert.ToBase64String(Encoding.UTF8.GetBytes($"{options.AppId}:{options.AppSecret}"))}"} }).ConfigureAwait(false);
                     return m_JsonService.DeserializeObject<CodeToTokenResponse>(jsonResult);
                 case TokenEndPointAuthMethod.NONE:
-                    jsonResult = await PostFormAsync(url, new Dictionary<string, string>()
+                    jsonResult = await PostFormAsyncWithHost(m_AppHost,url, new Dictionary<string, string>()
                     {
                         { "client_id", options.AppId },
                         //{ "client_secret", Options.Secret },
@@ -174,14 +174,14 @@ namespace Authing.CSharp.SDK.Services
             switch (options.Protocol)
             {
                 case Protocol.OAUTH:
-                    json = await GetAsync(endPoint).ConfigureAwait(false);
+                    json = await GetWithHostAsync(m_AppHost,endPoint).ConfigureAwait(false);
                     break;
                 case Protocol.OIDC:
-                    json = await GetAsync(endPoint).ConfigureAwait(false);
+                    json = await GetWithHostAsync(m_AppHost,endPoint).ConfigureAwait(false);
                     break;
                 case Protocol.SAML:
                 case Protocol.CAS:
-                    json = await GetAsync(endPoint).ConfigureAwait(false);
+                    json = await GetAsync(m_AppHost,endPoint).ConfigureAwait(false);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
@@ -240,7 +240,7 @@ namespace Authing.CSharp.SDK.Services
                 { "refresh_token", refreshToken },
 
             };
-            string json = await PostFormAsync(api, param).ConfigureAwait(false);
+            string json = await PostFormAsyncWithHost(m_AppHost,api, param).ConfigureAwait(false);
 
             var result = m_JsonService.DeserializeObject<RefreshTokenResponse>(json);
 
@@ -261,7 +261,7 @@ namespace Authing.CSharp.SDK.Services
                 { "grant_type", "refresh_token" },
                 { "refresh_token", refreshToken }
             };
-            string json = await PostFormAsync(api, param).ConfigureAwait(false);
+            string json = await PostFormAsyncWithHost(m_AppHost,api, param).ConfigureAwait(false);
 
             var result = m_JsonService.DeserializeObject<RefreshTokenResponse>(json);
 
@@ -284,7 +284,7 @@ namespace Authing.CSharp.SDK.Services
                 { "refresh_token", refreshToken }
             };
 
-            string json = await PostFormAsync(api, param).ConfigureAwait(false);
+            string json = await PostFormAsyncWithHost(m_AppHost,api, param).ConfigureAwait(false);
 
             RefreshTokenResponse result = m_JsonService.DeserializeObject<RefreshTokenResponse>(json);
 
@@ -330,7 +330,7 @@ namespace Authing.CSharp.SDK.Services
 
         private async Task<IntrospectTokenResponse> IntrospectTokenWithClientSecretPost(string url, string token)
         {
-            var json = await PostFormAsync(url, new Dictionary<string, string>()
+            var json = await PostFormAsyncWithHost(m_AppHost,url, new Dictionary<string, string>()
             {
                 { "client_id", options.AppId },
                 { "client_secret", options.AppSecret },
@@ -341,7 +341,7 @@ namespace Authing.CSharp.SDK.Services
 
         private async Task<IntrospectTokenResponse> IntrospectTokenWithClientSecretBasic(string url, string token)
         {
-            var json = await GetAsync(url, new Dictionary<string, string>()
+            var json = await GetWithHostAsync(m_AppHost,url, new Dictionary<string, string>()
                 {
                     { "token", token },
                 },
@@ -358,7 +358,7 @@ namespace Authing.CSharp.SDK.Services
 
         private async Task<IntrospectTokenResponse> IntrospectTokenWithNone(string url, string token)
         {
-            var result = await GetAsync(url, new Dictionary<string, string>()
+            var result = await GetWithHostAsync(m_AppHost,url, new Dictionary<string, string>()
             {
                 { "client_id", options.AppId },
                 { "token", token },
@@ -383,7 +383,7 @@ namespace Authing.CSharp.SDK.Services
             var url = $"api/v2/oidc/validate_token";
             url += !string.IsNullOrWhiteSpace(param.AccessToken) ? $"?access_token={param.AccessToken}" : $"?id_token={param.IdToken}";
 
-            var result = await GetAsync(url).ConfigureAwait(false);
+            var result = await GetWithHostAsync(m_AppHost, url).ConfigureAwait(false);
             return m_JsonService.DeserializeObject<ValidateTokenResponse>(result);
         }
 
@@ -436,6 +436,7 @@ namespace Authing.CSharp.SDK.Services
 
         /// <summary>
         /// Client Credentials 模式获取 Access Token
+        /// 2022-08-29 测试通过
         /// </summary>
         /// <param name="scope"></param>
         /// <param name="options"></param>
@@ -448,8 +449,11 @@ namespace Authing.CSharp.SDK.Services
             if (options is null)
                 throw new ArgumentException(
                     "请在调用本方法时传入 { accessKey: string, accessSecret: string }，请看文档：https://docs.authing.cn/v2/guides/authorization/m2m-authz.html");
-            var result = await GetAsync(
-                "oidc/token",
+
+            var url = this.options.Protocol == Protocol.OIDC ? "oidc/token" : "oauth/token";
+
+            var result = await PostFormAsyncWithHost(m_AppHost,
+                url,
                 new Dictionary<string, string>()
                 {
                     {"client_id",$"{options.AccessKey}"},
@@ -490,7 +494,7 @@ namespace Authing.CSharp.SDK.Services
 
         private async Task<string> RevokeTokenWithClientSecretPost(string url, string token)
         {
-            var result = await PostFormAsync(
+            var result = await PostFormAsyncWithHost(m_AppHost,
                 url,
                 new Dictionary<string, string>()
                 {
@@ -505,7 +509,7 @@ namespace Authing.CSharp.SDK.Services
         {
             if (options.Protocol == Protocol.OAUTH)
                 throw new ArgumentException("OAuth 2.0 暂不支持用 client_secret_basic 模式身份验证撤回 Token");
-            var result = await GetAsync(
+            var result = await GetWithHostAsync(m_AppHost,
                 "oidc/token/revocation",
                 new Dictionary<string, string>()
                 {
@@ -522,7 +526,7 @@ namespace Authing.CSharp.SDK.Services
 
         private async Task<string> RevokeTokenWithNone(string url, string token)
         {
-            var result = await GetAsync(
+            var result = await GetWithHostAsync(m_AppHost,
                 url,
                 new Dictionary<string, string>()
                 {
@@ -540,8 +544,7 @@ namespace Authing.CSharp.SDK.Services
         /// <returns></returns>
         public async Task<ValidateTicketV1Response> ValidateTicketV1(string ticket, string service)
         {
-            var json = await GetWithHostAsync(m_AppHost, $"cas-idp/${m_AppId}/validate/?ticket={ticket}&service={service}").ConfigureAwait(false);
-
+            var json = await GetWithHostAsync(m_AppHost, $"cas-idp/{m_AppId}/validate/?ticket={ticket}&service={service}").ConfigureAwait(false);
 
             if (json.Trim().Contains("yes"))
             {
@@ -618,7 +621,7 @@ namespace Authing.CSharp.SDK.Services
 
         public async Task<UserInfo> TrackSession()
         {
-            var result = await GetAsync("cas/session").ConfigureAwait(false);
+            var result = await GetWithHostAsync(m_AppHost,"cas/session").ConfigureAwait(false);
             return m_JsonService.DeserializeObject<UserInfo>(result);
         }
     }

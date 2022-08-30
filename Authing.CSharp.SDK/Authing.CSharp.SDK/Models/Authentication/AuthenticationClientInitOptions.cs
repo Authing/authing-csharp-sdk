@@ -25,7 +25,7 @@ namespace Authing.CSharp.SDK.Models.Authentication
         /// <summary>
         /// 应用对应的用户池域名，例如 pool.authing.cn 
         /// </summary>
-        public string Domain { get; set; }
+        public string AppHost { get; set; }
 
         /// <summary>
         /// 认证完成后的重定向目标 URL 

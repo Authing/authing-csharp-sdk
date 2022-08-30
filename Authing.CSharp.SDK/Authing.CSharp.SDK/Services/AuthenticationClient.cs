@@ -57,7 +57,7 @@ namespace Authing.CSharp.SDK.Services
             }
 
             this.options = options;
-            this.domain = regexService.DomainC14n(options.Domain);
+            this.domain = regexService.DomainC14n(options.AppHost);
 
             Init();
         }
