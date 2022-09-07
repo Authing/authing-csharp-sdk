@@ -151,7 +151,7 @@ namespace Authing.CSharp.SDK.Services
         /// <returns></returns>
         public async Task<GeneQRCodeRespDto> GeneQrcode(GenerateQrcodeDto generateQrcodeDto)
         {
-            string json = await PostFormAsync("api/v3/gene-qrcode", generateQrcodeDto);
+            string json = await PostFormAsync("/api/v3/gene-qrcode", generateQrcodeDto);
 
             GeneQRCodeRespDto result = m_JsonService.DeserializeObject<GeneQRCodeRespDto>(json);
 
