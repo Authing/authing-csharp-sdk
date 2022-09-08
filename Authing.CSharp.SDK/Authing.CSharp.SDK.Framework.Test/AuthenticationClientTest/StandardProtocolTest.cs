@@ -45,8 +45,7 @@ namespace Authing.CSharp.SDK.Framework.Test.AuthenticationClientTest
         [Test]
         public void BuildOIDCAuthorizeUrlTest()
         {
-
-            string oidcUrl = client.BuildAuthorizeUrl(new OidcOption() { RedirectUri = "https://localhost:5566", Scope = "openid profile email phone address offline_access" });
+            string oidcUrl = client.BuildAuthorizeUrl(new OidcOption() { RedirectUri = "https://www.baidu.com", Scope = "openid profile email phone address offline_access" });
 
             Assert.IsTrue(!string.IsNullOrWhiteSpace(oidcUrl));
         }
@@ -63,7 +62,7 @@ namespace Authing.CSharp.SDK.Framework.Test.AuthenticationClientTest
             Assert.NotNull(oidcUrl);
 
             //先在浏览器访问 oidcurl ，填入登录成功后的 code
-            var res = await client.GetAccessTokenByCode("MKWavWxCw-DQqhfZhxJ4ZniwIODrnjXZ0n8fuK1_xbx");
+            var res = await client.GetAccessTokenByCode("DyfZ_GlsiiqNH6_dcOwbqQSEWxRwH_b9SaVXd-T1tH4");
 
             string oidcLogoutUrl = client.BuildLogoutUrl(new LogoutParams { RedirectUri = "https://gitee.com/", IdToken = res.IdToken, Expert = true });
         }
@@ -97,16 +96,22 @@ namespace Authing.CSharp.SDK.Framework.Test.AuthenticationClientTest
         [Test]
         public async Task GetNewAccessTokenByRefreshToken_OIDC_Test()
         {
-            string oidcUrl = client.BuildAuthorizeUrl(new OidcOption() { RedirectUri = "https://www.baidu.com", Scope = "openid profile email phone address offline_access" });
+            try
+            {
+                string oidcUrl = client.BuildAuthorizeUrl(new OidcOption() { RedirectUri = "https://www.baidu.com", Scope = "openid profile email phone address offline_access" });
 
-            Assert.NotNull(oidcUrl);
+                Assert.NotNull(oidcUrl);
 
-            //先在浏览器访问 oidcurl ，填入登录成功后的 code
-            var res = await client.GetAccessTokenByCode("rU5NppqPaNICRwYs0aWgplxwAksxJb_zvzkOZFw1Fop");
+                //先在浏览器访问 oidcurl ，填入登录成功后的 code
+                var res = await client.GetAccessTokenByCode("0o7U22OQWWuPQ40IokyVSh5po7_ltQxPH06UW6hvyTc");
 
-            var newAccessToken = await client.GetNewAccessTokenByRefreshToken(res.RefreshToken);
+                var newAccessToken = await client.GetNewAccessTokenByRefreshToken(res.RefreshToken);
 
-            Assert.NotNull(newAccessToken);
+                Assert.NotNull(newAccessToken);
+            }
+            catch (Exception exp)
+            { 
+            }
 
         }
 
@@ -123,7 +128,7 @@ namespace Authing.CSharp.SDK.Framework.Test.AuthenticationClientTest
             Assert.NotNull(oidcUrl);
 
             //先在浏览器访问 oidcurl ，填入登录成功后的 code
-            var res = await client.GetAccessTokenByCode("0dizONAuiUDO8tP95q2VMIDRDCeeYhhdWfIdfusTOFf");
+            var res = await client.GetAccessTokenByCode("cA3VnFZJW0Tk3AKZWsvUoIX49U9AZVkCpnvK6ZAK9V3");
 
             var tokenStatus = await client.IntrospectToken(res.AccessToken);
 
@@ -177,6 +182,18 @@ namespace Authing.CSharp.SDK.Framework.Test.AuthenticationClientTest
             var isValidToken = await client.IntrospectToken(res.AccessToken);
 
             Assert.IsFalse(isValidToken.Active);
+        }
+
+        [Test]
+        public async Task GetAccessTokenByClientCredentials_OIDC_Test()
+        {
+            var result = await client.GetAccessTokenByClientCredentials("openid profile email phone address offline_access", new GetAccessTokenByClientCredentialsOption
+            {
+                AccessKey = "630c79fcfb93e878c99cb235",
+                AccessSecret = "bf268a4f9e3703b0635107ecd6426145",
+            });
+
+            Assert.NotNull(result);
         }
 
 

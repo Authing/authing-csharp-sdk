@@ -39,6 +39,8 @@ namespace Authing.CSharp.SDK.Services
 
         protected async Task<string> GetAsync(string apiPath)
         {
+            SetHeaders();
+
             string httpResponse = await m_HttpService.GetAsync(m_Host, apiPath, default, default).ConfigureAwait(false);
             return httpResponse;
         }
@@ -53,15 +55,19 @@ namespace Authing.CSharp.SDK.Services
 
         protected async Task<string> GetAsync(string apiPath, string param)
         {
+            SetHeaders();
+
             var dic = m_JsonService.DeserializeObject<Dictionary<string, string>>(param);
 
             string httpResponse = await m_HttpService.GetAsync(m_Host, apiPath, dic, default).ConfigureAwait(false);
             return httpResponse;
         }
 
-        protected async Task<string> GetAsync(string apiPath, Dictionary<string, string> dics, Dictionary<string, string> headers = null)
+        protected async Task<string> GetAsync(string apiPath, Dictionary<string, string> dics, string accessToken)
         {
-            SetHeaders(headers);
+            m_HttpService.SetBearerToken(accessToken);
+
+            SetHeaders();
 
             string httpResponse = await m_HttpService.GetAsync(m_Host, apiPath, dics, default).ConfigureAwait(false);
             return httpResponse;

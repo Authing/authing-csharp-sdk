@@ -26,7 +26,7 @@ namespace Authing.CSharp.SDK.Framework.Test
                 //RediretUri = loginCallbackUrl,
                 AppId = "62a9902a80f55c22346eb296",
                 AppSecret = "d453ef11f873527eb4a8a084f4b5e059",
-                Domain = @"https://qidongtest.authing.cn",
+                AppHost = @"https://qidongtest.authing.cn",
                 RedirectUri = loginCallbackUrl,
             });
         }
