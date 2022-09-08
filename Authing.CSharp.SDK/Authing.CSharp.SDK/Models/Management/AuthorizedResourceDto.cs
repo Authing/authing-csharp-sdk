@@ -18,37 +18,37 @@ namespace Authing.CSharp.SDK.Models
         ///  资源描述符
         /// </summary>
         [JsonProperty("resourceCode")]
-        public string ResourceCode { get; set; }
+        public    string   ResourceCode    {get;set;}
         /// <summary>
         ///  资源描述信息
         /// </summary>
         [JsonProperty("description")]
-        public string Description { get; set; }
+        public    string   Description    {get;set;}
         /// <summary>
         ///  策略 Condition
         /// </summary>
         [JsonProperty("condition")]
-        public List<PolicyCondition> Condition { get; set; }
+        public    List<PolicyCondition>   Condition    {get;set;}
         /// <summary>
         ///  资源类型
         /// </summary>
         [JsonProperty("resourceType")]
-        public resourceType ResourceType { get; set; }
+        public    resourceType   ResourceType    {get;set;}
         /// <summary>
         ///  API URL
         /// </summary>
         [JsonProperty("apiIdentifier")]
-        public string ApiIdentifier { get; set; }
+        public    string   ApiIdentifier    {get;set;}
         /// <summary>
         ///  授权的操作列表
         /// </summary>
         [JsonProperty("actions")]
-        public List<string> Actions { get; set; }
+        public    List<string>   Actions    {get;set;}
         /// <summary>
         ///  允许还是拒绝
         /// </summary>
         [JsonProperty("effect")]
-        public effect Effect { get; set; }
+        public    effect   Effect    {get;set;}
     }
     public partial class AuthorizedResourceDto
     {
@@ -57,13 +57,13 @@ namespace Authing.CSharp.SDK.Models
         /// </summary>
         public enum resourceType
         {
-            [EnumMember(Value = "DATA")]
+            [EnumMember(Value="DATA")]
             DATA,
-            [EnumMember(Value = "API")]
+            [EnumMember(Value="API")]
             API,
-            [EnumMember(Value = "MENU")]
+            [EnumMember(Value="MENU")]
             MENU,
-            [EnumMember(Value = "BUTTON")]
+            [EnumMember(Value="BUTTON")]
             BUTTON,
         }
         /// <summary>
@@ -71,9 +71,9 @@ namespace Authing.CSharp.SDK.Models
         /// </summary>
         public enum effect
         {
-            [EnumMember(Value = "ALLOW")]
+            [EnumMember(Value="ALLOW")]
             ALLOW,
-            [EnumMember(Value = "DENY")]
+            [EnumMember(Value="DENY")]
             DENY,
         }
     }

@@ -18,16 +18,16 @@ namespace Authing.CSharp.SDK.Models
         ///  部门 id
         /// </summary>
         [JsonProperty("departmentId")]
-        public string DepartmentId { get; set; }
+        public    string   DepartmentId    {get;set;}
         /// <summary>
         ///  是否是部门 leader
         /// </summary>
         [JsonProperty("isLeader")]
-        public bool IsLeader { get; set; }
+        public    bool   IsLeader    {get;set;}
         /// <summary>
         ///  是否是主部门
         /// </summary>
         [JsonProperty("isMainDepartment")]
-        public bool IsMainDepartment { get; set; }
+        public    bool   IsMainDepartment    {get;set;}
     }
 }

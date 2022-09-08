@@ -18,6 +18,6 @@ namespace Authing.CSharp.SDK.Models
         ///  主体类型，目前支持用户、角色、分组、部门
         /// </summary>
         [JsonProperty("targetType")]
-        public object TargetType { get; set; }
+        public    object   TargetType    {get;set;}
     }
 }

@@ -18,22 +18,22 @@ namespace Authing.CSharp.SDK.Models
         ///  资源描述符
         /// </summary>
         [JsonProperty("resourceCode")]
-        public string ResourceCode { get; set; }
+        public    string   ResourceCode    {get;set;}
         /// <summary>
         ///  资源类型
         /// </summary>
         [JsonProperty("resourceType")]
-        public resourceType ResourceType { get; set; }
+        public    resourceType   ResourceType    {get;set;}
         /// <summary>
         ///  被授权的操作列表
         /// </summary>
         [JsonProperty("actions")]
-        public List<string> Actions { get; set; }
+        public    List<string>   Actions    {get;set;}
         /// <summary>
         ///  资源对应的 API Identifier
         /// </summary>
         [JsonProperty("apiIdentifier")]
-        public string ApiIdentifier { get; set; }
+        public    string   ApiIdentifier    {get;set;}
     }
     public partial class RoleAuthorizedResourcesRespDto
     {
@@ -42,13 +42,13 @@ namespace Authing.CSharp.SDK.Models
         /// </summary>
         public enum resourceType
         {
-            [EnumMember(Value = "DATA")]
+            [EnumMember(Value="DATA")]
             DATA,
-            [EnumMember(Value = "API")]
+            [EnumMember(Value="API")]
             API,
-            [EnumMember(Value = "MENU")]
+            [EnumMember(Value="MENU")]
             MENU,
-            [EnumMember(Value = "BUTTON")]
+            [EnumMember(Value="BUTTON")]
             BUTTON,
         }
     }

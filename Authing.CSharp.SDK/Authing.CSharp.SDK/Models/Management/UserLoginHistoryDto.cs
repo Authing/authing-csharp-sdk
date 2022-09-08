@@ -18,36 +18,36 @@ namespace Authing.CSharp.SDK.Models
         ///  App ID
         /// </summary>
         [JsonProperty("appId")]
-        public string AppId { get; set; }
+        public    string   AppId    {get;set;}
         /// <summary>
         ///  App 名称
         /// </summary>
         [JsonProperty("appName")]
-        public string AppName { get; set; }
+        public    string   AppName    {get;set;}
         /// <summary>
         ///  App Logo
         /// </summary>
         [JsonProperty("appLogo")]
-        public string AppLogo { get; set; }
+        public    string   AppLogo    {get;set;}
         /// <summary>
         ///  App 登录地址
         /// </summary>
         [JsonProperty("appLoginUrl")]
-        public string AppLoginUrl { get; set; }
+        public    string   AppLoginUrl    {get;set;}
         /// <summary>
         ///  客户端 IP
         /// </summary>
         [JsonProperty("clientIp")]
-        public string ClientIp { get; set; }
+        public    string   ClientIp    {get;set;}
         /// <summary>
         ///  登录时使用的 user agent
         /// </summary>
         [JsonProperty("userAgent")]
-        public string UserAgent { get; set; }
+        public    string   UserAgent    {get;set;}
         /// <summary>
         ///  登录时间
         /// </summary>
         [JsonProperty("time")]
-        public string Time { get; set; }
+        public    string   Time    {get;set;}
     }
 }

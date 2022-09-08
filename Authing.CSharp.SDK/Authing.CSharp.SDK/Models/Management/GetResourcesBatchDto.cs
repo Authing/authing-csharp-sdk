@@ -18,11 +18,11 @@ namespace Authing.CSharp.SDK.Models
         ///  资源 code 列表，批量可以使用逗号分隔
         /// </summary>
         [JsonProperty("codeList")]
-        public object CodeList { get; set; }
+        public    object   CodeList    {get;set;}
         /// <summary>
         ///  所属权限分组的 code
         /// </summary>
         [JsonProperty("namespace")]
-        public object Namespace { get; set; }
+        public    object   Namespace    {get;set;}
     }
 }

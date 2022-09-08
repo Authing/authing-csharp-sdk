@@ -18,11 +18,11 @@ namespace Authing.CSharp.SDK.Models
         ///  Access Token 内容
         /// </summary>
         [JsonProperty("access_token")]
-        public string Access_token { get; set; }
+        public    string   Access_token    {get;set;}
         /// <summary>
         ///  token 有效时间
         /// </summary>
         [JsonProperty("expires_in")]
-        public long Expires_in { get; set; }
+        public    long   Expires_in    {get;set;}
     }
 }

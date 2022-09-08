@@ -18,21 +18,21 @@ namespace Authing.CSharp.SDK.Models
         ///  角色新的权限分组内唯一识别码
         /// </summary>
         [JsonProperty("newCode")]
-        public string NewCode { get; set; }
+        public    string   NewCode    {get;set;}
         /// <summary>
         ///  权限分组内角色的唯一标识符
         /// </summary>
         [JsonProperty("code")]
-        public string Code { get; set; }
+        public    string   Code    {get;set;}
         /// <summary>
         ///  所属权限分组的 code
         /// </summary>
         [JsonProperty("namespace")]
-        public string Namespace { get; set; }
+        public    string   Namespace    {get;set;}
         /// <summary>
         ///  角色描述
         /// </summary>
         [JsonProperty("description")]
-        public string Description { get; set; }
+        public    string   Description    {get;set;}
     }
 }

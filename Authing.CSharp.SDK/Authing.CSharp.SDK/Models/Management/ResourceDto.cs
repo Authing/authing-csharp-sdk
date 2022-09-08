@@ -18,32 +18,32 @@ namespace Authing.CSharp.SDK.Models
         ///  资源唯一标志符
         /// </summary>
         [JsonProperty("code")]
-        public string Code { get; set; }
+        public    string   Code    {get;set;}
         /// <summary>
         ///  资源描述
         /// </summary>
         [JsonProperty("description")]
-        public string Description { get; set; }
+        public    string   Description    {get;set;}
         /// <summary>
         ///  资源类型，如数据、API、按钮、菜单
         /// </summary>
         [JsonProperty("type")]
-        public type Type { get; set; }
+        public    type   Type    {get;set;}
         /// <summary>
         ///  资源定义的操作类型
         /// </summary>
         [JsonProperty("actions")]
-        public List<ResourceAction> Actions { get; set; }
+        public    List<ResourceAction>   Actions    {get;set;}
         /// <summary>
         ///  API 资源的 URL 标识
         /// </summary>
         [JsonProperty("apiIdentifier")]
-        public string ApiIdentifier { get; set; }
+        public    string   ApiIdentifier    {get;set;}
         /// <summary>
         ///  所属权限分组的 code
         /// </summary>
         [JsonProperty("namespace")]
-        public string Namespace { get; set; }
+        public    string   Namespace    {get;set;}
     }
     public partial class ResourceDto
     {
@@ -52,13 +52,13 @@ namespace Authing.CSharp.SDK.Models
         /// </summary>
         public enum type
         {
-            [EnumMember(Value = "DATA")]
+            [EnumMember(Value="DATA")]
             DATA,
-            [EnumMember(Value = "API")]
+            [EnumMember(Value="API")]
             API,
-            [EnumMember(Value = "MENU")]
+            [EnumMember(Value="MENU")]
             MENU,
-            [EnumMember(Value = "BUTTON")]
+            [EnumMember(Value="BUTTON")]
             BUTTON,
         }
     }

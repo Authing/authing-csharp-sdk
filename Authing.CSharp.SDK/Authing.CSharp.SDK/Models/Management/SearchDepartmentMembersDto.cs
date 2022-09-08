@@ -18,51 +18,51 @@ namespace Authing.CSharp.SDK.Models
         ///  组织 code
         /// </summary>
         [JsonProperty("organizationCode")]
-        public object OrganizationCode { get; set; }
+        public    object   OrganizationCode    {get;set;}
         /// <summary>
         ///  部门 ID，根部门传 `root`
         /// </summary>
         [JsonProperty("departmentId")]
-        public object DepartmentId { get; set; }
+        public    object   DepartmentId    {get;set;}
         /// <summary>
         ///  搜索关键词，如成员名称
         /// </summary>
         [JsonProperty("keywords")]
-        public object Keywords { get; set; }
+        public    object   Keywords    {get;set;}
         /// <summary>
         ///  当前页数，从 1 开始
         /// </summary>
         [JsonProperty("page")]
-        public object Page { get; set; }
+        public    object   Page    {get;set;}
         /// <summary>
         ///  每页数目，最大不能超过 50，默认为 10
         /// </summary>
         [JsonProperty("limit")]
-        public object Limit { get; set; }
+        public    object   Limit    {get;set;}
         /// <summary>
         ///  此次调用中使用的部门 ID 的类型
         /// </summary>
         [JsonProperty("departmentIdType")]
-        public object DepartmentIdType { get; set; }
+        public    object   DepartmentIdType    {get;set;}
         /// <summary>
         ///  是否包含子部门的成员
         /// </summary>
         [JsonProperty("includeChildrenDepartments")]
-        public object IncludeChildrenDepartments { get; set; }
+        public    object   IncludeChildrenDepartments    {get;set;}
         /// <summary>
         ///  是否获取自定义数据
         /// </summary>
         [JsonProperty("withCustomData")]
-        public object WithCustomData { get; set; }
+        public    object   WithCustomData    {get;set;}
         /// <summary>
         ///  是否获取 identities
         /// </summary>
         [JsonProperty("withIdentities")]
-        public object WithIdentities { get; set; }
+        public    object   WithIdentities    {get;set;}
         /// <summary>
         ///  是否获取部门 ID 列表
         /// </summary>
         [JsonProperty("withDepartmentIds")]
-        public object WithDepartmentIds { get; set; }
+        public    object   WithDepartmentIds    {get;set;}
     }
 }

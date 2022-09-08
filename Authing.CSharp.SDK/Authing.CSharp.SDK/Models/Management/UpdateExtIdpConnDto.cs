@@ -18,26 +18,26 @@ namespace Authing.CSharp.SDK.Models
         ///  身份源连接自定义参数（增量修改）
         /// </summary>
         [JsonProperty("fields")]
-        public object Fields { get; set; }
+        public    object   Fields    {get;set;}
         /// <summary>
         ///  身份源连接显示名称
         /// </summary>
         [JsonProperty("displayName")]
-        public string DisplayName { get; set; }
+        public    string   DisplayName    {get;set;}
         /// <summary>
         ///  身份源连接 ID
         /// </summary>
         [JsonProperty("id")]
-        public string Id { get; set; }
+        public    string   Id    {get;set;}
         /// <summary>
         ///  身份源连接的图标
         /// </summary>
         [JsonProperty("logo")]
-        public string Logo { get; set; }
+        public    string   Logo    {get;set;}
         /// <summary>
         ///  是否只支持登录
         /// </summary>
         [JsonProperty("loginOnly")]
-        public bool LoginOnly { get; set; }
+        public    bool   LoginOnly    {get;set;}
     }
 }

@@ -18,6 +18,6 @@ namespace Authing.CSharp.SDK.Models
         ///  批量分组
         /// </summary>
         [JsonProperty("list")]
-        public List<CreateGroupReqDto> List { get; set; }
+        public    List<CreateGroupReqDto>   List    {get;set;}
     }
 }

@@ -18,21 +18,21 @@ namespace Authing.CSharp.SDK.Models
         ///  Identity ID
         /// </summary>
         [JsonProperty("identityId")]
-        public string IdentityId { get; set; }
+        public    string   IdentityId    {get;set;}
         /// <summary>
         ///  身份源名称
         /// </summary>
         [JsonProperty("idpName")]
-        public string IdpName { get; set; }
+        public    string   IdpName    {get;set;}
         /// <summary>
         ///  Identity provider name
         /// </summary>
         [JsonProperty("idpNameEn")]
-        public string IdpNameEn { get; set; }
+        public    string   IdpNameEn    {get;set;}
         /// <summary>
         ///  身份源 logo
         /// </summary>
         [JsonProperty("idpLogo")]
-        public string IdpLogo { get; set; }
+        public    string   IdpLogo    {get;set;}
     }
 }

@@ -18,11 +18,11 @@ namespace Authing.CSharp.SDK.Models
         ///  用户 ID
         /// </summary>
         [JsonProperty("userId")]
-        public string UserId { get; set; }
+        public    string   UserId    {get;set;}
         /// <summary>
         ///  可选参数
         /// </summary>
         [JsonProperty("options")]
-        public ResetUserPrincipalAuthenticationInfoOptionsDto Options { get; set; }
+        public    ResetUserPrincipalAuthenticationInfoOptionsDto   Options    {get;set;}
     }
 }

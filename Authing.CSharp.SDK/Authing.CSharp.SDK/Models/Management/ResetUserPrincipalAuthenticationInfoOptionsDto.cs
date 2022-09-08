@@ -18,7 +18,7 @@ namespace Authing.CSharp.SDK.Models
         ///  用户 ID 类型，可以指定为用户 ID、手机号、邮箱、用户名和 externalId。
         /// </summary>
         [JsonProperty("userIdType")]
-        public userIdType UserIdType { get; set; }
+        public    userIdType   UserIdType    {get;set;}
     }
     public partial class ResetUserPrincipalAuthenticationInfoOptionsDto
     {
@@ -27,15 +27,15 @@ namespace Authing.CSharp.SDK.Models
         /// </summary>
         public enum userIdType
         {
-            [EnumMember(Value = "user_id")]
+            [EnumMember(Value="user_id")]
             USER_ID,
-            [EnumMember(Value = "external_id")]
+            [EnumMember(Value="external_id")]
             EXTERNAL_ID,
-            [EnumMember(Value = "phone")]
+            [EnumMember(Value="phone")]
             PHONE,
-            [EnumMember(Value = "email")]
+            [EnumMember(Value="email")]
             EMAIL,
-            [EnumMember(Value = "username")]
+            [EnumMember(Value="username")]
             USERNAME,
         }
     }

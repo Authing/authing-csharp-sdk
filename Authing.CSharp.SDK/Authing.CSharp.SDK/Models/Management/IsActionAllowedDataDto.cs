@@ -18,6 +18,6 @@ namespace Authing.CSharp.SDK.Models
         ///  是否允许
         /// </summary>
         [JsonProperty("allowed")]
-        public bool Allowed { get; set; }
+        public    bool   Allowed    {get;set;}
     }
 }

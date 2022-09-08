@@ -18,6 +18,6 @@ namespace Authing.CSharp.SDK.Models
         ///  是否在此部门内
         /// </summary>
         [JsonProperty("inDepartment")]
-        public bool InDepartment { get; set; }
+        public    bool   InDepartment    {get;set;}
     }
 }
