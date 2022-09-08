@@ -39,5 +39,31 @@ namespace Authing.CSharp.SDK.Framework.Test.AuthenticationClientTest
             var res = await client.DecryptWechatMiniprogramData(param);
             Assert.IsTrue(res.StatusCode == 200);
         }
+
+        /// <summary>
+        /// 2022-8-22 测试不通过
+        /// 无法确定测试流程
+        /// </summary>
+        /// <returns></returns>
+        [Test]
+        public async Task GetWechatMiniprogramPhoneTest()
+        {
+            var param = new GetWechatMiniprogramPhoneDto();
+            var res = await client.GetWechatMiniprogramPhone(param);
+            Assert.IsTrue(res.StatusCode == 200);
+        }
+
+        /// <summary>
+        /// 2022-8-22 测试不通过
+        /// 无法确定测试流程
+        /// </summary>
+        /// <returns></returns>
+        [Test]
+        public async Task GetWechatAccessTokenTest()
+        {
+            var param = new GetWechatAccessTokenDto();
+            var res = await client.GetWechatAccessToken(param);
+            Assert.IsTrue(res.StatusCode == 200);
+        }
     }
 }
