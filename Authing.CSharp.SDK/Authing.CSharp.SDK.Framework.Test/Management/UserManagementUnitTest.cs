@@ -8,10 +8,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading;
+using System.Threading.Tasks;
 
 namespace Authing.CSharp.SDK.Framework.Test
 {
-    class UserManagementUnitTest:ManagementClientBaseTest
+    class UserManagementUnitTest : ManagementClientBaseTest
     {
 
         [Test]
@@ -224,7 +225,7 @@ namespace Authing.CSharp.SDK.Framework.Test
                     Status = CreateUserReqDto.status.ACTIVATED,
                     PasswordEncryptType = CreateUserReqDto.passwordEncryptType.NONE,
                     Password = "3866364",
-                    Options=new CreateUserOptionsDto { DepartmentIdType=CreateUserOptionsDto.departmentIdType.DEPARTMENT_ID}
+                    Options = new CreateUserOptionsDto { DepartmentIdType = CreateUserOptionsDto.departmentIdType.DEPARTMENT_ID }
                 };
 
                 UserSingleRespDto userSingleRespDto = managementClient.CreateUser(dto).Result;
@@ -337,7 +338,7 @@ namespace Authing.CSharp.SDK.Framework.Test
                 long beginTime = dateTimeService.DateTimeToLongTimeStamp(DateTime.Parse("2020-12-12 00:00:00"));
                 long endTime = dateTimeService.DateTimeToLongTimeStamp(DateTime.Parse("2023-12-12 00:00:00"));
 
-                UserLoginHistoryPaginatedRespDto dto = managementClient.GetUserLoginHistory(UserId, null, null,"", beginTime, endTime).Result;
+                UserLoginHistoryPaginatedRespDto dto = managementClient.GetUserLoginHistory(UserId, null, null, "", beginTime, endTime).Result;
 
                 Assert.IsTrue(dto.Data.List.Count > 0);
             }
@@ -366,6 +367,17 @@ namespace Authing.CSharp.SDK.Framework.Test
                 AuthorizedResourcePaginatedRespDto dto = managementClient.GetUserAuthorizedResources(UserId, "default").Result;
 
                 Assert.IsTrue(dto.Data.List.Count > 0);
+            }
+        }
+
+        [Test]
+        public async Task GetUserLoggedinIdentitiesTest()
+        {
+            using (CancellationTokenSource cts = new CancellationTokenSource())
+            {
+               UserLoggedInIdentitiesRespDto dto= await managementClient.GetUserLoggedinIdentities("62df936ca8070667353d3942");
+
+                Assert.NotNull(dto.Data);
             }
         }
 

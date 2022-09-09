@@ -264,6 +264,17 @@ namespace Authing.CSharp.SDK.Framework.Test
             }
         }
 
+        [Test]
+        public async Task GetRoleTest()
+        {
+            using (CancellationTokenSource cts = new CancellationTokenSource())
+            {
+               RoleSingleRespDto dto=   await managementClient.GetRole("Admin");
+
+                Assert.IsTrue(dto.Data != null);
+            }
+        }
+
 
     }
 }

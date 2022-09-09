@@ -334,5 +334,26 @@ namespace Authing.CSharp.SDK.Framework.Test
                 Assert.IsTrue(dto.Data.List.Count>0);
             }
         }
+
+        [Test]
+        public async Task IsActionAllowedTest()
+        {
+            using (CancellationTokenSource cts = new CancellationTokenSource())
+            {
+                //需要先在控制台授权用户资源
+
+                IsActionAllowedDto isActionAllowedDto = new IsActionAllowedDto 
+                {
+                    Action="ecs:start",
+                    Namespace= "default",
+                    Resource="ecs:*",
+                    UserId= "62df936ca8070667353d3942"
+                };
+
+                var dto = await managementClient.IsActionAllowed(isActionAllowedDto);
+
+                Assert.True(dto.Data.Allowed);
+            }
+        }
     }
 }

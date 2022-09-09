@@ -6,13 +6,14 @@ using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Management.Instrumentation;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace Authing.CSharp.SDK.Framework.Test
 {
-    class OrganizationsManagementTest: ManagementClientBaseTest
+    class OrganizationsManagementTest : ManagementClientBaseTest
     {
         [Test]
         public async Task ListOrganizationsTest()
@@ -20,7 +21,7 @@ namespace Authing.CSharp.SDK.Framework.Test
             using (CancellationTokenSource cts = new CancellationTokenSource())
             {
 
-                OrganizationPaginatedRespDto dto =await managementClient.ListOrganizations();
+                OrganizationPaginatedRespDto dto = await managementClient.ListOrganizations();
 
                 Assert.IsTrue(dto.Data.List.Count > 0);
             }
@@ -36,11 +37,11 @@ namespace Authing.CSharp.SDK.Framework.Test
                 {
                     OrganizationCode = "steamory",
                     OrganizationName = "蒸汽记忆",
-                    Description="组织描述信息",
-                    OpenDepartmentId= "60b49eb83fd80adb96f26e68"
+                    Description = "组织描述信息",
+                    OpenDepartmentId = "60b49eb83fd80adb96f26e68"
                 };
 
-                OrganizationSingleRespDto dto =await managementClient.CreateOrganization(reqDto);
+                OrganizationSingleRespDto dto = await managementClient.CreateOrganization(reqDto);
 
                 Assert.IsTrue(dto.Data.OrganizationName == "蒸汽记忆");
             }
@@ -59,7 +60,7 @@ namespace Authing.CSharp.SDK.Framework.Test
                     OrganizationNewCode = "newSteamory"
                 };
 
-                OrganizationSingleRespDto dto =await managementClient.UpdateOrganization(reqDto);
+                OrganizationSingleRespDto dto = await managementClient.UpdateOrganization(reqDto);
 
                 Assert.IsTrue(dto.Data.OrganizationCode == "newSteamory");
             }
@@ -70,7 +71,7 @@ namespace Authing.CSharp.SDK.Framework.Test
         {
             using (CancellationTokenSource cts = new CancellationTokenSource())
             {
-                OrganizationPaginatedRespDto dto =await managementClient.ListOrganizations();
+                OrganizationPaginatedRespDto dto = await managementClient.ListOrganizations();
 
                 foreach (var item in dto.Data.List)
                 {
@@ -90,7 +91,7 @@ namespace Authing.CSharp.SDK.Framework.Test
         {
             using (CancellationTokenSource cts = new CancellationTokenSource())
             {
-                DepartmentSingleRespDto dto =await managementClient.GetDepartment("61b1caf3559b06c557799b37", "9527");
+                DepartmentSingleRespDto dto = await managementClient.GetDepartment("61b1caf3559b06c557799b37", "9527");
 
                 Assert.IsTrue(dto.Data != null);
             }
@@ -108,13 +109,13 @@ namespace Authing.CSharp.SDK.Framework.Test
                     OrganizationCode = "steamory",
                     Code = "9999",
                     Name = "开发部",
-                    Description="技术研发部门",
-                    OpenDepartmentId= "61b1caf3559b06c557799b37",
-                    DepartmentIdType=CreateDepartmentReqDto.departmentIdType.OPEN_DEPARTMENT_ID
+                    Description = "技术研发部门",
+                    OpenDepartmentId = "61b1caf3559b06c557799b37",
+                    DepartmentIdType = CreateDepartmentReqDto.departmentIdType.OPEN_DEPARTMENT_ID
 
                 };
 
-                DepartmentSingleRespDto dto =await managementClient.CreateDepartment(reqDto);
+                DepartmentSingleRespDto dto = await managementClient.CreateDepartment(reqDto);
 
                 Assert.IsTrue(dto.Data.Name == "开发部");
             }
@@ -129,16 +130,16 @@ namespace Authing.CSharp.SDK.Framework.Test
                 UpdateDepartmentReqDto reqDto = new UpdateDepartmentReqDto()
                 {
                     ParentDepartmentId = "62986a99952bfd28c4f6afbe",
-                    DepartmentId= "62986b524aa16152d63dcb9d",
+                    DepartmentId = "62986b524aa16152d63dcb9d",
                     OrganizationCode = "steamory",
                     Code = "9999",
                     Name = "开发部Update",
-                    Description="技术研发部门Update",
-                    LeaderUserIds= new List<string> { "61b1caf3559b06c557799b37" },
-                    DepartmentIdType=UpdateDepartmentReqDto.departmentIdType.DEPARTMENT_ID
+                    Description = "技术研发部门Update",
+                    LeaderUserIds = new List<string> { "61b1caf3559b06c557799b37" },
+                    DepartmentIdType = UpdateDepartmentReqDto.departmentIdType.DEPARTMENT_ID
                 };
 
-                DepartmentSingleRespDto dto =await managementClient.UpdateDepartment(reqDto);
+                DepartmentSingleRespDto dto = await managementClient.UpdateDepartment(reqDto);
 
                 Assert.IsTrue(dto.Data.Name == "开发部Update");
             }
@@ -154,10 +155,10 @@ namespace Authing.CSharp.SDK.Framework.Test
 
                     OrganizationCode = "9999",
                     DepartmentId = "62986b524aa16152d63dcb9d",
-                    DepartmentIdType= DeleteDepartmentReqDto.departmentIdType.DEPARTMENT_ID
+                    DepartmentIdType = DeleteDepartmentReqDto.departmentIdType.DEPARTMENT_ID
                 };
 
-                IsSuccessRespDto isSuccess =await managementClient.DeleteDepartment(reqDto);
+                IsSuccessRespDto isSuccess = await managementClient.DeleteDepartment(reqDto);
             }
         }
 
@@ -173,7 +174,7 @@ namespace Authing.CSharp.SDK.Framework.Test
                     OrganizationCode = "steamory"
                 };
 
-                DepartmentListRespDto respDto =await managementClient.SearchDepartments(reqDto);
+                DepartmentListRespDto respDto = await managementClient.SearchDepartments(reqDto);
                 Assert.IsTrue(respDto.Data.Count > 0);
             }
         }
@@ -183,13 +184,13 @@ namespace Authing.CSharp.SDK.Framework.Test
         {
             using (CancellationTokenSource cts = new CancellationTokenSource())
             {
-                DepartmentPaginatedRespDto respDto =await managementClient.ListChildrenDepartments("steamory", "62986a99952bfd28c4f6afbe");
+                DepartmentPaginatedRespDto respDto = await managementClient.ListChildrenDepartments("steamory", "62986a99952bfd28c4f6afbe");
                 Assert.IsTrue(respDto.Data.List.Count > 0);
             }
         }
 
         [Test]
-        public void  ListDepartmentMembersTest()
+        public void ListDepartmentMembersTest()
         {
             using (CancellationTokenSource cts = new CancellationTokenSource())
             {
@@ -203,8 +204,8 @@ namespace Authing.CSharp.SDK.Framework.Test
         {
             using (CancellationTokenSource cts = new CancellationTokenSource())
             {
-                object respDto =await managementClient.ListDepartmentMemberIds("629872091ab96fdcc3904085", "999");
-                Assert.IsTrue(respDto!=null);
+                object respDto = await managementClient.ListDepartmentMemberIds("629872091ab96fdcc3904085", "999");
+                Assert.IsTrue(respDto != null);
             }
         }
 
@@ -213,15 +214,15 @@ namespace Authing.CSharp.SDK.Framework.Test
         {
             using (CancellationTokenSource cts = new CancellationTokenSource())
             {
-                AddDepartmentMembersReqDto addDepartmentMembersReqDto = new AddDepartmentMembersReqDto() 
+                AddDepartmentMembersReqDto addDepartmentMembersReqDto = new AddDepartmentMembersReqDto()
                 {
-                    DepartmentId= "629872091ab96fdcc3904085",
-                    OrganizationCode="999",
-                    UserIds=new List<string> { "629856a0220b550326eefd08" }
+                    DepartmentId = "629872091ab96fdcc3904085",
+                    OrganizationCode = "999",
+                    UserIds = new List<string> { "629856a0220b550326eefd08" }
                 };
 
-                IsSuccessRespDto respDto =await managementClient.AddDepartmentMembers(addDepartmentMembersReqDto);
-                Assert.IsTrue(respDto .Data.Success);
+                IsSuccessRespDto respDto = await managementClient.AddDepartmentMembers(addDepartmentMembersReqDto);
+                Assert.IsTrue(respDto.Data.Success);
             }
         }
 
@@ -237,7 +238,7 @@ namespace Authing.CSharp.SDK.Framework.Test
                     UserIds = new List<string> { "629856a0220b550326eefd08" }
                 };
 
-                IsSuccessRespDto respDto =await managementClient.RemoveDepartmentMembers(remove);
+                IsSuccessRespDto respDto = await managementClient.RemoveDepartmentMembers(remove);
                 Assert.IsTrue(respDto.Data.Success);
             }
         }
@@ -247,10 +248,42 @@ namespace Authing.CSharp.SDK.Framework.Test
         {
             using (CancellationTokenSource cts = new CancellationTokenSource())
             {
-                DepartmentSingleRespDto respDto =await managementClient.GetParentDepartment("629872091ab96fdcc3904085", "999");
-                Assert.IsTrue(respDto.Data.DepartmentId!=null);
+                DepartmentSingleRespDto respDto = await managementClient.GetParentDepartment("629872091ab96fdcc3904085", "999");
+                Assert.IsTrue(respDto.Data.DepartmentId != null);
             }
         }
+
+        [Test]
+        public async Task IsUserInDepartmentTest()
+        {
+            using (CancellationTokenSource cts = new CancellationTokenSource())
+            {
+                IsUserInDepartmentRespDto respDto = await managementClient.IsUserInDepartment("630f01362bf642ea26e430fc", "steamory", "62df936ca8070667353d3942");
+                Assert.IsTrue(respDto.Data.InDepartment);
+            }
+        }
+
+        [Test]
+        public async Task SearchDepartmentMemebersTest()
+        {
+            using (CancellationTokenSource cts = new CancellationTokenSource())
+            {
+                UserPaginatedRespDto respDto = await managementClient.SearchDepartmentMembers("22", "630f01362bf642ea26e430fc", "steamory");
+                Assert.IsTrue(respDto.Data.TotalCount>0);
+            }
+        }
+
+        [Test]
+        public async Task SearchOrganizationsTest()
+        {
+            using (CancellationTokenSource cts = new CancellationTokenSource())
+            {
+                OrganizationPaginatedRespDto respDto = await managementClient.SearchOrganizations("蒸汽记忆");
+                Assert.IsTrue(respDto.Data.TotalCount > 0);
+            }
+        }
+
+
 
     }
 }
