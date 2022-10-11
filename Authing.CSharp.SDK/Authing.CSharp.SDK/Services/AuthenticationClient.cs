@@ -1524,6 +1524,80 @@ namespace Authing.CSharp.SDK.Services
         }
 
         #endregion
+
+        #region 基于 signup 封装的注册方式 BEGIN
+
+        /// <summary>
+        /// 使用邮箱 + 密码注册
+        /// </summary>
+        /// <param name="email"></param>
+        /// <param name="password"></param>
+        /// <param name="option"></param>
+        /// <returns></returns>
+        public async Task<UserSingleRespDto> SignUpByEmailPassword(string email, string password, SignupOptionsDto option=null)
+        {
+            SignupDto dto = new SignupDto 
+            {
+                Connection=SignupDto.connection.PASSWORD,
+                PasswordPayload=new SignUpByPasswordDto 
+                {
+                    Email=email,
+                    Password=password,
+                },
+                Options=option
+            };
+
+            return await SignUp(dto);
+        }
+
+        /// <summary>
+        /// 使用邮箱 + 验证码注册
+        /// </summary>
+        /// <param name="email"></param>
+        /// <param name="password"></param>
+        /// <param name="option"></param>
+        /// <returns></returns>
+        public async Task<UserSingleRespDto> SignUpByEmailCode(string email, string passCode, SignupOptionsDto option = null)
+        {
+            SignupDto dto = new SignupDto
+            {
+                Connection = SignupDto.connection.PASSCODE,
+                PassCodePayload = new SignUpByPassCodeDto
+                {
+                    Email = email,
+                    PassCode = passCode,
+                },
+                Options = option
+            };
+
+            return await SignUp(dto);
+        }
+
+        /// <summary>
+        /// 使用手机号 + 验证码注册
+        /// </summary>
+        /// <param name="email"></param>
+        /// <param name="password"></param>
+        /// <param name="option"></param>
+        /// <returns></returns>
+        public async Task<UserSingleRespDto> SignUpByPhoneCode(string phone, string passCode,string phoneCountryCode=null, SignupOptionsDto option = null)
+        {
+            SignupDto dto = new SignupDto
+            {
+                Connection = SignupDto.connection.PASSCODE,
+                PassCodePayload = new SignUpByPassCodeDto
+                {
+                    Phone = phone,
+                    PhoneCountryCode=phoneCountryCode,
+                    PassCode = passCode,
+                },
+                Options = option
+            };
+
+            return await SignUp(dto);
+        }
+
+        #endregion
     }
 
 }
