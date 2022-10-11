@@ -1286,7 +1286,244 @@ namespace Authing.CSharp.SDK.Services
         #endregion
 
 
+        #region 基于 signInByCredentials 封装的登录方式 BEGIN
 
+        /// <summary>
+        /// 使用邮箱 + 密码登录
+        /// </summary>
+        /// <param name="email"></param>
+        /// <param name="password"></param>
+        /// <param name="option"></param>
+        /// <returns></returns>
+        public async Task<LoginTokenRespDto> SignInByEmailPassword(string email,string password,SignInOptionsDto option=null)
+        {
+            SigninByCredentialsDto dto = new SigninByCredentialsDto 
+            {
+                Connection=SigninByCredentialsDto.connection.PASSWORD,
+                PasswordPayload=new  AuthenticateByPasswordDto 
+                {
+                    Email=email,
+                    Password=password
+                },
+                Options=option
+            };
+
+            if (options.TokenEndPointAuthMethod == TokenEndPointAuthMethod.CLIENT_SECRET_POST)
+            {
+                dto.Client_id = options.AppId;
+                dto.Client_secret = options.AppSecret;
+            }
+
+            return await SignInByCredentials(dto);
+        }
+
+        /// <summary>
+        /// 使用手机号 + 密码登录
+        /// </summary>
+        /// <param name="email"></param>
+        /// <param name="password"></param>
+        /// <param name="option"></param>
+        /// <returns></returns>
+        public async Task<LoginTokenRespDto> SignInByPhonePassword(string phone, string password, SignInOptionsDto option = null)
+        {
+            SigninByCredentialsDto dto = new SigninByCredentialsDto
+            {
+                Connection = SigninByCredentialsDto.connection.PASSWORD,
+                PasswordPayload = new AuthenticateByPasswordDto
+                {
+                    Phone = phone,
+                    Password = password
+                },
+                Options = option
+            };
+
+            if (options.TokenEndPointAuthMethod == TokenEndPointAuthMethod.CLIENT_SECRET_POST)
+            {
+                dto.Client_id = options.AppId;
+                dto.Client_secret = options.AppSecret;
+            }
+
+            return await SignInByCredentials(dto);
+        }
+
+        /// <summary>
+        /// 使用用户名 + 密码登录
+        /// </summary>
+        /// <param name="email"></param>
+        /// <param name="password"></param>
+        /// <param name="option"></param>
+        /// <returns></returns>
+        public async Task<LoginTokenRespDto> SignInByUsernamePassword(string username, string password, SignInOptionsDto option = null)
+        {
+            SigninByCredentialsDto dto = new SigninByCredentialsDto
+            {
+                Connection = SigninByCredentialsDto.connection.PASSWORD,
+                PasswordPayload = new AuthenticateByPasswordDto
+                {
+                    Username = username,
+                    Password = password
+                },
+                Options = option
+            };
+
+            if (options.TokenEndPointAuthMethod == TokenEndPointAuthMethod.CLIENT_SECRET_POST)
+            {
+                dto.Client_id = options.AppId;
+                dto.Client_secret = options.AppSecret;
+            }
+
+            return await SignInByCredentials(dto);
+        }
+
+        /// <summary>
+        /// 使用用户名 + 密码登录
+        /// </summary>
+        /// <param name="email"></param>
+        /// <param name="password"></param>
+        /// <param name="option"></param>
+        /// <returns></returns>
+        public async Task<LoginTokenRespDto> SignInByAccountPassword(string account, string password, SignInOptionsDto option = null)
+        {
+            SigninByCredentialsDto dto = new SigninByCredentialsDto
+            {
+                Connection = SigninByCredentialsDto.connection.PASSWORD,
+                PasswordPayload = new AuthenticateByPasswordDto
+                {
+                    Account = account,
+                    Password = password
+                },
+                Options = option
+            };
+
+            if (options.TokenEndPointAuthMethod == TokenEndPointAuthMethod.CLIENT_SECRET_POST)
+            {
+                dto.Client_id = options.AppId;
+                dto.Client_secret = options.AppSecret;
+            }
+
+            return await SignInByCredentials(dto);
+        }
+
+        /// <summary>
+        /// 使用邮箱 + 验证码登录
+        /// </summary>
+        /// <param name="email"></param>
+        /// <param name="password"></param>
+        /// <param name="option"></param>
+        /// <returns></returns>
+        public async Task<LoginTokenRespDto> SignInByEmailPassCode(string email, string passCode, SignInOptionsDto option = null)
+        {
+            SigninByCredentialsDto dto = new SigninByCredentialsDto
+            {
+                Connection = SigninByCredentialsDto.connection.PASSCODE,
+                PassCodePayload = new AuthenticateByPassCodeDto
+                {
+                    Email = email,
+                    PassCode = passCode
+                },
+                Options = option
+            };
+
+            if (options.TokenEndPointAuthMethod == TokenEndPointAuthMethod.CLIENT_SECRET_POST)
+            {
+                dto.Client_id = options.AppId;
+                dto.Client_secret = options.AppSecret;
+            }
+
+            return await SignInByCredentials(dto);
+        }
+
+        /// <summary>
+        /// 使用手机号 + 验证码登录
+        /// </summary>
+        /// <param name="email"></param>
+        /// <param name="password"></param>
+        /// <param name="option"></param>
+        /// <returns></returns>
+        public async Task<LoginTokenRespDto> SignInByPhonePassCode(string phone, string passCode, string phoneCountryCode = null, SignInOptionsDto option = null)
+        {
+            SigninByCredentialsDto dto = new SigninByCredentialsDto
+            {
+                Connection = SigninByCredentialsDto.connection.PASSCODE,
+                PassCodePayload = new AuthenticateByPassCodeDto
+                {
+                    Phone=phone,
+                    PhoneCountryCode=phoneCountryCode,
+                    PassCode = passCode
+                },
+                Options = option
+            };
+
+            if (options.TokenEndPointAuthMethod == TokenEndPointAuthMethod.CLIENT_SECRET_POST)
+            {
+                dto.Client_id = options.AppId;
+                dto.Client_secret = options.AppSecret;
+            }
+
+            return await SignInByCredentials(dto);
+        }
+
+        /// <summary>
+        /// 使用 AD 账号密码登录
+        /// </summary>
+        /// <param name="sAMAccountName"> Windows AD 用户目录中账号的 sAMAccountName</param>
+        /// <param name="password"> 用户密码，默认不加密。Authing 所有 API 均通过 HTTPS 协议对密码进行安全传输，可以在一定程度上保证安全性。
+        /// 如果你还需要更高级别的安全性，我们还支持 `RSA256` 和国密 `SM2` 的密码加密方式。详情见可选参数 `options.passwordEncryptType`。</param>
+        /// <param name="option"></param>
+        /// <returns></returns>
+        public async Task<LoginTokenRespDto> SignInByAD(string sAMAccountName, string password,  SignInOptionsDto option = null)
+        {
+            SigninByCredentialsDto dto = new SigninByCredentialsDto
+            {
+                Connection = SigninByCredentialsDto.connection.AD,
+                AdPayload = new AuthenticateByADDto
+                {
+                    SAMAccountName = sAMAccountName,
+                    Password = password,
+                },
+                Options = option
+            };
+
+            if (options.TokenEndPointAuthMethod == TokenEndPointAuthMethod.CLIENT_SECRET_POST)
+            {
+                dto.Client_id = options.AppId;
+                dto.Client_secret = options.AppSecret;
+            }
+
+            return await SignInByCredentials(dto);
+        }
+
+        /// <summary>
+        /// 使用 LDAP 账号密码登录
+        /// </summary>
+        /// <param name="sAMAccountName"> Windows AD 用户目录中账号的 sAMAccountName</param>
+        /// <param name="password"> 用户密码，默认不加密。Authing 所有 API 均通过 HTTPS 协议对密码进行安全传输，可以在一定程度上保证安全性。
+        /// 如果你还需要更高级别的安全性，我们还支持 `RSA256` 和国密 `SM2` 的密码加密方式。详情见可选参数 `options.passwordEncryptType`。</param>
+        /// <param name="option"></param>
+        /// <returns></returns>
+        public async Task<LoginTokenRespDto> signInByLDAP(string sAMAccountName, string password, SignInOptionsDto option = null)
+        {
+            SigninByCredentialsDto dto = new SigninByCredentialsDto
+            {
+                Connection = SigninByCredentialsDto.connection.LDAP,
+                LdapPayload = new AuthenticateByLDAPDto
+                {
+                    SAMAccountName = sAMAccountName,
+                    Password = password,
+                },
+                Options = option
+            };
+
+            if (options.TokenEndPointAuthMethod == TokenEndPointAuthMethod.CLIENT_SECRET_POST)
+            {
+                dto.Client_id = options.AppId;
+                dto.Client_secret = options.AppSecret;
+            }
+
+            return await SignInByCredentials(dto);
+        }
+
+        #endregion
     }
 
 }

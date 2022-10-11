@@ -16,6 +16,9 @@ namespace Authing.CSharp.SDK.Utils
         private Dictionary<string, string> m_HeadderDic;
         private IJsonService m_JsonService;
 
+        private int timeOut = 10 * 1000;
+        private bool rejectUnauthorized = false;
+
         public HttpWebService(IJsonService jsonService)
         {
             m_HeadderDic = new Dictionary<string, string>();
@@ -26,7 +29,10 @@ namespace Authing.CSharp.SDK.Utils
         {
             try
             {
-                ServicePointManager.ServerCertificateValidationCallback += (s, cert, chain, sslPolicyErrors) => true;
+                if (!rejectUnauthorized)
+                {
+                    ServicePointManager.ServerCertificateValidationCallback += (s, cert, chain, sslPolicyErrors) => true;
+                }
                 ServicePointManager.SecurityProtocol = (SecurityProtocolType)192 | (SecurityProtocolType)768 | (SecurityProtocolType)3072;
 
                 string url = UrlCombine(baseUrl, apiPath, param);
@@ -35,6 +41,8 @@ namespace Authing.CSharp.SDK.Utils
                 request.Method = "Get";
                 request.ContentType = "application/json;charset=utf-8";
                 request.Proxy = null;
+                request.Timeout = this.timeOut;
+
 
                 SetWebRequestHeader(request, bearerToken);
 
@@ -60,7 +68,10 @@ namespace Authing.CSharp.SDK.Utils
         {
             try
             {
-                ServicePointManager.ServerCertificateValidationCallback += (s, cert, chain, sslPolicyErrors) => true;
+                if (!rejectUnauthorized)
+                {
+                    ServicePointManager.ServerCertificateValidationCallback += (s, cert, chain, sslPolicyErrors) => true;
+                }
                 ServicePointManager.SecurityProtocol = (SecurityProtocolType)192 | (SecurityProtocolType)768 | (SecurityProtocolType)3072;
 
                 string url = UrlCombine(baseUrl, apiPath, null);
@@ -69,6 +80,7 @@ namespace Authing.CSharp.SDK.Utils
                 HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create(url);
                 request.Method = "POST";
                 request.ContentType = "application/json;charset=utf-8";
+                request.Timeout = this.timeOut;
 
 
                 SetWebRequestHeader(request, bearerToken);
@@ -102,7 +114,10 @@ namespace Authing.CSharp.SDK.Utils
         {
             try
             {
-                ServicePointManager.ServerCertificateValidationCallback += (s, cert, chain, sslPolicyErrors) => true;
+                if (!rejectUnauthorized)
+                {
+                    ServicePointManager.ServerCertificateValidationCallback += (s, cert, chain, sslPolicyErrors) => true;
+                }
                 ServicePointManager.SecurityProtocol = (SecurityProtocolType)192 | (SecurityProtocolType)768 | (SecurityProtocolType)3072;
 
                 string url = UrlCombine(baseUrl, apiPath, null);
@@ -111,7 +126,7 @@ namespace Authing.CSharp.SDK.Utils
                 request.Method = "POST";
                 request.ContentType = "application/json;charset=utf-8";
                 request.Proxy = null;
-                //request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.5112.81 Safari/537.36 Edg/104.0.1293.54";
+                request.Timeout = this.timeOut;
 
                 SetWebRequestHeader(request, bearerToken);
 
@@ -144,7 +159,10 @@ namespace Authing.CSharp.SDK.Utils
         {
             try
             {
-                ServicePointManager.ServerCertificateValidationCallback += (s, cert, chain, sslPolicyErrors) => true;
+                if (!rejectUnauthorized)
+                {
+                    ServicePointManager.ServerCertificateValidationCallback += (s, cert, chain, sslPolicyErrors) => true;
+                }
                 ServicePointManager.SecurityProtocol = (SecurityProtocolType)192 | (SecurityProtocolType)768 | (SecurityProtocolType)3072;
 
                 string url = UrlCombine(baseUrl, apiPath, null);
@@ -153,6 +171,7 @@ namespace Authing.CSharp.SDK.Utils
                 request.Method = "POST";
                 request.ContentType = "application/x-www-form-urlencoded";
                 request.Proxy = null;
+                request.Timeout = this.timeOut;
 
                 SetWebRequestHeader(request, bearerToken);
 
@@ -271,6 +290,16 @@ namespace Authing.CSharp.SDK.Utils
             }
 
             return request;
+        }
+
+        public void SetTimeOut(int timeout)
+        {
+            this.timeOut = timeout;
+        }
+
+        public void RejectUnauthorized(bool reject)
+        {
+            this.rejectUnauthorized = reject;
         }
     }
 }

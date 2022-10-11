@@ -71,5 +71,16 @@ namespace Authing.CSharp.SDK.IServices
         /// 删除键值对
         /// </summary>
         void ClearHeader();
+
+        /// <summary>
+        /// 设置超时时间
+        /// </summary>
+        void SetTimeOut(int timeout);
+
+        /// <summary>
+        /// 是否拒绝非法的 HTTPS 请求，默认为 true；如果是私有化部署的场景且证书不被信任，可以设置为 false
+        /// </summary>
+        /// <param name="reject"></param>
+        void RejectUnauthorized(bool reject);
     }
 }
