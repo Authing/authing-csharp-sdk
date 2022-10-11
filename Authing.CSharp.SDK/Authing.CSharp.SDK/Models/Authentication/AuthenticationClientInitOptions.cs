@@ -1,6 +1,7 @@
 ﻿using Jose;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +13,15 @@ namespace Authing.CSharp.SDK.Models.Authentication
     /// </summary>
     public class AuthenticationClientInitOptions
     {
+        /// <summary>
+        /// 用户登陆后，通过认证后获取到的 AccessToken
+        /// </summary>
+        public string AccessToken { get; set; }
+
+        /// <summary>
+        /// 请求超时时间，单位为毫秒，默认为 10000，10秒
+        /// </summary>
+        public int TimeOut { get; set; } = 10 * 1000;
         /// <summary>
         /// 应用 ID
         /// </summary>
@@ -63,11 +73,6 @@ namespace Authing.CSharp.SDK.Models.Authentication
         public string Host { get; set; }
 
         /// <summary>
-        /// 密码传输加密公钥
-        /// </summary>
-        public string PublicKey { get; set; }
-
-        /// <summary>
         /// 应用身份协议
         /// </summary>
         public Protocol Protocol { get; set; } = Protocol.OIDC;
@@ -80,5 +85,32 @@ namespace Authing.CSharp.SDK.Models.Authentication
 
         public TokenEndPointAuthMethod RevocationEndPointAuthMethod { get; set; } =
             TokenEndPointAuthMethod.CLIENT_SECRET_POST;
+
+        /// <summary>
+        /// 返回的内容语言，默认为中文
+        /// </summary>
+        public ClientLang Lang { get; set; } = ClientLang.CH;
+
+        /// <summary>
+        /// 是否拒绝非法的 HTTPS 请求，默认为 true；如果是私有化部署的场景且证书不被信任，可以设置为 false
+        /// </summary>
+        public bool rejectUnauthorized { get; set; } = true;
+    }
+
+    /// <summary>
+    /// 返回内容的枚举
+    /// </summary>
+    public enum ClientLang
+    {
+        /// <summary>
+        /// 中文
+        /// </summary>
+        [Description("zh-CH")]
+        CH,
+        /// <summary>
+        /// 英文
+        /// </summary>
+        [Description("en-US")]
+        US
     }
 }
