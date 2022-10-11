@@ -1,4 +1,4 @@
-﻿using Authing.CSharp.SDK.Models;
+﻿using Authing.CSharp.SDK.Models.Management;
 using Authing.CSharp.SDK.Services;
 using Authing.CSharp.SDK.Utils;
 using Authing.CSharp.SDK.UtilsImpl;
@@ -20,7 +20,7 @@ namespace Authing.CSharp.SDK.Framework.Test
         {
             using (CancellationTokenSource cts = new CancellationTokenSource())
             {
-                string userIds = "61c188ccfff26fef0ca6880d";
+                string userIds = "634514b1368152ac89f207e6";
 
                 UserListRespDto userListRespDto = managementClient.GetUserBatch(userIds).Result;
 
@@ -32,8 +32,8 @@ namespace Authing.CSharp.SDK.Framework.Test
         public void ListUsersTest()
         {
             using (CancellationTokenSource cts = new CancellationTokenSource())
-            {
-                UserPaginatedRespDto userPaginatedRespDto = managementClient.ListUsers().Result;
+             {
+                UserPaginatedRespDto userPaginatedRespDto = managementClient.ListUsers(new ListUsersRequestDto { Options=new ListUsersOptionsDto { Pagination=new PaginationDto { Limit=10,Page=1} } }).Result;
 
                 Assert.IsTrue(userPaginatedRespDto.Data.TotalCount > 0);
             }
@@ -338,7 +338,7 @@ namespace Authing.CSharp.SDK.Framework.Test
                 long beginTime = dateTimeService.DateTimeToLongTimeStamp(DateTime.Parse("2020-12-12 00:00:00"));
                 long endTime = dateTimeService.DateTimeToLongTimeStamp(DateTime.Parse("2023-12-12 00:00:00"));
 
-                UserLoginHistoryPaginatedRespDto dto = managementClient.GetUserLoginHistory(UserId, null, null, "", beginTime, endTime).Result;
+                UserLoginHistoryPaginatedRespDto dto = managementClient.GetUserLoginHistory(UserId).Result;
 
                 Assert.IsTrue(dto.Data.List.Count > 0);
             }

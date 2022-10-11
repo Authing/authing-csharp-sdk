@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.Serialization;
 
-namespace Authing.CSharp.SDK.Models
+namespace Authing.CSharp.SDK.Models.Management
 {
     /// <summary>
     /// RevokeRoleBatchDto 的模型

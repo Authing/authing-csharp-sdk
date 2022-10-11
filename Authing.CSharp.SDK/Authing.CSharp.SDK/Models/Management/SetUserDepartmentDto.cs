@@ -6,28 +6,29 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.Serialization;
+using Authing.CSharp.SDK.Models.Management;
 
-namespace Authing.CSharp.SDK.Models
+   namespace Authing.CSharp.SDK.Models.Management
+{
+/// <summary>
+/// SetUserDepartmentDto 的模型
+/// </summary>
+public partial class SetUserDepartmentDto
 {
     /// <summary>
-    /// SetUserDepartmentDto 的模型
+    ///  部门 id
     /// </summary>
-    public partial class SetUserDepartmentDto
-    {
-        /// <summary>
-        ///  部门 id
-        /// </summary>
-        [JsonProperty("departmentId")]
-        public    string   DepartmentId    {get;set;}
-        /// <summary>
-        ///  是否是部门 leader
-        /// </summary>
-        [JsonProperty("isLeader")]
-        public    bool   IsLeader    {get;set;}
-        /// <summary>
-        ///  是否是主部门
-        /// </summary>
-        [JsonProperty("isMainDepartment")]
-        public    bool   IsMainDepartment    {get;set;}
-    }
+[JsonProperty("departmentId")]
+public    string   DepartmentId    {get;set;}
+    /// <summary>
+    ///  是否是部门 leader
+    /// </summary>
+[JsonProperty("isLeader")]
+public    bool   IsLeader    {get;set;}
+    /// <summary>
+    ///  是否是主部门
+    /// </summary>
+[JsonProperty("isMainDepartment")]
+public    bool   IsMainDepartment    {get;set;}
+}
 }

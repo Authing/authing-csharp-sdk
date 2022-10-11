@@ -6,18 +6,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.Serialization;
+using Authing.CSharp.SDK.Models.Management;
 
-namespace Authing.CSharp.SDK.Models
+   namespace Authing.CSharp.SDK.Models.Management
+{
+/// <summary>
+/// ResetPrincipalAuthenticationInfoRespDto 的模型
+/// </summary>
+public partial class ResetPrincipalAuthenticationInfoRespDto
 {
     /// <summary>
-    /// ResetPrincipalAuthenticationInfoRespDto 的模型
+    ///  操作是否成功
     /// </summary>
-    public partial class ResetPrincipalAuthenticationInfoRespDto
-    {
-        /// <summary>
-        ///  操作是否成功
-        /// </summary>
-        [JsonProperty("success")]
-        public    bool   Success    {get;set;}
-    }
+[JsonProperty("success")]
+public    bool   Success    {get;set;}
+}
 }

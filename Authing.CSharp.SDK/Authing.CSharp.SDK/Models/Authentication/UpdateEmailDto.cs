@@ -1,15 +1,23 @@
-﻿using System;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
+using System.Runtime.Serialization;
 
 namespace Authing.CSharp.SDK.Models
 {
-    public class UpdateEmailDto
+    /// <summary>
+    /// UpdateEmailDto 的模型
+    /// </summary>
+    public partial class UpdateEmailDto
     {
         /// <summary>
-        /// 用于临时修改邮箱的 token
+        ///  用于临时修改邮箱的 token，可从**发起修改邮箱的验证请求**接口获取。
         /// </summary>
-        public string UpdateEmailToken { get; set; }
+        [JsonProperty("updateEmailToken")]
+        public    string   UpdateEmailToken    {get;set;}
     }
 }

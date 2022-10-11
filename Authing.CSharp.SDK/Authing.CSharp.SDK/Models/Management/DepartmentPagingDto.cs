@@ -6,23 +6,24 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.Serialization;
+using Authing.CSharp.SDK.Models.Management;
 
-namespace Authing.CSharp.SDK.Models
+   namespace Authing.CSharp.SDK.Models.Management
+{
+/// <summary>
+/// DepartmentPagingDto 的模型
+/// </summary>
+public partial class DepartmentPagingDto
 {
     /// <summary>
-    /// DepartmentPagingDto 的模型
+    ///  总数
     /// </summary>
-    public partial class DepartmentPagingDto
-    {
-        /// <summary>
-        ///  总数
-        /// </summary>
-        [JsonProperty("totalCount")]
-        public    bool   TotalCount    {get;set;}
-        /// <summary>
-        ///  响应数据
-        /// </summary>
-        [JsonProperty("list")]
-        public    List<DepartmentDto>   List    {get;set;}
-    }
+[JsonProperty("totalCount")]
+public    bool   TotalCount    {get;set;}
+    /// <summary>
+    ///  响应数据
+    /// </summary>
+[JsonProperty("list")]
+public    List<DepartmentDto>   List    {get;set;}
+}
 }

@@ -1,4 +1,4 @@
-﻿using Authing.CSharp.SDK.Models;
+﻿using Authing.CSharp.SDK.Models.Management;
 using Authing.CSharp.SDK.Services;
 using Authing.CSharp.SDK.Utils;
 using Authing.CSharp.SDK.UtilsImpl;
@@ -110,7 +110,7 @@ namespace Authing.CSharp.SDK.Framework.Test
         {
             using (CancellationTokenSource cts = new CancellationTokenSource())
             {
-                ResourcePaginatedRespDto dto =await managementClient.ListResources("default");
+                ResourcePaginatedRespDto dto =await managementClient.ListResources("API","default");
 
                 Assert.IsTrue(dto.Data.List.Count > 0);
             }
@@ -329,7 +329,7 @@ namespace Authing.CSharp.SDK.Framework.Test
         {
             using (CancellationTokenSource cts = new CancellationTokenSource())
             {
-                AuthorizedResourcePaginatedRespDto dto =await managementClient.GetAuthorizedResources("61c1866a342c23ec8a6431fe", "USER", "default", "API");
+                AuthorizedResourcePaginatedRespDto dto =await managementClient.GetAuthorizedResources("61c1866a342c23ec8a6431fe", "USER", "default", "API","");
 
                 Assert.IsTrue(dto.Data.List.Count>0);
             }

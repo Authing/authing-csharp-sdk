@@ -6,23 +6,24 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.Serialization;
+using Authing.CSharp.SDK.Models.Management;
 
-namespace Authing.CSharp.SDK.Models
+   namespace Authing.CSharp.SDK.Models.Management
+{
+/// <summary>
+/// GetResourceDto 的模型
+/// </summary>
+public partial class GetResourceDto
 {
     /// <summary>
-    /// GetResourceDto 的模型
+    ///  资源唯一标志符
     /// </summary>
-    public partial class GetResourceDto
-    {
-        /// <summary>
-        ///  资源唯一标志符
-        /// </summary>
-        [JsonProperty("code")]
-        public    object   Code    {get;set;}
-        /// <summary>
-        ///  所属权限分组的 code
-        /// </summary>
-        [JsonProperty("namespace")]
-        public    object   Namespace    {get;set;}
-    }
+[JsonProperty("code")]
+public    object   Code    {get;set;}
+    /// <summary>
+    ///  所属权限分组的 code
+    /// </summary>
+[JsonProperty("namespace")]
+public    object   Namespace    {get;set;}
+}
 }

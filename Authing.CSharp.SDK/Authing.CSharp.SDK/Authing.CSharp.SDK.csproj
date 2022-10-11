@@ -43,10 +43,13 @@ Version 0.0.1
 
 	<ItemGroup>
 		<Compile Remove="logo\**" />
+		<Compile Remove="Models\Authentication\Generate\**" />
 		<Compile Remove="Models\BackUp\**" />
 		<EmbeddedResource Remove="logo\**" />
+		<EmbeddedResource Remove="Models\Authentication\Generate\**" />
 		<EmbeddedResource Remove="Models\BackUp\**" />
 		<None Remove="logo\**" />
+		<None Remove="Models\Authentication\Generate\**" />
 		<None Remove="Models\BackUp\**" />
 		<None Include=".\build\AuthingIcon.png">
 			<Pack>True</Pack>
@@ -70,6 +73,19 @@ Version 0.0.1
 
 
 	<ItemGroup>
+		<Compile Remove="Services\AuthenticationClient.Cas.cs" />
+		<Compile Remove="Services\AuthenticationClient.End.cs" />
+		<Compile Remove="Services\AuthenticationClient.Link.cs" />
+		<Compile Remove="Services\AuthenticationClient.Login.cs" />
+		<Compile Remove="Services\AuthenticationClient.Message.cs" />
+		<Compile Remove="Services\AuthenticationClient.Mfa.cs" />
+		<Compile Remove="Services\AuthenticationClient.OAuth.cs" />
+		<Compile Remove="Services\AuthenticationClient.Other.cs" />
+		<Compile Remove="Services\AuthenticationClient.Profile.cs" />
+		<Compile Remove="Services\AuthenticationClient.Saml.cs" />
+		<Compile Remove="Services\AuthenticationClient.Signup.cs" />
+		<Compile Remove="Services\AuthenticationClient.UserRes.cs" />
+		<Compile Remove="Services\AuthenticationClient.Wechat.cs" />
 		<Compile Remove="Services\ManagementService.cs" />
 		<Compile Remove="UtilsImpl\HttpService.cs" />
 	</ItemGroup>

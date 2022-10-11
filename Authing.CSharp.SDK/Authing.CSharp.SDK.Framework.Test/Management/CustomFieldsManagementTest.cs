@@ -1,4 +1,4 @@
-﻿using Authing.CSharp.SDK.Models;
+﻿using Authing.CSharp.SDK.Models.Management;
 using Authing.CSharp.SDK.Services;
 using Authing.CSharp.SDK.Utils;
 using Authing.CSharp.SDK.UtilsImpl;
@@ -97,7 +97,7 @@ namespace Authing.CSharp.SDK.Framework.Test
         {
             using (CancellationTokenSource cts = new CancellationTokenSource())
             {
-                GetCustomDataRespDto getCustomDataRespDto = managementClient.GetCustomData("6283074cf5d4ed3e7535b928","USER").Result;
+                GetCustomDataRespDto getCustomDataRespDto = managementClient.GetCustomData("default","6283074cf5d4ed3e7535b928","USER").Result;
                 Assert.IsNotNull(getCustomDataRespDto.Data);
             }
         }

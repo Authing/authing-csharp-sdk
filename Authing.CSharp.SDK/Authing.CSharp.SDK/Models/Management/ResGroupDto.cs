@@ -6,28 +6,29 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.Serialization;
+using Authing.CSharp.SDK.Models.Management;
 
-namespace Authing.CSharp.SDK.Models
+   namespace Authing.CSharp.SDK.Models.Management
+{
+/// <summary>
+/// ResGroupDto 的模型
+/// </summary>
+public partial class ResGroupDto
 {
     /// <summary>
-    /// ResGroupDto 的模型
+    ///  分组 code
     /// </summary>
-    public partial class ResGroupDto
-    {
-        /// <summary>
-        ///  分组 code
-        /// </summary>
-        [JsonProperty("code")]
-        public    string   Code    {get;set;}
-        /// <summary>
-        ///  分组名称
-        /// </summary>
-        [JsonProperty("name")]
-        public    string   Name    {get;set;}
-        /// <summary>
-        ///  分组描述
-        /// </summary>
-        [JsonProperty("description")]
-        public    string   Description    {get;set;}
-    }
+[JsonProperty("code")]
+public    string   Code    {get;set;}
+    /// <summary>
+    ///  分组名称
+    /// </summary>
+[JsonProperty("name")]
+public    string   Name    {get;set;}
+    /// <summary>
+    ///  分组描述
+    /// </summary>
+[JsonProperty("description")]
+public    string   Description    {get;set;}
+}
 }

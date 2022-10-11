@@ -6,18 +6,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.Serialization;
+using Authing.CSharp.SDK.Models.Management;
 
-namespace Authing.CSharp.SDK.Models
+   namespace Authing.CSharp.SDK.Models.Management
+{
+/// <summary>
+/// CreateGroupBatchReqDto 的模型
+/// </summary>
+public partial class CreateGroupBatchReqDto
 {
     /// <summary>
-    /// CreateGroupBatchReqDto 的模型
+    ///  批量分组
     /// </summary>
-    public partial class CreateGroupBatchReqDto
-    {
-        /// <summary>
-        ///  批量分组
-        /// </summary>
-        [JsonProperty("list")]
-        public    List<CreateGroupReqDto>   List    {get;set;}
-    }
+[JsonProperty("list")]
+public    List<CreateGroupReqDto>   List    {get;set;}
+}
 }

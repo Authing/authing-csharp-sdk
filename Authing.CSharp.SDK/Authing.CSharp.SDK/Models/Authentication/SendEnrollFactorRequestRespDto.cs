@@ -1,76 +1,43 @@
-﻿using System;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Newtonsoft.Json;
+using System.Threading.Tasks;
+using System.Runtime.Serialization;
 
-namespace Authing.CSharp.SDK.Models.Authentication
+namespace Authing.CSharp.SDK.Models
 {
     /// <summary>
-    /// 发起绑定 MFA 认证要素请求参数类的返回结果类
+    /// SendEnrollFactorRequestRespDto 的模型
     /// </summary>
-    public class SendEnrollFactorRequestRespDto
+    public partial class SendEnrollFactorRequestRespDto
     {
         /// <summary>
-        /// 业务状态码，可以通过此状态码判断操作是否成功，200 表示成功
+        ///  业务状态码，可以通过此状态码判断操作是否成功，200 表示成功。
         /// </summary>
         [JsonProperty("statusCode")]
-        public string statusCode { get; set; }
-
+        public    long   StatusCode    {get;set;}
         /// <summary>
-        /// 描述信息
+        ///  描述信息
         /// </summary>
         [JsonProperty("message")]
-        public string Message { get; set; }
-
+        public    string   Message    {get;set;}
         /// <summary>
-        /// 细分错误码，可通过此错误码得到具体的错误类型
+        ///  细分错误码，可通过此错误码得到具体的错误类型。
         /// </summary>
         [JsonProperty("apiCode")]
-        public string ApiCode { get; set; }
-
+        public    long   ApiCode    {get;set;}
+        /// <summary>
+        ///  请求 ID。当请求失败时会返回。
+        /// </summary>
+        [JsonProperty("requestId")]
+        public    string   RequestId    {get;set;}
         /// <summary>
         ///  响应数据
         /// </summary>
         [JsonProperty("data")]
-        public SendEnrollFactorRequest Data { get; set; }
+        public    SendEnrollFactorRequestDataDto   Data    {get;set;}
     }
-
-    public class SendEnrollFactorRequest
-    {
-        /// <summary>
-        /// 临时凭证 enrollmentToken，有效时间为一分钟。在进行「绑定 MFA 认证要素」时，需要带上此参数
-        /// </summary>
-        [JsonProperty("enrollmentToken")]
-        public string EnrollmentToken { get; set; }
-
-        /// <summary>
-        /// 发起绑定 OTP 类型认证要素时，接口会返回此数据
-        /// </summary>
-        [JsonProperty("otpData")]
-        public OtpData OtpData { get; set; }
-    }
-
-
-    public class OtpData
-    {
-        /// <summary>
-        /// OTP Auth Uri
-        /// </summary>
-        [JsonProperty("qrCodeUri")]
-        public string QrCodeUri { get; set; }
-
-        /// <summary>
-        /// Base64 编码的 OTP 二维码，前端可以用此渲染二维码
-        /// </summary>
-        [JsonProperty("qrCodeDataUrl")]
-        public string QrCodeDataUrl { get; set; }
-
-        /// <summary>
-        /// OTP Recovery Code
-        /// </summary>
-        [JsonProperty("recoveryCode")]
-        public string RecoveryCode { get; set; }
-    }
-
 }

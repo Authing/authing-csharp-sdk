@@ -7,6 +7,19 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="AuthenticationClientTest\LinkTest.cs" />
+    <Compile Remove="AuthenticationClientTest\MessageTest.cs" />
+    <Compile Remove="AuthenticationClientTest\MfaTest.cs" />
+    <Compile Remove="AuthenticationClientTest\OtherTest.cs" />
+    <Compile Remove="AuthenticationClientTest\ProfileTest.cs" />
+    <Compile Remove="AuthenticationClientTest\SigninTest.cs" />
+    <Compile Remove="AuthenticationClientTest\SignupTest.cs" />
+    <Compile Remove="AuthenticationClientTest\StandardProtocolTest.cs" />
+    <Compile Remove="AuthenticationClientTest\UserResourceTest.cs" />
+    <Compile Remove="AuthenticationClientTest\WechatAuthenticationClientTest.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="NUnit" Version="3.12.0" />
     <PackageReference Include="NUnit3TestAdapter" Version="3.16.1" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.5.0" />

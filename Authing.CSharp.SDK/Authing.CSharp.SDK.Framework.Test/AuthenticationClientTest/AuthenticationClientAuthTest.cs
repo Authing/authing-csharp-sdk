@@ -24,11 +24,12 @@ namespace Authing.CSharp.SDK.Framework.Test
                 //AppSecret = "325d96c907a989b9f6b67584e1632909",
                 //Domain = @"https://authinglogindemo.authing.cn",
                 //RediretUri = loginCallbackUrl,
-                AppId = "62a9902a80f55c22346eb296",
-                AppSecret = "d453ef11f873527eb4a8a084f4b5e059",
-                AppHost = @"https://qidongtest.authing.cn",
+                AppId = "6343bb084f16915f1becc730",
+                AppSecret = "8ebe5abcc740f3bde1ba29621557675c",
+                AppHost = @"https://dwsfwf.cj.mereith.com",
+                Host = @"http://8.142.39.176:3000",
                 RedirectUri = loginCallbackUrl,
-            });
+            }); 
         }
 
         [Test]
@@ -94,6 +95,18 @@ namespace Authing.CSharp.SDK.Framework.Test
             var loginState = await client.GetLoginStateByAuthCode(@"SaJq1XVhhc_8RHm9sES3tsPpdPG-HHExczMHfttXPgB", loginCallbackUrl);
             AccessToken accessToken = client.ParseAccessToken(loginState.AccessToken);
             Assert.IsNotNull(accessToken);
+        }
+
+        [Test]
+        public async Task GetCountryListTest()
+        {
+            var result = await client.SignInByCredentials(new Models.SigninByCredentialsDto 
+            { 
+                Client_id= "6343bb084f16915f1becc730",
+                Client_secret= "8ebe5abcc740f3bde1ba29621557675c",
+                Connection=Models.SigninByCredentialsDto.connection.PASSWORD ,
+                PasswordPayload=new Models.AuthenticateByPasswordDto { Username="test",Password="test"}
+            });
         }
 
     }

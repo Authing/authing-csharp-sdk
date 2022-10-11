@@ -1,38 +1,43 @@
-﻿using System;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Newtonsoft.Json;
+using System.Threading.Tasks;
+using System.Runtime.Serialization;
 
-namespace Authing.CSharp.SDK.Models.Authentication
+namespace Authing.CSharp.SDK.Models
 {
     /// <summary>
-    /// 获取绑定的外部身份源 Dto
+    /// GetIdentitiesRespDto 的模型
     /// </summary>
-    public class GetIdentitiesRespDto
+    public partial class GetIdentitiesRespDto
     {
         /// <summary>
-        /// 业务状态码，可以通过此状态码判断操作是否成功，200 表示成功
+        ///  业务状态码，可以通过此状态码判断操作是否成功，200 表示成功。
         /// </summary>
         [JsonProperty("statusCode")]
-        public string statusCode { get; set; }
-
+        public    long   StatusCode    {get;set;}
         /// <summary>
-        /// 描述信息
+        ///  描述信息
         /// </summary>
         [JsonProperty("message")]
-        public string Message { get; set; }
-
+        public    string   Message    {get;set;}
         /// <summary>
-        /// 细分错误码，可通过此错误码得到具体的错误类型
+        ///  细分错误码，可通过此错误码得到具体的错误类型。
         /// </summary>
         [JsonProperty("apiCode")]
-        public string ApiCode { get; set; }
-
+        public    long   ApiCode    {get;set;}
+        /// <summary>
+        ///  请求 ID。当请求失败时会返回。
+        /// </summary>
+        [JsonProperty("requestId")]
+        public    string   RequestId    {get;set;}
         /// <summary>
         ///  用户的身份源列表
         /// </summary>
         [JsonProperty("data")]
-        public IEnumerable<IdentityDto> Data { get; set; }
+        public    List<IdentityDto>   Data    {get;set;}
     }
 }

@@ -1,59 +1,43 @@
-﻿using System;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Newtonsoft.Json;
+using System.Threading.Tasks;
+using System.Runtime.Serialization;
 
-namespace Authing.CSharp.SDK.Models.Authentication
+namespace Authing.CSharp.SDK.Models
 {
     /// <summary>
-    /// 获取绑定的所有 MFA 认证要素返回结果类
+    /// ListEnrolledFactorsRespDto 的模型
     /// </summary>
-    public class ListEnrolledFactorsRespDto
+    public partial class ListEnrolledFactorsRespDto
     {
         /// <summary>
-        /// 业务状态码，可以通过此状态码判断操作是否成功，200 表示成功
+        ///  业务状态码，可以通过此状态码判断操作是否成功，200 表示成功。
         /// </summary>
         [JsonProperty("statusCode")]
-        public string statusCode { get; set; }
-
+        public    long   StatusCode    {get;set;}
         /// <summary>
-        /// 描述信息
+        ///  描述信息
         /// </summary>
         [JsonProperty("message")]
-        public string Message { get; set; }
-
+        public    string   Message    {get;set;}
         /// <summary>
-        /// 细分错误码，可通过此错误码得到具体的错误类型
+        ///  细分错误码，可通过此错误码得到具体的错误类型。
         /// </summary>
         [JsonProperty("apiCode")]
-        public string ApiCode { get; set; }
-
+        public    long   ApiCode    {get;set;}
+        /// <summary>
+        ///  请求 ID。当请求失败时会返回。
+        /// </summary>
+        [JsonProperty("requestId")]
+        public    string   RequestId    {get;set;}
         /// <summary>
         ///  MFA Factor 列表
         /// </summary>
         [JsonProperty("data")]
-        public IEnumerable<FactorDto> Data { get; set; }
-    }
-
-    public class FactorDto
-    {
-        /// <summary>
-        /// MFA 认证要素ID
-        /// </summary>
-        [JsonProperty("factorId")]
-        public string FactorId { get; set; }
-
-        /// <summary>
-        /// MFA 认证要素类型
-        /// </summary>
-        [JsonProperty("factorType")]
-        public FactorType FactorType { get; set; }
-
-        /// <summary>
-        /// MFA 认证要素信息
-        /// </summary>
-        [JsonProperty("profile")]
-        public object Profile { get; set; }
+        public    List<FactorDto>   Data    {get;set;}
     }
 }

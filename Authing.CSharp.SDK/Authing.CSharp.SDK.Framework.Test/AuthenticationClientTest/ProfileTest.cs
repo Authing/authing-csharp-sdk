@@ -17,7 +17,7 @@ namespace Authing.CSharp.SDK.Framework.Test.AuthenticationClientTest
             loginDto.PasswordPayload = new PasswordPayload
             {
                 UserName = "qidong1122",
-                Password = "12345678"
+                Password = "3866364"
             };
 
             LoginTokenRespDto loginTokenRespDto = await client.Signin(loginDto);
@@ -290,7 +290,7 @@ namespace Authing.CSharp.SDK.Framework.Test.AuthenticationClientTest
             resetPasswordVerifyDto.EmailPassCodePayload = new ResetPasswordEmailPassCodePayload
             {
                 Email = "635877990@qq.com",
-                PassCode = "8007",
+                PassCode = "1188",
             };
 
             var result = await client.VerifyResetPasswordRequest(resetPasswordVerifyDto);

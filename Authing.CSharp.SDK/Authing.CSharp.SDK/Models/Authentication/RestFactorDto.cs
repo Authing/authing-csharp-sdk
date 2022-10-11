@@ -1,20 +1,23 @@
-﻿using System;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Newtonsoft.Json;
+using System.Threading.Tasks;
+using System.Runtime.Serialization;
 
-namespace Authing.CSharp.SDK.Models.Authentication
+namespace Authing.CSharp.SDK.Models
 {
     /// <summary>
-    /// 解绑 MFA 认证要素传递参数类
+    /// RestFactorDto 的模型
     /// </summary>
-    public class RestFactorDto
+    public partial class RestFactorDto
     {
         /// <summary>
-        /// MFA 认证要素 ID
+        ///  MFA 认证要素 ID
         /// </summary>
         [JsonProperty("factorId")]
-        public string FactorId { get; set; }
+        public    string   FactorId    {get;set;}
     }
 }

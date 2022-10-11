@@ -1,4 +1,4 @@
-﻿using Authing.CSharp.SDK.Models;
+﻿using Authing.CSharp.SDK.Models.Management;
 using Authing.CSharp.SDK.Services;
 using Authing.CSharp.SDK.Utils;
 using Authing.CSharp.SDK.UtilsImpl;
@@ -32,7 +32,7 @@ namespace Authing.CSharp.SDK.Framework.Test
         {
             using (CancellationTokenSource cts = new CancellationTokenSource())
             {
-                GroupPaginatedRespDto dto =await managementClient.ListGroups();
+                GroupPaginatedRespDto dto =await managementClient.ListGroups("");
 
                 Assert.IsTrue(dto.Data.TotalCount > 0);
             }

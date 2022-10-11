@@ -6,36 +6,37 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.Serialization;
+using Authing.CSharp.SDK.Models.Management;
 
-namespace Authing.CSharp.SDK.Models
+   namespace Authing.CSharp.SDK.Models.Management
+{
+/// <summary>
+/// GetAuthorizedResourceActionDto 的模型
+/// </summary>
+public partial class GetAuthorizedResourceActionDto
 {
     /// <summary>
-    /// GetAuthorizedResourceActionDto 的模型
+    ///  AND or OR
     /// </summary>
-    public partial class GetAuthorizedResourceActionDto
-    {
-        /// <summary>
-        ///  AND or OR
-        /// </summary>
-        [JsonProperty("op")]
-        public    op   Op    {get;set;}
-        /// <summary>
-        ///  Action 列表
-        /// </summary>
-        [JsonProperty("list")]
-        public    List<string>   List    {get;set;}
+[JsonProperty("op")]
+public    op   Op    {get;set;}
+    /// <summary>
+    ///  Action 列表
+    /// </summary>
+[JsonProperty("list")]
+public    List<string>   List    {get;set;}
+}
+public partial class GetAuthorizedResourceActionDto
+ {
+    /// <summary>
+    ///  AND or OR
+    /// </summary>
+    public enum op
+     {
+         [EnumMember(Value="AND")]
+        AND,
+         [EnumMember(Value="OR")]
+        OR,
     }
-    public partial class GetAuthorizedResourceActionDto
-    {
-        /// <summary>
-        ///  AND or OR
-        /// </summary>
-        public enum op
-        {
-            [EnumMember(Value="AND")]
-            AND,
-            [EnumMember(Value="OR")]
-            OR,
-        }
-    }
+}
 }

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Authing.CSharp.SDK.Models
+namespace Authing.CSharp.SDK.Models.Management
 {
     /// <summary>
     /// 初始化 Client 的配置

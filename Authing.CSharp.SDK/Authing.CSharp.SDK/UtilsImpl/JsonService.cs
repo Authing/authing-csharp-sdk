@@ -41,6 +41,21 @@ namespace Authing.CSharp.SDK.Utils
             return result;
         }
 
+        public string SerializeObjectIngoreNull(object obj)
+        {
+            settings = new JsonSerializerSettings
+            {
+                NullValueHandling = NullValueHandling.Ignore,
+                Converters = new List<JsonConverter>()
+                {
+                    new StringEnumConverter()
+                }
+            };
+            string result = JsonConvert.SerializeObject(obj, settings);
+
+            return result;
+        }
+
         public string SerializeObjectCamelCase(object obj,bool ingoreNull=true)
         {
             settings = new JsonSerializerSettings

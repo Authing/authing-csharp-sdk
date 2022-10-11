@@ -1,4 +1,4 @@
-﻿using Authing.CSharp.SDK.Models;
+﻿using Authing.CSharp.SDK.Models.Management;
 using Authing.CSharp.SDK.Services;
 using Authing.CSharp.SDK.Utils;
 using Authing.CSharp.SDK.UtilsImpl;
@@ -19,7 +19,7 @@ namespace Authing.CSharp.SDK.Framework.Test
         {
             using (CancellationTokenSource cts = new CancellationTokenSource())
             {
-                ExtIdpListPaginatedRespDto dto = await managementClient.ListExtIdp();
+                ExtIdpListPaginatedRespDto dto = await managementClient.ListExtIdp("","");
 
                 Assert.IsTrue(dto.Data.List.Count > 0);
             }
@@ -30,7 +30,7 @@ namespace Authing.CSharp.SDK.Framework.Test
         {
             using (CancellationTokenSource cts = new CancellationTokenSource())
             {
-                ExtIdpDetailSingleRespDto dto = await managementClient.GetExtIdp("62982b6aedad16dc3cbafad4", "62987fc95fdc00c85410105f");
+                ExtIdpDetailSingleRespDto dto = await managementClient.GetExtIdp("","","62982b6aedad16dc3cbafad4", "62987fc95fdc00c85410105f");
 
                 Assert.IsTrue(dto.Data.Id == "62982b6aedad16dc3cbafad4");
             }

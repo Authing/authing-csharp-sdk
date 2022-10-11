@@ -6,18 +6,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.Serialization;
+using Authing.CSharp.SDK.Models.Management;
 
-namespace Authing.CSharp.SDK.Models
+   namespace Authing.CSharp.SDK.Models.Management
+{
+/// <summary>
+/// DeleteOrganizationReqDto 的模型
+/// </summary>
+public partial class DeleteOrganizationReqDto
 {
     /// <summary>
-    /// DeleteOrganizationReqDto 的模型
+    ///  组织 code
     /// </summary>
-    public partial class DeleteOrganizationReqDto
-    {
-        /// <summary>
-        ///  组织 code
-        /// </summary>
-        [JsonProperty("organizationCode")]
-        public    string   OrganizationCode    {get;set;}
-    }
+[JsonProperty("organizationCode")]
+public    string   OrganizationCode    {get;set;}
+}
 }

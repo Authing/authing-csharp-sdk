@@ -6,18 +6,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.Serialization;
+using Authing.CSharp.SDK.Models.Management;
 
-namespace Authing.CSharp.SDK.Models
+   namespace Authing.CSharp.SDK.Models.Management
+{
+/// <summary>
+/// DeleteExtIdpDto 的模型
+/// </summary>
+public partial class DeleteExtIdpDto
 {
     /// <summary>
-    /// DeleteExtIdpDto 的模型
+    ///  身份源 ID
     /// </summary>
-    public partial class DeleteExtIdpDto
-    {
-        /// <summary>
-        ///  身份源 ID
-        /// </summary>
-        [JsonProperty("id")]
-        public    string   Id    {get;set;}
-    }
+[JsonProperty("id")]
+public    string   Id    {get;set;}
+}
 }
