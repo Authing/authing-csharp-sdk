@@ -24,9 +24,9 @@ namespace Authing.CSharp.SDK.Services
 
 
         protected readonly string m_AppId;
-        private readonly ClientLang lang;
-        private bool rejectUnAuhtorized;
-        private int timeOut;
+        private string accessToken;
+        private bool needBase64 = false;
+        private AuthenticationClientInitOptions options;
 
         public BaseAuthenticationService(AuthenticationClientInitOptions options) : base(new JsonService())
         {
@@ -39,10 +39,7 @@ namespace Authing.CSharp.SDK.Services
                 m_Host = options.Host;
             }
 
-            m_AppId = options.AppId;
-            lang = options.Lang;
-            timeOut = options.TimeOut;
-            rejectUnAuhtorized = options.rejectUnauthorized;
+            this.options = options;
         }
 
         protected async Task<string> GetAsync(string apiPath)
@@ -193,6 +190,31 @@ namespace Authing.CSharp.SDK.Services
             return httpResponse;
         }
 
+        private List<string> endPointToSendBasicHeader = new List<string>
+                                                             {
+                                                              "/oidc/token",
+                                                              "/oidc/token/revocation",
+                                                              "/oidc/token/introspection",
+                                                              "/oauth/token",
+                                                              "/oauth/token/revocation",
+                                                              "/oauth/token/introspection",
+                                                              "/api/v3/signin",
+                                                              "/api/v3/signin-by-mobile",
+                                                              "/api/v3/exchange-tokenset-with-qrcode-ticket"
+                                                            };
+
+        private void NeedBase64(string apiPath)
+        {
+            if (options.TokenEndPointAuthMethod == Models.TokenEndPointAuthMethod.CLIENT_SECRET_BASIC && endPointToSendBasicHeader.Contains(apiPath))
+            {
+                needBase64 = true;
+            }
+            else
+            {
+                needBase64 = false; 
+            }
+        }
+
         protected void SetHeaders(Dictionary<string, string> headers = null)
         {
             m_HttpService.ClearHeader();
@@ -205,18 +227,34 @@ namespace Authing.CSharp.SDK.Services
                 }
             }
 
+            if (!string.IsNullOrWhiteSpace(accessToken))
+            {
+                if (needBase64)
+                {
+                    byte[] bytes = Encoding.UTF8.GetBytes($"{options.AppId}:{options.AppSecret}");
+
+                    string token = "Basic " + Convert.ToBase64String(bytes);
+                    m_HttpService.SetBearerToken(token);
+                }
+                else
+                {
+                    m_HttpService.SetBearerToken(accessToken);
+                }
+            }
+
             m_HttpService.SetHeader("x-authing-request-from", "SDK");
             m_HttpService.SetHeader("x-authing-sdk-version", "c-sharp:5.0.0");
             m_HttpService.SetHeader("x-authing-app-id", m_AppId);
-            m_HttpService.SetHeader("x-authing-lang", lang.GetDescription());
+            m_HttpService.SetHeader("x-authing-lang", options.Lang.GetDescription());
 
-            m_HttpService.SetTimeOut(timeOut);
-            m_HttpService.RejectUnauthorized(rejectUnAuhtorized);
-           
+            m_HttpService.SetTimeOut(options.TimeOut);
+            m_HttpService.RejectUnauthorized(options.rejectUnauthorized);
+
         }
 
         protected async Task<string> Request<T>(string method, string apiPath, T dto)
         {
+            NeedBase64(apiPath);
             if (method == "Get")
             {
                 return await GetAsync(apiPath, m_JsonService.SerializeObjectIngoreNull(dto)).ConfigureAwait(false);
@@ -229,6 +267,7 @@ namespace Authing.CSharp.SDK.Services
 
         protected async Task<string> Request(string method, string apiPath)
         {
+            NeedBase64(apiPath);
             if (method == "Get")
             {
                 return await GetAsync(apiPath).ConfigureAwait(false);

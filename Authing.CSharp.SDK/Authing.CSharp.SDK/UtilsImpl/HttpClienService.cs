@@ -20,6 +20,9 @@ namespace Authing.CSharp.SDK.UtilsImpl
         private Dictionary<string, string> m_HeadderDic;
         private string m_BearerToken;
         private readonly IServiceProvider m_ServiceProvider;
+        private int timeOut = 10 * 1000;
+        private bool rejectUnauthorized = false;
+
         static HttpClienService()
         {
             ServicePointManager.DefaultConnectionLimit = 1024;
@@ -45,7 +48,6 @@ namespace Authing.CSharp.SDK.UtilsImpl
                 using (HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, finalUrl))
                 {
                     SetWebRequestHeader(request, bearerToken);
-
                     using (HttpResponseMessage response = await m_HttpClient.SendAsync(request, cancelllationToken).ConfigureAwait(false))
                     {
                         if (!response.IsSuccessStatusCode)
@@ -225,6 +227,15 @@ namespace Authing.CSharp.SDK.UtilsImpl
             return result;
         }
 
+        public void SetTimeOut(int timeout)
+        {
+            this.timeOut = timeout;
+        }
+
+        public void RejectUnauthorized(bool reject)
+        {
+            this.rejectUnauthorized = reject;
+        }
     }
 
 }

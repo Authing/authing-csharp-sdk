@@ -25,7 +25,7 @@ namespace Authing.CSharp.SDK.Services
 
         private readonly AuthenticationClientInitOptions options;
         private readonly string domain;
-        private JwkSet jwks;
+        private JwkSet serverJwks;
 
         private IRegexService regexService = new RegexService();
         private IJsonService jsonService = new JsonService();
@@ -60,26 +60,27 @@ namespace Authing.CSharp.SDK.Services
             this.options = options;
             this.domain = regexService.DomainC14n(options.AppHost);
 
-            Init();
         }
 
-        private void Init()
+        private async Task<JwkSet> GetJwksFromServer()
         {
             if (options.ServerJWKS != null)
             {
-                this.jwks = options.ServerJWKS;
+                this.serverJwks = options.ServerJWKS;
             }
             else
             {
                 try
                 {
-                    this.jwks = GetJWKSJSONAsync().Result;
+                    this.serverJwks =await GetJWKSJSONAsync();
                 }
                 catch (Exception exp)
                 {
                     throw new Exception("自动获取认证服务器 JWKS 公钥失败, 请检查域名是否正确, 或手动指定 serverJWKS 参数:" + exp.Message);
                 }
             }
+
+            return serverJwks;
         }
 
 #if NET45
@@ -368,7 +369,7 @@ namespace Authing.CSharp.SDK.Services
             };
 
             OIDCTokenResponse response = await GetToken(tokenParam).ConfigureAwait(false);
-            var result = BuildLoginState(response);
+            var result =await BuildLoginState(response);
             return result;
         }
 
@@ -402,7 +403,8 @@ namespace Authing.CSharp.SDK.Services
 
             string json = await PostFormAsync("/oidc/token", param).ConfigureAwait(false);
             OIDCTokenResponse res = jsonService.DeserializeObject<OIDCTokenResponse>(json);
-            return BuildLoginState(res);
+            var result=await BuildLoginState(res);
+            return result;
         }
 
         /// <summary>
@@ -437,12 +439,17 @@ namespace Authing.CSharp.SDK.Services
         /// </summary>
         /// <param name="token">ID Token</param>
         /// <returns></returns>
-        public IDToken ParseIDToken(string token)
+        public async Task<IDToken> ParseIDToken(string token,JwkSet jwks=null)
         {
             IDToken idToken = new IDToken();
             string jsonStr = "";
             try
             {
+                if (jwks == null)
+                {
+                    jwks = await GetJwksFromServer();
+                }
+
                 IDictionary<string, object> dic = Jose.JWT.Headers(token);
                 if (dic.ContainsKey("alg"))
                 {
@@ -470,11 +477,16 @@ namespace Authing.CSharp.SDK.Services
         /// </summary>
         /// <param name="token"> Authing 颁发的 Access token</param>
         /// <returns></returns>
-        public AccessToken ParseAccessToken(string token)
+        public async Task<AccessToken> ParseAccessToken(string token,JwkSet jwks=null)
         {
             string jsonStr = "";
             try
             {
+                if (jwks == null)
+                {
+                    jwks = await GetJwksFromServer();
+                }
+
                 jsonStr = Jose.JWT.Decode(token, jwks.First(), Jose.JWT.DefaultSettings);
             }
             catch (Exception)
@@ -617,7 +629,7 @@ namespace Authing.CSharp.SDK.Services
             return url;
         }
 
-        private LoginState BuildLoginState(OIDCTokenResponse tokenRes)
+        private async Task<LoginState> BuildLoginState(OIDCTokenResponse tokenRes)
         {
             LoginState state = new LoginState
             {
@@ -625,8 +637,8 @@ namespace Authing.CSharp.SDK.Services
                 IdToken = tokenRes.IdToken,
                 RefreshToken = tokenRes.RefreshToken,
                 ExpireAt = tokenRes.ExpiresIn,
-                ParsedIDToken = ParseIDToken(tokenRes.IdToken),
-                ParsedAccessToken = ParseAccessToken(tokenRes.AccessToken)
+                ParsedIDToken =await ParseIDToken(tokenRes.IdToken),
+                ParsedAccessToken =await ParseAccessToken(tokenRes.AccessToken)
             };
 
             return state;
