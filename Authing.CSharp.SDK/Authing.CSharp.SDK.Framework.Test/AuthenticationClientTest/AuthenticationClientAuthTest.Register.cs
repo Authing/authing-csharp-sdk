@@ -39,5 +39,23 @@ namespace Authing.CSharp.SDK.Framework.Test
             var res2 = await client.SignUpByEmailCode("574378328@qq.com", "6002");
             Assert.AreEqual(200,res2.StatusCode);
         }
+
+        /// <summary>
+        /// 2022-10-17 测试失败
+        /// 使用手机验证码注册
+        /// </summary>
+        /// <returns></returns>
+        [Test]
+        public async Task RegisterByPhoneAndCode()
+        {
+            var res1 = await client.SendSms(new SendSMSDto()
+            {
+                PhoneNumber = "17620671314",
+                Channel = SendSMSDto.channel.CHANNEL_REGISTER
+            });
+            Assert.AreEqual(200,res1.StatusCode);
+            var res2 = await client.SignUpByPhoneCode("17620671314", "6002");
+            Assert.AreEqual(200,res2.StatusCode);
+        }
     }
 }
