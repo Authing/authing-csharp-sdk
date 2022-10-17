@@ -8,6 +8,7 @@ namespace Authing.CSharp.SDK.Framework.Test.AuthenticationClientTest
     {       
         protected AuthenticationClient client;
 
+
         [SetUp]
         public void SetupClient()
         {
@@ -15,9 +16,8 @@ namespace Authing.CSharp.SDK.Framework.Test.AuthenticationClientTest
             {
                 AppId = "AUTHING_APP_ID",
                 AppSecret = "AUTHING_SECRET",
-                Domain = @"AUTHING_DOMAIN",
+                RedirectUri = "AUTHING_REDIRECTURI",
                 Host = @"AUTHING_HOST",
-                RediretUri = "AUTHING_REDIRECTURI",
             });
         }
 

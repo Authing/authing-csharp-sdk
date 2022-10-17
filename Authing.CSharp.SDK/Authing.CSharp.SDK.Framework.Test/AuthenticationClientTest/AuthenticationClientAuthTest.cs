@@ -85,7 +85,7 @@ namespace Authing.CSharp.SDK.Framework.Test
         public async Task ParseIDTokenTest()
         {
             var loginState = await client.GetLoginStateByAuthCode(@"f75v3xsbO5cOoEeY_emQPbEqPPTNzj8TEN_y4Tyxg5S", loginCallbackUrl);
-            IDToken iDToken = client.ParseIDToken(loginState.IdToken);
+            IDToken iDToken =await client.ParseIDToken(loginState.IdToken);
             Assert.IsNotNull(iDToken);
         }
 
@@ -93,7 +93,7 @@ namespace Authing.CSharp.SDK.Framework.Test
         public async Task ParseAccessToenTest()
         {
             var loginState = await client.GetLoginStateByAuthCode(@"SaJq1XVhhc_8RHm9sES3tsPpdPG-HHExczMHfttXPgB", loginCallbackUrl);
-            AccessToken accessToken = client.ParseAccessToken(loginState.AccessToken);
+            AccessToken accessToken =await client.ParseAccessToken(loginState.AccessToken);
             Assert.IsNotNull(accessToken);
         }
 
