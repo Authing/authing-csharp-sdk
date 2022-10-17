@@ -41,7 +41,7 @@ namespace Authing.CSharp.SDK.Services
 
         protected async Task<string> PostAsync(string apiPath, string param)
         {
-            await CheckToken("POST",apiPath, m_JsonService.DeserializeObject<Dictionary<string, string>>(param));
+            CheckToken("POST", apiPath, m_JsonService.DeserializeObject<Dictionary<string, string>>(param));
 
             string httpResponse = await m_HttpService.PostAsync(m_BaseUrl, apiPath, param, default).ConfigureAwait(false);
             return httpResponse;
@@ -51,7 +51,7 @@ namespace Authing.CSharp.SDK.Services
         protected async Task<string> Request(string method, string apiPath, Dictionary<string, object> pairs, bool withToken = true)
         {
             Dictionary<string, string> dic = pairs.ToDictionary((keyItem) => keyItem.Key, (valueItem) => valueItem.Value == null ? "" : valueItem.Value.ToString());
-            await CheckToken(method,apiPath, dic).ConfigureAwait(false);
+            CheckToken(method, apiPath, dic);
 
             string httpResponse = await m_HttpService.GetAsync(m_BaseUrl, apiPath, dic, default).ConfigureAwait(false);
             return httpResponse;
@@ -66,10 +66,10 @@ namespace Authing.CSharp.SDK.Services
         {
             Dictionary<string, object> dic = m_JsonService.DeserializeObject<Dictionary<string, object>>(m_JsonService.SerializeObjectIngoreNull(dto));
 
-           var stringDic= dic.ToDictionary(p => p.Key, p=>m_JsonService.SerializeObject(p.Value));
+            var stringDic = dic.ToDictionary(p => p.Key, p => m_JsonService.SerializeObject(p.Value));
 
 
-            await CheckToken(method,apiPath, stringDic).ConfigureAwait(false);
+            CheckToken(method, apiPath, stringDic);
 
 
             string json = m_JsonService.SerializeObjectIngoreNull(dto);
@@ -80,7 +80,7 @@ namespace Authing.CSharp.SDK.Services
 
 
 
-        private async Task CheckToken(string method,string apiPath, Dictionary<string, string> queries)
+        private void CheckToken(string method, string apiPath, Dictionary<string, string> queries)
         {
             m_HttpService.ClearHeader();
 
@@ -113,7 +113,7 @@ Node.js(v14.18.0), authing-node-sdk: 0.0.19
             dics.Add("x-authing-sdk-version", "authing-csharp-sdk:0.0.4");
             dics.Add("x-authing-date", utcTime.ToString());
 
-            string result = ComposeStringToSign(method,apiPath, queries, dics);
+            string result = ComposeStringToSign(method, apiPath, queries, dics);
 
             string cryptString = HmacSHA1Signer.SignString(result, m_Secret);
 
@@ -130,7 +130,7 @@ Node.js(v14.18.0), authing-node-sdk: 0.0.19
         /// <param name="queries">参数</param>
         /// <param name="headers">头信息</param>
         /// <returns></returns>
-        public string ComposeStringToSign(string method,string uriPattern, Dictionary<string, string> queries, Dictionary<string, string> headers)
+        public string ComposeStringToSign(string method, string uriPattern, Dictionary<string, string> queries, Dictionary<string, string> headers)
         {
             var sb = new StringBuilder();
 
@@ -145,7 +145,7 @@ Node.js(v14.18.0), authing-node-sdk: 0.0.19
             sb.Append(HEADER_SEPARATOR);
             if (headers.ContainsKey("x-authing-sdk-version"))
             {
-                sb.Append("x-authing-sdk-version:"+headers["x-authing-sdk-version"]);
+                sb.Append("x-authing-sdk-version:" + headers["x-authing-sdk-version"]);
             }
 
             sb.Append(HEADER_SEPARATOR);
