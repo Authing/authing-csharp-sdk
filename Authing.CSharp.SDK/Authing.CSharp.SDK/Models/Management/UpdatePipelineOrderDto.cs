@@ -18,8 +18,8 @@ public partial class UpdatePipelineOrderDto
     /// <summary>
     ///  新的排序方式，按照函数 ID 的先后顺序进行排列。
     /// </summary>
-[JsonProperty("order")]
-public    List<string>   Order    {get;set;}
+    [JsonProperty("order")]
+    public List<string>  Order {get;set;}
     /// <summary>
     ///  函数的触发场景：
 /// - `PRE_REGISTER`: 注册前
@@ -31,8 +31,8 @@ public    List<string>   Order    {get;set;}
 /// - `PRE_COMPLETE_USER_INFO`: 补全用户信息前
 /// 
     /// </summary>
-[JsonProperty("scene")]
-public    scene   Scene    {get;set;}
+    [JsonProperty("scene")]
+    public scene  Scene {get;set;}
 }
 public partial class UpdatePipelineOrderDto
  {

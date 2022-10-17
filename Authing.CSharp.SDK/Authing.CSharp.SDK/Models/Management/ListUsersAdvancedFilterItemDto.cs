@@ -51,8 +51,8 @@ public partial class ListUsersAdvancedFilterItemDto
 /// - ... 其他自定义字段
 /// 
     /// </summary>
-[JsonProperty("field")]
-public    string   Field    {get;set;}
+    [JsonProperty("field")]
+    public string  Field {get;set;}
     /// <summary>
     ///  运算符，可选值为：
 /// - `EQUAL`: 全等，适用于数字和字符串的全等匹配
@@ -67,13 +67,13 @@ public    string   Field    {get;set;}
 /// - `BETWEEN`: 介于什么什么之间，适用于数字、日期类型数据的比较
 /// 
     /// </summary>
-[JsonProperty("operator")]
-public    @operator   Operator    {get;set;}
+    [JsonProperty("operator")]
+    public @operator  Operator {get;set;}
     /// <summary>
     ///  搜索值，不同的 `field` 对应的 `value` 类型可能不一样，详情见示例。
     /// </summary>
-[JsonProperty("value")]
-public    object   Value    {get;set;}
+    [JsonProperty("value")]
+    public object  Value {get;set;}
 }
 public partial class ListUsersAdvancedFilterItemDto
  {

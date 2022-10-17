@@ -18,7 +18,7 @@ public partial class GetWebhookDto
     /// <summary>
     ///  Webhook ID
     /// </summary>
-[JsonProperty("webhookId")]
-public    object   WebhookId    {get;set;}
+    [JsonProperty("webhookId")]
+    public string  WebhookId {get;set;}
 }
 }

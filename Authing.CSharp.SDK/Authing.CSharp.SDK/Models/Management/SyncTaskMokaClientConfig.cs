@@ -18,27 +18,27 @@ public partial class SyncTaskMokaClientConfig
     /// <summary>
     ///  User Name
     /// </summary>
-[JsonProperty("userName")]
-public    string   UserName    {get;set;}
+    [JsonProperty("userName")]
+    public string  UserName {get;set;}
     /// <summary>
     ///  Ent Code
     /// </summary>
-[JsonProperty("entCode")]
-public    string   EntCode    {get;set;}
+    [JsonProperty("entCode")]
+    public string  EntCode {get;set;}
     /// <summary>
     ///  Api Code Employee
     /// </summary>
-[JsonProperty("apiCode_employee")]
-public    string   ApiCode_employee    {get;set;}
+    [JsonProperty("apiCode_employee")]
+    public string  ApiCode_employee {get;set;}
     /// <summary>
     ///  Api Code Department
     /// </summary>
-[JsonProperty("apiCode_department")]
-public    string   ApiCode_department    {get;set;}
+    [JsonProperty("apiCode_department")]
+    public string  ApiCode_department {get;set;}
     /// <summary>
     ///  Private Key
     /// </summary>
-[JsonProperty("privateKey")]
-public    string   PrivateKey    {get;set;}
+    [JsonProperty("privateKey")]
+    public string  PrivateKey {get;set;}
 }
 }

@@ -18,17 +18,17 @@ public partial class CreateNamespacesBatchItemDto
     /// <summary>
     ///  权限分组唯一标志符
     /// </summary>
-[JsonProperty("code")]
-public    string   Code    {get;set;}
+    [JsonProperty("code")]
+    public string  Code {get;set;}
     /// <summary>
     ///  权限分组名称
     /// </summary>
-[JsonProperty("name")]
-public    string   Name    {get;set;}
+    [JsonProperty("name")]
+    public string  Name {get;set;}
     /// <summary>
     ///  权限分组描述信息
     /// </summary>
-[JsonProperty("description")]
-public    string   Description    {get;set;}
+    [JsonProperty("description")]
+    public string  Description {get;set;}
 }
 }

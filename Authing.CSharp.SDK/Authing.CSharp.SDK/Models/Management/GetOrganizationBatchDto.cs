@@ -18,12 +18,12 @@ public partial class GetOrganizationBatchDto
     /// <summary>
     ///  组织 Code（organizationCode）列表
     /// </summary>
-[JsonProperty("organizationCodeList")]
-public    object   OrganizationCodeList    {get;set;}
+    [JsonProperty("organizationCodeList")]
+    public string  OrganizationCodeList {get;set;}
     /// <summary>
     ///  是否获取自定义数据
     /// </summary>
-[JsonProperty("withCustomData")]
-public    object   WithCustomData    {get;set;}
+    [JsonProperty("withCustomData")]
+    public bool  WithCustomData {get;set;}
 }
 }

@@ -18,7 +18,7 @@ public partial class IsActionAllowedDataDto
     /// <summary>
     ///  是否允许
     /// </summary>
-[JsonProperty("allowed")]
-public    bool   Allowed    {get;set;}
+    [JsonProperty("allowed")]
+    public bool  Allowed {get;set;}
 }
 }

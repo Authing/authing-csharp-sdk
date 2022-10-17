@@ -18,17 +18,17 @@ public partial class ListUsersRequestDto
     /// <summary>
     ///  模糊搜索关键字
     /// </summary>
-[JsonProperty("query")]
-public    string   Query    {get;set;}
+    [JsonProperty("query")]
+    public string  Query {get;set;}
     /// <summary>
     ///  高级搜索
     /// </summary>
-[JsonProperty("advancedFilter")]
-public    List<ListUsersAdvancedFilterItemDto>   AdvancedFilter    {get;set;}
+    [JsonProperty("advancedFilter")]
+    public List<ListUsersAdvancedFilterItemDto>  AdvancedFilter {get;set;}
     /// <summary>
     ///  可选项
     /// </summary>
-[JsonProperty("options")]
-public    ListUsersOptionsDto   Options    {get;set;}
+    [JsonProperty("options")]
+    public ListUsersOptionsDto  Options {get;set;}
 }
 }

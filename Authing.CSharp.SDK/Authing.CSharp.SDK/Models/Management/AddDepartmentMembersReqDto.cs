@@ -18,23 +18,23 @@ public partial class AddDepartmentMembersReqDto
     /// <summary>
     ///  用户 ID 列表
     /// </summary>
-[JsonProperty("userIds")]
-public    List<string>   UserIds    {get;set;}
+    [JsonProperty("userIds")]
+    public List<string>  UserIds {get;set;}
     /// <summary>
     ///  组织 code
     /// </summary>
-[JsonProperty("organizationCode")]
-public    string   OrganizationCode    {get;set;}
+    [JsonProperty("organizationCode")]
+    public string  OrganizationCode {get;set;}
     /// <summary>
     ///  部门系统 ID（为 Authing 系统自动生成，不可修改）
     /// </summary>
-[JsonProperty("departmentId")]
-public    string   DepartmentId    {get;set;}
+    [JsonProperty("departmentId")]
+    public string  DepartmentId {get;set;}
     /// <summary>
     ///  此次调用中使用的部门 ID 的类型
     /// </summary>
-[JsonProperty("departmentIdType")]
-public    departmentIdType   DepartmentIdType    {get;set;}
+    [JsonProperty("departmentIdType")]
+    public departmentIdType  DepartmentIdType {get;set;}
 }
 public partial class AddDepartmentMembersReqDto
  {

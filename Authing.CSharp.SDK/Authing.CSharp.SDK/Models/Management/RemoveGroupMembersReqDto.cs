@@ -18,12 +18,12 @@ public partial class RemoveGroupMembersReqDto
     /// <summary>
     ///  用户 ID 数组
     /// </summary>
-[JsonProperty("userIds")]
-public    List<string>   UserIds    {get;set;}
+    [JsonProperty("userIds")]
+    public List<string>  UserIds {get;set;}
     /// <summary>
     ///  分组 code
     /// </summary>
-[JsonProperty("code")]
-public    string   Code    {get;set;}
+    [JsonProperty("code")]
+    public string  Code {get;set;}
 }
 }

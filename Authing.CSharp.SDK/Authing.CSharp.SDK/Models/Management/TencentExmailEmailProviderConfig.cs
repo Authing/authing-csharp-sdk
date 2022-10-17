@@ -18,12 +18,12 @@ public partial class TencentExmailEmailProviderConfig
     /// <summary>
     ///  用户名
     /// </summary>
-[JsonProperty("sender")]
-public    string   Sender    {get;set;}
+    [JsonProperty("sender")]
+    public string  Sender {get;set;}
     /// <summary>
     ///  密码
     /// </summary>
-[JsonProperty("senderPass")]
-public    string   SenderPass    {get;set;}
+    [JsonProperty("senderPass")]
+    public string  SenderPass {get;set;}
 }
 }

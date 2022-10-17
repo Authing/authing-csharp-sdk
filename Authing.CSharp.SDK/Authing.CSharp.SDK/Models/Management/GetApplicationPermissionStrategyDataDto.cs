@@ -18,8 +18,8 @@ public partial class GetApplicationPermissionStrategyDataDto
     /// <summary>
     ///  应用访问授权策略
     /// </summary>
-[JsonProperty("permissionStrategy")]
-public    permissionStrategy   PermissionStrategy    {get;set;}
+    [JsonProperty("permissionStrategy")]
+    public permissionStrategy  PermissionStrategy {get;set;}
 }
 public partial class GetApplicationPermissionStrategyDataDto
  {

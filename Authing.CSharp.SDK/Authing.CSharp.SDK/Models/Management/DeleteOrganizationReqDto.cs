@@ -18,7 +18,7 @@ public partial class DeleteOrganizationReqDto
     /// <summary>
     ///  组织 code
     /// </summary>
-[JsonProperty("organizationCode")]
-public    string   OrganizationCode    {get;set;}
+    [JsonProperty("organizationCode")]
+    public string  OrganizationCode {get;set;}
 }
 }

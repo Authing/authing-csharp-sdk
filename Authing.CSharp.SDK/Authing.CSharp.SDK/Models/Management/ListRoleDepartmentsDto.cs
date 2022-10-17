@@ -18,22 +18,22 @@ public partial class ListRoleDepartmentsDto
     /// <summary>
     ///  权限分组内角色的唯一标识符
     /// </summary>
-[JsonProperty("code")]
-public    object   Code    {get;set;}
+    [JsonProperty("code")]
+    public string  Code {get;set;}
     /// <summary>
     ///  所属权限分组的 code
     /// </summary>
-[JsonProperty("namespace")]
-public    object   Namespace    {get;set;}
+    [JsonProperty("namespace")]
+    public string  Namespace {get;set;}
     /// <summary>
     ///  当前页数，从 1 开始
     /// </summary>
-[JsonProperty("page")]
-public    object   Page    {get;set;}
+    [JsonProperty("page")]
+    public long  Page {get;set;}
     /// <summary>
     ///  每页数目，最大不能超过 50，默认为 10
     /// </summary>
-[JsonProperty("limit")]
-public    object   Limit    {get;set;}
+    [JsonProperty("limit")]
+    public long  Limit {get;set;}
 }
 }

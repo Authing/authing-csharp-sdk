@@ -18,7 +18,7 @@ public partial class IsUserExistsDto
     /// <summary>
     ///  用户是否存在
     /// </summary>
-[JsonProperty("exists")]
-public    bool   Exists    {get;set;}
+    [JsonProperty("exists")]
+    public bool  Exists {get;set;}
 }
 }

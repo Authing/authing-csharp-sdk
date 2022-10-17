@@ -18,12 +18,12 @@ public partial class ListApplicationActiveUsersDto
     /// <summary>
     ///  应用 ID
     /// </summary>
-[JsonProperty("appId")]
-public    string   AppId    {get;set;}
+    [JsonProperty("appId")]
+    public string  AppId {get;set;}
     /// <summary>
     ///  可选项
     /// </summary>
-[JsonProperty("options")]
-public    ListApplicationActiveUsersOptionsDto   Options    {get;set;}
+    [JsonProperty("options")]
+    public ListApplicationActiveUsersOptionsDto  Options {get;set;}
 }
 }

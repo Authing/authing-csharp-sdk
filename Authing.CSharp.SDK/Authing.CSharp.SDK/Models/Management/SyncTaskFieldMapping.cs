@@ -18,12 +18,12 @@ public partial class SyncTaskFieldMapping
     /// <summary>
     ///  源字段
     /// </summary>
-[JsonProperty("expression")]
-public    string   Expression    {get;set;}
+    [JsonProperty("expression")]
+    public string  Expression {get;set;}
     /// <summary>
     ///  转换后的字段
     /// </summary>
-[JsonProperty("targetKey")]
-public    string   TargetKey    {get;set;}
+    [JsonProperty("targetKey")]
+    public string  TargetKey {get;set;}
 }
 }

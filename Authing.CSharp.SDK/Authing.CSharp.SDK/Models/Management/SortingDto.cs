@@ -36,16 +36,16 @@ public partial class SortingDto
 /// - `lastIp`: 上次登录时使用的 IP
 /// 
     /// </summary>
-[JsonProperty("field")]
-public    field   Field    {get;set;}
+    [JsonProperty("field")]
+    public field  Field {get;set;}
     /// <summary>
     ///  排序顺序：
 /// - `desc`: 按照从大到小降序。
 /// - `asc`: 按照从小到大升序。
 /// 
     /// </summary>
-[JsonProperty("order")]
-public    order   Order    {get;set;}
+    [JsonProperty("order")]
+    public order  Order {get;set;}
 }
 public partial class SortingDto
  {

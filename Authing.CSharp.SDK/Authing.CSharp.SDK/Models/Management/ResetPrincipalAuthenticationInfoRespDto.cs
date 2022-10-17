@@ -18,7 +18,7 @@ public partial class ResetPrincipalAuthenticationInfoRespDto
     /// <summary>
     ///  操作是否成功
     /// </summary>
-[JsonProperty("success")]
-public    bool   Success    {get;set;}
+    [JsonProperty("success")]
+    public bool  Success {get;set;}
 }
 }

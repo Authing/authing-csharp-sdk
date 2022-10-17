@@ -18,12 +18,12 @@ public partial class CancelSyncRiskOperationsDataDto
     /// <summary>
     ///  成功取消的风险操作任务
     /// </summary>
-[JsonProperty("successList")]
-public    List<long>   SuccessList    {get;set;}
+    [JsonProperty("successList")]
+    public List<long>  SuccessList {get;set;}
     /// <summary>
     ///  取消失败的风险操作任务
     /// </summary>
-[JsonProperty("faildList")]
-public    List<long>   FaildList    {get;set;}
+    [JsonProperty("faildList")]
+    public List<long>  FaildList {get;set;}
 }
 }

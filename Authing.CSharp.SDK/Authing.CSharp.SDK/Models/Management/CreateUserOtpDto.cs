@@ -18,12 +18,12 @@ public partial class CreateUserOtpDto
     /// <summary>
     ///  OTP 密钥
     /// </summary>
-[JsonProperty("secret")]
-public    string   Secret    {get;set;}
+    [JsonProperty("secret")]
+    public string  Secret {get;set;}
     /// <summary>
     ///  OTP Recovery Code
     /// </summary>
-[JsonProperty("recoveryCode")]
-public    string   RecoveryCode    {get;set;}
+    [JsonProperty("recoveryCode")]
+    public string  RecoveryCode {get;set;}
 }
 }

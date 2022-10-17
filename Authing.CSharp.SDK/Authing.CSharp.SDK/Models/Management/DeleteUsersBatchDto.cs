@@ -18,12 +18,12 @@ public partial class DeleteUsersBatchDto
     /// <summary>
     ///  用户 ID 列表
     /// </summary>
-[JsonProperty("userIds")]
-public    List<string>   UserIds    {get;set;}
+    [JsonProperty("userIds")]
+    public List<string>  UserIds {get;set;}
     /// <summary>
     ///  可选参数
     /// </summary>
-[JsonProperty("options")]
-public    DeleteUsersBatchOptionsDto   Options    {get;set;}
+    [JsonProperty("options")]
+    public DeleteUsersBatchOptionsDto  Options {get;set;}
 }
 }

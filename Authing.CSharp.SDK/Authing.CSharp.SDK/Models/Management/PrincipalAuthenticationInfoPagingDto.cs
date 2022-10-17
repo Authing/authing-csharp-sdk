@@ -18,12 +18,12 @@ public partial class PrincipalAuthenticationInfoPagingDto
     /// <summary>
     ///  记录总数
     /// </summary>
-[JsonProperty("totalCount")]
-public    long   TotalCount    {get;set;}
+    [JsonProperty("totalCount")]
+    public long  TotalCount {get;set;}
     /// <summary>
     ///  响应数据
     /// </summary>
-[JsonProperty("list")]
-public    List<PrincipalAuthenticationInfoDto>   List    {get;set;}
+    [JsonProperty("list")]
+    public List<PrincipalAuthenticationInfoDto>  List {get;set;}
 }
 }

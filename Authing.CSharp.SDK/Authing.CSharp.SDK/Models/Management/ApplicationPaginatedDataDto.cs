@@ -18,12 +18,12 @@ public partial class ApplicationPaginatedDataDto
     /// <summary>
     ///  列表数据
     /// </summary>
-[JsonProperty("list")]
-public    List<ApplicationDto>   List    {get;set;}
+    [JsonProperty("list")]
+    public List<ApplicationDto>  List {get;set;}
     /// <summary>
     ///  记录总数
     /// </summary>
-[JsonProperty("totalCount")]
-public    long   TotalCount    {get;set;}
+    [JsonProperty("totalCount")]
+    public long  TotalCount {get;set;}
 }
 }

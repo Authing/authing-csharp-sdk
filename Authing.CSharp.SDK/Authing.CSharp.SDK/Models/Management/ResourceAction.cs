@@ -18,12 +18,12 @@ public partial class ResourceAction
     /// <summary>
     ///  资源操作名称
     /// </summary>
-[JsonProperty("name")]
-public    string   Name    {get;set;}
+    [JsonProperty("name")]
+    public string  Name {get;set;}
     /// <summary>
     ///  资源操作描述
     /// </summary>
-[JsonProperty("description")]
-public    string   Description    {get;set;}
+    [JsonProperty("description")]
+    public string  Description {get;set;}
 }
 }

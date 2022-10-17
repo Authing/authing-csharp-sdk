@@ -18,7 +18,7 @@ public partial class GetApplicationSimpleInfoDto
     /// <summary>
     ///  应用 ID
     /// </summary>
-[JsonProperty("appId")]
-public    object   AppId    {get;set;}
+    [JsonProperty("appId")]
+    public string  AppId {get;set;}
 }
 }

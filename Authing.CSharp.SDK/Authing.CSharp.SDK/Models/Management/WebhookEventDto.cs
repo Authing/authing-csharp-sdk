@@ -18,22 +18,22 @@ public partial class WebhookEventDto
     /// <summary>
     ///  Webhook 名称
     /// </summary>
-[JsonProperty("name")]
-public    string   Name    {get;set;}
+    [JsonProperty("name")]
+    public string  Name {get;set;}
     /// <summary>
     ///  Webhook 英文名称
     /// </summary>
-[JsonProperty("nameEn")]
-public    string   NameEn    {get;set;}
+    [JsonProperty("nameEn")]
+    public string  NameEn {get;set;}
     /// <summary>
     ///  Webhook 事件
     /// </summary>
-[JsonProperty("value")]
-public    string   Value    {get;set;}
+    [JsonProperty("value")]
+    public string  Value {get;set;}
     /// <summary>
     ///  Webhook 事件分类
     /// </summary>
-[JsonProperty("category")]
-public    string   Category    {get;set;}
+    [JsonProperty("category")]
+    public string  Category {get;set;}
 }
 }

@@ -18,7 +18,7 @@ public partial class DeleteNamespaceDto
     /// <summary>
     ///  权限分组唯一标志符
     /// </summary>
-[JsonProperty("code")]
-public    string   Code    {get;set;}
+    [JsonProperty("code")]
+    public string  Code {get;set;}
 }
 }

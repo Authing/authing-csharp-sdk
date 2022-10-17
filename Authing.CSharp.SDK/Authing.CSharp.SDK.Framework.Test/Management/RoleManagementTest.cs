@@ -145,7 +145,8 @@ namespace Authing.CSharp.SDK.Framework.Test
         {
             using (CancellationTokenSource cts = new CancellationTokenSource())
             {
-                RoleAuthorizedResourcePaginatedRespDto dto = await managementClient.GetRoleAuthorizedResources("TestDelete");
+                //TestDelete
+                RoleAuthorizedResourcePaginatedRespDto dto = await managementClient.GetRoleAuthorizedResources(new GetRoleAuthorizedResourcesDto { });
 
                 Assert.IsTrue(dto.Data.List.Count > 0);
             }
@@ -156,7 +157,8 @@ namespace Authing.CSharp.SDK.Framework.Test
         {
             using (CancellationTokenSource cts = new CancellationTokenSource())
             {
-                UserPaginatedRespDto dto = await managementClient.ListRoleMembers("Admin1");
+                //Admin1
+                UserPaginatedRespDto dto = await managementClient.ListRoleMembers(new ListRoleMembersDto { });
 
                 Assert.IsTrue(dto.Data.List.Count > 0);
             }
@@ -169,7 +171,8 @@ namespace Authing.CSharp.SDK.Framework.Test
 
             using (CancellationTokenSource cts = new CancellationTokenSource())
             {
-                RoleDepartmentListPaginatedRespDto dto = await managementClient.ListRoleDepartments("Admin1", "default");
+                //"Admin1", "default"
+                RoleDepartmentListPaginatedRespDto dto = await managementClient.ListRoleDepartments(new ListRoleDepartmentsDto { });
 
                 Assert.IsTrue(dto.Data.List.Count > 0);
             }
@@ -198,7 +201,8 @@ namespace Authing.CSharp.SDK.Framework.Test
         {
             using (CancellationTokenSource cts = new CancellationTokenSource())
             {
-                RolePaginatedRespDto roleSingle = await managementClient.ListRoles("default");
+                //default
+                RolePaginatedRespDto roleSingle = await managementClient.ListRoles(new ListRolesDto { });
 
                 Assert.IsTrue(roleSingle.Data.List.Count > 0);
             }
@@ -269,7 +273,8 @@ namespace Authing.CSharp.SDK.Framework.Test
         {
             using (CancellationTokenSource cts = new CancellationTokenSource())
             {
-               RoleSingleRespDto dto=   await managementClient.GetRole("Admin");
+                //
+               RoleSingleRespDto dto=   await managementClient.GetRole(new GetRoleDto { });
 
                 Assert.IsTrue(dto.Data != null);
             }

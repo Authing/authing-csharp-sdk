@@ -18,7 +18,7 @@ public partial class CreateNamespacesBatchDto
     /// <summary>
     ///  权限分组列表
     /// </summary>
-[JsonProperty("list")]
-public    List<CreateNamespacesBatchItemDto>   List    {get;set;}
+    [JsonProperty("list")]
+    public List<CreateNamespacesBatchItemDto>  List {get;set;}
 }
 }

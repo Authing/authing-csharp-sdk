@@ -18,37 +18,37 @@ public partial class ListRoleMembersDto
     /// <summary>
     ///  权限分组内角色的唯一标识符
     /// </summary>
-[JsonProperty("code")]
-public    object   Code    {get;set;}
+    [JsonProperty("code")]
+    public string  Code {get;set;}
     /// <summary>
     ///  当前页数，从 1 开始
     /// </summary>
-[JsonProperty("page")]
-public    object   Page    {get;set;}
+    [JsonProperty("page")]
+    public long  Page {get;set;}
     /// <summary>
     ///  每页数目，最大不能超过 50，默认为 10
     /// </summary>
-[JsonProperty("limit")]
-public    object   Limit    {get;set;}
+    [JsonProperty("limit")]
+    public long  Limit {get;set;}
     /// <summary>
     ///  是否获取自定义数据
     /// </summary>
-[JsonProperty("withCustomData")]
-public    object   WithCustomData    {get;set;}
+    [JsonProperty("withCustomData")]
+    public bool  WithCustomData {get;set;}
     /// <summary>
     ///  是否获取 identities
     /// </summary>
-[JsonProperty("withIdentities")]
-public    object   WithIdentities    {get;set;}
+    [JsonProperty("withIdentities")]
+    public bool  WithIdentities {get;set;}
     /// <summary>
     ///  是否获取部门 ID 列表
     /// </summary>
-[JsonProperty("withDepartmentIds")]
-public    object   WithDepartmentIds    {get;set;}
+    [JsonProperty("withDepartmentIds")]
+    public bool  WithDepartmentIds {get;set;}
     /// <summary>
     ///  所属权限分组的 code
     /// </summary>
-[JsonProperty("namespace")]
-public    object   Namespace    {get;set;}
+    [JsonProperty("namespace")]
+    public string  Namespace {get;set;}
 }
 }

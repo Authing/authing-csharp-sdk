@@ -18,7 +18,7 @@ public partial class ImportOtpReqDto
     /// <summary>
     ///  参数列表
     /// </summary>
-[JsonProperty("list")]
-public    List<ImportOtpItemDto>   List    {get;set;}
+    [JsonProperty("list")]
+    public List<ImportOtpItemDto>  List {get;set;}
 }
 }

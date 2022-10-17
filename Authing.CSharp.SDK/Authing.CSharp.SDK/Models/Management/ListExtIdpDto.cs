@@ -18,12 +18,12 @@ public partial class ListExtIdpDto
     /// <summary>
     ///  租户 ID
     /// </summary>
-[JsonProperty("tenantId")]
-public    object   TenantId    {get;set;}
+    [JsonProperty("tenantId")]
+    public string  TenantId {get;set;}
     /// <summary>
     ///  应用 ID
     /// </summary>
-[JsonProperty("appId")]
-public    object   AppId    {get;set;}
+    [JsonProperty("appId")]
+    public string  AppId {get;set;}
 }
 }

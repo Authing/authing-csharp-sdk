@@ -18,23 +18,23 @@ public partial class AdminAuditLogDto
     /// <summary>
     ///  管理员的用户 ID
     /// </summary>
-[JsonProperty("adminUserId")]
-public    string   AdminUserId    {get;set;}
+    [JsonProperty("adminUserId")]
+    public string  AdminUserId {get;set;}
     /// <summary>
     ///  管理员用户头像
     /// </summary>
-[JsonProperty("adminUserAvatar")]
-public    string   AdminUserAvatar    {get;set;}
+    [JsonProperty("adminUserAvatar")]
+    public string  AdminUserAvatar {get;set;}
     /// <summary>
     ///  管理员用户显示名称，按照以下用户字段顺序进行展示：nickname > username > name > givenName > familyName -> email -> phone -> id
     /// </summary>
-[JsonProperty("adminUserDisplayName")]
-public    string   AdminUserDisplayName    {get;set;}
+    [JsonProperty("adminUserDisplayName")]
+    public string  AdminUserDisplayName {get;set;}
     /// <summary>
     ///  客户端 IP，可根据登录时的客户端 IP 进行筛选。默认不传获取所有登录 IP 的登录历史。
     /// </summary>
-[JsonProperty("clientIp")]
-public    string   ClientIp    {get;set;}
+    [JsonProperty("clientIp")]
+    public string  ClientIp {get;set;}
     /// <summary>
     ///  操作类型：
 /// - `create`: 创建
@@ -51,8 +51,8 @@ public    string   ClientIp    {get;set;}
 /// - `userEnable`: 启用
 /// 
     /// </summary>
-[JsonProperty("operationType")]
-public    operationType   OperationType    {get;set;}
+    [JsonProperty("operationType")]
+    public operationType  OperationType {get;set;}
     /// <summary>
     ///  事件类型：
 /// - `user`: 用户
@@ -76,58 +76,58 @@ public    operationType   OperationType    {get;set;}
 /// - `policy`: 策略
 /// 
     /// </summary>
-[JsonProperty("resourceType")]
-public    resourceType   ResourceType    {get;set;}
+    [JsonProperty("resourceType")]
+    public resourceType  ResourceType {get;set;}
     /// <summary>
     ///  事件详情
     /// </summary>
-[JsonProperty("eventDetail")]
-public    string   EventDetail    {get;set;}
+    [JsonProperty("eventDetail")]
+    public string  EventDetail {get;set;}
     /// <summary>
     ///  具体的操作参数
     /// </summary>
-[JsonProperty("operationParam")]
-public    string   OperationParam    {get;set;}
+    [JsonProperty("operationParam")]
+    public string  OperationParam {get;set;}
     /// <summary>
     ///  原始值
     /// </summary>
-[JsonProperty("originValue")]
-public    string   OriginValue    {get;set;}
+    [JsonProperty("originValue")]
+    public string  OriginValue {get;set;}
     /// <summary>
     ///  新值
     /// </summary>
-[JsonProperty("targetValue")]
-public    string   TargetValue    {get;set;}
+    [JsonProperty("targetValue")]
+    public string  TargetValue {get;set;}
     /// <summary>
     ///  是否成功
     /// </summary>
-[JsonProperty("success")]
-public    bool   Success    {get;set;}
+    [JsonProperty("success")]
+    public bool  Success {get;set;}
     /// <summary>
     ///  User Agent
     /// </summary>
-[JsonProperty("userAgent")]
-public    string   UserAgent    {get;set;}
+    [JsonProperty("userAgent")]
+    public string  UserAgent {get;set;}
     /// <summary>
     ///  解析过后的 User Agent
     /// </summary>
-[JsonProperty("parsedUserAgent")]
-public    ParsedUserAgent   ParsedUserAgent    {get;set;}
+    [JsonProperty("parsedUserAgent")]
+    public ParsedUserAgent  ParsedUserAgent {get;set;}
     /// <summary>
     ///  地理位置
     /// </summary>
-[JsonProperty("geoip")]
-public    GeoIp   Geoip    {get;set;}
+    [JsonProperty("geoip")]
+    public GeoIp  Geoip {get;set;}
     /// <summary>
     ///  时间
     /// </summary>
-[JsonProperty("timestamp")]
-public    string   Timestamp    {get;set;}
+    [JsonProperty("timestamp")]
+    public string  Timestamp {get;set;}
     /// <summary>
     ///  请求 ID
     /// </summary>
-[JsonProperty("requestId")]
-public    string   RequestId    {get;set;}
+    [JsonProperty("requestId")]
+    public string  RequestId {get;set;}
 }
 public partial class AdminAuditLogDto
  {

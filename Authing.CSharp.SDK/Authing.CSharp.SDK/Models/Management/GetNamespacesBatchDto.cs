@@ -18,7 +18,7 @@ public partial class GetNamespacesBatchDto
     /// <summary>
     ///  资源 code 列表，批量可以使用逗号分隔
     /// </summary>
-[JsonProperty("codeList")]
-public    object   CodeList    {get;set;}
+    [JsonProperty("codeList")]
+    public string  CodeList {get;set;}
 }
 }

@@ -18,7 +18,7 @@ public partial class GetSyncJobDto
     /// <summary>
     ///  同步作业 ID
     /// </summary>
-[JsonProperty("syncJobId")]
-public    object   SyncJobId    {get;set;}
+    [JsonProperty("syncJobId")]
+    public long  SyncJobId {get;set;}
 }
 }

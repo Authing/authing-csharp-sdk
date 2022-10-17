@@ -18,17 +18,17 @@ public partial class TriggerWebhookDto
     /// <summary>
     ///  Webhook ID
     /// </summary>
-[JsonProperty("webhookId")]
-public    string   WebhookId    {get;set;}
+    [JsonProperty("webhookId")]
+    public string  WebhookId {get;set;}
     /// <summary>
     ///  请求头
     /// </summary>
-[JsonProperty("requestHeaders")]
-public    object   RequestHeaders    {get;set;}
+    [JsonProperty("requestHeaders")]
+    public object  RequestHeaders {get;set;}
     /// <summary>
     ///  请求体
     /// </summary>
-[JsonProperty("requestBody")]
-public    object   RequestBody    {get;set;}
+    [JsonProperty("requestBody")]
+    public object  RequestBody {get;set;}
 }
 }

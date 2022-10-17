@@ -18,7 +18,7 @@ public partial class GetApplicationSecretDataDto
     /// <summary>
     ///  应用密钥
     /// </summary>
-[JsonProperty("secret")]
-public    string   Secret    {get;set;}
+    [JsonProperty("secret")]
+    public string  Secret {get;set;}
 }
 }

@@ -18,13 +18,13 @@ public partial class TargetDto
     /// <summary>
     ///  目标类型，接受用户，部门
     /// </summary>
-[JsonProperty("targetType")]
-public    targetType   TargetType    {get;set;}
+    [JsonProperty("targetType")]
+    public targetType  TargetType {get;set;}
     /// <summary>
     ///  目标的 ID
     /// </summary>
-[JsonProperty("targetIdentifier")]
-public    string   TargetIdentifier    {get;set;}
+    [JsonProperty("targetIdentifier")]
+    public string  TargetIdentifier {get;set;}
 }
 public partial class TargetDto
  {

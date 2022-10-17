@@ -18,8 +18,8 @@ public partial class ResignUserBatchReqDto
     /// <summary>
     ///  用户 ID 数组
     /// </summary>
-[JsonProperty("userIds")]
-public    List<string>   UserIds    {get;set;}
+    [JsonProperty("userIds")]
+    public List<string>  UserIds {get;set;}
     /// <summary>
     ///  用户 ID 类型，默认值为 `user_id`，可选值为：
 /// - `user_id`: Authing 用户 ID，如 `6319a1504f3xxxxf214dd5b7`
@@ -31,8 +31,8 @@ public    List<string>   UserIds    {get;set;}
 /// 示例值：`62f20932716fbcc10d966ee5:ou_8bae746eac07cd2564654140d2a9ac61`。
 /// 
     /// </summary>
-[JsonProperty("userIdType")]
-public    userIdType   UserIdType    {get;set;}
+    [JsonProperty("userIdType")]
+    public userIdType  UserIdType {get;set;}
 }
 public partial class ResignUserBatchReqDto
  {

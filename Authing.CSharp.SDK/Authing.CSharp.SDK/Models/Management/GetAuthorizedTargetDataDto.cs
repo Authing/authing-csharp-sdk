@@ -18,12 +18,12 @@ public partial class GetAuthorizedTargetDataDto
     /// <summary>
     ///  总数
     /// </summary>
-[JsonProperty("totalCount")]
-public    long   TotalCount    {get;set;}
+    [JsonProperty("totalCount")]
+    public long  TotalCount {get;set;}
     /// <summary>
     ///  元素列表
     /// </summary>
-[JsonProperty("list")]
-public    List<ResourcePermissionAssignmentDto>   List    {get;set;}
+    [JsonProperty("list")]
+    public List<ResourcePermissionAssignmentDto>  List {get;set;}
 }
 }

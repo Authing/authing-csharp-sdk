@@ -18,7 +18,7 @@ public partial class GetGroupDto
     /// <summary>
     ///  分组 code
     /// </summary>
-[JsonProperty("code")]
-public    object   Code    {get;set;}
+    [JsonProperty("code")]
+    public string  Code {get;set;}
 }
 }

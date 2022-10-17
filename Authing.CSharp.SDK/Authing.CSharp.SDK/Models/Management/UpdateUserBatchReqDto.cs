@@ -18,12 +18,12 @@ public partial class UpdateUserBatchReqDto
     /// <summary>
     ///  用户列表
     /// </summary>
-[JsonProperty("list")]
-public    List<UpdateUserInfoDto>   List    {get;set;}
+    [JsonProperty("list")]
+    public List<UpdateUserInfoDto>  List {get;set;}
     /// <summary>
     ///  可选参数
     /// </summary>
-[JsonProperty("options")]
-public    UpdateUserBatchOptionsDto   Options    {get;set;}
+    [JsonProperty("options")]
+    public UpdateUserBatchOptionsDto  Options {get;set;}
 }
 }

@@ -18,22 +18,22 @@ public partial class UserLoggedInIdentitiesDto
     /// <summary>
     ///  Identity ID
     /// </summary>
-[JsonProperty("identityId")]
-public    string   IdentityId    {get;set;}
+    [JsonProperty("identityId")]
+    public string  IdentityId {get;set;}
     /// <summary>
     ///  身份源名称
     /// </summary>
-[JsonProperty("idpName")]
-public    string   IdpName    {get;set;}
+    [JsonProperty("idpName")]
+    public string  IdpName {get;set;}
     /// <summary>
     ///  Identity provider name
     /// </summary>
-[JsonProperty("idpNameEn")]
-public    string   IdpNameEn    {get;set;}
+    [JsonProperty("idpNameEn")]
+    public string  IdpNameEn {get;set;}
     /// <summary>
     ///  身份源 logo
     /// </summary>
-[JsonProperty("idpLogo")]
-public    string   IdpLogo    {get;set;}
+    [JsonProperty("idpLogo")]
+    public string  IdpLogo {get;set;}
 }
 }

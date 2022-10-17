@@ -18,12 +18,12 @@ public partial class SyncTaskPagingDto
     /// <summary>
     ///  记录总数
     /// </summary>
-[JsonProperty("totalCount")]
-public    long   TotalCount    {get;set;}
+    [JsonProperty("totalCount")]
+    public long  TotalCount {get;set;}
     /// <summary>
     ///  数据列表
     /// </summary>
-[JsonProperty("list")]
-public    List<SyncTaskDto>   List    {get;set;}
+    [JsonProperty("list")]
+    public List<SyncTaskDto>  List {get;set;}
 }
 }

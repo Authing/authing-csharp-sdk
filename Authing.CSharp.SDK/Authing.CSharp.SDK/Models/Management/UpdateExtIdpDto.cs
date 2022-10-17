@@ -18,12 +18,12 @@ public partial class UpdateExtIdpDto
     /// <summary>
     ///  身份源 ID
     /// </summary>
-[JsonProperty("id")]
-public    string   Id    {get;set;}
+    [JsonProperty("id")]
+    public string  Id {get;set;}
     /// <summary>
     ///  名称
     /// </summary>
-[JsonProperty("name")]
-public    string   Name    {get;set;}
+    [JsonProperty("name")]
+    public string  Name {get;set;}
 }
 }

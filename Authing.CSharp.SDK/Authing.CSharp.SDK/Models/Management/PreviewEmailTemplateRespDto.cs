@@ -18,7 +18,7 @@ public partial class PreviewEmailTemplateRespDto
     /// <summary>
     ///  响应数据
     /// </summary>
-[JsonProperty("data")]
-public    PreviewEmailTemplateDataDto   Data    {get;set;}
+    [JsonProperty("data")]
+    public PreviewEmailTemplateDataDto  Data {get;set;}
 }
 }

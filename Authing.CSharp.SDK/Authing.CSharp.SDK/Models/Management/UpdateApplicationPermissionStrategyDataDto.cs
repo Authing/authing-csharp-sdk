@@ -18,13 +18,13 @@ public partial class UpdateApplicationPermissionStrategyDataDto
     /// <summary>
     ///  应用访问授权策略
     /// </summary>
-[JsonProperty("permissionStrategy")]
-public    permissionStrategy   PermissionStrategy    {get;set;}
+    [JsonProperty("permissionStrategy")]
+    public permissionStrategy  PermissionStrategy {get;set;}
     /// <summary>
     ///  应用 ID
     /// </summary>
-[JsonProperty("appId")]
-public    string   AppId    {get;set;}
+    [JsonProperty("appId")]
+    public string  AppId {get;set;}
 }
 public partial class UpdateApplicationPermissionStrategyDataDto
  {

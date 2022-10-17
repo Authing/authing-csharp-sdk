@@ -18,17 +18,17 @@ public partial class ListGroupsDto
     /// <summary>
     ///  搜索分组 code 或分组名称
     /// </summary>
-[JsonProperty("keywords")]
-public    object   Keywords    {get;set;}
+    [JsonProperty("keywords")]
+    public string  Keywords {get;set;}
     /// <summary>
     ///  当前页数，从 1 开始
     /// </summary>
-[JsonProperty("page")]
-public    object   Page    {get;set;}
+    [JsonProperty("page")]
+    public long  Page {get;set;}
     /// <summary>
     ///  每页数目，最大不能超过 50，默认为 10
     /// </summary>
-[JsonProperty("limit")]
-public    object   Limit    {get;set;}
+    [JsonProperty("limit")]
+    public long  Limit {get;set;}
 }
 }

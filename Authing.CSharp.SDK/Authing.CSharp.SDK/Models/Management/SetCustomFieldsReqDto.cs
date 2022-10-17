@@ -18,7 +18,7 @@ public partial class SetCustomFieldsReqDto
     /// <summary>
     ///  自定义字段列表
     /// </summary>
-[JsonProperty("list")]
-public    List<SetCustomFieldDto>   List    {get;set;}
+    [JsonProperty("list")]
+    public List<SetCustomFieldDto>  List {get;set;}
 }
 }

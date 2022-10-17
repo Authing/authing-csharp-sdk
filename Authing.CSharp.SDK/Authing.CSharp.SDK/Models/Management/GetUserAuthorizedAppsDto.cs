@@ -18,8 +18,8 @@ public partial class GetUserAuthorizedAppsDto
     /// <summary>
     ///  用户唯一标志，可以是用户 ID、用户名、邮箱、手机号、外部 ID、在外部身份源的 ID。
     /// </summary>
-[JsonProperty("userId")]
-public    object   UserId    {get;set;}
+    [JsonProperty("userId")]
+    public string  UserId {get;set;}
     /// <summary>
     ///  用户 ID 类型，默认值为 `user_id`，可选值为：
 /// - `user_id`: Authing 用户 ID，如 `6319a1504f3xxxxf214dd5b7`
@@ -31,7 +31,7 @@ public    object   UserId    {get;set;}
 /// 示例值：`62f20932716fbcc10d966ee5:ou_8bae746eac07cd2564654140d2a9ac61`。
 /// 
     /// </summary>
-[JsonProperty("userIdType")]
-public    object   UserIdType    {get;set;}
+    [JsonProperty("userIdType")]
+    public string  UserIdType {get;set;}
 }
 }

@@ -18,18 +18,18 @@ public partial class DeleteApplicationPermissionRecordItem
     /// <summary>
     ///  主体类型
     /// </summary>
-[JsonProperty("targetType")]
-public    targetType   TargetType    {get;set;}
+    [JsonProperty("targetType")]
+    public targetType  TargetType {get;set;}
     /// <summary>
     ///  权限分组 code，当主体类型为 "ROLE" 时必传
     /// </summary>
-[JsonProperty("namespaceCode")]
-public    string   NamespaceCode    {get;set;}
+    [JsonProperty("namespaceCode")]
+    public string  NamespaceCode {get;set;}
     /// <summary>
     ///  主体标识列表，当主体类型为 "USER" 时，值应为用户 ID；当主体类型为 "GROUP" 时，值应为分组 code；当主体类型为 "ROLE" 时，值应为角色 code；当主体类型为 "ORG" 时，值应为组织节点 ID。最多 50 条。
     /// </summary>
-[JsonProperty("targetIdentifier")]
-public    List<string>   TargetIdentifier    {get;set;}
+    [JsonProperty("targetIdentifier")]
+    public List<string>  TargetIdentifier {get;set;}
 }
 public partial class DeleteApplicationPermissionRecordItem
  {

@@ -18,28 +18,28 @@ public partial class GetAuthorizedTargetsDto
     /// <summary>
     ///  资源
     /// </summary>
-[JsonProperty("resource")]
-public    string   Resource    {get;set;}
+    [JsonProperty("resource")]
+    public string  Resource {get;set;}
     /// <summary>
     ///  权限分组
     /// </summary>
-[JsonProperty("namespace")]
-public    string   Namespace    {get;set;}
+    [JsonProperty("namespace")]
+    public string  Namespace {get;set;}
     /// <summary>
     ///  资源类型
     /// </summary>
-[JsonProperty("resourceType")]
-public    resourceType   ResourceType    {get;set;}
+    [JsonProperty("resourceType")]
+    public resourceType  ResourceType {get;set;}
     /// <summary>
     ///  主体类型
     /// </summary>
-[JsonProperty("targetType")]
-public    targetType   TargetType    {get;set;}
+    [JsonProperty("targetType")]
+    public targetType  TargetType {get;set;}
     /// <summary>
     ///  Action 列表
     /// </summary>
-[JsonProperty("actions")]
-public    GetAuthorizedResourceActionDto   Actions    {get;set;}
+    [JsonProperty("actions")]
+    public GetAuthorizedResourceActionDto  Actions {get;set;}
 }
 public partial class GetAuthorizedTargetsDto
  {

@@ -18,8 +18,8 @@ public partial class GetUserDepartmentsDto
     /// <summary>
     ///  用户唯一标志，可以是用户 ID、用户名、邮箱、手机号、外部 ID、在外部身份源的 ID。
     /// </summary>
-[JsonProperty("userId")]
-public    object   UserId    {get;set;}
+    [JsonProperty("userId")]
+    public string  UserId {get;set;}
     /// <summary>
     ///  用户 ID 类型，默认值为 `user_id`，可选值为：
 /// - `user_id`: Authing 用户 ID，如 `6319a1504f3xxxxf214dd5b7`
@@ -31,32 +31,32 @@ public    object   UserId    {get;set;}
 /// 示例值：`62f20932716fbcc10d966ee5:ou_8bae746eac07cd2564654140d2a9ac61`。
 /// 
     /// </summary>
-[JsonProperty("userIdType")]
-public    object   UserIdType    {get;set;}
+    [JsonProperty("userIdType")]
+    public string  UserIdType {get;set;}
     /// <summary>
     ///  当前页数，从 1 开始
     /// </summary>
-[JsonProperty("page")]
-public    object   Page    {get;set;}
+    [JsonProperty("page")]
+    public long  Page {get;set;}
     /// <summary>
     ///  每页数目，最大不能超过 50，默认为 10
     /// </summary>
-[JsonProperty("limit")]
-public    object   Limit    {get;set;}
+    [JsonProperty("limit")]
+    public long  Limit {get;set;}
     /// <summary>
     ///  是否获取自定义数据
     /// </summary>
-[JsonProperty("withCustomData")]
-public    object   WithCustomData    {get;set;}
+    [JsonProperty("withCustomData")]
+    public bool  WithCustomData {get;set;}
     /// <summary>
     ///  排序依据，如 部门创建时间、加入部门时间、部门名称、部门标志符
     /// </summary>
-[JsonProperty("sortBy")]
-public    object   SortBy    {get;set;}
+    [JsonProperty("sortBy")]
+    public string  SortBy {get;set;}
     /// <summary>
     ///  增序或降序
     /// </summary>
-[JsonProperty("orderBy")]
-public    object   OrderBy    {get;set;}
+    [JsonProperty("orderBy")]
+    public string  OrderBy {get;set;}
 }
 }

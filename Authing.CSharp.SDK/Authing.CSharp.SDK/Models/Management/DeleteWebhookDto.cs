@@ -18,7 +18,7 @@ public partial class DeleteWebhookDto
     /// <summary>
     ///  webhookId 数组
     /// </summary>
-[JsonProperty("webhookIds")]
-public    List<string>   WebhookIds    {get;set;}
+    [JsonProperty("webhookIds")]
+    public List<string>  WebhookIds {get;set;}
 }
 }

@@ -18,12 +18,12 @@ public partial class ImportOtpItemDto
     /// <summary>
     ///  用户 ID
     /// </summary>
-[JsonProperty("userId")]
-public    string   UserId    {get;set;}
+    [JsonProperty("userId")]
+    public string  UserId {get;set;}
     /// <summary>
     ///  OTP 数据
     /// </summary>
-[JsonProperty("otp")]
-public    ImportOtpItemDataDto   Otp    {get;set;}
+    [JsonProperty("otp")]
+    public ImportOtpItemDataDto  Otp {get;set;}
 }
 }

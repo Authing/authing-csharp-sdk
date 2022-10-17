@@ -18,13 +18,13 @@ public partial class IdentityDto
     /// <summary>
     ///  身份源 ID
     /// </summary>
-[JsonProperty("identityId")]
-public    string   IdentityId    {get;set;}
+    [JsonProperty("identityId")]
+    public string  IdentityId {get;set;}
     /// <summary>
     ///  身份源连接 ID
     /// </summary>
-[JsonProperty("extIdpId")]
-public    string   ExtIdpId    {get;set;}
+    [JsonProperty("extIdpId")]
+    public string  ExtIdpId {get;set;}
     /// <summary>
     ///  外部身份源类型：
 /// - `wechat`: 微信
@@ -56,23 +56,23 @@ public    string   ExtIdpId    {get;set;}
 /// - `azure-ad`: Azure AD 型企业身份源
 /// 
     /// </summary>
-[JsonProperty("provider")]
-public    provider   Provider    {get;set;}
+    [JsonProperty("provider")]
+    public provider  Provider {get;set;}
     /// <summary>
     ///  Identity 类型，如 unionid, openid, primary
     /// </summary>
-[JsonProperty("type")]
-public    string   Type    {get;set;}
+    [JsonProperty("type")]
+    public string  Type {get;set;}
     /// <summary>
     ///  在外部身份源中的 ID
     /// </summary>
-[JsonProperty("userIdInIdp")]
-public    string   UserIdInIdp    {get;set;}
+    [JsonProperty("userIdInIdp")]
+    public string  UserIdInIdp {get;set;}
     /// <summary>
     ///  身份来自的身份源连接 ID 列表
     /// </summary>
-[JsonProperty("originConnIds")]
-public    List<string>   OriginConnIds    {get;set;}
+    [JsonProperty("originConnIds")]
+    public List<string>  OriginConnIds {get;set;}
 }
 public partial class IdentityDto
  {

@@ -18,7 +18,7 @@ public partial class RefreshApplicationSecretDataDto
     /// <summary>
     ///  新的应用密钥
     /// </summary>
-[JsonProperty("secret")]
-public    string   Secret    {get;set;}
+    [JsonProperty("secret")]
+    public string  Secret {get;set;}
 }
 }

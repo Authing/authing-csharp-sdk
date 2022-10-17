@@ -18,12 +18,12 @@ public partial class GetEmailTemplatesDataDto
     /// <summary>
     ///  模版列表
     /// </summary>
-[JsonProperty("templates")]
-public    List<EmailTemplateDto>   Templates    {get;set;}
+    [JsonProperty("templates")]
+    public List<EmailTemplateDto>  Templates {get;set;}
     /// <summary>
     ///  模版类型列表
     /// </summary>
-[JsonProperty("categories")]
-public    List<EmailTemplateCategoryDto>   Categories    {get;set;}
+    [JsonProperty("categories")]
+    public List<EmailTemplateCategoryDto>  Categories {get;set;}
 }
 }

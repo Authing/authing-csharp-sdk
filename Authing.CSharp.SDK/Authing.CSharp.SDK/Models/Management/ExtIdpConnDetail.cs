@@ -18,48 +18,48 @@ public partial class ExtIdpConnDetail
     /// <summary>
     ///  身份源连接 id
     /// </summary>
-[JsonProperty("id")]
-public    string   Id    {get;set;}
+    [JsonProperty("id")]
+    public string  Id {get;set;}
     /// <summary>
     ///  身份源连接类型
     /// </summary>
-[JsonProperty("type")]
-public    type   Type    {get;set;}
+    [JsonProperty("type")]
+    public type  Type {get;set;}
     /// <summary>
     ///  身份源 ID
     /// </summary>
-[JsonProperty("extIdpId")]
-public    string   ExtIdpId    {get;set;}
+    [JsonProperty("extIdpId")]
+    public string  ExtIdpId {get;set;}
     /// <summary>
     ///  身份源连接图标
     /// </summary>
-[JsonProperty("logo")]
-public    string   Logo    {get;set;}
+    [JsonProperty("logo")]
+    public string  Logo {get;set;}
     /// <summary>
     ///  身份源连接标识
     /// </summary>
-[JsonProperty("identifier")]
-public    string   Identifier    {get;set;}
+    [JsonProperty("identifier")]
+    public string  Identifier {get;set;}
     /// <summary>
     ///  身份源连接在登录页的显示名称
     /// </summary>
-[JsonProperty("displayName")]
-public    string   DisplayName    {get;set;}
+    [JsonProperty("displayName")]
+    public string  DisplayName {get;set;}
     /// <summary>
     ///  是否只支持登录
     /// </summary>
-[JsonProperty("loginOnly")]
-public    bool   LoginOnly    {get;set;}
+    [JsonProperty("loginOnly")]
+    public bool  LoginOnly {get;set;}
     /// <summary>
     ///  账号关联模式
     /// </summary>
-[JsonProperty("associationMode")]
-public    associationMode   AssociationMode    {get;set;}
+    [JsonProperty("associationMode")]
+    public associationMode  AssociationMode {get;set;}
     /// <summary>
     ///  账号绑定方式
     /// </summary>
-[JsonProperty("challengeBindingMethods")]
-public    List<string>   ChallengeBindingMethods    {get;set;}
+    [JsonProperty("challengeBindingMethods")]
+    public List<string>  ChallengeBindingMethods {get;set;}
 }
 public partial class ExtIdpConnDetail
  {

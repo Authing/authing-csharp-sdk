@@ -18,12 +18,12 @@ public partial class PipelineFunctionPagingDto
     /// <summary>
     ///  总数
     /// </summary>
-[JsonProperty("totalCount")]
-public    long   TotalCount    {get;set;}
+    [JsonProperty("totalCount")]
+    public long  TotalCount {get;set;}
     /// <summary>
     ///  数据列表
     /// </summary>
-[JsonProperty("list")]
-public    List<PipelineFunctionDto>   List    {get;set;}
+    [JsonProperty("list")]
+    public List<PipelineFunctionDto>  List {get;set;}
 }
 }

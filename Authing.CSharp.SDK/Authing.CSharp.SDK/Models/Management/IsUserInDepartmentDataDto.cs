@@ -18,7 +18,7 @@ public partial class IsUserInDepartmentDataDto
     /// <summary>
     ///  是否在此部门内
     /// </summary>
-[JsonProperty("inDepartment")]
-public    bool   InDepartment    {get;set;}
+    [JsonProperty("inDepartment")]
+    public bool  InDepartment {get;set;}
 }
 }

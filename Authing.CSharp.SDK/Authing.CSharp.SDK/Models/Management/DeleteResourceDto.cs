@@ -18,12 +18,12 @@ public partial class DeleteResourceDto
     /// <summary>
     ///  资源唯一标志符
     /// </summary>
-[JsonProperty("code")]
-public    string   Code    {get;set;}
+    [JsonProperty("code")]
+    public string  Code {get;set;}
     /// <summary>
     ///  所属权限分组的 code
     /// </summary>
-[JsonProperty("namespace")]
-public    string   Namespace    {get;set;}
+    [JsonProperty("namespace")]
+    public string  Namespace {get;set;}
 }
 }

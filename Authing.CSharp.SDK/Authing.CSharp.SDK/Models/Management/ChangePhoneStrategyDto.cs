@@ -18,7 +18,7 @@ public partial class ChangePhoneStrategyDto
     /// <summary>
     ///  修改手机号时是否验证旧手机号
     /// </summary>
-[JsonProperty("verifyOldPhone")]
-public    bool   VerifyOldPhone    {get;set;}
+    [JsonProperty("verifyOldPhone")]
+    public bool  VerifyOldPhone {get;set;}
 }
 }

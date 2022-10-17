@@ -18,7 +18,7 @@ public partial class SetUserBaseFieldsReqDto
     /// <summary>
     ///  自定义字段列表
     /// </summary>
-[JsonProperty("list")]
-public    List<SetUserBaseFieldDto>   List    {get;set;}
+    [JsonProperty("list")]
+    public List<SetUserBaseFieldDto>  List {get;set;}
 }
 }

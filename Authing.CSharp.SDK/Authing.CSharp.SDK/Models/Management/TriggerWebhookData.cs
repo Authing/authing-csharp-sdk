@@ -18,7 +18,7 @@ public partial class TriggerWebhookData
     /// <summary>
     ///  原来接口返回的 response 数据
     /// </summary>
-[JsonProperty("response")]
-public    Any   Response    {get;set;}
+    [JsonProperty("response")]
+    public Any  Response {get;set;}
 }
 }

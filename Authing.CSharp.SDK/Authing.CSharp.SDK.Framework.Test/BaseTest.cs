@@ -85,7 +85,7 @@ namespace Authing.CSharp.SDK.Framework.Test
             {
 
 
-                UserSingleRespDto userSingleRespDto = managementClient.GetUser("61c188ccfff26fef0ca6880d").Result;
+                UserSingleRespDto userSingleRespDto = managementClient.GetUser(new GetUserDto { UserId= "61c188ccfff26fef0ca6880d" }).Result;
 
                 Assert.IsFalse(string.IsNullOrWhiteSpace(userSingleRespDto.Data.UserId));
             }

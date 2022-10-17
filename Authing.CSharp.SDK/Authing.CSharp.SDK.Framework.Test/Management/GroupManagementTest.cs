@@ -21,7 +21,7 @@ namespace Authing.CSharp.SDK.Framework.Test
             using (CancellationTokenSource cts = new CancellationTokenSource())
             {
 
-                GroupSingleRespDto dto =await managementClient.GetGroup("testgroup_Add111");
+                GroupSingleRespDto dto =await managementClient.GetGroup(new GetGroupDto { Code= "testgroup_Add111" });
 
                 Assert.IsTrue(dto.Data.Name == "testgroup_Add");
             }
@@ -32,7 +32,7 @@ namespace Authing.CSharp.SDK.Framework.Test
         {
             using (CancellationTokenSource cts = new CancellationTokenSource())
             {
-                GroupPaginatedRespDto dto =await managementClient.ListGroups("");
+                GroupPaginatedRespDto dto =await managementClient.ListGroups(new ListGroupsDto { });
 
                 Assert.IsTrue(dto.Data.TotalCount > 0);
             }
@@ -161,7 +161,7 @@ namespace Authing.CSharp.SDK.Framework.Test
             {
                 string code = "testgroup_Add";
 
-                UserPaginatedRespDto isSuccess =await managementClient.ListGroupMembers(code);
+                UserPaginatedRespDto isSuccess =await managementClient.ListGroupMembers(new ListGroupMembersDto { Code=code});
 
                 Assert.IsTrue(isSuccess.Data.List.Count > 0);
             }
@@ -174,7 +174,7 @@ namespace Authing.CSharp.SDK.Framework.Test
             {
                 string code = "testgroup_Add";
 
-                AuthorizedResourceListRespDto dto =await managementClient.GetGroupAuthorizedResources(code, "testNameSpace2");
+                AuthorizedResourceListRespDto dto =await managementClient.GetGroupAuthorizedResources(new GetGroupAuthorizedResourcesDto { Code=code,Namespace= "code" });
 
                 Assert.IsTrue(dto.Data.Count == 1);
             }

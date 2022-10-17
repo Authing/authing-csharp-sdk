@@ -18,22 +18,22 @@ public partial class LangObject
     /// <summary>
     ///  多语言的中文内容
     /// </summary>
-[JsonProperty("zh-CN")]
-public    LangUnit   ZhCN    {get;set;}
+    [JsonProperty("zh-CN")]
+    public LangUnit  ZhCN {get;set;}
     /// <summary>
     ///  多语言的英文内容
     /// </summary>
-[JsonProperty("en-US")]
-public    LangUnit   EnUS    {get;set;}
+    [JsonProperty("en-US")]
+    public LangUnit  EnUS {get;set;}
     /// <summary>
     ///  多语言的繁体中文内容
     /// </summary>
-[JsonProperty("zh-TW")]
-public    LangUnit   ZhTW    {get;set;}
+    [JsonProperty("zh-TW")]
+    public LangUnit  ZhTW {get;set;}
     /// <summary>
     ///  多语言的日语内容
     /// </summary>
-[JsonProperty("ja-JP")]
-public    LangUnit   JaJP    {get;set;}
+    [JsonProperty("ja-JP")]
+    public LangUnit  JaJP {get;set;}
 }
 }

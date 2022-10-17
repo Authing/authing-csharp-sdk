@@ -18,12 +18,12 @@ public partial class ListArchivedUsersRespDto
     /// <summary>
     ///  用户 ID
     /// </summary>
-[JsonProperty("userId")]
-public    string   UserId    {get;set;}
+    [JsonProperty("userId")]
+    public string  UserId {get;set;}
     /// <summary>
     ///  归档时间
     /// </summary>
-[JsonProperty("archivedAt")]
-public    string   ArchivedAt    {get;set;}
+    [JsonProperty("archivedAt")]
+    public string  ArchivedAt {get;set;}
 }
 }

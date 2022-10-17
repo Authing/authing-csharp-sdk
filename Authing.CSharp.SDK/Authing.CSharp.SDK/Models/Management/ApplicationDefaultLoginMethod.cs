@@ -22,8 +22,8 @@ public partial class ApplicationDefaultLoginMethod
 /// - `QRCODE`: 扫码登录类型，目前包含自建 APP 扫码登录、关注微信公众号扫码登录、微信小程序扫码登录三种类型
 /// 
     /// </summary>
-[JsonProperty("connectionType")]
-public    connectionType   ConnectionType    {get;set;}
+    [JsonProperty("connectionType")]
+    public connectionType  ConnectionType {get;set;}
     /// <summary>
     ///  当 `connectionType` 为 `QRCODE` 时，此参数表示二维码类型。
 /// - `SELF_BUILT_APP`: 自建 APP 扫码
@@ -31,23 +31,23 @@ public    connectionType   ConnectionType    {get;set;}
 /// - `WECHAT_MINI_PROGRAM`: 微信小程序扫码登录
 /// 
     /// </summary>
-[JsonProperty("qrcodeType")]
-public    qrcodeType   QrcodeType    {get;set;}
+    [JsonProperty("qrcodeType")]
+    public qrcodeType  QrcodeType {get;set;}
     /// <summary>
     ///  当 `connectionType` 为 `QRCODE` 时，你需要通过此参数指定具体的扫码登录身份源连接的 ID。
     /// </summary>
-[JsonProperty("qrcodeExtIdpConnId")]
-public    string   QrcodeExtIdpConnId    {get;set;}
+    [JsonProperty("qrcodeExtIdpConnId")]
+    public string  QrcodeExtIdpConnId {get;set;}
     /// <summary>
     ///  当 `connectionType` 为 `AD` 时，你需要通过此参数指定具体的 AD 身份源连接的 ID。
     /// </summary>
-[JsonProperty("adExtIdpConnId")]
-public    string   AdExtIdpConnId    {get;set;}
+    [JsonProperty("adExtIdpConnId")]
+    public string  AdExtIdpConnId {get;set;}
     /// <summary>
     ///  当 `connectionType` 为 `LDAP` 时，你需要通过此参数指定具体的 LDAP 身份源连接的 ID。
     /// </summary>
-[JsonProperty("ldapExtIdpConnId")]
-public    string   LdapExtIdpConnId    {get;set;}
+    [JsonProperty("ldapExtIdpConnId")]
+    public string  LdapExtIdpConnId {get;set;}
 }
 public partial class ApplicationDefaultLoginMethod
  {

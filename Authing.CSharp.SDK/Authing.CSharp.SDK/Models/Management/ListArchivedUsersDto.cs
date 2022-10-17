@@ -18,17 +18,17 @@ public partial class ListArchivedUsersDto
     /// <summary>
     ///  当前页数，从 1 开始
     /// </summary>
-[JsonProperty("page")]
-public    object   Page    {get;set;}
+    [JsonProperty("page")]
+    public long  Page {get;set;}
     /// <summary>
     ///  每页数目，最大不能超过 50，默认为 10
     /// </summary>
-[JsonProperty("limit")]
-public    object   Limit    {get;set;}
+    [JsonProperty("limit")]
+    public long  Limit {get;set;}
     /// <summary>
     ///  开始时间，为精确到秒的 UNIX 时间戳，默认不指定
     /// </summary>
-[JsonProperty("startAt")]
-public    object   StartAt    {get;set;}
+    [JsonProperty("startAt")]
+    public long  StartAt {get;set;}
 }
 }

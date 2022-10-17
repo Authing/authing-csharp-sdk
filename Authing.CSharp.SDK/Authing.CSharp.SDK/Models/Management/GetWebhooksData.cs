@@ -18,12 +18,12 @@ public partial class GetWebhooksData
     /// <summary>
     ///  记录总数
     /// </summary>
-[JsonProperty("totalCount")]
-public    long   TotalCount    {get;set;}
+    [JsonProperty("totalCount")]
+    public long  TotalCount {get;set;}
     /// <summary>
     ///  返回列表
     /// </summary>
-[JsonProperty("list")]
-public    List<WebhookDto>   List    {get;set;}
+    [JsonProperty("list")]
+    public List<WebhookDto>  List {get;set;}
 }
 }

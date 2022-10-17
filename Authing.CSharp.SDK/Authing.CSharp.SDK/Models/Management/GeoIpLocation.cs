@@ -18,12 +18,12 @@ public partial class GeoIpLocation
     /// <summary>
     ///  经度
     /// </summary>
-[JsonProperty("lon")]
-public    long   Lon    {get;set;}
+    [JsonProperty("lon")]
+    public long  Lon {get;set;}
     /// <summary>
     ///  纬度
     /// </summary>
-[JsonProperty("lat")]
-public    long   Lat    {get;set;}
+    [JsonProperty("lat")]
+    public long  Lat {get;set;}
 }
 }

@@ -18,17 +18,17 @@ public partial class SetUserDepartmentDto
     /// <summary>
     ///  部门 id
     /// </summary>
-[JsonProperty("departmentId")]
-public    string   DepartmentId    {get;set;}
+    [JsonProperty("departmentId")]
+    public string  DepartmentId {get;set;}
     /// <summary>
     ///  是否是部门 leader
     /// </summary>
-[JsonProperty("isLeader")]
-public    bool   IsLeader    {get;set;}
+    [JsonProperty("isLeader")]
+    public bool  IsLeader {get;set;}
     /// <summary>
     ///  是否是主部门
     /// </summary>
-[JsonProperty("isMainDepartment")]
-public    bool   IsMainDepartment    {get;set;}
+    [JsonProperty("isMainDepartment")]
+    public bool  IsMainDepartment {get;set;}
 }
 }

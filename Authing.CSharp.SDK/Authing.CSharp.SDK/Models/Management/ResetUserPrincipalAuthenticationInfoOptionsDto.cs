@@ -26,8 +26,8 @@ public partial class ResetUserPrincipalAuthenticationInfoOptionsDto
 /// 示例值：`62f20932716fbcc10d966ee5:ou_8bae746eac07cd2564654140d2a9ac61`。
 /// 
     /// </summary>
-[JsonProperty("userIdType")]
-public    userIdType   UserIdType    {get;set;}
+    [JsonProperty("userIdType")]
+    public userIdType  UserIdType {get;set;}
 }
 public partial class ResetUserPrincipalAuthenticationInfoOptionsDto
  {

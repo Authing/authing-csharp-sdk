@@ -18,12 +18,12 @@ public partial class DeleteApplicationPermissionRecord
     /// <summary>
     ///  授权主体列表，最多 10 条
     /// </summary>
-[JsonProperty("list")]
-public    List<DeleteApplicationPermissionRecordItem>   List    {get;set;}
+    [JsonProperty("list")]
+    public List<DeleteApplicationPermissionRecordItem>  List {get;set;}
     /// <summary>
     ///  应用 ID
     /// </summary>
-[JsonProperty("appId")]
-public    string   AppId    {get;set;}
+    [JsonProperty("appId")]
+    public string  AppId {get;set;}
 }
 }

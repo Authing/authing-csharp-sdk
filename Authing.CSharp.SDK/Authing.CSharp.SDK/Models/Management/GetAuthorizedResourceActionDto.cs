@@ -18,13 +18,13 @@ public partial class GetAuthorizedResourceActionDto
     /// <summary>
     ///  AND or OR
     /// </summary>
-[JsonProperty("op")]
-public    op   Op    {get;set;}
+    [JsonProperty("op")]
+    public op  Op {get;set;}
     /// <summary>
     ///  Action 列表
     /// </summary>
-[JsonProperty("list")]
-public    List<string>   List    {get;set;}
+    [JsonProperty("list")]
+    public List<string>  List {get;set;}
 }
 public partial class GetAuthorizedResourceActionDto
  {

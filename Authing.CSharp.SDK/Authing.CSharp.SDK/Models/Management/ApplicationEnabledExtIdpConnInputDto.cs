@@ -18,7 +18,7 @@ public partial class ApplicationEnabledExtIdpConnInputDto
     /// <summary>
     ///  身份源连接 ID
     /// </summary>
-[JsonProperty("extIdpConnId")]
-public    string   ExtIdpConnId    {get;set;}
+    [JsonProperty("extIdpConnId")]
+    public string  ExtIdpConnId {get;set;}
 }
 }

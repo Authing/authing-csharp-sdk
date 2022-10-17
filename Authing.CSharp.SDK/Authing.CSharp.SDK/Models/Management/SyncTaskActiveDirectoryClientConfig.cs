@@ -18,12 +18,12 @@ public partial class SyncTaskActiveDirectoryClientConfig
     /// <summary>
     ///  身份源唯一标志
     /// </summary>
-[JsonProperty("syncIdentityProviderCode")]
-public    string   SyncIdentityProviderCode    {get;set;}
+    [JsonProperty("syncIdentityProviderCode")]
+    public string  SyncIdentityProviderCode {get;set;}
     /// <summary>
     ///  Provisioning Ticket Url
     /// </summary>
-[JsonProperty("ticket_url")]
-public    string   Ticket_url    {get;set;}
+    [JsonProperty("ticket_url")]
+    public string  Ticket_url {get;set;}
 }
 }

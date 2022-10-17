@@ -18,7 +18,7 @@ public partial class DepartmentI18nDto
     /// <summary>
     ///  支持多语言的字段
     /// </summary>
-[JsonProperty("name")]
-public    LangObject   Name    {get;set;}
+    [JsonProperty("name")]
+    public LangObject  Name {get;set;}
 }
 }

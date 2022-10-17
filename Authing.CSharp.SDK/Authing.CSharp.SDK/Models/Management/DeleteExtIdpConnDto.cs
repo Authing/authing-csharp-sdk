@@ -18,7 +18,7 @@ public partial class DeleteExtIdpConnDto
     /// <summary>
     ///  身份源连接 ID
     /// </summary>
-[JsonProperty("id")]
-public    string   Id    {get;set;}
+    [JsonProperty("id")]
+    public string  Id {get;set;}
 }
 }

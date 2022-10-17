@@ -18,38 +18,38 @@ public partial class AuthorizedResourceDto
     /// <summary>
     ///  资源描述符
     /// </summary>
-[JsonProperty("resourceCode")]
-public    string   ResourceCode    {get;set;}
+    [JsonProperty("resourceCode")]
+    public string  ResourceCode {get;set;}
     /// <summary>
     ///  资源描述信息
     /// </summary>
-[JsonProperty("description")]
-public    string   Description    {get;set;}
+    [JsonProperty("description")]
+    public string  Description {get;set;}
     /// <summary>
     ///  策略 Condition
     /// </summary>
-[JsonProperty("condition")]
-public    List<PolicyCondition>   Condition    {get;set;}
+    [JsonProperty("condition")]
+    public List<PolicyCondition>  Condition {get;set;}
     /// <summary>
     ///  资源类型
     /// </summary>
-[JsonProperty("resourceType")]
-public    resourceType   ResourceType    {get;set;}
+    [JsonProperty("resourceType")]
+    public resourceType  ResourceType {get;set;}
     /// <summary>
     ///  API URL
     /// </summary>
-[JsonProperty("apiIdentifier")]
-public    string   ApiIdentifier    {get;set;}
+    [JsonProperty("apiIdentifier")]
+    public string  ApiIdentifier {get;set;}
     /// <summary>
     ///  授权的操作列表
     /// </summary>
-[JsonProperty("actions")]
-public    List<string>   Actions    {get;set;}
+    [JsonProperty("actions")]
+    public List<string>  Actions {get;set;}
     /// <summary>
     ///  允许还是拒绝
     /// </summary>
-[JsonProperty("effect")]
-public    effect   Effect    {get;set;}
+    [JsonProperty("effect")]
+    public effect  Effect {get;set;}
 }
 public partial class AuthorizedResourceDto
  {

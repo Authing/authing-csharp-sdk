@@ -20,7 +20,7 @@ namespace Authing.CSharp.SDK.Framework.Test
             using (CancellationTokenSource cts = new CancellationTokenSource())
             {
 
-                CustomFieldListRespDto dto = managementClient.GetCustomFields("USER").Result;
+                CustomFieldListRespDto dto = managementClient.GetCustomFields(new GetCustomFieldsDto { TargetType= "USER" }).Result;
                 if (dto.StatusCode != 200)
                 {
                     //进行异常处理
@@ -97,7 +97,7 @@ namespace Authing.CSharp.SDK.Framework.Test
         {
             using (CancellationTokenSource cts = new CancellationTokenSource())
             {
-                GetCustomDataRespDto getCustomDataRespDto = managementClient.GetCustomData("default","6283074cf5d4ed3e7535b928","USER").Result;
+                GetCustomDataRespDto getCustomDataRespDto = managementClient.GetCustomData(new GetCustomDataDto { Namespace="default",TargetIdentifier= "6283074cf5d4ed3e7535b928",TargetType="USER" }).Result;
                 Assert.IsNotNull(getCustomDataRespDto.Data);
             }
         }

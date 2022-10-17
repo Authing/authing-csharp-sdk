@@ -18,13 +18,13 @@ public partial class ListUsersOptionsDto
     /// <summary>
     ///  分页配置
     /// </summary>
-[JsonProperty("pagination")]
-public    PaginationDto   Pagination    {get;set;}
+    [JsonProperty("pagination")]
+    public PaginationDto  Pagination {get;set;}
     /// <summary>
     ///  排序设置，可以设置多项按照多个字段进行排序
     /// </summary>
-[JsonProperty("sort")]
-public    List<SortingDto>   Sort    {get;set;}
+    [JsonProperty("sort")]
+    public List<SortingDto>  Sort {get;set;}
     /// <summary>
     ///  模糊搜索匹配的用户字段，可选值为：
 /// - `phone`: 用户手机号，不能包含手机号区号，默认包含
@@ -46,22 +46,22 @@ public    List<SortingDto>   Sort    {get;set;}
 /// - `postalCode`: 邮编号码
 /// 
     /// </summary>
-[JsonProperty("fuzzySearchOn")]
-public    List<string>   FuzzySearchOn    {get;set;}
+    [JsonProperty("fuzzySearchOn")]
+    public List<string>  FuzzySearchOn {get;set;}
     /// <summary>
     ///  是否获取自定义数据
     /// </summary>
-[JsonProperty("withCustomData")]
-public    bool   WithCustomData    {get;set;}
+    [JsonProperty("withCustomData")]
+    public bool  WithCustomData {get;set;}
     /// <summary>
     ///  是否获取 identities
     /// </summary>
-[JsonProperty("withIdentities")]
-public    bool   WithIdentities    {get;set;}
+    [JsonProperty("withIdentities")]
+    public bool  WithIdentities {get;set;}
     /// <summary>
     ///  是否获取部门 ID 列表
     /// </summary>
-[JsonProperty("withDepartmentIds")]
-public    bool   WithDepartmentIds    {get;set;}
+    [JsonProperty("withDepartmentIds")]
+    public bool  WithDepartmentIds {get;set;}
 }
 }

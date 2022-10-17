@@ -26,28 +26,28 @@ public partial class UpdateUserOptionsDto
 /// 示例值：`62f20932716fbcc10d966ee5:ou_8bae746eac07cd2564654140d2a9ac61`。
 /// 
     /// </summary>
-[JsonProperty("userIdType")]
-public    userIdType   UserIdType    {get;set;}
+    [JsonProperty("userIdType")]
+    public userIdType  UserIdType {get;set;}
     /// <summary>
     ///  下次登录要求重置密码
     /// </summary>
-[JsonProperty("resetPasswordOnNextLogin")]
-public    bool   ResetPasswordOnNextLogin    {get;set;}
+    [JsonProperty("resetPasswordOnNextLogin")]
+    public bool  ResetPasswordOnNextLogin {get;set;}
     /// <summary>
     ///  密码加密类型，支持 sm2 和 rsa
     /// </summary>
-[JsonProperty("passwordEncryptType")]
-public    passwordEncryptType   PasswordEncryptType    {get;set;}
+    [JsonProperty("passwordEncryptType")]
+    public passwordEncryptType  PasswordEncryptType {get;set;}
     /// <summary>
     ///  是否自动生成密码
     /// </summary>
-[JsonProperty("autoGeneratePassword")]
-public    bool   AutoGeneratePassword    {get;set;}
+    [JsonProperty("autoGeneratePassword")]
+    public bool  AutoGeneratePassword {get;set;}
     /// <summary>
     ///  重置密码发送邮件和手机号选项
     /// </summary>
-[JsonProperty("sendPasswordResetedNotification")]
-public    SendResetPasswordNotificationDto   SendPasswordResetedNotification    {get;set;}
+    [JsonProperty("sendPasswordResetedNotification")]
+    public SendResetPasswordNotificationDto  SendPasswordResetedNotification {get;set;}
 }
 public partial class UpdateUserOptionsDto
  {

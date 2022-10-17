@@ -18,12 +18,12 @@ public partial class CustomFieldSelectOption
     /// <summary>
     ///  枚举值 value
     /// </summary>
-[JsonProperty("value")]
-public    string   Value    {get;set;}
+    [JsonProperty("value")]
+    public string  Value {get;set;}
     /// <summary>
     ///  枚举值 label
     /// </summary>
-[JsonProperty("label")]
-public    string   Label    {get;set;}
+    [JsonProperty("label")]
+    public string  Label {get;set;}
 }
 }

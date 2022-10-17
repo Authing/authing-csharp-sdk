@@ -18,7 +18,7 @@ public partial class CheckDomainAvailable
     /// <summary>
     ///  域名
     /// </summary>
-[JsonProperty("domain")]
-public    string   Domain    {get;set;}
+    [JsonProperty("domain")]
+    public string  Domain {get;set;}
 }
 }

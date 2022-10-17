@@ -18,7 +18,7 @@ public partial class CheckDomainAvailableDataDto
     /// <summary>
     ///  是否可用
     /// </summary>
-[JsonProperty("available")]
-public    bool   Available    {get;set;}
+    [JsonProperty("available")]
+    public bool  Available {get;set;}
 }
 }

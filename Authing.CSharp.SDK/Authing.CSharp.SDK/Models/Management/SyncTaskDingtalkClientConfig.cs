@@ -18,27 +18,27 @@ public partial class SyncTaskDingtalkClientConfig
     /// <summary>
     ///  企业 ID（CorpId）
     /// </summary>
-[JsonProperty("corpId")]
-public    string   CorpId    {get;set;}
+    [JsonProperty("corpId")]
+    public string  CorpId {get;set;}
     /// <summary>
     ///  钉钉应用的 AppKey
     /// </summary>
-[JsonProperty("appKey")]
-public    string   AppKey    {get;set;}
+    [JsonProperty("appKey")]
+    public string  AppKey {get;set;}
     /// <summary>
     ///  钉钉应用的 AppSecret
     /// </summary>
-[JsonProperty("appSecret")]
-public    string   AppSecret    {get;set;}
+    [JsonProperty("appSecret")]
+    public string  AppSecret {get;set;}
     /// <summary>
     ///  加密 aes_key
     /// </summary>
-[JsonProperty("aes_key")]
-public    string   Aes_key    {get;set;}
+    [JsonProperty("aes_key")]
+    public string  Aes_key {get;set;}
     /// <summary>
     ///  签名 token
     /// </summary>
-[JsonProperty("token")]
-public    string   Token    {get;set;}
+    [JsonProperty("token")]
+    public string  Token {get;set;}
 }
 }

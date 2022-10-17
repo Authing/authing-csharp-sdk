@@ -18,27 +18,27 @@ public partial class GetDepartmentDto
     /// <summary>
     ///  组织 code
     /// </summary>
-[JsonProperty("organizationCode")]
-public    object   OrganizationCode    {get;set;}
+    [JsonProperty("organizationCode")]
+    public string  OrganizationCode {get;set;}
     /// <summary>
     ///  部门 ID，根部门传 `root`。departmentId 和 departmentCode 必传其一。
     /// </summary>
-[JsonProperty("departmentId")]
-public    object   DepartmentId    {get;set;}
+    [JsonProperty("departmentId")]
+    public string  DepartmentId {get;set;}
     /// <summary>
     ///  部门 code。departmentId 和 departmentCode 必传其一。
     /// </summary>
-[JsonProperty("departmentCode")]
-public    object   DepartmentCode    {get;set;}
+    [JsonProperty("departmentCode")]
+    public string  DepartmentCode {get;set;}
     /// <summary>
     ///  此次调用中使用的部门 ID 的类型
     /// </summary>
-[JsonProperty("departmentIdType")]
-public    object   DepartmentIdType    {get;set;}
+    [JsonProperty("departmentIdType")]
+    public string  DepartmentIdType {get;set;}
     /// <summary>
     ///  是否获取自定义数据
     /// </summary>
-[JsonProperty("withCustomData")]
-public    object   WithCustomData    {get;set;}
+    [JsonProperty("withCustomData")]
+    public bool  WithCustomData {get;set;}
 }
 }

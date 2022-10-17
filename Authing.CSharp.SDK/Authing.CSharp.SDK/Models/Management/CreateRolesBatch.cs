@@ -18,7 +18,7 @@ public partial class CreateRolesBatch
     /// <summary>
     ///  角色列表
     /// </summary>
-[JsonProperty("list")]
-public    List<RoleListItem>   List    {get;set;}
+    [JsonProperty("list")]
+    public List<RoleListItem>  List {get;set;}
 }
 }

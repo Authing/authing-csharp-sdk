@@ -18,7 +18,7 @@ public partial class OrganizationNameI18nDto
     /// <summary>
     ///  支持多语言的字段
     /// </summary>
-[JsonProperty("organizationName")]
-public    LangObject   OrganizationName    {get;set;}
+    [JsonProperty("organizationName")]
+    public LangObject  OrganizationName {get;set;}
 }
 }

@@ -18,7 +18,7 @@ public partial class CreateGroupBatchReqDto
     /// <summary>
     ///  批量分组
     /// </summary>
-[JsonProperty("list")]
-public    List<CreateGroupReqDto>   List    {get;set;}
+    [JsonProperty("list")]
+    public List<CreateGroupReqDto>  List {get;set;}
 }
 }

@@ -18,17 +18,17 @@ public partial class SyncTaskItalentClientConfig
     /// <summary>
     ///  Tenant Id
     /// </summary>
-[JsonProperty("tenant_id")]
-public    string   Tenant_id    {get;set;}
+    [JsonProperty("tenant_id")]
+    public string  Tenant_id {get;set;}
     /// <summary>
     ///  App Key
     /// </summary>
-[JsonProperty("app_key")]
-public    string   App_key    {get;set;}
+    [JsonProperty("app_key")]
+    public string  App_key {get;set;}
     /// <summary>
     ///  App Secret
     /// </summary>
-[JsonProperty("app_secret")]
-public    string   App_secret    {get;set;}
+    [JsonProperty("app_secret")]
+    public string  App_secret {get;set;}
 }
 }

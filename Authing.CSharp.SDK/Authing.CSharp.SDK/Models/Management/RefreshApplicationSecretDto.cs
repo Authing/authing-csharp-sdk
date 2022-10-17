@@ -18,7 +18,7 @@ public partial class RefreshApplicationSecretDto
     /// <summary>
     ///  应用 ID
     /// </summary>
-[JsonProperty("appId")]
-public    string   AppId    {get;set;}
+    [JsonProperty("appId")]
+    public string  AppId {get;set;}
 }
 }

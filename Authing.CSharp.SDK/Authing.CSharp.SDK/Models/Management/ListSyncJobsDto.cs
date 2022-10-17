@@ -18,18 +18,18 @@ public partial class ListSyncJobsDto
     /// <summary>
     ///  同步任务 ID
     /// </summary>
-[JsonProperty("syncTaskId")]
-public    object   SyncTaskId    {get;set;}
+    [JsonProperty("syncTaskId")]
+    public long  SyncTaskId {get;set;}
     /// <summary>
     ///  当前页数，从 1 开始
     /// </summary>
-[JsonProperty("page")]
-public    object   Page    {get;set;}
+    [JsonProperty("page")]
+    public long  Page {get;set;}
     /// <summary>
     ///  每页数目，最大不能超过 50，默认为 10
     /// </summary>
-[JsonProperty("limit")]
-public    object   Limit    {get;set;}
+    [JsonProperty("limit")]
+    public long  Limit {get;set;}
     /// <summary>
     ///  同步任务触发类型：
 /// - `manually`: 手动触发执行
@@ -37,7 +37,7 @@ public    object   Limit    {get;set;}
 /// - `automatic`: 根据事件自动触发
 /// 
     /// </summary>
-[JsonProperty("syncTrigger")]
-public    object   SyncTrigger    {get;set;}
+    [JsonProperty("syncTrigger")]
+    public string  SyncTrigger {get;set;}
 }
 }

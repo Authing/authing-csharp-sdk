@@ -18,27 +18,27 @@ public partial class SMTPEmailProviderConfigInput
     /// <summary>
     ///  SMTP 地址
     /// </summary>
-[JsonProperty("smtpHost")]
-public    string   SmtpHost    {get;set;}
+    [JsonProperty("smtpHost")]
+    public string  SmtpHost {get;set;}
     /// <summary>
     ///  SMTP 端口
     /// </summary>
-[JsonProperty("smtpPort")]
-public    long   SmtpPort    {get;set;}
+    [JsonProperty("smtpPort")]
+    public long  SmtpPort {get;set;}
     /// <summary>
     ///  用户名
     /// </summary>
-[JsonProperty("sender")]
-public    string   Sender    {get;set;}
+    [JsonProperty("sender")]
+    public string  Sender {get;set;}
     /// <summary>
     ///  密码
     /// </summary>
-[JsonProperty("senderPass")]
-public    string   SenderPass    {get;set;}
+    [JsonProperty("senderPass")]
+    public string  SenderPass {get;set;}
     /// <summary>
     ///  是否启用 SSL
     /// </summary>
-[JsonProperty("enableSSL")]
-public    bool   EnableSSL    {get;set;}
+    [JsonProperty("enableSSL")]
+    public bool  EnableSSL {get;set;}
 }
 }

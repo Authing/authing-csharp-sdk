@@ -18,12 +18,12 @@ public partial class SendGridEmailProviderConfig
     /// <summary>
     ///  用户名
     /// </summary>
-[JsonProperty("sender")]
-public    string   Sender    {get;set;}
+    [JsonProperty("sender")]
+    public string  Sender {get;set;}
     /// <summary>
     ///  SendGrid API Key，详情请见 [SendGrid 文档](https://docs.sendgrid.com/ui/account-and-settings/api-keys)。
     /// </summary>
-[JsonProperty("apikey")]
-public    string   Apikey    {get;set;}
+    [JsonProperty("apikey")]
+    public string  Apikey {get;set;}
 }
 }

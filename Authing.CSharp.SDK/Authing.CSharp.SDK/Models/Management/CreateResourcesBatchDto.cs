@@ -18,12 +18,12 @@ public partial class CreateResourcesBatchDto
     /// <summary>
     ///  资源列表
     /// </summary>
-[JsonProperty("list")]
-public    List<CreateResourceBatchItemDto>   List    {get;set;}
+    [JsonProperty("list")]
+    public List<CreateResourceBatchItemDto>  List {get;set;}
     /// <summary>
     ///  所属权限分组的 code
     /// </summary>
-[JsonProperty("namespace")]
-public    string   Namespace    {get;set;}
+    [JsonProperty("namespace")]
+    public string  Namespace {get;set;}
 }
 }

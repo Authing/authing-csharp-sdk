@@ -18,22 +18,22 @@ public partial class ListRolesDto
     /// <summary>
     ///  搜索角色 code
     /// </summary>
-[JsonProperty("keywords")]
-public    object   Keywords    {get;set;}
+    [JsonProperty("keywords")]
+    public string  Keywords {get;set;}
     /// <summary>
     ///  所属权限分组的 code
     /// </summary>
-[JsonProperty("namespace")]
-public    object   Namespace    {get;set;}
+    [JsonProperty("namespace")]
+    public string  Namespace {get;set;}
     /// <summary>
     ///  当前页数，从 1 开始
     /// </summary>
-[JsonProperty("page")]
-public    object   Page    {get;set;}
+    [JsonProperty("page")]
+    public long  Page {get;set;}
     /// <summary>
     ///  每页数目，最大不能超过 50，默认为 10
     /// </summary>
-[JsonProperty("limit")]
-public    object   Limit    {get;set;}
+    [JsonProperty("limit")]
+    public long  Limit {get;set;}
 }
 }

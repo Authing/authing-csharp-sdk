@@ -18,12 +18,12 @@ public partial class GetOrganizationDto
     /// <summary>
     ///  组织 Code（organizationCode）
     /// </summary>
-[JsonProperty("organizationCode")]
-public    object   OrganizationCode    {get;set;}
+    [JsonProperty("organizationCode")]
+    public string  OrganizationCode {get;set;}
     /// <summary>
     ///  是否获取自定义数据
     /// </summary>
-[JsonProperty("withCustomData")]
-public    object   WithCustomData    {get;set;}
+    [JsonProperty("withCustomData")]
+    public bool  WithCustomData {get;set;}
 }
 }

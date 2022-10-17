@@ -18,7 +18,7 @@ public partial class GetSyncTaskDto
     /// <summary>
     ///  同步任务 ID
     /// </summary>
-[JsonProperty("syncTaskId")]
-public    object   SyncTaskId    {get;set;}
+    [JsonProperty("syncTaskId")]
+    public long  SyncTaskId {get;set;}
 }
 }

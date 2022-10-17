@@ -18,7 +18,7 @@ public partial class ChangeEmailStrategyDto
     /// <summary>
     ///  修改邮箱时是否验证旧邮箱
     /// </summary>
-[JsonProperty("verifyOldEmail")]
-public    bool   VerifyOldEmail    {get;set;}
+    [JsonProperty("verifyOldEmail")]
+    public bool  VerifyOldEmail {get;set;}
 }
 }

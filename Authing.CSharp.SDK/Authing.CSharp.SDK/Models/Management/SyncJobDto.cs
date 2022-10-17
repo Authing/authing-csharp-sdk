@@ -18,23 +18,23 @@ public partial class SyncJobDto
     /// <summary>
     ///  同步作业 ID
     /// </summary>
-[JsonProperty("syncJobId")]
-public    long   SyncJobId    {get;set;}
+    [JsonProperty("syncJobId")]
+    public long  SyncJobId {get;set;}
     /// <summary>
     ///  此同步作业对应的同步任务 ID
     /// </summary>
-[JsonProperty("syncTaskId")]
-public    long   SyncTaskId    {get;set;}
+    [JsonProperty("syncTaskId")]
+    public long  SyncTaskId {get;set;}
     /// <summary>
     ///  创建时间
     /// </summary>
-[JsonProperty("createdAt")]
-public    string   CreatedAt    {get;set;}
+    [JsonProperty("createdAt")]
+    public string  CreatedAt {get;set;}
     /// <summary>
     ///  更新时间
     /// </summary>
-[JsonProperty("updatedAt")]
-public    string   UpdatedAt    {get;set;}
+    [JsonProperty("updatedAt")]
+    public string  UpdatedAt {get;set;}
     /// <summary>
     ///  当前同步状态:
 /// - `free`: 空闲状态，从未执行
@@ -44,16 +44,16 @@ public    string   UpdatedAt    {get;set;}
 /// - `failed`: 失败
 /// 
     /// </summary>
-[JsonProperty("syncStatus")]
-public    syncStatus   SyncStatus    {get;set;}
+    [JsonProperty("syncStatus")]
+    public syncStatus  SyncStatus {get;set;}
     /// <summary>
     ///  同步任务数据流向：
 /// - `upstream`: 作为上游，将数据同步到 Authing
 /// - `downstream`: 作为下游，将 Authing 数据同步到此系统
 /// 
     /// </summary>
-[JsonProperty("syncFlow")]
-public    syncFlow   SyncFlow    {get;set;}
+    [JsonProperty("syncFlow")]
+    public syncFlow  SyncFlow {get;set;}
     /// <summary>
     ///  同步任务触发类型：
 /// - `manually`: 手动触发执行
@@ -61,53 +61,53 @@ public    syncFlow   SyncFlow    {get;set;}
 /// - `automatic`: 根据事件自动触发
 /// 
     /// </summary>
-[JsonProperty("syncTrigger")]
-public    syncTrigger   SyncTrigger    {get;set;}
+    [JsonProperty("syncTrigger")]
+    public syncTrigger  SyncTrigger {get;set;}
     /// <summary>
     ///  需要同步的部门个数
     /// </summary>
-[JsonProperty("departmentCountAll")]
-public    long   DepartmentCountAll    {get;set;}
+    [JsonProperty("departmentCountAll")]
+    public long  DepartmentCountAll {get;set;}
     /// <summary>
     ///  成功同步的部门个数
     /// </summary>
-[JsonProperty("departmentCountSucc")]
-public    long   DepartmentCountSucc    {get;set;}
+    [JsonProperty("departmentCountSucc")]
+    public long  DepartmentCountSucc {get;set;}
     /// <summary>
     ///  需要更新的部门个数
     /// </summary>
-[JsonProperty("departmentUpdateCountAll")]
-public    long   DepartmentUpdateCountAll    {get;set;}
+    [JsonProperty("departmentUpdateCountAll")]
+    public long  DepartmentUpdateCountAll {get;set;}
     /// <summary>
     ///  成功更新的部门个数
     /// </summary>
-[JsonProperty("departmentUpdateCountSucc")]
-public    long   DepartmentUpdateCountSucc    {get;set;}
+    [JsonProperty("departmentUpdateCountSucc")]
+    public long  DepartmentUpdateCountSucc {get;set;}
     /// <summary>
     ///  需要同步的用户个数
     /// </summary>
-[JsonProperty("accountCountAll")]
-public    long   AccountCountAll    {get;set;}
+    [JsonProperty("accountCountAll")]
+    public long  AccountCountAll {get;set;}
     /// <summary>
     ///  成功同步的用户个数
     /// </summary>
-[JsonProperty("accountCountSucc")]
-public    long   AccountCountSucc    {get;set;}
+    [JsonProperty("accountCountSucc")]
+    public long  AccountCountSucc {get;set;}
     /// <summary>
     ///  需要更新的用户个数
     /// </summary>
-[JsonProperty("accountUpdateCountAll")]
-public    long   AccountUpdateCountAll    {get;set;}
+    [JsonProperty("accountUpdateCountAll")]
+    public long  AccountUpdateCountAll {get;set;}
     /// <summary>
     ///  成功更新的用户个数
     /// </summary>
-[JsonProperty("accountUpdateCountSucc")]
-public    long   AccountUpdateCountSucc    {get;set;}
+    [JsonProperty("accountUpdateCountSucc")]
+    public long  AccountUpdateCountSucc {get;set;}
     /// <summary>
     ///  错误信息
     /// </summary>
-[JsonProperty("errMsg")]
-public    string   ErrMsg    {get;set;}
+    [JsonProperty("errMsg")]
+    public string  ErrMsg {get;set;}
 }
 public partial class SyncJobDto
  {

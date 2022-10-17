@@ -18,8 +18,8 @@ public partial class EmailProviderDto
     /// <summary>
     ///  是否启用，如果不启用，将默认使用 Authing 内置的邮件服务
     /// </summary>
-[JsonProperty("enabled")]
-public    bool   Enabled    {get;set;}
+    [JsonProperty("enabled")]
+    public bool  Enabled {get;set;}
     /// <summary>
     ///  第三方邮件服务商类型:
 /// - `smtp`: 标准 SMTP 邮件服务
@@ -28,28 +28,28 @@ public    bool   Enabled    {get;set;}
 /// - `sendgrid`: [SendGrid 邮件服务](https://sendgrid.com/)
 /// 
     /// </summary>
-[JsonProperty("type")]
-public    type   Type    {get;set;}
+    [JsonProperty("type")]
+    public type  Type {get;set;}
     /// <summary>
     ///  SMTP 邮件服务配置
     /// </summary>
-[JsonProperty("smtpConfig")]
-public    SMTPEmailProviderConfig   SmtpConfig    {get;set;}
+    [JsonProperty("smtpConfig")]
+    public SMTPEmailProviderConfig  SmtpConfig {get;set;}
     /// <summary>
     ///  SendGrid 邮件服务配置
     /// </summary>
-[JsonProperty("sendGridConfig")]
-public    SendGridEmailProviderConfig   SendGridConfig    {get;set;}
+    [JsonProperty("sendGridConfig")]
+    public SendGridEmailProviderConfig  SendGridConfig {get;set;}
     /// <summary>
     ///  阿里企业邮件服务配置
     /// </summary>
-[JsonProperty("aliExmailConfig")]
-public    AliExmailEmailProviderConfig   AliExmailConfig    {get;set;}
+    [JsonProperty("aliExmailConfig")]
+    public AliExmailEmailProviderConfig  AliExmailConfig {get;set;}
     /// <summary>
     ///  腾讯企业邮件服务配置
     /// </summary>
-[JsonProperty("tencentExmailConfig")]
-public    TencentExmailEmailProviderConfig   TencentExmailConfig    {get;set;}
+    [JsonProperty("tencentExmailConfig")]
+    public TencentExmailEmailProviderConfig  TencentExmailConfig {get;set;}
 }
 public partial class EmailProviderDto
  {

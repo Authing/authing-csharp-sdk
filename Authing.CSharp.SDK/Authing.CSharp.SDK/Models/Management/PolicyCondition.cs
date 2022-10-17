@@ -18,18 +18,18 @@ public partial class PolicyCondition
     /// <summary>
     ///  Condition Param
     /// </summary>
-[JsonProperty("param")]
-public    param   Param    {get;set;}
+    [JsonProperty("param")]
+    public param  Param {get;set;}
     /// <summary>
     ///  Condition Operator
     /// </summary>
-[JsonProperty("operator")]
-public    @operator   Operator    {get;set;}
+    [JsonProperty("operator")]
+    public @operator  Operator {get;set;}
     /// <summary>
     ///  Condition Value
     /// </summary>
-[JsonProperty("value")]
-public    string   Value    {get;set;}
+    [JsonProperty("value")]
+    public string  Value {get;set;}
 }
 public partial class PolicyCondition
  {

@@ -18,7 +18,7 @@ public partial class GetNamespaceDto
     /// <summary>
     ///  权限分组唯一标志符
     /// </summary>
-[JsonProperty("code")]
-public    object   Code    {get;set;}
+    [JsonProperty("code")]
+    public string  Code {get;set;}
 }
 }

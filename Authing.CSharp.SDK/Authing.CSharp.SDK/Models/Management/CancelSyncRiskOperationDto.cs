@@ -18,7 +18,7 @@ public partial class CancelSyncRiskOperationDto
     /// <summary>
     ///  同步任务风险操作 ID
     /// </summary>
-[JsonProperty("syncRiskOperationIds")]
-public    List<long>   SyncRiskOperationIds    {get;set;}
+    [JsonProperty("syncRiskOperationIds")]
+    public List<long>  SyncRiskOperationIds {get;set;}
 }
 }

@@ -26,7 +26,7 @@ public partial class ListPipelineFunctionDto
 /// - `PRE_COMPLETE_USER_INFO`: 补全用户信息前
 /// 
     /// </summary>
-[JsonProperty("scene")]
-public    object   Scene    {get;set;}
+    [JsonProperty("scene")]
+    public string  Scene {get;set;}
 }
 }

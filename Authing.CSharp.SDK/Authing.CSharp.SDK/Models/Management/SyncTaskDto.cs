@@ -18,23 +18,23 @@ public partial class SyncTaskDto
     /// <summary>
     ///  同步任务 ID
     /// </summary>
-[JsonProperty("syncTaskId")]
-public    long   SyncTaskId    {get;set;}
+    [JsonProperty("syncTaskId")]
+    public long  SyncTaskId {get;set;}
     /// <summary>
     ///  创建时间
     /// </summary>
-[JsonProperty("createdAt")]
-public    string   CreatedAt    {get;set;}
+    [JsonProperty("createdAt")]
+    public string  CreatedAt {get;set;}
     /// <summary>
     ///  更新时间
     /// </summary>
-[JsonProperty("updatedAt")]
-public    string   UpdatedAt    {get;set;}
+    [JsonProperty("updatedAt")]
+    public string  UpdatedAt {get;set;}
     /// <summary>
     ///  同步任务名称
     /// </summary>
-[JsonProperty("syncTaskName")]
-public    string   SyncTaskName    {get;set;}
+    [JsonProperty("syncTaskName")]
+    public string  SyncTaskName {get;set;}
     /// <summary>
     ///  同步任务类型:
 /// - `lark`: 飞书
@@ -52,16 +52,16 @@ public    string   SyncTaskName    {get;set;}
 /// - `scim`: 自定义同步源
 /// 
     /// </summary>
-[JsonProperty("syncTaskType")]
-public    syncTaskType   SyncTaskType    {get;set;}
+    [JsonProperty("syncTaskType")]
+    public syncTaskType  SyncTaskType {get;set;}
     /// <summary>
     ///  同步任务数据流向：
 /// - `upstream`: 作为上游，将数据同步到 Authing
 /// - `downstream`: 作为下游，将 Authing 数据同步到此系统
 /// 
     /// </summary>
-[JsonProperty("syncFlow")]
-public    syncFlow   SyncFlow    {get;set;}
+    [JsonProperty("syncFlow")]
+    public syncFlow  SyncFlow {get;set;}
     /// <summary>
     ///  同步任务触发类型：
 /// - `manually`: 手动触发执行
@@ -69,18 +69,18 @@ public    syncFlow   SyncFlow    {get;set;}
 /// - `automatic`: 根据事件自动触发
 /// 
     /// </summary>
-[JsonProperty("syncTrigger")]
-public    syncTrigger   SyncTrigger    {get;set;}
+    [JsonProperty("syncTrigger")]
+    public syncTrigger  SyncTrigger {get;set;}
     /// <summary>
     ///  最近一次同步错误信息
     /// </summary>
-[JsonProperty("lastSyncMessage")]
-public    bool   LastSyncMessage    {get;set;}
+    [JsonProperty("lastSyncMessage")]
+    public bool  LastSyncMessage {get;set;}
     /// <summary>
     ///  最近一次同步进度
     /// </summary>
-[JsonProperty("lastSyncRate")]
-public    long   LastSyncRate    {get;set;}
+    [JsonProperty("lastSyncRate")]
+    public long  LastSyncRate {get;set;}
     /// <summary>
     ///  最近一次同步状态:
 /// - `free`: 空闲状态，从未执行
@@ -90,33 +90,33 @@ public    long   LastSyncRate    {get;set;}
 /// - `failed`: 失败
 /// 
     /// </summary>
-[JsonProperty("lastSyncStatus")]
-public    lastSyncStatus   LastSyncStatus    {get;set;}
+    [JsonProperty("lastSyncStatus")]
+    public lastSyncStatus  LastSyncStatus {get;set;}
     /// <summary>
     ///  最近一次同步时间
     /// </summary>
-[JsonProperty("lastSyncTime")]
-public    string   LastSyncTime    {get;set;}
+    [JsonProperty("lastSyncTime")]
+    public string  LastSyncTime {get;set;}
     /// <summary>
     ///  此同步任务绑定的组织机构。针对上游同步，需执行一次同步任务之后才会绑定组织机构；针对下游同步，创建同步任务的时候就需要设置。
     /// </summary>
-[JsonProperty("organizationCode")]
-public    string   OrganizationCode    {get;set;}
+    [JsonProperty("organizationCode")]
+    public string  OrganizationCode {get;set;}
     /// <summary>
     ///  同步范围，**只针对下游同步任务有效**。为空表示同步整个组织机构。
     /// </summary>
-[JsonProperty("provisioningScope")]
-public    SyncTaskProvisioningScope   ProvisioningScope    {get;set;}
+    [JsonProperty("provisioningScope")]
+    public SyncTaskProvisioningScope  ProvisioningScope {get;set;}
     /// <summary>
     ///  字段映射配置
     /// </summary>
-[JsonProperty("fieldMapping")]
-public    List<SyncTaskFieldMapping>   FieldMapping    {get;set;}
+    [JsonProperty("fieldMapping")]
+    public List<SyncTaskFieldMapping>  FieldMapping {get;set;}
     /// <summary>
     ///  定时同步时间设置
     /// </summary>
-[JsonProperty("timedScheduler")]
-public    SyncTaskTimedScheduler   TimedScheduler    {get;set;}
+    [JsonProperty("timedScheduler")]
+    public SyncTaskTimedScheduler  TimedScheduler {get;set;}
 }
 public partial class SyncTaskDto
  {

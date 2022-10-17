@@ -18,12 +18,12 @@ public partial class DepartmentPagingDto
     /// <summary>
     ///  总数
     /// </summary>
-[JsonProperty("totalCount")]
-public    bool   TotalCount    {get;set;}
+    [JsonProperty("totalCount")]
+    public bool  TotalCount {get;set;}
     /// <summary>
     ///  响应数据
     /// </summary>
-[JsonProperty("list")]
-public    List<DepartmentDto>   List    {get;set;}
+    [JsonProperty("list")]
+    public List<DepartmentDto>  List {get;set;}
 }
 }

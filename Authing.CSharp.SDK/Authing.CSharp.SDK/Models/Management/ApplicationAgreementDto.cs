@@ -21,13 +21,13 @@ public partial class ApplicationAgreementDto
 /// - `RegisterPage`: 注册页面
 /// 
     /// </summary>
-[JsonProperty("displayAt")]
-public    List<string>   DisplayAt    {get;set;}
+    [JsonProperty("displayAt")]
+    public List<string>  DisplayAt {get;set;}
     /// <summary>
     ///  是否要求必须勾选
     /// </summary>
-[JsonProperty("isRequired")]
-public    bool   IsRequired    {get;set;}
+    [JsonProperty("isRequired")]
+    public bool  IsRequired {get;set;}
     /// <summary>
     ///  此协议针对什么语言有效:
 /// - `zh-CN`: 简体中文
@@ -36,13 +36,13 @@ public    bool   IsRequired    {get;set;}
 /// - `ja-JP`: 日语
 /// 
     /// </summary>
-[JsonProperty("lang")]
-public    lang   Lang    {get;set;}
+    [JsonProperty("lang")]
+    public lang  Lang {get;set;}
     /// <summary>
     ///  此协议针对什么语言有效
     /// </summary>
-[JsonProperty("content")]
-public    string   Content    {get;set;}
+    [JsonProperty("content")]
+    public string  Content {get;set;}
 }
 public partial class ApplicationAgreementDto
  {

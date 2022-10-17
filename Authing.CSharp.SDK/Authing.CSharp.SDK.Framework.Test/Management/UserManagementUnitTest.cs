@@ -22,7 +22,7 @@ namespace Authing.CSharp.SDK.Framework.Test
             {
                 string userIds = "634514b1368152ac89f207e6";
 
-                UserListRespDto userListRespDto = managementClient.GetUserBatch(userIds).Result;
+                UserListRespDto userListRespDto = managementClient.GetUserBatch(new GetUserBatchDto { UserIds=userIds}).Result;
 
                 Assert.IsTrue(userListRespDto.Data.Count == 2);
             }
@@ -46,7 +46,7 @@ namespace Authing.CSharp.SDK.Framework.Test
             {
                 string userId = "6218475c2373a54088a786b2";
 
-                IdentityListRespDto identityListRespDto = managementClient.GetUserIdentities(userId).Result;
+                IdentityListRespDto identityListRespDto = managementClient.GetUserIdentities(new GetUserIdentitiesDto { UserId=userId}).Result;
 
                 Assert.IsTrue(identityListRespDto.Data == null);
             }
@@ -58,7 +58,7 @@ namespace Authing.CSharp.SDK.Framework.Test
             using (CancellationTokenSource cts = new CancellationTokenSource())
             {
 
-                RolePaginatedRespDto rolePaginatedRespDto = managementClient.GetUserRoles(UserOneId).Result;
+                RolePaginatedRespDto rolePaginatedRespDto = managementClient.GetUserRoles(new GetUserRolesDto { UserId=UserOneId}).Result;
 
                 Assert.IsTrue(rolePaginatedRespDto.Data.List.Count > 0);
             }
@@ -71,7 +71,7 @@ namespace Authing.CSharp.SDK.Framework.Test
             {
                 string userId = "61c17bd024917805ae85e397 ";
 
-                PrincipalAuthenticationInfoPaginatedRespDto principalAuthenticationInfoPaginatedRespDto = managementClient.GetUserPrincipalAuthenticationInfo(userId).Result;
+                PrincipalAuthenticationInfoPaginatedRespDto principalAuthenticationInfoPaginatedRespDto = managementClient.GetUserPrincipalAuthenticationInfo(new GetUserPrincipalAuthenticationInfoDto { UserId=userId}).Result;
 
                 Assert.IsTrue(principalAuthenticationInfoPaginatedRespDto.Data.TotalCount == 0);
             }
@@ -100,7 +100,7 @@ namespace Authing.CSharp.SDK.Framework.Test
             {
                 string UserId = UserOneId;
 
-                UserDepartmentPaginatedRespDto userDepartmentPaginatedRespDto = managementClient.GetUserDepartments(UserId).Result;
+                UserDepartmentPaginatedRespDto userDepartmentPaginatedRespDto = managementClient.GetUserDepartments(new GetUserDepartmentsDto { UserId=UserId}).Result;
 
                 Assert.IsTrue(userDepartmentPaginatedRespDto.Data.List.Count > 0);
             }
@@ -135,7 +135,7 @@ namespace Authing.CSharp.SDK.Framework.Test
             {
                 string UserId = UserOneId;
 
-                GroupPaginatedRespDto groupPaginatedRespDto = managementClient.GetUserGroups(UserId).Result;
+                GroupPaginatedRespDto groupPaginatedRespDto = managementClient.GetUserGroups(new GetUserGroupsDto { UserId=UserId}).Result;
 
                 Assert.IsTrue(groupPaginatedRespDto.Data.List.Count > 0);
             }
@@ -164,7 +164,7 @@ namespace Authing.CSharp.SDK.Framework.Test
             {
                 string UserId = UserOneId;
 
-                UserMfaSingleRespDto userMfaSingleRespDto = managementClient.GetUserMfaInfo(UserId).Result;
+                UserMfaSingleRespDto userMfaSingleRespDto = managementClient.GetUserMfaInfo(new GetUserMfaInfoDto { UserId=UserId}).Result;
 
                 Assert.IsTrue(userMfaSingleRespDto.Data.FaceMfaStatus == "disabled");
             }
@@ -175,7 +175,7 @@ namespace Authing.CSharp.SDK.Framework.Test
         {
             using (CancellationTokenSource cts = new CancellationTokenSource())
             {
-                ListArchivedUsersSingleRespDto result = managementClient.ListArchivedUsers().Result;
+                ListArchivedUsersSingleRespDto result = managementClient.ListArchivedUsers(new ListArchivedUsersDto { }).Result;
 
                 Assert.IsTrue(result.Data.TotalCount > 0);
             }
@@ -292,7 +292,7 @@ namespace Authing.CSharp.SDK.Framework.Test
             {
                 string UserId = UserOneId;
 
-                AppListRespDto appListResp = managementClient.GetUserAccessibleApps(UserId).Result;
+                AppListRespDto appListResp = managementClient.GetUserAccessibleApps(new GetUserAccessibleAppsDto { UserId=UserId}).Result;
 
                 Assert.IsTrue(appListResp.Data.Count > 0);
             }
@@ -305,7 +305,7 @@ namespace Authing.CSharp.SDK.Framework.Test
             {
                 string UserId = UserOneId;
 
-                AppListRespDto appListResp = managementClient.GetUserAuthorizedApps(UserId).Result;
+                AppListRespDto appListResp = managementClient.GetUserAuthorizedApps(new GetUserAuthorizedAppsDto { UserId=UserId}).Result;
 
                 Assert.IsTrue(appListResp.Data.Count > 0);
             }
@@ -338,7 +338,7 @@ namespace Authing.CSharp.SDK.Framework.Test
                 long beginTime = dateTimeService.DateTimeToLongTimeStamp(DateTime.Parse("2020-12-12 00:00:00"));
                 long endTime = dateTimeService.DateTimeToLongTimeStamp(DateTime.Parse("2023-12-12 00:00:00"));
 
-                UserLoginHistoryPaginatedRespDto dto = managementClient.GetUserLoginHistory(UserId).Result;
+                UserLoginHistoryPaginatedRespDto dto = managementClient.GetUserLoginHistory(new GetUserLoginHistoryDto { UserId=UserId}).Result;
 
                 Assert.IsTrue(dto.Data.List.Count > 0);
             }
@@ -351,7 +351,7 @@ namespace Authing.CSharp.SDK.Framework.Test
             {
                 string UserId = UserOneId;
 
-                UserLoggedInAppsListRespDto dto = managementClient.GetUserLoggedinApps(UserId).Result;
+                UserLoggedInAppsListRespDto dto = managementClient.GetUserLoggedinApps(new GetUserLoggedinAppsDto { UserId=UserId}).Result;
 
                 Assert.IsTrue(dto.Data.Count > 0);
             }
@@ -364,7 +364,7 @@ namespace Authing.CSharp.SDK.Framework.Test
             {
                 string UserId = UserOneId;
 
-                AuthorizedResourcePaginatedRespDto dto = managementClient.GetUserAuthorizedResources(UserId, "default").Result;
+                AuthorizedResourcePaginatedRespDto dto = managementClient.GetUserAuthorizedResources(new GetUserAuthorizedResourcesDto { UserId=UserId,Namespace="default"}).Result;
 
                 Assert.IsTrue(dto.Data.List.Count > 0);
             }
@@ -375,7 +375,7 @@ namespace Authing.CSharp.SDK.Framework.Test
         {
             using (CancellationTokenSource cts = new CancellationTokenSource())
             {
-               UserLoggedInIdentitiesRespDto dto= await managementClient.GetUserLoggedinIdentities("62df936ca8070667353d3942");
+               UserLoggedInIdentitiesRespDto dto= await managementClient.GetUserLoggedinIdentities(new GetUserLoggedInIdentitiesDto { UserId= "62df936ca8070667353d3942" });
 
                 Assert.NotNull(dto.Data);
             }

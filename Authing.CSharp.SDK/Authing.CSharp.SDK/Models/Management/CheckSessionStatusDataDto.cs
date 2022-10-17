@@ -18,7 +18,7 @@ public partial class CheckSessionStatusDataDto
     /// <summary>
     ///  是否具有登录态
     /// </summary>
-[JsonProperty("active")]
-public    bool   Active    {get;set;}
+    [JsonProperty("active")]
+    public bool  Active {get;set;}
 }
 }

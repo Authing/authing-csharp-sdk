@@ -18,7 +18,7 @@ public partial class MFASettingsDto
     /// <summary>
     ///  开启的 MFA 认证因素列表
     /// </summary>
-[JsonProperty("enabledFactors")]
-public    List<string>   EnabledFactors    {get;set;}
+    [JsonProperty("enabledFactors")]
+    public List<string>  EnabledFactors {get;set;}
 }
 }

@@ -25,10 +25,11 @@ namespace Authing.CSharp.SDK.Services
         ///</summary>
         /// <param name="requestBody"></param>
         ///<returns>GetManagementTokenRespDto</returns>
-        public async Task<GetManagementTokenRespDto> GetManagementToken(GetManagementAccessTokenDto requestBody
-    )
+
+        public async Task<GetManagementTokenRespDto> GetManagementToken(GetManagementAccessTokenDto requestBody)
         {
             string httpResponse = await Request("POST", "/api/v3/get-management-token", requestBody).ConfigureAwait(false);
+
             GetManagementTokenRespDto result = m_JsonService.DeserializeObject<GetManagementTokenRespDto>(httpResponse);
             return result;
         }
@@ -37,10 +38,11 @@ namespace Authing.CSharp.SDK.Services
         ///</summary>
         /// <param name="requestBody"></param>
         ///<returns>UserPaginatedRespDto</returns>
-        public async Task<UserPaginatedRespDto> ListUsers(ListUsersRequestDto requestBody
-    )
+
+        public async Task<UserPaginatedRespDto> ListUsers(ListUsersRequestDto requestBody)
         {
             string httpResponse = await Request("POST", "/api/v3/list-users", requestBody).ConfigureAwait(false);
+
             UserPaginatedRespDto result = m_JsonService.DeserializeObject<UserPaginatedRespDto>(httpResponse);
             return result;
         }
@@ -56,20 +58,14 @@ namespace Authing.CSharp.SDK.Services
         /// <param name="withIdentities">是否获取 identities</param>
         /// <param name="withDepartmentIds">是否获取部门 ID 列表</param>
         ///<returns>UserPaginatedRespDto</returns>
-        public async Task<UserPaginatedRespDto> ListUsersLegacy(long updatedAtEnd = 0, long updatedAtStart = 0, string status = null, long page = 1, long limit = 10, bool withCustomData = false, bool withIdentities = false, bool withDepartmentIds = false)
+
+        public async Task<UserPaginatedRespDto> ListUsersLegacy(ListUsersDto reqDto)
         {
-            string httpResponse = await Request("GET", "/api/v3/list-users", new Dictionary<string, object> {
-        {"page",page },
-        {"limit",limit },
-        {"status",status },
-        {"updatedAtStart",updatedAtStart },
-        {"updatedAtEnd",updatedAtEnd },
-        {"withCustomData",withCustomData },
-        {"withIdentities",withIdentities },
-        {"withDepartmentIds",withDepartmentIds },
-    }).ConfigureAwait(false);
+            string httpResponse = await Request("GET", "/api/v3/list-users").ConfigureAwait(false);
+
             UserPaginatedRespDto result = m_JsonService.DeserializeObject<UserPaginatedRespDto>(httpResponse);
             return result;
+
         }
         ///<summary>
         /// 获取用户信息
@@ -88,17 +84,14 @@ namespace Authing.CSharp.SDK.Services
         /// <param name="withIdentities">是否获取 identities</param>
         /// <param name="withDepartmentIds">是否获取部门 ID 列表</param>
         ///<returns>UserSingleRespDto</returns>
-        public async Task<UserSingleRespDto> GetUser(string userId, string userIdType = "user_id", bool withCustomData = false, bool withIdentities = false, bool withDepartmentIds = false)
+
+        public async Task<UserSingleRespDto> GetUser(GetUserDto reqDto)
         {
-            string httpResponse = await Request("GET", "/api/v3/get-user", new Dictionary<string, object> {
-        {"userId",userId },
-        {"userIdType",userIdType },
-        {"withCustomData",withCustomData },
-        {"withIdentities",withIdentities },
-        {"withDepartmentIds",withDepartmentIds },
-    }).ConfigureAwait(false);
+            string httpResponse = await Request("GET", "/api/v3/get-user").ConfigureAwait(false);
+
             UserSingleRespDto result = m_JsonService.DeserializeObject<UserSingleRespDto>(httpResponse);
             return result;
+
         }
         ///<summary>
         /// 批量获取用户信息
@@ -117,17 +110,14 @@ namespace Authing.CSharp.SDK.Services
         /// <param name="withIdentities">是否获取 identities</param>
         /// <param name="withDepartmentIds">是否获取部门 ID 列表</param>
         ///<returns>UserListRespDto</returns>
-        public async Task<UserListRespDto> GetUserBatch(string userIds, string userIdType = "user_id", bool withCustomData = false, bool withIdentities = false, bool withDepartmentIds = false)
+
+        public async Task<UserListRespDto> GetUserBatch(GetUserBatchDto reqDto)
         {
-            string httpResponse = await Request("GET", "/api/v3/get-user-batch", new Dictionary<string, object> {
-        {"userIds",userIds },
-        {"userIdType",userIdType },
-        {"withCustomData",withCustomData },
-        {"withIdentities",withIdentities },
-        {"withDepartmentIds",withDepartmentIds },
-    }).ConfigureAwait(false);
+            string httpResponse = await Request("GET", "/api/v3/get-user-batch").ConfigureAwait(false);
+
             UserListRespDto result = m_JsonService.DeserializeObject<UserListRespDto>(httpResponse);
             return result;
+
         }
         ///<summary>
         /// 获取用户的外部身份源
@@ -143,14 +133,14 @@ namespace Authing.CSharp.SDK.Services
         /// 示例值：`62f20932716fbcc10d966ee5:ou_8bae746eac07cd2564654140d2a9ac61`。
         /// </param>
         ///<returns>IdentityListRespDto</returns>
-        public async Task<IdentityListRespDto> GetUserIdentities(string userId, string userIdType = "user_id")
+
+        public async Task<IdentityListRespDto> GetUserIdentities(GetUserIdentitiesDto reqDto)
         {
-            string httpResponse = await Request("GET", "/api/v3/get-user-identities", new Dictionary<string, object> {
-        {"userId",userId },
-        {"userIdType",userIdType },
-    }).ConfigureAwait(false);
+            string httpResponse = await Request("GET", "/api/v3/get-user-identities").ConfigureAwait(false);
+
             IdentityListRespDto result = m_JsonService.DeserializeObject<IdentityListRespDto>(httpResponse);
             return result;
+
         }
         ///<summary>
         /// 获取用户角色列表
@@ -167,15 +157,14 @@ namespace Authing.CSharp.SDK.Services
         /// </param>
         /// <param name="nameSpace">所属权限分组的 code</param>
         ///<returns>RolePaginatedRespDto</returns>
-        public async Task<RolePaginatedRespDto> GetUserRoles(string userId, string nameSpace = null, string userIdType = "user_id")
+
+        public async Task<RolePaginatedRespDto> GetUserRoles(GetUserRolesDto reqDto)
         {
-            string httpResponse = await Request("GET", "/api/v3/get-user-roles", new Dictionary<string, object> {
-        {"userId",userId },
-        {"userIdType",userIdType },
-        {"namespace",nameSpace },
-    }).ConfigureAwait(false);
+            string httpResponse = await Request("GET", "/api/v3/get-user-roles").ConfigureAwait(false);
+
             RolePaginatedRespDto result = m_JsonService.DeserializeObject<RolePaginatedRespDto>(httpResponse);
             return result;
+
         }
         ///<summary>
         /// 获取用户实名认证信息
@@ -191,24 +180,25 @@ namespace Authing.CSharp.SDK.Services
         /// 示例值：`62f20932716fbcc10d966ee5:ou_8bae746eac07cd2564654140d2a9ac61`。
         /// </param>
         ///<returns>PrincipalAuthenticationInfoPaginatedRespDto</returns>
-        public async Task<PrincipalAuthenticationInfoPaginatedRespDto> GetUserPrincipalAuthenticationInfo(string userId, string userIdType = "user_id")
+
+        public async Task<PrincipalAuthenticationInfoPaginatedRespDto> GetUserPrincipalAuthenticationInfo(GetUserPrincipalAuthenticationInfoDto reqDto)
         {
-            string httpResponse = await Request("GET", "/api/v3/get-user-principal-authentication-info", new Dictionary<string, object> {
-        {"userId",userId },
-        {"userIdType",userIdType },
-    }).ConfigureAwait(false);
+            string httpResponse = await Request("GET", "/api/v3/get-user-principal-authentication-info").ConfigureAwait(false);
+
             PrincipalAuthenticationInfoPaginatedRespDto result = m_JsonService.DeserializeObject<PrincipalAuthenticationInfoPaginatedRespDto>(httpResponse);
             return result;
+
         }
         ///<summary>
         /// 删除用户实名认证信息
         ///</summary>
         /// <param name="requestBody"></param>
         ///<returns>IsSuccessRespDto</returns>
-        public async Task<IsSuccessRespDto> ResetUserPrincipalAuthenticationInfo(ResetUserPrincipalAuthenticationInfoDto requestBody
-        )
+
+        public async Task<IsSuccessRespDto> ResetUserPrincipalAuthenticationInfo(ResetUserPrincipalAuthenticationInfoDto requestBody)
         {
             string httpResponse = await Request("POST", "/api/v3/reset-user-principal-authentication-info", requestBody).ConfigureAwait(false);
+
             IsSuccessRespDto result = m_JsonService.DeserializeObject<IsSuccessRespDto>(httpResponse);
             return result;
         }
@@ -231,29 +221,25 @@ namespace Authing.CSharp.SDK.Services
         /// <param name="sortBy">排序依据，如 部门创建时间、加入部门时间、部门名称、部门标志符</param>
         /// <param name="orderBy">增序或降序</param>
         ///<returns>UserDepartmentPaginatedRespDto</returns>
-        public async Task<UserDepartmentPaginatedRespDto> GetUserDepartments(string userId, string userIdType = "user_id", long page = 1, long limit = 10, bool withCustomData = false, string sortBy = "JoinDepartmentAt", string orderBy = "Desc")
+
+        public async Task<UserDepartmentPaginatedRespDto> GetUserDepartments(GetUserDepartmentsDto reqDto)
         {
-            string httpResponse = await Request("GET", "/api/v3/get-user-departments", new Dictionary<string, object> {
-        {"userId",userId },
-        {"userIdType",userIdType },
-        {"page",page },
-        {"limit",limit },
-        {"withCustomData",withCustomData },
-        {"sortBy",sortBy },
-        {"orderBy",orderBy },
-    }).ConfigureAwait(false);
+            string httpResponse = await Request("GET", "/api/v3/get-user-departments").ConfigureAwait(false);
+
             UserDepartmentPaginatedRespDto result = m_JsonService.DeserializeObject<UserDepartmentPaginatedRespDto>(httpResponse);
             return result;
+
         }
         ///<summary>
         /// 设置用户所在部门
         ///</summary>
         /// <param name="requestBody"></param>
         ///<returns>IsSuccessRespDto</returns>
-        public async Task<IsSuccessRespDto> SetUserDepartments(SetUserDepartmentsDto requestBody
-        )
+
+        public async Task<IsSuccessRespDto> SetUserDepartments(SetUserDepartmentsDto requestBody)
         {
             string httpResponse = await Request("POST", "/api/v3/set-user-departments", requestBody).ConfigureAwait(false);
+
             IsSuccessRespDto result = m_JsonService.DeserializeObject<IsSuccessRespDto>(httpResponse);
             return result;
         }
@@ -271,24 +257,25 @@ namespace Authing.CSharp.SDK.Services
         /// 示例值：`62f20932716fbcc10d966ee5:ou_8bae746eac07cd2564654140d2a9ac61`。
         /// </param>
         ///<returns>GroupPaginatedRespDto</returns>
-        public async Task<GroupPaginatedRespDto> GetUserGroups(string userId, string userIdType = "user_id")
+
+        public async Task<GroupPaginatedRespDto> GetUserGroups(GetUserGroupsDto reqDto)
         {
-            string httpResponse = await Request("GET", "/api/v3/get-user-groups", new Dictionary<string, object> {
-        {"userId",userId },
-        {"userIdType",userIdType },
-    }).ConfigureAwait(false);
+            string httpResponse = await Request("GET", "/api/v3/get-user-groups").ConfigureAwait(false);
+
             GroupPaginatedRespDto result = m_JsonService.DeserializeObject<GroupPaginatedRespDto>(httpResponse);
             return result;
+
         }
         ///<summary>
         /// 删除用户
         ///</summary>
         /// <param name="requestBody"></param>
         ///<returns>IsSuccessRespDto</returns>
-        public async Task<IsSuccessRespDto> DeleteUsersBatch(DeleteUsersBatchDto requestBody
-        )
+
+        public async Task<IsSuccessRespDto> DeleteUsersBatch(DeleteUsersBatchDto requestBody)
         {
             string httpResponse = await Request("POST", "/api/v3/delete-users-batch", requestBody).ConfigureAwait(false);
+
             IsSuccessRespDto result = m_JsonService.DeserializeObject<IsSuccessRespDto>(httpResponse);
             return result;
         }
@@ -306,14 +293,14 @@ namespace Authing.CSharp.SDK.Services
         /// 示例值：`62f20932716fbcc10d966ee5:ou_8bae746eac07cd2564654140d2a9ac61`。
         /// </param>
         ///<returns>UserMfaSingleRespDto</returns>
-        public async Task<UserMfaSingleRespDto> GetUserMfaInfo(string userId, string userIdType = "user_id")
+
+        public async Task<UserMfaSingleRespDto> GetUserMfaInfo(GetUserMfaInfoDto reqDto)
         {
-            string httpResponse = await Request("GET", "/api/v3/get-user-mfa-info", new Dictionary<string, object> {
-        {"userId",userId },
-        {"userIdType",userIdType },
-    }).ConfigureAwait(false);
+            string httpResponse = await Request("GET", "/api/v3/get-user-mfa-info").ConfigureAwait(false);
+
             UserMfaSingleRespDto result = m_JsonService.DeserializeObject<UserMfaSingleRespDto>(httpResponse);
             return result;
+
         }
         ///<summary>
         /// 获取已归档的用户列表
@@ -322,25 +309,25 @@ namespace Authing.CSharp.SDK.Services
         /// <param name="limit">每页数目，最大不能超过 50，默认为 10</param>
         /// <param name="startAt">开始时间，为精确到秒的 UNIX 时间戳，默认不指定</param>
         ///<returns>ListArchivedUsersSingleRespDto</returns>
-        public async Task<ListArchivedUsersSingleRespDto> ListArchivedUsers(long startAt = 0, long page = 1, long limit = 10)
+
+        public async Task<ListArchivedUsersSingleRespDto> ListArchivedUsers(ListArchivedUsersDto reqDto)
         {
-            string httpResponse = await Request("GET", "/api/v3/list-archived-users", new Dictionary<string, object> {
-        {"page",page },
-        {"limit",limit },
-        {"startAt",startAt },
-    }).ConfigureAwait(false);
+            string httpResponse = await Request("GET", "/api/v3/list-archived-users").ConfigureAwait(false);
+
             ListArchivedUsersSingleRespDto result = m_JsonService.DeserializeObject<ListArchivedUsersSingleRespDto>(httpResponse);
             return result;
+
         }
         ///<summary>
         /// 强制下线用户
         ///</summary>
         /// <param name="requestBody"></param>
         ///<returns>IsSuccessRespDto</returns>
-        public async Task<IsSuccessRespDto> KickUsers(KickUsersDto requestBody
-        )
+
+        public async Task<IsSuccessRespDto> KickUsers(KickUsersDto requestBody)
         {
             string httpResponse = await Request("POST", "/api/v3/kick-users", requestBody).ConfigureAwait(false);
+
             IsSuccessRespDto result = m_JsonService.DeserializeObject<IsSuccessRespDto>(httpResponse);
             return result;
         }
@@ -349,10 +336,11 @@ namespace Authing.CSharp.SDK.Services
         ///</summary>
         /// <param name="requestBody"></param>
         ///<returns>IsUserExistsRespDto</returns>
-        public async Task<IsUserExistsRespDto> IsUserExists(IsUserExistsReqDto requestBody
-        )
+
+        public async Task<IsUserExistsRespDto> IsUserExists(IsUserExistsReqDto requestBody)
         {
             string httpResponse = await Request("POST", "/api/v3/is-user-exists", requestBody).ConfigureAwait(false);
+
             IsUserExistsRespDto result = m_JsonService.DeserializeObject<IsUserExistsRespDto>(httpResponse);
             return result;
         }
@@ -361,10 +349,11 @@ namespace Authing.CSharp.SDK.Services
         ///</summary>
         /// <param name="requestBody"></param>
         ///<returns>UserSingleRespDto</returns>
-        public async Task<UserSingleRespDto> CreateUser(CreateUserReqDto requestBody
-        )
+
+        public async Task<UserSingleRespDto> CreateUser(CreateUserReqDto requestBody)
         {
             string httpResponse = await Request("POST", "/api/v3/create-user", requestBody).ConfigureAwait(false);
+
             UserSingleRespDto result = m_JsonService.DeserializeObject<UserSingleRespDto>(httpResponse);
             return result;
         }
@@ -373,10 +362,11 @@ namespace Authing.CSharp.SDK.Services
         ///</summary>
         /// <param name="requestBody"></param>
         ///<returns>UserListRespDto</returns>
-        public async Task<UserListRespDto> CreateUsersBatch(CreateUserBatchReqDto requestBody
-        )
+
+        public async Task<UserListRespDto> CreateUsersBatch(CreateUserBatchReqDto requestBody)
         {
             string httpResponse = await Request("POST", "/api/v3/create-users-batch", requestBody).ConfigureAwait(false);
+
             UserListRespDto result = m_JsonService.DeserializeObject<UserListRespDto>(httpResponse);
             return result;
         }
@@ -385,10 +375,11 @@ namespace Authing.CSharp.SDK.Services
         ///</summary>
         /// <param name="requestBody"></param>
         ///<returns>UserSingleRespDto</returns>
-        public async Task<UserSingleRespDto> UpdateUser(UpdateUserReqDto requestBody
-        )
+
+        public async Task<UserSingleRespDto> UpdateUser(UpdateUserReqDto requestBody)
         {
             string httpResponse = await Request("POST", "/api/v3/update-user", requestBody).ConfigureAwait(false);
+
             UserSingleRespDto result = m_JsonService.DeserializeObject<UserSingleRespDto>(httpResponse);
             return result;
         }
@@ -397,10 +388,11 @@ namespace Authing.CSharp.SDK.Services
         ///</summary>
         /// <param name="requestBody"></param>
         ///<returns>UserListRespDto</returns>
-        public async Task<UserListRespDto> UpdateUserBatch(UpdateUserBatchReqDto requestBody
-        )
+
+        public async Task<UserListRespDto> UpdateUserBatch(UpdateUserBatchReqDto requestBody)
         {
             string httpResponse = await Request("POST", "/api/v3/update-user-batch", requestBody).ConfigureAwait(false);
+
             UserListRespDto result = m_JsonService.DeserializeObject<UserListRespDto>(httpResponse);
             return result;
         }
@@ -418,14 +410,14 @@ namespace Authing.CSharp.SDK.Services
         /// 示例值：`62f20932716fbcc10d966ee5:ou_8bae746eac07cd2564654140d2a9ac61`。
         /// </param>
         ///<returns>AppListRespDto</returns>
-        public async Task<AppListRespDto> GetUserAccessibleApps(string userId, string userIdType = "user_id")
+
+        public async Task<AppListRespDto> GetUserAccessibleApps(GetUserAccessibleAppsDto reqDto)
         {
-            string httpResponse = await Request("GET", "/api/v3/get-user-accessible-apps", new Dictionary<string, object> {
-        {"userId",userId },
-        {"userIdType",userIdType },
-    }).ConfigureAwait(false);
+            string httpResponse = await Request("GET", "/api/v3/get-user-accessible-apps").ConfigureAwait(false);
+
             AppListRespDto result = m_JsonService.DeserializeObject<AppListRespDto>(httpResponse);
             return result;
+
         }
         ///<summary>
         /// 获取用户授权的应用
@@ -441,24 +433,25 @@ namespace Authing.CSharp.SDK.Services
         /// 示例值：`62f20932716fbcc10d966ee5:ou_8bae746eac07cd2564654140d2a9ac61`。
         /// </param>
         ///<returns>AppListRespDto</returns>
-        public async Task<AppListRespDto> GetUserAuthorizedApps(string userId, string userIdType = "user_id")
+
+        public async Task<AppListRespDto> GetUserAuthorizedApps(GetUserAuthorizedAppsDto reqDto)
         {
-            string httpResponse = await Request("GET", "/api/v3/get-user-authorized-apps", new Dictionary<string, object> {
-        {"userId",userId },
-        {"userIdType",userIdType },
-    }).ConfigureAwait(false);
+            string httpResponse = await Request("GET", "/api/v3/get-user-authorized-apps").ConfigureAwait(false);
+
             AppListRespDto result = m_JsonService.DeserializeObject<AppListRespDto>(httpResponse);
             return result;
+
         }
         ///<summary>
         /// 判断用户是否有某个角色
         ///</summary>
         /// <param name="requestBody"></param>
         ///<returns>HasAnyRoleRespDto</returns>
-        public async Task<HasAnyRoleRespDto> HasAnyRole(HasAnyRoleReqDto requestBody
-        )
+
+        public async Task<HasAnyRoleRespDto> HasAnyRole(HasAnyRoleReqDto requestBody)
         {
             string httpResponse = await Request("POST", "/api/v3/has-any-role", requestBody).ConfigureAwait(false);
+
             HasAnyRoleRespDto result = m_JsonService.DeserializeObject<HasAnyRoleRespDto>(httpResponse);
             return result;
         }
@@ -482,20 +475,14 @@ namespace Authing.CSharp.SDK.Services
         /// <param name="page">当前页数，从 1 开始</param>
         /// <param name="limit">每页数目，最大不能超过 50，默认为 10</param>
         ///<returns>UserLoginHistoryPaginatedRespDto</returns>
-        public async Task<UserLoginHistoryPaginatedRespDto> GetUserLoginHistory(string userId, long end = 0, long start = 0, string clientIp = null, string appId = null, string userIdType = "user_id", long page = 1, long limit = 10)
+
+        public async Task<UserLoginHistoryPaginatedRespDto> GetUserLoginHistory(GetUserLoginHistoryDto reqDto)
         {
-            string httpResponse = await Request("GET", "/api/v3/get-user-login-history", new Dictionary<string, object> {
-        {"userId",userId },
-        {"userIdType",userIdType },
-        {"appId",appId },
-        {"clientIp",clientIp },
-        {"start",start },
-        {"end",end },
-        {"page",page },
-        {"limit",limit },
-    }).ConfigureAwait(false);
+            string httpResponse = await Request("GET", "/api/v3/get-user-login-history").ConfigureAwait(false);
+
             UserLoginHistoryPaginatedRespDto result = m_JsonService.DeserializeObject<UserLoginHistoryPaginatedRespDto>(httpResponse);
             return result;
+
         }
         ///<summary>
         /// 获取用户曾经登录过的应用
@@ -511,14 +498,14 @@ namespace Authing.CSharp.SDK.Services
         /// 示例值：`62f20932716fbcc10d966ee5:ou_8bae746eac07cd2564654140d2a9ac61`。
         /// </param>
         ///<returns>UserLoggedInAppsListRespDto</returns>
-        public async Task<UserLoggedInAppsListRespDto> GetUserLoggedinApps(string userId, string userIdType = "user_id")
+
+        public async Task<UserLoggedInAppsListRespDto> GetUserLoggedinApps(GetUserLoggedinAppsDto reqDto)
         {
-            string httpResponse = await Request("GET", "/api/v3/get-user-loggedin-apps", new Dictionary<string, object> {
-        {"userId",userId },
-        {"userIdType",userIdType },
-    }).ConfigureAwait(false);
+            string httpResponse = await Request("GET", "/api/v3/get-user-loggedin-apps").ConfigureAwait(false);
+
             UserLoggedInAppsListRespDto result = m_JsonService.DeserializeObject<UserLoggedInAppsListRespDto>(httpResponse);
             return result;
+
         }
         ///<summary>
         /// 获取用户曾经登录过的身份源
@@ -534,24 +521,25 @@ namespace Authing.CSharp.SDK.Services
         /// 示例值：`62f20932716fbcc10d966ee5:ou_8bae746eac07cd2564654140d2a9ac61`。
         /// </param>
         ///<returns>UserLoggedInIdentitiesRespDto</returns>
-        public async Task<UserLoggedInIdentitiesRespDto> GetUserLoggedinIdentities(string userId, string userIdType = "user_id")
+
+        public async Task<UserLoggedInIdentitiesRespDto> GetUserLoggedinIdentities(GetUserLoggedInIdentitiesDto reqDto)
         {
-            string httpResponse = await Request("GET", "/api/v3/get-user-logged-in-identities", new Dictionary<string, object> {
-        {"userId",userId },
-        {"userIdType",userIdType },
-    }).ConfigureAwait(false);
+            string httpResponse = await Request("GET", "/api/v3/get-user-logged-in-identities").ConfigureAwait(false);
+
             UserLoggedInIdentitiesRespDto result = m_JsonService.DeserializeObject<UserLoggedInIdentitiesRespDto>(httpResponse);
             return result;
+
         }
         ///<summary>
         /// 用户离职
         ///</summary>
         /// <param name="requestBody"></param>
         ///<returns>ResignUserRespDto</returns>
-        public async Task<ResignUserRespDto> ResignUser(ResignUserReqDto requestBody
-        )
+
+        public async Task<ResignUserRespDto> ResignUser(ResignUserReqDto requestBody)
         {
             string httpResponse = await Request("POST", "/api/v3/resign-user", requestBody).ConfigureAwait(false);
+
             ResignUserRespDto result = m_JsonService.DeserializeObject<ResignUserRespDto>(httpResponse);
             return result;
         }
@@ -560,10 +548,11 @@ namespace Authing.CSharp.SDK.Services
         ///</summary>
         /// <param name="requestBody"></param>
         ///<returns>ResignUserRespDto</returns>
-        public async Task<ResignUserRespDto> ResignUserBatch(ResignUserBatchReqDto requestBody
-        )
+
+        public async Task<ResignUserRespDto> ResignUserBatch(ResignUserBatchReqDto requestBody)
         {
             string httpResponse = await Request("POST", "/api/v3/resign-user-batch", requestBody).ConfigureAwait(false);
+
             ResignUserRespDto result = m_JsonService.DeserializeObject<ResignUserRespDto>(httpResponse);
             return result;
         }
@@ -583,26 +572,25 @@ namespace Authing.CSharp.SDK.Services
         /// <param name="nameSpace">所属权限分组的 code</param>
         /// <param name="resourceType">资源类型，如 数据、API、菜单、按钮</param>
         ///<returns>AuthorizedResourcePaginatedRespDto</returns>
-        public async Task<AuthorizedResourcePaginatedRespDto> GetUserAuthorizedResources(string userId, string resourceType = null, string nameSpace = null, string userIdType = "user_id")
+
+        public async Task<AuthorizedResourcePaginatedRespDto> GetUserAuthorizedResources(GetUserAuthorizedResourcesDto reqDto)
         {
-            string httpResponse = await Request("GET", "/api/v3/get-user-authorized-resources", new Dictionary<string, object> {
-        {"userId",userId },
-        {"userIdType",userIdType },
-        {"namespace",nameSpace },
-        {"resourceType",resourceType },
-    }).ConfigureAwait(false);
+            string httpResponse = await Request("GET", "/api/v3/get-user-authorized-resources").ConfigureAwait(false);
+
             AuthorizedResourcePaginatedRespDto result = m_JsonService.DeserializeObject<AuthorizedResourcePaginatedRespDto>(httpResponse);
             return result;
+
         }
         ///<summary>
         /// 检查某个用户在应用下是否具备 Session 登录态
         ///</summary>
         /// <param name="requestBody"></param>
         ///<returns>CheckSessionStatusRespDto</returns>
-        public async Task<CheckSessionStatusRespDto> CheckSessionStatus(CheckSessionStatusDto requestBody
-        )
+
+        public async Task<CheckSessionStatusRespDto> CheckSessionStatus(CheckSessionStatusDto requestBody)
         {
             string httpResponse = await Request("POST", "/api/v3/check-session-status", requestBody).ConfigureAwait(false);
+
             CheckSessionStatusRespDto result = m_JsonService.DeserializeObject<CheckSessionStatusRespDto>(httpResponse);
             return result;
         }
@@ -611,10 +599,11 @@ namespace Authing.CSharp.SDK.Services
         ///</summary>
         /// <param name="requestBody"></param>
         ///<returns>CommonResponseDto</returns>
-        public async Task<CommonResponseDto> ImportOtp(ImportOtpReqDto requestBody
-        )
+
+        public async Task<CommonResponseDto> ImportOtp(ImportOtpReqDto requestBody)
         {
             string httpResponse = await Request("POST", "/api/v3/import-otp", requestBody).ConfigureAwait(false);
+
             CommonResponseDto result = m_JsonService.DeserializeObject<CommonResponseDto>(httpResponse);
             return result;
         }
@@ -624,14 +613,14 @@ namespace Authing.CSharp.SDK.Services
         /// <param name="organizationCode">组织 Code（organizationCode）</param>
         /// <param name="withCustomData">是否获取自定义数据</param>
         ///<returns>OrganizationSingleRespDto</returns>
-        public async Task<OrganizationSingleRespDto> GetOrganization(string organizationCode, bool withCustomData = false)
+
+        public async Task<OrganizationSingleRespDto> GetOrganization(GetOrganizationDto reqDto)
         {
-            string httpResponse = await Request("GET", "/api/v3/get-organization", new Dictionary<string, object> {
-        {"organizationCode",organizationCode },
-        {"withCustomData",withCustomData },
-    }).ConfigureAwait(false);
+            string httpResponse = await Request("GET", "/api/v3/get-organization").ConfigureAwait(false);
+
             OrganizationSingleRespDto result = m_JsonService.DeserializeObject<OrganizationSingleRespDto>(httpResponse);
             return result;
+
         }
         ///<summary>
         /// 批量获取组织机构详情
@@ -639,14 +628,14 @@ namespace Authing.CSharp.SDK.Services
         /// <param name="organizationCodeList">组织 Code（organizationCode）列表</param>
         /// <param name="withCustomData">是否获取自定义数据</param>
         ///<returns>OrganizationListRespDto</returns>
-        public async Task<OrganizationListRespDto> GetOrganizationsBatch(string organizationCodeList, bool withCustomData = false)
+
+        public async Task<OrganizationListRespDto> GetOrganizationsBatch(GetOrganizationBatchDto reqDto)
         {
-            string httpResponse = await Request("GET", "/api/v3/get-organization-batch", new Dictionary<string, object> {
-        {"organizationCodeList",organizationCodeList },
-        {"withCustomData",withCustomData },
-    }).ConfigureAwait(false);
+            string httpResponse = await Request("GET", "/api/v3/get-organization-batch").ConfigureAwait(false);
+
             OrganizationListRespDto result = m_JsonService.DeserializeObject<OrganizationListRespDto>(httpResponse);
             return result;
+
         }
         ///<summary>
         /// 获取顶层组织机构列表
@@ -656,26 +645,25 @@ namespace Authing.CSharp.SDK.Services
         /// <param name="fetchAll">拉取所有</param>
         /// <param name="withCustomData">是否获取自定义数据</param>
         ///<returns>OrganizationPaginatedRespDto</returns>
-        public async Task<OrganizationPaginatedRespDto> ListOrganizations(long page = 1, long limit = 10, bool fetchAll = false, bool withCustomData = false)
+
+        public async Task<OrganizationPaginatedRespDto> ListOrganizations(ListOrganizationsDto reqDto)
         {
-            string httpResponse = await Request("GET", "/api/v3/list-organizations", new Dictionary<string, object> {
-        {"page",page },
-        {"limit",limit },
-        {"fetchAll",fetchAll },
-        {"withCustomData",withCustomData },
-    }).ConfigureAwait(false);
+            string httpResponse = await Request("GET", "/api/v3/list-organizations").ConfigureAwait(false);
+
             OrganizationPaginatedRespDto result = m_JsonService.DeserializeObject<OrganizationPaginatedRespDto>(httpResponse);
             return result;
+
         }
         ///<summary>
         /// 创建顶层组织机构
         ///</summary>
         /// <param name="requestBody"></param>
         ///<returns>OrganizationSingleRespDto</returns>
-        public async Task<OrganizationSingleRespDto> CreateOrganization(CreateOrganizationReqDto requestBody
-        )
+
+        public async Task<OrganizationSingleRespDto> CreateOrganization(CreateOrganizationReqDto requestBody)
         {
             string httpResponse = await Request("POST", "/api/v3/create-organization", requestBody).ConfigureAwait(false);
+
             OrganizationSingleRespDto result = m_JsonService.DeserializeObject<OrganizationSingleRespDto>(httpResponse);
             return result;
         }
@@ -684,10 +672,11 @@ namespace Authing.CSharp.SDK.Services
         ///</summary>
         /// <param name="requestBody"></param>
         ///<returns>OrganizationSingleRespDto</returns>
-        public async Task<OrganizationSingleRespDto> UpdateOrganization(UpdateOrganizationReqDto requestBody
-        )
+
+        public async Task<OrganizationSingleRespDto> UpdateOrganization(UpdateOrganizationReqDto requestBody)
         {
             string httpResponse = await Request("POST", "/api/v3/update-organization", requestBody).ConfigureAwait(false);
+
             OrganizationSingleRespDto result = m_JsonService.DeserializeObject<OrganizationSingleRespDto>(httpResponse);
             return result;
         }
@@ -696,10 +685,11 @@ namespace Authing.CSharp.SDK.Services
         ///</summary>
         /// <param name="requestBody"></param>
         ///<returns>IsSuccessRespDto</returns>
-        public async Task<IsSuccessRespDto> DeleteOrganization(DeleteOrganizationReqDto requestBody
-        )
+
+        public async Task<IsSuccessRespDto> DeleteOrganization(DeleteOrganizationReqDto requestBody)
         {
             string httpResponse = await Request("POST", "/api/v3/delete-organization", requestBody).ConfigureAwait(false);
+
             IsSuccessRespDto result = m_JsonService.DeserializeObject<IsSuccessRespDto>(httpResponse);
             return result;
         }
@@ -711,16 +701,14 @@ namespace Authing.CSharp.SDK.Services
         /// <param name="limit">每页数目，最大不能超过 50，默认为 10</param>
         /// <param name="withCustomData">是否获取自定义数据</param>
         ///<returns>OrganizationPaginatedRespDto</returns>
-        public async Task<OrganizationPaginatedRespDto> SearchOrganizations(string keywords, long page = 1, long limit = 10, bool withCustomData = false)
+
+        public async Task<OrganizationPaginatedRespDto> SearchOrganizations(SearchOrganizationsDto reqDto)
         {
-            string httpResponse = await Request("GET", "/api/v3/search-organizations", new Dictionary<string, object> {
-        {"keywords",keywords },
-        {"page",page },
-        {"limit",limit },
-        {"withCustomData",withCustomData },
-    }).ConfigureAwait(false);
+            string httpResponse = await Request("GET", "/api/v3/search-organizations").ConfigureAwait(false);
+
             OrganizationPaginatedRespDto result = m_JsonService.DeserializeObject<OrganizationPaginatedRespDto>(httpResponse);
             return result;
+
         }
         ///<summary>
         /// 获取部门信息
@@ -731,27 +719,25 @@ namespace Authing.CSharp.SDK.Services
         /// <param name="departmentIdType">此次调用中使用的部门 ID 的类型</param>
         /// <param name="withCustomData">是否获取自定义数据</param>
         ///<returns>DepartmentSingleRespDto</returns>
-        public async Task<DepartmentSingleRespDto> GetDepartment(string organizationCode, string departmentCode = null, string departmentId = null, string departmentIdType = "department_id", bool withCustomData = false)
+
+        public async Task<DepartmentSingleRespDto> GetDepartment(GetDepartmentDto reqDto)
         {
-            string httpResponse = await Request("GET", "/api/v3/get-department", new Dictionary<string, object> {
-        {"organizationCode",organizationCode },
-        {"departmentId",departmentId },
-        {"departmentCode",departmentCode },
-        {"departmentIdType",departmentIdType },
-        {"withCustomData",withCustomData },
-    }).ConfigureAwait(false);
+            string httpResponse = await Request("GET", "/api/v3/get-department").ConfigureAwait(false);
+
             DepartmentSingleRespDto result = m_JsonService.DeserializeObject<DepartmentSingleRespDto>(httpResponse);
             return result;
+
         }
         ///<summary>
         /// 创建部门
         ///</summary>
         /// <param name="requestBody"></param>
         ///<returns>DepartmentSingleRespDto</returns>
-        public async Task<DepartmentSingleRespDto> CreateDepartment(CreateDepartmentReqDto requestBody
-        )
+
+        public async Task<DepartmentSingleRespDto> CreateDepartment(CreateDepartmentReqDto requestBody)
         {
             string httpResponse = await Request("POST", "/api/v3/create-department", requestBody).ConfigureAwait(false);
+
             DepartmentSingleRespDto result = m_JsonService.DeserializeObject<DepartmentSingleRespDto>(httpResponse);
             return result;
         }
@@ -760,10 +746,11 @@ namespace Authing.CSharp.SDK.Services
         ///</summary>
         /// <param name="requestBody"></param>
         ///<returns>DepartmentSingleRespDto</returns>
-        public async Task<DepartmentSingleRespDto> UpdateDepartment(UpdateDepartmentReqDto requestBody
-        )
+
+        public async Task<DepartmentSingleRespDto> UpdateDepartment(UpdateDepartmentReqDto requestBody)
         {
             string httpResponse = await Request("POST", "/api/v3/update-department", requestBody).ConfigureAwait(false);
+
             DepartmentSingleRespDto result = m_JsonService.DeserializeObject<DepartmentSingleRespDto>(httpResponse);
             return result;
         }
@@ -772,10 +759,11 @@ namespace Authing.CSharp.SDK.Services
         ///</summary>
         /// <param name="requestBody"></param>
         ///<returns>IsSuccessRespDto</returns>
-        public async Task<IsSuccessRespDto> DeleteDepartment(DeleteDepartmentReqDto requestBody
-        )
+
+        public async Task<IsSuccessRespDto> DeleteDepartment(DeleteDepartmentReqDto requestBody)
         {
             string httpResponse = await Request("POST", "/api/v3/delete-department", requestBody).ConfigureAwait(false);
+
             IsSuccessRespDto result = m_JsonService.DeserializeObject<IsSuccessRespDto>(httpResponse);
             return result;
         }
@@ -784,10 +772,11 @@ namespace Authing.CSharp.SDK.Services
         ///</summary>
         /// <param name="requestBody"></param>
         ///<returns>DepartmentListRespDto</returns>
-        public async Task<DepartmentListRespDto> SearchDepartments(SearchDepartmentsReqDto requestBody
-        )
+
+        public async Task<DepartmentListRespDto> SearchDepartments(SearchDepartmentsReqDto requestBody)
         {
             string httpResponse = await Request("POST", "/api/v3/search-departments", requestBody).ConfigureAwait(false);
+
             DepartmentListRespDto result = m_JsonService.DeserializeObject<DepartmentListRespDto>(httpResponse);
             return result;
         }
@@ -801,18 +790,14 @@ namespace Authing.CSharp.SDK.Services
         /// <param name="onlyVirtualNode">是否只包含虚拟组织</param>
         /// <param name="withCustomData">是否获取自定义数据</param>
         ///<returns>DepartmentPaginatedRespDto</returns>
-        public async Task<DepartmentPaginatedRespDto> ListChildrenDepartments(string organizationCode, string departmentId, string departmentIdType = "department_id", bool excludeVirtualNode = false, bool onlyVirtualNode = false, bool withCustomData = false)
+
+        public async Task<DepartmentPaginatedRespDto> ListChildrenDepartments(ListChildrenDepartmentsDto reqDto)
         {
-            string httpResponse = await Request("GET", "/api/v3/list-children-departments", new Dictionary<string, object> {
-        {"organizationCode",organizationCode },
-        {"departmentId",departmentId },
-        {"departmentIdType",departmentIdType },
-        {"excludeVirtualNode",excludeVirtualNode },
-        {"onlyVirtualNode",onlyVirtualNode },
-        {"withCustomData",withCustomData },
-    }).ConfigureAwait(false);
+            string httpResponse = await Request("GET", "/api/v3/list-children-departments").ConfigureAwait(false);
+
             DepartmentPaginatedRespDto result = m_JsonService.DeserializeObject<DepartmentPaginatedRespDto>(httpResponse);
             return result;
+
         }
         ///<summary>
         /// 获取部门成员列表
@@ -829,23 +814,14 @@ namespace Authing.CSharp.SDK.Services
         /// <param name="withIdentities">是否获取 identities</param>
         /// <param name="withDepartmentIds">是否获取部门 ID 列表</param>
         ///<returns>UserPaginatedRespDto</returns>
-        public async Task<UserPaginatedRespDto> ListDepartmentMembers(string organizationCode, string departmentId, string sortBy = "JoinDepartmentAt", string orderBy = "Desc", string departmentIdType = "department_id", bool includeChildrenDepartments = false, long page = 1, long limit = 10, bool withCustomData = false, bool withIdentities = false, bool withDepartmentIds = false)
+
+        public async Task<UserPaginatedRespDto> ListDepartmentMembers(ListDepartmentMembersDto reqDto)
         {
-            string httpResponse = await Request("GET", "/api/v3/list-department-members", new Dictionary<string, object> {
-        {"organizationCode",organizationCode },
-        {"departmentId",departmentId },
-        {"sortBy",sortBy },
-        {"orderBy",orderBy },
-        {"departmentIdType",departmentIdType },
-        {"includeChildrenDepartments",includeChildrenDepartments },
-        {"page",page },
-        {"limit",limit },
-        {"withCustomData",withCustomData },
-        {"withIdentities",withIdentities },
-        {"withDepartmentIds",withDepartmentIds },
-    }).ConfigureAwait(false);
+            string httpResponse = await Request("GET", "/api/v3/list-department-members").ConfigureAwait(false);
+
             UserPaginatedRespDto result = m_JsonService.DeserializeObject<UserPaginatedRespDto>(httpResponse);
             return result;
+
         }
         ///<summary>
         /// 获取部门直属成员 ID 列表
@@ -854,15 +830,14 @@ namespace Authing.CSharp.SDK.Services
         /// <param name="departmentId">部门 ID，根部门传 `root`</param>
         /// <param name="departmentIdType">此次调用中使用的部门 ID 的类型</param>
         ///<returns>UserIdListRespDto</returns>
-        public async Task<UserIdListRespDto> ListDepartmentMemberIds(string organizationCode, string departmentId, string departmentIdType = "department_id")
+
+        public async Task<UserIdListRespDto> ListDepartmentMemberIds(ListDepartmentMemberIdsDto reqDto)
         {
-            string httpResponse = await Request("GET", "/api/v3/list-department-member-ids", new Dictionary<string, object> {
-        {"organizationCode",organizationCode },
-        {"departmentId",departmentId },
-        {"departmentIdType",departmentIdType },
-    }).ConfigureAwait(false);
+            string httpResponse = await Request("GET", "/api/v3/list-department-member-ids").ConfigureAwait(false);
+
             UserIdListRespDto result = m_JsonService.DeserializeObject<UserIdListRespDto>(httpResponse);
             return result;
+
         }
         ///<summary>
         /// 搜索部门下的成员
@@ -878,32 +853,25 @@ namespace Authing.CSharp.SDK.Services
         /// <param name="withIdentities">是否获取 identities</param>
         /// <param name="withDepartmentIds">是否获取部门 ID 列表</param>
         ///<returns>UserPaginatedRespDto</returns>
-        public async Task<UserPaginatedRespDto> SearchDepartmentMembers(string organizationCode, string departmentId, string keywords, long page = 1, long limit = 10, string departmentIdType = "department_id", bool includeChildrenDepartments = false, bool withCustomData = false, bool withIdentities = false, bool withDepartmentIds = false)
+
+        public async Task<UserPaginatedRespDto> SearchDepartmentMembers(SearchDepartmentMembersDto reqDto)
         {
-            string httpResponse = await Request("GET", "/api/v3/search-department-members", new Dictionary<string, object> {
-        {"organizationCode",organizationCode },
-        {"departmentId",departmentId },
-        {"keywords",keywords },
-        {"page",page },
-        {"limit",limit },
-        {"departmentIdType",departmentIdType },
-        {"includeChildrenDepartments",includeChildrenDepartments },
-        {"withCustomData",withCustomData },
-        {"withIdentities",withIdentities },
-        {"withDepartmentIds",withDepartmentIds },
-    }).ConfigureAwait(false);
+            string httpResponse = await Request("GET", "/api/v3/search-department-members").ConfigureAwait(false);
+
             UserPaginatedRespDto result = m_JsonService.DeserializeObject<UserPaginatedRespDto>(httpResponse);
             return result;
+
         }
         ///<summary>
         /// 部门下添加成员
         ///</summary>
         /// <param name="requestBody"></param>
         ///<returns>IsSuccessRespDto</returns>
-        public async Task<IsSuccessRespDto> AddDepartmentMembers(AddDepartmentMembersReqDto requestBody
-        )
+
+        public async Task<IsSuccessRespDto> AddDepartmentMembers(AddDepartmentMembersReqDto requestBody)
         {
             string httpResponse = await Request("POST", "/api/v3/add-department-members", requestBody).ConfigureAwait(false);
+
             IsSuccessRespDto result = m_JsonService.DeserializeObject<IsSuccessRespDto>(httpResponse);
             return result;
         }
@@ -912,10 +880,11 @@ namespace Authing.CSharp.SDK.Services
         ///</summary>
         /// <param name="requestBody"></param>
         ///<returns>IsSuccessRespDto</returns>
-        public async Task<IsSuccessRespDto> RemoveDepartmentMembers(RemoveDepartmentMembersReqDto requestBody
-        )
+
+        public async Task<IsSuccessRespDto> RemoveDepartmentMembers(RemoveDepartmentMembersReqDto requestBody)
         {
             string httpResponse = await Request("POST", "/api/v3/remove-department-members", requestBody).ConfigureAwait(false);
+
             IsSuccessRespDto result = m_JsonService.DeserializeObject<IsSuccessRespDto>(httpResponse);
             return result;
         }
@@ -927,16 +896,14 @@ namespace Authing.CSharp.SDK.Services
         /// <param name="departmentIdType">此次调用中使用的部门 ID 的类型</param>
         /// <param name="withCustomData">是否获取自定义数据</param>
         ///<returns>DepartmentSingleRespDto</returns>
-        public async Task<DepartmentSingleRespDto> GetParentDepartment(string organizationCode, string departmentId, string departmentIdType = "department_id", bool withCustomData = false)
+
+        public async Task<DepartmentSingleRespDto> GetParentDepartment(GetParentDepartmentDto reqDto)
         {
-            string httpResponse = await Request("GET", "/api/v3/get-parent-department", new Dictionary<string, object> {
-        {"organizationCode",organizationCode },
-        {"departmentId",departmentId },
-        {"departmentIdType",departmentIdType },
-        {"withCustomData",withCustomData },
-    }).ConfigureAwait(false);
+            string httpResponse = await Request("GET", "/api/v3/get-parent-department").ConfigureAwait(false);
+
             DepartmentSingleRespDto result = m_JsonService.DeserializeObject<DepartmentSingleRespDto>(httpResponse);
             return result;
+
         }
         ///<summary>
         /// 判断用户是否在某个部门下
@@ -947,30 +914,28 @@ namespace Authing.CSharp.SDK.Services
         /// <param name="departmentIdType">此次调用中使用的部门 ID 的类型</param>
         /// <param name="includeChildrenDepartments">是否包含子部门</param>
         ///<returns>IsUserInDepartmentRespDto</returns>
-        public async Task<IsUserInDepartmentRespDto> IsUserInDepartment(string userId, string organizationCode, string departmentId, string departmentIdType = "department_id", bool includeChildrenDepartments = false)
+
+        public async Task<IsUserInDepartmentRespDto> IsUserInDepartment(IsUserInDepartmentDto reqDto)
         {
-            string httpResponse = await Request("GET", "/api/v3/is-user-in-department", new Dictionary<string, object> {
-        {"userId",userId },
-        {"organizationCode",organizationCode },
-        {"departmentId",departmentId },
-        {"departmentIdType",departmentIdType },
-        {"includeChildrenDepartments",includeChildrenDepartments },
-    }).ConfigureAwait(false);
+            string httpResponse = await Request("GET", "/api/v3/is-user-in-department").ConfigureAwait(false);
+
             IsUserInDepartmentRespDto result = m_JsonService.DeserializeObject<IsUserInDepartmentRespDto>(httpResponse);
             return result;
+
         }
         ///<summary>
         /// 获取分组详情
         ///</summary>
         /// <param name="code">分组 code</param>
         ///<returns>GroupSingleRespDto</returns>
-        public async Task<GroupSingleRespDto> GetGroup(string code)
+
+        public async Task<GroupSingleRespDto> GetGroup(GetGroupDto reqDto)
         {
-            string httpResponse = await Request("GET", "/api/v3/get-group", new Dictionary<string, object> {
-        {"code",code },
-    }).ConfigureAwait(false);
+            string httpResponse = await Request("GET", "/api/v3/get-group").ConfigureAwait(false);
+
             GroupSingleRespDto result = m_JsonService.DeserializeObject<GroupSingleRespDto>(httpResponse);
             return result;
+
         }
         ///<summary>
         /// 获取分组列表
@@ -979,25 +944,25 @@ namespace Authing.CSharp.SDK.Services
         /// <param name="page">当前页数，从 1 开始</param>
         /// <param name="limit">每页数目，最大不能超过 50，默认为 10</param>
         ///<returns>GroupPaginatedRespDto</returns>
-        public async Task<GroupPaginatedRespDto> ListGroups(string keywords = null, long page = 1, long limit = 10)
+
+        public async Task<GroupPaginatedRespDto> ListGroups(ListGroupsDto reqDto)
         {
-            string httpResponse = await Request("GET", "/api/v3/list-groups", new Dictionary<string, object> {
-        {"keywords",keywords },
-        {"page",page },
-        {"limit",limit },
-    }).ConfigureAwait(false);
+            string httpResponse = await Request("GET", "/api/v3/list-groups").ConfigureAwait(false);
+
             GroupPaginatedRespDto result = m_JsonService.DeserializeObject<GroupPaginatedRespDto>(httpResponse);
             return result;
+
         }
         ///<summary>
         /// 创建分组
         ///</summary>
         /// <param name="requestBody"></param>
         ///<returns>GroupSingleRespDto</returns>
-        public async Task<GroupSingleRespDto> CreateGroup(CreateGroupReqDto requestBody
-        )
+
+        public async Task<GroupSingleRespDto> CreateGroup(CreateGroupReqDto requestBody)
         {
             string httpResponse = await Request("POST", "/api/v3/create-group", requestBody).ConfigureAwait(false);
+
             GroupSingleRespDto result = m_JsonService.DeserializeObject<GroupSingleRespDto>(httpResponse);
             return result;
         }
@@ -1006,10 +971,11 @@ namespace Authing.CSharp.SDK.Services
         ///</summary>
         /// <param name="requestBody"></param>
         ///<returns>GroupListRespDto</returns>
-        public async Task<GroupListRespDto> CreateGroupsBatch(CreateGroupBatchReqDto requestBody
-        )
+
+        public async Task<GroupListRespDto> CreateGroupsBatch(CreateGroupBatchReqDto requestBody)
         {
             string httpResponse = await Request("POST", "/api/v3/create-groups-batch", requestBody).ConfigureAwait(false);
+
             GroupListRespDto result = m_JsonService.DeserializeObject<GroupListRespDto>(httpResponse);
             return result;
         }
@@ -1018,10 +984,11 @@ namespace Authing.CSharp.SDK.Services
         ///</summary>
         /// <param name="requestBody"></param>
         ///<returns>GroupSingleRespDto</returns>
-        public async Task<GroupSingleRespDto> UpdateGroup(UpdateGroupReqDto requestBody
-        )
+
+        public async Task<GroupSingleRespDto> UpdateGroup(UpdateGroupReqDto requestBody)
         {
             string httpResponse = await Request("POST", "/api/v3/update-group", requestBody).ConfigureAwait(false);
+
             GroupSingleRespDto result = m_JsonService.DeserializeObject<GroupSingleRespDto>(httpResponse);
             return result;
         }
@@ -1030,10 +997,11 @@ namespace Authing.CSharp.SDK.Services
         ///</summary>
         /// <param name="requestBody"></param>
         ///<returns>IsSuccessRespDto</returns>
-        public async Task<IsSuccessRespDto> DeleteGroupsBatch(DeleteGroupsReqDto requestBody
-        )
+
+        public async Task<IsSuccessRespDto> DeleteGroupsBatch(DeleteGroupsReqDto requestBody)
         {
             string httpResponse = await Request("POST", "/api/v3/delete-groups-batch", requestBody).ConfigureAwait(false);
+
             IsSuccessRespDto result = m_JsonService.DeserializeObject<IsSuccessRespDto>(httpResponse);
             return result;
         }
@@ -1042,10 +1010,11 @@ namespace Authing.CSharp.SDK.Services
         ///</summary>
         /// <param name="requestBody"></param>
         ///<returns>IsSuccessRespDto</returns>
-        public async Task<IsSuccessRespDto> AddGroupMembers(AddGroupMembersReqDto requestBody
-        )
+
+        public async Task<IsSuccessRespDto> AddGroupMembers(AddGroupMembersReqDto requestBody)
         {
             string httpResponse = await Request("POST", "/api/v3/add-group-members", requestBody).ConfigureAwait(false);
+
             IsSuccessRespDto result = m_JsonService.DeserializeObject<IsSuccessRespDto>(httpResponse);
             return result;
         }
@@ -1054,10 +1023,11 @@ namespace Authing.CSharp.SDK.Services
         ///</summary>
         /// <param name="requestBody"></param>
         ///<returns>IsSuccessRespDto</returns>
-        public async Task<IsSuccessRespDto> RemoveGroupMembers(RemoveGroupMembersReqDto requestBody
-        )
+
+        public async Task<IsSuccessRespDto> RemoveGroupMembers(RemoveGroupMembersReqDto requestBody)
         {
             string httpResponse = await Request("POST", "/api/v3/remove-group-members", requestBody).ConfigureAwait(false);
+
             IsSuccessRespDto result = m_JsonService.DeserializeObject<IsSuccessRespDto>(httpResponse);
             return result;
         }
@@ -1071,18 +1041,14 @@ namespace Authing.CSharp.SDK.Services
         /// <param name="withIdentities">是否获取 identities</param>
         /// <param name="withDepartmentIds">是否获取部门 ID 列表</param>
         ///<returns>UserPaginatedRespDto</returns>
-        public async Task<UserPaginatedRespDto> ListGroupMembers(string code, long page = 1, long limit = 10, bool withCustomData = false, bool withIdentities = false, bool withDepartmentIds = false)
+
+        public async Task<UserPaginatedRespDto> ListGroupMembers(ListGroupMembersDto reqDto)
         {
-            string httpResponse = await Request("GET", "/api/v3/list-group-members", new Dictionary<string, object> {
-        {"code",code },
-        {"page",page },
-        {"limit",limit },
-        {"withCustomData",withCustomData },
-        {"withIdentities",withIdentities },
-        {"withDepartmentIds",withDepartmentIds },
-    }).ConfigureAwait(false);
+            string httpResponse = await Request("GET", "/api/v3/list-group-members").ConfigureAwait(false);
+
             UserPaginatedRespDto result = m_JsonService.DeserializeObject<UserPaginatedRespDto>(httpResponse);
             return result;
+
         }
         ///<summary>
         /// 获取分组被授权的资源列表
@@ -1091,15 +1057,14 @@ namespace Authing.CSharp.SDK.Services
         /// <param name="nameSpace">所属权限分组的 code</param>
         /// <param name="resourceType">资源类型</param>
         ///<returns>AuthorizedResourceListRespDto</returns>
-        public async Task<AuthorizedResourceListRespDto> GetGroupAuthorizedResources(string code, string resourceType = null, string nameSpace = null)
+
+        public async Task<AuthorizedResourceListRespDto> GetGroupAuthorizedResources(GetGroupAuthorizedResourcesDto reqDto)
         {
-            string httpResponse = await Request("GET", "/api/v3/get-group-authorized-resources", new Dictionary<string, object> {
-        {"code",code },
-        {"namespace",nameSpace },
-        {"resourceType",resourceType },
-    }).ConfigureAwait(false);
+            string httpResponse = await Request("GET", "/api/v3/get-group-authorized-resources").ConfigureAwait(false);
+
             AuthorizedResourceListRespDto result = m_JsonService.DeserializeObject<AuthorizedResourceListRespDto>(httpResponse);
             return result;
+
         }
         ///<summary>
         /// 获取角色详情
@@ -1107,24 +1072,25 @@ namespace Authing.CSharp.SDK.Services
         /// <param name="code">权限分组内角色的唯一标识符</param>
         /// <param name="nameSpace">所属权限分组的 code</param>
         ///<returns>RoleSingleRespDto</returns>
-        public async Task<RoleSingleRespDto> GetRole(string code, string nameSpace = null)
+
+        public async Task<RoleSingleRespDto> GetRole(GetRoleDto reqDto)
         {
-            string httpResponse = await Request("GET", "/api/v3/get-role", new Dictionary<string, object> {
-        {"code",code },
-        {"namespace",nameSpace },
-    }).ConfigureAwait(false);
+            string httpResponse = await Request("GET", "/api/v3/get-role").ConfigureAwait(false);
+
             RoleSingleRespDto result = m_JsonService.DeserializeObject<RoleSingleRespDto>(httpResponse);
             return result;
+
         }
         ///<summary>
         /// 分配角色
         ///</summary>
         /// <param name="requestBody"></param>
         ///<returns>IsSuccessRespDto</returns>
-        public async Task<IsSuccessRespDto> AssignRole(AssignRoleDto requestBody
-        )
+
+        public async Task<IsSuccessRespDto> AssignRole(AssignRoleDto requestBody)
         {
             string httpResponse = await Request("POST", "/api/v3/assign-role", requestBody).ConfigureAwait(false);
+
             IsSuccessRespDto result = m_JsonService.DeserializeObject<IsSuccessRespDto>(httpResponse);
             return result;
         }
@@ -1133,10 +1099,11 @@ namespace Authing.CSharp.SDK.Services
         ///</summary>
         /// <param name="requestBody"></param>
         ///<returns>IsSuccessRespDto</returns>
-        public async Task<IsSuccessRespDto> RevokeRole(RevokeRoleDto requestBody
-        )
+
+        public async Task<IsSuccessRespDto> RevokeRole(RevokeRoleDto requestBody)
         {
             string httpResponse = await Request("POST", "/api/v3/revoke-role", requestBody).ConfigureAwait(false);
+
             IsSuccessRespDto result = m_JsonService.DeserializeObject<IsSuccessRespDto>(httpResponse);
             return result;
         }
@@ -1147,15 +1114,14 @@ namespace Authing.CSharp.SDK.Services
         /// <param name="nameSpace">所属权限分组的 code</param>
         /// <param name="resourceType">资源类型，如 数据、API、按钮、菜单</param>
         ///<returns>RoleAuthorizedResourcePaginatedRespDto</returns>
-        public async Task<RoleAuthorizedResourcePaginatedRespDto> GetRoleAuthorizedResources(string code, string resourceType = null, string nameSpace = null)
+
+        public async Task<RoleAuthorizedResourcePaginatedRespDto> GetRoleAuthorizedResources(GetRoleAuthorizedResourcesDto reqDto)
         {
-            string httpResponse = await Request("GET", "/api/v3/get-role-authorized-resources", new Dictionary<string, object> {
-        {"code",code },
-        {"namespace",nameSpace },
-        {"resourceType",resourceType },
-    }).ConfigureAwait(false);
+            string httpResponse = await Request("GET", "/api/v3/get-role-authorized-resources").ConfigureAwait(false);
+
             RoleAuthorizedResourcePaginatedRespDto result = m_JsonService.DeserializeObject<RoleAuthorizedResourcePaginatedRespDto>(httpResponse);
             return result;
+
         }
         ///<summary>
         /// 获取角色成员列表
@@ -1168,19 +1134,14 @@ namespace Authing.CSharp.SDK.Services
         /// <param name="withDepartmentIds">是否获取部门 ID 列表</param>
         /// <param name="nameSpace">所属权限分组的 code</param>
         ///<returns>UserPaginatedRespDto</returns>
-        public async Task<UserPaginatedRespDto> ListRoleMembers(string code, string nameSpace = null, long page = 1, long limit = 10, bool withCustomData = false, bool withIdentities = false, bool withDepartmentIds = false)
+
+        public async Task<UserPaginatedRespDto> ListRoleMembers(ListRoleMembersDto reqDto)
         {
-            string httpResponse = await Request("GET", "/api/v3/list-role-members", new Dictionary<string, object> {
-        {"page",page },
-        {"limit",limit },
-        {"withCustomData",withCustomData },
-        {"withIdentities",withIdentities },
-        {"withDepartmentIds",withDepartmentIds },
-        {"code",code },
-        {"namespace",nameSpace },
-    }).ConfigureAwait(false);
+            string httpResponse = await Request("GET", "/api/v3/list-role-members").ConfigureAwait(false);
+
             UserPaginatedRespDto result = m_JsonService.DeserializeObject<UserPaginatedRespDto>(httpResponse);
             return result;
+
         }
         ///<summary>
         /// 获取角色的部门列表
@@ -1190,26 +1151,25 @@ namespace Authing.CSharp.SDK.Services
         /// <param name="page">当前页数，从 1 开始</param>
         /// <param name="limit">每页数目，最大不能超过 50，默认为 10</param>
         ///<returns>RoleDepartmentListPaginatedRespDto</returns>
-        public async Task<RoleDepartmentListPaginatedRespDto> ListRoleDepartments(string code, string nameSpace = null, long page = 1, long limit = 10)
+
+        public async Task<RoleDepartmentListPaginatedRespDto> ListRoleDepartments(ListRoleDepartmentsDto reqDto)
         {
-            string httpResponse = await Request("GET", "/api/v3/list-role-departments", new Dictionary<string, object> {
-        {"code",code },
-        {"namespace",nameSpace },
-        {"page",page },
-        {"limit",limit },
-    }).ConfigureAwait(false);
+            string httpResponse = await Request("GET", "/api/v3/list-role-departments").ConfigureAwait(false);
+
             RoleDepartmentListPaginatedRespDto result = m_JsonService.DeserializeObject<RoleDepartmentListPaginatedRespDto>(httpResponse);
             return result;
+
         }
         ///<summary>
         /// 创建角色
         ///</summary>
         /// <param name="requestBody"></param>
         ///<returns>RoleSingleRespDto</returns>
-        public async Task<RoleSingleRespDto> CreateRole(CreateRoleDto requestBody
-        )
+
+        public async Task<RoleSingleRespDto> CreateRole(CreateRoleDto requestBody)
         {
             string httpResponse = await Request("POST", "/api/v3/create-role", requestBody).ConfigureAwait(false);
+
             RoleSingleRespDto result = m_JsonService.DeserializeObject<RoleSingleRespDto>(httpResponse);
             return result;
         }
@@ -1221,26 +1181,25 @@ namespace Authing.CSharp.SDK.Services
         /// <param name="page">当前页数，从 1 开始</param>
         /// <param name="limit">每页数目，最大不能超过 50，默认为 10</param>
         ///<returns>RolePaginatedRespDto</returns>
-        public async Task<RolePaginatedRespDto> ListRoles(string keywords = null, string nameSpace = "default", long page = 1, long limit = 10)
+
+        public async Task<RolePaginatedRespDto> ListRoles(ListRolesDto reqDto)
         {
-            string httpResponse = await Request("GET", "/api/v3/list-roles", new Dictionary<string, object> {
-        {"keywords",keywords },
-        {"namespace",nameSpace },
-        {"page",page },
-        {"limit",limit },
-    }).ConfigureAwait(false);
+            string httpResponse = await Request("GET", "/api/v3/list-roles").ConfigureAwait(false);
+
             RolePaginatedRespDto result = m_JsonService.DeserializeObject<RolePaginatedRespDto>(httpResponse);
             return result;
+
         }
         ///<summary>
         /// 删除角色
         ///</summary>
         /// <param name="requestBody"></param>
         ///<returns>IsSuccessRespDto</returns>
-        public async Task<IsSuccessRespDto> DeleteRolesBatch(DeleteRoleDto requestBody
-        )
+
+        public async Task<IsSuccessRespDto> DeleteRolesBatch(DeleteRoleDto requestBody)
         {
             string httpResponse = await Request("POST", "/api/v3/delete-roles-batch", requestBody).ConfigureAwait(false);
+
             IsSuccessRespDto result = m_JsonService.DeserializeObject<IsSuccessRespDto>(httpResponse);
             return result;
         }
@@ -1249,10 +1208,11 @@ namespace Authing.CSharp.SDK.Services
         ///</summary>
         /// <param name="requestBody"></param>
         ///<returns>IsSuccessRespDto</returns>
-        public async Task<IsSuccessRespDto> CreateRolesBatch(CreateRolesBatch requestBody
-        )
+
+        public async Task<IsSuccessRespDto> CreateRolesBatch(CreateRolesBatch requestBody)
         {
             string httpResponse = await Request("POST", "/api/v3/create-roles-batch", requestBody).ConfigureAwait(false);
+
             IsSuccessRespDto result = m_JsonService.DeserializeObject<IsSuccessRespDto>(httpResponse);
             return result;
         }
@@ -1261,10 +1221,11 @@ namespace Authing.CSharp.SDK.Services
         ///</summary>
         /// <param name="requestBody"></param>
         ///<returns>IsSuccessRespDto</returns>
-        public async Task<IsSuccessRespDto> UpdateRole(UpdateRoleDto requestBody
-        )
+
+        public async Task<IsSuccessRespDto> UpdateRole(UpdateRoleDto requestBody)
         {
             string httpResponse = await Request("POST", "/api/v3/update-role", requestBody).ConfigureAwait(false);
+
             IsSuccessRespDto result = m_JsonService.DeserializeObject<IsSuccessRespDto>(httpResponse);
             return result;
         }
@@ -1274,14 +1235,14 @@ namespace Authing.CSharp.SDK.Services
         /// <param name="tenantId">租户 ID</param>
         /// <param name="appId">应用 ID</param>
         ///<returns>ExtIdpListPaginatedRespDto</returns>
-        public async Task<ExtIdpListPaginatedRespDto> ListExtIdp(string appId = null, string tenantId = null)
+
+        public async Task<ExtIdpListPaginatedRespDto> ListExtIdp(ListExtIdpDto reqDto)
         {
-            string httpResponse = await Request("GET", "/api/v3/list-ext-idp", new Dictionary<string, object> {
-        {"tenantId",tenantId },
-        {"appId",appId },
-    }).ConfigureAwait(false);
+            string httpResponse = await Request("GET", "/api/v3/list-ext-idp").ConfigureAwait(false);
+
             ExtIdpListPaginatedRespDto result = m_JsonService.DeserializeObject<ExtIdpListPaginatedRespDto>(httpResponse);
             return result;
+
         }
         ///<summary>
         /// 获取身份源详情
@@ -1291,26 +1252,25 @@ namespace Authing.CSharp.SDK.Services
         /// <param name="appId">应用 ID</param>
         /// <param name="type">身份源类型</param>
         ///<returns>ExtIdpDetailSingleRespDto</returns>
-        public async Task<ExtIdpDetailSingleRespDto> GetExtIdp(string id, string type = null, string appId = null, string tenantId = null)
+
+        public async Task<ExtIdpDetailSingleRespDto> GetExtIdp(GetExtIdpDto reqDto)
         {
-            string httpResponse = await Request("GET", "/api/v3/get-ext-idp", new Dictionary<string, object> {
-        {"tenantId",tenantId },
-        {"appId",appId },
-        {"id",id },
-        {"type",type },
-    }).ConfigureAwait(false);
+            string httpResponse = await Request("GET", "/api/v3/get-ext-idp").ConfigureAwait(false);
+
             ExtIdpDetailSingleRespDto result = m_JsonService.DeserializeObject<ExtIdpDetailSingleRespDto>(httpResponse);
             return result;
+
         }
         ///<summary>
         /// 创建身份源
         ///</summary>
         /// <param name="requestBody"></param>
         ///<returns>ExtIdpSingleRespDto</returns>
-        public async Task<ExtIdpSingleRespDto> CreateExtIdp(CreateExtIdpDto requestBody
-        )
+
+        public async Task<ExtIdpSingleRespDto> CreateExtIdp(CreateExtIdpDto requestBody)
         {
             string httpResponse = await Request("POST", "/api/v3/create-ext-idp", requestBody).ConfigureAwait(false);
+
             ExtIdpSingleRespDto result = m_JsonService.DeserializeObject<ExtIdpSingleRespDto>(httpResponse);
             return result;
         }
@@ -1319,10 +1279,11 @@ namespace Authing.CSharp.SDK.Services
         ///</summary>
         /// <param name="requestBody"></param>
         ///<returns>ExtIdpSingleRespDto</returns>
-        public async Task<ExtIdpSingleRespDto> UpdateExtIdp(UpdateExtIdpDto requestBody
-        )
+
+        public async Task<ExtIdpSingleRespDto> UpdateExtIdp(UpdateExtIdpDto requestBody)
         {
             string httpResponse = await Request("POST", "/api/v3/update-ext-idp", requestBody).ConfigureAwait(false);
+
             ExtIdpSingleRespDto result = m_JsonService.DeserializeObject<ExtIdpSingleRespDto>(httpResponse);
             return result;
         }
@@ -1331,10 +1292,11 @@ namespace Authing.CSharp.SDK.Services
         ///</summary>
         /// <param name="requestBody"></param>
         ///<returns>IsSuccessRespDto</returns>
-        public async Task<IsSuccessRespDto> DeleteExtIdp(DeleteExtIdpDto requestBody
-        )
+
+        public async Task<IsSuccessRespDto> DeleteExtIdp(DeleteExtIdpDto requestBody)
         {
             string httpResponse = await Request("POST", "/api/v3/delete-ext-idp", requestBody).ConfigureAwait(false);
+
             IsSuccessRespDto result = m_JsonService.DeserializeObject<IsSuccessRespDto>(httpResponse);
             return result;
         }
@@ -1343,10 +1305,11 @@ namespace Authing.CSharp.SDK.Services
         ///</summary>
         /// <param name="requestBody"></param>
         ///<returns>ExtIdpConnDetailSingleRespDto</returns>
-        public async Task<ExtIdpConnDetailSingleRespDto> CreateExtIdpConn(CreateExtIdpConnDto requestBody
-        )
+
+        public async Task<ExtIdpConnDetailSingleRespDto> CreateExtIdpConn(CreateExtIdpConnDto requestBody)
         {
             string httpResponse = await Request("POST", "/api/v3/create-ext-idp-conn", requestBody).ConfigureAwait(false);
+
             ExtIdpConnDetailSingleRespDto result = m_JsonService.DeserializeObject<ExtIdpConnDetailSingleRespDto>(httpResponse);
             return result;
         }
@@ -1355,10 +1318,11 @@ namespace Authing.CSharp.SDK.Services
         ///</summary>
         /// <param name="requestBody"></param>
         ///<returns>ExtIdpConnDetailSingleRespDto</returns>
-        public async Task<ExtIdpConnDetailSingleRespDto> UpdateExtIdpConn(UpdateExtIdpConnDto requestBody
-        )
+
+        public async Task<ExtIdpConnDetailSingleRespDto> UpdateExtIdpConn(UpdateExtIdpConnDto requestBody)
         {
             string httpResponse = await Request("POST", "/api/v3/update-ext-idp-conn", requestBody).ConfigureAwait(false);
+
             ExtIdpConnDetailSingleRespDto result = m_JsonService.DeserializeObject<ExtIdpConnDetailSingleRespDto>(httpResponse);
             return result;
         }
@@ -1367,10 +1331,11 @@ namespace Authing.CSharp.SDK.Services
         ///</summary>
         /// <param name="requestBody"></param>
         ///<returns>IsSuccessRespDto</returns>
-        public async Task<IsSuccessRespDto> DeleteExtIdpConn(DeleteExtIdpConnDto requestBody
-        )
+
+        public async Task<IsSuccessRespDto> DeleteExtIdpConn(DeleteExtIdpConnDto requestBody)
         {
             string httpResponse = await Request("POST", "/api/v3/delete-ext-idp-conn", requestBody).ConfigureAwait(false);
+
             IsSuccessRespDto result = m_JsonService.DeserializeObject<IsSuccessRespDto>(httpResponse);
             return result;
         }
@@ -1379,10 +1344,11 @@ namespace Authing.CSharp.SDK.Services
         ///</summary>
         /// <param name="requestBody"></param>
         ///<returns>IsSuccessRespDto</returns>
-        public async Task<IsSuccessRespDto> ChangeConnState(EnableExtIdpConnDto requestBody
-        )
+
+        public async Task<IsSuccessRespDto> ChangeConnState(EnableExtIdpConnDto requestBody)
         {
             string httpResponse = await Request("POST", "/api/v3/enable-ext-idp-conn", requestBody).ConfigureAwait(false);
+
             IsSuccessRespDto result = m_JsonService.DeserializeObject<IsSuccessRespDto>(httpResponse);
             return result;
         }
@@ -1391,10 +1357,11 @@ namespace Authing.CSharp.SDK.Services
         ///</summary>
         /// <param name="requestBody"></param>
         ///<returns>IsSuccessRespDto</returns>
-        public async Task<IsSuccessRespDto> ChangeAssociationState(AssociationExtIdpDto requestBody
-        )
+
+        public async Task<IsSuccessRespDto> ChangeAssociationState(AssociationExtIdpDto requestBody)
         {
             string httpResponse = await Request("POST", "/api/v3/association-ext-idp", requestBody).ConfigureAwait(false);
+
             IsSuccessRespDto result = m_JsonService.DeserializeObject<IsSuccessRespDto>(httpResponse);
             return result;
         }
@@ -1407,17 +1374,14 @@ namespace Authing.CSharp.SDK.Services
         /// <param name="page">页码</param>
         /// <param name="limit">每页获取的数据量</param>
         ///<returns>ExtIdpListPaginatedRespDto</returns>
-        public async Task<ExtIdpListPaginatedRespDto> ListTenantExtIdp(string limit = null, string page = null, string type = null, string appId = null, string tenantId = null)
+
+        public async Task<ExtIdpListPaginatedRespDto> ListTenantExtIdp(ListTenantExtIdpDto reqDto)
         {
-            string httpResponse = await Request("GET", "/api/v3/list-tenant-ext-idp", new Dictionary<string, object> {
-        {"tenantId",tenantId },
-        {"appId",appId },
-        {"type",type },
-        {"page",page },
-        {"limit",limit },
-    }).ConfigureAwait(false);
+            string httpResponse = await Request("GET", "/api/v3/list-tenant-ext-idp").ConfigureAwait(false);
+
             ExtIdpListPaginatedRespDto result = m_JsonService.DeserializeObject<ExtIdpListPaginatedRespDto>(httpResponse);
             return result;
+
         }
         ///<summary>
         /// 身份源下应用的连接详情
@@ -1427,36 +1391,38 @@ namespace Authing.CSharp.SDK.Services
         /// <param name="appId">应用 ID</param>
         /// <param name="type">身份源类型</param>
         ///<returns>ExtIdpListPaginatedRespDto</returns>
-        public async Task<ExtIdpListPaginatedRespDto> ExtIdpConnStateByApps(string id, string type = null, string appId = null, string tenantId = null)
+
+        public async Task<ExtIdpListPaginatedRespDto> ExtIdpConnStateByApps(ExtIdpConnAppsDto reqDto)
         {
-            string httpResponse = await Request("GET", "/api/v3/ext-idp-conn-apps", new Dictionary<string, object> {
-        {"tenantId",tenantId },
-        {"appId",appId },
-        {"id",id },
-        {"type",type },
-    }).ConfigureAwait(false);
+            string httpResponse = await Request("GET", "/api/v3/ext-idp-conn-apps").ConfigureAwait(false);
+
             ExtIdpListPaginatedRespDto result = m_JsonService.DeserializeObject<ExtIdpListPaginatedRespDto>(httpResponse);
             return result;
+
         }
         ///<summary>
         /// 获取用户内置字段列表
         ///</summary>
         ///<returns>CustomFieldListRespDto</returns>
+
         public async Task<CustomFieldListRespDto> GetUserBaseFields()
         {
             string httpResponse = await Request("GET", "/api/v3/get-user-base-fields").ConfigureAwait(false);
+
             CustomFieldListRespDto result = m_JsonService.DeserializeObject<CustomFieldListRespDto>(httpResponse);
             return result;
+
         }
         ///<summary>
         /// 修改用户内置字段配置
         ///</summary>
         /// <param name="requestBody"></param>
         ///<returns>CustomFieldListRespDto</returns>
-        public async Task<CustomFieldListRespDto> SetUserBaseFields(SetUserBaseFieldsReqDto requestBody
-        )
+
+        public async Task<CustomFieldListRespDto> SetUserBaseFields(SetUserBaseFieldsReqDto requestBody)
         {
             string httpResponse = await Request("POST", "/api/v3/set-user-base-fields", requestBody).ConfigureAwait(false);
+
             CustomFieldListRespDto result = m_JsonService.DeserializeObject<CustomFieldListRespDto>(httpResponse);
             return result;
         }
@@ -1465,23 +1431,25 @@ namespace Authing.CSharp.SDK.Services
         ///</summary>
         /// <param name="targetType">主体类型，目前支持用户、角色、分组、部门</param>
         ///<returns>CustomFieldListRespDto</returns>
-        public async Task<CustomFieldListRespDto> GetCustomFields(string targetType)
+
+        public async Task<CustomFieldListRespDto> GetCustomFields(GetCustomFieldsDto reqDto)
         {
-            string httpResponse = await Request("GET", "/api/v3/get-custom-fields", new Dictionary<string, object> {
-        {"targetType",targetType },
-    }).ConfigureAwait(false);
+            string httpResponse = await Request("GET", "/api/v3/get-custom-fields").ConfigureAwait(false);
+
             CustomFieldListRespDto result = m_JsonService.DeserializeObject<CustomFieldListRespDto>(httpResponse);
             return result;
+
         }
         ///<summary>
         /// 创建/修改自定义字段定义
         ///</summary>
         /// <param name="requestBody"></param>
         ///<returns>CustomFieldListRespDto</returns>
-        public async Task<CustomFieldListRespDto> SetCustomFields(SetCustomFieldsReqDto requestBody
-        )
+
+        public async Task<CustomFieldListRespDto> SetCustomFields(SetCustomFieldsReqDto requestBody)
         {
             string httpResponse = await Request("POST", "/api/v3/set-custom-fields", requestBody).ConfigureAwait(false);
+
             CustomFieldListRespDto result = m_JsonService.DeserializeObject<CustomFieldListRespDto>(httpResponse);
             return result;
         }
@@ -1490,10 +1458,11 @@ namespace Authing.CSharp.SDK.Services
         ///</summary>
         /// <param name="requestBody"></param>
         ///<returns>IsSuccessRespDto</returns>
-        public async Task<IsSuccessRespDto> SetCustomData(SetCustomDataReqDto requestBody
-        )
+
+        public async Task<IsSuccessRespDto> SetCustomData(SetCustomDataReqDto requestBody)
         {
             string httpResponse = await Request("POST", "/api/v3/set-custom-data", requestBody).ConfigureAwait(false);
+
             IsSuccessRespDto result = m_JsonService.DeserializeObject<IsSuccessRespDto>(httpResponse);
             return result;
         }
@@ -1504,25 +1473,25 @@ namespace Authing.CSharp.SDK.Services
         /// <param name="targetIdentifier">目标对象唯一标志符</param>
         /// <param name="nameSpace">所属权限分组的 code，当 targetType 为角色的时候需要填写，否则可以忽略</param>
         ///<returns>GetCustomDataRespDto</returns>
-        public async Task<GetCustomDataRespDto> GetCustomData(string targetType, string targetIdentifier, string nameSpace = null)
+
+        public async Task<GetCustomDataRespDto> GetCustomData(GetCustomDataDto reqDto)
         {
-            string httpResponse = await Request("GET", "/api/v3/get-custom-data", new Dictionary<string, object> {
-        {"targetType",targetType },
-        {"targetIdentifier",targetIdentifier },
-        {"namespace",nameSpace },
-    }).ConfigureAwait(false);
+            string httpResponse = await Request("GET", "/api/v3/get-custom-data").ConfigureAwait(false);
+
             GetCustomDataRespDto result = m_JsonService.DeserializeObject<GetCustomDataRespDto>(httpResponse);
             return result;
+
         }
         ///<summary>
         /// 创建权限分组
         ///</summary>
         /// <param name="requestBody"></param>
         ///<returns>NamespaceRespDto</returns>
-        public async Task<NamespaceRespDto> CreateNamespace(CreateNamespaceDto requestBody
-        )
+
+        public async Task<NamespaceRespDto> CreateNamespace(CreateNamespaceDto requestBody)
         {
             string httpResponse = await Request("POST", "/api/v3/create-namespace", requestBody).ConfigureAwait(false);
+
             NamespaceRespDto result = m_JsonService.DeserializeObject<NamespaceRespDto>(httpResponse);
             return result;
         }
@@ -1531,10 +1500,11 @@ namespace Authing.CSharp.SDK.Services
         ///</summary>
         /// <param name="requestBody"></param>
         ///<returns>IsSuccessRespDto</returns>
-        public async Task<IsSuccessRespDto> CreateNamespacesBatch(CreateNamespacesBatchDto requestBody
-        )
+
+        public async Task<IsSuccessRespDto> CreateNamespacesBatch(CreateNamespacesBatchDto requestBody)
         {
             string httpResponse = await Request("POST", "/api/v3/create-namespaces-batch", requestBody).ConfigureAwait(false);
+
             IsSuccessRespDto result = m_JsonService.DeserializeObject<IsSuccessRespDto>(httpResponse);
             return result;
         }
@@ -1543,36 +1513,39 @@ namespace Authing.CSharp.SDK.Services
         ///</summary>
         /// <param name="code">权限分组唯一标志符</param>
         ///<returns>NamespaceRespDto</returns>
-        public async Task<NamespaceRespDto> GetNamespace(string code)
+
+        public async Task<NamespaceRespDto> GetNamespace(GetNamespaceDto reqDto)
         {
-            string httpResponse = await Request("GET", "/api/v3/get-namespace", new Dictionary<string, object> {
-        {"code",code },
-    }).ConfigureAwait(false);
+            string httpResponse = await Request("GET", "/api/v3/get-namespace").ConfigureAwait(false);
+
             NamespaceRespDto result = m_JsonService.DeserializeObject<NamespaceRespDto>(httpResponse);
             return result;
+
         }
         ///<summary>
         /// 批量获取权限分组详情
         ///</summary>
         /// <param name="codeList">资源 code 列表，批量可以使用逗号分隔</param>
         ///<returns>NamespaceListRespDto</returns>
-        public async Task<NamespaceListRespDto> GetNamespacesBatch(string codeList)
+
+        public async Task<NamespaceListRespDto> GetNamespacesBatch(GetNamespacesBatchDto reqDto)
         {
-            string httpResponse = await Request("GET", "/api/v3/get-namespaces-batch", new Dictionary<string, object> {
-        {"codeList",codeList },
-    }).ConfigureAwait(false);
+            string httpResponse = await Request("GET", "/api/v3/get-namespaces-batch").ConfigureAwait(false);
+
             NamespaceListRespDto result = m_JsonService.DeserializeObject<NamespaceListRespDto>(httpResponse);
             return result;
+
         }
         ///<summary>
         /// 修改权限分组信息
         ///</summary>
         /// <param name="requestBody"></param>
         ///<returns>UpdateNamespaceRespDto</returns>
-        public async Task<UpdateNamespaceRespDto> UpdateNamespace(UpdateNamespaceDto requestBody
-        )
+
+        public async Task<UpdateNamespaceRespDto> UpdateNamespace(UpdateNamespaceDto requestBody)
         {
             string httpResponse = await Request("POST", "/api/v3/update-namespace", requestBody).ConfigureAwait(false);
+
             UpdateNamespaceRespDto result = m_JsonService.DeserializeObject<UpdateNamespaceRespDto>(httpResponse);
             return result;
         }
@@ -1581,10 +1554,11 @@ namespace Authing.CSharp.SDK.Services
         ///</summary>
         /// <param name="requestBody"></param>
         ///<returns>IsSuccessRespDto</returns>
-        public async Task<IsSuccessRespDto> DeleteNamespace(DeleteNamespaceDto requestBody
-        )
+
+        public async Task<IsSuccessRespDto> DeleteNamespace(DeleteNamespaceDto requestBody)
         {
             string httpResponse = await Request("POST", "/api/v3/delete-namespace", requestBody).ConfigureAwait(false);
+
             IsSuccessRespDto result = m_JsonService.DeserializeObject<IsSuccessRespDto>(httpResponse);
             return result;
         }
@@ -1593,10 +1567,11 @@ namespace Authing.CSharp.SDK.Services
         ///</summary>
         /// <param name="requestBody"></param>
         ///<returns>IsSuccessRespDto</returns>
-        public async Task<IsSuccessRespDto> DeleteNamespacesBatch(DeleteNamespacesBatchDto requestBody
-        )
+
+        public async Task<IsSuccessRespDto> DeleteNamespacesBatch(DeleteNamespacesBatchDto requestBody)
         {
             string httpResponse = await Request("POST", "/api/v3/delete-namespaces-batch", requestBody).ConfigureAwait(false);
+
             IsSuccessRespDto result = m_JsonService.DeserializeObject<IsSuccessRespDto>(httpResponse);
             return result;
         }
@@ -1605,10 +1580,11 @@ namespace Authing.CSharp.SDK.Services
         ///</summary>
         /// <param name="requestBody"></param>
         ///<returns>IsSuccessRespDto</returns>
-        public async Task<IsSuccessRespDto> AuthorizeResources(AuthorizeResourcesDto requestBody
-        )
+
+        public async Task<IsSuccessRespDto> AuthorizeResources(AuthorizeResourcesDto requestBody)
         {
             string httpResponse = await Request("POST", "/api/v3/authorize-resources", requestBody).ConfigureAwait(false);
+
             IsSuccessRespDto result = m_JsonService.DeserializeObject<IsSuccessRespDto>(httpResponse);
             return result;
         }
@@ -1622,28 +1598,25 @@ namespace Authing.CSharp.SDK.Services
         /// <param name="resourceList">限定查询的资源列表，如果指定，只会返回所指定的资源列表。</param>
         /// <param name="withDenied">是否获取被拒绝的资源</param>
         ///<returns>AuthorizedResourcePaginatedRespDto</returns>
-        public async Task<AuthorizedResourcePaginatedRespDto> GetAuthorizedResources(string targetType, string targetIdentifier, string resourceList = null, string resourceType = null, string nameSpace = null, bool withDenied = false)
+
+        public async Task<AuthorizedResourcePaginatedRespDto> GetAuthorizedResources(GetAuthorizedResourcesDto reqDto)
         {
-            string httpResponse = await Request("GET", "/api/v3/get-authorized-resources", new Dictionary<string, object> {
-        {"namespace",nameSpace },
-        {"targetType",targetType },
-        {"targetIdentifier",targetIdentifier },
-        {"resourceType",resourceType },
-        {"resourceList",resourceList },
-        {"withDenied",withDenied },
-    }).ConfigureAwait(false);
+            string httpResponse = await Request("GET", "/api/v3/get-authorized-resources").ConfigureAwait(false);
+
             AuthorizedResourcePaginatedRespDto result = m_JsonService.DeserializeObject<AuthorizedResourcePaginatedRespDto>(httpResponse);
             return result;
+
         }
         ///<summary>
         /// 判断用户是否对某个资源的某个操作有权限
         ///</summary>
         /// <param name="requestBody"></param>
         ///<returns>IsActionAllowedRespDtp</returns>
-        public async Task<IsActionAllowedRespDtp> IsActionAllowed(IsActionAllowedDto requestBody
-        )
+
+        public async Task<IsActionAllowedRespDtp> IsActionAllowed(IsActionAllowedDto requestBody)
         {
             string httpResponse = await Request("POST", "/api/v3/is-action-allowed", requestBody).ConfigureAwait(false);
+
             IsActionAllowedRespDtp result = m_JsonService.DeserializeObject<IsActionAllowedRespDtp>(httpResponse);
             return result;
         }
@@ -1652,10 +1625,11 @@ namespace Authing.CSharp.SDK.Services
         ///</summary>
         /// <param name="requestBody"></param>
         ///<returns>GetAuthorizedTargetRespDto</returns>
-        public async Task<GetAuthorizedTargetRespDto> GetAuthorizedTargets(GetAuthorizedTargetsDto requestBody
-        )
+
+        public async Task<GetAuthorizedTargetRespDto> GetAuthorizedTargets(GetAuthorizedTargetsDto requestBody)
         {
             string httpResponse = await Request("POST", "/api/v3/get-authorized-targets", requestBody).ConfigureAwait(false);
+
             GetAuthorizedTargetRespDto result = m_JsonService.DeserializeObject<GetAuthorizedTargetRespDto>(httpResponse);
             return result;
         }
@@ -1664,13 +1638,14 @@ namespace Authing.CSharp.SDK.Services
         ///</summary>
         /// <param name="syncTaskId">同步任务 ID</param>
         ///<returns>SyncTaskSingleRespDto</returns>
-        public async Task<SyncTaskSingleRespDto> GetSyncTask(long syncTaskId)
+
+        public async Task<SyncTaskSingleRespDto> GetSyncTask(GetSyncTaskDto reqDto)
         {
-            string httpResponse = await Request("GET", "/api/v3/get-sync-task", new Dictionary<string, object> {
-        {"syncTaskId",syncTaskId },
-    }).ConfigureAwait(false);
+            string httpResponse = await Request("GET", "/api/v3/get-sync-task").ConfigureAwait(false);
+
             SyncTaskSingleRespDto result = m_JsonService.DeserializeObject<SyncTaskSingleRespDto>(httpResponse);
             return result;
+
         }
         ///<summary>
         /// 获取同步任务列表
@@ -1678,24 +1653,25 @@ namespace Authing.CSharp.SDK.Services
         /// <param name="page">当前页数，从 1 开始</param>
         /// <param name="limit">每页数目，最大不能超过 50，默认为 10</param>
         ///<returns>SyncTaskPaginatedRespDto</returns>
-        public async Task<SyncTaskPaginatedRespDto> ListSyncTasks(long page = 1, long limit = 10)
+
+        public async Task<SyncTaskPaginatedRespDto> ListSyncTasks(ListSyncTasksDto reqDto)
         {
-            string httpResponse = await Request("GET", "/api/v3/list-sync-tasks", new Dictionary<string, object> {
-        {"page",page },
-        {"limit",limit },
-    }).ConfigureAwait(false);
+            string httpResponse = await Request("GET", "/api/v3/list-sync-tasks").ConfigureAwait(false);
+
             SyncTaskPaginatedRespDto result = m_JsonService.DeserializeObject<SyncTaskPaginatedRespDto>(httpResponse);
             return result;
+
         }
         ///<summary>
         /// 创建同步任务
         ///</summary>
         /// <param name="requestBody"></param>
         ///<returns>SyncTaskPaginatedRespDto</returns>
-        public async Task<SyncTaskPaginatedRespDto> CreateSyncTask(CreateSyncTaskDto requestBody
-        )
+
+        public async Task<SyncTaskPaginatedRespDto> CreateSyncTask(CreateSyncTaskDto requestBody)
         {
             string httpResponse = await Request("POST", "/api/v3/create-sync-task", requestBody).ConfigureAwait(false);
+
             SyncTaskPaginatedRespDto result = m_JsonService.DeserializeObject<SyncTaskPaginatedRespDto>(httpResponse);
             return result;
         }
@@ -1704,10 +1680,11 @@ namespace Authing.CSharp.SDK.Services
         ///</summary>
         /// <param name="requestBody"></param>
         ///<returns>SyncTaskPaginatedRespDto</returns>
-        public async Task<SyncTaskPaginatedRespDto> UpdateSyncTask(UpdateSyncTaskDto requestBody
-        )
+
+        public async Task<SyncTaskPaginatedRespDto> UpdateSyncTask(UpdateSyncTaskDto requestBody)
         {
             string httpResponse = await Request("POST", "/api/v3/update-sync-task", requestBody).ConfigureAwait(false);
+
             SyncTaskPaginatedRespDto result = m_JsonService.DeserializeObject<SyncTaskPaginatedRespDto>(httpResponse);
             return result;
         }
@@ -1716,10 +1693,11 @@ namespace Authing.CSharp.SDK.Services
         ///</summary>
         /// <param name="requestBody"></param>
         ///<returns>TriggerSyncTaskRespDto</returns>
-        public async Task<TriggerSyncTaskRespDto> TriggerSyncTask(TriggerSyncTaskDto requestBody
-        )
+
+        public async Task<TriggerSyncTaskRespDto> TriggerSyncTask(TriggerSyncTaskDto requestBody)
         {
             string httpResponse = await Request("POST", "/api/v3/trigger-sync-task", requestBody).ConfigureAwait(false);
+
             TriggerSyncTaskRespDto result = m_JsonService.DeserializeObject<TriggerSyncTaskRespDto>(httpResponse);
             return result;
         }
@@ -1728,13 +1706,14 @@ namespace Authing.CSharp.SDK.Services
         ///</summary>
         /// <param name="syncJobId">同步作业 ID</param>
         ///<returns>SyncJobSingleRespDto</returns>
-        public async Task<SyncJobSingleRespDto> GetSyncJob(long syncJobId)
+
+        public async Task<SyncJobSingleRespDto> GetSyncJob(GetSyncJobDto reqDto)
         {
-            string httpResponse = await Request("GET", "/api/v3/get-sync-job", new Dictionary<string, object> {
-        {"syncJobId",syncJobId },
-    }).ConfigureAwait(false);
+            string httpResponse = await Request("GET", "/api/v3/get-sync-job").ConfigureAwait(false);
+
             SyncJobSingleRespDto result = m_JsonService.DeserializeObject<SyncJobSingleRespDto>(httpResponse);
             return result;
+
         }
         ///<summary>
         /// 获取同步作业详情
@@ -1748,16 +1727,14 @@ namespace Authing.CSharp.SDK.Services
         /// - `automatic`: 根据事件自动触发
         /// </param>
         ///<returns>SyncJobPaginatedRespDto</returns>
-        public async Task<SyncJobPaginatedRespDto> ListSyncJobs(long syncTaskId, string syncTrigger = null, long page = 1, long limit = 10)
+
+        public async Task<SyncJobPaginatedRespDto> ListSyncJobs(ListSyncJobsDto reqDto)
         {
-            string httpResponse = await Request("GET", "/api/v3/list-sync-jobs", new Dictionary<string, object> {
-        {"syncTaskId",syncTaskId },
-        {"page",page },
-        {"limit",limit },
-        {"syncTrigger",syncTrigger },
-    }).ConfigureAwait(false);
+            string httpResponse = await Request("GET", "/api/v3/list-sync-jobs").ConfigureAwait(false);
+
             SyncJobPaginatedRespDto result = m_JsonService.DeserializeObject<SyncJobPaginatedRespDto>(httpResponse);
             return result;
+
         }
         ///<summary>
         /// 获取同步作业详情
@@ -1787,18 +1764,14 @@ namespace Authing.CSharp.SDK.Services
         /// - `user`: 用户
         /// </param>
         ///<returns>TriggerSyncTaskRespDto</returns>
-        public async Task<TriggerSyncTaskRespDto> ListSyncJobLogs(long syncJobId, string objectType = null, string action = null, bool success = false, long page = 1, long limit = 10)
+
+        public async Task<TriggerSyncTaskRespDto> ListSyncJobLogs(ListSyncJobLogsDto reqDto)
         {
-            string httpResponse = await Request("GET", "/api/v3/list-sync-job-logs", new Dictionary<string, object> {
-        {"syncJobId",syncJobId },
-        {"page",page },
-        {"limit",limit },
-        {"success",success },
-        {"action",action },
-        {"objectType",objectType },
-    }).ConfigureAwait(false);
+            string httpResponse = await Request("GET", "/api/v3/list-sync-job-logs").ConfigureAwait(false);
+
             TriggerSyncTaskRespDto result = m_JsonService.DeserializeObject<TriggerSyncTaskRespDto>(httpResponse);
             return result;
+
         }
         ///<summary>
         /// 获取同步风险操作列表
@@ -1812,27 +1785,25 @@ namespace Authing.CSharp.SDK.Services
         /// - `user`: 用户
         /// </param>
         ///<returns>SyncRiskOperationPaginatedRespDto</returns>
-        public async Task<SyncRiskOperationPaginatedRespDto> ListSyncRiskOperations(long syncTaskId, string objectType = null, string status = null, long page = 1, long limit = 10)
+
+        public async Task<SyncRiskOperationPaginatedRespDto> ListSyncRiskOperations(ListSyncRiskOperationsDto reqDto)
         {
-            string httpResponse = await Request("GET", "/api/v3/list-sync-risk-operations", new Dictionary<string, object> {
-        {"syncTaskId",syncTaskId },
-        {"page",page },
-        {"limit",limit },
-        {"status",status },
-        {"objectType",objectType },
-    }).ConfigureAwait(false);
+            string httpResponse = await Request("GET", "/api/v3/list-sync-risk-operations").ConfigureAwait(false);
+
             SyncRiskOperationPaginatedRespDto result = m_JsonService.DeserializeObject<SyncRiskOperationPaginatedRespDto>(httpResponse);
             return result;
+
         }
         ///<summary>
         /// 执行同步风险操作
         ///</summary>
         /// <param name="requestBody"></param>
         ///<returns>TriggerSyncRiskOperationsRespDto</returns>
-        public async Task<TriggerSyncRiskOperationsRespDto> TriggerSyncRiskOperations(TriggerSyncRiskOperationDto requestBody
-        )
+
+        public async Task<TriggerSyncRiskOperationsRespDto> TriggerSyncRiskOperations(TriggerSyncRiskOperationDto requestBody)
         {
             string httpResponse = await Request("POST", "/api/v3/trigger-sync-risk-operations", requestBody).ConfigureAwait(false);
+
             TriggerSyncRiskOperationsRespDto result = m_JsonService.DeserializeObject<TriggerSyncRiskOperationsRespDto>(httpResponse);
             return result;
         }
@@ -1841,10 +1812,11 @@ namespace Authing.CSharp.SDK.Services
         ///</summary>
         /// <param name="requestBody"></param>
         ///<returns>CancelSyncRiskOperationsRespDto</returns>
-        public async Task<CancelSyncRiskOperationsRespDto> CancelSyncRiskOperation(CancelSyncRiskOperationDto requestBody
-        )
+
+        public async Task<CancelSyncRiskOperationsRespDto> CancelSyncRiskOperation(CancelSyncRiskOperationDto requestBody)
         {
             string httpResponse = await Request("POST", "/api/v3/cancel-sync-risk-operation", requestBody).ConfigureAwait(false);
+
             CancelSyncRiskOperationsRespDto result = m_JsonService.DeserializeObject<CancelSyncRiskOperationsRespDto>(httpResponse);
             return result;
         }
@@ -1853,10 +1825,11 @@ namespace Authing.CSharp.SDK.Services
         ///</summary>
         /// <param name="requestBody"></param>
         ///<returns>UserActionLogRespDto</returns>
-        public async Task<UserActionLogRespDto> GetUserActionLogs(GetUserActionLogsDto requestBody
-        )
+
+        public async Task<UserActionLogRespDto> GetUserActionLogs(GetUserActionLogsDto requestBody)
         {
             string httpResponse = await Request("POST", "/api/v3/get-user-action-logs", requestBody).ConfigureAwait(false);
+
             UserActionLogRespDto result = m_JsonService.DeserializeObject<UserActionLogRespDto>(httpResponse);
             return result;
         }
@@ -1865,10 +1838,11 @@ namespace Authing.CSharp.SDK.Services
         ///</summary>
         /// <param name="requestBody"></param>
         ///<returns>AdminAuditLogRespDto</returns>
-        public async Task<AdminAuditLogRespDto> GetAdminAuditLogs(GetAdminAuditLogsDto requestBody
-        )
+
+        public async Task<AdminAuditLogRespDto> GetAdminAuditLogs(GetAdminAuditLogsDto requestBody)
         {
             string httpResponse = await Request("POST", "/api/v3/get-admin-audit-logs", requestBody).ConfigureAwait(false);
+
             AdminAuditLogRespDto result = m_JsonService.DeserializeObject<AdminAuditLogRespDto>(httpResponse);
             return result;
         }
@@ -1876,21 +1850,25 @@ namespace Authing.CSharp.SDK.Services
         /// 获取邮件模版列表
         ///</summary>
         ///<returns>GetEmailTemplatesRespDto</returns>
+
         public async Task<GetEmailTemplatesRespDto> GetEmailTemplates()
         {
             string httpResponse = await Request("GET", "/api/v3/get-email-templates").ConfigureAwait(false);
+
             GetEmailTemplatesRespDto result = m_JsonService.DeserializeObject<GetEmailTemplatesRespDto>(httpResponse);
             return result;
+
         }
         ///<summary>
         /// 修改邮件模版
         ///</summary>
         /// <param name="requestBody"></param>
         ///<returns>EmailTemplateSingleItemRespDto</returns>
-        public async Task<EmailTemplateSingleItemRespDto> UpdateEmailTemplate(UpdateEmailTemplateDto requestBody
-        )
+
+        public async Task<EmailTemplateSingleItemRespDto> UpdateEmailTemplate(UpdateEmailTemplateDto requestBody)
         {
             string httpResponse = await Request("POST", "/api/v3/update-email-template", requestBody).ConfigureAwait(false);
+
             EmailTemplateSingleItemRespDto result = m_JsonService.DeserializeObject<EmailTemplateSingleItemRespDto>(httpResponse);
             return result;
         }
@@ -1899,10 +1877,11 @@ namespace Authing.CSharp.SDK.Services
         ///</summary>
         /// <param name="requestBody"></param>
         ///<returns>PreviewEmailTemplateRespDto</returns>
-        public async Task<PreviewEmailTemplateRespDto> PreviewEmailTemplate(PreviewEmailTemplateDto requestBody
-        )
+
+        public async Task<PreviewEmailTemplateRespDto> PreviewEmailTemplate(PreviewEmailTemplateDto requestBody)
         {
             string httpResponse = await Request("POST", "/api/v3/preview-email-template", requestBody).ConfigureAwait(false);
+
             PreviewEmailTemplateRespDto result = m_JsonService.DeserializeObject<PreviewEmailTemplateRespDto>(httpResponse);
             return result;
         }
@@ -1910,21 +1889,25 @@ namespace Authing.CSharp.SDK.Services
         /// 获取第三方邮件服务配置
         ///</summary>
         ///<returns>EmailProviderDto</returns>
+
         public async Task<EmailProviderDto> GetEmailProvider()
         {
             string httpResponse = await Request("GET", "/api/v3/get-email-provier").ConfigureAwait(false);
+
             EmailProviderDto result = m_JsonService.DeserializeObject<EmailProviderDto>(httpResponse);
             return result;
+
         }
         ///<summary>
         /// 配置第三方邮件服务
         ///</summary>
         /// <param name="requestBody"></param>
         ///<returns>EmailProviderDto</returns>
-        public async Task<EmailProviderDto> ConfigEmailProvider(ConfigEmailProviderDto requestBody
-        )
+
+        public async Task<EmailProviderDto> ConfigEmailProvider(ConfigEmailProviderDto requestBody)
         {
             string httpResponse = await Request("POST", "/api/v3/config-email-provier", requestBody).ConfigureAwait(false);
+
             EmailProviderDto result = m_JsonService.DeserializeObject<EmailProviderDto>(httpResponse);
             return result;
         }
@@ -1933,13 +1916,14 @@ namespace Authing.CSharp.SDK.Services
         ///</summary>
         /// <param name="appId">应用 ID</param>
         ///<returns>ApplicationSingleRespDto</returns>
-        public async Task<ApplicationSingleRespDto> GetApplication(string appId)
+
+        public async Task<ApplicationSingleRespDto> GetApplication(GetApplicationDto reqDto)
         {
-            string httpResponse = await Request("GET", "/api/v3/get-application", new Dictionary<string, object> {
-        {"appId",appId },
-    }).ConfigureAwait(false);
+            string httpResponse = await Request("GET", "/api/v3/get-application").ConfigureAwait(false);
+
             ApplicationSingleRespDto result = m_JsonService.DeserializeObject<ApplicationSingleRespDto>(httpResponse);
             return result;
+
         }
         ///<summary>
         /// 获取应用列表
@@ -1951,31 +1935,28 @@ namespace Authing.CSharp.SDK.Services
         /// <param name="ssoEnabled">是否开启单点登录</param>
         /// <param name="keyword">模糊搜索字符串</param>
         ///<returns>ApplicationPaginatedRespDto</returns>
-        public async Task<ApplicationPaginatedRespDto> ListApplications(string keyword = null, long page = 1, long limit = 10, bool isIntegrateApp = false, bool isSelfBuiltApp = false, bool ssoEnabled = false)
+
+        public async Task<ApplicationPaginatedRespDto> ListApplications(ListApplicationsDto reqDto)
         {
-            string httpResponse = await Request("GET", "/api/v3/list-applications", new Dictionary<string, object> {
-        {"page",page },
-        {"limit",limit },
-        {"isIntegrateApp",isIntegrateApp },
-        {"isSelfBuiltApp",isSelfBuiltApp },
-        {"ssoEnabled",ssoEnabled },
-        {"keyword",keyword },
-    }).ConfigureAwait(false);
+            string httpResponse = await Request("GET", "/api/v3/list-applications").ConfigureAwait(false);
+
             ApplicationPaginatedRespDto result = m_JsonService.DeserializeObject<ApplicationPaginatedRespDto>(httpResponse);
             return result;
+
         }
         ///<summary>
         /// 获取应用简单信息
         ///</summary>
         /// <param name="appId">应用 ID</param>
         ///<returns>ApplicationSimpleInfoSingleRespDto</returns>
-        public async Task<ApplicationSimpleInfoSingleRespDto> GetApplicationSimpleInfo(string appId)
+
+        public async Task<ApplicationSimpleInfoSingleRespDto> GetApplicationSimpleInfo(GetApplicationSimpleInfoDto reqDto)
         {
-            string httpResponse = await Request("GET", "/api/v3/get-application-simple-info", new Dictionary<string, object> {
-        {"appId",appId },
-    }).ConfigureAwait(false);
+            string httpResponse = await Request("GET", "/api/v3/get-application-simple-info").ConfigureAwait(false);
+
             ApplicationSimpleInfoSingleRespDto result = m_JsonService.DeserializeObject<ApplicationSimpleInfoSingleRespDto>(httpResponse);
             return result;
+
         }
         ///<summary>
         /// 获取应用简单信息列表
@@ -1987,28 +1968,25 @@ namespace Authing.CSharp.SDK.Services
         /// <param name="ssoEnabled">是否开启单点登录</param>
         /// <param name="keyword">模糊搜索字符串</param>
         ///<returns>ApplicationSimpleInfoSingleRespDto</returns>
-        public async Task<ApplicationSimpleInfoSingleRespDto> ListApplicationSimpleInfo(string keyword = null, long page = 1, long limit = 10, bool isIntegrateApp = false, bool isSelfBuiltApp = false, bool ssoEnabled = false)
+
+        public async Task<ApplicationSimpleInfoSingleRespDto> ListApplicationSimpleInfo(ListApplicationSimpleInfoDto reqDto)
         {
-            string httpResponse = await Request("GET", "/api/v3/list-application-simple-info", new Dictionary<string, object> {
-        {"page",page },
-        {"limit",limit },
-        {"isIntegrateApp",isIntegrateApp },
-        {"isSelfBuiltApp",isSelfBuiltApp },
-        {"ssoEnabled",ssoEnabled },
-        {"keyword",keyword },
-    }).ConfigureAwait(false);
+            string httpResponse = await Request("GET", "/api/v3/list-application-simple-info").ConfigureAwait(false);
+
             ApplicationSimpleInfoSingleRespDto result = m_JsonService.DeserializeObject<ApplicationSimpleInfoSingleRespDto>(httpResponse);
             return result;
+
         }
         ///<summary>
         /// 创建应用
         ///</summary>
         /// <param name="requestBody"></param>
         ///<returns>ApplicationPaginatedRespDto</returns>
-        public async Task<ApplicationPaginatedRespDto> CreateApplication(CreateApplicationDto requestBody
-        )
+
+        public async Task<ApplicationPaginatedRespDto> CreateApplication(CreateApplicationDto requestBody)
         {
             string httpResponse = await Request("POST", "/api/v3/create-application", requestBody).ConfigureAwait(false);
+
             ApplicationPaginatedRespDto result = m_JsonService.DeserializeObject<ApplicationPaginatedRespDto>(httpResponse);
             return result;
         }
@@ -2017,10 +1995,11 @@ namespace Authing.CSharp.SDK.Services
         ///</summary>
         /// <param name="requestBody"></param>
         ///<returns>IsSuccessRespDto</returns>
-        public async Task<IsSuccessRespDto> DeleteApplication(DeleteApplicationDto requestBody
-        )
+
+        public async Task<IsSuccessRespDto> DeleteApplication(DeleteApplicationDto requestBody)
         {
             string httpResponse = await Request("POST", "/api/v3/delete-application", requestBody).ConfigureAwait(false);
+
             IsSuccessRespDto result = m_JsonService.DeserializeObject<IsSuccessRespDto>(httpResponse);
             return result;
         }
@@ -2029,23 +2008,25 @@ namespace Authing.CSharp.SDK.Services
         ///</summary>
         /// <param name="appId">应用 ID</param>
         ///<returns>GetApplicationSecretRespDto</returns>
-        public async Task<GetApplicationSecretRespDto> GetApplicationSecret(string appId)
+
+        public async Task<GetApplicationSecretRespDto> GetApplicationSecret(GetApplicationSecretDto reqDto)
         {
-            string httpResponse = await Request("GET", "/api/v3/get-application-secret", new Dictionary<string, object> {
-        {"appId",appId },
-    }).ConfigureAwait(false);
+            string httpResponse = await Request("GET", "/api/v3/get-application-secret").ConfigureAwait(false);
+
             GetApplicationSecretRespDto result = m_JsonService.DeserializeObject<GetApplicationSecretRespDto>(httpResponse);
             return result;
+
         }
         ///<summary>
         /// 刷新应用密钥
         ///</summary>
         /// <param name="requestBody"></param>
         ///<returns>RefreshApplicationSecretRespDto</returns>
-        public async Task<RefreshApplicationSecretRespDto> RefreshApplicationSecret(RefreshApplicationSecretDto requestBody
-        )
+
+        public async Task<RefreshApplicationSecretRespDto> RefreshApplicationSecret(RefreshApplicationSecretDto requestBody)
         {
             string httpResponse = await Request("POST", "/api/v3/refresh-application-secret", requestBody).ConfigureAwait(false);
+
             RefreshApplicationSecretRespDto result = m_JsonService.DeserializeObject<RefreshApplicationSecretRespDto>(httpResponse);
             return result;
         }
@@ -2054,10 +2035,11 @@ namespace Authing.CSharp.SDK.Services
         ///</summary>
         /// <param name="requestBody"></param>
         ///<returns>UserPaginatedRespDto</returns>
-        public async Task<UserPaginatedRespDto> ListApplicationActiveUsers(ListApplicationActiveUsersDto requestBody
-        )
+
+        public async Task<UserPaginatedRespDto> ListApplicationActiveUsers(ListApplicationActiveUsersDto requestBody)
         {
             string httpResponse = await Request("POST", "/api/v3/list-application-active-users", requestBody).ConfigureAwait(false);
+
             UserPaginatedRespDto result = m_JsonService.DeserializeObject<UserPaginatedRespDto>(httpResponse);
             return result;
         }
@@ -2066,23 +2048,25 @@ namespace Authing.CSharp.SDK.Services
         ///</summary>
         /// <param name="appId">应用 ID</param>
         ///<returns>GetApplicationPermissionStrategyRespDto</returns>
-        public async Task<GetApplicationPermissionStrategyRespDto> GetApplicationPermissionStrategy(string appId)
+
+        public async Task<GetApplicationPermissionStrategyRespDto> GetApplicationPermissionStrategy(GetApplicationPermissionStrategyDto reqDto)
         {
-            string httpResponse = await Request("GET", "/api/v3/get-application-permission-strategy", new Dictionary<string, object> {
-        {"appId",appId },
-    }).ConfigureAwait(false);
+            string httpResponse = await Request("GET", "/api/v3/get-application-permission-strategy").ConfigureAwait(false);
+
             GetApplicationPermissionStrategyRespDto result = m_JsonService.DeserializeObject<GetApplicationPermissionStrategyRespDto>(httpResponse);
             return result;
+
         }
         ///<summary>
         /// 更新应用默认访问授权策略
         ///</summary>
         /// <param name="requestBody"></param>
         ///<returns>IsSuccessRespDto</returns>
-        public async Task<IsSuccessRespDto> UpdateApplicationPermissionStrategy(UpdateApplicationPermissionStrategyDataDto requestBody
-        )
+
+        public async Task<IsSuccessRespDto> UpdateApplicationPermissionStrategy(UpdateApplicationPermissionStrategyDataDto requestBody)
         {
             string httpResponse = await Request("POST", "/api/v3/update-application-permission-strategy", requestBody).ConfigureAwait(false);
+
             IsSuccessRespDto result = m_JsonService.DeserializeObject<IsSuccessRespDto>(httpResponse);
             return result;
         }
@@ -2091,10 +2075,11 @@ namespace Authing.CSharp.SDK.Services
         ///</summary>
         /// <param name="requestBody"></param>
         ///<returns>IsSuccessRespDto</returns>
-        public async Task<IsSuccessRespDto> AuthorizeApplicationAccess(AddApplicationPermissionRecord requestBody
-        )
+
+        public async Task<IsSuccessRespDto> AuthorizeApplicationAccess(AddApplicationPermissionRecord requestBody)
         {
             string httpResponse = await Request("POST", "/api/v3/add-application-permission-record", requestBody).ConfigureAwait(false);
+
             IsSuccessRespDto result = m_JsonService.DeserializeObject<IsSuccessRespDto>(httpResponse);
             return result;
         }
@@ -2103,10 +2088,11 @@ namespace Authing.CSharp.SDK.Services
         ///</summary>
         /// <param name="requestBody"></param>
         ///<returns>IsSuccessRespDto</returns>
-        public async Task<IsSuccessRespDto> RevokeApplicationAccess(DeleteApplicationPermissionRecord requestBody
-        )
+
+        public async Task<IsSuccessRespDto> RevokeApplicationAccess(DeleteApplicationPermissionRecord requestBody)
         {
             string httpResponse = await Request("POST", "/api/v3/delete-application-permission-record", requestBody).ConfigureAwait(false);
+
             IsSuccessRespDto result = m_JsonService.DeserializeObject<IsSuccessRespDto>(httpResponse);
             return result;
         }
@@ -2115,10 +2101,11 @@ namespace Authing.CSharp.SDK.Services
         ///</summary>
         /// <param name="requestBody"></param>
         ///<returns>CheckDomainAvailableSecretRespDto</returns>
-        public async Task<CheckDomainAvailableSecretRespDto> CheckDomainAvailable(CheckDomainAvailable requestBody
-        )
+
+        public async Task<CheckDomainAvailableSecretRespDto> CheckDomainAvailable(CheckDomainAvailable requestBody)
         {
             string httpResponse = await Request("POST", "/api/v3/check-domain-available", requestBody).ConfigureAwait(false);
+
             CheckDomainAvailableSecretRespDto result = m_JsonService.DeserializeObject<CheckDomainAvailableSecretRespDto>(httpResponse);
             return result;
         }
@@ -2126,21 +2113,25 @@ namespace Authing.CSharp.SDK.Services
         /// 获取安全配置
         ///</summary>
         ///<returns>SecuritySettingsRespDto</returns>
+
         public async Task<SecuritySettingsRespDto> GetSecuritySettings()
         {
             string httpResponse = await Request("GET", "/api/v3/update-security-settings").ConfigureAwait(false);
+
             SecuritySettingsRespDto result = m_JsonService.DeserializeObject<SecuritySettingsRespDto>(httpResponse);
             return result;
+
         }
         ///<summary>
         /// 修改安全配置
         ///</summary>
         /// <param name="requestBody"></param>
         ///<returns>SecuritySettingsRespDto</returns>
-        public async Task<SecuritySettingsRespDto> UpdateSecuritySettings(UpdateSecuritySettingsDto requestBody
-        )
+
+        public async Task<SecuritySettingsRespDto> UpdateSecuritySettings(UpdateSecuritySettingsDto requestBody)
         {
             string httpResponse = await Request("POST", "/api/v3/update-security-settings", requestBody).ConfigureAwait(false);
+
             SecuritySettingsRespDto result = m_JsonService.DeserializeObject<SecuritySettingsRespDto>(httpResponse);
             return result;
         }
@@ -2148,21 +2139,25 @@ namespace Authing.CSharp.SDK.Services
         /// 获取全局多因素认证配置
         ///</summary>
         ///<returns>MFASettingsRespDto</returns>
+
         public async Task<MFASettingsRespDto> GetGlobalMfaSettings()
         {
             string httpResponse = await Request("GET", "/api/v3/get-global-mfa-settings").ConfigureAwait(false);
+
             MFASettingsRespDto result = m_JsonService.DeserializeObject<MFASettingsRespDto>(httpResponse);
             return result;
+
         }
         ///<summary>
         /// 修改全局多因素认证配置
         ///</summary>
         /// <param name="requestBody"></param>
         ///<returns>MFASettingsRespDto</returns>
-        public async Task<MFASettingsRespDto> UpdateGlobalMfaSettings(MFASettingsDto requestBody
-        )
+
+        public async Task<MFASettingsRespDto> UpdateGlobalMfaSettings(MFASettingsDto requestBody)
         {
             string httpResponse = await Request("POST", "/api/v3/update-global-mfa-settings", requestBody).ConfigureAwait(false);
+
             MFASettingsRespDto result = m_JsonService.DeserializeObject<MFASettingsRespDto>(httpResponse);
             return result;
         }
@@ -2171,10 +2166,11 @@ namespace Authing.CSharp.SDK.Services
         ///</summary>
         /// <param name="requestBody"></param>
         ///<returns>ResourceRespDto</returns>
-        public async Task<ResourceRespDto> CreateResource(CreateResourceDto requestBody
-        )
+
+        public async Task<ResourceRespDto> CreateResource(CreateResourceDto requestBody)
         {
             string httpResponse = await Request("POST", "/api/v3/create-resource", requestBody).ConfigureAwait(false);
+
             ResourceRespDto result = m_JsonService.DeserializeObject<ResourceRespDto>(httpResponse);
             return result;
         }
@@ -2183,10 +2179,11 @@ namespace Authing.CSharp.SDK.Services
         ///</summary>
         /// <param name="requestBody"></param>
         ///<returns>IsSuccessRespDto</returns>
-        public async Task<IsSuccessRespDto> CreateResourcesBatch(CreateResourcesBatchDto requestBody
-        )
+
+        public async Task<IsSuccessRespDto> CreateResourcesBatch(CreateResourcesBatchDto requestBody)
         {
             string httpResponse = await Request("POST", "/api/v3/create-resources-batch", requestBody).ConfigureAwait(false);
+
             IsSuccessRespDto result = m_JsonService.DeserializeObject<IsSuccessRespDto>(httpResponse);
             return result;
         }
@@ -2196,14 +2193,14 @@ namespace Authing.CSharp.SDK.Services
         /// <param name="code">资源唯一标志符</param>
         /// <param name="nameSpace">所属权限分组的 code</param>
         ///<returns>ResourceRespDto</returns>
-        public async Task<ResourceRespDto> GetResource(string code, string nameSpace = null)
+
+        public async Task<ResourceRespDto> GetResource(GetResourceDto reqDto)
         {
-            string httpResponse = await Request("GET", "/api/v3/get-resource", new Dictionary<string, object> {
-        {"code",code },
-        {"namespace",nameSpace },
-    }).ConfigureAwait(false);
+            string httpResponse = await Request("GET", "/api/v3/get-resource").ConfigureAwait(false);
+
             ResourceRespDto result = m_JsonService.DeserializeObject<ResourceRespDto>(httpResponse);
             return result;
+
         }
         ///<summary>
         /// 批量获取资源详情
@@ -2211,14 +2208,14 @@ namespace Authing.CSharp.SDK.Services
         /// <param name="codeList">资源 code 列表，批量可以使用逗号分隔</param>
         /// <param name="nameSpace">所属权限分组的 code</param>
         ///<returns>ResourceListRespDto</returns>
-        public async Task<ResourceListRespDto> GetResourcesBatch(string codeList, string nameSpace = null)
+
+        public async Task<ResourceListRespDto> GetResourcesBatch(GetResourcesBatchDto reqDto)
         {
-            string httpResponse = await Request("GET", "/api/v3/get-resources-batch", new Dictionary<string, object> {
-        {"namespace",nameSpace },
-        {"codeList",codeList },
-    }).ConfigureAwait(false);
+            string httpResponse = await Request("GET", "/api/v3/get-resources-batch").ConfigureAwait(false);
+
             ResourceListRespDto result = m_JsonService.DeserializeObject<ResourceListRespDto>(httpResponse);
             return result;
+
         }
         ///<summary>
         /// 分页获取资源列表
@@ -2228,26 +2225,25 @@ namespace Authing.CSharp.SDK.Services
         /// <param name="page">当前页数，从 1 开始</param>
         /// <param name="limit">每页数目，最大不能超过 50，默认为 10</param>
         ///<returns>ResourcePaginatedRespDto</returns>
-        public async Task<ResourcePaginatedRespDto> ListResources(string type = null, string nameSpace = null, long page = 1, long limit = 10)
+
+        public async Task<ResourcePaginatedRespDto> ListResources(ListResourcesDto reqDto)
         {
-            string httpResponse = await Request("GET", "/api/v3/list-resources", new Dictionary<string, object> {
-        {"namespace",nameSpace },
-        {"type",type },
-        {"page",page },
-        {"limit",limit },
-    }).ConfigureAwait(false);
+            string httpResponse = await Request("GET", "/api/v3/list-resources").ConfigureAwait(false);
+
             ResourcePaginatedRespDto result = m_JsonService.DeserializeObject<ResourcePaginatedRespDto>(httpResponse);
             return result;
+
         }
         ///<summary>
         /// 修改资源
         ///</summary>
         /// <param name="requestBody"></param>
         ///<returns>ResourceRespDto</returns>
-        public async Task<ResourceRespDto> UpdateResource(UpdateResourceDto requestBody
-        )
+
+        public async Task<ResourceRespDto> UpdateResource(UpdateResourceDto requestBody)
         {
             string httpResponse = await Request("POST", "/api/v3/update-resource", requestBody).ConfigureAwait(false);
+
             ResourceRespDto result = m_JsonService.DeserializeObject<ResourceRespDto>(httpResponse);
             return result;
         }
@@ -2256,10 +2252,11 @@ namespace Authing.CSharp.SDK.Services
         ///</summary>
         /// <param name="requestBody"></param>
         ///<returns>IsSuccessRespDto</returns>
-        public async Task<IsSuccessRespDto> DeleteResource(DeleteResourceDto requestBody
-        )
+
+        public async Task<IsSuccessRespDto> DeleteResource(DeleteResourceDto requestBody)
         {
             string httpResponse = await Request("POST", "/api/v3/delete-resource", requestBody).ConfigureAwait(false);
+
             IsSuccessRespDto result = m_JsonService.DeserializeObject<IsSuccessRespDto>(httpResponse);
             return result;
         }
@@ -2268,10 +2265,11 @@ namespace Authing.CSharp.SDK.Services
         ///</summary>
         /// <param name="requestBody"></param>
         ///<returns>IsSuccessRespDto</returns>
-        public async Task<IsSuccessRespDto> DeleteResourcesBatch(DeleteResourcesBatchDto requestBody
-        )
+
+        public async Task<IsSuccessRespDto> DeleteResourcesBatch(DeleteResourcesBatchDto requestBody)
         {
             string httpResponse = await Request("POST", "/api/v3/delete-resources-batch", requestBody).ConfigureAwait(false);
+
             IsSuccessRespDto result = m_JsonService.DeserializeObject<IsSuccessRespDto>(httpResponse);
             return result;
         }
@@ -2280,10 +2278,11 @@ namespace Authing.CSharp.SDK.Services
         ///</summary>
         /// <param name="requestBody"></param>
         ///<returns>IsSuccessRespDto</returns>
-        public async Task<IsSuccessRespDto> AssociationResources(AssociationResourceDto requestBody
-        )
+
+        public async Task<IsSuccessRespDto> AssociationResources(AssociationResourceDto requestBody)
         {
             string httpResponse = await Request("POST", "/api/v3/associate-tenant-resource", requestBody).ConfigureAwait(false);
+
             IsSuccessRespDto result = m_JsonService.DeserializeObject<IsSuccessRespDto>(httpResponse);
             return result;
         }
@@ -2292,10 +2291,11 @@ namespace Authing.CSharp.SDK.Services
         ///</summary>
         /// <param name="requestBody"></param>
         ///<returns>PipelineFunctionSingleRespDto</returns>
-        public async Task<PipelineFunctionSingleRespDto> CreatePipelineFunction(CreatePipelineFunctionDto requestBody
-        )
+
+        public async Task<PipelineFunctionSingleRespDto> CreatePipelineFunction(CreatePipelineFunctionDto requestBody)
         {
             string httpResponse = await Request("POST", "/api/v3/create-pipeline-function", requestBody).ConfigureAwait(false);
+
             PipelineFunctionSingleRespDto result = m_JsonService.DeserializeObject<PipelineFunctionSingleRespDto>(httpResponse);
             return result;
         }
@@ -2304,23 +2304,25 @@ namespace Authing.CSharp.SDK.Services
         ///</summary>
         /// <param name="funcId">Pipeline 函数 ID</param>
         ///<returns>PipelineFunctionSingleRespDto</returns>
-        public async Task<PipelineFunctionSingleRespDto> GetPipelineFunction(string funcId)
+
+        public async Task<PipelineFunctionSingleRespDto> GetPipelineFunction(GetPipelineFunctionDto reqDto)
         {
-            string httpResponse = await Request("GET", "/api/v3/get-pipeline-function", new Dictionary<string, object> {
-        {"funcId",funcId },
-    }).ConfigureAwait(false);
+            string httpResponse = await Request("GET", "/api/v3/get-pipeline-function").ConfigureAwait(false);
+
             PipelineFunctionSingleRespDto result = m_JsonService.DeserializeObject<PipelineFunctionSingleRespDto>(httpResponse);
             return result;
+
         }
         ///<summary>
         /// 重新上传 Pipeline 函数
         ///</summary>
         /// <param name="requestBody"></param>
         ///<returns>PipelineFunctionSingleRespDto</returns>
-        public async Task<PipelineFunctionSingleRespDto> ReuploadPipelineFunction(ReUploadPipelineFunctionDto requestBody
-        )
+
+        public async Task<PipelineFunctionSingleRespDto> ReuploadPipelineFunction(ReUploadPipelineFunctionDto requestBody)
         {
             string httpResponse = await Request("POST", "/api/v3/reupload-pipeline-function", requestBody).ConfigureAwait(false);
+
             PipelineFunctionSingleRespDto result = m_JsonService.DeserializeObject<PipelineFunctionSingleRespDto>(httpResponse);
             return result;
         }
@@ -2329,10 +2331,11 @@ namespace Authing.CSharp.SDK.Services
         ///</summary>
         /// <param name="requestBody"></param>
         ///<returns>PipelineFunctionSingleRespDto</returns>
-        public async Task<PipelineFunctionSingleRespDto> UpdatePipelineFunction(UpdatePipelineFunctionDto requestBody
-        )
+
+        public async Task<PipelineFunctionSingleRespDto> UpdatePipelineFunction(UpdatePipelineFunctionDto requestBody)
         {
             string httpResponse = await Request("POST", "/api/v3/update-pipeline-function", requestBody).ConfigureAwait(false);
+
             PipelineFunctionSingleRespDto result = m_JsonService.DeserializeObject<PipelineFunctionSingleRespDto>(httpResponse);
             return result;
         }
@@ -2341,10 +2344,11 @@ namespace Authing.CSharp.SDK.Services
         ///</summary>
         /// <param name="requestBody"></param>
         ///<returns>CommonResponseDto</returns>
-        public async Task<CommonResponseDto> UpdatePipelineOrder(UpdatePipelineOrderDto requestBody
-        )
+
+        public async Task<CommonResponseDto> UpdatePipelineOrder(UpdatePipelineOrderDto requestBody)
         {
             string httpResponse = await Request("POST", "/api/v3/update-pipeline-order", requestBody).ConfigureAwait(false);
+
             CommonResponseDto result = m_JsonService.DeserializeObject<CommonResponseDto>(httpResponse);
             return result;
         }
@@ -2353,10 +2357,11 @@ namespace Authing.CSharp.SDK.Services
         ///</summary>
         /// <param name="requestBody"></param>
         ///<returns>CommonResponseDto</returns>
-        public async Task<CommonResponseDto> DeletePipelineFunction(DeletePipelineFunctionDto requestBody
-        )
+
+        public async Task<CommonResponseDto> DeletePipelineFunction(DeletePipelineFunctionDto requestBody)
         {
             string httpResponse = await Request("POST", "/api/v3/delete-pipeline-function", requestBody).ConfigureAwait(false);
+
             CommonResponseDto result = m_JsonService.DeserializeObject<CommonResponseDto>(httpResponse);
             return result;
         }
@@ -2373,13 +2378,14 @@ namespace Authing.CSharp.SDK.Services
         /// - `PRE_COMPLETE_USER_INFO`: 补全用户信息前
         /// </param>
         ///<returns>PipelineFunctionPaginatedRespDto</returns>
-        public async Task<PipelineFunctionPaginatedRespDto> ListPipelineFunctions(string scene)
+
+        public async Task<PipelineFunctionPaginatedRespDto> ListPipelineFunctions(ListPipelineFunctionDto reqDto)
         {
-            string httpResponse = await Request("GET", "/api/v3/list-pipeline-function", new Dictionary<string, object> {
-        {"scene",scene },
-    }).ConfigureAwait(false);
+            string httpResponse = await Request("GET", "/api/v3/list-pipeline-function").ConfigureAwait(false);
+
             PipelineFunctionPaginatedRespDto result = m_JsonService.DeserializeObject<PipelineFunctionPaginatedRespDto>(httpResponse);
             return result;
+
         }
         ///<summary>
         /// 获取 Pipeline 日志
@@ -2388,25 +2394,25 @@ namespace Authing.CSharp.SDK.Services
         /// <param name="page">当前页数，从 1 开始</param>
         /// <param name="limit">每页数目，最大不能超过 50，默认为 10</param>
         ///<returns>PipelineFunctionPaginatedRespDto</returns>
-        public async Task<PipelineFunctionPaginatedRespDto> GetPipelineLogs(string funcId, long page = 1, long limit = 10)
+
+        public async Task<PipelineFunctionPaginatedRespDto> GetPipelineLogs(GetPipelineLogsDto reqDto)
         {
-            string httpResponse = await Request("GET", "/api/v3/get-pipeline-logs", new Dictionary<string, object> {
-        {"funcId",funcId },
-        {"page",page },
-        {"limit",limit },
-    }).ConfigureAwait(false);
+            string httpResponse = await Request("GET", "/api/v3/get-pipeline-logs").ConfigureAwait(false);
+
             PipelineFunctionPaginatedRespDto result = m_JsonService.DeserializeObject<PipelineFunctionPaginatedRespDto>(httpResponse);
             return result;
+
         }
         ///<summary>
         /// 创建 Webhook
         ///</summary>
         /// <param name="requestBody"></param>
         ///<returns>CreateWebhookRespDto</returns>
-        public async Task<CreateWebhookRespDto> CreateWebhook(CreateWebhookDto requestBody
-        )
+
+        public async Task<CreateWebhookRespDto> CreateWebhook(CreateWebhookDto requestBody)
         {
             string httpResponse = await Request("POST", "/api/v3/create-webhook", requestBody).ConfigureAwait(false);
+
             CreateWebhookRespDto result = m_JsonService.DeserializeObject<CreateWebhookRespDto>(httpResponse);
             return result;
         }
@@ -2416,24 +2422,25 @@ namespace Authing.CSharp.SDK.Services
         /// <param name="page">当前页数，从 1 开始</param>
         /// <param name="limit">每页数目，最大不能超过 50，默认为 10</param>
         ///<returns>GetWebhooksRespDto</returns>
-        public async Task<GetWebhooksRespDto> ListWebhooks(long page = 1, long limit = 10)
+
+        public async Task<GetWebhooksRespDto> ListWebhooks(ListWebhooksDto reqDto)
         {
-            string httpResponse = await Request("GET", "/api/v3/list-webhooks", new Dictionary<string, object> {
-        {"page",page },
-        {"limit",limit },
-    }).ConfigureAwait(false);
+            string httpResponse = await Request("GET", "/api/v3/list-webhooks").ConfigureAwait(false);
+
             GetWebhooksRespDto result = m_JsonService.DeserializeObject<GetWebhooksRespDto>(httpResponse);
             return result;
+
         }
         ///<summary>
         /// 修改 Webhook 配置
         ///</summary>
         /// <param name="requestBody"></param>
         ///<returns>UpdateWebhooksRespDto</returns>
-        public async Task<UpdateWebhooksRespDto> UpdateWebhook(UpdateWebhookDto requestBody
-        )
+
+        public async Task<UpdateWebhooksRespDto> UpdateWebhook(UpdateWebhookDto requestBody)
         {
             string httpResponse = await Request("POST", "/api/v3/update-webhook", requestBody).ConfigureAwait(false);
+
             UpdateWebhooksRespDto result = m_JsonService.DeserializeObject<UpdateWebhooksRespDto>(httpResponse);
             return result;
         }
@@ -2442,10 +2449,11 @@ namespace Authing.CSharp.SDK.Services
         ///</summary>
         /// <param name="requestBody"></param>
         ///<returns>DeleteWebhookRespDto</returns>
-        public async Task<DeleteWebhookRespDto> DeleteWebhook(DeleteWebhookDto requestBody
-        )
+
+        public async Task<DeleteWebhookRespDto> DeleteWebhook(DeleteWebhookDto requestBody)
         {
             string httpResponse = await Request("POST", "/api/v3/delete-webhook", requestBody).ConfigureAwait(false);
+
             DeleteWebhookRespDto result = m_JsonService.DeserializeObject<DeleteWebhookRespDto>(httpResponse);
             return result;
         }
@@ -2454,10 +2462,11 @@ namespace Authing.CSharp.SDK.Services
         ///</summary>
         /// <param name="requestBody"></param>
         ///<returns>ListWebhookLogsRespDto</returns>
-        public async Task<ListWebhookLogsRespDto> GetWebhookLogs(ListWebhookLogs requestBody
-        )
+
+        public async Task<ListWebhookLogsRespDto> GetWebhookLogs(ListWebhookLogs requestBody)
         {
             string httpResponse = await Request("POST", "/api/v3/get-webhook-logs", requestBody).ConfigureAwait(false);
+
             ListWebhookLogsRespDto result = m_JsonService.DeserializeObject<ListWebhookLogsRespDto>(httpResponse);
             return result;
         }
@@ -2466,10 +2475,11 @@ namespace Authing.CSharp.SDK.Services
         ///</summary>
         /// <param name="requestBody"></param>
         ///<returns>TriggerWebhookRespDto</returns>
-        public async Task<TriggerWebhookRespDto> TriggerWebhook(TriggerWebhookDto requestBody
-        )
+
+        public async Task<TriggerWebhookRespDto> TriggerWebhook(TriggerWebhookDto requestBody)
         {
             string httpResponse = await Request("POST", "/api/v3/trigger-webhook", requestBody).ConfigureAwait(false);
+
             TriggerWebhookRespDto result = m_JsonService.DeserializeObject<TriggerWebhookRespDto>(httpResponse);
             return result;
         }
@@ -2478,23 +2488,27 @@ namespace Authing.CSharp.SDK.Services
         ///</summary>
         /// <param name="webhookId">Webhook ID</param>
         ///<returns>GetWebhookRespDto</returns>
-        public async Task<GetWebhookRespDto> GetWebhook(string webhookId)
+
+        public async Task<GetWebhookRespDto> GetWebhook(GetWebhookDto reqDto)
         {
-            string httpResponse = await Request("GET", "/api/v3/get-webhook", new Dictionary<string, object> {
-        {"webhookId",webhookId },
-    }).ConfigureAwait(false);
+            string httpResponse = await Request("GET", "/api/v3/get-webhook").ConfigureAwait(false);
+
             GetWebhookRespDto result = m_JsonService.DeserializeObject<GetWebhookRespDto>(httpResponse);
             return result;
+
         }
         ///<summary>
         /// 获取 Webhook 事件列表
         ///</summary>
         ///<returns>WebhookEventListRespDto</returns>
+
         public async Task<WebhookEventListRespDto> GetWebhookEventList()
         {
             string httpResponse = await Request("GET", "/api/v3/get-webhook-event-list").ConfigureAwait(false);
+
             WebhookEventListRespDto result = m_JsonService.DeserializeObject<WebhookEventListRespDto>(httpResponse);
             return result;
+
         }
     }
 }

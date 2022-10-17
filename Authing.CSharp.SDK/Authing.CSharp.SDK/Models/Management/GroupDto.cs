@@ -18,17 +18,17 @@ public partial class GroupDto
     /// <summary>
     ///  分组 code
     /// </summary>
-[JsonProperty("code")]
-public    string   Code    {get;set;}
+    [JsonProperty("code")]
+    public string  Code {get;set;}
     /// <summary>
     ///  分组名称
     /// </summary>
-[JsonProperty("name")]
-public    string   Name    {get;set;}
+    [JsonProperty("name")]
+    public string  Name {get;set;}
     /// <summary>
     ///  分组描述
     /// </summary>
-[JsonProperty("description")]
-public    string   Description    {get;set;}
+    [JsonProperty("description")]
+    public string  Description {get;set;}
 }
 }

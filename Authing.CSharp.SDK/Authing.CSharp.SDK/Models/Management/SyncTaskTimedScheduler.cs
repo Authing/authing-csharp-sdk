@@ -24,13 +24,13 @@ public partial class SyncTaskTimedScheduler
 /// - `twoHours`: 每两小时执行一次
 /// 
     /// </summary>
-[JsonProperty("cycle")]
-public    cycle   Cycle    {get;set;}
+    [JsonProperty("cycle")]
+    public cycle  Cycle {get;set;}
     /// <summary>
     ///  开始时间
     /// </summary>
-[JsonProperty("startTime")]
-public    long   StartTime    {get;set;}
+    [JsonProperty("startTime")]
+    public long  StartTime {get;set;}
 }
 public partial class SyncTaskTimedScheduler
  {

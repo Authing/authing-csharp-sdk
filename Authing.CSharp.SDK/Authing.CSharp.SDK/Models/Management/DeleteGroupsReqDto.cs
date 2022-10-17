@@ -18,7 +18,7 @@ public partial class DeleteGroupsReqDto
     /// <summary>
     ///  分组 code 列表
     /// </summary>
-[JsonProperty("codeList")]
-public    List<string>   CodeList    {get;set;}
+    [JsonProperty("codeList")]
+    public List<string>  CodeList {get;set;}
 }
 }

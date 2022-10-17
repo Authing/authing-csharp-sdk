@@ -18,18 +18,18 @@ public partial class AuthorizeResourceItem
     /// <summary>
     ///  目标对象类型
     /// </summary>
-[JsonProperty("targetType")]
-public    targetType   TargetType    {get;set;}
+    [JsonProperty("targetType")]
+    public targetType  TargetType {get;set;}
     /// <summary>
     ///  目标对象唯一标志符
     /// </summary>
-[JsonProperty("targetIdentifiers")]
-public    List<string>   TargetIdentifiers    {get;set;}
+    [JsonProperty("targetIdentifiers")]
+    public List<string>  TargetIdentifiers {get;set;}
     /// <summary>
     ///  授权的资源列表
     /// </summary>
-[JsonProperty("resources")]
-public    List<ResourceItemDto>   Resources    {get;set;}
+    [JsonProperty("resources")]
+    public List<ResourceItemDto>  Resources {get;set;}
 }
 public partial class AuthorizeResourceItem
  {

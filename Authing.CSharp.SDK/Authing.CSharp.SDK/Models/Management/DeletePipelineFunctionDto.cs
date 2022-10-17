@@ -18,7 +18,7 @@ public partial class DeletePipelineFunctionDto
     /// <summary>
     ///  Pipeline 函数 ID
     /// </summary>
-[JsonProperty("funcId")]
-public    string   FuncId    {get;set;}
+    [JsonProperty("funcId")]
+    public string  FuncId {get;set;}
 }
 }

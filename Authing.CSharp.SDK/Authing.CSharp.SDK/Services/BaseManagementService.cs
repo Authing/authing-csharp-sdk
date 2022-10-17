@@ -50,7 +50,21 @@ namespace Authing.CSharp.SDK.Services
 
         protected async Task<string> Request(string method, string apiPath, Dictionary<string, object> pairs, bool withToken = true)
         {
-            Dictionary<string, string> dic = pairs.ToDictionary((keyItem) => keyItem.Key, (valueItem) => valueItem.Value == null ? "" : valueItem.Value.ToString());
+            Dictionary<string, string> dic = new Dictionary<string, string>();
+
+            foreach (var item in pairs)
+            {
+                if (item.Value == null || string.IsNullOrWhiteSpace(item.ToString()))
+                {
+                    continue;
+                }
+                else
+                {
+                    dic.Add(item.Key, m_JsonService.SerializeObject(item.Value));
+                }
+            }
+
+
             CheckToken(method, apiPath, dic);
 
             string httpResponse = await m_HttpService.GetAsync(m_BaseUrl, apiPath, dic, default).ConfigureAwait(false);

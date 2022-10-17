@@ -18,22 +18,22 @@ public partial class SyncTaskXiaoshouyiClientConfig
     /// <summary>
     ///  销售易应用的 ClientId
     /// </summary>
-[JsonProperty("client_id")]
-public    string   Client_id    {get;set;}
+    [JsonProperty("client_id")]
+    public string  Client_id {get;set;}
     /// <summary>
     ///  销售易应用的 ClientSecret
     /// </summary>
-[JsonProperty("client_secret")]
-public    string   Client_secret    {get;set;}
+    [JsonProperty("client_secret")]
+    public string  Client_secret {get;set;}
     /// <summary>
     ///  销售易应用的 UserName
     /// </summary>
-[JsonProperty("username")]
-public    string   Username    {get;set;}
+    [JsonProperty("username")]
+    public string  Username {get;set;}
     /// <summary>
     ///  销售易应用的 Password
     /// </summary>
-[JsonProperty("password")]
-public    string   Password    {get;set;}
+    [JsonProperty("password")]
+    public string  Password {get;set;}
 }
 }

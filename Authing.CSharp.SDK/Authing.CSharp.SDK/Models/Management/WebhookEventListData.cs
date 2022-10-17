@@ -18,12 +18,12 @@ public partial class WebhookEventListData
     /// <summary>
     ///  分类列表
     /// </summary>
-[JsonProperty("categories")]
-public    List<WebhookCategoryDto>   Categories    {get;set;}
+    [JsonProperty("categories")]
+    public List<WebhookCategoryDto>  Categories {get;set;}
     /// <summary>
     ///  事件列表
     /// </summary>
-[JsonProperty("events")]
-public    List<WebhookEventDto>   Events    {get;set;}
+    [JsonProperty("events")]
+    public List<WebhookEventDto>  Events {get;set;}
 }
 }

@@ -18,7 +18,7 @@ public partial class HasAnyRoleDto
     /// <summary>
     ///  是否拥有其中某一个角色
     /// </summary>
-[JsonProperty("hasAnyRole")]
-public    bool   HasAnyRole    {get;set;}
+    [JsonProperty("hasAnyRole")]
+    public bool  HasAnyRole {get;set;}
 }
 }

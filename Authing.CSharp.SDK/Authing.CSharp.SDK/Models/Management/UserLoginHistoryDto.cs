@@ -18,37 +18,37 @@ public partial class UserLoginHistoryDto
     /// <summary>
     ///  App ID
     /// </summary>
-[JsonProperty("appId")]
-public    string   AppId    {get;set;}
+    [JsonProperty("appId")]
+    public string  AppId {get;set;}
     /// <summary>
     ///  App 名称
     /// </summary>
-[JsonProperty("appName")]
-public    string   AppName    {get;set;}
+    [JsonProperty("appName")]
+    public string  AppName {get;set;}
     /// <summary>
     ///  App Logo
     /// </summary>
-[JsonProperty("appLogo")]
-public    string   AppLogo    {get;set;}
+    [JsonProperty("appLogo")]
+    public string  AppLogo {get;set;}
     /// <summary>
     ///  App 登录地址
     /// </summary>
-[JsonProperty("appLoginUrl")]
-public    string   AppLoginUrl    {get;set;}
+    [JsonProperty("appLoginUrl")]
+    public string  AppLoginUrl {get;set;}
     /// <summary>
     ///  客户端 IP
     /// </summary>
-[JsonProperty("clientIp")]
-public    string   ClientIp    {get;set;}
+    [JsonProperty("clientIp")]
+    public string  ClientIp {get;set;}
     /// <summary>
     ///  登录时使用的 user agent
     /// </summary>
-[JsonProperty("userAgent")]
-public    string   UserAgent    {get;set;}
+    [JsonProperty("userAgent")]
+    public string  UserAgent {get;set;}
     /// <summary>
     ///  登录时间
     /// </summary>
-[JsonProperty("time")]
-public    string   Time    {get;set;}
+    [JsonProperty("time")]
+    public string  Time {get;set;}
 }
 }

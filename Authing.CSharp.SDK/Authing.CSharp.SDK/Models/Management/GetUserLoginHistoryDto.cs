@@ -18,8 +18,8 @@ public partial class GetUserLoginHistoryDto
     /// <summary>
     ///  用户唯一标志，可以是用户 ID、用户名、邮箱、手机号、外部 ID、在外部身份源的 ID。
     /// </summary>
-[JsonProperty("userId")]
-public    object   UserId    {get;set;}
+    [JsonProperty("userId")]
+    public string  UserId {get;set;}
     /// <summary>
     ///  用户 ID 类型，默认值为 `user_id`，可选值为：
 /// - `user_id`: Authing 用户 ID，如 `6319a1504f3xxxxf214dd5b7`
@@ -31,37 +31,37 @@ public    object   UserId    {get;set;}
 /// 示例值：`62f20932716fbcc10d966ee5:ou_8bae746eac07cd2564654140d2a9ac61`。
 /// 
     /// </summary>
-[JsonProperty("userIdType")]
-public    object   UserIdType    {get;set;}
+    [JsonProperty("userIdType")]
+    public string  UserIdType {get;set;}
     /// <summary>
     ///  应用 ID
     /// </summary>
-[JsonProperty("appId")]
-public    object   AppId    {get;set;}
+    [JsonProperty("appId")]
+    public string  AppId {get;set;}
     /// <summary>
     ///  客户端 IP
     /// </summary>
-[JsonProperty("clientIp")]
-public    object   ClientIp    {get;set;}
+    [JsonProperty("clientIp")]
+    public string  ClientIp {get;set;}
     /// <summary>
     ///  开始时间戳（毫秒）
     /// </summary>
-[JsonProperty("start")]
-public    object   Start    {get;set;}
+    [JsonProperty("start")]
+    public long  Start {get;set;}
     /// <summary>
     ///  结束时间戳（毫秒）
     /// </summary>
-[JsonProperty("end")]
-public    object   End    {get;set;}
+    [JsonProperty("end")]
+    public long  End {get;set;}
     /// <summary>
     ///  当前页数，从 1 开始
     /// </summary>
-[JsonProperty("page")]
-public    object   Page    {get;set;}
+    [JsonProperty("page")]
+    public long  Page {get;set;}
     /// <summary>
     ///  每页数目，最大不能超过 50，默认为 10
     /// </summary>
-[JsonProperty("limit")]
-public    object   Limit    {get;set;}
+    [JsonProperty("limit")]
+    public long  Limit {get;set;}
 }
 }

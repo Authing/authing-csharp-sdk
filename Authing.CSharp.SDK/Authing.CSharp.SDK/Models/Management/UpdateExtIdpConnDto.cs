@@ -18,27 +18,27 @@ public partial class UpdateExtIdpConnDto
     /// <summary>
     ///  身份源连接自定义参数（增量修改）
     /// </summary>
-[JsonProperty("fields")]
-public    object   Fields    {get;set;}
+    [JsonProperty("fields")]
+    public object  Fields {get;set;}
     /// <summary>
     ///  身份源连接显示名称
     /// </summary>
-[JsonProperty("displayName")]
-public    string   DisplayName    {get;set;}
+    [JsonProperty("displayName")]
+    public string  DisplayName {get;set;}
     /// <summary>
     ///  身份源连接 ID
     /// </summary>
-[JsonProperty("id")]
-public    string   Id    {get;set;}
+    [JsonProperty("id")]
+    public string  Id {get;set;}
     /// <summary>
     ///  身份源连接的图标
     /// </summary>
-[JsonProperty("logo")]
-public    string   Logo    {get;set;}
+    [JsonProperty("logo")]
+    public string  Logo {get;set;}
     /// <summary>
     ///  是否只支持登录
     /// </summary>
-[JsonProperty("loginOnly")]
-public    bool   LoginOnly    {get;set;}
+    [JsonProperty("loginOnly")]
+    public bool  LoginOnly {get;set;}
 }
 }

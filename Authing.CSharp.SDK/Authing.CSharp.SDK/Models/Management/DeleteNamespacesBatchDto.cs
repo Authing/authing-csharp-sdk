@@ -18,7 +18,7 @@ public partial class DeleteNamespacesBatchDto
     /// <summary>
     ///  权限分组 code 列表
     /// </summary>
-[JsonProperty("codeList")]
-public    List<string>   CodeList    {get;set;}
+    [JsonProperty("codeList")]
+    public List<string>  CodeList {get;set;}
 }
 }

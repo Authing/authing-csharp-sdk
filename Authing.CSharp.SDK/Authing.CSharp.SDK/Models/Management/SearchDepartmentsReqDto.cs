@@ -18,17 +18,17 @@ public partial class SearchDepartmentsReqDto
     /// <summary>
     ///  搜索关键词，如组织名称等
     /// </summary>
-[JsonProperty("keywords")]
-public    string   Keywords    {get;set;}
+    [JsonProperty("keywords")]
+    public string  Keywords {get;set;}
     /// <summary>
     ///  组织 code
     /// </summary>
-[JsonProperty("organizationCode")]
-public    string   OrganizationCode    {get;set;}
+    [JsonProperty("organizationCode")]
+    public string  OrganizationCode {get;set;}
     /// <summary>
     ///  是否获取自定义数据
     /// </summary>
-[JsonProperty("withCustomData")]
-public    bool   WithCustomData    {get;set;}
+    [JsonProperty("withCustomData")]
+    public bool  WithCustomData {get;set;}
 }
 }

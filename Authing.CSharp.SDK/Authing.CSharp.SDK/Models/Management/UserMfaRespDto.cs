@@ -18,12 +18,12 @@ public partial class UserMfaRespDto
     /// <summary>
     ///  是否绑定了 TOTP，可选值 enabled, disabled
     /// </summary>
-[JsonProperty("totpStatus")]
-public    string   TotpStatus    {get;set;}
+    [JsonProperty("totpStatus")]
+    public string  TotpStatus {get;set;}
     /// <summary>
     ///  是否绑定了人脸 MFA，可选值 enabled, disabled
     /// </summary>
-[JsonProperty("faceMfaStatus")]
-public    string   FaceMfaStatus    {get;set;}
+    [JsonProperty("faceMfaStatus")]
+    public string  FaceMfaStatus {get;set;}
 }
 }

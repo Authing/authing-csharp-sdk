@@ -18,43 +18,43 @@ public partial class ApplicationEnabledExtIdpConnDto
     /// <summary>
     ///  是否为社会化登录身份源连接
     /// </summary>
-[JsonProperty("isSocial")]
-public    bool   IsSocial    {get;set;}
+    [JsonProperty("isSocial")]
+    public bool  IsSocial {get;set;}
     /// <summary>
     ///  身份源 ID
     /// </summary>
-[JsonProperty("extIdpId")]
-public    string   ExtIdpId    {get;set;}
+    [JsonProperty("extIdpId")]
+    public string  ExtIdpId {get;set;}
     /// <summary>
     ///  身份源类型
     /// </summary>
-[JsonProperty("extIdpType")]
-public    extIdpType   ExtIdpType    {get;set;}
+    [JsonProperty("extIdpType")]
+    public extIdpType  ExtIdpType {get;set;}
     /// <summary>
     ///  身份源连接 ID
     /// </summary>
-[JsonProperty("extIdpConnId")]
-public    string   ExtIdpConnId    {get;set;}
+    [JsonProperty("extIdpConnId")]
+    public string  ExtIdpConnId {get;set;}
     /// <summary>
     ///  身份源连接类型
     /// </summary>
-[JsonProperty("extIdpConnType")]
-public    extIdpConnType   ExtIdpConnType    {get;set;}
+    [JsonProperty("extIdpConnType")]
+    public extIdpConnType  ExtIdpConnType {get;set;}
     /// <summary>
     ///  身份源连接可读唯一标志
     /// </summary>
-[JsonProperty("extIdpConnIdentifier")]
-public    string   ExtIdpConnIdentifier    {get;set;}
+    [JsonProperty("extIdpConnIdentifier")]
+    public string  ExtIdpConnIdentifier {get;set;}
     /// <summary>
     ///  微信
     /// </summary>
-[JsonProperty("extIdpConnDisplayName")]
-public    string   ExtIdpConnDisplayName    {get;set;}
+    [JsonProperty("extIdpConnDisplayName")]
+    public string  ExtIdpConnDisplayName {get;set;}
     /// <summary>
     ///  身份源连接 Logo
     /// </summary>
-[JsonProperty("extIdpConnLogo")]
-public    string   ExtIdpConnLogo    {get;set;}
+    [JsonProperty("extIdpConnLogo")]
+    public string  ExtIdpConnLogo {get;set;}
 }
 public partial class ApplicationEnabledExtIdpConnDto
  {

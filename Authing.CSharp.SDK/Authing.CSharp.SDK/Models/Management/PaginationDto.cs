@@ -18,12 +18,12 @@ public partial class PaginationDto
     /// <summary>
     ///  当前页数，从 1 开始
     /// </summary>
-[JsonProperty("page")]
-public    long   Page    {get;set;}
+    [JsonProperty("page")]
+    public long  Page {get;set;}
     /// <summary>
     ///  每页数目，最大不能超过 50，默认为 10
     /// </summary>
-[JsonProperty("limit")]
-public    long   Limit    {get;set;}
+    [JsonProperty("limit")]
+    public long  Limit {get;set;}
 }
 }

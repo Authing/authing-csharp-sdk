@@ -18,48 +18,48 @@ public partial class WebhookDto
     /// <summary>
     ///  Webhook ID
     /// </summary>
-[JsonProperty("webhookId")]
-public    string   WebhookId    {get;set;}
+    [JsonProperty("webhookId")]
+    public string  WebhookId {get;set;}
     /// <summary>
     ///  创建时间
     /// </summary>
-[JsonProperty("createdAt")]
-public    string   CreatedAt    {get;set;}
+    [JsonProperty("createdAt")]
+    public string  CreatedAt {get;set;}
     /// <summary>
     ///  更新时间
     /// </summary>
-[JsonProperty("updatedAt")]
-public    string   UpdatedAt    {get;set;}
+    [JsonProperty("updatedAt")]
+    public string  UpdatedAt {get;set;}
     /// <summary>
     ///  Webhook 名称
     /// </summary>
-[JsonProperty("name")]
-public    string   Name    {get;set;}
+    [JsonProperty("name")]
+    public string  Name {get;set;}
     /// <summary>
     ///  Webhook 回调地址
     /// </summary>
-[JsonProperty("url")]
-public    string   Url    {get;set;}
+    [JsonProperty("url")]
+    public string  Url {get;set;}
     /// <summary>
     ///  请求数据格式
     /// </summary>
-[JsonProperty("contentType")]
-public    contentType   ContentType    {get;set;}
+    [JsonProperty("contentType")]
+    public contentType  ContentType {get;set;}
     /// <summary>
     ///  是否启用
     /// </summary>
-[JsonProperty("enabled")]
-public    bool   Enabled    {get;set;}
+    [JsonProperty("enabled")]
+    public bool  Enabled {get;set;}
     /// <summary>
     ///  用户真实名称，不具备唯一性。 示例值: 张三
     /// </summary>
-[JsonProperty("events")]
-public    List<string>   Events    {get;set;}
+    [JsonProperty("events")]
+    public List<string>  Events {get;set;}
     /// <summary>
     ///  请求密钥
     /// </summary>
-[JsonProperty("secret")]
-public    string   Secret    {get;set;}
+    [JsonProperty("secret")]
+    public string  Secret {get;set;}
 }
 public partial class WebhookDto
  {

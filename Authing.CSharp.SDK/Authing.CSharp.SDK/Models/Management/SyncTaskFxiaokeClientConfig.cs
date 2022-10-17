@@ -18,22 +18,22 @@ public partial class SyncTaskFxiaokeClientConfig
     /// <summary>
     ///  App Id
     /// </summary>
-[JsonProperty("appId")]
-public    string   AppId    {get;set;}
+    [JsonProperty("appId")]
+    public string  AppId {get;set;}
     /// <summary>
     ///  App Secret
     /// </summary>
-[JsonProperty("appSecret")]
-public    string   AppSecret    {get;set;}
+    [JsonProperty("appSecret")]
+    public string  AppSecret {get;set;}
     /// <summary>
     ///  Permanent Code
     /// </summary>
-[JsonProperty("permanentCode")]
-public    string   PermanentCode    {get;set;}
+    [JsonProperty("permanentCode")]
+    public string  PermanentCode {get;set;}
     /// <summary>
     ///  Current Open User Id
     /// </summary>
-[JsonProperty("currentOpenUserId")]
-public    string   CurrentOpenUserId    {get;set;}
+    [JsonProperty("currentOpenUserId")]
+    public string  CurrentOpenUserId {get;set;}
 }
 }
