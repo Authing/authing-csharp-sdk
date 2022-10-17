@@ -89,7 +89,7 @@ namespace Authing.CSharp.SDK.Models.Authentication
         /// <summary>
         /// 返回的内容语言，默认为中文
         /// </summary>
-        public ClientLang Lang { get; set; } = ClientLang.CH;
+        public ClientLang Lang { get; set; } = ClientLang.CN;
 
         /// <summary>
         /// 是否拒绝非法的 HTTPS 请求，默认为 true；如果是私有化部署的场景且证书不被信任，可以设置为 false
@@ -105,8 +105,8 @@ namespace Authing.CSharp.SDK.Models.Authentication
         /// <summary>
         /// 中文
         /// </summary>
-        [Description("zh-CH")]
-        CH,
+        [Description("zh-CN")]
+        CN,
         /// <summary>
         /// 英文
         /// </summary>

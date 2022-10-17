@@ -31,7 +31,7 @@ namespace Authing.CSharp.SDK.Models.Management
         /// <summary>
         /// 返回的内容语言，默认为中文
         /// </summary>
-        public ClientLang Lang { get; set; } = ClientLang.CH;
+        public ClientLang Lang { get; set; } = ClientLang.CN;
     }
 
     /// <summary>
@@ -42,8 +42,8 @@ namespace Authing.CSharp.SDK.Models.Management
         /// <summary>
         /// 中文
         /// </summary>
-        [Description("zh-CH")]
-        CH,
+        [Description("zh-CN")]
+        CN,
         /// <summary>
         /// 英文
         /// </summary>
