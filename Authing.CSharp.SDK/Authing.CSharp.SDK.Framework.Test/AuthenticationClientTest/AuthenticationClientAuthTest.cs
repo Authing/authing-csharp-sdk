@@ -6,31 +6,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Authing.CSharp.SDK.Framework.Test.AuthenticationClientTest;
 
 namespace Authing.CSharp.SDK.Framework.Test
 {
-    public class AuthenticationClientAuthTest
+    public class AuthenticationClientAuthTest : AuthenticationClientTestBase
     {
         string loginCallbackUrl = @"https://www.baidu.com";
-        AuthenticationClient client;
         string code = @"Vg-wCoxIcCWroW18sSB0E0JWwsKsFfeOBMDy0j4SUAD";
-
-        [SetUp]
-        public void TestGetJWKS()
-        {
-            client = new AuthenticationClient(new AuthenticationClientInitOptions
-            {
-                //AppId = "61e5157ea18c245048770546",
-                //AppSecret = "325d96c907a989b9f6b67584e1632909",
-                //Domain = @"https://authinglogindemo.authing.cn",
-                //RediretUri = loginCallbackUrl,
-                AppId = "6343bb084f16915f1becc730",
-                AppSecret = "8ebe5abcc740f3bde1ba29621557675c",
-                AppHost = @"https://dwsfwf.cj.mereith.com",
-                Host = @"http://8.142.39.176:3000",
-                RedirectUri = loginCallbackUrl,
-            }); 
-        }
 
         [Test]
         public void LoginWithRedirectTest()
@@ -85,7 +68,7 @@ namespace Authing.CSharp.SDK.Framework.Test
         public async Task ParseIDTokenTest()
         {
             var loginState = await client.GetLoginStateByAuthCode(@"f75v3xsbO5cOoEeY_emQPbEqPPTNzj8TEN_y4Tyxg5S", loginCallbackUrl);
-            IDToken iDToken =await client.ParseIDToken(loginState.IdToken);
+            IDToken iDToken = await client.ParseIDToken(loginState.IdToken);
             Assert.IsNotNull(iDToken);
         }
 
@@ -93,19 +76,19 @@ namespace Authing.CSharp.SDK.Framework.Test
         public async Task ParseAccessToenTest()
         {
             var loginState = await client.GetLoginStateByAuthCode(@"SaJq1XVhhc_8RHm9sES3tsPpdPG-HHExczMHfttXPgB", loginCallbackUrl);
-            AccessToken accessToken =await client.ParseAccessToken(loginState.AccessToken);
+            AccessToken accessToken = await client.ParseAccessToken(loginState.AccessToken);
             Assert.IsNotNull(accessToken);
         }
 
         [Test]
         public async Task GetCountryListTest()
         {
-            var result = await client.SignInByCredentials(new Models.SigninByCredentialsDto 
-            { 
-                Client_id= "6343bb084f16915f1becc730",
-                Client_secret= "8ebe5abcc740f3bde1ba29621557675c",
-                Connection=Models.SigninByCredentialsDto.connection.PASSWORD ,
-                PasswordPayload=new Models.AuthenticateByPasswordDto { Username="test",Password="test"}
+            var result = await client.SignInByCredentials(new Models.SigninByCredentialsDto
+            {
+                Client_id = "6343bb084f16915f1becc730",
+                Client_secret = "8ebe5abcc740f3bde1ba29621557675c",
+                Connection = Models.SigninByCredentialsDto.connection.PASSWORD,
+                PasswordPayload = new Models.AuthenticateByPasswordDto { Username = "test", Password = "test" }
             });
         }
 
