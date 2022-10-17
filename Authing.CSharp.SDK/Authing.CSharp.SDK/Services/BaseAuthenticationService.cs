@@ -244,7 +244,7 @@ namespace Authing.CSharp.SDK.Services
 
             m_HttpService.SetHeader("x-authing-request-from", "SDK");
             m_HttpService.SetHeader("x-authing-sdk-version", "c-sharp:5.0.0");
-            m_HttpService.SetHeader("x-authing-app-id", m_AppId);
+            m_HttpService.SetHeader("x-authing-app-id", options.AppId);
             m_HttpService.SetHeader("x-authing-lang", options.Lang.GetDescription());
 
             m_HttpService.SetTimeOut(options.TimeOut);
@@ -257,11 +257,13 @@ namespace Authing.CSharp.SDK.Services
             NeedBase64(apiPath);
             if (method == "Get")
             {
-                return await GetAsync(apiPath, m_JsonService.SerializeObjectIngoreNull(dto)).ConfigureAwait(false);
+                var res = await GetAsync(apiPath, m_JsonService.SerializeObjectIngoreNull(dto)).ConfigureAwait(false);
+                return res;
             }
             else
             {
-                return await PostAsync(apiPath, m_JsonService.SerializeObjectIngoreNull(dto)).ConfigureAwait(false);
+                var res = await PostAsync(apiPath, m_JsonService.SerializeObjectIngoreNull(dto)).ConfigureAwait(false);
+                return res;
             }
         }
 
