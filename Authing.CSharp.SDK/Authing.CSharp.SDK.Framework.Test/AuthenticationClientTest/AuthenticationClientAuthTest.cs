@@ -10,10 +10,10 @@ using Authing.CSharp.SDK.Framework.Test.AuthenticationClientTest;
 
 namespace Authing.CSharp.SDK.Framework.Test
 {
-    public class AuthenticationClientAuthTest : AuthenticationClientTestBase
+    public partial class AuthenticationClientAuthTest : AuthenticationClientTestBase
     {
         string loginCallbackUrl = @"https://www.baidu.com";
-        string code = @"Vg-wCoxIcCWroW18sSB0E0JWwsKsFfeOBMDy0j4SUAD";
+        string code = @"zly1ZqW6J407OMLk4IBPbaudAwQQV3h_iDB2uHY4JK9";
 
         [Test]
         public void LoginWithRedirectTest()
