@@ -67,6 +67,7 @@ namespace Authing.CSharp.SDK.Framework.Test.AuthenticationClientTest
 
         /// <summary>
         /// 2022-10-22 测试通过
+        /// 重置 MFA
         /// </summary>
         /// <returns></returns>
         [Test]
@@ -81,6 +82,7 @@ namespace Authing.CSharp.SDK.Framework.Test.AuthenticationClientTest
 
         /// <summary>
         /// 2022-10-18 测试通过
+        /// 获取已绑定的 MFA
         /// </summary>
         /// <returns></returns>
         [Test]
@@ -93,6 +95,7 @@ namespace Authing.CSharp.SDK.Framework.Test.AuthenticationClientTest
 
         /// <summary>
         /// 2022-10-18 测试通过
+        /// 获取可绑定的 MFA
         /// </summary>
         /// <returns></returns>
         [Test]
