@@ -18,17 +18,17 @@ namespace Authing.CSharp.SDK.Models
         ///  MFA 认证要素ID
         /// </summary>
         [JsonProperty("factorId")]
-        public    string   FactorId    {get;set;}
+        public string FactorId { get; set; }
         /// <summary>
         ///  MFA 认证要素类型
         /// </summary>
         [JsonProperty("factorType")]
-        public    factorType   FactorType    {get;set;}
+        public factorType FactorType { get; set; }
         /// <summary>
         ///  MFA 认证要素信息
         /// </summary>
         [JsonProperty("profile")]
-        public    object   Profile    {get;set;}
+        public object Profile { get; set; }
     }
     public partial class FactorDto
     {
@@ -37,13 +37,13 @@ namespace Authing.CSharp.SDK.Models
         /// </summary>
         public enum factorType
         {
-            [EnumMember(Value="OTP")]
+            [EnumMember(Value = "OTP")]
             OTP,
-            [EnumMember(Value="SMS")]
+            [EnumMember(Value = "SMS")]
             SMS,
-            [EnumMember(Value="EMAIL")]
+            [EnumMember(Value = "EMAIL")]
             EMAIL,
-            [EnumMember(Value="FACE")]
+            [EnumMember(Value = "FACE")]
             FACE,
         }
     }

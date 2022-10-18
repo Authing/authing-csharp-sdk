@@ -29,37 +29,37 @@ namespace Authing.CSharp.SDK.Models
         ///
         /// </summary>
         [JsonProperty("scope")]
-        public    string   Scope    {get;set;}
+        public string Scope { get; set; }
         /// <summary>
         ///  客户端真实 IP 地址。默认情况下，Authing 会将请求来源的 IP 识别为用户登录的 IP 地址，如果你在后端服务器中调用此接口，需要将此 IP 设置为用户的真实请求 IP。
         /// </summary>
         [JsonProperty("clientIp")]
-        public    string   ClientIp    {get;set;}
+        public string ClientIp { get; set; }
         /// <summary>
         ///  额外请求上下文，将会传递到认证前和认证后的 [Pipeline](https://docs.authing.cn/v2/guides/pipeline/) 的 `context` 对象中。了解[如何在 Pipeline 的 `context` 参数中获取传入的额外 context](https://docs.authing.cn/v2/guides/pipeline/context-object.html)。
         /// </summary>
         [JsonProperty("context")]
-        public    string   Context    {get;set;}
+        public string Context { get; set; }
         /// <summary>
         ///  租户 ID
         /// </summary>
         [JsonProperty("tenantId")]
-        public    string   TenantId    {get;set;}
+        public string TenantId { get; set; }
         /// <summary>
         ///  设置额外的用户自定义数据，你需要先在 Authing 控制台[配置自定义数据](https://docs.authing.cn/v2/guides/users/user-defined-field/)。
         /// </summary>
         [JsonProperty("customData")]
-        public    object   CustomData    {get;set;}
+        public object CustomData { get; set; }
         /// <summary>
         ///  是否开启自动注册。如果设置为 true，当用户不存在的时候，会先自动为其创建一个账号。
         /// </summary>
         [JsonProperty("autoRegister")]
-        public    bool   AutoRegister    {get;set;}
+        public bool AutoRegister { get; set; }
         /// <summary>
         ///  Captcha 图形验证码，不区分大小写。当**安全策略**设置为**验证码**且触发**登录失败次数限制**时，下次登录需要填写图形验证码。
         /// </summary>
         [JsonProperty("captchaCode")]
-        public    bool   CaptchaCode    {get;set;}
+        public bool CaptchaCode { get; set; }
         /// <summary>
         ///  密码加密类型，支持 sm2 和 rsa。默认可以不加密。
         /// - `none`: 不对密码进行加密，使用明文进行传输。
@@ -68,7 +68,7 @@ namespace Authing.CSharp.SDK.Models
         ///
         /// </summary>
         [JsonProperty("passwordEncryptType")]
-        public    passwordEncryptType   PasswordEncryptType    {get;set;}
+        public passwordEncryptType PasswordEncryptType { get; set; }
     }
     public partial class SignInOptionsDto
     {
@@ -81,11 +81,11 @@ namespace Authing.CSharp.SDK.Models
         /// </summary>
         public enum passwordEncryptType
         {
-            [EnumMember(Value="sm2")]
+            [EnumMember(Value = "sm2")]
             SM2,
-            [EnumMember(Value="rsa")]
+            [EnumMember(Value = "rsa")]
             RSA,
-            [EnumMember(Value="none")]
+            [EnumMember(Value = "none")]
             NONE,
         }
     }

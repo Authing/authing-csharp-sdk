@@ -18,11 +18,11 @@ namespace Authing.CSharp.SDK.Models
         ///  微信小程序或微信公众号的 AppSecret
         /// </summary>
         [JsonProperty("appSecret")]
-        public    string   AppSecret    {get;set;}
+        public string AppSecret { get; set; }
         /// <summary>
         ///  微信小程序或微信公众号的 AppId
         /// </summary>
         [JsonProperty("appId")]
-        public    string   AppId    {get;set;}
+        public string AppId { get; set; }
     }
 }

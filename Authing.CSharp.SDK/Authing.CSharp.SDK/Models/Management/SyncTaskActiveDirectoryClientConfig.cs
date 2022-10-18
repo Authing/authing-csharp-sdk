@@ -8,22 +8,22 @@ using System.Threading.Tasks;
 using System.Runtime.Serialization;
 using Authing.CSharp.SDK.Models.Management;
 
-   namespace Authing.CSharp.SDK.Models.Management
-{
-/// <summary>
-/// SyncTaskActiveDirectoryClientConfig 的模型
-/// </summary>
-public partial class SyncTaskActiveDirectoryClientConfig
+namespace Authing.CSharp.SDK.Models.Management
 {
     /// <summary>
-    ///  身份源唯一标志
+    /// SyncTaskActiveDirectoryClientConfig 的模型
     /// </summary>
-    [JsonProperty("syncIdentityProviderCode")]
-    public string  SyncIdentityProviderCode {get;set;}
-    /// <summary>
-    ///  Provisioning Ticket Url
-    /// </summary>
-    [JsonProperty("ticket_url")]
-    public string  Ticket_url {get;set;}
-}
+    public partial class SyncTaskActiveDirectoryClientConfig
+    {
+        /// <summary>
+        ///  身份源唯一标志
+        /// </summary>
+        [JsonProperty("syncIdentityProviderCode")]
+        public string SyncIdentityProviderCode { get; set; }
+        /// <summary>
+        ///  Provisioning Ticket Url
+        /// </summary>
+        [JsonProperty("ticket_url")]
+        public string Ticket_url { get; set; }
+    }
 }

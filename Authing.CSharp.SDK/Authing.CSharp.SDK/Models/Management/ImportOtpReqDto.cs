@@ -8,17 +8,17 @@ using System.Threading.Tasks;
 using System.Runtime.Serialization;
 using Authing.CSharp.SDK.Models.Management;
 
-   namespace Authing.CSharp.SDK.Models.Management
-{
-/// <summary>
-/// ImportOtpReqDto 的模型
-/// </summary>
-public partial class ImportOtpReqDto
+namespace Authing.CSharp.SDK.Models.Management
 {
     /// <summary>
-    ///  参数列表
+    /// ImportOtpReqDto 的模型
     /// </summary>
-    [JsonProperty("list")]
-    public List<ImportOtpItemDto>  List {get;set;}
-}
+    public partial class ImportOtpReqDto
+    {
+        /// <summary>
+        ///  参数列表
+        /// </summary>
+        [JsonProperty("list")]
+        public List<ImportOtpItemDto> List { get; set; }
+    }
 }

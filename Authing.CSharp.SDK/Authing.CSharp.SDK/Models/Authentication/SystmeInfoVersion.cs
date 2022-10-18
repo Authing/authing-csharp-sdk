@@ -18,16 +18,16 @@ namespace Authing.CSharp.SDK.Models
         ///  Authing 核心服务版本号
         /// </summary>
         [JsonProperty("server")]
-        public    string   Server    {get;set;}
+        public string Server { get; set; }
         /// <summary>
         ///  Authing 控制台版本号
         /// </summary>
         [JsonProperty("console")]
-        public    string   Console    {get;set;}
+        public string Console { get; set; }
         /// <summary>
         ///  Authing 托管登录页版本号
         /// </summary>
         [JsonProperty("login")]
-        public    string   Login    {get;set;}
+        public string Login { get; set; }
     }
 }

@@ -127,7 +127,7 @@ namespace Authing.CSharp.SDK.Models
         /// 城市名称
         /// </summary>
         public string City_name { get; set; }
-       
+
         public string Continent_code { get; set; }
         /// <summary>
         /// 时区

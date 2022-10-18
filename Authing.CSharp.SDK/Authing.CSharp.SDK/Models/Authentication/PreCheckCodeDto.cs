@@ -18,17 +18,17 @@ namespace Authing.CSharp.SDK.Models
         ///  验证码类型
         /// </summary>
         [JsonProperty("codeType")]
-        public    codeType   CodeType    {get;set;}
+        public codeType CodeType { get; set; }
         /// <summary>
         ///  短信验证码检验参数
         /// </summary>
         [JsonProperty("smsCodePayload")]
-        public    PreCheckSmsCodeDto   SmsCodePayload    {get;set;}
+        public PreCheckSmsCodeDto SmsCodePayload { get; set; }
         /// <summary>
         ///  邮箱验证码检验参数
         /// </summary>
         [JsonProperty("emailCodePayload")]
-        public    PreCheckEmailCodeDto   EmailCodePayload    {get;set;}
+        public PreCheckEmailCodeDto EmailCodePayload { get; set; }
     }
     public partial class PreCheckCodeDto
     {
@@ -37,9 +37,9 @@ namespace Authing.CSharp.SDK.Models
         /// </summary>
         public enum codeType
         {
-            [EnumMember(Value="SMS")]
+            [EnumMember(Value = "SMS")]
             SMS,
-            [EnumMember(Value="EMAIL")]
+            [EnumMember(Value = "EMAIL")]
             EMAIL,
         }
     }

@@ -18,6 +18,6 @@ namespace Authing.CSharp.SDK.Models
         ///  二维码唯一 ID
         /// </summary>
         [JsonProperty("qrcodeId")]
-        public    object   QrcodeId    {get;set;}
+        public object QrcodeId { get; set; }
     }
 }

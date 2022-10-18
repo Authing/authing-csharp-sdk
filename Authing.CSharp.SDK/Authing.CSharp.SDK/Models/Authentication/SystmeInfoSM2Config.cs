@@ -18,6 +18,6 @@ namespace Authing.CSharp.SDK.Models
         ///  SM2 公钥
         /// </summary>
         [JsonProperty("publicKey")]
-        public    string   PublicKey    {get;set;}
+        public string PublicKey { get; set; }
     }
 }

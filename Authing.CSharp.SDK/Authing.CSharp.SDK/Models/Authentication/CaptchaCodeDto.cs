@@ -18,6 +18,6 @@ namespace Authing.CSharp.SDK.Models
         ///  随机字符串或者时间戳，防止浏览器缓存
         /// </summary>
         [JsonProperty("r")]
-        public    object   R    {get;set;}
+        public object R { get; set; }
     }
 }

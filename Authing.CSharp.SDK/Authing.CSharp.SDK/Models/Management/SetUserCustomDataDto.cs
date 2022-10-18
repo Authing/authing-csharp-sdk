@@ -8,17 +8,17 @@ using System.Threading.Tasks;
 using System.Runtime.Serialization;
 using Authing.CSharp.SDK.Models.Management;
 
-   namespace Authing.CSharp.SDK.Models.Management
-{
-/// <summary>
-/// SetUserCustomDataDto 的模型
-/// </summary>
-public partial class SetUserCustomDataDto
+namespace Authing.CSharp.SDK.Models.Management
 {
     /// <summary>
-    ///  操作是否成功
+    /// SetUserCustomDataDto 的模型
     /// </summary>
-    [JsonProperty("success")]
-    public bool  Success {get;set;}
-}
+    public partial class SetUserCustomDataDto
+    {
+        /// <summary>
+        ///  操作是否成功
+        /// </summary>
+        [JsonProperty("success")]
+        public bool Success { get; set; }
+    }
 }

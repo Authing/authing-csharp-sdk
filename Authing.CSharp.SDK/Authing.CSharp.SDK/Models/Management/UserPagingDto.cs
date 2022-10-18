@@ -8,22 +8,22 @@ using System.Threading.Tasks;
 using System.Runtime.Serialization;
 using Authing.CSharp.SDK.Models.Management;
 
-   namespace Authing.CSharp.SDK.Models.Management
-{
-/// <summary>
-/// UserPagingDto 的模型
-/// </summary>
-public partial class UserPagingDto
+namespace Authing.CSharp.SDK.Models.Management
 {
     /// <summary>
-    ///  记录总数
+    /// UserPagingDto 的模型
     /// </summary>
-    [JsonProperty("totalCount")]
-    public long  TotalCount {get;set;}
-    /// <summary>
-    ///  数据列表
-    /// </summary>
-    [JsonProperty("list")]
-    public List<UserDto>  List {get;set;}
-}
+    public partial class UserPagingDto
+    {
+        /// <summary>
+        ///  记录总数
+        /// </summary>
+        [JsonProperty("totalCount")]
+        public long TotalCount { get; set; }
+        /// <summary>
+        ///  数据列表
+        /// </summary>
+        [JsonProperty("list")]
+        public List<UserDto> List { get; set; }
+    }
 }

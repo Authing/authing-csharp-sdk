@@ -22,12 +22,12 @@ namespace Authing.CSharp.SDK.Models
         ///
         /// </summary>
         [JsonProperty("action")]
-        public    action   Action    {get;set;}
+        public action Action { get; set; }
         /// <summary>
         ///  二维码唯一 ID
         /// </summary>
         [JsonProperty("qrcodeId")]
-        public    string   QrcodeId    {get;set;}
+        public string QrcodeId { get; set; }
     }
     public partial class ChangeQRCodeStatusDto
     {
@@ -40,11 +40,11 @@ namespace Authing.CSharp.SDK.Models
         /// </summary>
         public enum action
         {
-            [EnumMember(Value="SCAN")]
+            [EnumMember(Value = "SCAN")]
             SCAN,
-            [EnumMember(Value="CONFIRM")]
+            [EnumMember(Value = "CONFIRM")]
             CONFIRM,
-            [EnumMember(Value="CANCEL")]
+            [EnumMember(Value = "CANCEL")]
             CANCEL,
         }
     }

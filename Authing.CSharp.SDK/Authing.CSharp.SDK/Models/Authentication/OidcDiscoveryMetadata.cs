@@ -103,16 +103,16 @@ namespace Authing.CSharp.SDK.Models
 
     public enum ResponseTypesSupported
     {
-        [EnumMember(Value ="none")]
+        [EnumMember(Value = "none")]
         none,
-        [EnumMember(Value ="code")]
-        code, 
+        [EnumMember(Value = "code")]
+        code,
         [EnumMember(Value = "token")]
         token,
         [EnumMember(Value = "id_token token")]
-        id_tokentoken,        
-        [EnumMember(Value ="id_token")]
-        id_token, 
+        id_tokentoken,
+        [EnumMember(Value = "id_token")]
+        id_token,
         [EnumMember(Value = " code token")]
         codetoken,
         [EnumMember(Value = "code id_token token")]

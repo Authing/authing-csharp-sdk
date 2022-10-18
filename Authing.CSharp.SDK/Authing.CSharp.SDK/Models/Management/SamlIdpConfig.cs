@@ -8,12 +8,12 @@ using System.Threading.Tasks;
 using System.Runtime.Serialization;
 using Authing.CSharp.SDK.Models.Management;
 
-   namespace Authing.CSharp.SDK.Models.Management
+namespace Authing.CSharp.SDK.Models.Management
 {
-/// <summary>
-/// SamlIdpConfig 的模型
-/// </summary>
-public partial class SamlIdpConfig
-{
-}
+    /// <summary>
+    /// SamlIdpConfig 的模型
+    /// </summary>
+    public partial class SamlIdpConfig
+    {
+    }
 }

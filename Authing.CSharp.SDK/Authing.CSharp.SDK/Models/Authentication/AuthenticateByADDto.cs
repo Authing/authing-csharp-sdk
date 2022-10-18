@@ -20,11 +20,11 @@ namespace Authing.CSharp.SDK.Models
         ///
         /// </summary>
         [JsonProperty("password")]
-        public    string   Password    {get;set;}
+        public string Password { get; set; }
         /// <summary>
         ///  Windows AD 用户目录中账号的 sAMAccountName
         /// </summary>
         [JsonProperty("sAMAccountName")]
-        public    string   SAMAccountName    {get;set;}
+        public string SAMAccountName { get; set; }
     }
 }

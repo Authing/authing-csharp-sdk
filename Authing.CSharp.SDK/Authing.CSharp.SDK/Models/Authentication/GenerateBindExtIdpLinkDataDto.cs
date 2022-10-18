@@ -18,6 +18,6 @@ namespace Authing.CSharp.SDK.Models
         ///  用户绑定外部身份源的链接
         /// </summary>
         [JsonProperty("url")]
-        public    string   Url    {get;set;}
+        public string Url { get; set; }
     }
 }

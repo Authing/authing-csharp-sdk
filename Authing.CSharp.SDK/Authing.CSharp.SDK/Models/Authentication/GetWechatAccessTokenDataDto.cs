@@ -18,11 +18,11 @@ namespace Authing.CSharp.SDK.Models
         ///  Authing 服务器缓存的微信 Access Token
         /// </summary>
         [JsonProperty("accessToken")]
-        public    string   AccessToken    {get;set;}
+        public string AccessToken { get; set; }
         /// <summary>
         ///  Access Token 到期时间，为单位为秒的时间戳
         /// </summary>
         [JsonProperty("expiresAt")]
-        public    long   ExpiresAt    {get;set;}
+        public long ExpiresAt { get; set; }
     }
 }

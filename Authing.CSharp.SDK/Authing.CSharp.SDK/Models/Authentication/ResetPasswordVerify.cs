@@ -18,11 +18,11 @@ namespace Authing.CSharp.SDK.Models
         ///  用于重置密码 token
         /// </summary>
         [JsonProperty("passwordResetToken")]
-        public    string   PasswordResetToken    {get;set;}
+        public string PasswordResetToken { get; set; }
         /// <summary>
         ///  过期时间
         /// </summary>
         [JsonProperty("tokenExpiresIn")]
-        public    long   TokenExpiresIn    {get;set;}
+        public long TokenExpiresIn { get; set; }
     }
 }

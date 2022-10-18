@@ -21,27 +21,27 @@ namespace Authing.CSharp.SDK.Models
         ///
         /// </summary>
         [JsonProperty("connection")]
-        public    connection   Connection    {get;set;}
+        public connection Connection { get; set; }
         /// <summary>
         ///  当主持方式为 `PASSWORD` 时此参数必填。
         /// </summary>
         [JsonProperty("passwordPayload")]
-        public    SignUpByPasswordDto   PasswordPayload    {get;set;}
+        public SignUpByPasswordDto PasswordPayload { get; set; }
         /// <summary>
         ///  当认证方式为 `PASSCODE` 时此参数必填
         /// </summary>
         [JsonProperty("passCodePayload")]
-        public    SignUpByPassCodeDto   PassCodePayload    {get;set;}
+        public SignUpByPassCodeDto PassCodePayload { get; set; }
         /// <summary>
         ///  用户资料
         /// </summary>
         [JsonProperty("profile")]
-        public    SignupProfileDto   Profile    {get;set;}
+        public SignupProfileDto Profile { get; set; }
         /// <summary>
         ///  可选参数
         /// </summary>
         [JsonProperty("options")]
-        public    SignupOptionsDto   Options    {get;set;}
+        public SignupOptionsDto Options { get; set; }
     }
     public partial class SignupDto
     {
@@ -53,9 +53,9 @@ namespace Authing.CSharp.SDK.Models
         /// </summary>
         public enum connection
         {
-            [EnumMember(Value="PASSWORD")]
+            [EnumMember(Value = "PASSWORD")]
             PASSWORD,
-            [EnumMember(Value="PASSCODE")]
+            [EnumMember(Value = "PASSCODE")]
             PASSCODE,
         }
     }

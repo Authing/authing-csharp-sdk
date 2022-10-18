@@ -18,16 +18,16 @@ namespace Authing.CSharp.SDK.Models
         ///  OTP Auth Uri
         /// </summary>
         [JsonProperty("qrCodeUri")]
-        public    string   QrCodeUri    {get;set;}
+        public string QrCodeUri { get; set; }
         /// <summary>
         ///  Base64 编码的 OTP 二维码，前端可以用此渲染二维码。
         /// </summary>
         [JsonProperty("qrCodeDataUrl")]
-        public    string   QrCodeDataUrl    {get;set;}
+        public string QrCodeDataUrl { get; set; }
         /// <summary>
         ///  OTP Recovery Code
         /// </summary>
         [JsonProperty("recoveryCode")]
-        public    string   RecoveryCode    {get;set;}
+        public string RecoveryCode { get; set; }
     }
 }

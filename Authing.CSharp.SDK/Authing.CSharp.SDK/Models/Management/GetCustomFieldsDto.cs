@@ -8,17 +8,17 @@ using System.Threading.Tasks;
 using System.Runtime.Serialization;
 using Authing.CSharp.SDK.Models.Management;
 
-   namespace Authing.CSharp.SDK.Models.Management
-{
-/// <summary>
-/// GetCustomFieldsDto 的模型
-/// </summary>
-public partial class GetCustomFieldsDto
+namespace Authing.CSharp.SDK.Models.Management
 {
     /// <summary>
-    ///  主体类型，目前支持用户、角色、分组、部门
+    /// GetCustomFieldsDto 的模型
     /// </summary>
-    [JsonProperty("targetType")]
-    public string  TargetType {get;set;}
-}
+    public partial class GetCustomFieldsDto
+    {
+        /// <summary>
+        ///  主体类型，目前支持用户、角色、分组、部门
+        /// </summary>
+        [JsonProperty("targetType")]
+        public string TargetType { get; set; }
+    }
 }

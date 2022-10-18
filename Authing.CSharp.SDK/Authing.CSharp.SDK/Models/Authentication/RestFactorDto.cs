@@ -18,6 +18,6 @@ namespace Authing.CSharp.SDK.Models
         ///  MFA 认证要素 ID
         /// </summary>
         [JsonProperty("factorId")]
-        public    string   FactorId    {get;set;}
+        public string FactorId { get; set; }
     }
 }

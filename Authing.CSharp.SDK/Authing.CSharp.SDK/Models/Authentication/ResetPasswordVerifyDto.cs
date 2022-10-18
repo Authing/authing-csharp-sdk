@@ -23,7 +23,7 @@ namespace Authing.CSharp.SDK.Models
         /// 使用邮箱验证码验证的数据
         /// </summary>
         [JsonProperty("emailPassCodePayload")]
-        public ResetPasswordEmailPassCodePayload EmailPassCodePayload { get;set; }
+        public ResetPasswordEmailPassCodePayload EmailPassCodePayload { get; set; }
     }
 
     public class ResetPasswordPhonePassCodePayload
@@ -42,7 +42,7 @@ namespace Authing.CSharp.SDK.Models
         public string PhoneCountryCode { get; set; }
     }
 
-    public class ResetPasswordEmailPassCodePayload 
+    public class ResetPasswordEmailPassCodePayload
     {
         /// <summary>
         /// 此账号绑定的邮箱，不区分大小写。

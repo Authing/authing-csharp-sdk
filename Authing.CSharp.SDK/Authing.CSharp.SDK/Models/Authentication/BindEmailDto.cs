@@ -18,11 +18,11 @@ namespace Authing.CSharp.SDK.Models
         ///  邮箱验证码，一个邮箱验证码只能使用一次，且有一定有效时间。
         /// </summary>
         [JsonProperty("passCode")]
-        public    string   PassCode    {get;set;}
+        public string PassCode { get; set; }
         /// <summary>
         ///  邮箱，不区分大小写。
         /// </summary>
         [JsonProperty("email")]
-        public    string   Email    {get;set;}
+        public string Email { get; set; }
     }
 }

@@ -18,6 +18,6 @@ namespace Authing.CSharp.SDK.Models
         ///  Google 移动端社会化登录获取到的 code
         /// </summary>
         [JsonProperty("code")]
-        public    string   Code    {get;set;}
+        public string Code { get; set; }
     }
 }

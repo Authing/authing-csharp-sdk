@@ -56,13 +56,13 @@ namespace Authing.CSharp.SDK.Utils
             return result;
         }
 
-        public string SerializeObjectCamelCase(object obj,bool ingoreNull=true)
+        public string SerializeObjectCamelCase(object obj, bool ingoreNull = true)
         {
             settings = new JsonSerializerSettings
             {
-                NullValueHandling=ingoreNull? NullValueHandling.Ignore:NullValueHandling.Include,
+                NullValueHandling = ingoreNull ? NullValueHandling.Ignore : NullValueHandling.Include,
                 ContractResolver = new Newtonsoft.Json.Serialization.CamelCasePropertyNamesContractResolver(),
-                Converters = new List<JsonConverter>() 
+                Converters = new List<JsonConverter>()
                 {
                     new StringEnumConverter()
                 }

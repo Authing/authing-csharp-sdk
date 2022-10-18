@@ -8,22 +8,22 @@ using System.Threading.Tasks;
 using System.Runtime.Serialization;
 using Authing.CSharp.SDK.Models.Management;
 
-   namespace Authing.CSharp.SDK.Models.Management
-{
-/// <summary>
-/// AccessTokenResDto 的模型
-/// </summary>
-public partial class AccessTokenResDto
+namespace Authing.CSharp.SDK.Models.Management
 {
     /// <summary>
-    ///  Access Token 内容
+    /// AccessTokenResDto 的模型
     /// </summary>
-    [JsonProperty("access_token")]
-    public string  Access_token {get;set;}
-    /// <summary>
-    ///  token 有效时间
-    /// </summary>
-    [JsonProperty("expires_in")]
-    public long  Expires_in {get;set;}
-}
+    public partial class AccessTokenResDto
+    {
+        /// <summary>
+        ///  Access Token 内容
+        /// </summary>
+        [JsonProperty("access_token")]
+        public string Access_token { get; set; }
+        /// <summary>
+        ///  token 有效时间
+        /// </summary>
+        [JsonProperty("expires_in")]
+        public long Expires_in { get; set; }
+    }
 }

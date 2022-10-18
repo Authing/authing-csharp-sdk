@@ -22,22 +22,22 @@ namespace Authing.CSharp.SDK.Models
         ///
         /// </summary>
         [JsonProperty("verifyMethod")]
-        public    verifyMethod   VerifyMethod    {get;set;}
+        public verifyMethod VerifyMethod { get; set; }
         /// <summary>
         ///  使用手机号验证码验证的数据
         /// </summary>
         [JsonProperty("phonePassCodePayload")]
-        public    DeleteAccountByPhonePassCodeDto   PhonePassCodePayload    {get;set;}
+        public DeleteAccountByPhonePassCodeDto PhonePassCodePayload { get; set; }
         /// <summary>
         ///  使用邮箱验证码验证的数据
         /// </summary>
         [JsonProperty("emailPassCodePayload")]
-        public    DeleteAccountByEmailPassCodeDto   EmailPassCodePayload    {get;set;}
+        public DeleteAccountByEmailPassCodeDto EmailPassCodePayload { get; set; }
         /// <summary>
         ///  使用密码验证的数据
         /// </summary>
         [JsonProperty("passwordPayload")]
-        public    DeleteAccountByPasswordDto   PasswordPayload    {get;set;}
+        public DeleteAccountByPasswordDto PasswordPayload { get; set; }
     }
     public partial class VerifyDeleteAccountRequestDto
     {
@@ -50,11 +50,11 @@ namespace Authing.CSharp.SDK.Models
         /// </summary>
         public enum verifyMethod
         {
-            [EnumMember(Value="PHONE_PASSCODE")]
+            [EnumMember(Value = "PHONE_PASSCODE")]
             PHONE_PASSCODE,
-            [EnumMember(Value="EMAIL_PASSCODE")]
+            [EnumMember(Value = "EMAIL_PASSCODE")]
             EMAIL_PASSCODE,
-            [EnumMember(Value="PASSWORD")]
+            [EnumMember(Value = "PASSWORD")]
             PASSWORD,
         }
     }

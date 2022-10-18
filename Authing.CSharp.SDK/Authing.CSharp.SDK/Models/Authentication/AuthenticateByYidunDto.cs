@@ -18,11 +18,11 @@ namespace Authing.CSharp.SDK.Models
         ///  网易易盾 token
         /// </summary>
         [JsonProperty("token")]
-        public    string   Token    {get;set;}
+        public string Token { get; set; }
         /// <summary>
         ///  网易易盾运营商授权码
         /// </summary>
         [JsonProperty("accessToken")]
-        public    string   AccessToken    {get;set;}
+        public string AccessToken { get; set; }
     }
 }

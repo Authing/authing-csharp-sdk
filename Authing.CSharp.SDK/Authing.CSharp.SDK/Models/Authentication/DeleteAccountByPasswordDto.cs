@@ -18,7 +18,7 @@ namespace Authing.CSharp.SDK.Models
         ///  用户密码
         /// </summary>
         [JsonProperty("password")]
-        public    string   Password    {get;set;}
+        public string Password { get; set; }
         /// <summary>
         ///  密码加密类型，支持 sm2 和 rsa。默认可以不加密。
         /// - `none`: 不对密码进行加密，使用明文进行传输。
@@ -27,7 +27,7 @@ namespace Authing.CSharp.SDK.Models
         ///
         /// </summary>
         [JsonProperty("passwordEncryptType")]
-        public    passwordEncryptType   PasswordEncryptType    {get;set;}
+        public passwordEncryptType PasswordEncryptType { get; set; }
     }
     public partial class DeleteAccountByPasswordDto
     {
@@ -40,11 +40,11 @@ namespace Authing.CSharp.SDK.Models
         /// </summary>
         public enum passwordEncryptType
         {
-            [EnumMember(Value="sm2")]
+            [EnumMember(Value = "sm2")]
             SM2,
-            [EnumMember(Value="rsa")]
+            [EnumMember(Value = "rsa")]
             RSA,
-            [EnumMember(Value="none")]
+            [EnumMember(Value = "none")]
             NONE,
         }
     }

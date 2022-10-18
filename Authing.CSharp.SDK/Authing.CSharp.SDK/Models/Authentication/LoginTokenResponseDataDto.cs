@@ -18,26 +18,26 @@ namespace Authing.CSharp.SDK.Models
         ///  接口调用凭据，在限制时间内被授权访问资源 API
         /// </summary>
         [JsonProperty("access_token")]
-        public    string   Access_token    {get;set;}
+        public string Access_token { get; set; }
         /// <summary>
         ///  用户的身份凭证，解析后会包含用户信息
         /// </summary>
         [JsonProperty("id_token")]
-        public    string   Id_token    {get;set;}
+        public string Id_token { get; set; }
         /// <summary>
         ///  refresh_token 用于获取新的 AccessToken
         /// </summary>
         [JsonProperty("refresh_token")]
-        public    string   Refresh_token    {get;set;}
+        public string Refresh_token { get; set; }
         /// <summary>
         ///  token 类型
         /// </summary>
         [JsonProperty("token_type")]
-        public    string   Token_type    {get;set;}
+        public string Token_type { get; set; }
         /// <summary>
         ///  过期时间 单位是秒
         /// </summary>
         [JsonProperty("expire_in")]
-        public    long   Expire_in    {get;set;}
+        public long Expire_in { get; set; }
     }
 }

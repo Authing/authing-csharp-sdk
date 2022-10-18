@@ -211,7 +211,7 @@ namespace Authing.CSharp.SDK.Services
             }
             else
             {
-                needBase64 = false; 
+                needBase64 = false;
             }
         }
 

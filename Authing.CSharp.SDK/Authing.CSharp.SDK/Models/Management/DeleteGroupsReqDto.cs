@@ -8,17 +8,17 @@ using System.Threading.Tasks;
 using System.Runtime.Serialization;
 using Authing.CSharp.SDK.Models.Management;
 
-   namespace Authing.CSharp.SDK.Models.Management
-{
-/// <summary>
-/// DeleteGroupsReqDto 的模型
-/// </summary>
-public partial class DeleteGroupsReqDto
+namespace Authing.CSharp.SDK.Models.Management
 {
     /// <summary>
-    ///  分组 code 列表
+    /// DeleteGroupsReqDto 的模型
     /// </summary>
-    [JsonProperty("codeList")]
-    public List<string>  CodeList {get;set;}
-}
+    public partial class DeleteGroupsReqDto
+    {
+        /// <summary>
+        ///  分组 code 列表
+        /// </summary>
+        [JsonProperty("codeList")]
+        public List<string> CodeList { get; set; }
+    }
 }

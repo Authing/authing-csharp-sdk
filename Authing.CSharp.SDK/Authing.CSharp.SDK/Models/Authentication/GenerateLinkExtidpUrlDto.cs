@@ -18,16 +18,16 @@ namespace Authing.CSharp.SDK.Models
         ///  外部身份源连接唯一标志
         /// </summary>
         [JsonProperty("extIdpConnIdentifier")]
-        public    object   ExtIdpConnIdentifier    {get;set;}
+        public object ExtIdpConnIdentifier { get; set; }
         /// <summary>
         ///  Authing 应用 ID
         /// </summary>
         [JsonProperty("appId")]
-        public    object   AppId    {get;set;}
+        public object AppId { get; set; }
         /// <summary>
         ///  用户的 id_token
         /// </summary>
         [JsonProperty("idToken")]
-        public    object   IdToken    {get;set;}
+        public object IdToken { get; set; }
     }
 }

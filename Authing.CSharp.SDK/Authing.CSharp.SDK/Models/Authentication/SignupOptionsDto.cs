@@ -18,27 +18,27 @@ namespace Authing.CSharp.SDK.Models
         ///  客户端 IP
         /// </summary>
         [JsonProperty("clientIp")]
-        public    string   ClientIp    {get;set;}
+        public string ClientIp { get; set; }
         /// <summary>
         ///  用于注册时补全用户信息的短信验证码
         /// </summary>
         [JsonProperty("phonePassCodeForInformationCompletion")]
-        public    string   PhonePassCodeForInformationCompletion    {get;set;}
+        public string PhonePassCodeForInformationCompletion { get; set; }
         /// <summary>
         ///  用于注册时补全用户信息的短信验证码
         /// </summary>
         [JsonProperty("emailPassCodeForInformationCompletion")]
-        public    string   EmailPassCodeForInformationCompletion    {get;set;}
+        public string EmailPassCodeForInformationCompletion { get; set; }
         /// <summary>
         ///  登录/注册时传的额外参数，会存到用户自定义字段里面
         /// </summary>
         [JsonProperty("context")]
-        public    object   Context    {get;set;}
+        public object Context { get; set; }
         /// <summary>
         ///  密码加密类型，支持 sm2 和 rsa。默认可以不加密。
         /// </summary>
         [JsonProperty("passwordEncryptType")]
-        public    passwordEncryptType   PasswordEncryptType    {get;set;}
+        public passwordEncryptType PasswordEncryptType { get; set; }
     }
     public partial class SignupOptionsDto
     {
@@ -47,11 +47,11 @@ namespace Authing.CSharp.SDK.Models
         /// </summary>
         public enum passwordEncryptType
         {
-            [EnumMember(Value="sm2")]
+            [EnumMember(Value = "sm2")]
             SM2,
-            [EnumMember(Value="rsa")]
+            [EnumMember(Value = "rsa")]
             RSA,
-            [EnumMember(Value="none")]
+            [EnumMember(Value = "none")]
             NONE,
         }
     }

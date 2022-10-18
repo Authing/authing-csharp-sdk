@@ -18,7 +18,7 @@ namespace Authing.CSharp.SDK.Models
         ///  外部身份源连接标志符
         /// </summary>
         [JsonProperty("extIdpConnidentifier")]
-        public    string   ExtIdpConnidentifier    {get;set;}
+        public string ExtIdpConnidentifier { get; set; }
         /// <summary>
         ///  移动端社会化登录类型：
         /// - `wechat`: 微信移动应用
@@ -34,72 +34,72 @@ namespace Authing.CSharp.SDK.Models
         ///
         /// </summary>
         [JsonProperty("connection")]
-        public    connection   Connection    {get;set;}
+        public connection Connection { get; set; }
         /// <summary>
         ///  微信移动端社会化登录数据，当 `connection` 为 `wechat` 的时候必填
         /// </summary>
         [JsonProperty("wechatPayload")]
-        public    AuthenticateByWechatDto   WechatPayload    {get;set;}
+        public AuthenticateByWechatDto WechatPayload { get; set; }
         /// <summary>
         ///  支付宝移动端社会化登录数据，当 `connection` 为 `alipay` 的时候必填
         /// </summary>
         [JsonProperty("alipayPayload")]
-        public    AuthenticateByAlipayDto   AlipayPayload    {get;set;}
+        public AuthenticateByAlipayDto AlipayPayload { get; set; }
         /// <summary>
         ///  企业微信移动端社会化登录数据，当 `connection` 为 `wechatwork` 的时候必填
         /// </summary>
         [JsonProperty("wechatworkPayload")]
-        public    AuthenticateByWechatworkDto   WechatworkPayload    {get;set;}
+        public AuthenticateByWechatworkDto WechatworkPayload { get; set; }
         /// <summary>
         ///  企业微信（代开发模式）移动端社会化登录数据，当 `connection` 为 `wechatwork_agency` 的时候必填
         /// </summary>
         [JsonProperty("wechatworkAgencyPayload")]
-        public    AuthenticateByWechatworkAgencyDto   WechatworkAgencyPayload    {get;set;}
+        public AuthenticateByWechatworkAgencyDto WechatworkAgencyPayload { get; set; }
         /// <summary>
         ///  飞书应用商店应用移动端社会化登录数据，当 `connection` 为 `lark_public` 的时候必填
         /// </summary>
         [JsonProperty("larkPublicPayload")]
-        public    AuthenticateByLarkPublicDto   LarkPublicPayload    {get;set;}
+        public AuthenticateByLarkPublicDto LarkPublicPayload { get; set; }
         /// <summary>
         ///  飞书自建应用移动端社会化登录数据，当 `connection` 为 `lark_internal` 的时候必填
         /// </summary>
         [JsonProperty("larkInternalPayload")]
-        public    AuthenticateByLarkInternalDto   LarkInternalPayload    {get;set;}
+        public AuthenticateByLarkInternalDto LarkInternalPayload { get; set; }
         /// <summary>
         ///  网易易盾移动端社会化登录数据，当 `connection` 为 `yidun` 的时候必填
         /// </summary>
         [JsonProperty("yidunPayload")]
-        public    AuthenticateByYidunDto   YidunPayload    {get;set;}
+        public AuthenticateByYidunDto YidunPayload { get; set; }
         /// <summary>
         ///  网易易盾移动端社会化登录数据，当 `connection` 为 `wechat_mini_program_code` 的时候必填
         /// </summary>
         [JsonProperty("wechatMiniProgramCodePayload")]
-        public    AuthenticateByWechatMiniProgramCodeDto   WechatMiniProgramCodePayload    {get;set;}
+        public AuthenticateByWechatMiniProgramCodeDto WechatMiniProgramCodePayload { get; set; }
         /// <summary>
         ///  网易易盾移动端社会化登录数据，当 `connection` 为 `wechat_mini_program_phone` 的时候必填
         /// </summary>
         [JsonProperty("wechatMiniProgramPhonePayload")]
-        public    AuthenticateByWechatMiniProgramPhoneDto   WechatMiniProgramPhonePayload    {get;set;}
+        public AuthenticateByWechatMiniProgramPhoneDto WechatMiniProgramPhonePayload { get; set; }
         /// <summary>
         ///  Google 移动端社会化登录数据，当 `connection` 为 `google` 的时候必填
         /// </summary>
         [JsonProperty("googlePayload")]
-        public    AuthenticateByGoogleDto   GooglePayload    {get;set;}
+        public AuthenticateByGoogleDto GooglePayload { get; set; }
         /// <summary>
         ///  可选参数
         /// </summary>
         [JsonProperty("options")]
-        public    SignInByMobileOptionsDto   Options    {get;set;}
+        public SignInByMobileOptionsDto Options { get; set; }
         /// <summary>
         ///  应用 ID。当应用的「换取 token 身份验证方式」配置为 `client_secret_post` 需要传。
         /// </summary>
         [JsonProperty("client_id")]
-        public    string   Client_id    {get;set;}
+        public string Client_id { get; set; }
         /// <summary>
         ///  应用密钥。当应用的「换取 token 身份验证方式」配置为 `client_secret_post` 需要传。
         /// </summary>
         [JsonProperty("client_secret")]
-        public    string   Client_secret    {get;set;}
+        public string Client_secret { get; set; }
     }
     public partial class SigninByMobileDto
     {
@@ -119,25 +119,25 @@ namespace Authing.CSharp.SDK.Models
         /// </summary>
         public enum connection
         {
-            [EnumMember(Value="wechat")]
+            [EnumMember(Value = "wechat")]
             WECHAT,
-            [EnumMember(Value="alipay")]
+            [EnumMember(Value = "alipay")]
             ALIPAY,
-            [EnumMember(Value="wechatwork")]
+            [EnumMember(Value = "wechatwork")]
             WECHATWORK,
-            [EnumMember(Value="wechatwork_agency")]
+            [EnumMember(Value = "wechatwork_agency")]
             WECHATWORK_AGENCY,
-            [EnumMember(Value="lark_internal")]
+            [EnumMember(Value = "lark_internal")]
             LARK_INTERNAL,
-            [EnumMember(Value="lark_public")]
+            [EnumMember(Value = "lark_public")]
             LARK_PUBLIC,
-            [EnumMember(Value="yidun")]
+            [EnumMember(Value = "yidun")]
             YIDUN,
-            [EnumMember(Value="wechat_mini_program_code")]
+            [EnumMember(Value = "wechat_mini_program_code")]
             WECHAT_MINI_PROGRAM_CODE,
-            [EnumMember(Value="wechat_mini_program_phone")]
+            [EnumMember(Value = "wechat_mini_program_phone")]
             WECHAT_MINI_PROGRAM_PHONE,
-            [EnumMember(Value="google")]
+            [EnumMember(Value = "google")]
             GOOGLE,
         }
     }

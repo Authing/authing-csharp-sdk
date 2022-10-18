@@ -8,32 +8,32 @@ using System.Threading.Tasks;
 using System.Runtime.Serialization;
 using Authing.CSharp.SDK.Models.Management;
 
-   namespace Authing.CSharp.SDK.Models.Management
-{
-/// <summary>
-/// UpdateNamespaceDto 的模型
-/// </summary>
-public partial class UpdateNamespaceDto
+namespace Authing.CSharp.SDK.Models.Management
 {
     /// <summary>
-    ///  权限分组唯一标志符
+    /// UpdateNamespaceDto 的模型
     /// </summary>
-    [JsonProperty("code")]
-    public string  Code {get;set;}
-    /// <summary>
-    ///  权限分组描述信息
-    /// </summary>
-    [JsonProperty("description")]
-    public string  Description {get;set;}
-    /// <summary>
-    ///  权限分组名称
-    /// </summary>
-    [JsonProperty("name")]
-    public string  Name {get;set;}
-    /// <summary>
-    ///  权限分组新的唯一标志符
-    /// </summary>
-    [JsonProperty("newCode")]
-    public string  NewCode {get;set;}
-}
+    public partial class UpdateNamespaceDto
+    {
+        /// <summary>
+        ///  权限分组唯一标志符
+        /// </summary>
+        [JsonProperty("code")]
+        public string Code { get; set; }
+        /// <summary>
+        ///  权限分组描述信息
+        /// </summary>
+        [JsonProperty("description")]
+        public string Description { get; set; }
+        /// <summary>
+        ///  权限分组名称
+        /// </summary>
+        [JsonProperty("name")]
+        public string Name { get; set; }
+        /// <summary>
+        ///  权限分组新的唯一标志符
+        /// </summary>
+        [JsonProperty("newCode")]
+        public string NewCode { get; set; }
+    }
 }

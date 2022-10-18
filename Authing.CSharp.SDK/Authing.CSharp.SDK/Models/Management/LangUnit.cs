@@ -8,22 +8,22 @@ using System.Threading.Tasks;
 using System.Runtime.Serialization;
 using Authing.CSharp.SDK.Models.Management;
 
-   namespace Authing.CSharp.SDK.Models.Management
-{
-/// <summary>
-/// LangUnit 的模型
-/// </summary>
-public partial class LangUnit
+namespace Authing.CSharp.SDK.Models.Management
 {
     /// <summary>
-    ///  是否已开启。若开启，且控制台选择该语言，则展示该内容。（默认关闭）
+    /// LangUnit 的模型
     /// </summary>
-    [JsonProperty("enabled")]
-    public bool  Enabled {get;set;}
-    /// <summary>
-    ///  多语言内容
-    /// </summary>
-    [JsonProperty("value")]
-    public bool  Value {get;set;}
-}
+    public partial class LangUnit
+    {
+        /// <summary>
+        ///  是否已开启。若开启，且控制台选择该语言，则展示该内容。（默认关闭）
+        /// </summary>
+        [JsonProperty("enabled")]
+        public bool Enabled { get; set; }
+        /// <summary>
+        ///  多语言内容
+        /// </summary>
+        [JsonProperty("value")]
+        public bool Value { get; set; }
+    }
 }

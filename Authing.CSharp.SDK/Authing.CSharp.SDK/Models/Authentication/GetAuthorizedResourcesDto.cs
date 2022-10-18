@@ -18,11 +18,11 @@ namespace Authing.CSharp.SDK.Models
         ///  所属权限分组的 code
         /// </summary>
         [JsonProperty("namespace")]
-        public    object   Namespace    {get;set;}
+        public object Namespace { get; set; }
         /// <summary>
         ///  资源类型，如 数据、API、菜单、按钮
         /// </summary>
         [JsonProperty("resourceType")]
-        public    object   ResourceType    {get;set;}
+        public object ResourceType { get; set; }
     }
 }

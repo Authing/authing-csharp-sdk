@@ -18,6 +18,6 @@ namespace Authing.CSharp.SDK.Models
         ///  RSA256 公钥
         /// </summary>
         [JsonProperty("publicKey")]
-        public    string   PublicKey    {get;set;}
+        public string PublicKey { get; set; }
     }
 }

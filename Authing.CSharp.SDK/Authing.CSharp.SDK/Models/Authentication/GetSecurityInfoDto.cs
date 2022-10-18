@@ -18,31 +18,31 @@ namespace Authing.CSharp.SDK.Models
         ///  密码强度等级
         /// </summary>
         [JsonProperty("passwordSecurityLevel")]
-        public    long   PasswordSecurityLevel    {get;set;}
+        public long PasswordSecurityLevel { get; set; }
         /// <summary>
         ///  是否绑定了 MFA
         /// </summary>
         [JsonProperty("mfaEnrolled")]
-        public    bool   MfaEnrolled    {get;set;}
+        public bool MfaEnrolled { get; set; }
         /// <summary>
         ///  是否设置了密码
         /// </summary>
         [JsonProperty("passwordSet")]
-        public    bool   PasswordSet    {get;set;}
+        public bool PasswordSet { get; set; }
         /// <summary>
         ///  是否绑定了邮箱
         /// </summary>
         [JsonProperty("emailBinded")]
-        public    bool   EmailBinded    {get;set;}
+        public bool EmailBinded { get; set; }
         /// <summary>
         ///  是否绑定了手机号
         /// </summary>
         [JsonProperty("phoneBinded")]
-        public    bool   PhoneBinded    {get;set;}
+        public bool PhoneBinded { get; set; }
         /// <summary>
         ///  账号等级评分
         /// </summary>
         [JsonProperty("securityScore")]
-        public    long   SecurityScore    {get;set;}
+        public long SecurityScore { get; set; }
     }
 }

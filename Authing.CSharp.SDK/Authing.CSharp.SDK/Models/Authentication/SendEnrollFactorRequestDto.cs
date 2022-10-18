@@ -18,12 +18,12 @@ namespace Authing.CSharp.SDK.Models
         ///  MFA 认证要素详细信息
         /// </summary>
         [JsonProperty("profile")]
-        public    FactorProfile   Profile    {get;set;}
+        public FactorProfile Profile { get; set; }
         /// <summary>
         ///  MFA 认证要素类型，目前共支持短信、邮箱验证码、OTP、人脸四种类型的认证要素。
         /// </summary>
         [JsonProperty("factorType")]
-        public    factorType   FactorType    {get;set;}
+        public factorType FactorType { get; set; }
     }
     public partial class SendEnrollFactorRequestDto
     {
@@ -32,13 +32,13 @@ namespace Authing.CSharp.SDK.Models
         /// </summary>
         public enum factorType
         {
-            [EnumMember(Value="OTP")]
+            [EnumMember(Value = "OTP")]
             OTP,
-            [EnumMember(Value="SMS")]
+            [EnumMember(Value = "SMS")]
             SMS,
-            [EnumMember(Value="EMAIL")]
+            [EnumMember(Value = "EMAIL")]
             EMAIL,
-            [EnumMember(Value="FACE")]
+            [EnumMember(Value = "FACE")]
             FACE,
         }
     }

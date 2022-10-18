@@ -8,17 +8,17 @@ using System.Threading.Tasks;
 using System.Runtime.Serialization;
 using Authing.CSharp.SDK.Models.Management;
 
-   namespace Authing.CSharp.SDK.Models.Management
-{
-/// <summary>
-/// IsUserInDepartmentDataDto 的模型
-/// </summary>
-public partial class IsUserInDepartmentDataDto
+namespace Authing.CSharp.SDK.Models.Management
 {
     /// <summary>
-    ///  是否在此部门内
+    /// IsUserInDepartmentDataDto 的模型
     /// </summary>
-    [JsonProperty("inDepartment")]
-    public bool  InDepartment {get;set;}
-}
+    public partial class IsUserInDepartmentDataDto
+    {
+        /// <summary>
+        ///  是否在此部门内
+        /// </summary>
+        [JsonProperty("inDepartment")]
+        public bool InDepartment { get; set; }
+    }
 }

@@ -18,11 +18,11 @@ namespace Authing.CSharp.SDK.Models
         ///  用户显示昵称
         /// </summary>
         [JsonProperty("displayName")]
-        public    string   DisplayName    {get;set;}
+        public string DisplayName { get; set; }
         /// <summary>
         ///  用户头像
         /// </summary>
         [JsonProperty("photo")]
-        public    string   Photo    {get;set;}
+        public string Photo { get; set; }
     }
 }

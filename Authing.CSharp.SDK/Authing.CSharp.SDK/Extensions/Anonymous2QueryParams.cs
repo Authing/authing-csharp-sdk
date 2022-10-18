@@ -9,7 +9,7 @@ using System.Text;
 
 namespace Authing.CSharp.SDK.Extensions
 {
-    public static  class Anonymous2QueryParams
+    public static class Anonymous2QueryParams
     {
         private static IReflectionService reflectionService = new RelectionService();
 

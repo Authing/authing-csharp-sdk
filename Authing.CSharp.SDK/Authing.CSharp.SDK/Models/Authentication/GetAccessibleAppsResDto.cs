@@ -24,7 +24,7 @@ namespace Authing.CSharp.SDK.Models
         /// </summary>
         [JsonProperty("apiCode")]
         public string ApiCode { get; set; }
-        public List <GetAccessibleAppsRes> Data { get; set; }
+        public List<GetAccessibleAppsRes> Data { get; set; }
     }
 
     public class GetAccessibleAppsRes

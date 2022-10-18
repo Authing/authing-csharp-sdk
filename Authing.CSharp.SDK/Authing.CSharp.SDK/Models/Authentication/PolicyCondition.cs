@@ -18,17 +18,17 @@ namespace Authing.CSharp.SDK.Models
         ///  Condition Param
         /// </summary>
         [JsonProperty("param")]
-        public    param   Param    {get;set;}
+        public param Param { get; set; }
         /// <summary>
         ///  Condition Operator
         /// </summary>
         [JsonProperty("operator")]
-        public    @operator   Operator    {get;set;}
+        public @operator Operator { get; set; }
         /// <summary>
         ///  Condition Value
         /// </summary>
         [JsonProperty("value")]
-        public    string   Value    {get;set;}
+        public string Value { get; set; }
     }
     public partial class PolicyCondition
     {
@@ -37,51 +37,51 @@ namespace Authing.CSharp.SDK.Models
         /// </summary>
         public enum param
         {
-            [EnumMember(Value="UserPoolId")]
+            [EnumMember(Value = "UserPoolId")]
             USER_POOL_ID,
-            [EnumMember(Value="AppId")]
+            [EnumMember(Value = "AppId")]
             APP_ID,
-            [EnumMember(Value="RequestFrom")]
+            [EnumMember(Value = "RequestFrom")]
             REQUEST_FROM,
-            [EnumMember(Value="UserId")]
+            [EnumMember(Value = "UserId")]
             USER_ID,
-            [EnumMember(Value="UserArn")]
+            [EnumMember(Value = "UserArn")]
             USER_ARN,
-            [EnumMember(Value="CurrentTime")]
+            [EnumMember(Value = "CurrentTime")]
             CURRENT_TIME,
-            [EnumMember(Value="EpochTime")]
+            [EnumMember(Value = "EpochTime")]
             EPOCH_TIME,
-            [EnumMember(Value="SourceIp")]
+            [EnumMember(Value = "SourceIp")]
             SOURCE_IP,
-            [EnumMember(Value="User")]
+            [EnumMember(Value = "User")]
             USER,
-            [EnumMember(Value="MultiFactorAuthPresent")]
+            [EnumMember(Value = "MultiFactorAuthPresent")]
             MULTI_FACTOR_AUTH_PRESENT,
-            [EnumMember(Value="MultiFactorAuthAge")]
+            [EnumMember(Value = "MultiFactorAuthAge")]
             MULTI_FACTOR_AUTH_AGE,
-            [EnumMember(Value="UserAgent")]
+            [EnumMember(Value = "UserAgent")]
             USER_AGENT,
-            [EnumMember(Value="Referer")]
+            [EnumMember(Value = "Referer")]
             REFERER,
-            [EnumMember(Value="Device")]
+            [EnumMember(Value = "Device")]
             DEVICE,
-            [EnumMember(Value="OS")]
+            [EnumMember(Value = "OS")]
             OS,
-            [EnumMember(Value="Country")]
+            [EnumMember(Value = "Country")]
             COUNTRY,
-            [EnumMember(Value="Province")]
+            [EnumMember(Value = "Province")]
             PROVINCE,
-            [EnumMember(Value="City")]
+            [EnumMember(Value = "City")]
             CITY,
-            [EnumMember(Value="DeviceChanged")]
+            [EnumMember(Value = "DeviceChanged")]
             DEVICE_CHANGED,
-            [EnumMember(Value="DeviceUntrusted")]
+            [EnumMember(Value = "DeviceUntrusted")]
             DEVICE_UNTRUSTED,
-            [EnumMember(Value="ProxyUntrusted")]
+            [EnumMember(Value = "ProxyUntrusted")]
             PROXY_UNTRUSTED,
-            [EnumMember(Value="LoggedInApps")]
+            [EnumMember(Value = "LoggedInApps")]
             LOGGED_IN_APPS,
-            [EnumMember(Value="Namespace")]
+            [EnumMember(Value = "Namespace")]
             NAMESPACE,
         }
         /// <summary>
@@ -89,49 +89,49 @@ namespace Authing.CSharp.SDK.Models
         /// </summary>
         public enum @operator
         {
-            [EnumMember(Value="Bool")]
+            [EnumMember(Value = "Bool")]
             BOOL,
-            [EnumMember(Value="DateEquals")]
+            [EnumMember(Value = "DateEquals")]
             DATE_EQUALS,
-            [EnumMember(Value="DateNotEquals")]
+            [EnumMember(Value = "DateNotEquals")]
             DATE_NOT_EQUALS,
-            [EnumMember(Value="DateLessThan")]
+            [EnumMember(Value = "DateLessThan")]
             DATE_LESS_THAN,
-            [EnumMember(Value="DateLessThanEquals")]
+            [EnumMember(Value = "DateLessThanEquals")]
             DATE_LESS_THAN_EQUALS,
-            [EnumMember(Value="DateGreaterThan")]
+            [EnumMember(Value = "DateGreaterThan")]
             DATE_GREATER_THAN,
-            [EnumMember(Value="DateGreaterThanEquals")]
+            [EnumMember(Value = "DateGreaterThanEquals")]
             DATE_GREATER_THAN_EQUALS,
-            [EnumMember(Value="IpAddress")]
+            [EnumMember(Value = "IpAddress")]
             IP_ADDRESS,
-            [EnumMember(Value="NotIpAddress")]
+            [EnumMember(Value = "NotIpAddress")]
             NOT_IP_ADDRESS,
-            [EnumMember(Value="NumericEquals")]
+            [EnumMember(Value = "NumericEquals")]
             NUMERIC_EQUALS,
-            [EnumMember(Value="NumericNotEquals")]
+            [EnumMember(Value = "NumericNotEquals")]
             NUMERIC_NOT_EQUALS,
-            [EnumMember(Value="NumericLessThan")]
+            [EnumMember(Value = "NumericLessThan")]
             NUMERIC_LESS_THAN,
-            [EnumMember(Value="NumericLessThanEquals")]
+            [EnumMember(Value = "NumericLessThanEquals")]
             NUMERIC_LESS_THAN_EQUALS,
-            [EnumMember(Value="NumericGreaterThan")]
+            [EnumMember(Value = "NumericGreaterThan")]
             NUMERIC_GREATER_THAN,
-            [EnumMember(Value="NumericGreaterThanEquals")]
+            [EnumMember(Value = "NumericGreaterThanEquals")]
             NUMERIC_GREATER_THAN_EQUALS,
-            [EnumMember(Value="StringEquals")]
+            [EnumMember(Value = "StringEquals")]
             STRING_EQUALS,
-            [EnumMember(Value="StringNotEquals")]
+            [EnumMember(Value = "StringNotEquals")]
             STRING_NOT_EQUALS,
-            [EnumMember(Value="StringEqualsIgnoreCase")]
+            [EnumMember(Value = "StringEqualsIgnoreCase")]
             STRING_EQUALS_IGNORE_CASE,
-            [EnumMember(Value="StringNotEqualsIgnoreCase")]
+            [EnumMember(Value = "StringNotEqualsIgnoreCase")]
             STRING_NOT_EQUALS_IGNORE_CASE,
-            [EnumMember(Value="StringLike")]
+            [EnumMember(Value = "StringLike")]
             STRING_LIKE,
-            [EnumMember(Value="StringNotLike")]
+            [EnumMember(Value = "StringNotLike")]
             STRING_NOT_LIKE,
-            [EnumMember(Value="ListContains")]
+            [EnumMember(Value = "ListContains")]
             LIST_CONTAINS,
         }
     }

@@ -18,11 +18,11 @@ namespace Authing.CSharp.SDK.Models
         ///  `open-type=getphonecode` 接口返回的 `code`
         /// </summary>
         [JsonProperty("code")]
-        public    string   Code    {get;set;}
+        public string Code { get; set; }
         /// <summary>
         ///  微信小程序的外部身份源连接标志符
         /// </summary>
         [JsonProperty("extIdpConnidentifier")]
-        public    string   ExtIdpConnidentifier    {get;set;}
+        public string ExtIdpConnidentifier { get; set; }
     }
 }

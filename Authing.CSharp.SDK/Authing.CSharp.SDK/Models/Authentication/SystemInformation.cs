@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Authing.CSharp.SDK.Models
 {
-   public class SystemInformation
+    public class SystemInformation
     {
         /// <summary>
         /// RSA256 加密配置信息
@@ -19,9 +19,9 @@ namespace Authing.CSharp.SDK.Models
         /// Authing 版本信息
         /// </summary>
         public Version Version { get; set; }
-       /// <summary>
-       /// Authing 服务对外 IP 列表
-       /// </summary>
+        /// <summary>
+        /// Authing 服务对外 IP 列表
+        /// </summary>
         public List<string> PublicIps { get; set; }
     }
 

@@ -18,26 +18,26 @@ namespace Authing.CSharp.SDK.Models
         ///  应用 ID
         /// </summary>
         [JsonProperty("appId")]
-        public    string   AppId    {get;set;}
+        public string AppId { get; set; }
         /// <summary>
         ///  应用名称
         /// </summary>
         [JsonProperty("appName")]
-        public    string   AppName    {get;set;}
+        public string AppName { get; set; }
         /// <summary>
         ///  应用登录地址
         /// </summary>
         [JsonProperty("appLoginUrl")]
-        public    string   AppLoginUrl    {get;set;}
+        public string AppLoginUrl { get; set; }
         /// <summary>
         ///  应用 Logo
         /// </summary>
         [JsonProperty("appLogo")]
-        public    string   AppLogo    {get;set;}
+        public string AppLogo { get; set; }
         /// <summary>
         ///  当前是否处于登录态
         /// </summary>
         [JsonProperty("active")]
-        public    bool   Active    {get;set;}
+        public bool Active { get; set; }
     }
 }

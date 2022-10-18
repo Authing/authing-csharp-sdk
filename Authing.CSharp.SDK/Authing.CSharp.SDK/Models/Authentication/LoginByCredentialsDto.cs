@@ -21,7 +21,7 @@ namespace Authing.CSharp.SDK.Models
         /// <summary>
         /// 当认证方式为 PASSWORD 时此参数必填
         /// </summary>
-       [JsonProperty("passwordPayload")]
+        [JsonProperty("passwordPayload")]
         public PasswordPayload PasswordPayload { get; set; }
 
         /// <summary>
@@ -254,7 +254,7 @@ namespace Authing.CSharp.SDK.Models
         /// <summary>
         /// 不对密码进行加密，使用明文进行传输
         /// </summary>
-        [EnumMember(Value ="none")]
+        [EnumMember(Value = "none")]
         None,
         /// <summary>
         /// 使用 RSA256 算法对密码进行加密，需要使用 Authing 服务的 RSA 公钥进行加密

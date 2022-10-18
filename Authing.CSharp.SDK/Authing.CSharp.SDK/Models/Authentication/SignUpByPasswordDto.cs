@@ -20,11 +20,11 @@ namespace Authing.CSharp.SDK.Models
         ///
         /// </summary>
         [JsonProperty("password")]
-        public    string   Password    {get;set;}
+        public string Password { get; set; }
         /// <summary>
         ///  邮箱，不区分大小写。
         /// </summary>
         [JsonProperty("email")]
-        public    string   Email    {get;set;}
+        public string Email { get; set; }
     }
 }

@@ -18,21 +18,21 @@ namespace Authing.CSharp.SDK.Models
         ///  RSA256 加密配置信息
         /// </summary>
         [JsonProperty("rsa")]
-        public    SystmeInfoRSAConfig   Rsa    {get;set;}
+        public SystmeInfoRSAConfig Rsa { get; set; }
         /// <summary>
         ///  国密 SM2 加密配置信息
         /// </summary>
         [JsonProperty("sm2")]
-        public    SystmeInfoSM2Config   Sm2    {get;set;}
+        public SystmeInfoSM2Config Sm2 { get; set; }
         /// <summary>
         ///  国密 SM2 加密配置信息
         /// </summary>
         [JsonProperty("version")]
-        public    SystmeInfoVersion   Version    {get;set;}
+        public SystmeInfoVersion Version { get; set; }
         /// <summary>
         ///  Authing 服务对外 IP 列表
         /// </summary>
         [JsonProperty("publicIps")]
-        public    List<string>   PublicIps    {get;set;}
+        public List<string> PublicIps { get; set; }
     }
 }

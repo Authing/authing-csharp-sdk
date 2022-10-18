@@ -8,27 +8,27 @@ using System.Threading.Tasks;
 using System.Runtime.Serialization;
 using Authing.CSharp.SDK.Models.Management;
 
-   namespace Authing.CSharp.SDK.Models.Management
-{
-/// <summary>
-/// SyncTaskItalentClientConfig 的模型
-/// </summary>
-public partial class SyncTaskItalentClientConfig
+namespace Authing.CSharp.SDK.Models.Management
 {
     /// <summary>
-    ///  Tenant Id
+    /// SyncTaskItalentClientConfig 的模型
     /// </summary>
-    [JsonProperty("tenant_id")]
-    public string  Tenant_id {get;set;}
-    /// <summary>
-    ///  App Key
-    /// </summary>
-    [JsonProperty("app_key")]
-    public string  App_key {get;set;}
-    /// <summary>
-    ///  App Secret
-    /// </summary>
-    [JsonProperty("app_secret")]
-    public string  App_secret {get;set;}
-}
+    public partial class SyncTaskItalentClientConfig
+    {
+        /// <summary>
+        ///  Tenant Id
+        /// </summary>
+        [JsonProperty("tenant_id")]
+        public string Tenant_id { get; set; }
+        /// <summary>
+        ///  App Key
+        /// </summary>
+        [JsonProperty("app_key")]
+        public string App_key { get; set; }
+        /// <summary>
+        ///  App Secret
+        /// </summary>
+        [JsonProperty("app_secret")]
+        public string App_secret { get; set; }
+    }
 }

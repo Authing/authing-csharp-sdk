@@ -20,17 +20,17 @@ namespace Authing.CSharp.SDK.Models
         ///
         /// </summary>
         [JsonProperty("verifyMethod")]
-        public    verifyMethod   VerifyMethod    {get;set;}
+        public verifyMethod VerifyMethod { get; set; }
         /// <summary>
         ///  使用手机号验证码验证的数据
         /// </summary>
         [JsonProperty("phonePassCodePayload")]
-        public    ResetPasswordByPhonePassCodeDto   PhonePassCodePayload    {get;set;}
+        public ResetPasswordByPhonePassCodeDto PhonePassCodePayload { get; set; }
         /// <summary>
         ///  使用邮箱验证码验证的数据
         /// </summary>
         [JsonProperty("emailPassCodePayload")]
-        public    ResetPasswordByEmailPassCodeDto   EmailPassCodePayload    {get;set;}
+        public ResetPasswordByEmailPassCodeDto EmailPassCodePayload { get; set; }
     }
     public partial class VerifyResetPasswordRequestDto
     {
@@ -41,9 +41,9 @@ namespace Authing.CSharp.SDK.Models
         /// </summary>
         public enum verifyMethod
         {
-            [EnumMember(Value="EMAIL_PASSCODE")]
+            [EnumMember(Value = "EMAIL_PASSCODE")]
             EMAIL_PASSCODE,
-            [EnumMember(Value="PHONE_PASSCODE")]
+            [EnumMember(Value = "PHONE_PASSCODE")]
             PHONE_PASSCODE,
         }
     }

@@ -18,17 +18,17 @@ namespace Authing.CSharp.SDK.Models
         ///  绑定 MFA 认证要素时，对应认证要素要求的验证信息。
         /// </summary>
         [JsonProperty("enrollmentData")]
-        public    EnrollFactorEnrollmentDataDto   EnrollmentData    {get;set;}
+        public EnrollFactorEnrollmentDataDto EnrollmentData { get; set; }
         /// <summary>
         ///  「发起绑定 MFA 认证要素请求」接口返回的 enrollmentToken，此 token 有效时间为一分钟。
         /// </summary>
         [JsonProperty("enrollmentToken")]
-        public    string   EnrollmentToken    {get;set;}
+        public string EnrollmentToken { get; set; }
         /// <summary>
         ///  MFA 认证要素类型，目前共支持短信、邮箱验证码、OTP、人脸四种类型的认证要素。
         /// </summary>
         [JsonProperty("factorType")]
-        public    factorType   FactorType    {get;set;}
+        public factorType FactorType { get; set; }
     }
     public partial class EnrollFactorDto
     {
@@ -37,13 +37,13 @@ namespace Authing.CSharp.SDK.Models
         /// </summary>
         public enum factorType
         {
-            [EnumMember(Value="OTP")]
+            [EnumMember(Value = "OTP")]
             OTP,
-            [EnumMember(Value="SMS")]
+            [EnumMember(Value = "SMS")]
             SMS,
-            [EnumMember(Value="EMAIL")]
+            [EnumMember(Value = "EMAIL")]
             EMAIL,
-            [EnumMember(Value="FACE")]
+            [EnumMember(Value = "FACE")]
             FACE,
         }
     }

@@ -18,11 +18,11 @@ namespace Authing.CSharp.SDK.Models
         ///  上传的目录
         /// </summary>
         [JsonProperty("folder")]
-        public    string   Folder    {get;set;}
+        public string Folder { get; set; }
         /// <summary>
         ///  是否为私有资源
         /// </summary>
         [JsonProperty("isPrivate")]
-        public    bool   IsPrivate    {get;set;}
+        public bool IsPrivate { get; set; }
     }
 }

@@ -18,12 +18,12 @@ namespace Authing.CSharp.SDK.Models
         ///  身份源 ID
         /// </summary>
         [JsonProperty("identityId")]
-        public    string   IdentityId    {get;set;}
+        public string IdentityId { get; set; }
         /// <summary>
         ///  身份源连接 ID
         /// </summary>
         [JsonProperty("extIdpId")]
-        public    string   ExtIdpId    {get;set;}
+        public string ExtIdpId { get; set; }
         /// <summary>
         ///  外部身份源类型：
         /// - `wechat`: 微信
@@ -56,22 +56,22 @@ namespace Authing.CSharp.SDK.Models
         ///
         /// </summary>
         [JsonProperty("provider")]
-        public    provider   Provider    {get;set;}
+        public provider Provider { get; set; }
         /// <summary>
         ///  Identity 类型，如 unionid, openid, primary
         /// </summary>
         [JsonProperty("type")]
-        public    string   Type    {get;set;}
+        public string Type { get; set; }
         /// <summary>
         ///  在外部身份源中的 ID
         /// </summary>
         [JsonProperty("userIdInIdp")]
-        public    string   UserIdInIdp    {get;set;}
+        public string UserIdInIdp { get; set; }
         /// <summary>
         ///  身份来自的身份源连接 ID 列表
         /// </summary>
         [JsonProperty("originConnIds")]
-        public    List<string>   OriginConnIds    {get;set;}
+        public List<string> OriginConnIds { get; set; }
     }
     public partial class IdentityDto
     {
@@ -108,61 +108,61 @@ namespace Authing.CSharp.SDK.Models
         /// </summary>
         public enum provider
         {
-            [EnumMember(Value="oidc")]
+            [EnumMember(Value = "oidc")]
             OIDC,
-            [EnumMember(Value="oauth2")]
+            [EnumMember(Value = "oauth2")]
             OAUTH2,
-            [EnumMember(Value="saml")]
+            [EnumMember(Value = "saml")]
             SAML,
-            [EnumMember(Value="ldap")]
+            [EnumMember(Value = "ldap")]
             LDAP,
-            [EnumMember(Value="ad")]
+            [EnumMember(Value = "ad")]
             AD,
-            [EnumMember(Value="cas")]
+            [EnumMember(Value = "cas")]
             CAS,
-            [EnumMember(Value="azure-ad")]
+            [EnumMember(Value = "azure-ad")]
             AZURE_AD,
-            [EnumMember(Value="wechat")]
+            [EnumMember(Value = "wechat")]
             WECHAT,
-            [EnumMember(Value="google")]
+            [EnumMember(Value = "google")]
             GOOGLE,
-            [EnumMember(Value="qq")]
+            [EnumMember(Value = "qq")]
             QQ,
-            [EnumMember(Value="wechatwork")]
+            [EnumMember(Value = "wechatwork")]
             WECHATWORK,
-            [EnumMember(Value="dingtalk")]
+            [EnumMember(Value = "dingtalk")]
             DINGTALK,
-            [EnumMember(Value="weibo")]
+            [EnumMember(Value = "weibo")]
             WEIBO,
-            [EnumMember(Value="github")]
+            [EnumMember(Value = "github")]
             GITHUB,
-            [EnumMember(Value="alipay")]
+            [EnumMember(Value = "alipay")]
             ALIPAY,
-            [EnumMember(Value="apple")]
+            [EnumMember(Value = "apple")]
             APPLE,
-            [EnumMember(Value="baidu")]
+            [EnumMember(Value = "baidu")]
             BAIDU,
-            [EnumMember(Value="lark")]
+            [EnumMember(Value = "lark")]
             LARK,
-            [EnumMember(Value="gitlab")]
+            [EnumMember(Value = "gitlab")]
             GITLAB,
-            [EnumMember(Value="twitter")]
+            [EnumMember(Value = "twitter")]
             TWITTER,
-            [EnumMember(Value="facebook")]
+            [EnumMember(Value = "facebook")]
             FACEBOOK,
-            [EnumMember(Value="slack")]
+            [EnumMember(Value = "slack")]
             SLACK,
-            [EnumMember(Value="linkedin")]
+            [EnumMember(Value = "linkedin")]
             LINKEDIN,
-            [EnumMember(Value="yidun")]
+            [EnumMember(Value = "yidun")]
             YIDUN,
-            [EnumMember(Value="qingcloud")]
+            [EnumMember(Value = "qingcloud")]
             QINGCLOUD,
-            [EnumMember(Value="gitee")]
+            [EnumMember(Value = "gitee")]
             GITEE,
-            [EnumMember(Value="instagram")]
+            [EnumMember(Value = "instagram")]
             INSTAGRAM,
-            [EnumMember(Value="welink")]
+            [EnumMember(Value = "welink")]
             WELINK,
         }
     }

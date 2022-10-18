@@ -8,17 +8,17 @@ using System.Threading.Tasks;
 using System.Runtime.Serialization;
 using Authing.CSharp.SDK.Models.Management;
 
-   namespace Authing.CSharp.SDK.Models.Management
-{
-/// <summary>
-/// DeleteApplicationDto 的模型
-/// </summary>
-public partial class DeleteApplicationDto
+namespace Authing.CSharp.SDK.Models.Management
 {
     /// <summary>
-    ///  应用 ID
+    /// DeleteApplicationDto 的模型
     /// </summary>
-    [JsonProperty("appId")]
-    public string  AppId {get;set;}
-}
+    public partial class DeleteApplicationDto
+    {
+        /// <summary>
+        ///  应用 ID
+        /// </summary>
+        [JsonProperty("appId")]
+        public string AppId { get; set; }
+    }
 }

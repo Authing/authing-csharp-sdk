@@ -18,6 +18,6 @@ namespace Authing.CSharp.SDK.Models
         ///  拉起支付宝需要的 AuthInfo
         /// </summary>
         [JsonProperty("authInfo")]
-        public    string   AuthInfo    {get;set;}
+        public string AuthInfo { get; set; }
     }
 }

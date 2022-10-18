@@ -18,6 +18,6 @@ namespace Authing.CSharp.SDK.Models
         ///  注销账户的 token
         /// </summary>
         [JsonProperty("deleteAccountToken")]
-        public    string   DeleteAccountToken    {get;set;}
+        public string DeleteAccountToken { get; set; }
     }
 }

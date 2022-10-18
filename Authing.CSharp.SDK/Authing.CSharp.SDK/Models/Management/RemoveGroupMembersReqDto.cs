@@ -8,22 +8,22 @@ using System.Threading.Tasks;
 using System.Runtime.Serialization;
 using Authing.CSharp.SDK.Models.Management;
 
-   namespace Authing.CSharp.SDK.Models.Management
-{
-/// <summary>
-/// RemoveGroupMembersReqDto 的模型
-/// </summary>
-public partial class RemoveGroupMembersReqDto
+namespace Authing.CSharp.SDK.Models.Management
 {
     /// <summary>
-    ///  用户 ID 数组
+    /// RemoveGroupMembersReqDto 的模型
     /// </summary>
-    [JsonProperty("userIds")]
-    public List<string>  UserIds {get;set;}
-    /// <summary>
-    ///  分组 code
-    /// </summary>
-    [JsonProperty("code")]
-    public string  Code {get;set;}
-}
+    public partial class RemoveGroupMembersReqDto
+    {
+        /// <summary>
+        ///  用户 ID 数组
+        /// </summary>
+        [JsonProperty("userIds")]
+        public List<string> UserIds { get; set; }
+        /// <summary>
+        ///  分组 code
+        /// </summary>
+        [JsonProperty("code")]
+        public string Code { get; set; }
+    }
 }

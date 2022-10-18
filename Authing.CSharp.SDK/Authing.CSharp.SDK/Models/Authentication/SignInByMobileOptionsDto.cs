@@ -29,21 +29,21 @@ namespace Authing.CSharp.SDK.Models
         ///
         /// </summary>
         [JsonProperty("scope")]
-        public    string   Scope    {get;set;}
+        public string Scope { get; set; }
         /// <summary>
         ///  额外请求上下文，将会传递到认证前和认证后的 [Pipeline](https://docs.authing.cn/v2/guides/pipeline/) 的 `context` 对象中。了解[如何在 Pipeline 的 `context` 参数中获取传入的额外 context](https://docs.authing.cn/v2/guides/pipeline/context-object.html)。
         /// </summary>
         [JsonProperty("context")]
-        public    string   Context    {get;set;}
+        public string Context { get; set; }
         /// <summary>
         ///  租户 ID
         /// </summary>
         [JsonProperty("tenantId")]
-        public    string   TenantId    {get;set;}
+        public string TenantId { get; set; }
         /// <summary>
         ///  设置额外的用户自定义数据，你需要先在 Authing 控制台[配置自定义数据](https://docs.authing.cn/v2/guides/users/user-defined-field/)。
         /// </summary>
         [JsonProperty("customData")]
-        public    object   CustomData    {get;set;}
+        public object CustomData { get; set; }
     }
 }

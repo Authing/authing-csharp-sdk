@@ -8,22 +8,22 @@ using System.Threading.Tasks;
 using System.Runtime.Serialization;
 using Authing.CSharp.SDK.Models.Management;
 
-   namespace Authing.CSharp.SDK.Models.Management
-{
-/// <summary>
-/// TencentExmailEmailProviderConfig 的模型
-/// </summary>
-public partial class TencentExmailEmailProviderConfig
+namespace Authing.CSharp.SDK.Models.Management
 {
     /// <summary>
-    ///  用户名
+    /// TencentExmailEmailProviderConfig 的模型
     /// </summary>
-    [JsonProperty("sender")]
-    public string  Sender {get;set;}
-    /// <summary>
-    ///  密码
-    /// </summary>
-    [JsonProperty("senderPass")]
-    public string  SenderPass {get;set;}
-}
+    public partial class TencentExmailEmailProviderConfig
+    {
+        /// <summary>
+        ///  用户名
+        /// </summary>
+        [JsonProperty("sender")]
+        public string Sender { get; set; }
+        /// <summary>
+        ///  密码
+        /// </summary>
+        [JsonProperty("senderPass")]
+        public string SenderPass { get; set; }
+    }
 }

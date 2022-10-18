@@ -18,72 +18,72 @@ namespace Authing.CSharp.SDK.Models
         ///  用户真实名称，不具备唯一性
         /// </summary>
         [JsonProperty("name")]
-        public    string   Name    {get;set;}
+        public string Name { get; set; }
         /// <summary>
         ///  昵称
         /// </summary>
         [JsonProperty("nickname")]
-        public    string   Nickname    {get;set;}
+        public string Nickname { get; set; }
         /// <summary>
         ///  头像链接
         /// </summary>
         [JsonProperty("photo")]
-        public    string   Photo    {get;set;}
+        public string Photo { get; set; }
         /// <summary>
         ///  第三方外部 ID
         /// </summary>
         [JsonProperty("externalId")]
-        public    string   ExternalId    {get;set;}
+        public string ExternalId { get; set; }
         /// <summary>
         ///  出生日期
         /// </summary>
         [JsonProperty("birthdate")]
-        public    string   Birthdate    {get;set;}
+        public string Birthdate { get; set; }
         /// <summary>
         ///  所在国家
         /// </summary>
         [JsonProperty("country")]
-        public    string   Country    {get;set;}
+        public string Country { get; set; }
         /// <summary>
         ///  所在省份
         /// </summary>
         [JsonProperty("province")]
-        public    string   Province    {get;set;}
+        public string Province { get; set; }
         /// <summary>
         ///  所在城市
         /// </summary>
         [JsonProperty("city")]
-        public    string   City    {get;set;}
+        public string City { get; set; }
         /// <summary>
         ///  所处地址
         /// </summary>
         [JsonProperty("address")]
-        public    string   Address    {get;set;}
+        public string Address { get; set; }
         /// <summary>
         ///  所处街道地址
         /// </summary>
         [JsonProperty("streetAddress")]
-        public    string   StreetAddress    {get;set;}
+        public string StreetAddress { get; set; }
         /// <summary>
         ///  邮政编码号
         /// </summary>
         [JsonProperty("postalCode")]
-        public    string   PostalCode    {get;set;}
+        public string PostalCode { get; set; }
         /// <summary>
         ///  性别
         /// </summary>
         [JsonProperty("gender")]
-        public    gender   Gender    {get;set;}
+        public gender Gender { get; set; }
         /// <summary>
         ///  用户名，用户池内唯一
         /// </summary>
         [JsonProperty("username")]
-        public    string   Username    {get;set;}
+        public string Username { get; set; }
         /// <summary>
         ///  自定义数据，传入的对象中的 key 必须先在用户池定义相关自定义字段
         /// </summary>
         [JsonProperty("customData")]
-        public    object   CustomData    {get;set;}
+        public object CustomData { get; set; }
     }
     public partial class UpdateUserProfileDto
     {
@@ -92,11 +92,11 @@ namespace Authing.CSharp.SDK.Models
         /// </summary>
         public enum gender
         {
-            [EnumMember(Value="M")]
+            [EnumMember(Value = "M")]
             M,
-            [EnumMember(Value="F")]
+            [EnumMember(Value = "F")]
             F,
-            [EnumMember(Value="U")]
+            [EnumMember(Value = "U")]
             U,
         }
     }

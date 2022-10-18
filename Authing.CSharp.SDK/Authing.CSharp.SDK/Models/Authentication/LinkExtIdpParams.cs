@@ -26,7 +26,7 @@ namespace Authing.CSharp.SDK.Models.Authentication
         /// <summary>
         /// Authing 应用 ID
         /// </summary>
-        [JsonProperty("id_token")] 
+        [JsonProperty("id_token")]
         public string IdToken { get; set; }
     }
 }

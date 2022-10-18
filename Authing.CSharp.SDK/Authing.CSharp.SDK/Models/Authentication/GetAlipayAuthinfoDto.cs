@@ -18,6 +18,6 @@ namespace Authing.CSharp.SDK.Models
         ///  外部身份源连接标志符
         /// </summary>
         [JsonProperty("extIdpConnidentifier")]
-        public    object   ExtIdpConnidentifier    {get;set;}
+        public object ExtIdpConnidentifier { get; set; }
     }
 }

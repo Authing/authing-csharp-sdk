@@ -18,11 +18,11 @@ namespace Authing.CSharp.SDK.Models
         ///  用于注销账号的临时 Token，你需要调用**注销账号**接口执行实际注销账号操作。
         /// </summary>
         [JsonProperty("deleteAccountToken")]
-        public    string   DeleteAccountToken    {get;set;}
+        public string DeleteAccountToken { get; set; }
         /// <summary>
         ///  Token 有效时间，默认为 60 秒。
         /// </summary>
         [JsonProperty("tokenExpiresIn")]
-        public    long   TokenExpiresIn    {get;set;}
+        public long TokenExpiresIn { get; set; }
     }
 }

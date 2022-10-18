@@ -21,7 +21,7 @@ namespace Authing.CSharp.SDK.Models
     }
 
     public class EmailPasscodePayload
-    { 
+    {
         public string NewEmail { get; set; }
         public string NewEmailPassCode { get; set; }
         public string OldEmail { get; set; }
@@ -43,7 +43,7 @@ namespace Authing.CSharp.SDK.Models
         /// <summary>
         /// 如果用户既没有绑定手机号又没有绑定邮箱，可以使用密码作为验证手段
         /// </summary>
-        [EnumMember(Value ="PASSWORD")]
+        [EnumMember(Value = "PASSWORD")]
         PASSWORD
     }
 }
