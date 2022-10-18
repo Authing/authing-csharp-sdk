@@ -5,7 +5,7 @@ using NUnit.Framework;
 
 namespace Authing.CSharp.SDK.Framework.Test
 {
-    public partial class AuthenticationClientAuthTest : AuthenticationClientTestBase
+    public partial class AuthenticationClientAuthTest
     {
         /// <summary>
         /// 2022-10-17 测试通过
@@ -110,6 +110,103 @@ namespace Authing.CSharp.SDK.Framework.Test
         public async Task LoginByLDAP()
         {
             var res2 = await client.signInByLDAP("Administrator", "1234");
+            Assert.AreEqual(200, res2.StatusCode);
+        }
+
+        /// <summary>
+        /// 2022-10-18 测试失败
+        /// 获取图形验证码
+        /// </summary>
+        /// <returns></returns>
+        [Test]
+        public async Task GeneCaptchaCodeTest()
+        {
+            var res = await client.GeneCaptchaCode();
+        }
+
+        /// <summary>
+        /// TODO:用于获取发起支付宝认证需要的初始化参数 AuthInfo
+        /// </summary>
+        /// <returns></returns>
+        [Test]
+        public async Task GetAlipayAuthInfoTest()
+        {
+            var res = await client.GetAlipayAuthInfo("1660291866076");
+        }
+
+        /// <summary>
+        /// 2022-10-18 测试成功
+        /// 生成登录二维码测试
+        /// </summary>
+        /// <returns></returns>
+        [Test]
+        public async Task GeneQrCodeTest()
+        {
+            var res = await client.GeneQrCode(new GenerateQrcodeDto()
+            {
+                Type = GenerateQrcodeDto.type.MOBILE_APP
+            });
+            Assert.AreEqual(200, res.StatusCode);
+        }
+
+        /// <summary>
+        /// 2022-10-18 测试失败
+        /// 查询二维码扫码状态
+        /// </summary>
+        /// <returns></returns>
+        [Test]
+        public async Task CheckQrCodeStatusTest()
+        {
+            var res = await client.GeneQrCode(new GenerateQrcodeDto()
+            {
+                Type = GenerateQrcodeDto.type.MOBILE_APP
+            });
+            Assert.AreEqual(200, res.StatusCode);
+            var res2 = await client.CheckQrCodeStatus(res.Data.QrcodeId);
+            Assert.AreEqual(200, res2.StatusCode);
+        }
+
+        /// <summary>
+        /// 2022-10-18 测试失败
+        /// 使用二维码 ticket 换取 TokenSet
+        /// </summary>
+        /// <returns></returns>
+        [Test]
+        public async Task ExchangeTokenSetWithQrCodeTicketTest()
+        {
+            var res = await client.GeneQrCode(new GenerateQrcodeDto()
+            {
+                Type = GenerateQrcodeDto.type.MOBILE_APP
+            });
+            Assert.AreEqual(200, res.StatusCode);
+            var res2 = await client.CheckQrCodeStatus(res.Data.QrcodeId);
+            Assert.AreEqual(200, res2.StatusCode);
+            var res3 = await client.ExchangeTokenSetWithQrCodeTicket(new ExchangeTokenSetWithQRcodeTicketDto()
+            {
+                Ticket = res2.Data.Ticket
+            });
+            Assert.AreEqual(200, res2.StatusCode);
+        }
+
+        /// <summary>
+        /// 2022-10-18 测试失败
+        /// 自建 APP 扫码登录：修改二维码状态测试
+        /// </summary>
+        /// <returns></returns>
+        [Test]
+        public async Task ChangeQrCodeStatusTest()
+        {
+            var res = await client.GeneQrCode(new GenerateQrcodeDto()
+            {
+                Type = GenerateQrcodeDto.type.MOBILE_APP
+            });
+            Assert.AreEqual(200, res.StatusCode);
+            var res2 = await client.ChangeQrCodeStatus(new ChangeQRCodeStatusDto()
+            {
+                QrcodeId = res.Data.QrcodeId,
+                Action = ChangeQRCodeStatusDto.action.SCAN
+            });
+            var res3 = await client.CheckQrCodeStatus(res.Data.QrcodeId);
             Assert.AreEqual(200, res2.StatusCode);
         }
     }
