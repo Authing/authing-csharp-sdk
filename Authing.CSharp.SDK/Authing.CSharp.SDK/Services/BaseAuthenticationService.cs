@@ -227,7 +227,7 @@ namespace Authing.CSharp.SDK.Services
                 }
             }
 
-            if (!string.IsNullOrWhiteSpace(accessToken))
+            if (!string.IsNullOrWhiteSpace(options.AccessToken))
             {
                 if (needBase64)
                 {
@@ -238,7 +238,7 @@ namespace Authing.CSharp.SDK.Services
                 }
                 else
                 {
-                    m_HttpService.SetBearerToken(accessToken);
+                    m_HttpService.SetBearerToken(options.AccessToken);
                 }
             }
 
@@ -255,7 +255,7 @@ namespace Authing.CSharp.SDK.Services
         protected async Task<string> Request<T>(string method, string apiPath, T dto)
         {
             NeedBase64(apiPath);
-            if (method == "Get")
+            if (method == "GET")
             {
                 var res = await GetAsync(apiPath, m_JsonService.SerializeObjectIngoreNull(dto)).ConfigureAwait(false);
                 return res;
@@ -270,7 +270,7 @@ namespace Authing.CSharp.SDK.Services
         protected async Task<string> Request(string method, string apiPath)
         {
             NeedBase64(apiPath);
-            if (method == "Get")
+            if (method == "GET")
             {
                 return await GetAsync(apiPath).ConfigureAwait(false);
             }

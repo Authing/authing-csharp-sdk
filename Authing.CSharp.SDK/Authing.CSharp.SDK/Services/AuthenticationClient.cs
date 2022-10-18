@@ -32,7 +32,7 @@ namespace Authing.CSharp.SDK.Services
         private IStringService stringService = new StringService();
         private IEncryptService encryptService = new EncryptService();
 
-        public string AccessToken { get;private set; }
+        public string AccessToken { get; private set; }
         public string IdToken { get; private set; }
         public string ExpireTime { get; private set; }
 
@@ -72,7 +72,7 @@ namespace Authing.CSharp.SDK.Services
             {
                 try
                 {
-                    this.serverJwks =await GetJWKSJSONAsync();
+                    this.serverJwks = await GetJWKSJSONAsync();
                 }
                 catch (Exception exp)
                 {
@@ -289,7 +289,7 @@ namespace Authing.CSharp.SDK.Services
         /// <returns></returns>
         public async Task<JwkSet> GetJWKSJSONAsync()
         {
-            string json = await GetWithHostAsync(domain,"/oidc/.well-known/jwks.json").ConfigureAwait(false);
+            string json = await GetWithHostAsync(domain, "/oidc/.well-known/jwks.json").ConfigureAwait(false);
 
             var jwks = Jose.JwkSet.FromJson(json, Jose.JWT.DefaultSettings.JsonMapper);
             return jwks;
@@ -369,7 +369,7 @@ namespace Authing.CSharp.SDK.Services
             };
 
             OIDCTokenResponse response = await GetToken(tokenParam).ConfigureAwait(false);
-            var result =await BuildLoginState(response);
+            var result = await BuildLoginState(response);
             return result;
         }
 
@@ -403,7 +403,7 @@ namespace Authing.CSharp.SDK.Services
 
             string json = await PostFormAsync("/oidc/token", param).ConfigureAwait(false);
             OIDCTokenResponse res = jsonService.DeserializeObject<OIDCTokenResponse>(json);
-            var result=await BuildLoginState(res);
+            var result = await BuildLoginState(res);
             return result;
         }
 
@@ -439,7 +439,7 @@ namespace Authing.CSharp.SDK.Services
         /// </summary>
         /// <param name="token">ID Token</param>
         /// <returns></returns>
-        public async Task<IDToken> ParseIDToken(string token,JwkSet jwks=null)
+        public async Task<IDToken> ParseIDToken(string token, JwkSet jwks = null)
         {
             IDToken idToken = new IDToken();
             string jsonStr = "";
@@ -477,7 +477,7 @@ namespace Authing.CSharp.SDK.Services
         /// </summary>
         /// <param name="token"> Authing 颁发的 Access token</param>
         /// <returns></returns>
-        public async Task<AccessToken> ParseAccessToken(string token,JwkSet jwks=null)
+        public async Task<AccessToken> ParseAccessToken(string token, JwkSet jwks = null)
         {
             string jsonStr = "";
             try
@@ -637,8 +637,8 @@ namespace Authing.CSharp.SDK.Services
                 IdToken = tokenRes.IdToken,
                 RefreshToken = tokenRes.RefreshToken,
                 ExpireAt = tokenRes.ExpiresIn,
-                ParsedIDToken =await ParseIDToken(tokenRes.IdToken),
-                ParsedAccessToken =await ParseAccessToken(tokenRes.AccessToken)
+                ParsedIDToken = await ParseIDToken(tokenRes.IdToken),
+                ParsedAccessToken = await ParseAccessToken(tokenRes.AccessToken)
             };
 
             return state;
@@ -657,6 +657,8 @@ namespace Authing.CSharp.SDK.Services
 
             return false;
         }
+
+        public void setAccessToken(string accessToken) => this.options.AccessToken = accessToken;
 
         #region 自动生成的方法
         ///<summary>
@@ -1297,7 +1299,6 @@ namespace Authing.CSharp.SDK.Services
 
         #endregion
 
-
         #region 基于 signInByCredentials 封装的登录方式 BEGIN
 
         /// <summary>
@@ -1307,17 +1308,17 @@ namespace Authing.CSharp.SDK.Services
         /// <param name="password"></param>
         /// <param name="option"></param>
         /// <returns></returns>
-        public async Task<LoginTokenRespDto> SignInByEmailPassword(string email,string password,SignInOptionsDto option=null)
+        public async Task<LoginTokenRespDto> SignInByEmailPassword(string email, string password, SignInOptionsDto option = null)
         {
-            SigninByCredentialsDto dto = new SigninByCredentialsDto 
+            SigninByCredentialsDto dto = new SigninByCredentialsDto
             {
-                Connection=SigninByCredentialsDto.connection.PASSWORD,
-                PasswordPayload=new  AuthenticateByPasswordDto 
+                Connection = SigninByCredentialsDto.connection.PASSWORD,
+                PasswordPayload = new AuthenticateByPasswordDto
                 {
-                    Email=email,
-                    Password=password
+                    Email = email,
+                    Password = password
                 },
-                Options=option
+                Options = option
             };
 
             if (options.TokenEndPointAuthMethod == TokenEndPointAuthMethod.CLIENT_SECRET_POST)
@@ -1459,8 +1460,8 @@ namespace Authing.CSharp.SDK.Services
                 Connection = SigninByCredentialsDto.connection.PASSCODE,
                 PassCodePayload = new AuthenticateByPassCodeDto
                 {
-                    Phone=phone,
-                    PhoneCountryCode=phoneCountryCode,
+                    Phone = phone,
+                    PhoneCountryCode = phoneCountryCode,
                     PassCode = passCode
                 },
                 Options = option
@@ -1483,7 +1484,7 @@ namespace Authing.CSharp.SDK.Services
         /// 如果你还需要更高级别的安全性，我们还支持 `RSA256` 和国密 `SM2` 的密码加密方式。详情见可选参数 `options.passwordEncryptType`。</param>
         /// <param name="option"></param>
         /// <returns></returns>
-        public async Task<LoginTokenRespDto> SignInByAD(string sAMAccountName, string password,  SignInOptionsDto option = null)
+        public async Task<LoginTokenRespDto> SignInByAD(string sAMAccountName, string password, SignInOptionsDto option = null)
         {
             SigninByCredentialsDto dto = new SigninByCredentialsDto
             {
@@ -1546,17 +1547,17 @@ namespace Authing.CSharp.SDK.Services
         /// <param name="password"></param>
         /// <param name="option"></param>
         /// <returns></returns>
-        public async Task<UserSingleRespDto> SignUpByEmailPassword(string email, string password, SignupOptionsDto option=null)
+        public async Task<UserSingleRespDto> SignUpByEmailPassword(string email, string password, SignupOptionsDto option = null)
         {
-            SignupDto dto = new SignupDto 
+            SignupDto dto = new SignupDto
             {
-                Connection=SignupDto.connection.PASSWORD,
-                PasswordPayload=new SignUpByPasswordDto 
+                Connection = SignupDto.connection.PASSWORD,
+                PasswordPayload = new SignUpByPasswordDto
                 {
-                    Email=email,
-                    Password=password,
+                    Email = email,
+                    Password = password,
                 },
-                Options=option
+                Options = option
             };
 
             return await SignUp(dto);
@@ -1592,7 +1593,7 @@ namespace Authing.CSharp.SDK.Services
         /// <param name="password"></param>
         /// <param name="option"></param>
         /// <returns></returns>
-        public async Task<UserSingleRespDto> SignUpByPhoneCode(string phone, string passCode,string phoneCountryCode=null, SignupOptionsDto option = null)
+        public async Task<UserSingleRespDto> SignUpByPhoneCode(string phone, string passCode, string phoneCountryCode = null, SignupOptionsDto option = null)
         {
             SignupDto dto = new SignupDto
             {
@@ -1600,7 +1601,7 @@ namespace Authing.CSharp.SDK.Services
                 PassCodePayload = new SignUpByPassCodeDto
                 {
                     Phone = phone,
-                    PhoneCountryCode=phoneCountryCode,
+                    PhoneCountryCode = phoneCountryCode,
                     PassCode = passCode,
                 },
                 Options = option
@@ -1611,6 +1612,5 @@ namespace Authing.CSharp.SDK.Services
 
         #endregion
     }
-
 }
 
