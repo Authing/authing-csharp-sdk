@@ -32,7 +32,7 @@ namespace Authing.CSharp.SDK.Framework.Test
                 Channel = SendEmailDto.channel.CHANNEL_REGISTER
             });
             Assert.AreEqual(200,res1.StatusCode);
-            var res2 = await client.SignUpByEmailCode("574378328@qq.com", "6002");
+            var res2 = await client.SignUpByEmailCode("574378328@qq.com", "5120");
             Assert.AreEqual(200,res2.StatusCode);
         }
 

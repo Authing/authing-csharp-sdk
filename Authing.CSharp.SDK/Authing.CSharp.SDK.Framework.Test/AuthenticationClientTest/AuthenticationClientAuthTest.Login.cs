@@ -209,5 +209,20 @@ namespace Authing.CSharp.SDK.Framework.Test
             var res3 = await client.CheckQrCodeStatus(res.Data.QrcodeId);
             Assert.AreEqual(200, res2.StatusCode);
         }
+
+        /// <summary>
+        /// 2022-10-18
+        /// TODO:使用移动端社会化登录
+        /// </summary>
+        /// <returns></returns>
+        [Test]
+        public async Task SignInByMobileTest()
+        {
+            var res = await client.SignInByMobile(new SigninByMobileDto()
+            {
+                Connection = SigninByMobileDto.connection.WECHAT,
+                ExtIdpConnidentifier = "xxxxxx",
+            });
+        }
     }
 }
