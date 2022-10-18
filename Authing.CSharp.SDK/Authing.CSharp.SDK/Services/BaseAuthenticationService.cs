@@ -274,6 +274,10 @@ namespace Authing.CSharp.SDK.Services
             {
                 return await GetAsync(apiPath).ConfigureAwait(false);
             }
+            if (method == "POST")
+            {
+                return await PostAsync(apiPath,"").ConfigureAwait(false);
+            }
             return "";
         }
     }
