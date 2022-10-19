@@ -373,7 +373,7 @@ namespace Authing.CSharp.SDK.Framework.Test
         /// <returns></returns>
         public async Task GetAuthorizedTargetsTest()
         {
-            var dto = await managementClient.GetAuthorizedTargets(new GetAuthorizedTargetsDto { });
+            var dto = await managementClient.GetResourceAuthorizedTargets(new  GetResourceAuthorizedTargetsDto { });
 
             Assert.NotNull(dto);
         }

@@ -279,7 +279,6 @@ namespace Authing.CSharp.SDK.Framework.Test
                 {
                     Username = "qidong" + new Random().Next(200, 1000),
                     Status = CreateUserReqDto.status.ACTIVATED,
-                    PasswordEncryptType = CreateUserReqDto.passwordEncryptType.NONE,
                     Password = "3866364",
                     Options = new CreateUserOptionsDto { DepartmentIdType = CreateUserOptionsDto.departmentIdType.DEPARTMENT_ID }
                 };
@@ -305,14 +304,12 @@ namespace Authing.CSharp.SDK.Framework.Test
                     {
                         Username = "user1"+ new Random().Next(200,1000),
                         Status = CreateUserInfoDto.status.ACTIVATED,
-                        PasswordEncryptType = CreateUserInfoDto.passwordEncryptType.NONE,
                         Password = "password"
                     },
                     new CreateUserInfoDto()
                     {
                         Username = "user2"+new Random().Next(200,1000) ,
                         Status = CreateUserInfoDto.status.ACTIVATED,
-                        PasswordEncryptType = CreateUserInfoDto.passwordEncryptType.NONE,
                         Password = "password"
                     }},
                     Options = new CreateUserOptionsDto { KeepPassword = true, ResetPasswordOnFirstLogin = false }
