@@ -188,17 +188,22 @@ namespace Authing.CSharp.SDK.Framework.Test
             }
         }
 
+        /// <summary>
+        /// 2022-10-19 测试通过
+        /// 删除资源
+        /// </summary>
+        /// <returns></returns>
         [Test]
         public async Task DeleteResourceTest()
         {
             using (CancellationTokenSource cts = new CancellationTokenSource())
             {
-                var resource = managementClient.GetResource(new GetResourceDto { Code="ecs",Namespace="default"}).Result;
+                var resource = managementClient.GetResource(new GetResourceDto { Code="ecs",Namespace= "634cf98aa5b1455a52949d33" }).Result;
 
                 DeleteResourceDto deleteResourceDto = new DeleteResourceDto()
                 {
                     Code = "ecs",
-                    Namespace = "default"
+                    Namespace = "634cf98aa5b1455a52949d33"
                 };
 
                 IsSuccessRespDto dto = await managementClient.DeleteResource(deleteResourceDto);
@@ -207,6 +212,11 @@ namespace Authing.CSharp.SDK.Framework.Test
             }
         }
 
+        /// <summary>
+        /// 2022-10-19 测试通过
+        /// 批量删除资源
+        /// </summary>
+        /// <returns></returns>
         [Test]
         public async Task DeleteResourceBatchTest()
         {
@@ -215,8 +225,8 @@ namespace Authing.CSharp.SDK.Framework.Test
 
                 DeleteResourcesBatchDto deleteResourcesBatchDto = new DeleteResourcesBatchDto()
                 {
-                    CodeList = new List<string> { "code1", "code2" },
-                    Namespace = "default"
+                    CodeList = new List<string> { "ecs1", "ecs2" },
+                    Namespace = "634cf98aa5b1455a52949d33"
                 };
 
                 IsSuccessRespDto dto = await managementClient.DeleteResourcesBatch(deleteResourcesBatchDto);
@@ -225,6 +235,11 @@ namespace Authing.CSharp.SDK.Framework.Test
             }
         }
 
+        /// <summary>
+        /// 2022-10-19 测试通过
+        /// 创建权限分组
+        /// </summary>
+        /// <returns></returns>
         [Test]
         public async Task CreateNameSpaceTest()
         {
@@ -243,6 +258,11 @@ namespace Authing.CSharp.SDK.Framework.Test
             }
         }
 
+        /// <summary>
+        /// 2022-10-19 测试通过
+        /// 批量创建权限分组
+        /// </summary>
+        /// <returns></returns>
         [Test]
         public async Task CreateNameSpaceBatchTest()
         {
@@ -254,7 +274,13 @@ namespace Authing.CSharp.SDK.Framework.Test
                     {
                         new CreateNamespacesBatchItemDto()
                             {
-                                Code = "my-namespace",
+                                Code = "my-namespace1",
+                                Name = "我的权限分组",
+                                Description = "我的权限分组描述"
+                            },
+                          new CreateNamespacesBatchItemDto()
+                            {
+                                Code = "my-namespace2",
                                 Name = "我的权限分组",
                                 Description = "我的权限分组描述"
                             }
@@ -267,22 +293,31 @@ namespace Authing.CSharp.SDK.Framework.Test
             }
         }
 
+        /// <summary>
+        /// 2022-10-19 测试通过
+        /// 获取权限分组
+        /// </summary>
+        /// <returns></returns>
         [Test]
         public async Task GetNameSpaceTest()
         {
             using (CancellationTokenSource cts = new CancellationTokenSource())
             {
 
-                NamespaceRespDto dto = await managementClient.GetNamespace(new GetNamespaceDto { Code="default"});
+                NamespaceRespDto dto = await managementClient.GetNamespace(new GetNamespaceDto { Code= "my-namespace" });
 
-                Assert.IsTrue(dto.Data.Code == "default");
+                Assert.IsTrue(dto.Data.Code == "my-namespace");
             }
         }
 
+        /// <summary>
+        /// 2022-10-19 测试成功
+        /// 批量获取权限分组
+        /// </summary>
+        /// <returns></returns>
         [Test]
         public async Task GetNameSpaceBatchTest()
         {
-
             using (CancellationTokenSource cts = new CancellationTokenSource())
             {
                 NamespaceListRespDto dto = await managementClient.GetNamespacesBatch(new GetNamespacesBatchDto { CodeList= string.Join(",", new List<string> { "default", "system" }) });
@@ -291,6 +326,11 @@ namespace Authing.CSharp.SDK.Framework.Test
             }
         }
 
+        /// <summary>
+        /// 2022-10-19 测试成功
+        /// 更新权限分组
+        /// </summary>
+        /// <returns></returns>
         [Test]
         public async Task UpdateNameSpaceTest()
         {
@@ -311,6 +351,11 @@ namespace Authing.CSharp.SDK.Framework.Test
             }
         }
 
+        /// <summary>
+        /// 2022-10-19 测试成功
+        /// 删除权限分组
+        /// </summary>
+        /// <returns></returns>
         [Test]
         public async Task DeleteNameSpaceTest()
         {
@@ -327,6 +372,11 @@ namespace Authing.CSharp.SDK.Framework.Test
             }
         }
 
+        /// <summary>
+        /// 2022-10-19 测试失败
+        /// 批量删除权限分组
+        /// </summary>
+        /// <returns></returns>
         [Test]
         public async Task DeleteNameSpaceBatchTest()
         {
@@ -335,7 +385,7 @@ namespace Authing.CSharp.SDK.Framework.Test
 
                 DeleteNamespacesBatchDto deleteNamespacesBatchDto = new DeleteNamespacesBatchDto()
                 {
-                    CodeList = new List<string> { "my-new-namespace" }
+                    CodeList = new List<string> { "my-namespace1", "my-namespace2" }
                 };
 
                 IsSuccessRespDto dto = await managementClient.DeleteNamespacesBatch(deleteNamespacesBatchDto);
@@ -344,27 +394,32 @@ namespace Authing.CSharp.SDK.Framework.Test
             }
         }
 
+        /// <summary>
+        /// 2022-10-19 测试成功
+        /// 授权资源
+        /// </summary>
+        /// <returns></returns>
         [Test]
         public async Task AuthorizedResourcesTest()
         {
             using (CancellationTokenSource cts = new CancellationTokenSource())
             {
                 List<ResourceAction> resourceActions = new List<ResourceAction>();
-                resourceActions.Add(new ResourceAction { Name = "ecs:start", Description = "启动 ECS 服务器" });
-                resourceActions.Add(new ResourceAction { Name = "ecs:stop", Description = "启动 ECS 服务器" });
+                resourceActions.Add(new ResourceAction { Name = "start", Description = "启动 ECS 服务器" });
+                resourceActions.Add(new ResourceAction { Name = "stop", Description = "启动 ECS 服务器" });
 
                 List<AuthorizeResourceItem> items = new List<AuthorizeResourceItem>();
 
                 List<ResourceItemDto> resourceItemDtos = new List<ResourceItemDto>();
-                resourceItemDtos.Add(new ResourceItemDto { Actions = new List<string> { "ecs:start", "ecs:stop" }, Code = "ecs", ResourceType = ResourceItemDto.resourceType.API });
+                resourceItemDtos.Add(new ResourceItemDto { Actions = new List<string> { "start", "stop" }, Code = "ecs", ResourceType = ResourceItemDto.resourceType.API });
 
 
 
-                items.Add(new AuthorizeResourceItem { TargetType = AuthorizeResourceItem.targetType.USER, TargetIdentifiers = new List<string> { "61c1866a342c23ec8a6431fe" }, Resources = resourceItemDtos });
+                items.Add(new AuthorizeResourceItem { TargetType = AuthorizeResourceItem.targetType.USER, TargetIdentifiers = new List<string> { "634fc0a6ebc13285a2ac8dd2" }, Resources = resourceItemDtos });
 
                 AuthorizeResourcesDto authorizedResourceDto = new AuthorizeResourcesDto()
                 {
-                    Namespace = "default",
+                    Namespace = "634cf98aa5b1455a52949d33",
                     List = items
                 };
 
@@ -374,17 +429,27 @@ namespace Authing.CSharp.SDK.Framework.Test
             }
         }
 
+        /// <summary>
+        /// 2022-10-19 测试成功
+        /// 获取授权资源
+        /// </summary>
+        /// <returns></returns>
         [Test]
         public async Task GetAuthorizedResourcesTest()
         {
             using (CancellationTokenSource cts = new CancellationTokenSource())
             {
-                AuthorizedResourcePaginatedRespDto dto = await managementClient.GetAuthorizedResources(new GetAuthorizedResourcesDto { Namespace="default",ResourceType="USER",TargetType="API",ResourceList= "61c1866a342c23ec8a6431fe" });
+                AuthorizedResourcePaginatedRespDto dto = await managementClient.GetAuthorizedResources(new GetAuthorizedResourcesDto { TargetIdentifier= "634fc0a6ebc13285a2ac8dd2", Namespace= "634cf98aa5b1455a52949d33", ResourceType="API",TargetType="USER" });
 
                 Assert.IsTrue(dto.Data.List.Count > 0);
             }
         }
 
+        /// <summary>
+        /// 2022-10-19 测试成功
+        /// 判断用户是否对某个资源有权限
+        /// </summary>
+        /// <returns></returns>
         [Test]
         public async Task IsActionAllowedTest()
         {
@@ -394,10 +459,10 @@ namespace Authing.CSharp.SDK.Framework.Test
 
                 IsActionAllowedDto isActionAllowedDto = new IsActionAllowedDto
                 {
-                    Action = "ecs:start",
-                    Namespace = "default",
+                    Action = "start",
+                    Namespace = "634cf98aa5b1455a52949d33",
                     Resource = "ecs:*",
-                    UserId = "62df936ca8070667353d3942"
+                    UserId = "634fc0a6ebc13285a2ac8dd2"
                 };
 
                 var dto = await managementClient.IsActionAllowed(isActionAllowedDto);
@@ -407,25 +472,28 @@ namespace Authing.CSharp.SDK.Framework.Test
         }
 
         /// <summary>
-        /// Todo
+        /// 2022-10-19 测试成功
+        /// 关联/取消资源到租户
         /// </summary>
         /// <returns></returns>
         [Test]
         public async Task AssociationResourcesTest()
         {
-            var dto = await managementClient.AssociationResources(new AssociationResourceDto { });
-            Assert.NotNull(dto);
+            var dto = await managementClient.AssociationResources(new AssociationResourceDto { AppId= "634cf98aa5b1455a52949d33",TenantId= "634fe4ef9369a20077044c2d",Code="ecs" });
+            Assert.NotNull(dto.Data.Success);
         }
 
         /// <summary>
-        /// Todo
+        /// 2022-10-19 测试成功
+        /// 获取资源被授权的主体
         /// </summary>
         /// <returns></returns>
+        [Test]
         public async Task GetAuthorizedTargetsTest()
         {
-            var dto = await managementClient.GetResourceAuthorizedTargets(new  GetResourceAuthorizedTargetsDto { });
+            var dto = await managementClient.GetResourceAuthorizedTargets(new  GetResourceAuthorizedTargetsDto { Resource="ecs",Namespace= "634cf98aa5b1455a52949d33",Limit=50,Page=1,TargetType=GetResourceAuthorizedTargetsDto.targetType.USER });
 
-            Assert.NotNull(dto);
+            Assert.NotNull(dto.Data.TotalCount>0);
         }
     }
 }
