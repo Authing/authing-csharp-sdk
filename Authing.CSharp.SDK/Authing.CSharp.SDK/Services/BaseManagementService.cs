@@ -64,7 +64,7 @@ namespace Authing.CSharp.SDK.Services
 
         protected async Task<string> Request(string method, string apiPath)
         {
-            CheckToken(method, apiPath, null);
+            CheckToken(method, apiPath,new Dictionary<string, string> { });
 
             string httpResponse = await m_HttpService.GetAsync(m_BaseUrl, apiPath, null, default);
             return httpResponse;
@@ -290,13 +290,30 @@ Node.js(v14.18.0), authing-node-sdk: 0.0.19
 
             foreach (var e in sortedDictionary)
             {
-                queryBuilder.Append(e.Key);
-                if (null != e.Value)
+                if (e.Value.Contains(","))
                 {
-                    queryBuilder.Append("=").Append(e.Value);
+                    foreach (var item in e.Value.Split(','))
+                    {
+                        queryBuilder.Append(e.Key);
+                        if (!string.IsNullOrWhiteSpace(item))
+                        {
+                            queryBuilder.Append("=").Append(item);
+                        }
+                        queryBuilder.Append(QUERY_SEPARATOR);
+                    }
+                }
+                else
+                {
+                    queryBuilder.Append(e.Key);
+                    if (null != e.Value)
+                    {
+                        queryBuilder.Append("=").Append(e.Value);
+                    }
+
+
+                    queryBuilder.Append(QUERY_SEPARATOR);
                 }
 
-                queryBuilder.Append(QUERY_SEPARATOR);
             }
 
             var querystring = queryBuilder.ToString();

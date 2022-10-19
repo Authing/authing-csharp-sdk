@@ -265,6 +265,17 @@ namespace Authing.CSharp.SDK.Utils
                         continue;
                     }
 
+                    if (x.Value.Contains(','))
+                    {
+                        foreach (var item in x.Value.Split(','))
+                        {
+                            result += $"{connector}{x.Key}={item}";
+                            connector = "&";
+                        }
+                        continue;
+                    }
+
+
                     result += $"{connector}{x.Key}={x.Value}";
                     connector = "&";
                 }

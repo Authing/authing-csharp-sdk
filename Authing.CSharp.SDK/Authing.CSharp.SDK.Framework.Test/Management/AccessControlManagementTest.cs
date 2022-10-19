@@ -11,6 +11,11 @@ namespace Authing.CSharp.SDK.Framework.Test
 {
     class AccessControlManagementTest : ManagementClientBaseTest
     {
+        /// <summary>
+        /// 2022-10-19 测试通过
+        /// 创建资源
+        /// </summary>
+        /// <returns></returns>
         [Test]
         public async Task CreateResourceTest()
         {
@@ -35,7 +40,7 @@ namespace Authing.CSharp.SDK.Framework.Test
                         }
                     },
                     ApiIdentifier = "https://my-awesome-api.com/api",
-                    Namespace = "qidongtest"
+                    Namespace = "634cf98aa5b1455a52949d33"
                 };
 
                 ResourceRespDto dto = await managementClient.CreateResource(createResourceDto);
@@ -44,6 +49,11 @@ namespace Authing.CSharp.SDK.Framework.Test
             }
         }
 
+        /// <summary>
+        /// 2022-10-19 测试通过
+        /// 批量创建资源
+        /// </summary>
+        /// <returns></returns>
         [Test]
         public async Task CreateResourceBatchTest()
         {
@@ -55,7 +65,27 @@ namespace Authing.CSharp.SDK.Framework.Test
                     {
                         new CreateResourceBatchItemDto
                         {
-                            Code = "ecs" ,
+                            Code = "ecs1" ,
+                            Description = "服务器" ,
+                            Type = CreateResourceBatchItemDto.type.API,
+                            Actions = new List<ResourceAction>
+                            {
+                                new ResourceAction
+                                {
+                                    Name = "ecs:start",
+                                    Description = "启动 ECS 服务器"
+                                } ,
+                                 new ResourceAction
+                                {
+                                    Name = "ecs:stop",
+                                    Description = "启动 ECS 服务器"
+                                }
+                            },
+                            ApiIdentifier = "https://my-awesome-api.com/api",
+                        },
+                         new CreateResourceBatchItemDto
+                        {
+                            Code = "ecs2" ,
                             Description = "服务器" ,
                             Type = CreateResourceBatchItemDto.type.API,
                             Actions = new List<ResourceAction>
@@ -74,7 +104,7 @@ namespace Authing.CSharp.SDK.Framework.Test
                             ApiIdentifier = "https://my-awesome-api.com/api",
                         }
                     },
-                    Namespace = "default"
+                    Namespace = "634cf98aa5b1455a52949d33"
                 };
 
                 IsSuccessRespDto dto = await managementClient.CreateResourcesBatch(createResourcesBatchDto);
@@ -83,12 +113,17 @@ namespace Authing.CSharp.SDK.Framework.Test
             }
         }
 
+        /// <summary>
+        /// 2022-10-19 测试通过
+        /// 获取资源详情
+        /// </summary>
+        /// <returns></returns>
         [Test]
         public async Task GetResourceTest()
         {
             using (CancellationTokenSource cts = new CancellationTokenSource())
             {
-                ResourceRespDto dto = await managementClient.GetResource(new GetResourceDto { Code = "order", Namespace = "qidongtest" });
+                ResourceRespDto dto = await managementClient.GetResource(new GetResourceDto { Code = "order", Namespace = "634cf98aa5b1455a52949d33" });
 
                 Assert.IsTrue(dto.Data.Code == "ecs");
             }
@@ -99,7 +134,7 @@ namespace Authing.CSharp.SDK.Framework.Test
         {
             using (CancellationTokenSource cts = new CancellationTokenSource())
             {
-                ResourceListRespDto dto = await managementClient.GetResourcesBatch(new GetResourcesBatchDto { CodeList = string.Join(",", new List<string> { "ecs", "ecs1", "ecs2" }), Namespace = "default" });
+                ResourceListRespDto dto = await managementClient.GetResourcesBatch(new GetResourcesBatchDto { CodeList = string.Join(",", new List<string> { "ecs"}), Namespace = "634cf98aa5b1455a52949d33" });
 
                 Assert.IsTrue(dto.Data.Count == 3);
             }
