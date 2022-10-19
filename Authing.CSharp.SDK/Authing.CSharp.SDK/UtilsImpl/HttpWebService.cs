@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Net.Cache;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -43,12 +44,15 @@ namespace Authing.CSharp.SDK.Utils
                 request.Proxy = null;
                 request.Timeout = this.timeOut;
 
-
                 SetWebRequestHeader(request, bearerToken);
 
                 WebResponse response = await request.GetResponseAsync().ConfigureAwait(false);
 
                 byte[] responseBytes = new byte[response.ContentLength];
+
+                //var temp = response.GetResponseStream();
+                //StreamReader sr = new StreamReader(temp, Encoding.UTF8);
+                //var res = sr.ReadToEnd();
 
                 await response.GetResponseStream().ReadAsync(responseBytes, 0, (int)response.ContentLength).ConfigureAwait(false);
 

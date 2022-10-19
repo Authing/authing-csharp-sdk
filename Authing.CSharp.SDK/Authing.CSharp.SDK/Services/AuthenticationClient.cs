@@ -1604,7 +1604,32 @@ namespace Authing.CSharp.SDK.Services
                     PhoneCountryCode = phoneCountryCode,
                     PassCode = passCode,
                 },
-                Options = option
+                Options = option,
+            };
+
+            return await SignUp(dto);
+        }
+
+        /// <summary>
+        /// 使用手机号 + 验证码注册
+        /// </summary>
+        /// <param name="email"></param>
+        /// <param name="password"></param>
+        /// <param name="option"></param>
+        /// <returns></returns>
+        public async Task<UserSingleRespDto> SignUpByPhoneCode(string phone, string passCode, string phoneCountryCode = null, SignupOptionsDto option = null,SignupProfileDto profile = null)
+        {
+            SignupDto dto = new SignupDto
+            {
+                Connection = SignupDto.connection.PASSCODE,
+                PassCodePayload = new SignUpByPassCodeDto
+                {
+                    Phone = phone,
+                    PhoneCountryCode = phoneCountryCode,
+                    PassCode = passCode,
+                },
+                Options = option,
+                Profile = profile
             };
 
             return await SignUp(dto);

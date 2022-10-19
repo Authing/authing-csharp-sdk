@@ -36,7 +36,7 @@ namespace Authing.CSharp.SDK.Framework.Test.AuthenticationClientTest
         }
 
         /// <summary>
-        /// 2022-10-18 测试不通过
+        /// 2022-10-18 测试通过
         /// 绑定 MFA
         /// </summary>
         /// <returns></returns>
@@ -52,13 +52,15 @@ namespace Authing.CSharp.SDK.Framework.Test.AuthenticationClientTest
                 }
             });
 
+            Assert.AreEqual(200,res.StatusCode);
+
             EnrollFactorDto param = new EnrollFactorDto
             {
                 EnrollmentToken = res.Data.EnrollmentToken,
                 FactorType = EnrollFactorDto.factorType.EMAIL,
                 EnrollmentData = new EnrollFactorEnrollmentDataDto()
                 {
-                    PassCode = "1308"
+                    PassCode = "2883"
                 }
             };
             var result = await client.EnrollFactor(param);
@@ -75,7 +77,7 @@ namespace Authing.CSharp.SDK.Framework.Test.AuthenticationClientTest
         {
 
             var lists = await client.ListEnrolledFactors();
-            var target = lists.Data.FirstOrDefault(i => i.FactorId.Contains("phone"));
+            var target = lists.Data.FirstOrDefault(i => i.FactorId.Contains("email"));
             var res = await client.ResetFactor(new RestFactorDto { FactorId = target.FactorId });
             Assert.IsTrue(res.StatusCode == 200);
         }
