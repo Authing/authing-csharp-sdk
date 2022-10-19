@@ -355,5 +355,27 @@ namespace Authing.CSharp.SDK.Framework.Test
                 Assert.True(dto.Data.Allowed);
             }
         }
+
+        /// <summary>
+        /// Todo
+        /// </summary>
+        /// <returns></returns>
+        [Test]
+        public async Task AssociationResourcesTest()
+        {
+            var dto = await managementClient.AssociationResources(new AssociationResourceDto { });
+            Assert.NotNull(dto);
+        }
+
+        /// <summary>
+        /// Todo
+        /// </summary>
+        /// <returns></returns>
+        public async Task GetAuthorizedTargetsTest()
+        {
+            var dto = await managementClient.GetAuthorizedTargets(new GetAuthorizedTargetsDto { });
+
+            Assert.NotNull(dto);
+        }
     }
 }

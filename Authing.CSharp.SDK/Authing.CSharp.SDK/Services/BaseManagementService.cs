@@ -48,22 +48,9 @@ namespace Authing.CSharp.SDK.Services
         }
 
 
-        protected async Task<string> Request(string method, string apiPath, Dictionary<string, object> pairs, bool withToken = true)
+        protected async Task<string> GetAsync<T>(string method, string apiPath, T dto)
         {
-            Dictionary<string, string> dic = new Dictionary<string, string>();
-
-            foreach (var item in pairs)
-            {
-                if (item.Value == null || string.IsNullOrWhiteSpace(item.ToString()))
-                {
-                    continue;
-                }
-                else
-                {
-                    dic.Add(item.Key, m_JsonService.SerializeObject(item.Value));
-                }
-            }
-
+            Dictionary<string, string> dic = m_JsonService.DeserializeObject<Dictionary<string, string>>(m_JsonService.SerializeObjectIngoreNull(dto));
 
             CheckToken(method, apiPath, dic);
 
@@ -71,22 +58,47 @@ namespace Authing.CSharp.SDK.Services
             return httpResponse;
         }
 
-        protected async Task<string> Request(string method, string apiPath, bool withToken = true)
+        protected async Task<string> Request(string method, string apiPath)
         {
-            return "";
+            CheckToken(method, apiPath, null);
+
+            string httpResponse = await m_HttpService.GetAsync(m_BaseUrl, apiPath, null,default);
+            return httpResponse;
         }
 
-        protected async Task<string> Request<T>(string method, string apiPath, T dto, bool withToken = true)
+        protected async Task<string> Request<T>(string method, string apiPath, T dto)
+        {
+            if (method == "POST")
+            {
+                return await PostAsync(method, apiPath, dto);
+            }
+            else
+            {
+                return await GetAsync(method, apiPath, dto);
+            }
+        }
+
+        protected async Task<string> PostAsync<T>(string method, string apiPath, T dto)
         {
             Dictionary<string, object> dic = m_JsonService.DeserializeObject<Dictionary<string, object>>(m_JsonService.SerializeObjectIngoreNull(dto));
 
-            var stringDic = dic.ToDictionary(p => p.Key, p => m_JsonService.SerializeObject(p.Value));
+            var stringDic = dic.ToDictionary(p => p.Key, p => 
+            {
+                if (p.Value.GetType().Name == "String")
+                {
+                    return p.Value.ToString();
+                }
+                else
+                {
+                    return m_JsonService.SerializeObject(p.Value);
+                }
+            });
 
 
             CheckToken(method, apiPath, stringDic);
 
 
-            string json = m_JsonService.SerializeObjectIngoreNull(dto);
+            string json = m_JsonService.SerializeObjectIngoreNull(dic);
 
             string httpResponse = await m_HttpService.PostAsync(m_BaseUrl, apiPath, json, default).ConfigureAwait(false);
             return httpResponse;

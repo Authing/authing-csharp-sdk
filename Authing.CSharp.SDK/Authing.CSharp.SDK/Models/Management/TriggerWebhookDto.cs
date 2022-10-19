@@ -8,27 +8,27 @@ using System.Threading.Tasks;
 using System.Runtime.Serialization;
 using Authing.CSharp.SDK.Models.Management;
 
-namespace Authing.CSharp.SDK.Models.Management
+   namespace Authing.CSharp.SDK.Models.Management
+{
+/// <summary>
+/// TriggerWebhookDto 的模型
+/// </summary>
+public partial class TriggerWebhookDto
 {
     /// <summary>
-    /// TriggerWebhookDto 的模型
+    ///  Webhook ID
     /// </summary>
-    public partial class TriggerWebhookDto
-    {
-        /// <summary>
-        ///  Webhook ID
-        /// </summary>
-        [JsonProperty("webhookId")]
-        public string WebhookId { get; set; }
-        /// <summary>
-        ///  请求头
-        /// </summary>
-        [JsonProperty("requestHeaders")]
-        public object RequestHeaders { get; set; }
-        /// <summary>
-        ///  请求体
-        /// </summary>
-        [JsonProperty("requestBody")]
-        public object RequestBody { get; set; }
-    }
+    [JsonProperty("webhookId")]
+    public string  WebhookId {get;set;}
+    /// <summary>
+    ///  请求头
+    /// </summary>
+    [JsonProperty("requestHeaders")]
+    public object  RequestHeaders {get;set;}
+    /// <summary>
+    ///  请求体
+    /// </summary>
+    [JsonProperty("requestBody")]
+    public object  RequestBody {get;set;}
+}
 }

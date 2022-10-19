@@ -8,17 +8,17 @@ using System.Threading.Tasks;
 using System.Runtime.Serialization;
 using Authing.CSharp.SDK.Models.Management;
 
-namespace Authing.CSharp.SDK.Models.Management
+   namespace Authing.CSharp.SDK.Models.Management
+{
+/// <summary>
+/// CreateNamespacesBatchDto 的模型
+/// </summary>
+public partial class CreateNamespacesBatchDto
 {
     /// <summary>
-    /// CreateNamespacesBatchDto 的模型
+    ///  权限分组列表
     /// </summary>
-    public partial class CreateNamespacesBatchDto
-    {
-        /// <summary>
-        ///  权限分组列表
-        /// </summary>
-        [JsonProperty("list")]
-        public List<CreateNamespacesBatchItemDto> List { get; set; }
-    }
+    [JsonProperty("list")]
+    public List<CreateNamespacesBatchItemDto>  List {get;set;}
+}
 }

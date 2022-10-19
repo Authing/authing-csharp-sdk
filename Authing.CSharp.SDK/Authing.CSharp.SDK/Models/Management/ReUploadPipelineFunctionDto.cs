@@ -8,17 +8,17 @@ using System.Threading.Tasks;
 using System.Runtime.Serialization;
 using Authing.CSharp.SDK.Models.Management;
 
-namespace Authing.CSharp.SDK.Models.Management
+   namespace Authing.CSharp.SDK.Models.Management
+{
+/// <summary>
+/// ReUploadPipelineFunctionDto 的模型
+/// </summary>
+public partial class ReUploadPipelineFunctionDto
 {
     /// <summary>
-    /// ReUploadPipelineFunctionDto 的模型
+    ///  Pipeline 函数 ID
     /// </summary>
-    public partial class ReUploadPipelineFunctionDto
-    {
-        /// <summary>
-        ///  Pipeline 函数 ID
-        /// </summary>
-        [JsonProperty("funcId")]
-        public string FuncId { get; set; }
-    }
+    [JsonProperty("funcId")]
+    public string  FuncId {get;set;}
+}
 }

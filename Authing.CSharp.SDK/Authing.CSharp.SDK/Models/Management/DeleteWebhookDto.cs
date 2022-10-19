@@ -8,17 +8,17 @@ using System.Threading.Tasks;
 using System.Runtime.Serialization;
 using Authing.CSharp.SDK.Models.Management;
 
-namespace Authing.CSharp.SDK.Models.Management
+   namespace Authing.CSharp.SDK.Models.Management
+{
+/// <summary>
+/// DeleteWebhookDto 的模型
+/// </summary>
+public partial class DeleteWebhookDto
 {
     /// <summary>
-    /// DeleteWebhookDto 的模型
+    ///  webhookId 数组
     /// </summary>
-    public partial class DeleteWebhookDto
-    {
-        /// <summary>
-        ///  webhookId 数组
-        /// </summary>
-        [JsonProperty("webhookIds")]
-        public List<string> WebhookIds { get; set; }
-    }
+    [JsonProperty("webhookIds")]
+    public List<string>  WebhookIds {get;set;}
+}
 }

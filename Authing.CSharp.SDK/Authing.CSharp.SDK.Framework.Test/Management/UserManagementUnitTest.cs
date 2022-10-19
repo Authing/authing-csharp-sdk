@@ -15,7 +15,7 @@ namespace Authing.CSharp.SDK.Framework.Test
     class UserManagementUnitTest : ManagementClientBaseTest
     {
         /// <summary>
-        /// 2022-10-18 测试通过
+        /// 2022-10-18 测试完成
         /// </summary>
         /// <returns></returns>
         [Test]
@@ -23,31 +23,31 @@ namespace Authing.CSharp.SDK.Framework.Test
         {
             using (CancellationTokenSource cts = new CancellationTokenSource())
             {
-                string userIds = "634514b1368152ac89f207e6";
+                string userIds = "634e4a4e0cc273a3f9c4543e,634e4a42a27868cd8bfc54cd";
 
-                UserListRespDto userListRespDto = managementClient.GetUserBatch(new GetUserBatchDto { UserIds=userIds}).Result;
+                UserListRespDto userListRespDto = managementClient.GetUserBatch(new GetUserBatchDto { UserIds = userIds }).Result;
 
-                Assert.IsTrue(userListRespDto.Data.Count == 2);
+                Assert.IsTrue(userListRespDto.Data.Count > 0);
             }
         }
 
         /// <summary>
-        /// 2022-10-18 测试通过
+        /// 2022-10-18 测试完成
         /// </summary>
         /// <returns></returns>
         [Test]
         public void ListUsersTest()
         {
             using (CancellationTokenSource cts = new CancellationTokenSource())
-             {
-                UserPaginatedRespDto userPaginatedRespDto = managementClient.ListUsers(new ListUsersRequestDto { Options=new ListUsersOptionsDto { Pagination=new PaginationDto { Limit=10,Page=1} } }).Result;
+            {
+                UserPaginatedRespDto userPaginatedRespDto = managementClient.ListUsers(new ListUsersRequestDto { }).Result;
 
                 Assert.IsTrue(userPaginatedRespDto.Data.TotalCount > 0);
             }
         }
 
         /// <summary>
-        /// 2022-10-18 测试通过
+        /// 2022-10-18 测试完成
         /// </summary>
         /// <returns></returns>
         [Test]
@@ -57,14 +57,14 @@ namespace Authing.CSharp.SDK.Framework.Test
             {
                 string userId = "6218475c2373a54088a786b2";
 
-                IdentityListRespDto identityListRespDto = managementClient.GetUserIdentities(new GetUserIdentitiesDto { UserId=userId}).Result;
+                IdentityListRespDto identityListRespDto = managementClient.GetUserIdentities(new GetUserIdentitiesDto { UserId = userId }).Result;
 
                 Assert.IsTrue(identityListRespDto.Data == null);
             }
         }
 
         /// <summary>
-        /// 2022-10-18 测试通过
+        /// 2022-10-18 测试完成
         /// </summary>
         /// <returns></returns>
         [Test]
@@ -73,15 +73,15 @@ namespace Authing.CSharp.SDK.Framework.Test
             using (CancellationTokenSource cts = new CancellationTokenSource())
             {
 
-                RolePaginatedRespDto rolePaginatedRespDto = managementClient.GetUserRoles(new GetUserRolesDto { UserId=UserOneId}).Result;
+                RolePaginatedRespDto rolePaginatedRespDto = managementClient.GetUserRoles(new GetUserRolesDto { UserId = "634e4a4e0cc273a3f9c4543e", Namespace = "634cf98aa5b1455a52949d33" }).Result;
 
                 Assert.IsTrue(rolePaginatedRespDto.Data.List.Count > 0);
             }
         }
 
         /// <summary>
-        /// 2022-10-18 测试未通过
-        /// 没有
+        /// 2022-10-18 测试未完成
+        /// TODO:用户没有主体信息
         /// </summary>
         /// <returns></returns>
         [Test]
@@ -89,16 +89,16 @@ namespace Authing.CSharp.SDK.Framework.Test
         {
             using (CancellationTokenSource cts = new CancellationTokenSource())
             {
-                string userId = "61c17bd024917805ae85e397 ";
+                string userId = "634e4a4e0cc273a3f9c4543e ";
 
-                PrincipalAuthenticationInfoPaginatedRespDto principalAuthenticationInfoPaginatedRespDto = managementClient.GetUserPrincipalAuthenticationInfo(new GetUserPrincipalAuthenticationInfoDto { UserId=userId}).Result;
+                PrincipalAuthenticationInfoPaginatedRespDto principalAuthenticationInfoPaginatedRespDto = managementClient.GetUserPrincipalAuthenticationInfo(new GetUserPrincipalAuthenticationInfoDto { UserId = userId, UserIdType = "user_id" }).Result;
 
                 Assert.IsTrue(principalAuthenticationInfoPaginatedRespDto.Data.TotalCount == 0);
             }
         }
 
         /// <summary>
-        /// 2022-10-18 测试通过
+        /// 2022-10-18 测试完成
         /// </summary>
         /// <returns></returns>
         [Test]
@@ -118,7 +118,7 @@ namespace Authing.CSharp.SDK.Framework.Test
         }
 
         /// <summary>
-        /// 2022-10-18 测试通过
+        /// 2022-10-18 测试完成
         /// </summary>
         /// <returns></returns>
         [Test]
@@ -128,14 +128,14 @@ namespace Authing.CSharp.SDK.Framework.Test
             {
                 string UserId = UserOneId;
 
-                UserDepartmentPaginatedRespDto userDepartmentPaginatedRespDto = managementClient.GetUserDepartments(new GetUserDepartmentsDto { UserId=UserId}).Result;
+                UserDepartmentPaginatedRespDto userDepartmentPaginatedRespDto = managementClient.GetUserDepartments(new GetUserDepartmentsDto { UserId = UserId }).Result;
 
                 Assert.IsTrue(userDepartmentPaginatedRespDto.Data.List.Count > 0);
             }
         }
 
         /// <summary>
-        /// 2022-10-18 测试通过
+        /// 2022-10-18 测试完成
         /// </summary>
         /// <returns></returns>
         [Test]
@@ -145,10 +145,10 @@ namespace Authing.CSharp.SDK.Framework.Test
             {
                 SetUserDepartmentsDto setUserDepartmentDto = new SetUserDepartmentsDto()
                 {
-                    UserId = UserOneId,
+                    UserId = "634e4a4e0cc273a3f9c4543e",
                     Departments = new List<SetUserDepartmentDto>()
                     {
-                        new SetUserDepartmentDto{ DepartmentId= "627a36de359b4f96f398af36",
+                        new SetUserDepartmentDto{ DepartmentId= "634e4e7fed93f436d0493528",
                     IsLeader=true,
                     IsMainDepartment=false}
                     }
@@ -161,7 +161,7 @@ namespace Authing.CSharp.SDK.Framework.Test
         }
 
         /// <summary>
-        /// 2022-10-18 测试通过
+        /// 2022-10-18 测试完成
         /// </summary>
         /// <returns></returns>
         [Test]
@@ -171,14 +171,14 @@ namespace Authing.CSharp.SDK.Framework.Test
             {
                 string UserId = UserOneId;
 
-                GroupPaginatedRespDto groupPaginatedRespDto = managementClient.GetUserGroups(new GetUserGroupsDto { UserId=UserId}).Result;
+                GroupPaginatedRespDto groupPaginatedRespDto = managementClient.GetUserGroups(new GetUserGroupsDto { UserId = "634e4a4e0cc273a3f9c4543e" }).Result;
 
                 Assert.IsTrue(groupPaginatedRespDto.Data.List.Count > 0);
             }
         }
 
         /// <summary>
-        /// 2022-10-18 测试通过
+        /// 2022-10-18 测试完成
         /// </summary>
         /// <returns></returns>
         [Test]
@@ -188,7 +188,7 @@ namespace Authing.CSharp.SDK.Framework.Test
             {
                 DeleteUsersBatchDto dto = new DeleteUsersBatchDto()
                 {
-                    UserIds = new List<string> { "6298544bff41baab480a6f40" }
+                    UserIds = new List<string> { "634e4a4e0cc273a3f9c4543e", "634e4a42a27868cd8bfc54cd" }
                 };
 
                 IsSuccessRespDto isSuccessDto = managementClient.DeleteUsersBatch(dto).Result;
@@ -197,10 +197,6 @@ namespace Authing.CSharp.SDK.Framework.Test
             }
         }
 
-        /// <summary>
-        /// 2022-10-18 测试通过
-        /// </summary>
-        /// <returns></returns>
         [Test]
         public void GetUserMfaInfo()
         {
@@ -208,14 +204,14 @@ namespace Authing.CSharp.SDK.Framework.Test
             {
                 string UserId = UserOneId;
 
-                UserMfaSingleRespDto userMfaSingleRespDto = managementClient.GetUserMfaInfo(new GetUserMfaInfoDto { UserId=UserId}).Result;
+                UserMfaSingleRespDto userMfaSingleRespDto = managementClient.GetUserMfaInfo(new GetUserMfaInfoDto { UserId = UserId }).Result;
 
                 Assert.IsTrue(userMfaSingleRespDto.Data.FaceMfaStatus == "disabled");
             }
         }
 
         /// <summary>
-        /// 2022-10-18 测试通过
+        /// 2022-10-18 测试完成
         /// </summary>
         /// <returns></returns>
         [Test]
@@ -230,7 +226,7 @@ namespace Authing.CSharp.SDK.Framework.Test
         }
 
         /// <summary>
-        /// 2022-10-18 测试通过
+        /// 2022-10-18 测试完成
         /// </summary>
         /// <returns></returns>
         [Test]
@@ -240,8 +236,8 @@ namespace Authing.CSharp.SDK.Framework.Test
             {
                 KickUsersDto kickUsersDto = new KickUsersDto()
                 {
-                    AppIds = new List<string> { "6215dd9277d6ef55dfab41f8" },
-                    UserId = UserOneId
+                    AppIds = new List<string> { "634e5637ea7c7e0e817ddfc7" },
+                    UserId = "634e53bc7e8639080058c65a"
                 };
 
                 IsSuccessRespDto userSingleRespDto = managementClient.KickUsers(kickUsersDto).Result;
@@ -251,7 +247,7 @@ namespace Authing.CSharp.SDK.Framework.Test
         }
 
         /// <summary>
-        /// 2022-10-18 测试通过
+        /// 2022-10-18 测试完成
         /// </summary>
         /// <returns></returns>
         [Test]
@@ -261,7 +257,7 @@ namespace Authing.CSharp.SDK.Framework.Test
             {
                 IsUserExistsReqDto dto = new IsUserExistsReqDto()
                 {
-                    Username = "13348926753"
+                    Username = "test"
                 };
 
                 IsUserExistsRespDto userSingleRespDto = managementClient.IsUserExists(dto).Result;
@@ -271,7 +267,7 @@ namespace Authing.CSharp.SDK.Framework.Test
         }
 
         /// <summary>
-        /// 2022-10-18 测试通过
+        /// 2022-10-18 测试完成
         /// </summary>
         /// <returns></returns>
         [Test]
@@ -295,7 +291,7 @@ namespace Authing.CSharp.SDK.Framework.Test
         }
 
         /// <summary>
-        /// 2022-10-18 测试通过
+        /// 2022-10-18 测试完成
         /// </summary>
         /// <returns></returns>
         [Test]
@@ -331,7 +327,7 @@ namespace Authing.CSharp.SDK.Framework.Test
         }
 
         /// <summary>
-        /// 2022-10-18 测试通过
+        /// 2022-10-18 测试完成
         /// </summary>
         /// <returns></returns>
         [Test]
@@ -341,8 +337,9 @@ namespace Authing.CSharp.SDK.Framework.Test
             {
                 UpdateUserReqDto dto = new UpdateUserReqDto()
                 {
-                    UserId = UserOneId,
-                    Name = "qidong"
+                    UserId = "634e53bc7e8639080058c65a",
+                    Name = "qidong",
+                    Status = UpdateUserReqDto.status.ACTIVATED
                 };
 
 
@@ -354,7 +351,7 @@ namespace Authing.CSharp.SDK.Framework.Test
         }
 
         /// <summary>
-        /// 2022-10-18 测试通过
+        /// 2022-10-18 测试完成
         /// </summary>
         /// <returns></returns>
         [Test]
@@ -362,16 +359,16 @@ namespace Authing.CSharp.SDK.Framework.Test
         {
             using (CancellationTokenSource cts = new CancellationTokenSource())
             {
-                string UserId = UserOneId;
+                string UserId = "634e53bc7e8639080058c65a";
 
-                AppListRespDto appListResp = managementClient.GetUserAccessibleApps(new GetUserAccessibleAppsDto { UserId=UserId}).Result;
+                AppListRespDto appListResp = managementClient.GetUserAccessibleApps(new GetUserAccessibleAppsDto { UserId = UserId }).Result;
 
                 Assert.IsTrue(appListResp.Data.Count > 0);
             }
         }
 
         /// <summary>
-        /// 2022-10-18 测试通过
+        /// 2022-10-18 测试完成
         /// </summary>
         /// <returns></returns>
         [Test]
@@ -379,16 +376,16 @@ namespace Authing.CSharp.SDK.Framework.Test
         {
             using (CancellationTokenSource cts = new CancellationTokenSource())
             {
-                string UserId = UserOneId;
+                string UserId = "634e53bc7e8639080058c65a";
 
-                AppListRespDto appListResp = managementClient.GetUserAuthorizedApps(new GetUserAuthorizedAppsDto { UserId=UserId}).Result;
+                AppListRespDto appListResp = managementClient.GetUserAuthorizedApps(new GetUserAuthorizedAppsDto { UserId = UserId }).Result;
 
                 Assert.IsTrue(appListResp.Data.Count > 0);
             }
         }
 
         /// <summary>
-        /// 2022-10-18 测试通过
+        /// 2022-10-18 测试完成
         /// </summary>
         /// <returns></returns>
         [Test]
@@ -398,8 +395,8 @@ namespace Authing.CSharp.SDK.Framework.Test
             {
                 HasAnyRoleReqDto dto = new HasAnyRoleReqDto()
                 {
-                    UserId = UserOneId,
-                    Roles = new List<HasRoleRolesDto>()
+                    UserId = "634e53bc7e8639080058c65a",
+                    Roles = new List<HasRoleRolesDto>() { new HasRoleRolesDto { Code = "Guest", Namespace = "634cf98aa5b1455a52949d33" } }
                 };
 
                 HasAnyRoleRespDto hasAnyRole = managementClient.HasAnyRole(dto).Result;
@@ -409,7 +406,8 @@ namespace Authing.CSharp.SDK.Framework.Test
         }
 
         /// <summary>
-        /// 2022-10-18 测试未通过
+        /// 2022-10-18 测试失败
+        /// 获取到的数据为空
         /// </summary>
         /// <returns></returns>
         [Test]
@@ -417,19 +415,19 @@ namespace Authing.CSharp.SDK.Framework.Test
         {
             using (CancellationTokenSource cts = new CancellationTokenSource())
             {
-                string UserId = UserOneId;
+                string UserId = "634e53bc7e8639080058c65a";
 
                 long beginTime = dateTimeService.DateTimeToLongTimeStamp(DateTime.Parse("2020-12-12 00:00:00"));
                 long endTime = dateTimeService.DateTimeToLongTimeStamp(DateTime.Parse("2023-12-12 00:00:00"));
 
-                UserLoginHistoryPaginatedRespDto dto = managementClient.GetUserLoginHistory(new GetUserLoginHistoryDto { UserId=UserId}).Result;
+                UserLoginHistoryPaginatedRespDto dto = managementClient.GetUserLoginHistory(new GetUserLoginHistoryDto { UserId = UserId, Start = beginTime, End = endTime }).Result;
 
                 Assert.IsTrue(dto.Data.List.Count > 0);
             }
         }
 
         /// <summary>
-        /// 2022-10-18 测试通过
+        /// 2022-10-18 测试完成
         /// </summary>
         /// <returns></returns>
         [Test]
@@ -439,14 +437,14 @@ namespace Authing.CSharp.SDK.Framework.Test
             {
                 string UserId = UserOneId;
 
-                UserLoggedInAppsListRespDto dto = managementClient.GetUserLoggedinApps(new GetUserLoggedinAppsDto { UserId=UserId}).Result;
+                UserLoggedInAppsListRespDto dto = managementClient.GetUserLoggedinApps(new GetUserLoggedinAppsDto { UserId = "634e53bc7e8639080058c65a" }).Result;
 
                 Assert.IsTrue(dto.Data.Count > 0);
             }
         }
 
         /// <summary>
-        /// 2022-10-18 测试通过
+        /// 2022-10-18 测试完成
         /// </summary>
         /// <returns></returns>
         [Test]
@@ -456,14 +454,14 @@ namespace Authing.CSharp.SDK.Framework.Test
             {
                 string UserId = UserOneId;
 
-                AuthorizedResourcePaginatedRespDto dto = managementClient.GetUserAuthorizedResources(new GetUserAuthorizedResourcesDto { UserId=UserId,Namespace="default"}).Result;
+                AuthorizedResourcePaginatedRespDto dto = managementClient.GetUserAuthorizedResources(new GetUserAuthorizedResourcesDto { UserId = "634e53bc7e8639080058c65a", Namespace = "634cf98aa5b1455a52949d33" }).Result;
 
                 Assert.IsTrue(dto.Data.List.Count > 0);
             }
         }
 
         /// <summary>
-        /// 2022-10-18 测试通过
+        /// 2022-10-18 测试完成
         /// </summary>
         /// <returns></returns>
         [Test]
@@ -471,11 +469,13 @@ namespace Authing.CSharp.SDK.Framework.Test
         {
             using (CancellationTokenSource cts = new CancellationTokenSource())
             {
-               UserLoggedInIdentitiesRespDto dto= await managementClient.GetUserLoggedinIdentities(new GetUserLoggedInIdentitiesDto { UserId= "62df936ca8070667353d3942" });
+                UserLoggedInIdentitiesRespDto dto = await managementClient.GetUserLoggedinIdentities(new GetUserLoggedInIdentitiesDto { UserId = "634e53bc7e8639080058c65a" });
 
                 Assert.NotNull(dto.Data);
             }
         }
+
+
 
         /// <summary>
         /// TODO
@@ -517,6 +517,7 @@ namespace Authing.CSharp.SDK.Framework.Test
         {
             await managementClient.ImportOtp(new ImportOtpReqDto { });
         }
+
 
     }
 }

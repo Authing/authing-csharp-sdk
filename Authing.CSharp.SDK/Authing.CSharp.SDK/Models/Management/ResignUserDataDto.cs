@@ -8,17 +8,17 @@ using System.Threading.Tasks;
 using System.Runtime.Serialization;
 using Authing.CSharp.SDK.Models.Management;
 
-namespace Authing.CSharp.SDK.Models.Management
+   namespace Authing.CSharp.SDK.Models.Management
+{
+/// <summary>
+/// ResignUserDataDto 的模型
+/// </summary>
+public partial class ResignUserDataDto
 {
     /// <summary>
-    /// ResignUserDataDto 的模型
+    ///  操作是否成功
     /// </summary>
-    public partial class ResignUserDataDto
-    {
-        /// <summary>
-        ///  操作是否成功
-        /// </summary>
-        [JsonProperty("success")]
-        public bool Success { get; set; }
-    }
+    [JsonProperty("success")]
+    public bool  Success {get;set;}
+}
 }

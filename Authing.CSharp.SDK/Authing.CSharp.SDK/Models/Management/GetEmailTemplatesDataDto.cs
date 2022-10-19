@@ -8,22 +8,22 @@ using System.Threading.Tasks;
 using System.Runtime.Serialization;
 using Authing.CSharp.SDK.Models.Management;
 
-namespace Authing.CSharp.SDK.Models.Management
+   namespace Authing.CSharp.SDK.Models.Management
+{
+/// <summary>
+/// GetEmailTemplatesDataDto 的模型
+/// </summary>
+public partial class GetEmailTemplatesDataDto
 {
     /// <summary>
-    /// GetEmailTemplatesDataDto 的模型
+    ///  模版列表
     /// </summary>
-    public partial class GetEmailTemplatesDataDto
-    {
-        /// <summary>
-        ///  模版列表
-        /// </summary>
-        [JsonProperty("templates")]
-        public List<EmailTemplateDto> Templates { get; set; }
-        /// <summary>
-        ///  模版类型列表
-        /// </summary>
-        [JsonProperty("categories")]
-        public List<EmailTemplateCategoryDto> Categories { get; set; }
-    }
+    [JsonProperty("templates")]
+    public List<EmailTemplateDto>  Templates {get;set;}
+    /// <summary>
+    ///  模版类型列表
+    /// </summary>
+    [JsonProperty("categories")]
+    public List<EmailTemplateCategoryDto>  Categories {get;set;}
+}
 }

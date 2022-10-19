@@ -8,17 +8,17 @@ using System.Threading.Tasks;
 using System.Runtime.Serialization;
 using Authing.CSharp.SDK.Models.Management;
 
-namespace Authing.CSharp.SDK.Models.Management
+   namespace Authing.CSharp.SDK.Models.Management
+{
+/// <summary>
+/// CustomFieldI18n 的模型
+/// </summary>
+public partial class CustomFieldI18n
 {
     /// <summary>
-    /// CustomFieldI18n 的模型
+    ///  支持多语言的字段
     /// </summary>
-    public partial class CustomFieldI18n
-    {
-        /// <summary>
-        ///  支持多语言的字段
-        /// </summary>
-        [JsonProperty("label")]
-        public LangObject Label { get; set; }
-    }
+    [JsonProperty("label")]
+    public LangObject  Label {get;set;}
+}
 }

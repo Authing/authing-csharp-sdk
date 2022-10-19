@@ -8,12 +8,12 @@ using System.Threading.Tasks;
 using System.Runtime.Serialization;
 using Authing.CSharp.SDK.Models.Management;
 
-namespace Authing.CSharp.SDK.Models.Management
+   namespace Authing.CSharp.SDK.Models.Management
 {
-    /// <summary>
-    /// CasIdPConfig 的模型
-    /// </summary>
-    public partial class CasIdPConfig
-    {
-    }
+/// <summary>
+/// CasIdPConfig 的模型
+/// </summary>
+public partial class CasIdPConfig
+{
+}
 }

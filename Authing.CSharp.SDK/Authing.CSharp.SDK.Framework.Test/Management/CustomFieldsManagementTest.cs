@@ -8,11 +8,34 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading;
+using System.Threading.Tasks;
 
 namespace Authing.CSharp.SDK.Framework.Test
 {
     class CustomFieldsManagementTest: ManagementClientBaseTest
     {
+        /// <summary>
+        /// Todo
+        /// </summary>
+        /// <returns></returns>
+        [Test]
+        public async Task GetUserBaseFieldsAsync()
+        {
+            var dto = await managementClient.GetUserBaseFields();
+
+            Assert.NotNull(dto);
+        }
+
+        /// <summary>
+        /// Todo
+        /// </summary>
+        /// <returns></returns>
+        [Test]
+        public async Task SetUserBaseFieldsAsync()
+        {
+            var dto = await managementClient.SetUserBaseFields(new SetUserBaseFieldsReqDto { });
+            Assert.NotNull(dto);
+        }
 
         [Test]
         public void GetCustomFieldsTest()

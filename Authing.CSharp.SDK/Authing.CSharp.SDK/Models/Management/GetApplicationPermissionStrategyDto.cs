@@ -8,17 +8,17 @@ using System.Threading.Tasks;
 using System.Runtime.Serialization;
 using Authing.CSharp.SDK.Models.Management;
 
-namespace Authing.CSharp.SDK.Models.Management
+   namespace Authing.CSharp.SDK.Models.Management
+{
+/// <summary>
+/// GetApplicationPermissionStrategyDto 的模型
+/// </summary>
+public partial class GetApplicationPermissionStrategyDto
 {
     /// <summary>
-    /// GetApplicationPermissionStrategyDto 的模型
+    ///  应用 ID
     /// </summary>
-    public partial class GetApplicationPermissionStrategyDto
-    {
-        /// <summary>
-        ///  应用 ID
-        /// </summary>
-        [JsonProperty("appId")]
-        public string AppId { get; set; }
-    }
+    [JsonProperty("appId")]
+    public string  AppId {get;set;} 
+}
 }

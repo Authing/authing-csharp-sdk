@@ -8,17 +8,17 @@ using System.Threading.Tasks;
 using System.Runtime.Serialization;
 using Authing.CSharp.SDK.Models.Management;
 
-namespace Authing.CSharp.SDK.Models.Management
+   namespace Authing.CSharp.SDK.Models.Management
+{
+/// <summary>
+/// TriggerSyncTaskDto 的模型
+/// </summary>
+public partial class TriggerSyncTaskDto
 {
     /// <summary>
-    /// TriggerSyncTaskDto 的模型
+    ///  同步任务 ID
     /// </summary>
-    public partial class TriggerSyncTaskDto
-    {
-        /// <summary>
-        ///  同步任务 ID
-        /// </summary>
-        [JsonProperty("syncTaskId")]
-        public long SyncTaskId { get; set; }
-    }
+    [JsonProperty("syncTaskId")]
+    public long  SyncTaskId {get;set;}
+}
 }

@@ -8,27 +8,27 @@ using System.Threading.Tasks;
 using System.Runtime.Serialization;
 using Authing.CSharp.SDK.Models.Management;
 
-namespace Authing.CSharp.SDK.Models.Management
+   namespace Authing.CSharp.SDK.Models.Management
+{
+/// <summary>
+/// SyncTaskMaycurClientConfig 的模型
+/// </summary>
+public partial class SyncTaskMaycurClientConfig
 {
     /// <summary>
-    /// SyncTaskMaycurClientConfig 的模型
+    ///  App Code
     /// </summary>
-    public partial class SyncTaskMaycurClientConfig
-    {
-        /// <summary>
-        ///  App Code
-        /// </summary>
-        [JsonProperty("app_code")]
-        public string App_code { get; set; }
-        /// <summary>
-        ///  App Secret
-        /// </summary>
-        [JsonProperty("app_secret")]
-        public string App_secret { get; set; }
-        /// <summary>
-        ///  登录域名
-        /// </summary>
-        [JsonProperty("endpoint")]
-        public string Endpoint { get; set; }
-    }
+    [JsonProperty("app_code")]
+    public string  App_code {get;set;}
+    /// <summary>
+    ///  App Secret
+    /// </summary>
+    [JsonProperty("app_secret")]
+    public string  App_secret {get;set;}
+    /// <summary>
+    ///  登录域名
+    /// </summary>
+    [JsonProperty("endpoint")]
+    public string  Endpoint {get;set;}
+}
 }

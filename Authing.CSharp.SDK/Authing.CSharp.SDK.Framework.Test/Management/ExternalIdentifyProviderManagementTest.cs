@@ -5,6 +5,7 @@ using Authing.CSharp.SDK.UtilsImpl;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -162,6 +163,27 @@ namespace Authing.CSharp.SDK.Framework.Test
 
                 Assert.IsTrue(dto.Data.Success);
             }
+        }
+
+        [Test]
+        public async Task ChangeAssociationStateTest()
+        {
+            var dto = await managementClient.ChangeAssociationState(new AssociationExtIdpDto { });
+            Assert.NotNull(dto);
+        }
+
+        [Test]
+        public async Task ListTenantExtIdpTest()
+        {
+            var dto = await managementClient.ListTenantExtIdp(new  ListTenantExtIdpDto { });
+            Assert.NotNull(dto);
+        }
+
+        [Test]
+        public async Task ExtIdpConnStateByAppsTest()
+        {
+            var dto = await managementClient.ExtIdpConnStateByApps(new  ExtIdpConnAppsDto { });
+            Assert.NotNull(dto);
         }
     }
 }

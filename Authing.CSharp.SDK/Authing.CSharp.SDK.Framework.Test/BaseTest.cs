@@ -65,9 +65,9 @@ namespace Authing.CSharp.SDK.Framework.Test
                 AccessKeySecret = "ccf4951a33e5d54d64e145782a65f0a7"
             };
 
-            GetManagementTokenRespDto getManagementTokenRespDto = managementClient.GetManagementToken(dto).Result;
+            //GetManagementTokenRespDto getManagementTokenRespDto = managementClient.GetManagementToken(dto).Result;
 
-            Assert.IsFalse(string.IsNullOrWhiteSpace(getManagementTokenRespDto.Data.Access_token));
+            //Assert.IsFalse(string.IsNullOrWhiteSpace(getManagementTokenRespDto.Data.Access_token));
 
         }
 

@@ -8,22 +8,22 @@ using System.Threading.Tasks;
 using System.Runtime.Serialization;
 using Authing.CSharp.SDK.Models.Management;
 
-namespace Authing.CSharp.SDK.Models.Management
+   namespace Authing.CSharp.SDK.Models.Management
+{
+/// <summary>
+/// PipelineFunctionPagingDto 的模型
+/// </summary>
+public partial class PipelineFunctionPagingDto
 {
     /// <summary>
-    /// PipelineFunctionPagingDto 的模型
+    ///  总数
     /// </summary>
-    public partial class PipelineFunctionPagingDto
-    {
-        /// <summary>
-        ///  总数
-        /// </summary>
-        [JsonProperty("totalCount")]
-        public long TotalCount { get; set; }
-        /// <summary>
-        ///  数据列表
-        /// </summary>
-        [JsonProperty("list")]
-        public List<PipelineFunctionDto> List { get; set; }
-    }
+    [JsonProperty("totalCount")]
+    public long  TotalCount {get;set;}
+    /// <summary>
+    ///  数据列表
+    /// </summary>
+    [JsonProperty("list")]
+    public List<PipelineFunctionDto>  List {get;set;}
+}
 }

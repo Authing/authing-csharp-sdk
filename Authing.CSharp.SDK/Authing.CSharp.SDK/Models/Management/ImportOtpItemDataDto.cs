@@ -8,22 +8,22 @@ using System.Threading.Tasks;
 using System.Runtime.Serialization;
 using Authing.CSharp.SDK.Models.Management;
 
-namespace Authing.CSharp.SDK.Models.Management
+   namespace Authing.CSharp.SDK.Models.Management
+{
+/// <summary>
+/// ImportOtpItemDataDto 的模型
+/// </summary>
+public partial class ImportOtpItemDataDto
 {
     /// <summary>
-    /// ImportOtpItemDataDto 的模型
+    ///  OTP 密钥
     /// </summary>
-    public partial class ImportOtpItemDataDto
-    {
-        /// <summary>
-        ///  OTP 密钥
-        /// </summary>
-        [JsonProperty("secret")]
-        public string Secret { get; set; }
-        /// <summary>
-        ///  OTP Recovery Code
-        /// </summary>
-        [JsonProperty("recoveryCode")]
-        public string RecoveryCode { get; set; }
-    }
+    [JsonProperty("secret")]
+    public string  Secret {get;set;}
+    /// <summary>
+    ///  OTP Recovery Code
+    /// </summary>
+    [JsonProperty("recoveryCode")]
+    public string  RecoveryCode {get;set;}
+}
 }

@@ -8,22 +8,22 @@ using System.Threading.Tasks;
 using System.Runtime.Serialization;
 using Authing.CSharp.SDK.Models.Management;
 
-namespace Authing.CSharp.SDK.Models.Management
+   namespace Authing.CSharp.SDK.Models.Management
+{
+/// <summary>
+/// ApplicationPaginatedDataDto 的模型
+/// </summary>
+public partial class ApplicationPaginatedDataDto
 {
     /// <summary>
-    /// ApplicationPaginatedDataDto 的模型
+    ///  列表数据
     /// </summary>
-    public partial class ApplicationPaginatedDataDto
-    {
-        /// <summary>
-        ///  列表数据
-        /// </summary>
-        [JsonProperty("list")]
-        public List<ApplicationDto> List { get; set; }
-        /// <summary>
-        ///  记录总数
-        /// </summary>
-        [JsonProperty("totalCount")]
-        public long TotalCount { get; set; }
-    }
+    [JsonProperty("list")]
+    public List<ApplicationDto>  List {get;set;}
+    /// <summary>
+    ///  记录总数
+    /// </summary>
+    [JsonProperty("totalCount")]
+    public long  TotalCount {get;set;}
+}
 }
