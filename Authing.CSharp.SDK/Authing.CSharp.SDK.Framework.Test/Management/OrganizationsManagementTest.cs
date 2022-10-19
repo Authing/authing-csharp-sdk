@@ -15,6 +15,10 @@ namespace Authing.CSharp.SDK.Framework.Test
 {
     class OrganizationsManagementTest : ManagementClientBaseTest
     {
+        /// <summary>
+        /// 2022-10-18 测试通过
+        /// </summary>
+        /// <returns></returns>
         [Test]
         public async Task ListOrganizationsTest()
         {
@@ -27,6 +31,10 @@ namespace Authing.CSharp.SDK.Framework.Test
             }
         }
 
+        /// <summary>
+        /// 2022-10-18 测试通过
+        /// </summary>
+        /// <returns></returns>
         [Test]
         public async Task CreateOrganizationTest()
         {
@@ -46,6 +54,10 @@ namespace Authing.CSharp.SDK.Framework.Test
                 Assert.IsTrue(dto.Data.OrganizationName == "蒸汽记忆");
             }
         }
+        /// <summary>
+        /// 2022-10-18 测试通过
+        /// </summary>
+        /// <returns></returns>
 
         [Test]
         public async Task UpdateOrganizationTest()
@@ -66,6 +78,10 @@ namespace Authing.CSharp.SDK.Framework.Test
             }
         }
 
+        /// <summary>
+        /// 2022-10-18 测试通过
+        /// </summary>
+        /// <returns></returns>
         [Test]
         public async Task DeleteOrganizationTest()
         {
@@ -86,6 +102,10 @@ namespace Authing.CSharp.SDK.Framework.Test
             }
         }
 
+        /// <summary>
+        /// 2022-10-18 测试通过
+        /// </summary>
+        /// <returns></returns>
         [Test]
         public async Task GetDepartmentTest()
         {
@@ -97,6 +117,10 @@ namespace Authing.CSharp.SDK.Framework.Test
             }
         }
 
+        /// <summary>
+        /// 2022-10-18 测试通过
+        /// </summary>
+        /// <returns></returns>
         [Test]
         public async Task CreateDepartmentTest()
         {
@@ -121,6 +145,10 @@ namespace Authing.CSharp.SDK.Framework.Test
             }
         }
 
+        /// <summary>
+        /// 2022-10-18 测试通过
+        /// </summary>
+        /// <returns></returns>
         [Test]
         public async Task UpdateDepartmentTest()
         {
@@ -145,6 +173,10 @@ namespace Authing.CSharp.SDK.Framework.Test
             }
         }
 
+        /// <summary>
+        /// 2022-10-18 测试通过
+        /// </summary>
+        /// <returns></returns>
         [Test]
         public async Task DeleteDepartmentTest()
         {
@@ -162,6 +194,10 @@ namespace Authing.CSharp.SDK.Framework.Test
             }
         }
 
+        /// <summary>
+        /// 2022-10-18 测试通过
+        /// </summary>
+        /// <returns></returns>
         [Test]
         public async Task SearchDepartmentsTest()
         {
@@ -179,6 +215,10 @@ namespace Authing.CSharp.SDK.Framework.Test
             }
         }
 
+        /// <summary>
+        /// 2022-10-18 测试通过
+        /// </summary>
+        /// <returns></returns>
         [Test]
         public async Task ListChildrenDepartmentsTest()
         {
@@ -190,6 +230,10 @@ namespace Authing.CSharp.SDK.Framework.Test
             }
         }
 
+        /// <summary>
+        /// 2022-10-18 测试通过
+        /// </summary>
+        /// <returns></returns>
         [Test]
         public void ListDepartmentMembersTest()
         {
@@ -201,6 +245,10 @@ namespace Authing.CSharp.SDK.Framework.Test
             }
         }
 
+        /// <summary>
+        /// 2022-10-18 测试通过
+        /// </summary>
+        /// <returns></returns>
         [Test]
         public async Task ListDepartmentsMemebersIdsTest()
         {
@@ -212,6 +260,10 @@ namespace Authing.CSharp.SDK.Framework.Test
             }
         }
 
+        /// <summary>
+        /// 2022-10-18 测试通过
+        /// </summary>
+        /// <returns></returns>
         [Test]
         public async Task AddDepartmentsMemebersTest()
         {
@@ -229,6 +281,10 @@ namespace Authing.CSharp.SDK.Framework.Test
             }
         }
 
+        /// <summary>
+        /// 2022-10-18 测试通过
+        /// </summary>
+        /// <returns></returns>
         [Test]
         public async Task RemoveDepartmentsMemebersTest()
         {
@@ -246,6 +302,10 @@ namespace Authing.CSharp.SDK.Framework.Test
             }
         }
 
+        /// <summary>
+        /// 2022-10-18 测试通过
+        /// </summary>
+        /// <returns></returns>
         [Test]
         public async Task GetParentDepartmentTest()
         {
@@ -257,6 +317,10 @@ namespace Authing.CSharp.SDK.Framework.Test
             }
         }
 
+        /// <summary>
+        /// 2022-10-18 测试通过
+        /// </summary>
+        /// <returns></returns>
         [Test]
         public async Task IsUserInDepartmentTest()
         {
@@ -268,6 +332,10 @@ namespace Authing.CSharp.SDK.Framework.Test
             }
         }
 
+        /// <summary>
+        /// 2022-10-18 测试通过
+        /// </summary>
+        /// <returns></returns>
         [Test]
         public async Task SearchDepartmentMemebersTest()
         {
@@ -279,6 +347,10 @@ namespace Authing.CSharp.SDK.Framework.Test
             }
         }
 
+        /// <summary>
+        /// 2022-10-18 测试通过
+        /// </summary>
+        /// <returns></returns>
         [Test]
         public async Task SearchOrganizationsTest()
         {

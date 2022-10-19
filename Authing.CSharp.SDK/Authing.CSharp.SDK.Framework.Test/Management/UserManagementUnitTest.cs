@@ -14,7 +14,10 @@ namespace Authing.CSharp.SDK.Framework.Test
 {
     class UserManagementUnitTest : ManagementClientBaseTest
     {
-
+        /// <summary>
+        /// 2022-10-18 测试通过
+        /// </summary>
+        /// <returns></returns>
         [Test]
         public void GetUserBatchTest()
         {
@@ -28,6 +31,10 @@ namespace Authing.CSharp.SDK.Framework.Test
             }
         }
 
+        /// <summary>
+        /// 2022-10-18 测试通过
+        /// </summary>
+        /// <returns></returns>
         [Test]
         public void ListUsersTest()
         {
@@ -39,6 +46,10 @@ namespace Authing.CSharp.SDK.Framework.Test
             }
         }
 
+        /// <summary>
+        /// 2022-10-18 测试通过
+        /// </summary>
+        /// <returns></returns>
         [Test]
         public void GetUserIdentitiesTest()
         {
@@ -52,6 +63,10 @@ namespace Authing.CSharp.SDK.Framework.Test
             }
         }
 
+        /// <summary>
+        /// 2022-10-18 测试通过
+        /// </summary>
+        /// <returns></returns>
         [Test]
         public void GetUserRolesTest()
         {
@@ -64,6 +79,11 @@ namespace Authing.CSharp.SDK.Framework.Test
             }
         }
 
+        /// <summary>
+        /// 2022-10-18 测试未通过
+        /// 没有
+        /// </summary>
+        /// <returns></returns>
         [Test]
         public void GetUserPrincipalAuthenticationInfoTest()
         {
@@ -77,6 +97,10 @@ namespace Authing.CSharp.SDK.Framework.Test
             }
         }
 
+        /// <summary>
+        /// 2022-10-18 测试通过
+        /// </summary>
+        /// <returns></returns>
         [Test]
         public void ResetUserPrincipapAuthenticationInfoTest()
         {
@@ -93,6 +117,10 @@ namespace Authing.CSharp.SDK.Framework.Test
             }
         }
 
+        /// <summary>
+        /// 2022-10-18 测试通过
+        /// </summary>
+        /// <returns></returns>
         [Test]
         public void GetUserDepartmentsTest()
         {
@@ -106,6 +134,10 @@ namespace Authing.CSharp.SDK.Framework.Test
             }
         }
 
+        /// <summary>
+        /// 2022-10-18 测试通过
+        /// </summary>
+        /// <returns></returns>
         [Test]
         public void SetUserDepartmentsTest()
         {
@@ -128,6 +160,10 @@ namespace Authing.CSharp.SDK.Framework.Test
             }
         }
 
+        /// <summary>
+        /// 2022-10-18 测试通过
+        /// </summary>
+        /// <returns></returns>
         [Test]
         public void GetUserGroups()
         {
@@ -141,6 +177,10 @@ namespace Authing.CSharp.SDK.Framework.Test
             }
         }
 
+        /// <summary>
+        /// 2022-10-18 测试通过
+        /// </summary>
+        /// <returns></returns>
         [Test]
         public void DeleteUsersBatch()
         {
@@ -157,6 +197,10 @@ namespace Authing.CSharp.SDK.Framework.Test
             }
         }
 
+        /// <summary>
+        /// 2022-10-18 测试通过
+        /// </summary>
+        /// <returns></returns>
         [Test]
         public void GetUserMfaInfo()
         {
@@ -170,6 +214,10 @@ namespace Authing.CSharp.SDK.Framework.Test
             }
         }
 
+        /// <summary>
+        /// 2022-10-18 测试通过
+        /// </summary>
+        /// <returns></returns>
         [Test]
         public void ListArchivedUsersTest()
         {
@@ -181,6 +229,10 @@ namespace Authing.CSharp.SDK.Framework.Test
             }
         }
 
+        /// <summary>
+        /// 2022-10-18 测试通过
+        /// </summary>
+        /// <returns></returns>
         [Test]
         public void KickUserTest()
         {
@@ -198,6 +250,10 @@ namespace Authing.CSharp.SDK.Framework.Test
             }
         }
 
+        /// <summary>
+        /// 2022-10-18 测试通过
+        /// </summary>
+        /// <returns></returns>
         [Test]
         public void IsUserExistsTest()
         {
@@ -214,6 +270,10 @@ namespace Authing.CSharp.SDK.Framework.Test
             }
         }
 
+        /// <summary>
+        /// 2022-10-18 测试通过
+        /// </summary>
+        /// <returns></returns>
         [Test]
         public void CreateUserTest()
         {
@@ -234,6 +294,10 @@ namespace Authing.CSharp.SDK.Framework.Test
             }
         }
 
+        /// <summary>
+        /// 2022-10-18 测试通过
+        /// </summary>
+        /// <returns></returns>
         [Test]
         public void CreateUsersBatchTest()
         {
@@ -266,6 +330,10 @@ namespace Authing.CSharp.SDK.Framework.Test
             }
         }
 
+        /// <summary>
+        /// 2022-10-18 测试通过
+        /// </summary>
+        /// <returns></returns>
         [Test]
         public void UpdateUserTest()
         {
@@ -285,6 +353,10 @@ namespace Authing.CSharp.SDK.Framework.Test
             }
         }
 
+        /// <summary>
+        /// 2022-10-18 测试通过
+        /// </summary>
+        /// <returns></returns>
         [Test]
         public void GetUserAccessibleAppsTest()
         {
@@ -298,6 +370,10 @@ namespace Authing.CSharp.SDK.Framework.Test
             }
         }
 
+        /// <summary>
+        /// 2022-10-18 测试通过
+        /// </summary>
+        /// <returns></returns>
         [Test]
         public void GetUserAuthorizedAppsTest()
         {
@@ -311,6 +387,10 @@ namespace Authing.CSharp.SDK.Framework.Test
             }
         }
 
+        /// <summary>
+        /// 2022-10-18 测试通过
+        /// </summary>
+        /// <returns></returns>
         [Test]
         public void HasAnyRoleTest()
         {
@@ -328,6 +408,10 @@ namespace Authing.CSharp.SDK.Framework.Test
             }
         }
 
+        /// <summary>
+        /// 2022-10-18 测试未通过
+        /// </summary>
+        /// <returns></returns>
         [Test]
         public void GetUserLoginHistoryTest()
         {
@@ -344,6 +428,10 @@ namespace Authing.CSharp.SDK.Framework.Test
             }
         }
 
+        /// <summary>
+        /// 2022-10-18 测试通过
+        /// </summary>
+        /// <returns></returns>
         [Test]
         public void GetUserLoggedinAppsTest()
         {
@@ -357,6 +445,10 @@ namespace Authing.CSharp.SDK.Framework.Test
             }
         }
 
+        /// <summary>
+        /// 2022-10-18 测试通过
+        /// </summary>
+        /// <returns></returns>
         [Test]
         public void GetUserAuthorizedResourcesTest()
         {
@@ -370,6 +462,10 @@ namespace Authing.CSharp.SDK.Framework.Test
             }
         }
 
+        /// <summary>
+        /// 2022-10-18 测试通过
+        /// </summary>
+        /// <returns></returns>
         [Test]
         public async Task GetUserLoggedinIdentitiesTest()
         {
@@ -381,7 +477,46 @@ namespace Authing.CSharp.SDK.Framework.Test
             }
         }
 
+        /// <summary>
+        /// TODO
+        /// </summary>
+        /// <returns></returns>
+        [Test]
+        public async Task ResignUserTest()
+        {
+            ResignUserRespDto dto = await managementClient.ResignUser(new ResignUserReqDto { });
 
+            Assert.NotNull(dto);
+        }
+
+        /// <summary>
+        /// Todo
+        /// </summary>
+        /// <returns></returns>
+        public async Task ResignUserBatchTest()
+        {
+            await managementClient.ResignUserBatch(new ResignUserBatchReqDto { });
+        }
+
+        /// <summary>
+        /// Todo
+        /// </summary>
+        /// <returns></returns>
+        [Test]
+        public async Task CheckSessionStatusTest()
+        {
+            await managementClient.CheckSessionStatus(new CheckSessionStatusDto { });
+        }
+
+        /// <summary>
+        /// Todo
+        /// </summary>
+        /// <returns></returns>
+        [Test]
+        public async Task ImportOTP()
+        {
+            await managementClient.ImportOtp(new ImportOtpReqDto { });
+        }
 
     }
 }

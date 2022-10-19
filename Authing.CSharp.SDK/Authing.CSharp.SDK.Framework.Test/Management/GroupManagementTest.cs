@@ -14,6 +14,10 @@ namespace Authing.CSharp.SDK.Framework.Test
 {
     class GroupManagementTest: ManagementClientBaseTest
     {
+        /// <summary>
+        /// 2022-10-18 测试通过
+        /// </summary>
+        /// <returns></returns>
 
         [Test]
         public async Task GetGroupTest()
@@ -27,6 +31,10 @@ namespace Authing.CSharp.SDK.Framework.Test
             }
         }
 
+        /// <summary>
+        /// 2022-10-18 测试通过
+        /// </summary>
+        /// <returns></returns>
         [Test]
         public async Task ListGroupsTest()
         {
@@ -38,6 +46,10 @@ namespace Authing.CSharp.SDK.Framework.Test
             }
         }
 
+        /// <summary>
+        /// 2022-10-18 测试通过
+        /// </summary>
+        /// <returns></returns>
         [Test]
         public async Task CreateGroupTest()
         {
@@ -56,6 +68,10 @@ namespace Authing.CSharp.SDK.Framework.Test
             }
         }
 
+        /// <summary>
+        /// 2022-10-18 测试通过
+        /// </summary>
+        /// <returns></returns>
         [Test]
         public async Task CreateGroupsBatchTest()
         {
@@ -83,6 +99,10 @@ namespace Authing.CSharp.SDK.Framework.Test
             }
         }
 
+        /// <summary>
+        /// 2022-10-18 测试通过
+        /// </summary>
+        /// <returns></returns>
         [Test]
         public async Task UpdateGroupTest()
         {
@@ -102,6 +122,10 @@ namespace Authing.CSharp.SDK.Framework.Test
             }
         }
 
+        /// <summary>
+        /// 2022-10-18 测试通过
+        /// </summary>
+        /// <returns></returns>
         [Test]
         public async Task DeleteGroupsBatchTest()
         {
@@ -118,6 +142,10 @@ namespace Authing.CSharp.SDK.Framework.Test
             }
         }
 
+        /// <summary>
+        /// 2022-10-18 测试通过
+        /// </summary>
+        /// <returns></returns>
         [Test]
         public async Task AddGroupMembersTest()
         {
@@ -136,6 +164,10 @@ namespace Authing.CSharp.SDK.Framework.Test
             }
         }
 
+        /// <summary>
+        /// 2022-10-18 测试通过
+        /// </summary>
+        /// <returns></returns>
         [Test]
         public async Task RemoveGroupMembersTest()
         {
@@ -154,6 +186,10 @@ namespace Authing.CSharp.SDK.Framework.Test
             }
         }
 
+        /// <summary>
+        /// 2022-10-18 测试通过
+        /// </summary>
+        /// <returns></returns>
         [Test]
         public async Task ListGroupMembersTest()
         {
@@ -167,6 +203,10 @@ namespace Authing.CSharp.SDK.Framework.Test
             }
         }
 
+        /// <summary>
+        /// 2022-10-18 测试通过
+        /// </summary>
+        /// <returns></returns>
         [Test]
         public async Task GetGroupAuthorizedResourcesTest()
         {
