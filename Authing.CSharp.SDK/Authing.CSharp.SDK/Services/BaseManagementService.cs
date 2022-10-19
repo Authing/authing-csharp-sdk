@@ -23,6 +23,8 @@ namespace Authing.CSharp.SDK.Services
 
         protected ClientLang clientLang;
 
+        protected IDateTimeService m_DatetimeService;
+
         public BaseManagementService(ManagementClientOptions options) : base(new JsonService())
         {
             m_UserPoolId = options.AccessKeyId;
@@ -36,6 +38,8 @@ namespace Authing.CSharp.SDK.Services
             }
 
             clientLang = options.Lang;
+
+            m_DatetimeService = new DateTimeService();
 
         }
 
@@ -62,7 +66,7 @@ namespace Authing.CSharp.SDK.Services
         {
             CheckToken(method, apiPath, null);
 
-            string httpResponse = await m_HttpService.GetAsync(m_BaseUrl, apiPath, null,default);
+            string httpResponse = await m_HttpService.GetAsync(m_BaseUrl, apiPath, null, default);
             return httpResponse;
         }
 
@@ -82,7 +86,7 @@ namespace Authing.CSharp.SDK.Services
         {
             Dictionary<string, object> dic = m_JsonService.DeserializeObject<Dictionary<string, object>>(m_JsonService.SerializeObjectIngoreNull(dto));
 
-            var stringDic = dic.ToDictionary(p => p.Key, p => 
+            var stringDic = dic.ToDictionary(p => p.Key, p =>
             {
                 if (p.Value.GetType().Name == "String")
                 {
@@ -112,7 +116,7 @@ namespace Authing.CSharp.SDK.Services
 
             //组装、 加密 
             //设置头
-            DateTime utcTime = DateTime.Now;
+            long utcTime = m_DatetimeService.DateTimeToTimestamp(DateTime.Now);
             string osBit = Environment.Is64BitOperatingSystem ? "x64" : "x86";
             string defaultUA = $"AuthingIdentityCloud ({Environment.OSVersion.VersionString}; {osBit}) .Net(v{Environment.Version}), authing-csharp-sdk:{System.Reflection.Assembly.GetExecutingAssembly().GetName().Version}";
 
@@ -144,6 +148,19 @@ Node.js(v14.18.0), authing-node-sdk: 0.0.19
             string cryptString = HmacSHA1Signer.SignString(result, m_Secret);
 
             m_HttpService.SetHeader("authorization", $"authing {m_UserPoolId}:{cryptString}");
+        }
+
+        /// <summary>
+        /// 本时区日期时间转时间戳
+        /// </summary>
+        /// <param name="datetime"></param>
+        /// <returns>long=Int64</returns>
+        public static long DateTimeToTimestamp(DateTime datetime)
+        {
+            long epochTicks = new DateTime(1970, 1, 1).Ticks;
+            long unixTime = ((DateTime.UtcNow.Ticks - epochTicks) / TimeSpan.TicksPerMillisecond);
+
+            return unixTime;
         }
 
         protected const string QUERY_SEPARATOR = "&";

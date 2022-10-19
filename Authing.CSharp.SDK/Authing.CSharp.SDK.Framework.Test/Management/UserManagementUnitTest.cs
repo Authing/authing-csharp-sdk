@@ -414,8 +414,8 @@ namespace Authing.CSharp.SDK.Framework.Test
             {
                 string UserId = "634e53bc7e8639080058c65a";
 
-                long beginTime = dateTimeService.DateTimeToLongTimeStamp(DateTime.Parse("2020-12-12 00:00:00"));
-                long endTime = dateTimeService.DateTimeToLongTimeStamp(DateTime.Parse("2023-12-12 00:00:00"));
+                long beginTime = dateTimeService.DateTimeToTimestamp(DateTime.Parse("2020-12-12 00:00:00"));
+                long endTime = dateTimeService.DateTimeToTimestamp(DateTime.Parse("2023-12-12 00:00:00"));
 
                 UserLoginHistoryPaginatedRespDto dto = managementClient.GetUserLoginHistory(new GetUserLoginHistoryDto { UserId = UserId, Start = beginTime, End = endTime }).Result;
 

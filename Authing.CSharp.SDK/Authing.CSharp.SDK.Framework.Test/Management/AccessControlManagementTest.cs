@@ -35,7 +35,7 @@ namespace Authing.CSharp.SDK.Framework.Test
                         }
                     },
                     ApiIdentifier = "https://my-awesome-api.com/api",
-                    Namespace = "default"
+                    Namespace = "qidongtest"
                 };
 
                 ResourceRespDto dto = await managementClient.CreateResource(createResourceDto);
@@ -88,7 +88,7 @@ namespace Authing.CSharp.SDK.Framework.Test
         {
             using (CancellationTokenSource cts = new CancellationTokenSource())
             {
-                ResourceRespDto dto = await managementClient.GetResource(new GetResourceDto { Code = "ecs", Namespace = "default" });
+                ResourceRespDto dto = await managementClient.GetResource(new GetResourceDto { Code = "order", Namespace = "qidongtest" });
 
                 Assert.IsTrue(dto.Data.Code == "ecs");
             }
