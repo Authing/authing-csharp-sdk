@@ -69,9 +69,9 @@ namespace Authing.CSharp.SDK.Framework.Test
             });
             Assert.AreEqual(200, res1.StatusCode);
             var res2 = await client.SignUpByPhoneCode("17620671314", "6002",
-                profile: new SignupProfileDto()
+                profile: new  SignUpProfileDto()
                 {
-                    Gender = SignupProfileDto.gender.M
+                    Gender = SignUpProfileDto.gender.M
                 });
             Assert.AreEqual(200, res2.StatusCode);
         }

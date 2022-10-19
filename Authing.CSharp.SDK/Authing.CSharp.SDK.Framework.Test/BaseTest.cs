@@ -1,6 +1,6 @@
 using Authing.CSharp.SDK.Infrastructure;
 using Authing.CSharp.SDK.IServices;
-using Authing.CSharp.SDK.Models.Management;
+using Authing.CSharp.SDK.Models;
 using Authing.CSharp.SDK.Services;
 using Authing.CSharp.SDK.Utils;
 using NUnit.Framework;

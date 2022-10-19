@@ -25,7 +25,7 @@ namespace Authing.CSharp.SDK.Framework.Test.AuthenticationClientTest
         [Test]
         public async Task GetUserLogs()
         {
-            var res = await client.DecryptWechatMiniProgramData1();
+            var res = await client.DecryptWechatMiniProgramData(new DecryptWechatMiniProgramDataDto { });
             Assert.AreEqual(200, res.StatusCode);
         }
 
@@ -134,7 +134,7 @@ namespace Authing.CSharp.SDK.Framework.Test.AuthenticationClientTest
         [Test]
         public async Task UnBindEmailTest()
         {
-            var res = await client.UnbindEmail();
+            var res = await client.UnbindEmail(new UnbindEmailDto { });
             Assert.AreEqual(200, res.StatusCode);
         }
 
@@ -166,7 +166,7 @@ namespace Authing.CSharp.SDK.Framework.Test.AuthenticationClientTest
         [Test]
         public async Task UnBindPhoneTest()
         {
-            var res = await client.UnbindPhone();
+            var res = await client.UnbindPhone(new UnbindPhoneDto{});
             Assert.AreEqual(200, res.StatusCode);
         }
 
@@ -320,12 +320,13 @@ namespace Authing.CSharp.SDK.Framework.Test.AuthenticationClientTest
 
         /// <summary>
         /// TODO:获取应用公开配置
+        /// 自动生成没有此方法
         /// </summary>
         /// <returns></returns>
         [Test]
         public async Task GetApplicationPublicConfig()
         {
-            var res = await client.GetApplicationPublicConfig();
+          //  var res = await client.GetApplicationPublicConfig();
         }
 
         /// <summary>

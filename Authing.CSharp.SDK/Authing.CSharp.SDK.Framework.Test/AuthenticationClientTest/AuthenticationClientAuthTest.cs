@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Authing.CSharp.SDK.Framework.Test.AuthenticationClientTest;
+using Authing.CSharp.SDK.Models;
 
 namespace Authing.CSharp.SDK.Framework.Test
 {
@@ -88,7 +89,7 @@ namespace Authing.CSharp.SDK.Framework.Test
                 Client_id = "6343bb084f16915f1becc730",
                 Client_secret = "8ebe5abcc740f3bde1ba29621557675c",
                 Connection = Models.SigninByCredentialsDto.connection.PASSWORD,
-                PasswordPayload = new Models.AuthenticateByPasswordDto { Username = "test", Password = "test" }
+                PasswordPayload = new  SignInByPasswordPayloadDto { Username = "test", Password = "test" }
             });
         }
 

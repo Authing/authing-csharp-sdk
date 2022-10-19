@@ -1,5 +1,5 @@
 ﻿using Authing.CSharp.SDK.Extensions;
-using Authing.CSharp.SDK.Models.Management;
+using Authing.CSharp.SDK.Models;
 using Authing.CSharp.SDK.Utils;
 using Authing.CSharp.SDK.Utils.Extensions;
 using Authing.CSharp.SDK.UtilsImpl;

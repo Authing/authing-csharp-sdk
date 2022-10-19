@@ -1,4 +1,4 @@
-﻿using Authing.CSharp.SDK.Models.Management;
+﻿using Authing.CSharp.SDK.Models;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
@@ -13,7 +13,7 @@ namespace Authing.CSharp.SDK.Framework.Test.Management
         [Test]
         public async Task CreatePipelineFunctionTest()
         {
-            var dto = await managementClient.CreatePipelineFunction(new Models.Management.CreatePipelineFunctionDto { });
+            var dto = await managementClient.CreatePipelineFunction(new CreatePipelineFunctionDto { });
             Assert.NotNull(dto);
         }
 

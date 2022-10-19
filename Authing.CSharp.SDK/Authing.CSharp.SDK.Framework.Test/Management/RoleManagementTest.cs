@@ -1,4 +1,4 @@
-﻿using Authing.CSharp.SDK.Models.Management;
+﻿using Authing.CSharp.SDK.Models;
 using Authing.CSharp.SDK.Services;
 using Authing.CSharp.SDK.Utils;
 using Authing.CSharp.SDK.UtilsImpl;
@@ -40,46 +40,6 @@ namespace Authing.CSharp.SDK.Framework.Test
         }
 
         [Test]
-        public void AssignRoleBatchTest()
-        {
-            using (CancellationTokenSource cts = new CancellationTokenSource())
-            {
-
-
-                AssignRoleBatchDto assignRoleBatchDto = new AssignRoleBatchDto()
-                {
-                    Roles = new List<RoleCodeDto>
-                    {
-                        new RoleCodeDto
-                        {
-                            Code = "TestDelete",
-                            Namespace = "default"
-                        }
-                    },
-                    Targets = new List<TargetDto>
-                    {
-                        new TargetDto
-                        {
-                            TargetIdentifier = "61c1866a342c23ec8a6431fe",
-                            TargetType = TargetDto.targetType.USER
-                        }
-                    },
-                };
-
-                /*
-                  注释  2022-6-2 祁冬 ，重新生成后，没有此方法，所以先注释这两行代码
-
-                  IsSuccessRespDto isSuccessResp = managementClient.AssignRoleBatch(assignRoleBatchDto).Result;
-
-                  Assert.IsTrue(isSuccessResp.Data.Success);
-
-                 */
-
-
-            }
-        }
-
-        [Test]
         public async Task RevokeRoleTest()
         {
             using (CancellationTokenSource cts = new CancellationTokenSource())
@@ -105,40 +65,6 @@ namespace Authing.CSharp.SDK.Framework.Test
             }
         }
 
-        [Test]
-        public void RevokeRoleBatchTest()
-        {
-            using (CancellationTokenSource cts = new CancellationTokenSource())
-            {
-                RevokeRoleBatchDto assignRoleBatchDto = new RevokeRoleBatchDto()
-                {
-                    Roles = new List<RoleCodeDto>
-                    {
-                        new RoleCodeDto
-                        {
-                            Code = "TestDelete",
-                            Namespace = "default"
-                        }
-                    },
-                    Targets = new List<TargetDto>
-                    {
-                        new TargetDto
-                        {
-                            TargetIdentifier = "61c1866a342c23ec8a6431fe",
-                            TargetType = TargetDto.targetType.USER
-                        }
-                    },
-                };
-
-                /*
-                   注释  2022-6-2 祁冬 ，重新生成后，没有此方法，所以先注释这两行代码
-
-                  IsSuccessRespDto isSuccessResp = managementClient.RevokeRoleBatch(assignRoleBatchDto).Result;
-
-                  Assert.IsTrue(isSuccessResp.Data.Success);
-                 */
-            }
-        }
 
         [Test]
         public async Task GetRoleAuthorizedResourcesTest()

@@ -662,12 +662,326 @@ namespace Authing.CSharp.SDK.Services
 
         #region 自动生成的方法
         ///<summary>
+        /// 预检验验证码是否正确
+        ///</summary>
+        /// <param name="requestBody"></param>
+        ///<returns>PreCheckCodeRespDto</returns>
+        public async Task<PreCheckCodeRespDto> PreCheckCode(PreCheckCodeDto requestBody)
+        {
+            string httpResponse = await Request("POST", "/api/v3/pre-check-code", requestBody).ConfigureAwait(false);
+            PreCheckCodeRespDto result = m_JsonService.DeserializeObject<PreCheckCodeRespDto>(httpResponse);
+            return result;
+        }
+        ///<summary>
+        /// 使用用户凭证登录
+        ///</summary>
+        /// <param name="requestBody"></param>
+        ///<returns>LoginTokenRespDto</returns>
+        public async Task<LoginTokenRespDto> SignInByCredentials(SigninByCredentialsDto requestBody)
+        {
+            string httpResponse = await Request("POST", "/api/v3/signin", requestBody).ConfigureAwait(false);
+            LoginTokenRespDto result = m_JsonService.DeserializeObject<LoginTokenRespDto>(httpResponse);
+            return result;
+        }
+        ///<summary>
+        /// 使用移动端社会化登录
+        ///</summary>
+        /// <param name="requestBody"></param>
+        ///<returns>LoginTokenRespDto</returns>
+        public async Task<LoginTokenRespDto> SignInByMobile(SigninByMobileDto requestBody)
+        {
+            string httpResponse = await Request("POST", "/api/v3/signin-by-mobile", requestBody).ConfigureAwait(false);
+            LoginTokenRespDto result = m_JsonService.DeserializeObject<LoginTokenRespDto>(httpResponse);
+            return result;
+        }
+        ///<summary>
+        /// 获取支付宝 AuthInfo
+        ///</summary>
+        /// <param name="extIdpConnidentifier">外部身份源连接标志符</param>
+        ///<returns>GetAlipayAuthInfoRespDto</returns>
+        public async Task<GetAlipayAuthInfoRespDto> GetAlipayAuthInfo(string extIdpConnidentifier)
+        {
+            string httpResponse = await Request("GET", "/api/v3/get-alipay-authinfo", new Dictionary<string, object> {
+        {"extIdpConnidentifier",extIdpConnidentifier },
+    }).ConfigureAwait(false);
+            GetAlipayAuthInfoRespDto result = m_JsonService.DeserializeObject<GetAlipayAuthInfoRespDto>(httpResponse);
+            return result;
+        }
+        ///<summary>
+        /// 生成用于登录的二维码
+        ///</summary>
+        /// <param name="requestBody"></param>
+        ///<returns>GeneQRCodeRespDto</returns>
+        public async Task<GeneQRCodeRespDto> GeneQrCode(GenerateQrcodeDto requestBody)
+        {
+            string httpResponse = await Request("POST", "/api/v3/gene-qrcode", requestBody).ConfigureAwait(false);
+            GeneQRCodeRespDto result = m_JsonService.DeserializeObject<GeneQRCodeRespDto>(httpResponse);
+            return result;
+        }
+        ///<summary>
+        /// 查询二维码状态
+        ///</summary>
+        /// <param name="qrcodeId">二维码唯一 ID</param>
+        ///<returns>CheckQRCodeStatusRespDto</returns>
+        public async Task<CheckQRCodeStatusRespDto> CheckQrCodeStatus(string qrcodeId)
+        {
+            string httpResponse = await Request("GET", "/api/v3/check-qrcode-status", new Dictionary<string, object> {
+        {"qrcodeId",qrcodeId },
+    }).ConfigureAwait(false);
+            CheckQRCodeStatusRespDto result = m_JsonService.DeserializeObject<CheckQRCodeStatusRespDto>(httpResponse);
+            return result;
+        }
+        ///<summary>
+        /// 使用二维码 ticket 换取 TokenSet
+        ///</summary>
+        /// <param name="requestBody"></param>
+        ///<returns>LoginTokenRespDto</returns>
+        public async Task<LoginTokenRespDto> ExchangeTokenSetWithQrCodeTicket(ExchangeTokenSetWithQRcodeTicketDto requestBody)
+        {
+            string httpResponse = await Request("POST", "/api/v3/exchange-tokenset-with-qrcode-ticket", requestBody).ConfigureAwait(false);
+            LoginTokenRespDto result = m_JsonService.DeserializeObject<LoginTokenRespDto>(httpResponse);
+            return result;
+        }
+        ///<summary>
+        /// 自建 APP 扫码登录：APP 端修改二维码状态
+        ///</summary>
+        /// <param name="requestBody"></param>
+        ///<returns>CommonResponseDto</returns>
+        public async Task<CommonResponseDto> ChangeQrCodeStatus(ChangeQRCodeStatusDto requestBody)
+        {
+            string httpResponse = await Request("POST", "/api/v3/change-qrcode-status", requestBody).ConfigureAwait(false);
+            CommonResponseDto result = m_JsonService.DeserializeObject<CommonResponseDto>(httpResponse);
+            return result;
+        }
+        ///<summary>
+        /// 发送短信
+        ///</summary>
+        /// <param name="requestBody"></param>
+        ///<returns>SendSMSRespDto</returns>
+        public async Task<SendSMSRespDto> SendSms(SendSMSDto requestBody)
+        {
+            string httpResponse = await Request("POST", "/api/v3/send-sms", requestBody).ConfigureAwait(false);
+            SendSMSRespDto result = m_JsonService.DeserializeObject<SendSMSRespDto>(httpResponse);
+            return result;
+        }
+        ///<summary>
+        /// 发送邮件
+        ///</summary>
+        /// <param name="requestBody"></param>
+        ///<returns>SendEmailRespDto</returns>
+        public async Task<SendEmailRespDto> SendEmail(SendEmailDto requestBody)
+        {
+            string httpResponse = await Request("POST", "/api/v3/send-email", requestBody).ConfigureAwait(false);
+            SendEmailRespDto result = m_JsonService.DeserializeObject<SendEmailRespDto>(httpResponse);
+            return result;
+        }
+        ///<summary>
+        /// 获取用户资料
+        ///</summary>
+        /// <param name="withCustomData">是否获取自定义数据</param>
+        /// <param name="withIdentities">是否获取 identities</param>
+        /// <param name="withDepartmentIds">是否获取部门 ID 列表</param>
+        ///<returns>UserSingleRespDto</returns>
+        public async Task<UserSingleRespDto> GetProfile(bool withCustomData = false, bool withIdentities = false, bool withDepartmentIds = false)
+        {
+            string httpResponse = await Request("GET", "/api/v3/get-profile", new Dictionary<string, object> {
+        {"withCustomData",withCustomData },
+        {"withIdentities",withIdentities },
+        {"withDepartmentIds",withDepartmentIds },
+    }).ConfigureAwait(false);
+            UserSingleRespDto result = m_JsonService.DeserializeObject<UserSingleRespDto>(httpResponse);
+            return result;
+        }
+        ///<summary>
+        /// 修改用户资料
+        ///</summary>
+        /// <param name="requestBody"></param>
+        ///<returns>UserSingleRespDto</returns>
+        public async Task<UserSingleRespDto> UpdateProfile(UpdateUserProfileDto requestBody)
+        {
+            string httpResponse = await Request("POST", "/api/v3/update-profile", requestBody).ConfigureAwait(false);
+            UserSingleRespDto result = m_JsonService.DeserializeObject<UserSingleRespDto>(httpResponse);
+            return result;
+        }
+        ///<summary>
+        /// 绑定邮箱
+        ///</summary>
+        /// <param name="requestBody"></param>
+        ///<returns>CommonResponseDto</returns>
+        public async Task<CommonResponseDto> BindEmail(BindEmailDto requestBody)
+        {
+            string httpResponse = await Request("POST", "/api/v3/bind-email", requestBody).ConfigureAwait(false);
+            CommonResponseDto result = m_JsonService.DeserializeObject<CommonResponseDto>(httpResponse);
+            return result;
+        }
+        ///<summary>
+        /// 解绑邮箱
+        ///</summary>
+        /// <param name="requestBody"></param>
+        ///<returns>CommonResponseDto</returns>
+        public async Task<CommonResponseDto> UnbindEmail(UnbindEmailDto requestBody)
+        {
+            string httpResponse = await Request("POST", "/api/v3/unbind-email", requestBody).ConfigureAwait(false);
+            CommonResponseDto result = m_JsonService.DeserializeObject<CommonResponseDto>(httpResponse);
+            return result;
+        }
+        ///<summary>
+        /// 绑定手机号
+        ///</summary>
+        /// <param name="requestBody"></param>
+        ///<returns>CommonResponseDto</returns>
+        public async Task<CommonResponseDto> BindPhone(BindPhoneDto requestBody)
+        {
+            string httpResponse = await Request("POST", "/api/v3/bind-phone", requestBody).ConfigureAwait(false);
+            CommonResponseDto result = m_JsonService.DeserializeObject<CommonResponseDto>(httpResponse);
+            return result;
+        }
+        ///<summary>
+        /// 解绑手机号
+        ///</summary>
+        /// <param name="requestBody"></param>
+        ///<returns>CommonResponseDto</returns>
+        public async Task<CommonResponseDto> UnbindPhone(UnbindPhoneDto requestBody)
+        {
+            string httpResponse = await Request("POST", "/api/v3/unbind-phone", requestBody).ConfigureAwait(false);
+            CommonResponseDto result = m_JsonService.DeserializeObject<CommonResponseDto>(httpResponse);
+            return result;
+        }
+        ///<summary>
+        /// 获取密码强度和账号安全等级评分
+        ///</summary>
+        ///<returns>GetSecurityInfoRespDto</returns>
+        public async Task<GetSecurityInfoRespDto> GetSecurityLevel()
+        {
+            string httpResponse = await Request("GET", "/api/v3/get-security-info").ConfigureAwait(false);
+            GetSecurityInfoRespDto result = m_JsonService.DeserializeObject<GetSecurityInfoRespDto>(httpResponse);
+            return result;
+        }
+        ///<summary>
+        /// 修改密码
+        ///</summary>
+        /// <param name="requestBody"></param>
+        ///<returns>CommonResponseDto</returns>
+        public async Task<CommonResponseDto> UpdatePassword(UpdatePasswordDto requestBody)
+        {
+            string httpResponse = await Request("POST", "/api/v3/update-password", requestBody).ConfigureAwait(false);
+            CommonResponseDto result = m_JsonService.DeserializeObject<CommonResponseDto>(httpResponse);
+            return result;
+        }
+        ///<summary>
+        /// 发起修改邮箱的验证请求
+        ///</summary>
+        /// <param name="requestBody"></param>
+        ///<returns>VerifyUpdateEmailRequestRespDto</returns>
+        public async Task<VerifyUpdateEmailRequestRespDto> VerifyUpdateEmailRequest(VerifyUpdateEmailRequestDto requestBody)
+        {
+            string httpResponse = await Request("POST", "/api/v3/verify-update-email-request", requestBody).ConfigureAwait(false);
+            VerifyUpdateEmailRequestRespDto result = m_JsonService.DeserializeObject<VerifyUpdateEmailRequestRespDto>(httpResponse);
+            return result;
+        }
+        ///<summary>
+        /// 修改邮箱
+        ///</summary>
+        /// <param name="requestBody"></param>
+        ///<returns>CommonResponseDto</returns>
+        public async Task<CommonResponseDto> UpdateEmail(UpdateEmailDto requestBody)
+        {
+            string httpResponse = await Request("POST", "/api/v3/update-email", requestBody).ConfigureAwait(false);
+            CommonResponseDto result = m_JsonService.DeserializeObject<CommonResponseDto>(httpResponse);
+            return result;
+        }
+        ///<summary>
+        /// 发起修改手机号的验证请求
+        ///</summary>
+        /// <param name="requestBody"></param>
+        ///<returns>VerifyUpdatePhoneRequestRespDto</returns>
+        public async Task<VerifyUpdatePhoneRequestRespDto> VerifyUpdatePhoneRequest(VerifyUpdatePhoneRequestDto requestBody)
+        {
+            string httpResponse = await Request("POST", "/api/v3/verify-update-phone-request", requestBody).ConfigureAwait(false);
+            VerifyUpdatePhoneRequestRespDto result = m_JsonService.DeserializeObject<VerifyUpdatePhoneRequestRespDto>(httpResponse);
+            return result;
+        }
+        ///<summary>
+        /// 修改手机号
+        ///</summary>
+        /// <param name="requestBody"></param>
+        ///<returns>CommonResponseDto</returns>
+        public async Task<CommonResponseDto> UpdatePhone(UpdatePhoneDto requestBody)
+        {
+            string httpResponse = await Request("POST", "/api/v3/update-phone", requestBody).ConfigureAwait(false);
+            CommonResponseDto result = m_JsonService.DeserializeObject<CommonResponseDto>(httpResponse);
+            return result;
+        }
+        ///<summary>
+        /// 发起忘记密码请求
+        ///</summary>
+        /// <param name="requestBody"></param>
+        ///<returns>PasswordResetVerifyResp</returns>
+        public async Task<PasswordResetVerifyResp> VerifyResetPasswordRequest(VerifyResetPasswordRequestDto requestBody)
+        {
+            string httpResponse = await Request("POST", "/api/v3/verify-reset-password-request", requestBody).ConfigureAwait(false);
+            PasswordResetVerifyResp result = m_JsonService.DeserializeObject<PasswordResetVerifyResp>(httpResponse);
+            return result;
+        }
+        ///<summary>
+        /// 忘记密码
+        ///</summary>
+        /// <param name="requestBody"></param>
+        ///<returns>IsSuccessRespDto</returns>
+        public async Task<IsSuccessRespDto> ResetPassword(ResetPasswordDto requestBody)
+        {
+            string httpResponse = await Request("POST", "/api/v3/reset-password", requestBody).ConfigureAwait(false);
+            IsSuccessRespDto result = m_JsonService.DeserializeObject<IsSuccessRespDto>(httpResponse);
+            return result;
+        }
+        ///<summary>
+        /// 发起注销账号请求
+        ///</summary>
+        /// <param name="requestBody"></param>
+        ///<returns>VerifyDeleteAccountRequestRespDto</returns>
+        public async Task<VerifyDeleteAccountRequestRespDto> VeirfyDeleteAccountRequest(VerifyDeleteAccountRequestDto requestBody)
+        {
+            string httpResponse = await Request("POST", "/api/v3/verify-delete-account-request", requestBody).ConfigureAwait(false);
+            VerifyDeleteAccountRequestRespDto result = m_JsonService.DeserializeObject<VerifyDeleteAccountRequestRespDto>(httpResponse);
+            return result;
+        }
+        ///<summary>
+        /// 注销账户
+        ///</summary>
+        /// <param name="requestBody"></param>
+        ///<returns>IsSuccessRespDto</returns>
+        public async Task<IsSuccessRespDto> DeleteAccount(DeleteAccounDto requestBody)
+        {
+            string httpResponse = await Request("POST", "/api/v3/delete-account", requestBody).ConfigureAwait(false);
+            IsSuccessRespDto result = m_JsonService.DeserializeObject<IsSuccessRespDto>(httpResponse);
+            return result;
+        }
+        ///<summary>
+        /// 获取服务器公开信息
+        ///</summary>
+        ///<returns>SystemInfoResp</returns>
+        public async Task<SystemInfoResp> GetSystemInfo()
+        {
+            string httpResponse = await Request("GET", "/api/v3/system").ConfigureAwait(false);
+            SystemInfoResp result = m_JsonService.DeserializeObject<SystemInfoResp>(httpResponse);
+            return result;
+        }
+        ///<summary>
+        /// 获取国家列表
+        ///</summary>
+        ///<returns>GetCountryListRespDto</returns>
+        public async Task<GetCountryListRespDto> GetCountryList()
+        {
+            string httpResponse = await Request("GET", "/api/v3/get-country-list").ConfigureAwait(false);
+            GetCountryListRespDto result = m_JsonService.DeserializeObject<GetCountryListRespDto>(httpResponse);
+            return result;
+        }
+        ///<summary>
         /// 发起绑定 MFA 认证要素请求
         ///</summary>
         /// <param name="requestBody"></param>
         ///<returns>SendEnrollFactorRequestRespDto</returns>
-        public async Task<SendEnrollFactorRequestRespDto> SendEnrollFactorRequest(SendEnrollFactorRequestDto requestBody
-        )
+        public async Task<SendEnrollFactorRequestRespDto> SendEnrollFactorRequest(SendEnrollFactorRequestDto requestBody)
         {
             string httpResponse = await Request("POST", "/api/v3/send-enroll-factor-request", requestBody).ConfigureAwait(false);
             SendEnrollFactorRequestRespDto result = m_JsonService.DeserializeObject<SendEnrollFactorRequestRespDto>(httpResponse);
@@ -678,8 +992,7 @@ namespace Authing.CSharp.SDK.Services
         ///</summary>
         /// <param name="requestBody"></param>
         ///<returns>EnrollFactorRespDto</returns>
-        public async Task<EnrollFactorRespDto> EnrollFactor(EnrollFactorDto requestBody
-        )
+        public async Task<EnrollFactorRespDto> EnrollFactor(EnrollFactorDto requestBody)
         {
             string httpResponse = await Request("POST", "/api/v3/enroll-factor", requestBody).ConfigureAwait(false);
             EnrollFactorRespDto result = m_JsonService.DeserializeObject<EnrollFactorRespDto>(httpResponse);
@@ -690,8 +1003,7 @@ namespace Authing.CSharp.SDK.Services
         ///</summary>
         /// <param name="requestBody"></param>
         ///<returns>ResetFactorRespDto</returns>
-        public async Task<ResetFactorRespDto> ResetFactor(RestFactorDto requestBody
-        )
+        public async Task<ResetFactorRespDto> ResetFactor(RestFactorDto requestBody)
         {
             string httpResponse = await Request("POST", "/api/v3/reset-factor", requestBody).ConfigureAwait(false);
             ResetFactorRespDto result = m_JsonService.DeserializeObject<ResetFactorRespDto>(httpResponse);
@@ -769,8 +1081,7 @@ namespace Authing.CSharp.SDK.Services
         ///</summary>
         /// <param name="requestBody"></param>
         ///<returns>CommonResponseDto</returns>
-        public async Task<CommonResponseDto> UnbindExtIdp(UnbindExtIdpDto requestBody
-        )
+        public async Task<CommonResponseDto> UnbindExtIdp(UnbindExtIdpDto requestBody)
         {
             string httpResponse = await Request("POST", "/api/v3/unlink-extidp", requestBody).ConfigureAwait(false);
             CommonResponseDto result = m_JsonService.DeserializeObject<CommonResponseDto>(httpResponse);
@@ -801,8 +1112,7 @@ namespace Authing.CSharp.SDK.Services
         ///</summary>
         /// <param name="requestBody"></param>
         ///<returns>UserSingleRespDto</returns>
-        public async Task<UserSingleRespDto> SignUp(SignupDto requestBody
-        )
+        public async Task<UserSingleRespDto> SignUp(SignUpDto requestBody)
         {
             string httpResponse = await Request("POST", "/api/v3/signup", requestBody).ConfigureAwait(false);
             UserSingleRespDto result = m_JsonService.DeserializeObject<UserSingleRespDto>(httpResponse);
@@ -812,24 +1122,22 @@ namespace Authing.CSharp.SDK.Services
         /// 解密微信小程序数据
         ///</summary>
         /// <param name="requestBody"></param>
-        ///<returns>any</returns>
-        public async Task<object> DecryptWechatMiniProgramData(DecryptWechatMiniProgramDataDto requestBody
-        )
+        ///<returns>DecryptWechatMiniProgramDataRespDto</returns>
+        public async Task<DecryptWechatMiniProgramDataRespDto> DecryptWechatMiniProgramData(DecryptWechatMiniProgramDataDto requestBody)
         {
             string httpResponse = await Request("POST", "/api/v3/decrypt-wechat-miniprogram-data", requestBody).ConfigureAwait(false);
-            object result = m_JsonService.DeserializeObject<object>(httpResponse);
+            DecryptWechatMiniProgramDataRespDto result = m_JsonService.DeserializeObject<DecryptWechatMiniProgramDataRespDto>(httpResponse);
             return result;
         }
         ///<summary>
         /// 获取小程序的手机号
         ///</summary>
         /// <param name="requestBody"></param>
-        ///<returns>any</returns>
-        public async Task<object> GetWechatMiniprogramPhone(GetWechatMiniProgramPhoneDto requestBody
-        )
+        ///<returns>GetWechatMiniProgramPhoneRespDto</returns>
+        public async Task<GetWechatMiniProgramPhoneRespDto> GetWechatMiniprogramPhone(GetWechatMiniProgramPhoneDto requestBody)
         {
             string httpResponse = await Request("POST", "/api/v3/get-wechat-miniprogram-phone", requestBody).ConfigureAwait(false);
-            object result = m_JsonService.DeserializeObject<object>(httpResponse);
+            GetWechatMiniProgramPhoneRespDto result = m_JsonService.DeserializeObject<GetWechatMiniProgramPhoneRespDto>(httpResponse);
             return result;
         }
         ///<summary>
@@ -837,8 +1145,7 @@ namespace Authing.CSharp.SDK.Services
         ///</summary>
         /// <param name="requestBody"></param>
         ///<returns>GetWechatAccessTokenRespDto</returns>
-        public async Task<GetWechatAccessTokenRespDto> GetWechatMpAccessToken(GetWechatAccessTokenDto requestBody
-        )
+        public async Task<GetWechatAccessTokenRespDto> GetWechatMpAccessToken(GetWechatAccessTokenDto requestBody)
         {
             string httpResponse = await Request("POST", "/api/v3/get-wechat-access-token", requestBody).ConfigureAwait(false);
             GetWechatAccessTokenRespDto result = m_JsonService.DeserializeObject<GetWechatAccessTokenRespDto>(httpResponse);
@@ -855,9 +1162,9 @@ namespace Authing.CSharp.SDK.Services
         /// <param name="page">当前页数，从 1 开始</param>
         /// <param name="limit">每页数目，最大不能超过 50，默认为 10</param>
         ///<returns>GetLoginHistoryRespDto</returns>
-        public async Task<GetLoginHistoryRespDto> DecryptWechatMiniProgramData1(long end = 0, long start = 0, bool success = false, string clientIp = null, string appId = null, long page = 1, long limit = 10)
+        public async Task<GetLoginHistoryRespDto> GetLoginHistory(long end = 0, long start = 0, bool success = false, string clientIp = null, string appId = null, long page = 1, long limit = 10)
         {
-            string httpResponse = await Request("GET", "/api/v3/get-login-history", new Dictionary<string, object> {
+            string httpResponse = await Request("GET", "/api/v3/get-my-login-history", new Dictionary<string, object> {
         {"appId",appId },
         {"clientIp",clientIp },
         {"success",success },
@@ -875,7 +1182,7 @@ namespace Authing.CSharp.SDK.Services
         ///<returns>GetLoggedInAppsRespDto</returns>
         public async Task<GetLoggedInAppsRespDto> GetLoggedInApps()
         {
-            string httpResponse = await Request("GET", "/api/v3/get-logged-in-apps").ConfigureAwait(false);
+            string httpResponse = await Request("GET", "/api/v3/get-my-logged-in-apps").ConfigureAwait(false);
             GetLoggedInAppsRespDto result = m_JsonService.DeserializeObject<GetLoggedInAppsRespDto>(httpResponse);
             return result;
         }
@@ -885,8 +1192,41 @@ namespace Authing.CSharp.SDK.Services
         ///<returns>GetAccessibleAppsRespDto</returns>
         public async Task<GetAccessibleAppsRespDto> GetAccessibleApps()
         {
-            string httpResponse = await Request("GET", "/api/v3/get-accessible-apps").ConfigureAwait(false);
+            string httpResponse = await Request("GET", "/api/v3/get-my-accessible-apps").ConfigureAwait(false);
             GetAccessibleAppsRespDto result = m_JsonService.DeserializeObject<GetAccessibleAppsRespDto>(httpResponse);
+            return result;
+        }
+        ///<summary>
+        /// 获取租户列表
+        ///</summary>
+        ///<returns>GetTenantListRespDto</returns>
+        public async Task<GetTenantListRespDto> GetTenantList()
+        {
+            string httpResponse = await Request("GET", "/api/v3/get-my-tenant-list").ConfigureAwait(false);
+            GetTenantListRespDto result = m_JsonService.DeserializeObject<GetTenantListRespDto>(httpResponse);
+            return result;
+        }
+        ///<summary>
+        /// 获取角色列表
+        ///</summary>
+        /// <param name="nameSpace">所属权限分组的 code</param>
+        ///<returns>RoleListRespDto</returns>
+        public async Task<RoleListRespDto> GetRoleList(string nameSpace = null)
+        {
+            string httpResponse = await Request("GET", "/api/v3/get-my-role-list", new Dictionary<string, object> {
+        {"namespace",nameSpace },
+    }).ConfigureAwait(false);
+            RoleListRespDto result = m_JsonService.DeserializeObject<RoleListRespDto>(httpResponse);
+            return result;
+        }
+        ///<summary>
+        /// 获取分组列表
+        ///</summary>
+        ///<returns>GroupListRespDto</returns>
+        public async Task<GroupListRespDto> GetGroupList()
+        {
+            string httpResponse = await Request("GET", "/api/v3/get-my-group-list").ConfigureAwait(false);
+            GroupListRespDto result = m_JsonService.DeserializeObject<GroupListRespDto>(httpResponse);
             return result;
         }
         ///<summary>
@@ -900,7 +1240,7 @@ namespace Authing.CSharp.SDK.Services
         ///<returns>UserDepartmentPaginatedRespDto</returns>
         public async Task<UserDepartmentPaginatedRespDto> GetDepartmentList(long page = 1, long limit = 10, bool withCustomData = false, string sortBy = "JoinDepartmentAt", string orderBy = "Desc")
         {
-            string httpResponse = await Request("GET", "/api/v3/get-department-list", new Dictionary<string, object> {
+            string httpResponse = await Request("GET", "/api/v3/get-my-department-list", new Dictionary<string, object> {
         {"page",page },
         {"limit",limit },
         {"withCustomData",withCustomData },
@@ -918,7 +1258,7 @@ namespace Authing.CSharp.SDK.Services
         ///<returns>AuthorizedResourcePaginatedRespDto</returns>
         public async Task<AuthorizedResourcePaginatedRespDto> GetAuthorizedResources(string resourceType = null, string nameSpace = null)
         {
-            string httpResponse = await Request("GET", "/api/v3/get-authorized-resources", new Dictionary<string, object> {
+            string httpResponse = await Request("GET", "/api/v3/get-my-authorized-resources", new Dictionary<string, object> {
         {"namespace",nameSpace },
         {"resourceType",resourceType },
     }).ConfigureAwait(false);
@@ -930,372 +1270,13 @@ namespace Authing.CSharp.SDK.Services
         ///</summary>
         /// <param name="requestBody"></param>
         ///<returns>UploadRespDto</returns>
-        public async Task<UploadRespDto> Upload(UploadDto requestBody
-        )
+        public async Task<UploadRespDto> Upload(UploadDto requestBody)
         {
             string httpResponse = await Request("POST", "/api/v2/upload", requestBody).ConfigureAwait(false);
             UploadRespDto result = m_JsonService.DeserializeObject<UploadRespDto>(httpResponse);
             return result;
         }
-        ///<summary>
-        /// 使用用户凭证登录
-        ///</summary>
-        /// <param name="requestBody"></param>
-        ///<returns>LoginTokenRespDto</returns>
-        public async Task<LoginTokenRespDto> SignInByCredentials(SigninByCredentialsDto requestBody
-        )
-        {
-            string httpResponse = await Request("POST", "/api/v3/signin", requestBody).ConfigureAwait(false);
-            LoginTokenRespDto result = m_JsonService.DeserializeObject<LoginTokenRespDto>(httpResponse);
-            return result;
-        }
-        ///<summary>
-        /// 使用移动端社会化登录
-        ///</summary>
-        /// <param name="requestBody"></param>
-        ///<returns>LoginTokenRespDto</returns>
-        public async Task<LoginTokenRespDto> SignInByMobile(SigninByMobileDto requestBody
-        )
-        {
-            string httpResponse = await Request("POST", "/api/v3/signin-by-mobile", requestBody).ConfigureAwait(false);
-            LoginTokenRespDto result = m_JsonService.DeserializeObject<LoginTokenRespDto>(httpResponse);
-            return result;
-        }
-        ///<summary>
-        /// 获取支付宝 AuthInfo
-        ///</summary>
-        /// <param name="extIdpConnidentifier">外部身份源连接标志符</param>
-        ///<returns>GetAlipayAuthInfoRespDto</returns>
-        public async Task<GetAlipayAuthInfoRespDto> GetAlipayAuthInfo(string extIdpConnidentifier)
-        {
-            string httpResponse = await Request("GET", "/api/v3/get-alipay-authinfo", new Dictionary<string, object> {
-        {"extIdpConnidentifier",extIdpConnidentifier },
-    }).ConfigureAwait(false);
-            GetAlipayAuthInfoRespDto result = m_JsonService.DeserializeObject<GetAlipayAuthInfoRespDto>(httpResponse);
-            return result;
-        }
-        ///<summary>
-        /// 生成用于登录的二维码
-        ///</summary>
-        /// <param name="requestBody"></param>
-        ///<returns>GeneQRCodeRespDto</returns>
-        public async Task<GeneQRCodeRespDto> GeneQrCode(GenerateQrcodeDto requestBody
-        )
-        {
-            string httpResponse = await Request("POST", "/api/v3/gene-qrcode", requestBody).ConfigureAwait(false);
-            GeneQRCodeRespDto result = m_JsonService.DeserializeObject<GeneQRCodeRespDto>(httpResponse);
-            return result;
-        }
-        ///<summary>
-        /// 查询二维码状态
-        ///</summary>
-        /// <param name="qrcodeId">二维码唯一 ID</param>
-        ///<returns>CheckQRCodeStatusRespDto</returns>
-        public async Task<CheckQRCodeStatusRespDto> CheckQrCodeStatus(string qrcodeId)
-        {
-            string httpResponse = await Request("GET", "/api/v3/check-qrcode-status", new Dictionary<string, object> {
-        {"qrcodeId",qrcodeId },
-    }).ConfigureAwait(false);
-            CheckQRCodeStatusRespDto result = m_JsonService.DeserializeObject<CheckQRCodeStatusRespDto>(httpResponse);
-            return result;
-        }
-        ///<summary>
-        /// 使用二维码 ticket 换取 TokenSet
-        ///</summary>
-        /// <param name="requestBody"></param>
-        ///<returns>LoginTokenRespDto</returns>
-        public async Task<LoginTokenRespDto> ExchangeTokenSetWithQrCodeTicket(ExchangeTokenSetWithQRcodeTicketDto requestBody
-        )
-        {
-            string httpResponse = await Request("POST", "/api/v3/exchange-tokenset-with-qrcode-ticket", requestBody).ConfigureAwait(false);
-            LoginTokenRespDto result = m_JsonService.DeserializeObject<LoginTokenRespDto>(httpResponse);
-            return result;
-        }
-        ///<summary>
-        /// 生成图形验证码
-        ///</summary>
-        /// <param name="r">随机字符串或者时间戳，防止浏览器缓存</param>
-        ///<returns>any</returns>
-        public async Task<object> GeneCaptchaCode(string r = null)
-        {
-            string httpResponse = await Request("GET", "/api/v3/captcha-code", new Dictionary<string, object> {
-        {"r",r },
-    }).ConfigureAwait(false);
-            object result = m_JsonService.DeserializeObject<object>(httpResponse);
-            return result;
-        }
-        ///<summary>
-        /// 自建 APP 扫码登录：APP 端修改二维码状态
-        ///</summary>
-        /// <param name="requestBody"></param>
-        ///<returns>CommonResponseDto</returns>
-        public async Task<CommonResponseDto> ChangeQrCodeStatus(ChangeQRCodeStatusDto requestBody
-        )
-        {
-            string httpResponse = await Request("POST", "/api/v3/change-qrcode-status", requestBody).ConfigureAwait(false);
-            CommonResponseDto result = m_JsonService.DeserializeObject<CommonResponseDto>(httpResponse);
-            return result;
-        }
-        ///<summary>
-        /// 发送短信
-        ///</summary>
-        /// <param name="requestBody"></param>
-        ///<returns>SendSMSRespDto</returns>
-        public async Task<SendSMSRespDto> SendSms(SendSMSDto requestBody
-        )
-        {
-            string httpResponse = await Request("POST", "/api/v3/send-sms", requestBody).ConfigureAwait(false);
-            SendSMSRespDto result = m_JsonService.DeserializeObject<SendSMSRespDto>(httpResponse);
-            return result;
-        }
-        ///<summary>
-        /// 发送邮件
-        ///</summary>
-        /// <param name="requestBody"></param>
-        ///<returns>SendEmailRespDto</returns>
-        public async Task<SendEmailRespDto> SendEmail(SendEmailDto requestBody
-        )
-        {
-            string httpResponse = await Request("POST", "/api/v3/send-email", requestBody).ConfigureAwait(false);
-            SendEmailRespDto result = m_JsonService.DeserializeObject<SendEmailRespDto>(httpResponse);
-            return result;
-        }
-        ///<summary>
-        /// 获取用户资料
-        ///</summary>
-        /// <param name="withCustomData">是否获取自定义数据</param>
-        /// <param name="withIdentities">是否获取 identities</param>
-        /// <param name="withDepartmentIds">是否获取部门 ID 列表</param>
-        ///<returns>UserSingleRespDto</returns>
-        public async Task<UserSingleRespDto> GetProfile(bool withCustomData = false, bool withIdentities = false, bool withDepartmentIds = false)
-        {
-            string httpResponse = await Request("GET", "/api/v3/get-profile", new Dictionary<string, object> {
-        {"withCustomData",withCustomData },
-        {"withIdentities",withIdentities },
-        {"withDepartmentIds",withDepartmentIds },
-    }).ConfigureAwait(false);
-            UserSingleRespDto result = m_JsonService.DeserializeObject<UserSingleRespDto>(httpResponse);
-            return result;
-        }
-        ///<summary>
-        /// 修改用户资料
-        ///</summary>
-        /// <param name="requestBody"></param>
-        ///<returns>UserSingleRespDto</returns>
-        public async Task<UserSingleRespDto> UpdateProfile(UpdateUserProfileDto requestBody
-        )
-        {
-            string httpResponse = await Request("POST", "/api/v3/update-profile", requestBody).ConfigureAwait(false);
-            UserSingleRespDto result = m_JsonService.DeserializeObject<UserSingleRespDto>(httpResponse);
-            return result;
-        }
-        ///<summary>
-        /// 绑定邮箱
-        ///</summary>
-        /// <param name="requestBody"></param>
-        ///<returns>CommonResponseDto</returns>
-        public async Task<CommonResponseDto> BindEmail(BindEmailDto requestBody
-        )
-        {
-            string httpResponse = await Request("POST", "/api/v3/bind-email", requestBody).ConfigureAwait(false);
-            CommonResponseDto result = m_JsonService.DeserializeObject<CommonResponseDto>(httpResponse);
-            return result;
-        }
-        ///<summary>
-        /// 解绑邮箱
-        ///</summary>
-        ///<returns>CommonResponseDto</returns>
-        public async Task<CommonResponseDto> UnbindEmail()
-        {
-            string httpResponse = await Request("POST", "/api/v3/unbind-email").ConfigureAwait(false);
-            CommonResponseDto result = m_JsonService.DeserializeObject<CommonResponseDto>(httpResponse);
-            return result;
-        }
-        ///<summary>
-        /// 绑定手机号
-        ///</summary>
-        /// <param name="requestBody"></param>
-        ///<returns>CommonResponseDto</returns>
-        public async Task<CommonResponseDto> BindPhone(BindPhoneDto requestBody
-        )
-        {
-            string httpResponse = await Request("POST", "/api/v3/bind-phone", requestBody).ConfigureAwait(false);
-            CommonResponseDto result = m_JsonService.DeserializeObject<CommonResponseDto>(httpResponse);
-            return result;
-        }
-        ///<summary>
-        /// 解绑手机号
-        ///</summary>
-        ///<returns>CommonResponseDto</returns>
-        public async Task<CommonResponseDto> UnbindPhone()
-        {
-            string httpResponse = await Request("POST", "/api/v3/unbind-phone").ConfigureAwait(false);
-            CommonResponseDto result = m_JsonService.DeserializeObject<CommonResponseDto>(httpResponse);
-            return result;
-        }
-        ///<summary>
-        /// 获取密码强度和账号安全等级评分
-        ///</summary>
-        ///<returns>GetSecurityInfoRespDto</returns>
-        public async Task<GetSecurityInfoRespDto> GetSecurityLevel()
-        {
-            string httpResponse = await Request("GET", "/api/v3/get-security-info").ConfigureAwait(false);
-            GetSecurityInfoRespDto result = m_JsonService.DeserializeObject<GetSecurityInfoRespDto>(httpResponse);
-            return result;
-        }
-        ///<summary>
-        /// 修改密码
-        ///</summary>
-        /// <param name="requestBody"></param>
-        ///<returns>CommonResponseDto</returns>
-        public async Task<CommonResponseDto> UpdatePassword(UpdatePasswordDto requestBody
-        )
-        {
-            string httpResponse = await Request("POST", "/api/v3/update-password", requestBody).ConfigureAwait(false);
-            CommonResponseDto result = m_JsonService.DeserializeObject<CommonResponseDto>(httpResponse);
-            return result;
-        }
-        ///<summary>
-        /// 发起修改邮箱的验证请求
-        ///</summary>
-        /// <param name="requestBody"></param>
-        ///<returns>VerifyUpdateEmailRequestRespDto</returns>
-        public async Task<VerifyUpdateEmailRequestRespDto> VerifyUpdateEmailRequest(VerifyUpdateEmailRequestDto requestBody
-        )
-        {
-            string httpResponse = await Request("POST", "/api/v3/verify-update-email-request", requestBody).ConfigureAwait(false);
-            VerifyUpdateEmailRequestRespDto result = m_JsonService.DeserializeObject<VerifyUpdateEmailRequestRespDto>(httpResponse);
-            return result;
-        }
-        ///<summary>
-        /// 修改邮箱
-        ///</summary>
-        /// <param name="requestBody"></param>
-        ///<returns>CommonResponseDto</returns>
-        public async Task<CommonResponseDto> UpdateEmail(UpdateEmailDto requestBody
-        )
-        {
-            string httpResponse = await Request("POST", "/api/v3/update-email", requestBody).ConfigureAwait(false);
-            CommonResponseDto result = m_JsonService.DeserializeObject<CommonResponseDto>(httpResponse);
-            return result;
-        }
-        ///<summary>
-        /// 发起修改手机号的验证请求
-        ///</summary>
-        /// <param name="requestBody"></param>
-        ///<returns>VerifyUpdatePhoneRequestRespDto</returns>
-        public async Task<VerifyUpdatePhoneRequestRespDto> VerifyUpdatePhoneRequest(VerifyUpdatePhoneRequestDto requestBody
-        )
-        {
-            string httpResponse = await Request("POST", "/api/v3/verify-update-phone-request", requestBody).ConfigureAwait(false);
-            VerifyUpdatePhoneRequestRespDto result = m_JsonService.DeserializeObject<VerifyUpdatePhoneRequestRespDto>(httpResponse);
-            return result;
-        }
-        ///<summary>
-        /// 修改手机号
-        ///</summary>
-        /// <param name="requestBody"></param>
-        ///<returns>CommonResponseDto</returns>
-        public async Task<CommonResponseDto> UpdatePhone(UpdatePhoneDto requestBody
-        )
-        {
-            string httpResponse = await Request("POST", "/api/v3/update-phone", requestBody).ConfigureAwait(false);
-            CommonResponseDto result = m_JsonService.DeserializeObject<CommonResponseDto>(httpResponse);
-            return result;
-        }
-        ///<summary>
-        /// 发起忘记密码请求
-        ///</summary>
-        /// <param name="requestBody"></param>
-        ///<returns>PasswordResetVerifyResp</returns>
-        public async Task<PasswordResetVerifyResp> VerifyResetPasswordRequest(VerifyResetPasswordRequestDto requestBody
-        )
-        {
-            string httpResponse = await Request("POST", "/api/v3/verify-reset-password-request", requestBody).ConfigureAwait(false);
-            PasswordResetVerifyResp result = m_JsonService.DeserializeObject<PasswordResetVerifyResp>(httpResponse);
-            return result;
-        }
-        ///<summary>
-        /// 忘记密码
-        ///</summary>
-        /// <param name="requestBody"></param>
-        ///<returns>IsSuccessRespDto</returns>
-        public async Task<IsSuccessRespDto> ResetPassword(ResetPasswordDto requestBody
-        )
-        {
-            string httpResponse = await Request("POST", "/api/v3/reset-password", requestBody).ConfigureAwait(false);
-            IsSuccessRespDto result = m_JsonService.DeserializeObject<IsSuccessRespDto>(httpResponse);
-            return result;
-        }
-        ///<summary>
-        /// 发起注销账号请求
-        ///</summary>
-        /// <param name="requestBody"></param>
-        ///<returns>VerifyDeleteAccountRequestRespDto</returns>
-        public async Task<VerifyDeleteAccountRequestRespDto> VeirfyDeleteAccountRequest(VerifyDeleteAccountRequestDto requestBody
-        )
-        {
-            string httpResponse = await Request("POST", "/api/v3/verify-delete-account-request", requestBody).ConfigureAwait(false);
-            VerifyDeleteAccountRequestRespDto result = m_JsonService.DeserializeObject<VerifyDeleteAccountRequestRespDto>(httpResponse);
-            return result;
-        }
-        ///<summary>
-        /// 注销账户
-        ///</summary>
-        /// <param name="requestBody"></param>
-        ///<returns>IsSuccessRespDto</returns>
-        public async Task<IsSuccessRespDto> DeleteAccount(DeleteAccounDto requestBody
-        )
-        {
-            string httpResponse = await Request("POST", "/api/v3/delete-account", requestBody).ConfigureAwait(false);
-            IsSuccessRespDto result = m_JsonService.DeserializeObject<IsSuccessRespDto>(httpResponse);
-            return result;
-        }
-        ///<summary>
-        /// 获取应用公开配置
-        ///</summary>
-        /// <param name="appId">应用 ID，可选，默认会从请求的域名获取对应的应用</param>
-        ///<returns>any</returns>
-        public async Task<object> GetApplicationPublicConfig(string appId = null)
-        {
-            string httpResponse = await Request("GET", "/api/v3/get-application-public-config", new Dictionary<string, object> {
-        {"appId",appId },
-    }).ConfigureAwait(false);
-            object result = m_JsonService.DeserializeObject<object>(httpResponse);
-            return result;
-        }
-        ///<summary>
-        /// 获取服务器公开信息
-        ///</summary>
-        ///<returns>SystemInfoResp</returns>
-        public async Task<SystemInfoResp> GetSystemInfo()
-        {
-            string httpResponse = await Request("GET", "/api/v3/system").ConfigureAwait(false);
-            SystemInfoResp result = m_JsonService.DeserializeObject<SystemInfoResp>(httpResponse);
-            return result;
-        }
-        ///<summary>
-        /// 获取国家列表
-        ///</summary>
-        ///<returns>GetCountryListRespDto</returns>
-        public async Task<GetCountryListRespDto> GetCountryList()
-        {
-            string httpResponse = await Request("GET", "/api/v3/get-country-list").ConfigureAwait(false);
-            GetCountryListRespDto result = m_JsonService.DeserializeObject<GetCountryListRespDto>(httpResponse);
-            return result;
-        }
-        ///<summary>
-        /// 预检验验证码是否正确
-        ///</summary>
-        /// <param name="requestBody"></param>
-        ///<returns>PreCheckCodeRespDto</returns>
-        public async Task<PreCheckCodeRespDto> PreCheckCode(PreCheckCodeDto requestBody
-        )
-        {
-            string httpResponse = await Request("POST", "/api/v3/pre-check-code", requestBody).ConfigureAwait(false);
-            PreCheckCodeRespDto result = m_JsonService.DeserializeObject<PreCheckCodeRespDto>(httpResponse);
-            return result;
-        }
+
 
         #endregion
 
@@ -1313,7 +1294,7 @@ namespace Authing.CSharp.SDK.Services
             SigninByCredentialsDto dto = new SigninByCredentialsDto
             {
                 Connection = SigninByCredentialsDto.connection.PASSWORD,
-                PasswordPayload = new AuthenticateByPasswordDto
+                PasswordPayload = new SignInByPasswordPayloadDto
                 {
                     Email = email,
                     Password = password
@@ -1342,7 +1323,7 @@ namespace Authing.CSharp.SDK.Services
             SigninByCredentialsDto dto = new SigninByCredentialsDto
             {
                 Connection = SigninByCredentialsDto.connection.PASSWORD,
-                PasswordPayload = new AuthenticateByPasswordDto
+                PasswordPayload = new SignInByPasswordPayloadDto
                 {
                     Phone = phone,
                     Password = password
@@ -1371,7 +1352,7 @@ namespace Authing.CSharp.SDK.Services
             SigninByCredentialsDto dto = new SigninByCredentialsDto
             {
                 Connection = SigninByCredentialsDto.connection.PASSWORD,
-                PasswordPayload = new AuthenticateByPasswordDto
+                PasswordPayload = new SignInByPasswordPayloadDto
                 {
                     Username = username,
                     Password = password
@@ -1400,7 +1381,7 @@ namespace Authing.CSharp.SDK.Services
             SigninByCredentialsDto dto = new SigninByCredentialsDto
             {
                 Connection = SigninByCredentialsDto.connection.PASSWORD,
-                PasswordPayload = new AuthenticateByPasswordDto
+                PasswordPayload = new SignInByPasswordPayloadDto
                 {
                     Account = account,
                     Password = password
@@ -1429,7 +1410,7 @@ namespace Authing.CSharp.SDK.Services
             SigninByCredentialsDto dto = new SigninByCredentialsDto
             {
                 Connection = SigninByCredentialsDto.connection.PASSCODE,
-                PassCodePayload = new AuthenticateByPassCodeDto
+                PassCodePayload = new SignInByPassCodePayloadDto
                 {
                     Email = email,
                     PassCode = passCode
@@ -1458,7 +1439,7 @@ namespace Authing.CSharp.SDK.Services
             SigninByCredentialsDto dto = new SigninByCredentialsDto
             {
                 Connection = SigninByCredentialsDto.connection.PASSCODE,
-                PassCodePayload = new AuthenticateByPassCodeDto
+                PassCodePayload = new SignInByPassCodePayloadDto
                 {
                     Phone = phone,
                     PhoneCountryCode = phoneCountryCode,
@@ -1489,7 +1470,7 @@ namespace Authing.CSharp.SDK.Services
             SigninByCredentialsDto dto = new SigninByCredentialsDto
             {
                 Connection = SigninByCredentialsDto.connection.AD,
-                AdPayload = new AuthenticateByADDto
+                AdPayload = new SignInByAdPayloadDto
                 {
                     SAMAccountName = sAMAccountName,
                     Password = password,
@@ -1519,7 +1500,7 @@ namespace Authing.CSharp.SDK.Services
             SigninByCredentialsDto dto = new SigninByCredentialsDto
             {
                 Connection = SigninByCredentialsDto.connection.LDAP,
-                LdapPayload = new AuthenticateByLDAPDto
+                LdapPayload = new SignInByLdapPayloadDto
                 {
                     SAMAccountName = sAMAccountName,
                     Password = password,
@@ -1547,11 +1528,11 @@ namespace Authing.CSharp.SDK.Services
         /// <param name="password"></param>
         /// <param name="option"></param>
         /// <returns></returns>
-        public async Task<UserSingleRespDto> SignUpByEmailPassword(string email, string password, SignupOptionsDto option = null)
+        public async Task<UserSingleRespDto> SignUpByEmailPassword(string email, string password, SignUpOptionsDto option = null)
         {
-            SignupDto dto = new SignupDto
+            SignUpDto dto = new SignUpDto
             {
-                Connection = SignupDto.connection.PASSWORD,
+                Connection = SignUpDto.connection.PASSWORD,
                 PasswordPayload = new SignUpByPasswordDto
                 {
                     Email = email,
@@ -1570,11 +1551,11 @@ namespace Authing.CSharp.SDK.Services
         /// <param name="password"></param>
         /// <param name="option"></param>
         /// <returns></returns>
-        public async Task<UserSingleRespDto> SignUpByEmailCode(string email, string passCode, SignupOptionsDto option = null)
+        public async Task<UserSingleRespDto> SignUpByEmailCode(string email, string passCode, SignUpOptionsDto option = null)
         {
-            SignupDto dto = new SignupDto
+            SignUpDto dto = new SignUpDto
             {
-                Connection = SignupDto.connection.PASSCODE,
+                Connection = SignUpDto.connection.PASSCODE,
                 PassCodePayload = new SignUpByPassCodeDto
                 {
                     Email = email,
@@ -1593,11 +1574,11 @@ namespace Authing.CSharp.SDK.Services
         /// <param name="password"></param>
         /// <param name="option"></param>
         /// <returns></returns>
-        public async Task<UserSingleRespDto> SignUpByPhoneCode(string phone, string passCode, string phoneCountryCode = null, SignupOptionsDto option = null)
+        public async Task<UserSingleRespDto> SignUpByPhoneCode(string phone, string passCode, string phoneCountryCode = null, SignUpOptionsDto option = null)
         {
-            SignupDto dto = new SignupDto
+            SignUpDto dto = new SignUpDto
             {
-                Connection = SignupDto.connection.PASSCODE,
+                Connection = SignUpDto.connection.PASSCODE,
                 PassCodePayload = new SignUpByPassCodeDto
                 {
                     Phone = phone,
@@ -1617,11 +1598,11 @@ namespace Authing.CSharp.SDK.Services
         /// <param name="password"></param>
         /// <param name="option"></param>
         /// <returns></returns>
-        public async Task<UserSingleRespDto> SignUpByPhoneCode(string phone, string passCode, string phoneCountryCode = null, SignupOptionsDto option = null,SignupProfileDto profile = null)
+        public async Task<UserSingleRespDto> SignUpByPhoneCode(string phone, string passCode, string phoneCountryCode = null, SignUpOptionsDto option = null,SignUpProfileDto profile = null)
         {
-            SignupDto dto = new SignupDto
+            SignUpDto dto = new SignUpDto
             {
-                Connection = SignupDto.connection.PASSCODE,
+                Connection = SignUpDto.connection.PASSCODE,
                 PassCodePayload = new SignUpByPassCodeDto
                 {
                     Phone = phone,
