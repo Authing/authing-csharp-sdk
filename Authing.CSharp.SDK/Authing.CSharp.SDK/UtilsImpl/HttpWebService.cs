@@ -50,16 +50,16 @@ namespace Authing.CSharp.SDK.Utils
 
                 byte[] responseBytes = new byte[response.ContentLength];
 
-                //var temp = response.GetResponseStream();
-                //StreamReader sr = new StreamReader(temp, Encoding.UTF8);
-                //var res = sr.ReadToEnd();
+                var temp = response.GetResponseStream();
+                StreamReader sr = new StreamReader(temp, Encoding.UTF8);
+                var res = sr.ReadToEnd();
 
-                await response.GetResponseStream().ReadAsync(responseBytes, 0, (int)response.ContentLength).ConfigureAwait(false);
+                //await response.GetResponseStream().ReadAsync(responseBytes, 0, (int)response.ContentLength).ConfigureAwait(false);
 
-                string result = Encoding.UTF8.GetString(responseBytes);
+                //string result = Encoding.UTF8.GetString(responseBytes);
+                
 
-
-                return result;
+                return res;
             }
             catch (Exception exp)
             {
@@ -99,14 +99,13 @@ namespace Authing.CSharp.SDK.Utils
 
                 WebResponse response = await request.GetResponseAsync().ConfigureAwait(false);
 
-                byte[] responseBytes = new byte[response.ContentLength];
-
-                await response.GetResponseStream().ReadAsync(responseBytes, 0, (int)response.ContentLength).ConfigureAwait(false);
-
-                string result = Encoding.UTF8.GetString(responseBytes);
+                var temp = response.GetResponseStream();
+                StreamReader sr = new StreamReader(temp, Encoding.UTF8);
+                var res = sr.ReadToEnd();
 
 
-                return result;
+
+                return res;
             }
             catch (Exception exp)
             {
@@ -145,13 +144,12 @@ namespace Authing.CSharp.SDK.Utils
 
                 WebResponse response = await request.GetResponseAsync().ConfigureAwait(false);
 
-                byte[] responseBytes = new byte[response.ContentLength];
+                var temp = response.GetResponseStream();
+                StreamReader sr = new StreamReader(temp, Encoding.UTF8);
+                var res = sr.ReadToEnd();
 
-                await response.GetResponseStream().ReadAsync(responseBytes, 0, (int)response.ContentLength).ConfigureAwait(false);
 
-                string result = Encoding.UTF8.GetString(responseBytes);
-
-                return result;
+                return res;
             }
             catch (Exception exp)
             {
@@ -198,13 +196,12 @@ namespace Authing.CSharp.SDK.Utils
 
                 WebResponse response = await request.GetResponseAsync().ConfigureAwait(false);
 
-                byte[] responseBytes = new byte[response.ContentLength];
+                var temp = response.GetResponseStream();
+                StreamReader sr = new StreamReader(temp, Encoding.UTF8);
+                var res = sr.ReadToEnd();
 
-                await response.GetResponseStream().ReadAsync(responseBytes, 0, (int)response.ContentLength).ConfigureAwait(false);
 
-                string result = Encoding.UTF8.GetString(responseBytes);
-
-                return result;
+                return res;
             }
             catch (Exception exp)
             {

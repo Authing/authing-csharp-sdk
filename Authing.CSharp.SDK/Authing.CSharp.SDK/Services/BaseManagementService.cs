@@ -64,7 +64,7 @@ namespace Authing.CSharp.SDK.Services
 
         protected async Task<string> Request(string method, string apiPath)
         {
-            CheckToken(method, apiPath,new Dictionary<string, string> { });
+            CheckToken(method, apiPath, new Dictionary<string, string> { });
 
             string httpResponse = await m_HttpService.GetAsync(m_BaseUrl, apiPath, null, default);
             return httpResponse;
@@ -211,7 +211,7 @@ Node.js(v14.18.0), authing-node-sdk: 0.0.19
 
             sb.Append(HEADER_SEPARATOR);
             //sb.Append(BuildCanonicalHeaders(headers, "x-authing-"));
-            sb.Append(BuildQuerystring(uriPattern, queries));
+            sb.Append(BuildQuerystring(method, uriPattern, queries));
             return sb.ToString();
         }
 
@@ -272,7 +272,7 @@ Node.js(v14.18.0), authing-node-sdk: 0.0.19
             return uriParts;
         }
 
-        private string BuildQuerystring(string uri, Dictionary<string, string> queries)
+        private string BuildQuerystring(string method, string uri, Dictionary<string, string> queries)
         {
             var uriParts = SplitSubResource(uri);
             var sortMap = new Dictionary<string, string>(queries);
@@ -290,7 +290,7 @@ Node.js(v14.18.0), authing-node-sdk: 0.0.19
 
             foreach (var e in sortedDictionary)
             {
-                if (e.Value.Contains(","))
+                if (e.Value.Contains(",") && method=="GET")
                 {
                     foreach (var item in e.Value.Split(','))
                     {

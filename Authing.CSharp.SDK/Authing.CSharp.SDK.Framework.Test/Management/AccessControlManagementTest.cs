@@ -129,6 +129,11 @@ namespace Authing.CSharp.SDK.Framework.Test
             }
         }
 
+        /// <summary>
+        /// 2022-10-19 测试失败，参数签名错误
+        /// 批量获取资源
+        /// </summary>
+        /// <returns></returns>
         [Test]
         public async Task GetResourceBatchTest()
         {
@@ -140,23 +145,33 @@ namespace Authing.CSharp.SDK.Framework.Test
             }
         }
 
+        /// <summary>
+        /// 2022-10-19 测试通过
+        /// 分页获取资源
+        /// </summary>
+        /// <returns></returns>
         [Test]
         public async Task ListResourcesTest()
         {
             using (CancellationTokenSource cts = new CancellationTokenSource())
             {
-                ResourcePaginatedRespDto dto = await managementClient.ListResources(new ListResourcesDto { Type="API",Namespace="default"});
+                ResourcePaginatedRespDto dto = await managementClient.ListResources(new ListResourcesDto { Type="API",Namespace= "634cf98aa5b1455a52949d33" });
 
                 Assert.IsTrue(dto.Data.List.Count > 0);
             }
         }
 
+        /// <summary>
+        /// 2022-10-19 测试通过
+        /// 分页获取资源
+        /// </summary>
+        /// <returns></returns>
         [Test]
         public async Task UpdateResourceTest()
         {
             using (CancellationTokenSource cts = new CancellationTokenSource())
             {
-                var resource = managementClient.GetResource(new GetResourceDto { Code="ecs",Namespace="default"}).Result;
+                var resource = managementClient.GetResource(new GetResourceDto { Code="ecs",Namespace= "634cf98aa5b1455a52949d33" }).Result;
 
                 UpdateResourceDto updateResourceDto = new UpdateResourceDto()
                 {
