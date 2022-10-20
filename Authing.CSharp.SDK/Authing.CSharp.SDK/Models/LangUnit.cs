@@ -24,6 +24,6 @@ public partial class LangUnit
     ///  多语言内容
     /// </summary>
     [JsonProperty("value")]
-    public bool  Value {get;set;}
+    public string  Value {get;set;}
 }
 }

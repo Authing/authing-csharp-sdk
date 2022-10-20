@@ -12,10 +12,11 @@ using System.Threading.Tasks;
 
 namespace Authing.CSharp.SDK.Framework.Test
 {
-    class CustomFieldsManagementTest: ManagementClientBaseTest
+    class CustomFieldsManagementTest : ManagementClientBaseTest
     {
         /// <summary>
-        /// Todo
+        /// 2022-10-20 测试通过
+        /// 获取用户内置列表
         /// </summary>
         /// <returns></returns>
         [Test]
@@ -23,46 +24,54 @@ namespace Authing.CSharp.SDK.Framework.Test
         {
             var dto = await managementClient.GetUserBaseFields();
 
-            Assert.NotNull(dto);
+            Assert.NotNull(dto.Data);
         }
 
         /// <summary>
-        /// Todo
+        /// 2022-10-20 测试通过
+        /// 设置用户自定义字段
         /// </summary>
         /// <returns></returns>
         [Test]
         public async Task SetUserBaseFieldsAsync()
         {
-            var dto = await managementClient.SetUserBaseFields(new SetUserBaseFieldsReqDto { });
-            Assert.NotNull(dto);
+            var dto = await managementClient.SetUserBaseFields(new SetUserBaseFieldsReqDto
+            {
+                List = new List<SetUserBaseFieldDto>
+                {
+                    new SetUserBaseFieldDto { Key="nickname",Label="昵称修改"}
+                }
+            });
+
+            var list = await managementClient.GetUserBaseFields();
+            var nickName = list.Data.Where(p => p.Key == "nickname").FirstOrDefault();
+            Assert.IsTrue(nickName.Label == "昵称修改");
         }
 
+        /// <summary>
+        /// 2022-10-20 测试通过
+        /// 设置用户自定义字段
+        /// </summary>
+        /// <returns></returns>
         [Test]
         public void GetCustomFieldsTest()
         {
-            using (CancellationTokenSource cts = new CancellationTokenSource())
-            {
+            CustomFieldListRespDto dto = managementClient.GetCustomFields(new GetCustomFieldsDto { TargetType = "USER" }).Result;
 
-                CustomFieldListRespDto dto = managementClient.GetCustomFields(new GetCustomFieldsDto { TargetType= "USER" }).Result;
-                if (dto.StatusCode != 200)
-                {
-                    //进行异常处理
-                }
-                //返回数据成功，继续你的业务逻辑
-
-                Assert.IsTrue(dto.Data.Count > 0);
-            }
+            Assert.IsTrue(dto.Data.Count > 0);
         }
 
+        /// <summary>
+        /// 2022-10-20 测试通过
+        /// 设置用户自定义字段
+        /// </summary>
+        /// <returns></returns>
         [Test]
         public void SetCustomFieldsTest()
         {
-            using (CancellationTokenSource cts = new CancellationTokenSource())
+            SetCustomFieldsReqDto setCustomFieldsReqDto = new SetCustomFieldsReqDto()
             {
-
-                SetCustomFieldsReqDto setCustomFieldsReqDto = new SetCustomFieldsReqDto()
-                {
-                    List = new List<SetCustomFieldDto>()
+                List = new List<SetCustomFieldDto>()
                     {
                         new SetCustomFieldDto()
                         {
@@ -81,13 +90,17 @@ namespace Authing.CSharp.SDK.Framework.Test
                             }
                         }
                     }
-                };
+            };
 
-                CustomFieldListRespDto dto = managementClient.SetCustomFields(setCustomFieldsReqDto).Result;
-                Assert.IsTrue(dto.Data.Count > 0);
-            }
+            CustomFieldListRespDto dto = managementClient.SetCustomFields(setCustomFieldsReqDto).Result;
+            Assert.IsTrue(dto.Data.Count > 0);
         }
 
+        /// <summary>
+        /// 2022-10-20 测试通过
+        /// 设置自定义字段的值
+        /// </summary>
+        /// <returns></returns>
         [Test]
         public void SetCustomDataTest()
         {
@@ -96,14 +109,14 @@ namespace Authing.CSharp.SDK.Framework.Test
 
                 SetCustomDataReqDto setCustomFieldsReqDto = new SetCustomDataReqDto()
                 {
-                    TargetType=SetCustomDataReqDto.targetType.USER,
-                    TargetIdentifier= "6283074cf5d4ed3e7535b928",
-                    Namespace="default",
+                    TargetType = SetCustomDataReqDto.targetType.USER,
+                    TargetIdentifier = "634fc0a6ebc13285a2ac8dd2",
+                    Namespace = "default",
                     List = new List<SetCustomDataDto>()
                     {
                         new SetCustomDataDto()
                         {
-                           
+
                            Key = "AuhtingV3Key",
                            Value="AuthingV3Value"
                         }
@@ -115,12 +128,17 @@ namespace Authing.CSharp.SDK.Framework.Test
             }
         }
 
+        /// <summary>
+        /// 2022-10-20 测试通过
+        /// 获取自定义字段的值
+        /// </summary>
+        /// <returns></returns>
         [Test]
         public void GetCustomData()
         {
             using (CancellationTokenSource cts = new CancellationTokenSource())
             {
-                GetCustomDataRespDto getCustomDataRespDto = managementClient.GetCustomData(new GetCustomDataDto { Namespace="default",TargetIdentifier= "6283074cf5d4ed3e7535b928",TargetType="USER" }).Result;
+                GetCustomDataRespDto getCustomDataRespDto = managementClient.GetCustomData(new GetCustomDataDto { Namespace = "default", TargetIdentifier = "634fc0a6ebc13285a2ac8dd2", TargetType = "USER" }).Result;
                 Assert.IsNotNull(getCustomDataRespDto.Data);
             }
         }

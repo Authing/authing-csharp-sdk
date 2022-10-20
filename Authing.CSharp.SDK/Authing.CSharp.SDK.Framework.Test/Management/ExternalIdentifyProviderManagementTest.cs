@@ -15,29 +15,52 @@ namespace Authing.CSharp.SDK.Framework.Test
 {
     class ExternalIdentifyProviderManagementTest : ManagementClientBaseTest
     {
+        /// <summary>
+        /// 2022-10-20 测试成功
+        /// 获取身份源列表
+        /// </summary>
+        /// <returns></returns>
         [Test]
         public async Task ListExtIdpTest()
         {
             using (CancellationTokenSource cts = new CancellationTokenSource())
             {
-                ExtIdpListPaginatedRespDto dto = await managementClient.ListExtIdp(new ListExtIdpDto { });
+                ExtIdpListPaginatedRespDto dto = await managementClient.ListExtIdp(new ListExtIdpDto 
+                {
+                    AppId= "dc10086b85f2635d3246",
+                   
+                });
 
                 Assert.IsTrue(dto.Data.List.Count > 0);
             }
         }
 
+        /// <summary>
+        /// 2022-10-20 测试失败 未知错误
+        /// 获取身份源详情
+        /// </summary>
+        /// <returns></returns>
         [Test]
         public async Task GetExtIdpTest()
         {
             using (CancellationTokenSource cts = new CancellationTokenSource())
             {
                 //"","","62982b6aedad16dc3cbafad4", "62987fc95fdc00c85410105f"
-                ExtIdpDetailSingleRespDto dto = await managementClient.GetExtIdp(new GetExtIdpDto { });
+                ExtIdpDetailSingleRespDto dto = await managementClient.GetExtIdp(new GetExtIdpDto 
+                { 
+                    Id= "6350faefc21d95530e369948" ,
+                    AppId= "634e5637ea7c7e0e817ddfc7"
+                });
 
                 Assert.IsTrue(dto.Data.Id == "62982b6aedad16dc3cbafad4");
             }
         }
 
+        /// <summary>
+        /// 2022-10-20 测试成功
+        /// 创建身份源
+        /// </summary>
+        /// <returns></returns>
         [Test]
         public async Task CreaeteExtIdpTest()
         {
@@ -45,51 +68,79 @@ namespace Authing.CSharp.SDK.Framework.Test
             {
                 CreateExtIdpDto createExtIdpDto = new CreateExtIdpDto()
                 {
-                    Name = "1111111111",
-                    TenantId = "62987fc95fdc00c85410105f",
+                    Name = "newAdd",
+                    TenantId = "634fe4ef9369a20077044c2d",
                     Type = CreateExtIdpDto.type.AD
 
                 };
 
                 ExtIdpSingleRespDto dto = await managementClient.CreateExtIdp(createExtIdpDto);
 
-                Assert.IsTrue(dto.Data.Name == "exampleName");
+                Assert.IsTrue(dto.Data.Name == "newAdd");
             }
         }
 
+        /// <summary>
+        /// 2022-10-20 测试通过
+        /// 更新身份源
+        /// </summary>
+        /// <returns></returns>
         [Test]
         public async Task UpdateExtIdpTest()
         {
             using (CancellationTokenSource cts = new CancellationTokenSource())
             {
+                ExtIdpListPaginatedRespDto dto = await managementClient.ListExtIdp(new ListExtIdpDto
+                {
+                    AppId = "dc10086b85f2635d3246",
+
+                });
+
                 UpdateExtIdpDto updateExtIdpDto = new UpdateExtIdpDto()
                 {
                     Name = "exampleNameUpdate",
-                    Id = "629881be0953a5fee9057154",
+                    Id = dto.Data.List.First().Id,
                 };
 
-                ExtIdpSingleRespDto dto = await managementClient.UpdateExtIdp(updateExtIdpDto);
+                ExtIdpSingleRespDto result = await managementClient.UpdateExtIdp(updateExtIdpDto);
 
-                Assert.IsTrue(dto.Data.Name == "exampleNameUpdate");
+                Assert.IsTrue(result.Data.Name == "exampleNameUpdate");
             }
         }
 
+        /// <summary>
+        /// 2022-10-20 测试通过
+        /// 删除身份源
+        /// </summary>
+        /// <returns></returns>
         [Test]
         public async Task DeleteExtIdpTest()
         {
             using (CancellationTokenSource cts = new CancellationTokenSource())
             {
+
+                ExtIdpListPaginatedRespDto dto = await managementClient.ListExtIdp(new ListExtIdpDto
+                {
+                    TenantId = "634fe4ef9369a20077044c2d",
+
+                });
+
                 DeleteExtIdpDto deleteExtIdpDto = new DeleteExtIdpDto()
                 {
-                    Id = "629881be0953a5fee9057154"
+                    Id = dto.Data.List.First().Id
                 };
 
-                IsSuccessRespDto dto = await managementClient.DeleteExtIdp(deleteExtIdpDto);
+                IsSuccessRespDto result = await managementClient.DeleteExtIdp(deleteExtIdpDto);
 
-                Assert.IsTrue(dto.Data.Success);
+                Assert.IsTrue(result.Data.Success);
             }
         }
 
+        /// <summary>
+        /// 2022-10-20 测试通过
+        /// 建立身份源连接
+        /// </summary>
+        /// <returns></returns>
         [Test]
         public async Task CreateExtIdpConnTest()
         {
@@ -97,12 +148,12 @@ namespace Authing.CSharp.SDK.Framework.Test
             {
                 CreateExtIdpConnDto createExtIdpConnDto = new CreateExtIdpConnDto()
                 {
-                    ExtIdpId = "62988bbe50d0bec8b2eaf055",
+                    ExtIdpId = "6350faefc21d95530e369948",
                     DisplayName = "AuthingV3TestConn",
-                    Identifier = "62988bbe826931c2a6f03add",
+                    Identifier = "6350faefcd688eac1c7c446e",
                     LoginOnly = false,
                     Logo = "https://files.authing.co/authing-console/social-connections/icon_xiaochengxu@2x.png",
-                    Type = CreateExtIdpConnDto.type.AD,
+                    Type = CreateExtIdpConnDto.type.GITHUB,
                     Fields = new { clientId = "619dffb8406749dd88491111", clientSecret = "2222222 " }
                 };
                 ExtIdpConnDetailSingleRespDto dto = await managementClient.CreateExtIdpConn(createExtIdpConnDto);

@@ -85,7 +85,7 @@ public partial class ApplicationBrandingConfig
     ///  展示的登录注册协议列表
     /// </summary>
     [JsonProperty("agreements")]
-    public ApplicationAgreementDto  Agreements {get;set;}
+    public List<ApplicationAgreementDto>  Agreements {get;set;}
 }
 public partial class ApplicationBrandingConfig
  {
