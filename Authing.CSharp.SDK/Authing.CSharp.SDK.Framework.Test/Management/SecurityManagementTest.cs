@@ -10,29 +10,60 @@ namespace Authing.CSharp.SDK.Framework.Test.Management
 {
     internal class SecurityManagementTest : ManagementClientBaseTest
     {
-        [Test]
-        public async Task UpdateSecuritySettingsTest()
-        {
-            var dto = await managementClient.UpdateSecuritySettings(new UpdateSecuritySettingsDto { });
-            Assert.NotNull(dto);
-        }
+        /// <summary>
+        /// 2022-10-20 测试成功
+        /// 获取安全配置
+        /// </summary>
+        /// <returns></returns>
         [Test]
         public async Task GetSecuritySettingsTest()
         {
-            var dto = await managementClient.GetSecuritySettings();
-            Assert.NotNull(dto);
+            var res = await managementClient.GetSecuritySettings();
+            Assert.AreEqual(200, res.StatusCode);
         }
+
+        /// <summary>
+        /// 2022-10-20 测试成功
+        /// 修改安全配置
+        /// </summary>
+        /// <returns></returns>
+        [Test]
+        public async Task UpdateSecuritySettingsTest()
+        {
+            var res = await managementClient.UpdateSecuritySettings(new UpdateSecuritySettingsDto
+            {
+                AllowedOrigins = new List<string>() { "https://www.baidu.com" }
+            });
+            Assert.AreEqual(200, res.StatusCode);
+        }
+
+
+
+        /// <summary>
+        /// 2022-10-20 测试失败
+        /// 获取全局多因素认证配置
+        /// </summary>
+        /// <returns></returns>
         [Test]
         public async Task GetGlobalMfaSettingsTest()
         {
-            var dto = await managementClient.GetGlobalMfaSettings();
-            Assert.NotNull(dto);
+            var res = await managementClient.GetGlobalMfaSettings();
+            Assert.AreEqual(200, res.StatusCode);
         }
+
+        /// <summary>
+        /// 2022-10-20 测试失败
+        /// 修改全局多因素认证配置
+        /// </summary>
+        /// <returns></returns>
         [Test]
         public async Task UpdateGlobalMfaSettingsTest()
         {
-            var dto = await managementClient.UpdateGlobalMfaSettings(new  MFASettingsDto { });
-            Assert.NotNull(dto);
+            var res = await managementClient.UpdateGlobalMfaSettings(new MFASettingsDto
+            {
+                EnabledFactors = new List<string>(){"OTP","SMS","EMAIL","FACE"}
+            });
+            Assert.AreEqual(200,res.StatusCode);
         }
     }
 }
