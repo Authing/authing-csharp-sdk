@@ -292,15 +292,22 @@ Node.js(v14.18.0), authing-node-sdk: 0.0.19
             {
                 if (e.Value.Contains(",") && method=="GET")
                 {
-                    foreach (var item in e.Value.Split(','))
+                    queryBuilder.Append(e.Key+"=");
+                    queryBuilder.Append("[");
+                    List<string> valueList = e.Value.Split(',').ToList<string>();
+                    for (int i=0; i<valueList.Count;i++)
                     {
-                        queryBuilder.Append(e.Key);
-                        if (!string.IsNullOrWhiteSpace(item))
+                        
+
+                        if (!string.IsNullOrWhiteSpace(valueList[i]))
                         {
-                            queryBuilder.Append("=").Append(item);
+                            queryBuilder.Append("\"").Append(valueList[i]).Append("\"");
                         }
-                        queryBuilder.Append(QUERY_SEPARATOR);
+
+                        if (i<valueList.Count-1)
+                        queryBuilder.Append(",");
                     }
+                    queryBuilder.Append("]");
                 }
                 else
                 {
