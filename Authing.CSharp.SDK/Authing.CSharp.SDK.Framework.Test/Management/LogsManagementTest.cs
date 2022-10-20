@@ -10,18 +10,28 @@ namespace Authing.CSharp.SDK.Framework.Test.Management
 {
     internal class LogsManagementTest: ManagementClientBaseTest
     {
+        /// <summary>
+        /// 2022-10-20 测试成功
+        /// 获取用户行为日志
+        /// </summary>
+        /// <returns></returns>
         [Test]
         public async Task GetUserActionLogsTest()
         {
-            var dto = await managementClient.GetUserActionLogs(new GetUserActionLogsDto { });
-            Assert.NotNull(dto);
+            var res = await managementClient.GetUserActionLogs(new GetUserActionLogsDto { });
+            Assert.AreEqual(200,res.StatusCode);
         }
 
+        /// <summary>
+        /// 2022-10-20 测试成功
+        /// 获取管理员操作日志
+        /// </summary>
+        /// <returns></returns>
         [Test]
         public async Task GetAdminAuditLogsTest()
         {
-            var dto = await managementClient.GetAdminAuditLogs(new  GetAdminAuditLogsDto { });
-            Assert.NotNull(dto);
+            var res = await managementClient.GetAdminAuditLogs(new  GetAdminAuditLogsDto { });
+            Assert.AreEqual(200,res.StatusCode);
         }
     }
 }

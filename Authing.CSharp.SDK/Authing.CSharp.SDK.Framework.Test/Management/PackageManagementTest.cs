@@ -10,53 +10,92 @@ namespace Authing.CSharp.SDK.Framework.Test.Management
 {
     internal class PackageManagementTest: ManagementClientBaseTest
     {
+        /// <summary>
+        /// 2022-10-20 测试成功
+        /// 获取套餐详情
+        /// </summary>
+        /// <returns></returns>
         [Test]
         public async Task GetCurrentPackageInfoTest()
         {
-            var dto = await managementClient.GetCurrentPackageInfo();
-            Assert.NotNull(dto);
+            var res = await managementClient.GetCurrentPackageInfo();
+            Assert.AreEqual(200, res.StatusCode);
         }
 
+        /// <summary>
+        /// 2022-10-20 测试成功
+        /// 获取用量详情
+        /// </summary>
+        /// <returns></returns>
         [Test]
         public async Task GetUsageInfoTest()
         {
-            var dto = await managementClient.GetUsageInfo();
-            Assert.NotNull(dto);
+            var res = await managementClient.GetUsageInfo();
+            Assert.AreEqual(200, res.StatusCode);
         }
 
+        /// <summary>
+        /// 2022-10-20 测试成功
+        /// 获取 MAU 使用记录
+        /// </summary>
+        /// <returns></returns>
         [Test]
         public async Task GetMauPeriodUsageHistoryTest()
         {
-            var dto = await managementClient.GetMauPeriodUsageHistory(new GetMauPeriodUsageHistoryDto { });
-            Assert.NotNull(dto);
+            var res = await managementClient.GetMauPeriodUsageHistory(new GetMauPeriodUsageHistoryDto
+            {
+                StartTime = "20220101",
+                EndTime = "20221030"
+            });
+            Assert.AreEqual(200, res.StatusCode);
         }
 
+        /// <summary>
+        /// 2022-10-20 测试成功
+        /// 获取所有权益
+        /// </summary>
+        /// <returns></returns>
         [Test]
         public async Task GetAllRightsItemTest()
         {
-            var dto = await managementClient.GetAllRightsItem();
-            Assert.NotNull(dto);
+            var res = await managementClient.GetAllRightsItem();
+            Assert.AreEqual(200, res.StatusCode);
         }
 
+        /// <summary>
+        /// 2022-10-20 测试成功
+        /// 获取订单列表
+        /// </summary>
+        /// <returns></returns>
         [Test]
         public async Task GetOrdersTest()
         {
-            var dto = await managementClient.GetOrders(new GetOrdersDto { });
-            Assert.NotNull(dto);
+            var res = await managementClient.GetOrders(new GetOrdersDto { });
+            Assert.AreEqual(200, res.StatusCode);
         }
 
+        /// <summary>
+        /// 2022-10-20 测试成功
+        /// 获取订单详情
+        /// </summary>
+        /// <returns></returns>
         [Test]
         public async Task GetOrderDetailTest()
         {
-            var dto = await managementClient.GetOrderDetail(new GetOrderDetailDto { });
-            Assert.NotNull(dto);
+            var res = await managementClient.GetOrderDetail(new GetOrderDetailDto { OrderNo = "12345"});
+            Assert.AreEqual(200, res.StatusCode);
         }
 
+        /// <summary>
+        /// 2022-10-20 测试成功
+        /// 获取订单支付明细
+        /// </summary>
+        /// <returns></returns>
         [Test]
         public async Task GetOrderPayDetailTest()
         {
-            var dto = await managementClient.GetOrderPayDetail(new GetOrderPayDetailDto { });
-            Assert.NotNull(dto);
+            var res = await managementClient.GetOrderPayDetail(new GetOrderPayDetailDto { OrderNo = "12345"}); 
+            Assert.AreEqual(200, res.StatusCode);
         }
     }
 }
