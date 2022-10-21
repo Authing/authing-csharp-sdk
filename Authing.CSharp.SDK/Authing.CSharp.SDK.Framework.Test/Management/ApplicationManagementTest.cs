@@ -18,7 +18,7 @@ namespace Authing.CSharp.SDK.Framework.Test.Management
         [Test]
         public async Task GetApplicationTest()
         {
-            var dto = await managementClient.GetApplication(new GetApplicationDto { AppId = "634cf98aa5b1455a52949d33" });
+            var dto = await managementClient.GetApplication(new GetApplicationDto { AppId = "AUTHING_APPID" });
             Assert.NotNull(dto.Data);
         }
 
@@ -43,12 +43,12 @@ namespace Authing.CSharp.SDK.Framework.Test.Management
         [Test]
         public async Task GetApplicationSimpleInfoTest()
         {
-            var dto = await managementClient.GetApplicationSimpleInfo(new GetApplicationSimpleInfoDto { AppId = "634cf98aa5b1455a52949d33" });
+            var dto = await managementClient.GetApplicationSimpleInfo(new GetApplicationSimpleInfoDto { AppId = "AUTHING_APPID" });
             Assert.NotNull(dto.Data);
         }
 
         /// <summary>
-        /// 2022-10-20 测试失败  自动生成的返回信心有错
+        /// 2022-10-20 测试失败  自动生成的返回信息有错
         /// 获取应用简单信息
         /// </summary>
         /// <returns></returns>

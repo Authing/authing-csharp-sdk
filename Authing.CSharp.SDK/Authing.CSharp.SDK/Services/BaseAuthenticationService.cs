@@ -129,6 +129,22 @@ namespace Authing.CSharp.SDK.Services
         }
 
         /// <summary>
+        /// Json 参数的请求
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="apiPath"></param>
+        /// <param name="jsonParam"></param>
+        /// <param name="headers"></param>
+        /// <returns></returns>
+        protected async Task<string> PostWithHostAsync(string host,string apiPath, Dictionary<string,string> jsonParam, Dictionary<string, string> headers = null)
+        {
+            SetHeaders(headers);
+
+            string httpResponse = await m_HttpService.PostAsync(host, apiPath, jsonParam, default).ConfigureAwait(false);
+            return httpResponse;
+        }
+
+        /// <summary>
         /// 表单请求
         /// </summary>
         /// <typeparam name="T"></typeparam>

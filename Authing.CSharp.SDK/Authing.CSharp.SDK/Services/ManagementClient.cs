@@ -2111,7 +2111,7 @@ namespace Authing.CSharp.SDK.Services
         ///<returns>SecuritySettingsRespDto</returns>
         public async Task<SecuritySettingsRespDto> GetSecuritySettings()
         {
-            string httpResponse = await Request("GET", "/api/v3/update-security-settings").ConfigureAwait(false);
+            string httpResponse = await Request("GET", "/api/v3/get-security-settings").ConfigureAwait(false);
 
             SecuritySettingsRespDto result = m_JsonService.DeserializeObject<SecuritySettingsRespDto>(httpResponse);
             return result;
