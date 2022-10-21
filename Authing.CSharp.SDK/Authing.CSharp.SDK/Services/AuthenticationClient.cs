@@ -1514,7 +1514,7 @@ namespace Authing.CSharp.SDK.Services
         /// <param name="password"></param>
         /// <param name="option"></param>
         /// <returns></returns>
-        public async Task<UserSingleRespDto> SignUpByEmailPassword(string email, string password, SignUpOptionsDto option = null)
+        public async Task<UserSingleRespDto> SignUpByEmailPassword(string email, string password, SignUpOptionsDto option = null, SignUpProfileDto profile = null)
         {
             SignUpDto dto = new SignUpDto
             {
@@ -1524,7 +1524,8 @@ namespace Authing.CSharp.SDK.Services
                     Email = email,
                     Password = password,
                 },
-                Options = option
+                Options = option,
+                Profile = profile
             };
 
             return await SignUp(dto);
@@ -1537,7 +1538,7 @@ namespace Authing.CSharp.SDK.Services
         /// <param name="password"></param>
         /// <param name="option"></param>
         /// <returns></returns>
-        public async Task<UserSingleRespDto> SignUpByEmailCode(string email, string passCode, SignUpOptionsDto option = null)
+        public async Task<UserSingleRespDto> SignUpByEmailCode(string email, string passCode, SignUpOptionsDto option = null, SignUpProfileDto profile = null)
         {
             SignUpDto dto = new SignUpDto
             {
@@ -1547,31 +1548,8 @@ namespace Authing.CSharp.SDK.Services
                     Email = email,
                     PassCode = passCode,
                 },
-                Options = option
-            };
-
-            return await SignUp(dto);
-        }
-
-        /// <summary>
-        /// 使用手机号 + 验证码注册
-        /// </summary>
-        /// <param name="email"></param>
-        /// <param name="password"></param>
-        /// <param name="option"></param>
-        /// <returns></returns>
-        public async Task<UserSingleRespDto> SignUpByPhoneCode(string phone, string passCode, string phoneCountryCode = null, SignUpOptionsDto option = null)
-        {
-            SignUpDto dto = new SignUpDto
-            {
-                Connection = SignUpDto.connection.PASSCODE,
-                PassCodePayload = new SignUpByPassCodeDto
-                {
-                    Phone = phone,
-                    PhoneCountryCode = phoneCountryCode,
-                    PassCode = passCode,
-                },
                 Options = option,
+                Profile = profile
             };
 
             return await SignUp(dto);
@@ -1584,7 +1562,7 @@ namespace Authing.CSharp.SDK.Services
         /// <param name="password"></param>
         /// <param name="option"></param>
         /// <returns></returns>
-        public async Task<UserSingleRespDto> SignUpByPhoneCode(string phone, string passCode, string phoneCountryCode = null, SignUpOptionsDto option = null,SignUpProfileDto profile = null)
+        public async Task<UserSingleRespDto> SignUpByPhoneCode(string phone, string passCode, string phoneCountryCode = null, SignUpOptionsDto option = null, SignUpProfileDto profile = null)
         {
             SignUpDto dto = new SignUpDto
             {
@@ -1597,6 +1575,32 @@ namespace Authing.CSharp.SDK.Services
                 },
                 Options = option,
                 Profile = profile
+            };
+
+            return await SignUp(dto);
+        }
+
+        /// <summary>
+        /// 使用用户名 + 密码注册
+        /// </summary>
+        /// <param name="userName"></param>
+        /// <param name="password"></param>
+        /// <param name="phoneCountryCode"></param>
+        /// <param name="option"></param>
+        /// <param name="profile"></param>
+        /// <returns></returns>
+        public async Task<UserSingleRespDto> signUpByUsernamePassword(string userName, string password, string phoneCountryCode = null, SignUpOptionsDto option = null, SignUpProfileDto profile = null)
+        {
+            SignUpDto dto = new SignUpDto
+            {
+                Connection = SignUpDto.connection.PASSWORD,
+                PasswordPayload = new SignUpByPasswordDto()
+                {
+                    Username = userName,
+                    Password = password
+                },
+                Options = option,
+                Profile = profile,
             };
 
             return await SignUp(dto);
