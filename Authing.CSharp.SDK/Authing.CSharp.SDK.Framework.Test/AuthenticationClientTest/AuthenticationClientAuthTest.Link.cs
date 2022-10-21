@@ -51,7 +51,7 @@ namespace Authing.CSharp.SDK.Framework.Test.AuthenticationClientTest
 
         /// <summary>
         /// 2022-10-18 测试通过
-        /// 获取可绑定的身份源
+        /// 获取绑定的身份源
         /// </summary>
         /// <returns></returns>
         [Test]
@@ -81,7 +81,7 @@ namespace Authing.CSharp.SDK.Framework.Test.AuthenticationClientTest
         public async Task GenerateLinkExtIdpUrlTest()
         {
             var res = await client.GenerateLinkExtIdpUrl("github", "634cf413700f1170a31a0f77", IdToken);
-            Assert.AreEqual(404,res.StatusCode);
+            Assert.AreEqual(404, res.StatusCode);
         }
     }
 }
