@@ -644,20 +644,6 @@ namespace Authing.CSharp.SDK.Services
             return state;
         }
 
-        private async Task<bool> CheckAccessToken(string acccessToken)
-        {
-            string json = await PostFormAsync("/oidc/token/introspection", new { token = acccessToken, token_type_hint = "access_token", client_id = options.AppId, client_secret = options.AppSecret });
-
-            return false;
-        }
-
-        private async Task<bool> CheckIdToken(string idToken, string accessToken)
-        {
-            string json = await GetAsync("/api/v2/oidc/validate_token", jsonService.SerializeObject(new { access_token = accessToken, id_token = idToken }));
-
-            return false;
-        }
-
         public void setAccessToken(string accessToken) => this.options.AccessToken = accessToken;
 
         #region 自动生成的方法
