@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.Serialization;
-using Authing.CSharp.SDK.Models;
+
 
    namespace Authing.CSharp.SDK.Models
 {
@@ -19,7 +19,7 @@ public partial class GenerateQrcodeDto
     ///  二维码类型。当前支持三种类型：
 /// - `MOBILE_APP`: 自建移动端 APP 扫码
 /// - `WECHAT_MINIPROGRAM`: 微信小程序扫码
-/// - `WECHAT_OFFICIAL_ACCOUN` 关注微信公众号扫码
+/// - `WECHAT_OFFICIAL_ACCOUNT` 关注微信公众号扫码
     /// </summary>
     [JsonProperty("type")]
     public type  Type {get;set;}
@@ -50,7 +50,7 @@ public partial class GenerateQrcodeDto
     ///  二维码类型。当前支持三种类型：
 /// - `MOBILE_APP`: 自建移动端 APP 扫码
 /// - `WECHAT_MINIPROGRAM`: 微信小程序扫码
-/// - `WECHAT_OFFICIAL_ACCOUN` 关注微信公众号扫码
+/// - `WECHAT_OFFICIAL_ACCOUNT` 关注微信公众号扫码
     /// </summary>
     public enum type
      {

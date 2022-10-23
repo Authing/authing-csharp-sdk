@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.Serialization;
-using Authing.CSharp.SDK.Models;
+
 
    namespace Authing.CSharp.SDK.Models
 {
@@ -18,8 +18,8 @@ public partial class ListUsersRequestDto
     /// <summary>
     ///  模糊搜索关键字
     /// </summary>
-    [JsonProperty("query")]
-    public string  Query {get;set;}
+    [JsonProperty("keywords")]
+    public string  Keywords {get;set;}
     /// <summary>
     ///  高级搜索
     /// </summary>

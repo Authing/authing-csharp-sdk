@@ -24,10 +24,17 @@ namespace Authing.CSharp.SDK.Framework.Test
         [SetUp]
         public void Setup()
         {
+            //ManagementClientOptions options = new ManagementClientOptions()
+            //{
+            //    AccessKeyId = "AUTHING_USERPOOL_ID",
+            //    AccessKeySecret = "AUTHING_SECRET"
+            //};
+
             ManagementClientOptions options = new ManagementClientOptions()
             {
-                AccessKeyId = "AUTHING_USERPOOL_ID",
-                AccessKeySecret = "AUTHING_SECRET"
+                AccessKeyId = "62a992126012453b7788fa86",
+                AccessKeySecret = "21ae6cee713f68c58ac80f30309a767b",
+                Host= "https://console.pre.authing.cn"
             };
 
             managementClient = new ManagementClient(options);

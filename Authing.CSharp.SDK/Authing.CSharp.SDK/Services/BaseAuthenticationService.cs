@@ -258,10 +258,15 @@ namespace Authing.CSharp.SDK.Services
                 }
             }
 
-            m_HttpService.SetHeader("x-authing-request-from", "SDK");
-            m_HttpService.SetHeader("x-authing-sdk-version", "c-sharp:5.0.0");
+            string osBit = Environment.Is64BitOperatingSystem ? "x64" : "x86";
+            string version = $"authing-csharp-sdk:{System.Reflection.Assembly.GetExecutingAssembly().GetName().Version}";
+            string defaultUA = $"AuthingIdentityCloud ({Environment.OSVersion.VersionString}; {osBit}) .Net(v{Environment.Version}), authing-csharp-sdk:{System.Reflection.Assembly.GetExecutingAssembly().GetName().Version}";
+
+            m_HttpService.SetHeader("x-authing-sdk-version", version);
             m_HttpService.SetHeader("x-authing-app-id", options.AppId);
             m_HttpService.SetHeader("x-authing-lang", options.Lang.GetDescription());
+            m_HttpService.SetHeader("user-agent", defaultUA);
+
 
             m_HttpService.SetTimeOut(options.TimeOut);
             m_HttpService.RejectUnauthorized(options.rejectUnauthorized);

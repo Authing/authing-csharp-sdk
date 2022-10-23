@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.Serialization;
-using Authing.CSharp.SDK.Models;
+
 
    namespace Authing.CSharp.SDK.Models
 {
@@ -15,11 +15,6 @@ using Authing.CSharp.SDK.Models;
 /// </summary>
 public partial class PreviewEmailTemplateDto
 {
-    /// <summary>
-    ///  邮件发件人名称，可选，如果不传默认使用用户池配置的邮件模版进行渲染。
-    /// </summary>
-    [JsonProperty("sender")]
-    public string  Sender {get;set;}
     /// <summary>
     ///  模版类型:
 /// - `WELCOME_EMAIL`: 欢迎邮件
@@ -51,6 +46,11 @@ public partial class PreviewEmailTemplateDto
     /// </summary>
     [JsonProperty("subject")]
     public string  Subject {get;set;}
+    /// <summary>
+    ///  邮件发件人名称，可选，如果不传默认使用用户池配置的邮件模版进行渲染。
+    /// </summary>
+    [JsonProperty("sender")]
+    public string  Sender {get;set;}
     /// <summary>
     ///  验证码/邮件有效时间，只有验证类邮件才有有效时间。可选，如果不传默认使用用户池配置的邮件模版进行渲染。
     /// </summary>

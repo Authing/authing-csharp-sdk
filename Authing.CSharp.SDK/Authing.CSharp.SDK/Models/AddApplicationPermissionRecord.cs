@@ -7,8 +7,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.Serialization;
 using Authing.CSharp.SDK.Models;
+using Authing.CSharp.SDK.Models.Management;
 
-   namespace Authing.CSharp.SDK.Models
+namespace Authing.CSharp.SDK.Models
 {
 /// <summary>
 /// AddApplicationPermissionRecord 的模型
