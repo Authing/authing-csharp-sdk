@@ -22,7 +22,7 @@
 
 更多示例和使用说明可参考[官方文档](https://docs.authing.cn/v3/reference/sdk/csharp/install.html)
 
-此版本基于 Authing V3 版本的[用户认证 API](https://api.authing.cn/openapi/v3/authentication/) 和[管理 API](https://api.authing.cn/openapi/v3/management/)，如果你需要使用历史版本的 SDK，请查看 [https://docs.authing.cn/v2/reference/sdk-for-csharp/](https://docs.authing.cn/v2/reference/sdk-for-csharp/)。
+此版本基于 Authing V3 版本的[用户认证 API](https://api.authing.cn/openapi/v3/authentication/) 和[管理 API](https://api.authing.cn/openapi/v3/management/)，如果你需要使用历史版本的 SDK，请查看 [旧版文档](https://docs.authing.cn/v2/reference/sdk-for-csharp/)。
 
 
 ## ❓ 获取帮助
