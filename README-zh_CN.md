@@ -10,11 +10,7 @@
 
 [English](./README.md) | 简体中文
 
-[Authing](https://authing.cn) 身份云 `CSharp` 语言客户端，包含 [Authing Open API](https://api.authing.cn/openapi/) 所有 Management API 的请求方法。
-
-此模块一般用于后端服务器环境，以管理员（Administrator）的身份进行请求，用于管理 Authing 用户、角色、分组、组织机构等资源；
-
-
+你可以使用此 Authing CSharp SDK 快速为新开发的或已有的后端应用集成认证能力。
 
 ## 🌍 生态系统
 
@@ -22,15 +18,14 @@
 | ------ | ------------------------------------------------------------ | ---------- |
 | csharp | [![NuGet version (Newtonsoft.Json)](https://img.shields.io/nuget/v/Authing.CSharp.SDK.svg?style=flat-square)](https://www.nuget.org/packages/Authing.CSharp.SDK/) | csharp sdk |
 
-## 👀 在线体验
-
-点击查看 [官方文档](https://console.authing.cn/openapi/)
-
 ## 📚 文档
 
-更多示例和使用说明可参考[官方文档](https://console.authing.cn/openapi/)
+更多示例和使用说明可参考[官方文档](https://docs.authing.cn/v3/reference/sdk/csharp/install.html)
 
-## ❓ Questions
+此版本基于 Authing V3 版本的[用户认证 API](https://api.authing.cn/openapi/v3/authentication/) 和[管理 API](https://api.authing.cn/openapi/v3/management/)，如果你需要使用历史版本的 SDK，请查看 [https://docs.authing.cn/v2/reference/sdk-for-csharp/](https://docs.authing.cn/v2/reference/sdk-for-csharp/)。
+
+
+## ❓ 获取帮助
 
 如果需要在线技术支持，可访问[官方论坛](https://forum.authing.cn/). 此仓库的 issue 仅用于上报 Bug 和提交新功能特性。
 

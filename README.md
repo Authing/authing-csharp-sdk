@@ -10,23 +10,22 @@
 
  English | [简体中文](./README-zh_CN.md)
 
-The Authing CSharp SDK is comprised of two parts: `ManagementClient` and `AuthenticationClient`. All operations in `ManagementClient` are performed as an administrator, including managing users, managing roles, managing authority policies, and managing user pool configuration. 
-
+You can use the Authing CSharp SDK to quickly integrate authentication capabilities for new or existing Back End applications.
 
 
 ## 🌍 Ecosystem
 
-| Project | Status                                                       | Description |
-| ------- | ------------------------------------------------------------ | ----------- |
+| Project | Status                                                                                                                                                            | Description |
+| ------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
 | csharp  | [![NuGet version (Newtonsoft.Json)](https://img.shields.io/nuget/v/Authing.CSharp.SDK.svg?style=flat-square)](https://www.nuget.org/packages/Authing.CSharp.SDK/) | csharp sdk  |
 
-## 👀 Online preview
-
-Click to [docs](https://console.authing.cn/openapi/)
 
 ## 📚 Documentation
 
-To check out live examples and docs, [docs](https://console.authing.cn/openapi/)
+To check out documentation, please refers to [docs](https://docs.pre.authing.cn/v3/reference/sdk/csharp/install.html).
+
+This SDK is built upon [Authing Management API(v3)](https://api.authing.cn/openapi/v3/management/) and [Authing Authentication API(v3)](https://api.authing.cn/openapi/v3/authentication/), for older version, please refers to [https://docs.authing.cn/v2/reference/sdk-for-csharp/](https://docs.authing.cn/v2/reference/sdk-for-csharp/).
+
 
 ## ❓ Questions
 
