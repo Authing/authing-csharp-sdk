@@ -14,7 +14,11 @@ namespace Authing.CSharp.SDK.Framework.Test
         [Test]
         public async Task RegisterByEmailAndPassword()
         {
-            var res = await client.SignUpByEmailPassword("574378328@qq.com", "88886666");
+            var res = await client.SignUpByEmailPassword("574378328@qq.com", "88886666",
+                profile: new SignUpProfileDto()
+                {
+                    Gender = SignUpProfileDto.gender.M
+                });
             Assert.AreEqual(200, res.StatusCode);
         }
 
@@ -32,7 +36,11 @@ namespace Authing.CSharp.SDK.Framework.Test
                 Channel = SendEmailDto.channel.CHANNEL_REGISTER
             });
             Assert.AreEqual(200, res1.StatusCode);
-            var res2 = await client.SignUpByEmailCode("574378328@qq.com", "5120");
+            var res2 = await client.SignUpByEmailCode("574378328@qq.com", "5120",
+                profile: new SignUpProfileDto()
+                {
+                    Gender = SignUpProfileDto.gender.M
+                });
             Assert.AreEqual(200, res2.StatusCode);
         }
 
@@ -50,30 +58,28 @@ namespace Authing.CSharp.SDK.Framework.Test
                 Channel = SendSMSDto.channel.CHANNEL_REGISTER
             });
             Assert.AreEqual(200, res1.StatusCode);
-            var res2 = await client.SignUpByPhoneCode("17620671314", "6002", profile: null);
-            Assert.AreEqual(200, res2.StatusCode);
-        }
-
-        /// <summary>
-        /// 2022-10-19 测试失败
-        /// 使用手机验证码注册
-        /// </summary>
-        /// <returns></returns>
-        [Test]
-        public async Task RegisterByPhoneAndCodeAndProfile()
-        {
-            var res1 = await client.SendSms(new SendSMSDto()
-            {
-                PhoneNumber = "17620671314",
-                Channel = SendSMSDto.channel.CHANNEL_REGISTER
-            });
-            Assert.AreEqual(200, res1.StatusCode);
             var res2 = await client.SignUpByPhoneCode("17620671314", "6002",
-                profile: new  SignUpProfileDto()
+                profile: new SignUpProfileDto()
                 {
                     Gender = SignUpProfileDto.gender.M
                 });
             Assert.AreEqual(200, res2.StatusCode);
+        }
+
+        /// <summary>
+        /// 2022-10-21 测试成功
+        /// 使用用户名密码注册
+        /// </summary>
+        /// <returns></returns>
+        [Test]
+        public async Task RegisterByUserNameAndPassword()
+        {
+            var res = await client.signUpByUsernamePassword("test", "88886666",
+                profile: new SignUpProfileDto()
+                {
+                    Gender = SignUpProfileDto.gender.M
+                });
+            Assert.AreEqual(200, res.StatusCode);
         }
 
     }

@@ -2,21 +2,10 @@
 using Authing.CSharp.SDK.Models;
 using NUnit.Framework;
 
-namespace Authing.CSharp.SDK.Framework.Test.AuthenticationClientTest
+namespace Authing.CSharp.SDK.Framework.Test
 {
-    public partial class AuthenticationClientAuthTest : AuthenticationClientTestBase
+    public partial class AuthenticationClientAuthTest
     {
-        public string IdToken { get; set; }
-
-        [SetUp]
-        public async Task LoginTemp()
-        {
-            LoginTokenRespDto loginTokenRespDto = await client.SignInByAccountPassword("tmgg", "88886666");
-            Assert.IsNotNull(loginTokenRespDto);
-            client.setAccessToken(loginTokenRespDto.Data.Access_token);
-            IdToken = loginTokenRespDto.Data.Id_token;
-        }
-
         /// <summary>
         /// 2022-10-18 测试失败
         /// 获取用户登录日志
@@ -25,7 +14,7 @@ namespace Authing.CSharp.SDK.Framework.Test.AuthenticationClientTest
         [Test]
         public async Task GetUserLogs()
         {
-            var res = await client.DecryptWechatMiniProgramData(new DecryptWechatMiniProgramDataDto { });
+            var res = await client.GetLoginHistory();
             Assert.AreEqual(200, res.StatusCode);
         }
 
@@ -50,6 +39,42 @@ namespace Authing.CSharp.SDK.Framework.Test.AuthenticationClientTest
         public async Task GetAccessibleAppsTest()
         {
             var res = await client.GetAccessibleApps();
+            Assert.AreEqual(200, res.StatusCode);
+        }
+
+        /// <summary>
+        /// 2022-10-21 测试成功
+        /// 获取用户的租户列表
+        /// </summary>
+        /// <returns></returns>
+        [Test]
+        public async Task GetGroupListTest()
+        {
+            var res = await client.GetGroupList();
+            Assert.AreEqual(200, res.StatusCode);
+        }
+
+        /// <summary>
+        /// 2022-10-21 测试成功
+        /// 获取用户的租户列表
+        /// </summary>
+        /// <returns></returns>
+        [Test]
+        public async Task GetRoleListTest()
+        {
+            var res = await client.GetRoleList();
+            Assert.AreEqual(200, res.StatusCode);
+        }
+
+        /// <summary>
+        /// 2022-10-21 测试成功
+        /// 获取用户的租户列表
+        /// </summary>
+        /// <returns></returns>
+        [Test]
+        public async Task GetTenantListTest()
+        {
+            var res = await client.GetTenantList();
             Assert.AreEqual(200, res.StatusCode);
         }
 
@@ -166,7 +191,7 @@ namespace Authing.CSharp.SDK.Framework.Test.AuthenticationClientTest
         [Test]
         public async Task UnBindPhoneTest()
         {
-            var res = await client.UnbindPhone(new UnbindPhoneDto{});
+            var res = await client.UnbindPhone(new UnbindPhoneDto { });
             Assert.AreEqual(200, res.StatusCode);
         }
 
@@ -310,12 +335,28 @@ namespace Authing.CSharp.SDK.Framework.Test.AuthenticationClientTest
         }
 
         /// <summary>
-        /// TODO:发起注销账户请求
+        /// 2022-10-21 测试成功
+        /// 注销账户
         /// </summary>
         /// <returns></returns>
         [Test]
         public async Task VeirfyDeleteAccountRequestTest()
         {
+            var res1 = await client.VeirfyDeleteAccountRequest(new VerifyDeleteAccountRequestDto()
+            {
+                VerifyMethod = VerifyDeleteAccountRequestDto.verifyMethod.PASSWORD,
+                PasswordPayload = new DeleteAccountByPasswordDto
+                {
+                    PasswordEncryptType = DeleteAccountByPasswordDto.passwordEncryptType.NONE,
+                    Password = "88886666"
+                }
+            });
+            Assert.AreEqual(200, res1.StatusCode);
+            var res2 = await client.DeleteAccount(new DeleteAccounDto
+            {
+                DeleteAccountToken = res1.Data.DeleteAccountToken
+            });
+            Assert.AreEqual(200, res1.StatusCode);
         }
 
         /// <summary>
@@ -326,7 +367,7 @@ namespace Authing.CSharp.SDK.Framework.Test.AuthenticationClientTest
         [Test]
         public async Task GetApplicationPublicConfig()
         {
-          //  var res = await client.GetApplicationPublicConfig();
+            //  var res = await client.GetApplicationPublicConfig();
         }
 
         /// <summary>
