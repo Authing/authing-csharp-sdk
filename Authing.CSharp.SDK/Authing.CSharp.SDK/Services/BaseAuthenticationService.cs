@@ -12,41 +12,23 @@ namespace Authing.CSharp.SDK.Services
 {
     public class BaseAuthenticationService : ServiceBase
     {
-        /// <summary>
-        /// 控制台 Host
-        /// </summary>
-        protected readonly string m_Host;
-
-        /// <summary>
-        /// App Host
-        /// </summary>
         protected readonly string m_AppHost;
 
-
         protected readonly string m_AppId;
-        private string accessToken;
         private bool needBase64 = false;
         private AuthenticationClientInitOptions options;
 
         public BaseAuthenticationService(AuthenticationClientInitOptions options) : base(new JsonService())
         {
-            m_AppHost = options.AppHost;
-
-            m_Host = ConfigService.BASE_URL;
-
-            if (!string.IsNullOrWhiteSpace(options.Host))
-            {
-                m_Host = options.Host;
-            }
-
             this.options = options;
+            m_AppHost = options.AppHost;
         }
 
         protected async Task<string> GetAsync(string apiPath)
         {
             SetHeaders();
 
-            string httpResponse = await m_HttpService.GetAsync(m_Host, apiPath, default, default).ConfigureAwait(false);
+            string httpResponse = await m_HttpService.GetAsync(options.AppHost, apiPath, default, default).ConfigureAwait(false);
             return httpResponse;
         }
 
@@ -64,7 +46,7 @@ namespace Authing.CSharp.SDK.Services
 
             var dic = m_JsonService.DeserializeObject<Dictionary<string, string>>(param);
 
-            string httpResponse = await m_HttpService.GetAsync(m_Host, apiPath, dic, default).ConfigureAwait(false);
+            string httpResponse = await m_HttpService.GetAsync(options.AppHost, apiPath, dic, default).ConfigureAwait(false);
             return httpResponse;
         }
 
@@ -74,7 +56,7 @@ namespace Authing.CSharp.SDK.Services
 
             SetHeaders();
 
-            string httpResponse = await m_HttpService.GetAsync(m_Host, apiPath, dics, default).ConfigureAwait(false);
+            string httpResponse = await m_HttpService.GetAsync(options.AppHost, apiPath, dics, default).ConfigureAwait(false);
             return httpResponse;
         }
 
@@ -91,7 +73,7 @@ namespace Authing.CSharp.SDK.Services
 
             SetHeaders();
 
-            string httpResponse = await m_HttpService.GetAsync(m_Host, apiPath, dic, default).ConfigureAwait(false);
+            string httpResponse = await m_HttpService.GetAsync(options.AppHost, apiPath, dic, default).ConfigureAwait(false);
             return httpResponse;
         }
 
@@ -108,7 +90,7 @@ namespace Authing.CSharp.SDK.Services
 
             SetHeaders();
 
-            string httpResponse = await m_HttpService.PostAsync(m_Host, apiPath, jsonParam, default).ConfigureAwait(false);
+            string httpResponse = await m_HttpService.PostAsync(options.AppHost, apiPath, jsonParam, default).ConfigureAwait(false);
             return httpResponse;
         }
 
@@ -124,7 +106,7 @@ namespace Authing.CSharp.SDK.Services
         {
             SetHeaders(headers);
 
-            string httpResponse = await m_HttpService.PostAsync(m_Host, apiPath, jsonParam, default).ConfigureAwait(false);
+            string httpResponse = await m_HttpService.PostAsync(options.AppHost, apiPath, jsonParam, default).ConfigureAwait(false);
             return httpResponse;
         }
 
@@ -159,7 +141,7 @@ namespace Authing.CSharp.SDK.Services
 
             SetHeaders(headers);
 
-            string httpResponse = await m_HttpService.PostFormAsync(m_Host, apiPath, dic, default).ConfigureAwait(false);
+            string httpResponse = await m_HttpService.PostFormAsync(options.AppHost, apiPath, dic, default).ConfigureAwait(false);
             return httpResponse;
         }
 
@@ -202,7 +184,7 @@ namespace Authing.CSharp.SDK.Services
             }
             SetHeaders(headers);
 
-            string httpResponse = await m_HttpService.PostFormAsync(m_Host, apiPath, dic, default).ConfigureAwait(false);
+            string httpResponse = await m_HttpService.PostFormAsync(options.AppHost, apiPath, dic, default).ConfigureAwait(false);
             return httpResponse;
         }
 
