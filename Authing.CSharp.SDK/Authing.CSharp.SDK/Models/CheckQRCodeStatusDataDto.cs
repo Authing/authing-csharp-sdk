@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.Serialization;
-using Authing.CSharp.SDK.Models;
+
 
    namespace Authing.CSharp.SDK.Models
 {
@@ -16,7 +16,7 @@ using Authing.CSharp.SDK.Models;
 public partial class CheckQRCodeStatusDataDto
 {
     /// <summary>
-    ///  二维码状态。按照用户扫码顺序，共分为未扫码、已扫码等待用户确认、用户同意/取消授权、二维码过期以及未知错误六种状态。
+    ///  二维码状态。按照用户扫码顺序，共分为 PENDING(未扫码)、SCANNED(已扫码等待用户确认)、AUTHORIZED(用户已授权)、CANCELLED(取消授权)、EXPIRED(二维码过期)以及 ERROR(未知错误)六种状态。
     /// </summary>
     [JsonProperty("status")]
     public status  Status {get;set;}
@@ -36,12 +36,10 @@ public partial class CheckQRCodeStatusDataDto
 public partial class CheckQRCodeStatusDataDto
  {
     /// <summary>
-    ///  二维码状态。按照用户扫码顺序，共分为未扫码、已扫码等待用户确认、用户同意/取消授权、二维码过期以及未知错误六种状态。
+    ///  二维码状态。按照用户扫码顺序，共分为 PENDING(未扫码)、SCANNED(已扫码等待用户确认)、AUTHORIZED(用户已授权)、CANCELLED(取消授权)、EXPIRED(二维码过期)以及 ERROR(未知错误)六种状态。
     /// </summary>
     public enum status
      {
-         [EnumMember(Value="EXPIRED")]
-        EXPIRED,
          [EnumMember(Value="PENDING")]
         PENDING,
          [EnumMember(Value="SCANNED")]
@@ -50,6 +48,8 @@ public partial class CheckQRCodeStatusDataDto
         AUTHORIZED,
          [EnumMember(Value="CANCELLED")]
         CANCELLED,
+         [EnumMember(Value="EXPIRED")]
+        EXPIRED,
          [EnumMember(Value="ERROR")]
         ERROR,
     }

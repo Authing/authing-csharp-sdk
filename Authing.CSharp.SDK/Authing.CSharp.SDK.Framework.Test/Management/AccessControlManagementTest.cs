@@ -538,7 +538,7 @@ namespace Authing.CSharp.SDK.Framework.Test
         [Test]
         public async Task AssociationResourcesTest()
         {
-            var dto = await managementClient.AssociationResources(new AssociationResourceDto { AppId= "AUTHING_APPID",TenantId= "AUTHING_TENANT_ID",Code="ecs" });
+            var dto = await managementClient.AssociateTenantResource(new  AssociateTenantResourceDto{ AppId= "AUTHING_APPID",TenantId= "AUTHING_TENANT_ID",Code="ecs" });
             Assert.NotNull(dto.Data.Success);
         }
 

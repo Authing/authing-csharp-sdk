@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.Serialization;
-using Authing.CSharp.SDK.Models;
+
 
    namespace Authing.CSharp.SDK.Models
 {
@@ -18,13 +18,13 @@ public partial class SMTPEmailProviderConfig
     /// <summary>
     ///  SMTP 地址
     /// </summary>
-    [JsonProperty("smtpHost")]
-    public string  SmtpHost {get;set;}
+    [JsonProperty("smtp_host")]
+    public string  Smtp_host {get;set;}
     /// <summary>
     ///  SMTP 端口
     /// </summary>
-    [JsonProperty("smtpPort")]
-    public long  SmtpPort {get;set;}
+    [JsonProperty("smtp_port")]
+    public long  Smtp_port {get;set;}
     /// <summary>
     ///  用户名
     /// </summary>
@@ -38,7 +38,7 @@ public partial class SMTPEmailProviderConfig
     /// <summary>
     ///  是否启用 SSL
     /// </summary>
-    [JsonProperty("enableSSL")]
-    public bool  EnableSSL {get;set;}
+    [JsonProperty("secure")]
+    public bool  Secure {get;set;}
 }
 }

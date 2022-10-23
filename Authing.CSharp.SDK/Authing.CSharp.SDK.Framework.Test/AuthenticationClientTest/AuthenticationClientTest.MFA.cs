@@ -78,7 +78,7 @@ namespace Authing.CSharp.SDK.Framework.Test.AuthenticationClientTest
 
             var lists = await client.ListEnrolledFactors();
             var target = lists.Data.FirstOrDefault(i => i.FactorId.Contains("email"));
-            var res = await client.ResetFactor(new RestFactorDto { FactorId = target.FactorId });
+            var res = await client.ResetFactor(new ResetFactorDto { FactorId = target.FactorId });
             Assert.IsTrue(res.StatusCode == 200);
         }
 

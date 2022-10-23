@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.Serialization;
-using Authing.CSharp.SDK.Models;
+
 
    namespace Authing.CSharp.SDK.Models
 {
@@ -31,14 +31,14 @@ public partial class ListTenantExtIdpDto
     [JsonProperty("type")]
     public string  Type {get;set;} 
     /// <summary>
-    ///  页码
+    ///  当前页数，从 1 开始
     /// </summary>
     [JsonProperty("page")]
-    public string  Page {get;set;} ="1";
+    public long  Page {get;set;} =1;
     /// <summary>
-    ///  每页获取的数据量
+    ///  每页数目，最大不能超过 50，默认为 10
     /// </summary>
     [JsonProperty("limit")]
-    public string  Limit {get;set;} ="10";
+    public long  Limit {get;set;} =10;
 }
 }

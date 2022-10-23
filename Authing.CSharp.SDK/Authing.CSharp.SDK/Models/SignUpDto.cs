@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.Serialization;
-using Authing.CSharp.SDK.Models;
+
 
    namespace Authing.CSharp.SDK.Models
 {
@@ -24,7 +24,7 @@ public partial class SignUpDto
     [JsonProperty("connection")]
     public connection  Connection {get;set;}
     /// <summary>
-    ///  当主持方式为 `PASSWORD` 时此参数必填。
+    ///  当注册方式为 `PASSWORD` 时此参数必填。
     /// </summary>
     [JsonProperty("passwordPayload")]
     public SignUpByPasswordDto  PasswordPayload {get;set;}

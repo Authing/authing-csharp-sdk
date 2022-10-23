@@ -246,7 +246,7 @@ namespace Authing.CSharp.SDK.Framework.Test
             Assert.AreEqual(200, res1.StatusCode);
             var res2 = await client.VerifyUpdateEmailRequest(new VerifyUpdateEmailRequestDto()
             {
-                EmailPasscodePayload = new UpdateEmailByEmailPassCodeDto()
+                EmailPassCodePayload = new UpdateEmailByEmailPassCodeDto()
                 {
                     NewEmail = "tm574378328@gmail.com",
                     NewEmailPassCode = "5908",
@@ -342,7 +342,7 @@ namespace Authing.CSharp.SDK.Framework.Test
         [Test]
         public async Task VeirfyDeleteAccountRequestTest()
         {
-            var res1 = await client.VeirfyDeleteAccountRequest(new VerifyDeleteAccountRequestDto()
+            var res1 = await client.VerifyDeleteAccountRequest(new VerifyDeleteAccountRequestDto()
             {
                 VerifyMethod = VerifyDeleteAccountRequestDto.verifyMethod.PASSWORD,
                 PasswordPayload = new DeleteAccountByPasswordDto

@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.Serialization;
-using Authing.CSharp.SDK.Models;
+
 
    namespace Authing.CSharp.SDK.Models
 {
@@ -35,6 +35,11 @@ public partial class UserDto
     /// </summary>
     [JsonProperty("status")]
     public status  Status {get;set;}
+    /// <summary>
+    ///  账户当前工作状态
+    /// </summary>
+    [JsonProperty("workStatus")]
+    public workStatus  WorkStatus {get;set;}
     /// <summary>
     ///  第三方外部 ID
     /// </summary>
@@ -292,6 +297,16 @@ public partial class UserDto
         ARCHIVED,
          [EnumMember(Value="Deactivated")]
         DEACTIVATED,
+    }
+    /// <summary>
+    ///  账户当前工作状态
+    /// </summary>
+    public enum workStatus
+     {
+         [EnumMember(Value="Closed")]
+        CLOSED,
+         [EnumMember(Value="Active")]
+        ACTIVE,
     }
     /// <summary>
     ///  性别:

@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.Serialization;
-using Authing.CSharp.SDK.Models;
+
 
    namespace Authing.CSharp.SDK.Models
 {
@@ -21,7 +21,7 @@ public partial class AccessTokenResDto
     [JsonProperty("access_token")]
     public string  Access_token {get;set;}
     /// <summary>
-    ///  token 有效时间
+    ///  access_token 有效时间，默认为 7200 秒（两小时），过期之后应该重新获取新的 access_token。
     /// </summary>
     [JsonProperty("expires_in")]
     public long  Expires_in {get;set;}

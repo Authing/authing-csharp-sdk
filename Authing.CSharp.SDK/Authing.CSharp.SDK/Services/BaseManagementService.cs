@@ -119,12 +119,14 @@ namespace Authing.CSharp.SDK.Services
             long utcTime = m_DatetimeService.DateTimeToTimestamp(DateTime.Now);
             string osBit = Environment.Is64BitOperatingSystem ? "x64" : "x86";
             string defaultUA = $"AuthingIdentityCloud ({Environment.OSVersion.VersionString}; {osBit}) .Net(v{Environment.Version}), authing-csharp-sdk:{System.Reflection.Assembly.GetExecutingAssembly().GetName().Version}";
+            string version = $"authing-csharp-sdk:{System.Reflection.Assembly.GetExecutingAssembly().GetName().Version}";
+            string nonce = GenerateRandomString();
 
-            m_HttpService.SetHeader("x-authing-signature-nonce", "131231adadad");
+            m_HttpService.SetHeader("x-authing-signature-nonce", nonce);
             m_HttpService.SetHeader("x-authing-signature-method", "HMAC-SHA1");
             m_HttpService.SetHeader("x-authing-signature-version", "1.0");
-            //m_HttpService.SetHeader("user-agent", defaultUA);
-            m_HttpService.SetHeader("x-authing-sdk-version", "authing-csharp-sdk:0.0.4");
+            m_HttpService.SetHeader("user-agent", defaultUA);
+            m_HttpService.SetHeader("x-authing-sdk-version", version);
             m_HttpService.SetHeader("x-authing-date", utcTime.ToString());
             /*
              const DEFAULT_UA =
@@ -136,11 +138,11 @@ Node.js(v14.18.0), authing-node-sdk: 0.0.19
              */
             Dictionary<string, string> dics = new Dictionary<string, string>();
             dics.Add("content-type", "application/json");
-            dics.Add("x-authing-signature-nonce", "131231adadad");
+            dics.Add("x-authing-signature-nonce", nonce);
             dics.Add("x-authing-signature-method", "HMAC-SHA1");
             dics.Add("x-authing-signature-version", "1.0");
-            //dics.Add("user-agent", defaultUA);
-            dics.Add("x-authing-sdk-version", "authing-csharp-sdk:0.0.4");
+            dics.Add("user-agent", defaultUA);
+            dics.Add("x-authing-sdk-version", version);
             dics.Add("x-authing-date", utcTime.ToString());
 
             string result = ComposeStringToSign(method, apiPath, queries, dics);
@@ -148,6 +150,17 @@ Node.js(v14.18.0), authing-node-sdk: 0.0.19
             string cryptString = HmacSHA1Signer.SignString(result, m_Secret);
 
             m_HttpService.SetHeader("authorization", $"authing {m_UserPoolId}:{cryptString}");
+        }
+
+        private string GenerateRandomString(int length = 30)
+        {
+            var rd = new Random((int)DateTime.Now.Ticks);
+            var strAtt = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+            var resAtt = new Char[length];
+            rd.Next(0, 62);
+
+            var resStr = string.Join("", resAtt.Select(p => strAtt[rd.Next(0, 62)]).ToArray());
+            return resStr;
         }
 
         /// <summary>

@@ -31,7 +31,7 @@ namespace Authing.CSharp.SDK.Framework.Test.Management
         [Test]
         public async Task ListApplicationsTest()
         {
-            var dto = await managementClient.ListApplications(new ListApplicationsDto { Keyword = "qidongtest", IsSelfBuiltApp = true });
+            var dto = await managementClient.ListApplications(new ListApplicationsDto { Keywords = "qidongtest", IsSelfBuiltApp = true });
             Assert.NotNull(dto);
         }
 
@@ -161,7 +161,7 @@ namespace Authing.CSharp.SDK.Framework.Test.Management
         [Test]
         public async Task AuthorizeApplicationAccessTest()
         {
-            var dto = await managementClient.AuthorizeApplicationAccess(new AddApplicationPermissionRecord
+            var dto = await managementClient.AuthorizeApplicationAccess(new AuthorizeApplicationAccessDto
             {
                 AppId = "634e5637ea7c7e0e817ddfc7",
                 List = new List<ApplicationPermissionRecordItem>
@@ -185,7 +185,7 @@ namespace Authing.CSharp.SDK.Framework.Test.Management
         [Test]
         public async Task RevokeApplicationAccessTest()
         {
-            var dto = await managementClient.RevokeApplicationAccess(new DeleteApplicationPermissionRecord 
+            var dto = await managementClient.RevokeApplicationAccess(new RevokeApplicationAccessDto 
             {
                 AppId= "634e5637ea7c7e0e817ddfc7",
                 List=new List<DeleteApplicationPermissionRecordItem> 

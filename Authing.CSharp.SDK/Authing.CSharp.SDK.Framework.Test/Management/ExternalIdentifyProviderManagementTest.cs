@@ -186,15 +186,13 @@ namespace Authing.CSharp.SDK.Framework.Test
         {
             using (CancellationTokenSource cts = new CancellationTokenSource())
             {
-                EnableExtIdpConnDto enableExtIdpConnDto = new EnableExtIdpConnDto()
+                ChangeExtIdpAssociationStateDto enableExtIdpConnDto = new ChangeExtIdpAssociationStateDto()
                 {
                     Id = "62988ec7bcac758beea4006f",
-                    AppId = "6215dd9277d6ef55dfab41f8",
                     TenantId = "62987fc95fdc00c85410105f",
-                    Enabled = true
                 };
 
-                IsSuccessRespDto dto = await managementClient.ChangeConnState(enableExtIdpConnDto);
+                IsSuccessRespDto dto = await managementClient.ChangeExtIdpConnAssociationState(enableExtIdpConnDto);
 
                 Assert.IsTrue(dto.Data.Success);
             }
@@ -219,10 +217,10 @@ namespace Authing.CSharp.SDK.Framework.Test
         [Test]
         public async Task ChangeAssociationStateTest()
         {
-            var dto = await managementClient.ChangeAssociationState(new AssociationExtIdpDto
+            var dto = await managementClient.ChangeExtIdpConnState(new ChangeExtIdpConnStateDto
             {
                 Id = "AUTHING_IDP_CONN_ID",
-                Association = true,
+                Enabled = true,
                 TenantId = "AUTHING_TENANT_ID"
             });
             Assert.NotNull(dto);

@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.Serialization;
-using Authing.CSharp.SDK.Models;
+
 
    namespace Authing.CSharp.SDK.Models
 {
@@ -21,15 +21,15 @@ public partial class UpdateGroupReqDto
     [JsonProperty("description")]
     public string  Description {get;set;}
     /// <summary>
-    ///  分组名称
-    /// </summary>
-    [JsonProperty("name")]
-    public string  Name {get;set;}
-    /// <summary>
     ///  分组 code
     /// </summary>
     [JsonProperty("code")]
     public string  Code {get;set;}
+    /// <summary>
+    ///  分组名称
+    /// </summary>
+    [JsonProperty("name")]
+    public string  Name {get;set;}
     /// <summary>
     ///  分组新的 code
     /// </summary>
