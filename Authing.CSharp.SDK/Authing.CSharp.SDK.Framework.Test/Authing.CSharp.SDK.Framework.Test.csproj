@@ -17,11 +17,6 @@
     <Compile Remove="AuthenticationClientTest\StandardProtocolTest.cs" />
     <Compile Remove="AuthenticationClientTest\UserResourceTest.cs" />
     <Compile Remove="AuthenticationClientTest\WechatAuthenticationClientTest.cs" />
-    <Compile Remove="Fuck.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="Fuck.cs" />
   </ItemGroup>
 
   <ItemGroup>
