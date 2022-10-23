@@ -22,7 +22,7 @@ You can use the Authing CSharp SDK to quickly integrate authentication capabilit
 
 ## 📚 Documentation
 
-To check out documentation, please refers to [docs](https://docs.pre.authing.cn/v3/reference/sdk/csharp/install.html).
+To check out documentation, please refers to [docs](https://docs.authing.cn/v3/reference/sdk/csharp/install.html).
 
 This SDK is built upon [Authing Management API(v3)](https://api.authing.cn/openapi/v3/management/) and [Authing Authentication API(v3)](https://api.authing.cn/openapi/v3/authentication/), for older version, please refers to [older version docs](https://docs.authing.cn/v2/reference/sdk-for-csharp/).
 
