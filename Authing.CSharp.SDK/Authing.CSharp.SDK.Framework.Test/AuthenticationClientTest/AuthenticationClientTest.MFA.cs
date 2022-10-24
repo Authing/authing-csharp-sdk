@@ -69,7 +69,7 @@ namespace Authing.CSharp.SDK.Framework.Test.AuthenticationClientTest
 
         /// <summary>
         /// 2022-10-22 测试通过
-        /// 重置 MFA
+        /// 解绑 MFA
         /// </summary>
         /// <returns></returns>
         [Test]
@@ -78,13 +78,13 @@ namespace Authing.CSharp.SDK.Framework.Test.AuthenticationClientTest
 
             var lists = await client.ListEnrolledFactors();
             var target = lists.Data.FirstOrDefault(i => i.FactorId.Contains("email"));
-            var res = await client.ResetFactor(new RestFactorDto { FactorId = target.FactorId });
+            var res = await client.ResetFactor(new ResetFactorDto { FactorId = target.FactorId });
             Assert.IsTrue(res.StatusCode == 200);
         }
 
         /// <summary>
         /// 2022-10-18 测试通过
-        /// 获取已绑定的 MFA
+        /// 获取某个已绑定的 MFA
         /// </summary>
         /// <returns></returns>
         [Test]

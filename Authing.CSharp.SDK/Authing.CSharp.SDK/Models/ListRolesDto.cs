@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.Serialization;
-using Authing.CSharp.SDK.Models;
+
 
    namespace Authing.CSharp.SDK.Models
 {
@@ -16,7 +16,7 @@ using Authing.CSharp.SDK.Models;
 public partial class ListRolesDto
 {
     /// <summary>
-    ///  搜索角色 code
+    ///  用于根据角色的 code 进行模糊搜索，可选。
     /// </summary>
     [JsonProperty("keywords")]
     public string  Keywords {get;set;} 

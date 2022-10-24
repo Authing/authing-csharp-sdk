@@ -40,7 +40,7 @@ namespace Authing.CSharp.SDK.Framework.Test.Management
         [Test]
         public async Task ListPipelineFunctionsTest()
         {
-            var res = await managementClient.ListPipelineFunctions(new ListPipelineFunctionDto { });
+            var res = await managementClient.ListPipelineFunctions(new ListPipelineFunctionsDto { });
             Assert.AreEqual(200, res.StatusCode);
         }
 
@@ -52,7 +52,7 @@ namespace Authing.CSharp.SDK.Framework.Test.Management
         [Test]
         public async Task GetPipelineFunctionTest()
         {
-            var res1 = await managementClient.ListPipelineFunctions(new ListPipelineFunctionDto { });
+            var res1 = await managementClient.ListPipelineFunctions(new  ListPipelineFunctionsDto { });
             var target = res1.Data.List.First();
             var res = await managementClient.GetPipelineFunction(new GetPipelineFunctionDto { FuncId = target.FuncId });
             Assert.AreEqual(200, res.StatusCode);
@@ -66,7 +66,7 @@ namespace Authing.CSharp.SDK.Framework.Test.Management
         [Test]
         public async Task ReuploadPipelineFunctionTest()
         {
-            var res1 = await managementClient.ListPipelineFunctions(new ListPipelineFunctionDto { });
+            var res1 = await managementClient.ListPipelineFunctions(new  ListPipelineFunctionsDto { });
             var target = res1.Data.List.First();
             var res = await managementClient.ReuploadPipelineFunction(new ReUploadPipelineFunctionDto() { FuncId = target.FuncId });
             Assert.AreEqual(200, res.StatusCode);
@@ -80,7 +80,7 @@ namespace Authing.CSharp.SDK.Framework.Test.Management
         [Test]
         public async Task UpdatePipelineFunctionTest()
         {
-            var res1 = await managementClient.ListPipelineFunctions(new ListPipelineFunctionDto { });
+            var res1 = await managementClient.ListPipelineFunctions(new  ListPipelineFunctionsDto { });
             var target = res1.Data.List.First();
             var res = await managementClient.UpdatePipelineFunction(new UpdatePipelineFunctionDto() { FuncId = target.FuncId, Timeout = 20 });
             Assert.AreEqual(200, res.StatusCode);
@@ -94,7 +94,7 @@ namespace Authing.CSharp.SDK.Framework.Test.Management
         [Test]
         public async Task UpdatePipelineOrderTest()
         {
-            var res1 = await managementClient.ListPipelineFunctions(new ListPipelineFunctionDto { });
+            var res1 = await managementClient.ListPipelineFunctions(new  ListPipelineFunctionsDto { });
             var target = res1.Data.List.First();
             var res2 = await managementClient.UpdatePipelineOrder(new UpdatePipelineOrderDto
             {
@@ -113,7 +113,7 @@ namespace Authing.CSharp.SDK.Framework.Test.Management
         [Test]
         public async Task DeletePipelineFunctionTest()
         {
-            var res1 = await managementClient.ListPipelineFunctions(new ListPipelineFunctionDto { });
+            var res1 = await managementClient.ListPipelineFunctions(new ListPipelineFunctionsDto { });
             var target = res1.Data.List.First();
             var res2 = await managementClient.DeletePipelineFunction(new DeletePipelineFunctionDto
             {
@@ -130,7 +130,7 @@ namespace Authing.CSharp.SDK.Framework.Test.Management
         [Test]
         public async Task GetPipelineLogsTest()
         {
-            var res1 = await managementClient.ListPipelineFunctions(new ListPipelineFunctionDto { });
+            var res1 = await managementClient.ListPipelineFunctions(new ListPipelineFunctionsDto { });
             var target = res1.Data.List.First();
             var res2 = await managementClient.GetPipelineLogs(new GetPipelineLogsDto
             {

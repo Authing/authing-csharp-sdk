@@ -24,7 +24,6 @@ namespace Authing.CSharp.SDK.Framework.Test
         {
             using (CancellationTokenSource cts = new CancellationTokenSource())
             {
-
                 OrganizationPaginatedRespDto dto = await managementClient.ListOrganizations(new ListOrganizationsDto { });
 
                 Assert.IsTrue(dto.Data.List.Count > 0);

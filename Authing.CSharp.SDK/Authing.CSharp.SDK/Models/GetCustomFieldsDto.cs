@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.Serialization;
-using Authing.CSharp.SDK.Models;
+
 
    namespace Authing.CSharp.SDK.Models
 {
@@ -21,7 +21,7 @@ public partial class GetCustomFieldsDto
 /// - `ROLE`: 角色
 /// - `GROUP`: 分组
 /// - `DEPARTMENT`: 部门
-/// 
+/// ;该接口暂不支持分组(GROUP)
     /// </summary>
     [JsonProperty("targetType")]
     public string  TargetType {get;set;} 

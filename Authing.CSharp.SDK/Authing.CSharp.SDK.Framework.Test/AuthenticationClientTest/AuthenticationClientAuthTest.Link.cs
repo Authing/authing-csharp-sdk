@@ -30,7 +30,7 @@ namespace Authing.CSharp.SDK.Framework.Test.AuthenticationClientTest
         [Test]
         public async Task LinkExtIdpTest()
         {
-            var res = await client.LinkExtIdp("github", "61c2d04b36324259776af784", IdToken);
+            var res = await client.GenerateLinkExtIdpUrl("github", "61c2d04b36324259776af784", IdToken);
         }
 
         /// <summary>
@@ -41,8 +41,8 @@ namespace Authing.CSharp.SDK.Framework.Test.AuthenticationClientTest
         [Test]
         public async Task ULinkExtIdpTest()
         {
-            var res = await client.UnbindExtIdp(
-                new UnbindExtIdpDto()
+            var res = await client.UnlinkExtIdp(
+                new UnlinkExtIdpDto()
                 {
                     ExtIdpId = "62f209327xxxxcc10d966ee5"
                 });
@@ -51,7 +51,7 @@ namespace Authing.CSharp.SDK.Framework.Test.AuthenticationClientTest
 
         /// <summary>
         /// 2022-10-18 测试通过
-        /// 获取可绑定的身份源
+        /// 获取绑定的身份源
         /// </summary>
         /// <returns></returns>
         [Test]
@@ -69,7 +69,7 @@ namespace Authing.CSharp.SDK.Framework.Test.AuthenticationClientTest
         [Test]
         public async Task GetExtIdpsTest()
         {
-            var res = await client.GetExtIdps();
+            var res = await client.GetApplicationEnabledExtIdps();
             Assert.IsNotEmpty(res.Data);
         }
 
@@ -81,7 +81,7 @@ namespace Authing.CSharp.SDK.Framework.Test.AuthenticationClientTest
         public async Task GenerateLinkExtIdpUrlTest()
         {
             var res = await client.GenerateLinkExtIdpUrl("github", "634cf413700f1170a31a0f77", IdToken);
-            Assert.AreEqual(404,res.StatusCode);
+            Assert.AreEqual(404, res.StatusCode);
         }
     }
 }

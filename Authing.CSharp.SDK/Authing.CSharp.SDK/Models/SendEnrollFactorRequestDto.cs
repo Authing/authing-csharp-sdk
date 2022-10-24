@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.Serialization;
-using Authing.CSharp.SDK.Models;
+
 
    namespace Authing.CSharp.SDK.Models
 {
@@ -21,7 +21,12 @@ public partial class SendEnrollFactorRequestDto
     [JsonProperty("profile")]
     public FactorProfile  Profile {get;set;}
     /// <summary>
-    ///  MFA 认证要素类型，目前共支持短信、邮箱验证码、OTP、人脸四种类型的认证要素。
+    ///  MFA 认证要素类型：
+/// - `OTP`: OTP
+/// - `SMS`: 短信
+/// - `EMAIL`: 邮件
+/// - `FACE`: 人脸
+/// 
     /// </summary>
     [JsonProperty("factorType")]
     public factorType  FactorType {get;set;}
@@ -29,7 +34,12 @@ public partial class SendEnrollFactorRequestDto
 public partial class SendEnrollFactorRequestDto
  {
     /// <summary>
-    ///  MFA 认证要素类型，目前共支持短信、邮箱验证码、OTP、人脸四种类型的认证要素。
+    ///  MFA 认证要素类型：
+/// - `OTP`: OTP
+/// - `SMS`: 短信
+/// - `EMAIL`: 邮件
+/// - `FACE`: 人脸
+/// 
     /// </summary>
     public enum factorType
      {

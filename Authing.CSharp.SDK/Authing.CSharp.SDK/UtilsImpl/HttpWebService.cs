@@ -298,6 +298,12 @@ namespace Authing.CSharp.SDK.Utils
                     continue;
                 }
 
+                if (item.Key == "user-agent")
+                {
+                    request.UserAgent = item.Value;
+                    continue;
+                }
+
                 request.Headers.Add(item.Key, item.Value);
             }
 

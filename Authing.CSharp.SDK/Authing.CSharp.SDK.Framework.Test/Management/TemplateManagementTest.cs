@@ -86,7 +86,7 @@ namespace Authing.CSharp.SDK.Framework.Test.Management
                     SenderPass = "123456"
                 }
             });
-            Assert.NotNull(res.AliExmailConfig);
+            Assert.NotNull(res.Data.AliExmailConfig);
         }
     }
 }

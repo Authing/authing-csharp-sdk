@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.Serialization;
-using Authing.CSharp.SDK.Models;
+
 
    namespace Authing.CSharp.SDK.Models
 {
@@ -22,9 +22,9 @@ public partial class EmailProviderDto
     public bool  Enabled {get;set;}
     /// <summary>
     ///  第三方邮件服务商类型:
-/// - `smtp`: 标准 SMTP 邮件服务
+/// - `custom`: 自定义 SMTP 邮件服务
 /// - `ali`: [阿里企业邮箱](https://www.ali-exmail.cn/Land/)
-/// - `tencent`: [腾讯企业邮箱](https://work.weixin.qq.com/mail/)
+/// - `qq`: [腾讯企业邮箱](https://work.weixin.qq.com/mail/)
 /// - `sendgrid`: [SendGrid 邮件服务](https://sendgrid.com/)
 /// 
     /// </summary>
@@ -55,22 +55,22 @@ public partial class EmailProviderDto
  {
     /// <summary>
     ///  第三方邮件服务商类型:
-/// - `smtp`: 标准 SMTP 邮件服务
+/// - `custom`: 自定义 SMTP 邮件服务
 /// - `ali`: [阿里企业邮箱](https://www.ali-exmail.cn/Land/)
-/// - `tencent`: [腾讯企业邮箱](https://work.weixin.qq.com/mail/)
+/// - `qq`: [腾讯企业邮箱](https://work.weixin.qq.com/mail/)
 /// - `sendgrid`: [SendGrid 邮件服务](https://sendgrid.com/)
 /// 
     /// </summary>
     public enum type
      {
-         [EnumMember(Value="smtp")]
-        SMTP,
          [EnumMember(Value="ali")]
         ALI,
-         [EnumMember(Value="tencent")]
-        TENCENT,
+         [EnumMember(Value="qq")]
+        QQ,
          [EnumMember(Value="sendgrid")]
         SENDGRID,
+         [EnumMember(Value="custom")]
+        CUSTOM,
     }
 }
 }

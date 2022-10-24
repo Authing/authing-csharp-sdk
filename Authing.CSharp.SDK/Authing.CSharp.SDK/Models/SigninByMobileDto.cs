@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.Serialization;
-using Authing.CSharp.SDK.Models;
+
 
    namespace Authing.CSharp.SDK.Models
 {
@@ -22,6 +22,7 @@ public partial class SigninByMobileDto
     public string  ExtIdpConnidentifier {get;set;}
     /// <summary>
     ///  移动端社会化登录类型：
+/// - `apple`: Apple 移动端应用
 /// - `wechat`: 微信移动应用
 /// - `alipay`: 支付宝移动应用
 /// - `wechatwork`: 企业微信移动应用
@@ -37,52 +38,57 @@ public partial class SigninByMobileDto
     [JsonProperty("connection")]
     public connection  Connection {get;set;}
     /// <summary>
-    ///  微信移动端社会化登录数据，当 `connection` 为 `wechat` 的时候必填
+    ///  苹果移动端社会化登录数据，当 `connection` 为 `wechat` 的时候必填。
     /// </summary>
     [JsonProperty("wechatPayload")]
     public SignInByWechatPayloadDto  WechatPayload {get;set;}
     /// <summary>
-    ///  支付宝移动端社会化登录数据，当 `connection` 为 `alipay` 的时候必填
+    ///  微信移动端社会化登录数据，当 `connection` 为 `apple` 的时候必填。
+    /// </summary>
+    [JsonProperty("applePayload")]
+    public SignInByApplePayloadDto  ApplePayload {get;set;}
+    /// <summary>
+    ///  支付宝移动端社会化登录数据，当 `connection` 为 `alipay` 的时候必填。
     /// </summary>
     [JsonProperty("alipayPayload")]
     public SignInByAlipayPayloadDto  AlipayPayload {get;set;}
     /// <summary>
-    ///  企业微信移动端社会化登录数据，当 `connection` 为 `wechatwork` 的时候必填
+    ///  企业微信移动端社会化登录数据，当 `connection` 为 `wechatwork` 的时候必填。
     /// </summary>
     [JsonProperty("wechatworkPayload")]
-    public AuthenticateByWechatworkDto  WechatworkPayload {get;set;}
+    public SignInByWechatworkDto  WechatworkPayload {get;set;}
     /// <summary>
-    ///  企业微信（代开发模式）移动端社会化登录数据，当 `connection` 为 `wechatwork_agency` 的时候必填
+    ///  企业微信（代开发模式）移动端社会化登录数据，当 `connection` 为 `wechatwork_agency` 的时候必填。
     /// </summary>
     [JsonProperty("wechatworkAgencyPayload")]
     public SignInByWechatworkAgencyPayloadDto  WechatworkAgencyPayload {get;set;}
     /// <summary>
-    ///  飞书应用商店应用移动端社会化登录数据，当 `connection` 为 `lark_public` 的时候必填
+    ///  飞书应用商店应用移动端社会化登录数据，当 `connection` 为 `lark_public` 的时候必填。
     /// </summary>
     [JsonProperty("larkPublicPayload")]
     public SignInByLarkPublicPayloadDto  LarkPublicPayload {get;set;}
     /// <summary>
-    ///  飞书自建应用移动端社会化登录数据，当 `connection` 为 `lark_internal` 的时候必填
+    ///  飞书自建应用移动端社会化登录数据，当 `connection` 为 `lark_internal` 的时候必填。
     /// </summary>
     [JsonProperty("larkInternalPayload")]
     public SignInByLarkInternalPayloadDto  LarkInternalPayload {get;set;}
     /// <summary>
-    ///  网易易盾移动端社会化登录数据，当 `connection` 为 `yidun` 的时候必填
+    ///  网易易盾移动端社会化登录数据，当 `connection` 为 `yidun` 的时候必填。
     /// </summary>
     [JsonProperty("yidunPayload")]
     public SignInByYidunPayloadDto  YidunPayload {get;set;}
     /// <summary>
-    ///  网易易盾移动端社会化登录数据，当 `connection` 为 `wechat_mini_program_code` 的时候必填
+    ///  网易易盾移动端社会化登录数据，当 `connection` 为 `wechat_mini_program_code` 的时候必填。
     /// </summary>
     [JsonProperty("wechatMiniProgramCodePayload")]
     public SignInByWechatMiniProgramCodePayloadDto  WechatMiniProgramCodePayload {get;set;}
     /// <summary>
-    ///  网易易盾移动端社会化登录数据，当 `connection` 为 `wechat_mini_program_phone` 的时候必填
+    ///  网易易盾移动端社会化登录数据，当 `connection` 为 `wechat_mini_program_phone` 的时候必填。
     /// </summary>
     [JsonProperty("wechatMiniProgramPhonePayload")]
     public SignInByWechatMiniProgramPhonePayloadDto  WechatMiniProgramPhonePayload {get;set;}
     /// <summary>
-    ///  Google 移动端社会化登录数据，当 `connection` 为 `google` 的时候必填
+    ///  Google 移动端社会化登录数据，当 `connection` 为 `google` 的时候必填。
     /// </summary>
     [JsonProperty("googlePayload")]
     public SignInByGooglePayloadDto  GooglePayload {get;set;}
@@ -106,6 +112,7 @@ public partial class SigninByMobileDto
  {
     /// <summary>
     ///  移动端社会化登录类型：
+/// - `apple`: Apple 移动端应用
 /// - `wechat`: 微信移动应用
 /// - `alipay`: 支付宝移动应用
 /// - `wechatwork`: 企业微信移动应用
@@ -120,6 +127,8 @@ public partial class SigninByMobileDto
     /// </summary>
     public enum connection
      {
+         [EnumMember(Value="apple")]
+        APPLE,
          [EnumMember(Value="wechat")]
         WECHAT,
          [EnumMember(Value="alipay")]

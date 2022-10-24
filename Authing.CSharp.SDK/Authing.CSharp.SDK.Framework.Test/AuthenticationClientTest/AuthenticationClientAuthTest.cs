@@ -15,6 +15,18 @@ namespace Authing.CSharp.SDK.Framework.Test
     {
         string loginCallbackUrl = @"https://www.baidu.com";
         string code = @"zly1ZqW6J407OMLk4IBPbaudAwQQV3h_iDB2uHY4JK9";
+        public string IdToken { get; set; }
+        public string AccessToken { get; set; }
+
+        [SetUp]
+        public async Task LoginTemp()
+        {
+            LoginTokenRespDto loginTokenRespDto = await client.SignInByAccountPassword("tmgg", "88886666");
+            Assert.IsNotNull(loginTokenRespDto);
+            client.setAccessToken(loginTokenRespDto.Data.Access_token);
+            IdToken = loginTokenRespDto.Data.Id_token;
+            AccessToken = loginTokenRespDto.Data.Access_token;
+        }
 
         [Test]
         public void LoginWithRedirectTest()
@@ -80,18 +92,5 @@ namespace Authing.CSharp.SDK.Framework.Test
             AccessToken accessToken = await client.ParseAccessToken(loginState.AccessToken);
             Assert.IsNotNull(accessToken);
         }
-
-        [Test]
-        public async Task GetCountryListTest()
-        {
-            var result = await client.SignInByCredentials(new Models.SigninByCredentialsDto
-            {
-                Client_id = "6343bb084f16915f1becc730",
-                Client_secret = "8ebe5abcc740f3bde1ba29621557675c",
-                Connection = Models.SigninByCredentialsDto.connection.PASSWORD,
-                PasswordPayload = new  SignInByPasswordPayloadDto { Username = "test", Password = "test" }
-            });
-        }
-
     }
 }

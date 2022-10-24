@@ -12,6 +12,7 @@ using Authing.CSharp.SDK.IServices;
 using Jose;
 using Newtonsoft.Json;
 using Authing.CSharp.SDK.Models;
+using Authing.CSharp.SDK.Models.Management;
 
 namespace Authing.CSharp.SDK.Services
 {
@@ -598,7 +599,7 @@ namespace Authing.CSharp.SDK.Services
             var resAtt = new Char[length];
             rd.Next(0, 62);
 
-            var resStr = String.Join("", resAtt.Select(p => strAtt[rd.Next(0, 62)]).ToArray());
+            var resStr = string.Join("", resAtt.Select(p => strAtt[rd.Next(0, 62)]).ToArray());
             return resStr;
         }
 
@@ -644,34 +645,9 @@ namespace Authing.CSharp.SDK.Services
             return state;
         }
 
-        private async Task<bool> CheckAccessToken(string acccessToken)
-        {
-            string json = await PostFormAsync("/oidc/token/introspection", new { token = acccessToken, token_type_hint = "access_token", client_id = options.AppId, client_secret = options.AppSecret });
-
-            return false;
-        }
-
-        private async Task<bool> CheckIdToken(string idToken, string accessToken)
-        {
-            string json = await GetAsync("/api/v2/oidc/validate_token", jsonService.SerializeObject(new { access_token = accessToken, id_token = idToken }));
-
-            return false;
-        }
-
         public void setAccessToken(string accessToken) => this.options.AccessToken = accessToken;
 
         #region 自动生成的方法
-        ///<summary>
-        /// 预检验验证码是否正确
-        ///</summary>
-        /// <param name="requestBody"></param>
-        ///<returns>PreCheckCodeRespDto</returns>
-        public async Task<PreCheckCodeRespDto> PreCheckCode(PreCheckCodeDto requestBody)
-        {
-            string httpResponse = await Request("POST", "/api/v3/pre-check-code", requestBody).ConfigureAwait(false);
-            PreCheckCodeRespDto result = m_JsonService.DeserializeObject<PreCheckCodeRespDto>(httpResponse);
-            return result;
-        }
         ///<summary>
         /// 使用用户凭证登录
         ///</summary>
@@ -702,8 +678,8 @@ namespace Authing.CSharp.SDK.Services
         public async Task<GetAlipayAuthInfoRespDto> GetAlipayAuthInfo(string extIdpConnidentifier)
         {
             string httpResponse = await Request("GET", "/api/v3/get-alipay-authinfo", new Dictionary<string, object> {
-        {"extIdpConnidentifier",extIdpConnidentifier },
-    }).ConfigureAwait(false);
+                        {"extIdpConnidentifier",extIdpConnidentifier },
+        }).ConfigureAwait(false);
             GetAlipayAuthInfoRespDto result = m_JsonService.DeserializeObject<GetAlipayAuthInfoRespDto>(httpResponse);
             return result;
         }
@@ -726,8 +702,8 @@ namespace Authing.CSharp.SDK.Services
         public async Task<CheckQRCodeStatusRespDto> CheckQrCodeStatus(string qrcodeId)
         {
             string httpResponse = await Request("GET", "/api/v3/check-qrcode-status", new Dictionary<string, object> {
-        {"qrcodeId",qrcodeId },
-    }).ConfigureAwait(false);
+                        {"qrcodeId",qrcodeId },
+        }).ConfigureAwait(false);
             CheckQRCodeStatusRespDto result = m_JsonService.DeserializeObject<CheckQRCodeStatusRespDto>(httpResponse);
             return result;
         }
@@ -785,10 +761,10 @@ namespace Authing.CSharp.SDK.Services
         public async Task<UserSingleRespDto> GetProfile(bool withCustomData = false, bool withIdentities = false, bool withDepartmentIds = false)
         {
             string httpResponse = await Request("GET", "/api/v3/get-profile", new Dictionary<string, object> {
-        {"withCustomData",withCustomData },
-        {"withIdentities",withIdentities },
-        {"withDepartmentIds",withDepartmentIds },
-    }).ConfigureAwait(false);
+                        {"withCustomData",withCustomData },
+                        {"withIdentities",withIdentities },
+                        {"withDepartmentIds",withDepartmentIds },
+        }).ConfigureAwait(false);
             UserSingleRespDto result = m_JsonService.DeserializeObject<UserSingleRespDto>(httpResponse);
             return result;
         }
@@ -939,7 +915,7 @@ namespace Authing.CSharp.SDK.Services
         ///</summary>
         /// <param name="requestBody"></param>
         ///<returns>VerifyDeleteAccountRequestRespDto</returns>
-        public async Task<VerifyDeleteAccountRequestRespDto> VeirfyDeleteAccountRequest(VerifyDeleteAccountRequestDto requestBody)
+        public async Task<VerifyDeleteAccountRequestRespDto> VerifyDeleteAccountRequest(VerifyDeleteAccountRequestDto requestBody)
         {
             string httpResponse = await Request("POST", "/api/v3/verify-delete-account-request", requestBody).ConfigureAwait(false);
             VerifyDeleteAccountRequestRespDto result = m_JsonService.DeserializeObject<VerifyDeleteAccountRequestRespDto>(httpResponse);
@@ -977,6 +953,17 @@ namespace Authing.CSharp.SDK.Services
             return result;
         }
         ///<summary>
+        /// 预检验验证码是否正确
+        ///</summary>
+        /// <param name="requestBody"></param>
+        ///<returns>PreCheckCodeRespDto</returns>
+        public async Task<PreCheckCodeRespDto> PreCheckCode(PreCheckCodeDto requestBody)
+        {
+            string httpResponse = await Request("POST", "/api/v3/pre-check-code", requestBody).ConfigureAwait(false);
+            PreCheckCodeRespDto result = m_JsonService.DeserializeObject<PreCheckCodeRespDto>(httpResponse);
+            return result;
+        }
+        ///<summary>
         /// 发起绑定 MFA 认证要素请求
         ///</summary>
         /// <param name="requestBody"></param>
@@ -1003,7 +990,7 @@ namespace Authing.CSharp.SDK.Services
         ///</summary>
         /// <param name="requestBody"></param>
         ///<returns>ResetFactorRespDto</returns>
-        public async Task<ResetFactorRespDto> ResetFactor(RestFactorDto requestBody)
+        public async Task<ResetFactorRespDto> ResetFactor(ResetFactorDto requestBody)
         {
             string httpResponse = await Request("POST", "/api/v3/reset-factor", requestBody).ConfigureAwait(false);
             ResetFactorRespDto result = m_JsonService.DeserializeObject<ResetFactorRespDto>(httpResponse);
@@ -1027,8 +1014,8 @@ namespace Authing.CSharp.SDK.Services
         public async Task<GetFactorRespDto> GetFactor(string factorId)
         {
             string httpResponse = await Request("GET", "/api/v3/get-factor", new Dictionary<string, object> {
-        {"factorId",factorId },
-    }).ConfigureAwait(false);
+                        {"factorId",factorId },
+        }).ConfigureAwait(false);
             GetFactorRespDto result = m_JsonService.DeserializeObject<GetFactorRespDto>(httpResponse);
             return result;
         }
@@ -1043,23 +1030,6 @@ namespace Authing.CSharp.SDK.Services
             return result;
         }
         ///<summary>
-        /// 绑定外部身份源
-        ///</summary>
-        /// <param name="extIdpConnIdentifier">外部身份源连接唯一标志</param>
-        /// <param name="appId">Authing 应用 ID</param>
-        /// <param name="idToken">用户的 id_token</param>
-        ///<returns>GenerateBindExtIdpLinkRespDto</returns>
-        public async Task<GenerateBindExtIdpLinkRespDto> LinkExtIdp(string extIdpConnIdentifier, string appId, string idToken)
-        {
-            string httpResponse = await Request("GET", "/api/v3/link-extidp", new Dictionary<string, object> {
-        {"ext_idp_conn_identifier",extIdpConnIdentifier },
-        {"app_id",appId },
-        {"id_token",idToken },
-    }).ConfigureAwait(false);
-            GenerateBindExtIdpLinkRespDto result = m_JsonService.DeserializeObject<GenerateBindExtIdpLinkRespDto>(httpResponse);
-            return result;
-        }
-        ///<summary>
         /// 生成绑定外部身份源的链接
         ///</summary>
         /// <param name="extIdpConnIdentifier">外部身份源连接唯一标志</param>
@@ -1069,10 +1039,10 @@ namespace Authing.CSharp.SDK.Services
         public async Task<GenerateBindExtIdpLinkRespDto> GenerateLinkExtIdpUrl(string extIdpConnIdentifier, string appId, string idToken)
         {
             string httpResponse = await Request("GET", "/api/v3/generate-link-extidp-url", new Dictionary<string, object> {
-        {"ext_idp_conn_identifier",extIdpConnIdentifier },
-        {"app_id",appId },
-        {"id_token",idToken },
-    }).ConfigureAwait(false);
+                        {"ext_idp_conn_identifier",extIdpConnIdentifier },
+                        {"app_id",appId },
+                        {"id_token",idToken },
+        }).ConfigureAwait(false);
             GenerateBindExtIdpLinkRespDto result = m_JsonService.DeserializeObject<GenerateBindExtIdpLinkRespDto>(httpResponse);
             return result;
         }
@@ -1081,7 +1051,7 @@ namespace Authing.CSharp.SDK.Services
         ///</summary>
         /// <param name="requestBody"></param>
         ///<returns>CommonResponseDto</returns>
-        public async Task<CommonResponseDto> UnbindExtIdp(UnbindExtIdpDto requestBody)
+        public async Task<CommonResponseDto> UnlinkExtIdp(UnlinkExtIdpDto requestBody)
         {
             string httpResponse = await Request("POST", "/api/v3/unlink-extidp", requestBody).ConfigureAwait(false);
             CommonResponseDto result = m_JsonService.DeserializeObject<CommonResponseDto>(httpResponse);
@@ -1101,9 +1071,9 @@ namespace Authing.CSharp.SDK.Services
         /// 获取应用开启的外部身份源列表
         ///</summary>
         ///<returns>GetExtIdpsRespDto</returns>
-        public async Task<GetExtIdpsRespDto> GetExtIdps()
+        public async Task<GetExtIdpsRespDto> GetApplicationEnabledExtIdps()
         {
-            string httpResponse = await Request("GET", "/api/v3/get-extidps").ConfigureAwait(false);
+            string httpResponse = await Request("GET", "/api/v3/get-application-enabled-extidps").ConfigureAwait(false);
             GetExtIdpsRespDto result = m_JsonService.DeserializeObject<GetExtIdpsRespDto>(httpResponse);
             return result;
         }
@@ -1165,14 +1135,14 @@ namespace Authing.CSharp.SDK.Services
         public async Task<GetLoginHistoryRespDto> GetLoginHistory(long end = 0, long start = 0, bool success = false, string clientIp = null, string appId = null, long page = 1, long limit = 10)
         {
             string httpResponse = await Request("GET", "/api/v3/get-my-login-history", new Dictionary<string, object> {
-        {"appId",appId },
-        {"clientIp",clientIp },
-        {"success",success },
-        {"start",start },
-        {"end",end },
-        {"page",page },
-        {"limit",limit },
-    }).ConfigureAwait(false);
+                        {"appId",appId },
+                        {"clientIp",clientIp },
+                        {"success",success },
+                        {"start",start },
+                        {"end",end },
+                        {"page",page },
+                        {"limit",limit },
+        }).ConfigureAwait(false);
             GetLoginHistoryRespDto result = m_JsonService.DeserializeObject<GetLoginHistoryRespDto>(httpResponse);
             return result;
         }
@@ -1214,8 +1184,8 @@ namespace Authing.CSharp.SDK.Services
         public async Task<RoleListRespDto> GetRoleList(string nameSpace = null)
         {
             string httpResponse = await Request("GET", "/api/v3/get-my-role-list", new Dictionary<string, object> {
-        {"namespace",nameSpace },
-    }).ConfigureAwait(false);
+                    {"namespace",nameSpace },
+        }).ConfigureAwait(false);
             RoleListRespDto result = m_JsonService.DeserializeObject<RoleListRespDto>(httpResponse);
             return result;
         }
@@ -1241,12 +1211,12 @@ namespace Authing.CSharp.SDK.Services
         public async Task<UserDepartmentPaginatedRespDto> GetDepartmentList(long page = 1, long limit = 10, bool withCustomData = false, string sortBy = "JoinDepartmentAt", string orderBy = "Desc")
         {
             string httpResponse = await Request("GET", "/api/v3/get-my-department-list", new Dictionary<string, object> {
-        {"page",page },
-        {"limit",limit },
-        {"withCustomData",withCustomData },
-        {"sortBy",sortBy },
-        {"orderBy",orderBy },
-    }).ConfigureAwait(false);
+                        {"page",page },
+                        {"limit",limit },
+                        {"withCustomData",withCustomData },
+                        {"sortBy",sortBy },
+                        {"orderBy",orderBy },
+        }).ConfigureAwait(false);
             UserDepartmentPaginatedRespDto result = m_JsonService.DeserializeObject<UserDepartmentPaginatedRespDto>(httpResponse);
             return result;
         }
@@ -1259,21 +1229,10 @@ namespace Authing.CSharp.SDK.Services
         public async Task<AuthorizedResourcePaginatedRespDto> GetAuthorizedResources(string resourceType = null, string nameSpace = null)
         {
             string httpResponse = await Request("GET", "/api/v3/get-my-authorized-resources", new Dictionary<string, object> {
-        {"namespace",nameSpace },
-        {"resourceType",resourceType },
-    }).ConfigureAwait(false);
+                    {"namespace",nameSpace },
+                        {"resourceType",resourceType },
+        }).ConfigureAwait(false);
             AuthorizedResourcePaginatedRespDto result = m_JsonService.DeserializeObject<AuthorizedResourcePaginatedRespDto>(httpResponse);
-            return result;
-        }
-        ///<summary>
-        /// 文件上传
-        ///</summary>
-        /// <param name="requestBody"></param>
-        ///<returns>UploadRespDto</returns>
-        public async Task<UploadRespDto> Upload(UploadDto requestBody)
-        {
-            string httpResponse = await Request("POST", "/api/v2/upload", requestBody).ConfigureAwait(false);
-            UploadRespDto result = m_JsonService.DeserializeObject<UploadRespDto>(httpResponse);
             return result;
         }
 
@@ -1528,7 +1487,7 @@ namespace Authing.CSharp.SDK.Services
         /// <param name="password"></param>
         /// <param name="option"></param>
         /// <returns></returns>
-        public async Task<UserSingleRespDto> SignUpByEmailPassword(string email, string password, SignUpOptionsDto option = null)
+        public async Task<UserSingleRespDto> SignUpByEmailPassword(string email, string password, SignUpOptionsDto option = null, SignUpProfileDto profile = null)
         {
             SignUpDto dto = new SignUpDto
             {
@@ -1538,7 +1497,8 @@ namespace Authing.CSharp.SDK.Services
                     Email = email,
                     Password = password,
                 },
-                Options = option
+                Options = option,
+                Profile = profile
             };
 
             return await SignUp(dto);
@@ -1551,7 +1511,7 @@ namespace Authing.CSharp.SDK.Services
         /// <param name="password"></param>
         /// <param name="option"></param>
         /// <returns></returns>
-        public async Task<UserSingleRespDto> SignUpByEmailCode(string email, string passCode, SignUpOptionsDto option = null)
+        public async Task<UserSingleRespDto> SignUpByEmailCode(string email, string passCode, SignUpOptionsDto option = null, SignUpProfileDto profile = null)
         {
             SignUpDto dto = new SignUpDto
             {
@@ -1561,31 +1521,8 @@ namespace Authing.CSharp.SDK.Services
                     Email = email,
                     PassCode = passCode,
                 },
-                Options = option
-            };
-
-            return await SignUp(dto);
-        }
-
-        /// <summary>
-        /// 使用手机号 + 验证码注册
-        /// </summary>
-        /// <param name="email"></param>
-        /// <param name="password"></param>
-        /// <param name="option"></param>
-        /// <returns></returns>
-        public async Task<UserSingleRespDto> SignUpByPhoneCode(string phone, string passCode, string phoneCountryCode = null, SignUpOptionsDto option = null)
-        {
-            SignUpDto dto = new SignUpDto
-            {
-                Connection = SignUpDto.connection.PASSCODE,
-                PassCodePayload = new SignUpByPassCodeDto
-                {
-                    Phone = phone,
-                    PhoneCountryCode = phoneCountryCode,
-                    PassCode = passCode,
-                },
                 Options = option,
+                Profile = profile
             };
 
             return await SignUp(dto);
@@ -1598,7 +1535,7 @@ namespace Authing.CSharp.SDK.Services
         /// <param name="password"></param>
         /// <param name="option"></param>
         /// <returns></returns>
-        public async Task<UserSingleRespDto> SignUpByPhoneCode(string phone, string passCode, string phoneCountryCode = null, SignUpOptionsDto option = null,SignUpProfileDto profile = null)
+        public async Task<UserSingleRespDto> SignUpByPhoneCode(string phone, string passCode, string phoneCountryCode = null, SignUpOptionsDto option = null, SignUpProfileDto profile = null)
         {
             SignUpDto dto = new SignUpDto
             {
@@ -1611,6 +1548,32 @@ namespace Authing.CSharp.SDK.Services
                 },
                 Options = option,
                 Profile = profile
+            };
+
+            return await SignUp(dto);
+        }
+
+        /// <summary>
+        /// 使用用户名 + 密码注册
+        /// </summary>
+        /// <param name="userName"></param>
+        /// <param name="password"></param>
+        /// <param name="phoneCountryCode"></param>
+        /// <param name="option"></param>
+        /// <param name="profile"></param>
+        /// <returns></returns>
+        public async Task<UserSingleRespDto> signUpByUsernamePassword(string userName, string password, string phoneCountryCode = null, SignUpOptionsDto option = null, SignUpProfileDto profile = null)
+        {
+            SignUpDto dto = new SignUpDto
+            {
+                Connection = SignUpDto.connection.PASSWORD,
+                PasswordPayload = new SignUpByPasswordDto()
+                {
+                    Username = userName,
+                    Password = password
+                },
+                Options = option,
+                Profile = profile,
             };
 
             return await SignUp(dto);

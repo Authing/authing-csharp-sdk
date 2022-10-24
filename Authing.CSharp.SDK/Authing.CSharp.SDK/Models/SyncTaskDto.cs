@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.Serialization;
-using Authing.CSharp.SDK.Models;
+
 
    namespace Authing.CSharp.SDK.Models
 {
@@ -75,7 +75,7 @@ public partial class SyncTaskDto
     ///  最近一次同步错误信息
     /// </summary>
     [JsonProperty("lastSyncMessage")]
-    public bool  LastSyncMessage {get;set;}
+    public string  LastSyncMessage {get;set;}
     /// <summary>
     ///  最近一次同步进度
     /// </summary>

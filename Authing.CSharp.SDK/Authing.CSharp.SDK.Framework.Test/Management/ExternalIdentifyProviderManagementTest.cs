@@ -25,10 +25,10 @@ namespace Authing.CSharp.SDK.Framework.Test
         {
             using (CancellationTokenSource cts = new CancellationTokenSource())
             {
-                ExtIdpListPaginatedRespDto dto = await managementClient.ListExtIdp(new ListExtIdpDto 
+                ExtIdpListPaginatedRespDto dto = await managementClient.ListExtIdp(new ListExtIdpDto
                 {
-                    AppId= "dc10086b85f2635d3246",
-                   
+                    AppId = "dc10086b85f2635d3246",
+
                 });
 
                 Assert.IsTrue(dto.Data.List.Count > 0);
@@ -46,10 +46,10 @@ namespace Authing.CSharp.SDK.Framework.Test
             using (CancellationTokenSource cts = new CancellationTokenSource())
             {
                 //"","","62982b6aedad16dc3cbafad4", "62987fc95fdc00c85410105f"
-                ExtIdpDetailSingleRespDto dto = await managementClient.GetExtIdp(new GetExtIdpDto 
-                { 
-                    Id= "6350faefc21d95530e369948" ,
-                    AppId= "634e5637ea7c7e0e817ddfc7"
+                ExtIdpDetailSingleRespDto dto = await managementClient.GetExtIdp(new GetExtIdpDto
+                {
+                    Id = "6350faefc21d95530e369948",
+                    AppId = "634e5637ea7c7e0e817ddfc7"
                 });
 
                 Assert.IsTrue(dto.Data.Id == "62982b6aedad16dc3cbafad4");
@@ -162,7 +162,7 @@ namespace Authing.CSharp.SDK.Framework.Test
         }
 
         [Test]
-        public void UpdateExtIdpConnTest()
+        public async Task UpdateExtIdpConnTest()
         {
             using (CancellationTokenSource cts = new CancellationTokenSource())
             {
@@ -175,33 +175,31 @@ namespace Authing.CSharp.SDK.Framework.Test
                     Id = "62988de9f76fe95fc6ad0074",
                 };
 
-                ExtIdpConnDetailSingleRespDto dto = managementClient.UpdateExtIdpConn(createExtIdpConnDto).Result;
+                ExtIdpConnDetailSingleRespDto dto = await managementClient.UpdateExtIdpConn(createExtIdpConnDto);
 
                 Assert.IsTrue(dto.Data.DisplayName == "AuthingV3TestConnUpdate");
             }
         }
 
         [Test]
-        public void EnableExtIdpConnTest()
+        public async Task EnableExtIdpConnTest()
         {
             using (CancellationTokenSource cts = new CancellationTokenSource())
             {
-                EnableExtIdpConnDto enableExtIdpConnDto = new EnableExtIdpConnDto()
+                ChangeExtIdpAssociationStateDto enableExtIdpConnDto = new ChangeExtIdpAssociationStateDto()
                 {
                     Id = "62988ec7bcac758beea4006f",
-                    AppId = "6215dd9277d6ef55dfab41f8",
                     TenantId = "62987fc95fdc00c85410105f",
-                    Enabled = true
                 };
 
-                IsSuccessRespDto dto = managementClient.ChangeConnState(enableExtIdpConnDto).Result;
+                IsSuccessRespDto dto = await managementClient.ChangeExtIdpConnAssociationState(enableExtIdpConnDto);
 
                 Assert.IsTrue(dto.Data.Success);
             }
         }
 
         [Test]
-        public void DeleteExtIdpConnTest()
+        public async Task DeleteExtIdpConnTest()
         {
             using (CancellationTokenSource cts = new CancellationTokenSource())
             {
@@ -210,7 +208,7 @@ namespace Authing.CSharp.SDK.Framework.Test
                     Id = "62988de9f76fe95fc6ad0074",
                 };
 
-                IsSuccessRespDto dto = managementClient.DeleteExtIdpConn(enableExtIdpConnDto).Result;
+                IsSuccessRespDto dto = await managementClient.DeleteExtIdpConn(enableExtIdpConnDto);
 
                 Assert.IsTrue(dto.Data.Success);
             }
@@ -219,21 +217,37 @@ namespace Authing.CSharp.SDK.Framework.Test
         [Test]
         public async Task ChangeAssociationStateTest()
         {
-            var dto = await managementClient.ChangeAssociationState(new AssociationExtIdpDto { });
+            var dto = await managementClient.ChangeExtIdpConnState(new ChangeExtIdpConnStateDto
+            {
+                Id = "AUTHING_IDP_CONN_ID",
+                Enabled = true,
+                TenantId = "AUTHING_TENANT_ID"
+            });
             Assert.NotNull(dto);
         }
 
         [Test]
         public async Task ListTenantExtIdpTest()
         {
-            var dto = await managementClient.ListTenantExtIdp(new  ListTenantExtIdpDto { });
+            var dto = await managementClient.ListTenantExtIdp(new ListTenantExtIdpDto
+            {
+                AppId = "AUTHING_APPID",
+                TenantId = "AUTHING_TENANT_ID",
+                Type = "Github"
+            });
             Assert.NotNull(dto);
         }
 
         [Test]
         public async Task ExtIdpConnStateByAppsTest()
         {
-            var dto = await managementClient.ExtIdpConnStateByApps(new  ExtIdpConnAppsDto { });
+            var dto = await managementClient.ExtIdpConnStateByApps(new ExtIdpConnAppsDto 
+            {
+                AppId="AUTHING_ID",
+                Id="AUTHING_IDP_CONN_ID",
+                TenantId="AUTHING_TENENT_ID",
+                Type="Github"
+            });
             Assert.NotNull(dto);
         }
     }

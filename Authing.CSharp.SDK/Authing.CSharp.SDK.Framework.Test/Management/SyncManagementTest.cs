@@ -181,7 +181,7 @@ namespace Authing.CSharp.SDK.Framework.Test.Management
 
         /// <summary>
         /// 2022-10-20 测试失败
-        /// 通过同步作业 ID 获取同步作业详情与日志
+        /// 执行同步风险操作
         /// </summary>
         /// <returns></returns>
         [Test]

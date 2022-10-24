@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.Serialization;
-using Authing.CSharp.SDK.Models;
+
 
    namespace Authing.CSharp.SDK.Models
 {
@@ -19,7 +19,7 @@ public partial class SecuritySettingsDto
     ///  安全域（CORS）
     /// </summary>
     [JsonProperty("allowedOrigins")]
-    public List<string>  AllowedOrigins {get;set;}
+    public string  AllowedOrigins {get;set;}
     /// <summary>
     ///  Authing Token 有效时间（秒）
     /// </summary>
