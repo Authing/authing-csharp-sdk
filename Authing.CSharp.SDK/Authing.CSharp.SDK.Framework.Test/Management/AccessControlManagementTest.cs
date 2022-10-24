@@ -311,7 +311,7 @@ namespace Authing.CSharp.SDK.Framework.Test
         }
 
         /// <summary>
-        /// 2022-10-19 测试成功
+        /// 2022-10-19 测试失败，签名错误
         /// 批量获取权限分组
         /// </summary>
         /// <returns></returns>
