@@ -21,7 +21,7 @@ namespace Authing.CSharp.SDK.Framework.Test
         [SetUp]
         public async Task LoginTemp()
         {
-            LoginTokenRespDto loginTokenRespDto = await client.SignInByAccountPassword("tmgg", "88886666");
+            LoginTokenRespDto loginTokenRespDto = await client.SignInByAccountPassword("qidong5566", "3866364");
             Assert.IsNotNull(loginTokenRespDto);
             client.setAccessToken(loginTokenRespDto.Data.Access_token);
             IdToken = loginTokenRespDto.Data.Id_token;
