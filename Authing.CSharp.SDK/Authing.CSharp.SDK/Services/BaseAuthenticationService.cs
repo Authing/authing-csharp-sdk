@@ -158,8 +158,6 @@ namespace Authing.CSharp.SDK.Services
             string json = m_JsonService.SerializeObject(dto);
             Dictionary<string, string> dic = m_JsonService.DeserializeObject<Dictionary<string, string>>(json);
 
-            SetHeaders(headers);
-
             string httpResponse = await m_HttpService.PostFormAsync(host, apiPath, dic, default).ConfigureAwait(false);
             return httpResponse;
         }
