@@ -92,13 +92,14 @@ namespace Authing.CSharp.SDK.Framework.Test
         }
 
         /// <summary>
-        /// TODO:通过 AD 账号密码登录
+        /// 2022-11-1 测试成功
+        /// 使用 AD 账户密码登录
         /// </summary>
         /// <returns></returns>
         [Test]
         public async Task LoginByAD()
         {
-            var res2 = await client.SignInByAD("Administrator", "1234");
+            var res2 = await client.SignInByAD("authingtest", "88886666");
             Assert.AreEqual(200, res2.StatusCode);
         }
 
