@@ -91,14 +91,14 @@ namespace Authing.CSharp.SDK.Framework.Test
         }
 
         /// <summary>
-        /// 2022-10-18 测试失败
+        /// 2022-11-1 测试通过
         /// 获取用户被授权的资源列表
         /// </summary>
         /// <returns></returns>
         [Test]
         public async Task GetAuthorizedResourcesTest()
         {
-            var res = await client.GetAuthorizedResources("DATA", "iQpUp84lsd3rKcVXOcnfbofBiOrVB2");
+            var res = await client.GetAuthorizedResources("API", "default");
             Assert.AreEqual(200, res.StatusCode);
         }
 
@@ -357,17 +357,6 @@ namespace Authing.CSharp.SDK.Framework.Test
                 DeleteAccountToken = res1.Data.DeleteAccountToken
             });
             Assert.AreEqual(200, res1.StatusCode);
-        }
-
-        /// <summary>
-        /// TODO:获取应用公开配置
-        /// 自动生成没有此方法
-        /// </summary>
-        /// <returns></returns>
-        [Test]
-        public async Task GetApplicationPublicConfig()
-        {
-            //  var res = await client.GetApplicationPublicConfig();
         }
 
         /// <summary>

@@ -20,7 +20,7 @@ namespace Authing.CSharp.SDK.Framework.Test
         }
 
         /// <summary>
-        /// 2022-10-17 测试失败
+        /// 2022-11-1 测试通过
         /// 通过手机验证码登录
         /// </summary>
         /// <returns></returns>
@@ -29,11 +29,11 @@ namespace Authing.CSharp.SDK.Framework.Test
         {
             var res1 = await client.SendSms(new SendSMSDto()
             {
-                PhoneNumber = "17665662048",
+                PhoneNumber = "13348926753",
                 Channel = SendSMSDto.channel.CHANNEL_LOGIN
             });
             Assert.AreEqual(200, res1.StatusCode);
-            var res2 = await client.SignInByPhonePassCode("17665662048", "88886666");
+            var res2 = await client.SignInByPhonePassCode("13348926753", "8341");
             Assert.AreEqual(200, res2.StatusCode);
         }
 

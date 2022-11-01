@@ -40,7 +40,7 @@ namespace Authing.CSharp.SDK.Framework.Test.Management
 
 
         /// <summary>
-        /// 2022-10-20 测试失败
+        /// 2022-11-1 测试通过
         /// 获取全局多因素认证配置
         /// </summary>
         /// <returns></returns>
@@ -52,7 +52,7 @@ namespace Authing.CSharp.SDK.Framework.Test.Management
         }
 
         /// <summary>
-        /// 2022-10-20 测试失败
+        /// 2022-11-1 测试成功
         /// 修改全局多因素认证配置
         /// </summary>
         /// <returns></returns>
