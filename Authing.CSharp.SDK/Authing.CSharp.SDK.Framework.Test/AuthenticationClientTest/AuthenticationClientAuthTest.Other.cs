@@ -164,7 +164,8 @@ namespace Authing.CSharp.SDK.Framework.Test
         }
 
         /// <summary>
-        /// TODO:绑定手机
+        /// 2022-11-1 测试成功
+        /// 绑定手机号
         /// </summary>
         /// <returns></returns>
         [Test]
@@ -179,19 +180,27 @@ namespace Authing.CSharp.SDK.Framework.Test
             var res2 = await client.BindPhone(new BindPhoneDto()
             {
                 PhoneNumber = "17665662048",
-                PassCode = "1787",
+                PassCode = "7249",
             });
             Assert.AreEqual(200, res2.StatusCode);
         }
 
         /// <summary>
-        /// TODO:解绑手机
+        /// 2022-11-1 测试成功
+        /// 解绑手机
         /// </summary>
         /// <returns></returns>
         [Test]
         public async Task UnBindPhoneTest()
         {
-            var res = await client.UnbindPhone(new UnbindPhoneDto { });
+            var res1 = await client.SendSms(new SendSMSDto()
+            {
+                PhoneNumber = "17665662048",
+                Channel = SendSMSDto.channel.CHANNEL_UNBIND_PHONE
+            });
+            Assert.AreEqual(200, res1.StatusCode);
+
+            var res = await client.UnbindPhone(new UnbindPhoneDto { PassCode = "7636" });
             Assert.AreEqual(200, res.StatusCode);
         }
 
@@ -264,7 +273,8 @@ namespace Authing.CSharp.SDK.Framework.Test
         }
 
         /// <summary>
-        /// TODO:修改用户绑定手机号
+        /// 2022-10-19 测试成功
+        /// 修改用户绑定手机号
         /// </summary>
         /// <returns></returns>
         [Test]
@@ -278,18 +288,18 @@ namespace Authing.CSharp.SDK.Framework.Test
             Assert.AreEqual(200, res0.StatusCode);
             var res1 = await client.SendSms(new SendSMSDto()
             {
-                Channel = SendSMSDto.channel.CHANNEL_UNBIND_PHONE,
-                PhoneNumber = "17665662048"
+                Channel = SendSMSDto.channel.CHANNEL_BIND_PHONE,
+                PhoneNumber = "17620671314"
             });
             Assert.AreEqual(200, res1.StatusCode);
             var res2 = await client.VerifyUpdatePhoneRequest(new VerifyUpdatePhoneRequestDto()
             {
                 PhonePassCodePayload = new UpdatePhoneByPhonePassCodeDto()
                 {
-                    NewPhoneNumber = "17665662048",
-                    NewPhonePassCode = "5908",
+                    NewPhoneNumber = "17620671314",
+                    NewPhonePassCode = "8858",
                     OldPhoneNumber = "17665662048",
-                    OldPhonePassCode = "2925"
+                    OldPhonePassCode = "8977"
                 },
                 VerifyMethod = VerifyUpdatePhoneRequestDto.verifyMethod.PHONE_PASSCODE
             });
