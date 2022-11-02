@@ -7,18 +7,17 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.Serialization;
 
-
-   namespace Authing.CSharp.SDK.Models
-{
-/// <summary>
-/// MFASettingsDto 的模型
-/// </summary>
-public partial class MFASettingsDto
+namespace Authing.CSharp.SDK.Models
 {
     /// <summary>
-    ///  开启的 MFA 认证因素列表
+    /// MFASettingsDto 的模型
     /// </summary>
-    [JsonProperty("enabledFactors")]
-    public List<string>  EnabledFactors {get;set;}
-}
+    public partial class MFASettingsDto
+    {
+        /// <summary>
+        ///  开启的 MFA 认证因素列表
+        /// </summary>
+        [JsonProperty("enabledFactors")]
+        public List<string>  EnabledFactors {get;set;}
+    }
 }

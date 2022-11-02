@@ -7,18 +7,17 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.Serialization;
 
-
-   namespace Authing.CSharp.SDK.Models
-{
-/// <summary>
-/// DeleteNamespaceDto 的模型
-/// </summary>
-public partial class DeleteNamespaceDto
+namespace Authing.CSharp.SDK.Models
 {
     /// <summary>
-    ///  权限分组唯一标志符
+    /// DeleteNamespaceDto 的模型
     /// </summary>
-    [JsonProperty("code")]
-    public string  Code {get;set;}
-}
+    public partial class DeleteNamespaceDto
+    {
+        /// <summary>
+        ///  权限分组唯一标志符
+        /// </summary>
+        [JsonProperty("code")]
+        public string  Code {get;set;}
+    }
 }

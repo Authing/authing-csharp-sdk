@@ -7,33 +7,32 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.Serialization;
 
-
-   namespace Authing.CSharp.SDK.Models
-{
-/// <summary>
-/// EmailTemplateCategoryDto 的模型
-/// </summary>
-public partial class EmailTemplateCategoryDto
+namespace Authing.CSharp.SDK.Models
 {
     /// <summary>
-    ///  类别名称
+    /// EmailTemplateCategoryDto 的模型
     /// </summary>
-    [JsonProperty("title")]
-    public string  Title {get;set;}
-    /// <summary>
-    ///  类别英文名称
-    /// </summary>
-    [JsonProperty("titleEn")]
-    public string  TitleEn {get;set;}
-    /// <summary>
-    ///  描述
-    /// </summary>
-    [JsonProperty("desc")]
-    public string  Desc {get;set;}
-    /// <summary>
-    ///  英文描述
-    /// </summary>
-    [JsonProperty("descEn")]
-    public string  DescEn {get;set;}
-}
+    public partial class EmailTemplateCategoryDto
+    {
+        /// <summary>
+        ///  类别名称
+        /// </summary>
+        [JsonProperty("title")]
+        public string  Title {get;set;}
+        /// <summary>
+        ///  类别英文名称
+        /// </summary>
+        [JsonProperty("titleEn")]
+        public string  TitleEn {get;set;}
+        /// <summary>
+        ///  描述
+        /// </summary>
+        [JsonProperty("desc")]
+        public string  Desc {get;set;}
+        /// <summary>
+        ///  英文描述
+        /// </summary>
+        [JsonProperty("descEn")]
+        public string  DescEn {get;set;}
+    }
 }

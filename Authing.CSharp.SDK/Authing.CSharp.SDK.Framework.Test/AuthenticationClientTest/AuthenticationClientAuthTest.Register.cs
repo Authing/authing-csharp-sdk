@@ -23,7 +23,7 @@ namespace Authing.CSharp.SDK.Framework.Test
         }
 
         /// <summary>
-        /// 2022-10-17 测试失败
+        /// 2022-11-1 测试通过
         /// 使用邮箱验证码注册
         /// </summary>
         /// <returns></returns>
@@ -32,11 +32,11 @@ namespace Authing.CSharp.SDK.Framework.Test
         {
             var res1 = await client.SendEmail(new SendEmailDto()
             {
-                Email = "574378328@qq.com",
+                Email = "2481452007@qq.com",
                 Channel = SendEmailDto.channel.CHANNEL_REGISTER
             });
             Assert.AreEqual(200, res1.StatusCode);
-            var res2 = await client.SignUpByEmailCode("574378328@qq.com", "5120",
+            var res2 = await client.SignUpByEmailCode("2481452007@qq.com", "8115",
                 profile: new SignUpProfileDto()
                 {
                     Gender = SignUpProfileDto.gender.M
@@ -45,7 +45,7 @@ namespace Authing.CSharp.SDK.Framework.Test
         }
 
         /// <summary>
-        /// 2022-10-17 测试失败
+        /// 2022-11-1 测试通过
         /// 使用手机验证码注册
         /// </summary>
         /// <returns></returns>
@@ -58,7 +58,7 @@ namespace Authing.CSharp.SDK.Framework.Test
                 Channel = SendSMSDto.channel.CHANNEL_REGISTER
             });
             Assert.AreEqual(200, res1.StatusCode);
-            var res2 = await client.SignUpByPhoneCode("17620671314", "6002",
+            var res2 = await client.SignUpByPhoneCode("17620671314", "6825",
                 profile: new SignUpProfileDto()
                 {
                     Gender = SignUpProfileDto.gender.M

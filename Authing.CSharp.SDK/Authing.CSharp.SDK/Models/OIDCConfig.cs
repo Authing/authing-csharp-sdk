@@ -7,13 +7,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.Serialization;
 
-
-   namespace Authing.CSharp.SDK.Models
+namespace Authing.CSharp.SDK.Models
 {
-/// <summary>
-/// OIDCConfig 的模型
-/// </summary>
-public partial class OIDCConfig
-{
-}
+    /// <summary>
+    /// OIDCConfig 的模型
+    /// </summary>
+    public partial class OIDCConfig
+    {
+    }
 }

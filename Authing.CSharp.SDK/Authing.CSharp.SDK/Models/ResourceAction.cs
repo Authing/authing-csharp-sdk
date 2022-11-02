@@ -7,23 +7,22 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.Serialization;
 
-
-   namespace Authing.CSharp.SDK.Models
-{
-/// <summary>
-/// ResourceAction 的模型
-/// </summary>
-public partial class ResourceAction
+namespace Authing.CSharp.SDK.Models
 {
     /// <summary>
-    ///  资源操作名称
+    /// ResourceAction 的模型
     /// </summary>
-    [JsonProperty("name")]
-    public string  Name {get;set;}
-    /// <summary>
-    ///  资源操作描述
-    /// </summary>
-    [JsonProperty("description")]
-    public string  Description {get;set;}
-}
+    public partial class ResourceAction
+    {
+        /// <summary>
+        ///  资源操作名称
+        /// </summary>
+        [JsonProperty("name")]
+        public string  Name {get;set;}
+        /// <summary>
+        ///  资源操作描述
+        /// </summary>
+        [JsonProperty("description")]
+        public string  Description {get;set;}
+    }
 }

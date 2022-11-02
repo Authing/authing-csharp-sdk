@@ -7,23 +7,22 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.Serialization;
 
-
-   namespace Authing.CSharp.SDK.Models
-{
-/// <summary>
-/// GetResourceAuthorizedTargetDataDto 的模型
-/// </summary>
-public partial class GetResourceAuthorizedTargetDataDto
+namespace Authing.CSharp.SDK.Models
 {
     /// <summary>
-    ///  总数
+    /// GetResourceAuthorizedTargetDataDto 的模型
     /// </summary>
-    [JsonProperty("totalCount")]
-    public long  TotalCount {get;set;}
-    /// <summary>
-    ///  元素列表
-    /// </summary>
-    [JsonProperty("list")]
-    public List<ResourceAuthorizedTargetDto>  List {get;set;}
-}
+    public partial class GetResourceAuthorizedTargetDataDto
+    {
+        /// <summary>
+        ///  总数
+        /// </summary>
+        [JsonProperty("totalCount")]
+        public long  TotalCount {get;set;}
+        /// <summary>
+        ///  元素列表
+        /// </summary>
+        [JsonProperty("list")]
+        public List<ResourceAuthorizedTargetDto>  List {get;set;}
+    }
 }

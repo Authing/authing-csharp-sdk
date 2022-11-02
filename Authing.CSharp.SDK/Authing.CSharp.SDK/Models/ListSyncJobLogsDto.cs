@@ -7,36 +7,35 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.Serialization;
 
-
-   namespace Authing.CSharp.SDK.Models
-{
-/// <summary>
-/// ListSyncJobLogsDto 的模型
-/// </summary>
-public partial class ListSyncJobLogsDto
+namespace Authing.CSharp.SDK.Models
 {
     /// <summary>
-    ///  同步作业 ID
+    /// ListSyncJobLogsDto 的模型
     /// </summary>
-    [JsonProperty("syncJobId")]
-    public long  SyncJobId {get;set;} 
-    /// <summary>
-    ///  当前页数，从 1 开始
-    /// </summary>
-    [JsonProperty("page")]
-    public long  Page {get;set;} =1;
-    /// <summary>
-    ///  每页数目，最大不能超过 50，默认为 10
-    /// </summary>
-    [JsonProperty("limit")]
-    public long  Limit {get;set;} =10;
-    /// <summary>
-    ///  根据是否操作成功进行筛选
-    /// </summary>
-    [JsonProperty("success")]
-    public bool  Success {get;set;} 
-    /// <summary>
-    ///  根据操作类型进行筛选：
+    public partial class ListSyncJobLogsDto
+    {
+        /// <summary>
+        ///  同步作业 ID
+        /// </summary>
+        [JsonProperty("syncJobId")]
+        public long  SyncJobId {get;set;} 
+        /// <summary>
+        ///  当前页数，从 1 开始
+        /// </summary>
+        [JsonProperty("page")]
+        public long  Page {get;set;} =1;
+        /// <summary>
+        ///  每页数目，最大不能超过 50，默认为 10
+        /// </summary>
+        [JsonProperty("limit")]
+        public long  Limit {get;set;} =10;
+        /// <summary>
+        ///  根据是否操作成功进行筛选
+        /// </summary>
+        [JsonProperty("success")]
+        public bool  Success {get;set;} 
+        /// <summary>
+        ///  根据操作类型进行筛选：
 /// - `CreateUser`: 创建用户
 /// - `UpdateUser`: 修改用户信息
 /// - `DeleteUser`: 删除用户
@@ -52,16 +51,16 @@ public partial class ListSyncJobLogsDto
 /// - `DeleteGroup`: 删除分组
 /// - `Updateless`: 无更新
 /// 
-    /// </summary>
-    [JsonProperty("action")]
-    public string  Action {get;set;} 
-    /// <summary>
-    ///  操作对象类型:
+        /// </summary>
+        [JsonProperty("action")]
+        public string  Action {get;set;} 
+        /// <summary>
+        ///  操作对象类型:
 /// - `department`: 部门
 /// - `user`: 用户
 /// 
-    /// </summary>
-    [JsonProperty("objectType")]
-    public string  ObjectType {get;set;} 
-}
+        /// </summary>
+        [JsonProperty("objectType")]
+        public string  ObjectType {get;set;} 
+    }
 }

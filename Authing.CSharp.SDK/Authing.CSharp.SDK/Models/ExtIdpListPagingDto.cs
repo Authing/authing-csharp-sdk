@@ -7,23 +7,22 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.Serialization;
 
-
-   namespace Authing.CSharp.SDK.Models
-{
-/// <summary>
-/// ExtIdpListPagingDto 的模型
-/// </summary>
-public partial class ExtIdpListPagingDto
+namespace Authing.CSharp.SDK.Models
 {
     /// <summary>
-    ///  记录总数
+    /// ExtIdpListPagingDto 的模型
     /// </summary>
-    [JsonProperty("totalCount")]
-    public long  TotalCount {get;set;}
-    /// <summary>
-    ///  响应数据
-    /// </summary>
-    [JsonProperty("list")]
-    public List<ExtIdpDto>  List {get;set;}
-}
+    public partial class ExtIdpListPagingDto
+    {
+        /// <summary>
+        ///  记录总数
+        /// </summary>
+        [JsonProperty("totalCount")]
+        public long  TotalCount {get;set;}
+        /// <summary>
+        ///  响应数据
+        /// </summary>
+        [JsonProperty("list")]
+        public List<ExtIdpDto>  List {get;set;}
+    }
 }

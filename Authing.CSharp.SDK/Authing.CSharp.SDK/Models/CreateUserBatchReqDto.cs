@@ -7,23 +7,22 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.Serialization;
 
-
-   namespace Authing.CSharp.SDK.Models
-{
-/// <summary>
-/// CreateUserBatchReqDto 的模型
-/// </summary>
-public partial class CreateUserBatchReqDto
+namespace Authing.CSharp.SDK.Models
 {
     /// <summary>
-    ///  用户列表
+    /// CreateUserBatchReqDto 的模型
     /// </summary>
-    [JsonProperty("list")]
-    public List<CreateUserInfoDto>  List {get;set;}
-    /// <summary>
-    ///  可选参数
-    /// </summary>
-    [JsonProperty("options")]
-    public CreateUserOptionsDto  Options {get;set;}
-}
+    public partial class CreateUserBatchReqDto
+    {
+        /// <summary>
+        ///  用户列表
+        /// </summary>
+        [JsonProperty("list")]
+        public List<CreateUserInfoDto>  List {get;set;}
+        /// <summary>
+        ///  可选参数
+        /// </summary>
+        [JsonProperty("options")]
+        public CreateUserOptionsDto  Options {get;set;}
+    }
 }

@@ -7,18 +7,17 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.Serialization;
 
-
-   namespace Authing.CSharp.SDK.Models
-{
-/// <summary>
-/// GetApplicationSecretDataDto 的模型
-/// </summary>
-public partial class GetApplicationSecretDataDto
+namespace Authing.CSharp.SDK.Models
 {
     /// <summary>
-    ///  应用密钥
+    /// GetApplicationSecretDataDto 的模型
     /// </summary>
-    [JsonProperty("secret")]
-    public string  Secret {get;set;}
-}
+    public partial class GetApplicationSecretDataDto
+    {
+        /// <summary>
+        ///  应用密钥
+        /// </summary>
+        [JsonProperty("secret")]
+        public string  Secret {get;set;}
+    }
 }

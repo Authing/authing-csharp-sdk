@@ -7,18 +7,17 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.Serialization;
 
-
-   namespace Authing.CSharp.SDK.Models
-{
-/// <summary>
-/// GetApplicationDto 的模型
-/// </summary>
-public partial class GetApplicationDto
+namespace Authing.CSharp.SDK.Models
 {
     /// <summary>
-    ///  应用 ID
+    /// GetApplicationDto 的模型
     /// </summary>
-    [JsonProperty("appId")]
-    public string  AppId {get;set;} 
-}
+    public partial class GetApplicationDto
+    {
+        /// <summary>
+        ///  应用 ID
+        /// </summary>
+        [JsonProperty("appId")]
+        public string  AppId {get;set;} 
+    }
 }

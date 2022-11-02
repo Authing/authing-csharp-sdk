@@ -7,13 +7,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.Serialization;
 
-
-   namespace Authing.CSharp.SDK.Models
+namespace Authing.CSharp.SDK.Models
 {
-/// <summary>
-/// CasIdPConfig 的模型
-/// </summary>
-public partial class CasIdPConfig
-{
-}
+    /// <summary>
+    /// CasIdPConfig 的模型
+    /// </summary>
+    public partial class CasIdPConfig
+    {
+    }
 }

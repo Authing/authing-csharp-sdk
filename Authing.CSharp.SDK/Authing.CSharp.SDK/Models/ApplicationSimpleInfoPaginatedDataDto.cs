@@ -7,23 +7,22 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.Serialization;
 
-
-   namespace Authing.CSharp.SDK.Models
-{
-/// <summary>
-/// ApplicationSimpleInfoPaginatedDataDto 的模型
-/// </summary>
-public partial class ApplicationSimpleInfoPaginatedDataDto
+namespace Authing.CSharp.SDK.Models
 {
     /// <summary>
-    ///  列表数据
+    /// ApplicationSimpleInfoPaginatedDataDto 的模型
     /// </summary>
-    [JsonProperty("list")]
-    public List<ApplicationSimpleInfoDto>  List {get;set;}
-    /// <summary>
-    ///  记录总数
-    /// </summary>
-    [JsonProperty("totalCount")]
-    public long  TotalCount {get;set;}
-}
+    public partial class ApplicationSimpleInfoPaginatedDataDto
+    {
+        /// <summary>
+        ///  列表数据
+        /// </summary>
+        [JsonProperty("list")]
+        public List<ApplicationSimpleInfoDto>  List {get;set;}
+        /// <summary>
+        ///  记录总数
+        /// </summary>
+        [JsonProperty("totalCount")]
+        public long  TotalCount {get;set;}
+    }
 }

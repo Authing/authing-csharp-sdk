@@ -58,7 +58,7 @@ namespace Authing.CSharp.SDK.Framework.Test.Management
 
 
         /// <summary>
-        /// 2022-10-19 测试失败
+        /// 2022-11-1 测试通过
         /// 获取第三方邮件服务配置
         /// </summary>
         /// <returns></returns>
@@ -70,7 +70,7 @@ namespace Authing.CSharp.SDK.Framework.Test.Management
         }
 
         /// <summary>
-        /// 2022-10-19 测试失败
+        /// 2022-11-1 测试通过
         /// 配置第三方邮件服务
         /// </summary>
         /// <returns></returns>
@@ -82,9 +82,10 @@ namespace Authing.CSharp.SDK.Framework.Test.Management
                 Type = ConfigEmailProviderDto.type.ALI,
                 AliExmailConfig = new AliExmailEmailProviderConfigInput
                 {
-                    Sender = "574378328@qq.com",
+                    Sender = "qidong5566",
                     SenderPass = "123456"
-                }
+                },
+                Enabled=true
             });
             Assert.NotNull(res.Data.AliExmailConfig);
         }

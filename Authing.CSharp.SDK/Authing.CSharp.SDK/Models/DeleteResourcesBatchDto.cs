@@ -7,23 +7,22 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.Serialization;
 
-
-   namespace Authing.CSharp.SDK.Models
-{
-/// <summary>
-/// DeleteResourcesBatchDto 的模型
-/// </summary>
-public partial class DeleteResourcesBatchDto
+namespace Authing.CSharp.SDK.Models
 {
     /// <summary>
-    ///  资源 code 列表
+    /// DeleteResourcesBatchDto 的模型
     /// </summary>
-    [JsonProperty("codeList")]
-    public List<string>  CodeList {get;set;}
-    /// <summary>
-    ///  所属权限分组的 code
-    /// </summary>
-    [JsonProperty("namespace")]
-    public string  Namespace {get;set;}
-}
+    public partial class DeleteResourcesBatchDto
+    {
+        /// <summary>
+        ///  资源 code 列表
+        /// </summary>
+        [JsonProperty("codeList")]
+        public List<string>  CodeList {get;set;}
+        /// <summary>
+        ///  所属权限分组的 code
+        /// </summary>
+        [JsonProperty("namespace")]
+        public string  Namespace {get;set;}
+    }
 }

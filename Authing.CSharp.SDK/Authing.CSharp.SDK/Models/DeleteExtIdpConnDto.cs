@@ -7,18 +7,17 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.Serialization;
 
-
-   namespace Authing.CSharp.SDK.Models
-{
-/// <summary>
-/// DeleteExtIdpConnDto 的模型
-/// </summary>
-public partial class DeleteExtIdpConnDto
+namespace Authing.CSharp.SDK.Models
 {
     /// <summary>
-    ///  身份源连接 ID
+    /// DeleteExtIdpConnDto 的模型
     /// </summary>
-    [JsonProperty("id")]
-    public string  Id {get;set;}
-}
+    public partial class DeleteExtIdpConnDto
+    {
+        /// <summary>
+        ///  身份源连接 ID
+        /// </summary>
+        [JsonProperty("id")]
+        public string  Id {get;set;}
+    }
 }

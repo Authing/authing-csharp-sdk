@@ -7,33 +7,32 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.Serialization;
 
-
-   namespace Authing.CSharp.SDK.Models
-{
-/// <summary>
-/// SyncTaskFxiaokeClientConfig 的模型
-/// </summary>
-public partial class SyncTaskFxiaokeClientConfig
+namespace Authing.CSharp.SDK.Models
 {
     /// <summary>
-    ///  App Id
+    /// SyncTaskFxiaokeClientConfig 的模型
     /// </summary>
-    [JsonProperty("appId")]
-    public string  AppId {get;set;}
-    /// <summary>
-    ///  App Secret
-    /// </summary>
-    [JsonProperty("appSecret")]
-    public string  AppSecret {get;set;}
-    /// <summary>
-    ///  Permanent Code
-    /// </summary>
-    [JsonProperty("permanentCode")]
-    public string  PermanentCode {get;set;}
-    /// <summary>
-    ///  Current Open User Id
-    /// </summary>
-    [JsonProperty("currentOpenUserId")]
-    public string  CurrentOpenUserId {get;set;}
-}
+    public partial class SyncTaskFxiaokeClientConfig
+    {
+        /// <summary>
+        ///  App Id
+        /// </summary>
+        [JsonProperty("appId")]
+        public string  AppId {get;set;}
+        /// <summary>
+        ///  App Secret
+        /// </summary>
+        [JsonProperty("appSecret")]
+        public string  AppSecret {get;set;}
+        /// <summary>
+        ///  Permanent Code
+        /// </summary>
+        [JsonProperty("permanentCode")]
+        public string  PermanentCode {get;set;}
+        /// <summary>
+        ///  Current Open User Id
+        /// </summary>
+        [JsonProperty("currentOpenUserId")]
+        public string  CurrentOpenUserId {get;set;}
+    }
 }

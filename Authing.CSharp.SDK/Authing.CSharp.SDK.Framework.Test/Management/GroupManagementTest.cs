@@ -15,7 +15,7 @@ namespace Authing.CSharp.SDK.Framework.Test
     class GroupManagementTest : ManagementClientBaseTest
     {
         /// <summary>
-        /// 2022-10-18 测试完成
+        /// 2022-10-18 测试通过
         /// </summary>
         /// <returns></returns>
         [Test]
@@ -31,7 +31,7 @@ namespace Authing.CSharp.SDK.Framework.Test
         }
 
         /// <summary>
-        /// 2022-10-18 测试完成
+        /// 2022-10-18 测试通过
         /// </summary>
         /// <returns></returns>
         /// <summary>
@@ -50,7 +50,7 @@ namespace Authing.CSharp.SDK.Framework.Test
         }
 
         /// <summary>
-        /// 2022-10-18 测试完成
+        /// 2022-10-18 测试通过
         /// </summary>
         /// <returns></returns>
         [Test]
@@ -72,7 +72,7 @@ namespace Authing.CSharp.SDK.Framework.Test
         }
 
         /// <summary>
-        /// 2022-10-18 测试完成
+        /// 2022-10-18 测试通过
         /// </summary>
         /// <returns></returns>
         [Test]
@@ -103,7 +103,7 @@ namespace Authing.CSharp.SDK.Framework.Test
         }
 
         /// <summary>
-        /// 2022-10-18 测试完成
+        /// 2022-10-18 测试通过
         /// </summary>
         /// <returns></returns>
         [Test]
@@ -126,7 +126,7 @@ namespace Authing.CSharp.SDK.Framework.Test
         }
 
         /// <summary>
-        /// 2022-10-18 测试完成
+        /// 2022-10-18 测试通过
         /// </summary>
         /// <returns></returns>
         [Test]
@@ -146,7 +146,7 @@ namespace Authing.CSharp.SDK.Framework.Test
         }
 
         /// <summary>
-        /// 2022-10-18 测试完成
+        /// 2022-10-18 测试通过
         /// </summary>
         /// <returns></returns>
         [Test]
@@ -168,7 +168,7 @@ namespace Authing.CSharp.SDK.Framework.Test
         }
 
         /// <summary>
-        /// 2022-10-18 测试完成
+        /// 2022-10-18 测试通过
         /// </summary>
         /// <returns></returns>
         [Test]
@@ -190,7 +190,7 @@ namespace Authing.CSharp.SDK.Framework.Test
         }
 
         /// <summary>
-        /// 2022-10-18 测试完成
+        /// 2022-10-18 测试通过
         /// </summary>
         /// <returns></returns>
         [Test]
@@ -207,7 +207,7 @@ namespace Authing.CSharp.SDK.Framework.Test
         }
 
         /// <summary>
-        /// 2022-10-18 测试完成
+        /// 2022-10-18 测试通过
         /// </summary>
         /// <returns></returns>
         [Test]

@@ -7,33 +7,32 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.Serialization;
 
-
-   namespace Authing.CSharp.SDK.Models
-{
-/// <summary>
-/// GetExtIdpDto 的模型
-/// </summary>
-public partial class GetExtIdpDto
+namespace Authing.CSharp.SDK.Models
 {
     /// <summary>
-    ///  身份源 ID
+    /// GetExtIdpDto 的模型
     /// </summary>
-    [JsonProperty("id")]
-    public string  Id {get;set;} 
-    /// <summary>
-    ///  租户 ID
-    /// </summary>
-    [JsonProperty("tenantId")]
-    public string  TenantId {get;set;} 
-    /// <summary>
-    ///  应用 ID
-    /// </summary>
-    [JsonProperty("appId")]
-    public string  AppId {get;set;} 
-    /// <summary>
-    ///  身份源类型
-    /// </summary>
-    [JsonProperty("type")]
-    public string  Type {get;set;} 
-}
+    public partial class GetExtIdpDto
+    {
+        /// <summary>
+        ///  身份源 ID
+        /// </summary>
+        [JsonProperty("id")]
+        public string  Id {get;set;} 
+        /// <summary>
+        ///  租户 ID
+        /// </summary>
+        [JsonProperty("tenantId")]
+        public string  TenantId {get;set;} 
+        /// <summary>
+        ///  应用 ID
+        /// </summary>
+        [JsonProperty("appId")]
+        public string  AppId {get;set;} 
+        /// <summary>
+        ///  身份源类型
+        /// </summary>
+        [JsonProperty("type")]
+        public string  Type {get;set;} 
+    }
 }

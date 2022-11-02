@@ -7,23 +7,22 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.Serialization;
 
-
-   namespace Authing.CSharp.SDK.Models
-{
-/// <summary>
-/// GetWebhooksData 的模型
-/// </summary>
-public partial class GetWebhooksData
+namespace Authing.CSharp.SDK.Models
 {
     /// <summary>
-    ///  记录总数
+    /// GetWebhooksData 的模型
     /// </summary>
-    [JsonProperty("totalCount")]
-    public long  TotalCount {get;set;}
-    /// <summary>
-    ///  返回列表
-    /// </summary>
-    [JsonProperty("list")]
-    public List<WebhookDto>  List {get;set;}
-}
+    public partial class GetWebhooksData
+    {
+        /// <summary>
+        ///  记录总数
+        /// </summary>
+        [JsonProperty("totalCount")]
+        public long  TotalCount {get;set;}
+        /// <summary>
+        ///  返回列表
+        /// </summary>
+        [JsonProperty("list")]
+        public List<WebhookDto>  List {get;set;}
+    }
 }

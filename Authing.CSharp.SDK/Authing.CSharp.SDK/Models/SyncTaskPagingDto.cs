@@ -7,23 +7,22 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.Serialization;
 
-
-   namespace Authing.CSharp.SDK.Models
-{
-/// <summary>
-/// SyncTaskPagingDto 的模型
-/// </summary>
-public partial class SyncTaskPagingDto
+namespace Authing.CSharp.SDK.Models
 {
     /// <summary>
-    ///  记录总数
+    /// SyncTaskPagingDto 的模型
     /// </summary>
-    [JsonProperty("totalCount")]
-    public long  TotalCount {get;set;}
-    /// <summary>
-    ///  数据列表
-    /// </summary>
-    [JsonProperty("list")]
-    public List<SyncTaskDto>  List {get;set;}
-}
+    public partial class SyncTaskPagingDto
+    {
+        /// <summary>
+        ///  记录总数
+        /// </summary>
+        [JsonProperty("totalCount")]
+        public long  TotalCount {get;set;}
+        /// <summary>
+        ///  数据列表
+        /// </summary>
+        [JsonProperty("list")]
+        public List<SyncTaskDto>  List {get;set;}
+    }
 }

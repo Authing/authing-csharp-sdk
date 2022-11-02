@@ -7,18 +7,17 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.Serialization;
 
-
-   namespace Authing.CSharp.SDK.Models
-{
-/// <summary>
-/// CreateRolesBatch 的模型
-/// </summary>
-public partial class CreateRolesBatch
+namespace Authing.CSharp.SDK.Models
 {
     /// <summary>
-    ///  角色列表
+    /// CreateRolesBatch 的模型
     /// </summary>
-    [JsonProperty("list")]
-    public List<RoleListItem>  List {get;set;}
-}
+    public partial class CreateRolesBatch
+    {
+        /// <summary>
+        ///  角色列表
+        /// </summary>
+        [JsonProperty("list")]
+        public List<RoleListItem>  List {get;set;}
+    }
 }

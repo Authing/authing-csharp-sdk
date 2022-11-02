@@ -7,18 +7,17 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.Serialization;
 
-
-   namespace Authing.CSharp.SDK.Models
-{
-/// <summary>
-/// PreviewEmailTemplateRespDto 的模型
-/// </summary>
-public partial class PreviewEmailTemplateRespDto
+namespace Authing.CSharp.SDK.Models
 {
     /// <summary>
-    ///  响应数据
+    /// PreviewEmailTemplateRespDto 的模型
     /// </summary>
-    [JsonProperty("data")]
-    public PreviewEmailTemplateDataDto  Data {get;set;}
-}
+    public partial class PreviewEmailTemplateRespDto
+    {
+        /// <summary>
+        ///  响应数据
+        /// </summary>
+        [JsonProperty("data")]
+        public PreviewEmailTemplateDataDto  Data {get;set;}
+    }
 }

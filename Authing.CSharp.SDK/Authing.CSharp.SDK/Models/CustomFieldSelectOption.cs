@@ -7,23 +7,22 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.Serialization;
 
-
-   namespace Authing.CSharp.SDK.Models
-{
-/// <summary>
-/// CustomFieldSelectOption 的模型
-/// </summary>
-public partial class CustomFieldSelectOption
+namespace Authing.CSharp.SDK.Models
 {
     /// <summary>
-    ///  枚举值 value
+    /// CustomFieldSelectOption 的模型
     /// </summary>
-    [JsonProperty("value")]
-    public string  Value {get;set;}
-    /// <summary>
-    ///  枚举值 label
-    /// </summary>
-    [JsonProperty("label")]
-    public string  Label {get;set;}
-}
+    public partial class CustomFieldSelectOption
+    {
+        /// <summary>
+        ///  枚举值 value
+        /// </summary>
+        [JsonProperty("value")]
+        public string  Value {get;set;}
+        /// <summary>
+        ///  枚举值 label
+        /// </summary>
+        [JsonProperty("label")]
+        public string  Label {get;set;}
+    }
 }

@@ -7,18 +7,17 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.Serialization;
 
-
-   namespace Authing.CSharp.SDK.Models
-{
-/// <summary>
-/// SetUserBaseFieldsReqDto 的模型
-/// </summary>
-public partial class SetUserBaseFieldsReqDto
+namespace Authing.CSharp.SDK.Models
 {
     /// <summary>
-    ///  自定义字段列表
+    /// SetUserBaseFieldsReqDto 的模型
     /// </summary>
-    [JsonProperty("list")]
-    public List<SetUserBaseFieldDto>  List {get;set;}
-}
+    public partial class SetUserBaseFieldsReqDto
+    {
+        /// <summary>
+        ///  自定义字段列表
+        /// </summary>
+        [JsonProperty("list")]
+        public List<SetUserBaseFieldDto>  List {get;set;}
+    }
 }

@@ -240,7 +240,7 @@ namespace Authing.CSharp.SDK.Services
                 { "refresh_token", refreshToken },
 
             };
-            string json = await PostWithHostAsync(m_AppHost, api, param).ConfigureAwait(false);
+            string json = await PostFormAsyncWithHost(m_AppHost, api, param).ConfigureAwait(false);
 
             var result = m_JsonService.DeserializeObject<RefreshTokenResponse>(json);
 
@@ -261,7 +261,7 @@ namespace Authing.CSharp.SDK.Services
                 { "grant_type", "refresh_token" },
                 { "refresh_token", refreshToken }
             };
-            string json = await PostWithHostAsync(m_AppHost, api, param).ConfigureAwait(false);
+            string json = await PostFormAsyncWithHost(m_AppHost, api, param).ConfigureAwait(false);
 
             var result = m_JsonService.DeserializeObject<RefreshTokenResponse>(json);
 
@@ -330,12 +330,12 @@ namespace Authing.CSharp.SDK.Services
 
         private async Task<IntrospectTokenResponse> IntrospectTokenWithClientSecretPost(string url, string token)
         {
-            var json = await PostWithHostAsync(m_AppHost, url, new Dictionary<string, string>()
+            var json = await PostFormAsyncWithHost(m_AppHost, url, new Dictionary<string, string>()
             {
                 { "client_id", options.AppId },
                 { "client_secret", options.AppSecret },
                 { "token", token },
-            }).ConfigureAwait(false);
+            },null).ConfigureAwait(false);
             return m_JsonService.DeserializeObject<IntrospectTokenResponse>(json);
         }
 
@@ -436,7 +436,6 @@ namespace Authing.CSharp.SDK.Services
 
         /// <summary>
         /// Client Credentials 模式获取 Access Token
-        /// 2022-08-29 测试通过
         /// </summary>
         /// <param name="scope"></param>
         /// <param name="options"></param>
@@ -452,7 +451,7 @@ namespace Authing.CSharp.SDK.Services
 
             var url = this.options.Protocol == Protocol.OIDC ? "oidc/token" : "oauth/token";
 
-            var result = await PostWithHostAsync(m_AppHost,
+            var result = await PostFormAsyncWithHost(m_AppHost,
                 url,
                 new Dictionary<string, string>()
                 {
@@ -494,7 +493,7 @@ namespace Authing.CSharp.SDK.Services
 
         private async Task<string> RevokeTokenWithClientSecretPost(string url, string token)
         {
-            var result = await PostWithHostAsync(m_AppHost,
+            var result = await PostFormAsyncWithHost(m_AppHost,
                 url,
                 new Dictionary<string, string>()
                 {

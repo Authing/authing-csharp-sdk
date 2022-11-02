@@ -13,6 +13,13 @@ namespace Authing.CSharp.SDK.Utils
         /// </summary>
         /// <param name="datetime"></param>
         /// <returns>long=Int64</returns>
-        long DateTimeToTimestamp(DateTime datetime);
+        long DateTimeNowToTimestamp();
+
+        /// <summary>
+        /// 返回 Unix 的时间戳，单位为毫秒
+        /// </summary>
+        /// <param name="dateTime"></param>
+        /// <returns></returns>
+        long DatetimeToUnixTimeMilllisecond(DateTime dateTime);
     }
 }

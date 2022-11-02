@@ -7,23 +7,22 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.Serialization;
 
-
-   namespace Authing.CSharp.SDK.Models
-{
-/// <summary>
-/// CreateUserOtpDto 的模型
-/// </summary>
-public partial class CreateUserOtpDto
+namespace Authing.CSharp.SDK.Models
 {
     /// <summary>
-    ///  OTP 密钥
+    /// CreateUserOtpDto 的模型
     /// </summary>
-    [JsonProperty("secret")]
-    public string  Secret {get;set;}
-    /// <summary>
-    ///  OTP Recovery Code
-    /// </summary>
-    [JsonProperty("recoveryCode")]
-    public string  RecoveryCode {get;set;}
-}
+    public partial class CreateUserOtpDto
+    {
+        /// <summary>
+        ///  OTP 密钥
+        /// </summary>
+        [JsonProperty("secret")]
+        public string  Secret {get;set;}
+        /// <summary>
+        ///  OTP Recovery Code
+        /// </summary>
+        [JsonProperty("recoveryCode")]
+        public string  RecoveryCode {get;set;}
+    }
 }
