@@ -6,17 +6,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.Serialization;
-using Authing.CSharp.SDK.Models;
 
-   namespace Authing.CSharp.SDK.Models
-{
-/// <summary>
-/// PreviewEmailTemplateDto 的模型
-/// </summary>
-public partial class PreviewEmailTemplateDto
+namespace Authing.CSharp.SDK.Models
 {
     /// <summary>
-    ///  模版类型:
+    /// PreviewEmailTemplateDto 的模型
+    /// </summary>
+    public partial class PreviewEmailTemplateDto
+    {
+        /// <summary>
+        ///  模版类型:
 /// - `WELCOME_EMAIL`: 欢迎邮件
 /// - `FIRST_CREATED_USER`: 首次创建用户通知
 /// - `REGISTER_VERIFY_CODE`: 注册验证码
@@ -33,44 +32,44 @@ public partial class PreviewEmailTemplateDto
 /// - `EMAIL_BIND_VERIFY_CODE`: 绑定邮箱验证码
 /// - `EMAIL_UNBIND_VERIFY_CODE`: 解绑邮箱验证码
 /// 
-    /// </summary>
-    [JsonProperty("type")]
-    public type  Type {get;set;}
-    /// <summary>
-    ///  邮件内容模版，可选，如果不传默认使用用户池配置的邮件模版进行渲染。
-    /// </summary>
-    [JsonProperty("content")]
-    public string  Content {get;set;}
-    /// <summary>
-    ///  邮件主题，可选，如果不传默认使用用户池配置的邮件模版进行渲染。
-    /// </summary>
-    [JsonProperty("subject")]
-    public string  Subject {get;set;}
-    /// <summary>
-    ///  邮件发件人名称，可选，如果不传默认使用用户池配置的邮件模版进行渲染。
-    /// </summary>
-    [JsonProperty("sender")]
-    public string  Sender {get;set;}
-    /// <summary>
-    ///  验证码/邮件有效时间，只有验证类邮件才有有效时间。可选，如果不传默认使用用户池配置的邮件模版进行渲染。
-    /// </summary>
-    [JsonProperty("expiresIn")]
-    public long  ExpiresIn {get;set;}
-    /// <summary>
-    ///  模版渲染引擎。Authing 邮件模版目前支持两种渲染引擎：
+        /// </summary>
+        [JsonProperty("type")]
+        public type  Type {get;set;}
+        /// <summary>
+        ///  邮件内容模版，可选，如果不传默认使用用户池配置的邮件模版进行渲染。
+        /// </summary>
+        [JsonProperty("content")]
+        public string  Content {get;set;}
+        /// <summary>
+        ///  邮件主题，可选，如果不传默认使用用户池配置的邮件模版进行渲染。
+        /// </summary>
+        [JsonProperty("subject")]
+        public string  Subject {get;set;}
+        /// <summary>
+        ///  邮件发件人名称，可选，如果不传默认使用用户池配置的邮件模版进行渲染。
+        /// </summary>
+        [JsonProperty("sender")]
+        public string  Sender {get;set;}
+        /// <summary>
+        ///  验证码/邮件有效时间，只有验证类邮件才有有效时间。可选，如果不传默认使用用户池配置的邮件模版进行渲染。
+        /// </summary>
+        [JsonProperty("expiresIn")]
+        public long  ExpiresIn {get;set;}
+        /// <summary>
+        ///  模版渲染引擎。Authing 邮件模版目前支持两种渲染引擎：
 /// - `handlebar`: 详细使用方法请见：[handlebars 官方文档](https://handlebarsjs.com/)
 /// - `ejs`: 详细使用方法请见：[ejs 官方文档](https://ejs.co/)
 ///
 /// 默认将使用 `handlerbar` 作为模版渲染引擎。
 /// 
-    /// </summary>
-    [JsonProperty("tplEngine")]
-    public tplEngine  TplEngine {get;set;}
-}
-public partial class PreviewEmailTemplateDto
- {
-    /// <summary>
-    ///  模版类型:
+        /// </summary>
+        [JsonProperty("tplEngine")]
+        public tplEngine  TplEngine {get;set;}
+    }
+    public partial class PreviewEmailTemplateDto
+    {
+        /// <summary>
+        ///  模版类型:
 /// - `WELCOME_EMAIL`: 欢迎邮件
 /// - `FIRST_CREATED_USER`: 首次创建用户通知
 /// - `REGISTER_VERIFY_CODE`: 注册验证码
@@ -87,54 +86,54 @@ public partial class PreviewEmailTemplateDto
 /// - `EMAIL_BIND_VERIFY_CODE`: 绑定邮箱验证码
 /// - `EMAIL_UNBIND_VERIFY_CODE`: 解绑邮箱验证码
 /// 
-    /// </summary>
-    public enum type
-     {
-         [EnumMember(Value="WELCOME_EMAIL")]
-        WELCOME_EMAIL,
-         [EnumMember(Value="FIRST_CREATED_USER")]
-        FIRST_CREATED_USER,
-         [EnumMember(Value="REGISTER_VERIFY_CODE")]
-        REGISTER_VERIFY_CODE,
-         [EnumMember(Value="LOGIN_VERIFY_CODE")]
-        LOGIN_VERIFY_CODE,
-         [EnumMember(Value="MFA_VERIFY_CODE")]
-        MFA_VERIFY_CODE,
-         [EnumMember(Value="INFORMATION_COMPLETION_VERIFY_CODE")]
-        INFORMATION_COMPLETION_VERIFY_CODE,
-         [EnumMember(Value="FIRST_EMAIL_LOGIN_VERIFY")]
-        FIRST_EMAIL_LOGIN_VERIFY,
-         [EnumMember(Value="CONSOLE_CONDUCTED_VERIFY")]
-        CONSOLE_CONDUCTED_VERIFY,
-         [EnumMember(Value="USER_PASSWORD_UPDATE_REMIND")]
-        USER_PASSWORD_UPDATE_REMIND,
-         [EnumMember(Value="ADMIN_RESET_USER_PASSWORD_NOTIFICATION")]
-        ADMIN_RESET_USER_PASSWORD_NOTIFICATION,
-         [EnumMember(Value="USER_PASSWORD_RESET_NOTIFICATION")]
-        USER_PASSWORD_RESET_NOTIFICATION,
-         [EnumMember(Value="RESET_PASSWORD_VERIFY_CODE")]
-        RESET_PASSWORD_VERIFY_CODE,
-         [EnumMember(Value="SELF_UNLOCKING_VERIFY_CODE")]
-        SELF_UNLOCKING_VERIFY_CODE,
-         [EnumMember(Value="EMAIL_BIND_VERIFY_CODE")]
-        EMAIL_BIND_VERIFY_CODE,
-         [EnumMember(Value="EMAIL_UNBIND_VERIFY_CODE")]
-        EMAIL_UNBIND_VERIFY_CODE,
-    }
-    /// <summary>
-    ///  模版渲染引擎。Authing 邮件模版目前支持两种渲染引擎：
+        /// </summary>
+        public enum type
+        {
+            [EnumMember(Value="WELCOME_EMAIL")]
+            WELCOME_EMAIL,
+            [EnumMember(Value="FIRST_CREATED_USER")]
+            FIRST_CREATED_USER,
+            [EnumMember(Value="REGISTER_VERIFY_CODE")]
+            REGISTER_VERIFY_CODE,
+            [EnumMember(Value="LOGIN_VERIFY_CODE")]
+            LOGIN_VERIFY_CODE,
+            [EnumMember(Value="MFA_VERIFY_CODE")]
+            MFA_VERIFY_CODE,
+            [EnumMember(Value="INFORMATION_COMPLETION_VERIFY_CODE")]
+            INFORMATION_COMPLETION_VERIFY_CODE,
+            [EnumMember(Value="FIRST_EMAIL_LOGIN_VERIFY")]
+            FIRST_EMAIL_LOGIN_VERIFY,
+            [EnumMember(Value="CONSOLE_CONDUCTED_VERIFY")]
+            CONSOLE_CONDUCTED_VERIFY,
+            [EnumMember(Value="USER_PASSWORD_UPDATE_REMIND")]
+            USER_PASSWORD_UPDATE_REMIND,
+            [EnumMember(Value="ADMIN_RESET_USER_PASSWORD_NOTIFICATION")]
+            ADMIN_RESET_USER_PASSWORD_NOTIFICATION,
+            [EnumMember(Value="USER_PASSWORD_RESET_NOTIFICATION")]
+            USER_PASSWORD_RESET_NOTIFICATION,
+            [EnumMember(Value="RESET_PASSWORD_VERIFY_CODE")]
+            RESET_PASSWORD_VERIFY_CODE,
+            [EnumMember(Value="SELF_UNLOCKING_VERIFY_CODE")]
+            SELF_UNLOCKING_VERIFY_CODE,
+            [EnumMember(Value="EMAIL_BIND_VERIFY_CODE")]
+            EMAIL_BIND_VERIFY_CODE,
+            [EnumMember(Value="EMAIL_UNBIND_VERIFY_CODE")]
+            EMAIL_UNBIND_VERIFY_CODE,
+        }
+        /// <summary>
+        ///  模版渲染引擎。Authing 邮件模版目前支持两种渲染引擎：
 /// - `handlebar`: 详细使用方法请见：[handlebars 官方文档](https://handlebarsjs.com/)
 /// - `ejs`: 详细使用方法请见：[ejs 官方文档](https://ejs.co/)
 ///
 /// 默认将使用 `handlerbar` 作为模版渲染引擎。
 /// 
-    /// </summary>
-    public enum tplEngine
-     {
-         [EnumMember(Value="handlebar")]
-        HANDLEBAR,
-         [EnumMember(Value="ejs")]
-        EJS,
+        /// </summary>
+        public enum tplEngine
+        {
+            [EnumMember(Value="handlebar")]
+            HANDLEBAR,
+            [EnumMember(Value="ejs")]
+            EJS,
+        }
     }
-}
 }

@@ -6,24 +6,23 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.Serialization;
-using Authing.CSharp.SDK.Models;
 
-   namespace Authing.CSharp.SDK.Models
-{
-/// <summary>
-/// UserMfaRespDto 的模型
-/// </summary>
-public partial class UserMfaRespDto
+namespace Authing.CSharp.SDK.Models
 {
     /// <summary>
-    ///  是否绑定了 TOTP，可选值 enabled, disabled
+    /// UserMfaRespDto 的模型
     /// </summary>
-    [JsonProperty("totpStatus")]
-    public string  TotpStatus {get;set;}
-    /// <summary>
-    ///  是否绑定了人脸 MFA，可选值 enabled, disabled
-    /// </summary>
-    [JsonProperty("faceMfaStatus")]
-    public string  FaceMfaStatus {get;set;}
-}
+    public partial class UserMfaRespDto
+    {
+        /// <summary>
+        ///  是否绑定了 TOTP，可选值 enabled, disabled
+        /// </summary>
+        [JsonProperty("totpStatus")]
+        public string  TotpStatus {get;set;}
+        /// <summary>
+        ///  是否绑定了人脸 MFA，可选值 enabled, disabled
+        /// </summary>
+        [JsonProperty("faceMfaStatus")]
+        public string  FaceMfaStatus {get;set;}
+    }
 }

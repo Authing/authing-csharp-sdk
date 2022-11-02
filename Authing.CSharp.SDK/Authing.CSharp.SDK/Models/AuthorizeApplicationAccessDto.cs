@@ -6,24 +6,23 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.Serialization;
-using Authing.CSharp.SDK.Models;
 
-   namespace Authing.CSharp.SDK.Models
-{
-/// <summary>
-/// AuthorizeApplicationAccessDto 的模型
-/// </summary>
-public partial class AuthorizeApplicationAccessDto
+namespace Authing.CSharp.SDK.Models
 {
     /// <summary>
-    ///  授权主体列表，最多 10 条
+    /// AuthorizeApplicationAccessDto 的模型
     /// </summary>
-    [JsonProperty("list")]
-    public List<ApplicationPermissionRecordItem>  List {get;set;}
-    /// <summary>
-    ///  应用 ID
-    /// </summary>
-    [JsonProperty("appId")]
-    public string  AppId {get;set;}
-}
+    public partial class AuthorizeApplicationAccessDto
+    {
+        /// <summary>
+        ///  授权主体列表，最多 10 条
+        /// </summary>
+        [JsonProperty("list")]
+        public List<ApplicationPermissionRecordItem>  List {get;set;}
+        /// <summary>
+        ///  应用 ID
+        /// </summary>
+        [JsonProperty("appId")]
+        public string  AppId {get;set;}
+    }
 }

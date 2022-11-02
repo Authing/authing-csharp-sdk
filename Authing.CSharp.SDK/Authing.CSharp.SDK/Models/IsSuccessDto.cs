@@ -6,19 +6,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.Serialization;
-using Authing.CSharp.SDK.Models;
 
-   namespace Authing.CSharp.SDK.Models
-{
-/// <summary>
-/// IsSuccessDto 的模型
-/// </summary>
-public partial class IsSuccessDto
+namespace Authing.CSharp.SDK.Models
 {
     /// <summary>
-    ///  操作是否成功
+    /// IsSuccessDto 的模型
     /// </summary>
-    [JsonProperty("success")]
-    public bool  Success {get;set;}
-}
+    public partial class IsSuccessDto
+    {
+        /// <summary>
+        ///  操作是否成功
+        /// </summary>
+        [JsonProperty("success")]
+        public bool  Success {get;set;}
+    }
 }

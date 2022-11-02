@@ -6,17 +6,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.Serialization;
-using Authing.CSharp.SDK.Models;
 
-   namespace Authing.CSharp.SDK.Models
-{
-/// <summary>
-/// ListUsersAdvancedFilterItemDto 的模型
-/// </summary>
-public partial class ListUsersAdvancedFilterItemDto
+namespace Authing.CSharp.SDK.Models
 {
     /// <summary>
-    ///  高级搜索指定的用户字段：
+    /// ListUsersAdvancedFilterItemDto 的模型
+    /// </summary>
+    public partial class ListUsersAdvancedFilterItemDto
+    {
+        /// <summary>
+        ///  高级搜索指定的用户字段：
 /// - `id`: 用户 ID
 /// - `phone`: 手机号
 /// - `email`: 邮箱
@@ -50,11 +49,11 @@ public partial class ListUsersAdvancedFilterItemDto
 /// - `identity`: 用户外部身份源信息，具体使用见示例
 /// - ... 其他自定义字段
 /// 
-    /// </summary>
-    [JsonProperty("field")]
-    public string  Field {get;set;}
-    /// <summary>
-    ///  运算符，可选值为：
+        /// </summary>
+        [JsonProperty("field")]
+        public string  Field {get;set;}
+        /// <summary>
+        ///  运算符，可选值为：
 /// - `EQUAL`: 全等，适用于数字和字符串的全等匹配
 /// - `NOT_EQUAL`: 不等于，适用于数字和字符串的匹配
 /// - `CONTAINS`: 字符串包含
@@ -66,53 +65,53 @@ public partial class ListUsersAdvancedFilterItemDto
 /// - `LESSER`: 小于或等于，适用于数字、日期类型数据的比较
 /// - `BETWEEN`: 介于什么什么之间，适用于数字、日期类型数据的比较
 /// 
-    /// </summary>
-    [JsonProperty("operator")]
-    public @operator  Operator {get;set;}
-    /// <summary>
-    ///  搜索值，不同的 `field` 对应的 `value` 类型可能不一样，详情见示例。
-    /// </summary>
-    [JsonProperty("value")]
-    public object  Value {get;set;}
-}
-public partial class ListUsersAdvancedFilterItemDto
- {
-    /// <summary>
-    ///  运算符，可选值为：
-/// - `EQUAL`: 全等，适用于数字和字符串的全等匹配
-/// - `NOT_EQUAL`: 不等于，适用于数字和字符串的匹配
-/// - `CONTAINS`: 字符串包含
-/// - `NOT_CONTAINS`: 字符串不包含
-/// - `IS_NULL`: 为空
-/// - `NOT_NULL`: 不为空
-/// - `IN`: 为某个数组中的元素
-/// - `GREATER`: 大于或等于，适用于数字、日期类型数据的比较
-/// - `LESSER`: 小于或等于，适用于数字、日期类型数据的比较
-/// - `BETWEEN`: 介于什么什么之间，适用于数字、日期类型数据的比较
-/// 
-    /// </summary>
-    public enum @operator
-     {
-         [EnumMember(Value="EQUAL")]
-        EQUAL,
-         [EnumMember(Value="NOT_EQUAL")]
-        NOT_EQUAL,
-         [EnumMember(Value="CONTAINS")]
-        CONTAINS,
-         [EnumMember(Value="NOT_CONTAINS")]
-        NOT_CONTAINS,
-         [EnumMember(Value="IS_NULL")]
-        IS_NULL,
-         [EnumMember(Value="NOT_NULL")]
-        NOT_NULL,
-         [EnumMember(Value="IN")]
-        IN,
-         [EnumMember(Value="GREATER")]
-        GREATER,
-         [EnumMember(Value="LESSER")]
-        LESSER,
-         [EnumMember(Value="BETWEEN")]
-        BETWEEN,
+        /// </summary>
+        [JsonProperty("operator")]
+        public @operator  Operator {get;set;}
+        /// <summary>
+        ///  搜索值，不同的 `field` 对应的 `value` 类型可能不一样，详情见示例。
+        /// </summary>
+        [JsonProperty("value")]
+        public object  Value {get;set;}
     }
-}
+    public partial class ListUsersAdvancedFilterItemDto
+    {
+        /// <summary>
+        ///  运算符，可选值为：
+/// - `EQUAL`: 全等，适用于数字和字符串的全等匹配
+/// - `NOT_EQUAL`: 不等于，适用于数字和字符串的匹配
+/// - `CONTAINS`: 字符串包含
+/// - `NOT_CONTAINS`: 字符串不包含
+/// - `IS_NULL`: 为空
+/// - `NOT_NULL`: 不为空
+/// - `IN`: 为某个数组中的元素
+/// - `GREATER`: 大于或等于，适用于数字、日期类型数据的比较
+/// - `LESSER`: 小于或等于，适用于数字、日期类型数据的比较
+/// - `BETWEEN`: 介于什么什么之间，适用于数字、日期类型数据的比较
+/// 
+        /// </summary>
+        public enum @operator
+        {
+            [EnumMember(Value="EQUAL")]
+            EQUAL,
+            [EnumMember(Value="NOT_EQUAL")]
+            NOT_EQUAL,
+            [EnumMember(Value="CONTAINS")]
+            CONTAINS,
+            [EnumMember(Value="NOT_CONTAINS")]
+            NOT_CONTAINS,
+            [EnumMember(Value="IS_NULL")]
+            IS_NULL,
+            [EnumMember(Value="NOT_NULL")]
+            NOT_NULL,
+            [EnumMember(Value="IN")]
+            IN,
+            [EnumMember(Value="GREATER")]
+            GREATER,
+            [EnumMember(Value="LESSER")]
+            LESSER,
+            [EnumMember(Value="BETWEEN")]
+            BETWEEN,
+        }
+    }
 }

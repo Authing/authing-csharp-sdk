@@ -6,24 +6,23 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.Serialization;
-using Authing.CSharp.SDK.Models;
 
-   namespace Authing.CSharp.SDK.Models
-{
-/// <summary>
-/// GeoIpLocation 的模型
-/// </summary>
-public partial class GeoIpLocation
+namespace Authing.CSharp.SDK.Models
 {
     /// <summary>
-    ///  经度
+    /// GeoIpLocation 的模型
     /// </summary>
-    [JsonProperty("lon")]
-    public long  Lon {get;set;}
-    /// <summary>
-    ///  纬度
-    /// </summary>
-    [JsonProperty("lat")]
-    public long  Lat {get;set;}
-}
+    public partial class GeoIpLocation
+    {
+        /// <summary>
+        ///  经度
+        /// </summary>
+        [JsonProperty("lon")]
+        public long  Lon {get;set;}
+        /// <summary>
+        ///  纬度
+        /// </summary>
+        [JsonProperty("lat")]
+        public long  Lat {get;set;}
+    }
 }

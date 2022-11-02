@@ -6,19 +6,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.Serialization;
-using Authing.CSharp.SDK.Models;
 
-   namespace Authing.CSharp.SDK.Models
-{
-/// <summary>
-/// OrganizationNameI18nDto 的模型
-/// </summary>
-public partial class OrganizationNameI18nDto
+namespace Authing.CSharp.SDK.Models
 {
     /// <summary>
-    ///  支持多语言的字段
+    /// OrganizationNameI18nDto 的模型
     /// </summary>
-    [JsonProperty("organizationName")]
-    public LangObject  OrganizationName {get;set;}
-}
+    public partial class OrganizationNameI18nDto
+    {
+        /// <summary>
+        ///  支持多语言的字段
+        /// </summary>
+        [JsonProperty("organizationName")]
+        public LangObject  OrganizationName {get;set;}
+    }
 }

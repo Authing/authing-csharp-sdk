@@ -6,24 +6,23 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.Serialization;
-using Authing.CSharp.SDK.Models;
 
-   namespace Authing.CSharp.SDK.Models
-{
-/// <summary>
-/// GetOrdersRes 的模型
-/// </summary>
-public partial class GetOrdersRes
+namespace Authing.CSharp.SDK.Models
 {
     /// <summary>
-    ///  总数
+    /// GetOrdersRes 的模型
     /// </summary>
-    [JsonProperty("totalCount")]
-    public string  TotalCount {get;set;}
-    /// <summary>
-    ///  响应数据
-    /// </summary>
-    [JsonProperty("list")]
-    public List<OrderItem>  List {get;set;}
-}
+    public partial class GetOrdersRes
+    {
+        /// <summary>
+        ///  总数
+        /// </summary>
+        [JsonProperty("totalCount")]
+        public string  TotalCount {get;set;}
+        /// <summary>
+        ///  响应数据
+        /// </summary>
+        [JsonProperty("list")]
+        public List<OrderItem>  List {get;set;}
+    }
 }

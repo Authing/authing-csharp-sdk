@@ -6,19 +6,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.Serialization;
-using Authing.CSharp.SDK.Models;
 
-   namespace Authing.CSharp.SDK.Models
-{
-/// <summary>
-/// GetNamespacesBatchDto 的模型
-/// </summary>
-public partial class GetNamespacesBatchDto
+namespace Authing.CSharp.SDK.Models
 {
     /// <summary>
-    ///  资源 code 列表，批量可以使用逗号分隔
+    /// GetNamespacesBatchDto 的模型
     /// </summary>
-    [JsonProperty("codeList")]
-    public string  CodeList {get;set;} 
-}
+    public partial class GetNamespacesBatchDto
+    {
+        /// <summary>
+        ///  资源 code 列表，批量可以使用逗号分隔
+        /// </summary>
+        [JsonProperty("codeList")]
+        public string  CodeList {get;set;} 
+    }
 }

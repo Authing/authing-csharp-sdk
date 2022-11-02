@@ -6,19 +6,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.Serialization;
-using Authing.CSharp.SDK.Models;
 
-   namespace Authing.CSharp.SDK.Models
-{
-/// <summary>
-/// GetSyncJobDto 的模型
-/// </summary>
-public partial class GetSyncJobDto
+namespace Authing.CSharp.SDK.Models
 {
     /// <summary>
-    ///  同步作业 ID
+    /// GetSyncJobDto 的模型
     /// </summary>
-    [JsonProperty("syncJobId")]
-    public long  SyncJobId {get;set;} 
-}
+    public partial class GetSyncJobDto
+    {
+        /// <summary>
+        ///  同步作业 ID
+        /// </summary>
+        [JsonProperty("syncJobId")]
+        public long  SyncJobId {get;set;} 
+    }
 }

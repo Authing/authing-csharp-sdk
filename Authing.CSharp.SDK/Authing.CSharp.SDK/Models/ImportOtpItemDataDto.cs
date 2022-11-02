@@ -6,24 +6,23 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.Serialization;
-using Authing.CSharp.SDK.Models;
 
-   namespace Authing.CSharp.SDK.Models
-{
-/// <summary>
-/// ImportOtpItemDataDto 的模型
-/// </summary>
-public partial class ImportOtpItemDataDto
+namespace Authing.CSharp.SDK.Models
 {
     /// <summary>
-    ///  OTP 密钥
+    /// ImportOtpItemDataDto 的模型
     /// </summary>
-    [JsonProperty("secret")]
-    public string  Secret {get;set;}
-    /// <summary>
-    ///  OTP Recovery Code
-    /// </summary>
-    [JsonProperty("recoveryCode")]
-    public string  RecoveryCode {get;set;}
-}
+    public partial class ImportOtpItemDataDto
+    {
+        /// <summary>
+        ///  OTP 密钥
+        /// </summary>
+        [JsonProperty("secret")]
+        public string  Secret {get;set;}
+        /// <summary>
+        ///  OTP Recovery Code
+        /// </summary>
+        [JsonProperty("recoveryCode")]
+        public string  RecoveryCode {get;set;}
+    }
 }

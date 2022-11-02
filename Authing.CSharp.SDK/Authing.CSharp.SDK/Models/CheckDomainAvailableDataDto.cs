@@ -6,19 +6,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.Serialization;
-using Authing.CSharp.SDK.Models;
 
-   namespace Authing.CSharp.SDK.Models
-{
-/// <summary>
-/// CheckDomainAvailableDataDto 的模型
-/// </summary>
-public partial class CheckDomainAvailableDataDto
+namespace Authing.CSharp.SDK.Models
 {
     /// <summary>
-    ///  是否可用
+    /// CheckDomainAvailableDataDto 的模型
     /// </summary>
-    [JsonProperty("available")]
-    public bool  Available {get;set;}
-}
+    public partial class CheckDomainAvailableDataDto
+    {
+        /// <summary>
+        ///  是否可用
+        /// </summary>
+        [JsonProperty("available")]
+        public bool  Available {get;set;}
+    }
 }

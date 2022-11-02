@@ -6,19 +6,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.Serialization;
-using Authing.CSharp.SDK.Models;
 
-   namespace Authing.CSharp.SDK.Models
-{
-/// <summary>
-/// CurrentUsageRespDto 的模型
-/// </summary>
-public partial class CurrentUsageRespDto
+namespace Authing.CSharp.SDK.Models
 {
     /// <summary>
-    ///  当前用量实体
+    /// CurrentUsageRespDto 的模型
     /// </summary>
-    [JsonProperty("usages")]
-    public List<CurrentUsageDto>  Usages {get;set;}
-}
+    public partial class CurrentUsageRespDto
+    {
+        /// <summary>
+        ///  当前用量实体
+        /// </summary>
+        [JsonProperty("usages")]
+        public List<CurrentUsageDto>  Usages {get;set;}
+    }
 }

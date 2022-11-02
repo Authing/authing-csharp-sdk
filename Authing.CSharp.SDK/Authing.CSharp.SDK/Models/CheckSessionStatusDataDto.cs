@@ -6,19 +6,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.Serialization;
-using Authing.CSharp.SDK.Models;
 
-   namespace Authing.CSharp.SDK.Models
-{
-/// <summary>
-/// CheckSessionStatusDataDto 的模型
-/// </summary>
-public partial class CheckSessionStatusDataDto
+namespace Authing.CSharp.SDK.Models
 {
     /// <summary>
-    ///  是否具有登录态
+    /// CheckSessionStatusDataDto 的模型
     /// </summary>
-    [JsonProperty("active")]
-    public bool  Active {get;set;}
-}
+    public partial class CheckSessionStatusDataDto
+    {
+        /// <summary>
+        ///  是否具有登录态
+        /// </summary>
+        [JsonProperty("active")]
+        public bool  Active {get;set;}
+    }
 }

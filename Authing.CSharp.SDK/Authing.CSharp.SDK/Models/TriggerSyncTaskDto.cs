@@ -6,19 +6,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.Serialization;
-using Authing.CSharp.SDK.Models;
 
-   namespace Authing.CSharp.SDK.Models
-{
-/// <summary>
-/// TriggerSyncTaskDto 的模型
-/// </summary>
-public partial class TriggerSyncTaskDto
+namespace Authing.CSharp.SDK.Models
 {
     /// <summary>
-    ///  同步任务 ID
+    /// TriggerSyncTaskDto 的模型
     /// </summary>
-    [JsonProperty("syncTaskId")]
-    public long  SyncTaskId {get;set;}
-}
+    public partial class TriggerSyncTaskDto
+    {
+        /// <summary>
+        ///  同步任务 ID
+        /// </summary>
+        [JsonProperty("syncTaskId")]
+        public long  SyncTaskId {get;set;}
+    }
 }

@@ -6,14 +6,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.Serialization;
-using Authing.CSharp.SDK.Models;
 
-   namespace Authing.CSharp.SDK.Models
+namespace Authing.CSharp.SDK.Models
 {
-/// <summary>
-/// OauthIdpConfig 的模型
-/// </summary>
-public partial class OauthIdpConfig
-{
-}
+    /// <summary>
+    /// OauthIdpConfig 的模型
+    /// </summary>
+    public partial class OauthIdpConfig
+    {
+    }
 }

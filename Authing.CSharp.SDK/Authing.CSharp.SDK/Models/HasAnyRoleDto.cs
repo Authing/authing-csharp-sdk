@@ -6,19 +6,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.Serialization;
-using Authing.CSharp.SDK.Models;
 
-   namespace Authing.CSharp.SDK.Models
-{
-/// <summary>
-/// HasAnyRoleDto 的模型
-/// </summary>
-public partial class HasAnyRoleDto
+namespace Authing.CSharp.SDK.Models
 {
     /// <summary>
-    ///  是否拥有其中某一个角色
+    /// HasAnyRoleDto 的模型
     /// </summary>
-    [JsonProperty("hasAnyRole")]
-    public bool  HasAnyRole {get;set;}
-}
+    public partial class HasAnyRoleDto
+    {
+        /// <summary>
+        ///  是否拥有其中某一个角色
+        /// </summary>
+        [JsonProperty("hasAnyRole")]
+        public bool  HasAnyRole {get;set;}
+    }
 }
