@@ -116,7 +116,7 @@ namespace Authing.CSharp.SDK.Services
 
             //组装、 加密 
             //设置头
-            long utcTime = m_DatetimeService.DateTimeToTimestamp(DateTime.Now);
+            long utcTime = m_DatetimeService.DateTimeNowToTimestamp();
             string osBit = Environment.Is64BitOperatingSystem ? "x64" : "x86";
             string defaultUA = $"AuthingIdentityCloud ({Environment.OSVersion.VersionString}; {osBit}) .Net(v{Environment.Version}), authing-csharp-sdk:{System.Reflection.Assembly.GetExecutingAssembly().GetName().Version}";
             string version = $"authing-csharp-sdk:{System.Reflection.Assembly.GetExecutingAssembly().GetName().Version}";
@@ -321,6 +321,7 @@ Node.js(v14.18.0), authing-node-sdk: 0.0.19
                         queryBuilder.Append(",");
                     }
                     queryBuilder.Append("]");
+                    queryBuilder.Append(QUERY_SEPARATOR);
                 }
                 else
                 {

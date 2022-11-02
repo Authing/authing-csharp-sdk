@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.Serialization;
-
+using Authing.CSharp.SDK.Models;
 
    namespace Authing.CSharp.SDK.Models
 {
@@ -63,6 +63,16 @@ public partial class CreateIdentityDto
     /// </summary>
     [JsonProperty("userIdInIdp")]
     public string  UserIdInIdp {get;set;}
+    /// <summary>
+    ///  在外部身份源中的 Access Token（此参数只会在用户主动获取时返回，管理侧接口不会返回）。
+    /// </summary>
+    [JsonProperty("accessToken")]
+    public string  AccessToken {get;set;}
+    /// <summary>
+    ///  在外部身份源中的 Refresh Token（此参数只会在用户主动获取时返回，管理侧接口不会返回）。
+    /// </summary>
+    [JsonProperty("refreshToken")]
+    public string  RefreshToken {get;set;}
     /// <summary>
     ///  身份来自的身份源连接 ID 列表
     /// </summary>

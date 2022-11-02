@@ -358,6 +358,35 @@ namespace Authing.CSharp.SDK.Framework.Test
         }
 
         /// <summary>
+        /// 2022-11-2 测试通过
+        /// </summary>
+        /// <returns></returns>
+        [Test]
+        public async Task UpdateUserBatchTest()
+        {
+            UserListRespDto dto = await managementClient.UpdateUserBatch(new UpdateUserBatchReqDto 
+            {
+                List=new List<UpdateUserInfoDto> 
+                {
+                    new UpdateUserInfoDto
+                    {
+                        UserId="6360bca83cf8e4e347b0747e",
+                        Username="qidong2481452007",
+                        Status=UpdateUserInfoDto.status.ACTIVATED
+                    },
+                    new UpdateUserInfoDto
+                    {
+                        UserId="62bc37200d0fc2db637e92ef",
+                        Company="steamory",
+                        Status=UpdateUserInfoDto.status.ACTIVATED
+                    }
+                }
+            });
+
+            Assert.IsTrue(dto.Data.Count > 0);
+        }
+
+        /// <summary>
         /// 2022-10-18 测试通过
         /// </summary>
         /// <returns></returns>
@@ -413,8 +442,8 @@ namespace Authing.CSharp.SDK.Framework.Test
         }
 
         /// <summary>
-        /// 2022-10-18 测试失败
-        /// 获取到的数据为空
+        /// 2022-10-18 测试通过
+        /// 获取用户历史登录数据
         /// </summary>
         /// <returns></returns>
         [Test]
@@ -422,12 +451,13 @@ namespace Authing.CSharp.SDK.Framework.Test
         {
             using (CancellationTokenSource cts = new CancellationTokenSource())
             {
-                string UserId = "634e53bc7e8639080058c65a";
+                string UserId = "62bc37200d0fc2db637e92ef";
 
-                long beginTime = dateTimeService.DateTimeToTimestamp(DateTime.Parse("2020-12-12 00:00:00"));
-                long endTime = dateTimeService.DateTimeToTimestamp(DateTime.Parse("2023-12-12 00:00:00"));
+                long beginTime = dateTimeService.DatetimeToUnixTimeMilllisecond(DateTime.Parse("2022-10-02 11:01:23"));
+                long endTime = dateTimeService.DatetimeToUnixTimeMilllisecond(DateTime.Parse("2022-11-02 11:01:23"));
 
-                UserLoginHistoryPaginatedRespDto dto = await managementClient.GetUserLoginHistory(new GetUserLoginHistoryDto { UserId = UserId, Start = beginTime, End = endTime });
+
+                UserLoginHistoryPaginatedRespDto dto = await managementClient.GetUserLoginHistory(new GetUserLoginHistoryDto { AppId = "62a9902a80f55c22346eb296", UserId = "62bc37200d0fc2db637e92ef", UserIdType = "user_id", Start = beginTime, End = endTime });
 
                 Assert.IsTrue(dto.Data.List.Count > 0);
             }
@@ -519,7 +549,7 @@ namespace Authing.CSharp.SDK.Framework.Test
 
         /// <summary>
         /// 2022-11-1 测试通过
-        /// 检查登录转台
+        /// 检查登录状态
         /// </summary>
         /// <returns></returns>
         [Test]
@@ -555,6 +585,22 @@ namespace Authing.CSharp.SDK.Framework.Test
                     }
                 }
             });
+        }
+
+        /// <summary>
+        /// 2022-11-2 测试通过
+        /// 获取用户列表
+        /// </summary>
+        /// <returns></returns>
+        [Test]
+        public async Task ListUsersLegacyTest()
+        {
+            var dto = await managementClient.ListUsersLegacy(new ListUsersDto 
+            {
+               
+            });
+
+            Assert.IsTrue(dto.Data.TotalCount > 0);
         }
 
 

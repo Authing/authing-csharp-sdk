@@ -1,11 +1,11 @@
 using Authing.CSharp.SDK.Extensions;
+using Authing.CSharp.SDK.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using Authing.CSharp.SDK.Models;
 
 namespace Authing.CSharp.SDK.Services
 {

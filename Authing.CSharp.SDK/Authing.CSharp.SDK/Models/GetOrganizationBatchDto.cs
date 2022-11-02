@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.Serialization;
-
+using Authing.CSharp.SDK.Models;
 
    namespace Authing.CSharp.SDK.Models
 {
@@ -19,7 +19,7 @@ public partial class GetOrganizationBatchDto
     ///  组织 Code（organizationCode）列表
     /// </summary>
     [JsonProperty("organizationCodeList")]
-    public string  OrganizationCodeList {get;set;} 
+    public string OrganizationCodeList {get;set;} 
     /// <summary>
     ///  是否获取自定义数据
     /// </summary>

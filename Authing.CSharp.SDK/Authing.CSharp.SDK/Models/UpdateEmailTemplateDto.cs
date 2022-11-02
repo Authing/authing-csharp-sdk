@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.Serialization;
-
+using Authing.CSharp.SDK.Models;
 
    namespace Authing.CSharp.SDK.Models
 {
@@ -76,7 +76,7 @@ public partial class UpdateEmailTemplateDto
 /// - `handlebar`: 详细使用方法请见：[handlebars 官方文档](https://handlebarsjs.com/)
 /// - `ejs`: 详细使用方法请见：[ejs 官方文档](https://ejs.co/)
 ///
-/// 默认将使用 `handlerbar` 作为膜拜渲染引擎。
+/// 默认将使用 `handlerbar` 作为模版渲染引擎。
 /// 
     /// </summary>
     [JsonProperty("tplEngine")]
@@ -141,7 +141,7 @@ public partial class UpdateEmailTemplateDto
 /// - `handlebar`: 详细使用方法请见：[handlebars 官方文档](https://handlebarsjs.com/)
 /// - `ejs`: 详细使用方法请见：[ejs 官方文档](https://ejs.co/)
 ///
-/// 默认将使用 `handlerbar` 作为膜拜渲染引擎。
+/// 默认将使用 `handlerbar` 作为模版渲染引擎。
 /// 
     /// </summary>
     public enum tplEngine

@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.Serialization;
-
+using Authing.CSharp.SDK.Models;
 
    namespace Authing.CSharp.SDK.Models
 {
@@ -245,6 +245,8 @@ public partial class AdminAuditLogDto
         ROLE_ASSIGN,
          [EnumMember(Value="policy")]
         POLICY,
+         [EnumMember(Value="customDomain")]
+        CUSTOM_DOMAIN,
     }
 }
 }

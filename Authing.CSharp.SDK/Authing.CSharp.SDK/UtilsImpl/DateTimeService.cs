@@ -9,16 +9,18 @@ namespace Authing.CSharp.SDK.UtilsImpl
 {
     public class DateTimeService : IDateTimeService
     {
-        /// <summary>
-        /// 本时区日期时间转时间戳
-        /// </summary>
-        /// <param name="datetime"></param>
-        /// <returns>long=Int64</returns>
-        public long DateTimeToTimestamp(DateTime datetime)
+
+        public long DateTimeNowToTimestamp( )
         {
             long epochTicks = new DateTime(1970, 1, 1).Ticks;
             long unixTime = ((DateTime.UtcNow.Ticks - epochTicks) / TimeSpan.TicksPerMillisecond);
 
+            return unixTime;
+        }
+
+        public long DatetimeToUnixTimeMilllisecond(DateTime dateTime)
+        {
+            long unixTime = (dateTime.ToUniversalTime().Ticks - 621355968000000000) / 10000;
             return unixTime;
         }
     }
