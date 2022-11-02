@@ -16,7 +16,7 @@ namespace Authing.CSharp.SDK.Framework.Test
     class OrganizationsManagementTest : ManagementClientBaseTest
     {
         /// <summary>
-        /// 2022-10-18 测试完成
+        /// 2022-10-18 测试通过
         /// </summary>
         /// <returns></returns>
         [Test]
@@ -31,7 +31,7 @@ namespace Authing.CSharp.SDK.Framework.Test
         }
 
         /// <summary>
-        /// 2022-10-18 测试完成
+        /// 2022-10-18 测试通过
         /// </summary>
         /// <returns></returns>
         [Test]
@@ -55,7 +55,7 @@ namespace Authing.CSharp.SDK.Framework.Test
         }
 
         /// <summary>
-        /// 2022-10-18 测试完成
+        /// 2022-10-18 测试通过
         /// </summary>
         /// <returns></returns>
         [Test]
@@ -78,7 +78,7 @@ namespace Authing.CSharp.SDK.Framework.Test
         }
 
         /// <summary>
-        /// 2022-10-18 测试完成
+        /// 2022-10-18 测试通过
         /// </summary>
         /// <returns></returns>
         [Test]
@@ -102,7 +102,7 @@ namespace Authing.CSharp.SDK.Framework.Test
         }
 
         /// <summary>
-        /// 2022-10-18 测试完成
+        /// 2022-10-18 测试通过
         /// </summary>
         /// <returns></returns>
         [Test]
@@ -117,7 +117,7 @@ namespace Authing.CSharp.SDK.Framework.Test
         }
 
         /// <summary>
-        /// 2022-10-18 测试完成
+        /// 2022-10-18 测试通过
         /// </summary>
         /// <returns></returns>
         [Test]
@@ -145,7 +145,7 @@ namespace Authing.CSharp.SDK.Framework.Test
         }
 
         /// <summary>
-        /// 2022-10-18 测试完成
+        /// 2022-10-18 测试通过
         /// </summary>
         /// <returns></returns>
         [Test]
@@ -173,7 +173,7 @@ namespace Authing.CSharp.SDK.Framework.Test
         }
 
         /// <summary>
-        /// 2022-10-18 测试完成
+        /// 2022-10-18 测试通过
         /// </summary>
         /// <returns></returns>
         [Test]
@@ -196,7 +196,7 @@ namespace Authing.CSharp.SDK.Framework.Test
         }
 
         /// <summary>
-        /// 2022-10-18 测试完成
+        /// 2022-10-18 测试通过
         /// </summary>
         /// <returns></returns>
         [Test]
@@ -217,7 +217,7 @@ namespace Authing.CSharp.SDK.Framework.Test
         }
 
         /// <summary>
-        /// 2022-10-18 测试完成
+        /// 2022-10-18 测试通过
         /// </summary>
         /// <returns></returns>
         [Test]
@@ -232,7 +232,7 @@ namespace Authing.CSharp.SDK.Framework.Test
         }
 
         /// <summary>
-        /// 2022-10-18 测试完成
+        /// 2022-10-18 测试通过
         /// </summary>
         /// <returns></returns>
         [Test]
@@ -247,7 +247,7 @@ namespace Authing.CSharp.SDK.Framework.Test
         }
 
         /// <summary>
-        /// 2022-10-18 测试完成
+        /// 2022-10-18 测试通过
         /// </summary>
         /// <returns></returns>
         [Test]
@@ -262,7 +262,7 @@ namespace Authing.CSharp.SDK.Framework.Test
         }
 
         /// <summary>
-        /// 2022-10-18 测试完成
+        /// 2022-10-18 测试通过
         /// </summary>
         /// <returns></returns>
         [Test]
@@ -283,7 +283,7 @@ namespace Authing.CSharp.SDK.Framework.Test
         }
 
         /// <summary>
-        /// 2022-10-18 测试完成
+        /// 2022-10-18 测试通过
         /// </summary>
         /// <returns></returns>
         [Test]
@@ -304,7 +304,7 @@ namespace Authing.CSharp.SDK.Framework.Test
         }
 
         /// <summary>
-        /// 2022-10-18 测试完成
+        /// 2022-10-18 测试通过
         /// </summary>
         /// <returns></returns>
         [Test]
@@ -319,7 +319,7 @@ namespace Authing.CSharp.SDK.Framework.Test
         }
 
         /// <summary>
-        /// 2022-10-18 测试完成
+        /// 2022-10-18 测试通过
         /// </summary>
         /// <returns></returns>
         [Test]
@@ -334,8 +334,7 @@ namespace Authing.CSharp.SDK.Framework.Test
         }
 
         /// <summary>
-        /// 2022-10-18 测试失败
-        /// TODO:无法查找部门下用户
+        /// 2022-11-1 测试通过
         /// </summary>
         /// <returns></returns>
         [Test]
@@ -343,14 +342,13 @@ namespace Authing.CSharp.SDK.Framework.Test
         {
             using (CancellationTokenSource cts = new CancellationTokenSource())
             {
-                //"22", "630f01362bf642ea26e430fc", "steamory"
-                UserPaginatedRespDto respDto = await managementClient.SearchDepartmentMembers(new SearchDepartmentMembersDto { DepartmentId= "634e6ebe505d3a1d59cff9d6", DepartmentIdType= "department_id", Keywords="qidong",OrganizationCode="steamory" });
+                UserPaginatedRespDto respDto = await managementClient.SearchDepartmentMembers(new SearchDepartmentMembersDto { DepartmentId= "62f49ebfe31a861ac9cca20e", DepartmentIdType= "department_id", Keywords="qidong",OrganizationCode="steamory" });
                 Assert.IsTrue(respDto.Data.TotalCount>0);
             }
         }
 
         /// <summary>
-        /// 2022-10-18 测试完成
+        /// 2022-10-18 测试通过
         /// </summary>
         /// <returns></returns>
         [Test]

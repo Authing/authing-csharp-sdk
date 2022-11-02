@@ -114,15 +114,19 @@ namespace Authing.CSharp.SDK.Framework.Test
         }
 
         /// <summary>
-        /// 2022-10-18 测试失败
+        /// 2022-10-18 测试通过
         /// 获取图形验证码
-        /// Todo:无法自动生成获取图形验证码的方法
         /// </summary>
         /// <returns></returns>
         [Test]
         public async Task GeneCaptchaCodeTest()
         {
-           // var res = await client.GeneQrCode();
+            var res = await client.GeneQrCode(new GenerateQrcodeDto()
+            {
+                Type = GenerateQrcodeDto.type.MOBILE_APP
+            });
+
+            Assert.Equals(200, res.StatusCode);
         }
 
         /// <summary>
