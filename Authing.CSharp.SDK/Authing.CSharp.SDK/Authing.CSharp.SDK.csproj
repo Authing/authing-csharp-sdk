@@ -8,15 +8,15 @@
 		<PackageId>Authing.CSharp.SDK</PackageId>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<PackageReleaseNotes>
-Version 3.0.1
-- V3 Open Api 的接口
+Version 3.0.2
+- V3 修复标准协议调用失败的问题
 
 </PackageReleaseNotes>
-		<Version>3.0.1</Version>
+		<Version>3.0.2</Version>
 		<PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
-		<FileVersion>3.0.1</FileVersion>
+		<FileVersion>3.0.2</FileVersion>
 		<Company>Authing</Company>
-		<AssemblyVersion>3.0.1</AssemblyVersion>
+		<AssemblyVersion>3.0.2</AssemblyVersion>
 		<Authors>Authing</Authors>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<Copyright>Beijing Steamory Technology Co. Ltd.</Copyright>
