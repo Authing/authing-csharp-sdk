@@ -10,34 +10,39 @@ using System.Runtime.Serialization;
 namespace Authing.CSharp.SDK.Models
 {
     /// <summary>
-    /// UpdateRoleDto 的模型
+    /// NamespaceRolesListRespDto 的模型
     /// </summary>
-    public partial class UpdateRoleDto
+    public partial class NamespaceRolesListRespDto
     {
         /// <summary>
-        ///  权限分组（权限空间）角色名称
+        ///  角色 ID
+        /// </summary>
+        [JsonProperty("id")]
+        public string  Id {get;set;}
+        /// <summary>
+        ///  角色名称
         /// </summary>
         [JsonProperty("name")]
         public string  Name {get;set;}
         /// <summary>
-        ///  角色新的权限分组（权限空间）内唯一识别码
-        /// </summary>
-        [JsonProperty("newCode")]
-        public string  NewCode {get;set;}
-        /// <summary>
-        ///  权限分组(权限空间）内角色的唯一标识符
+        ///  角色 Code
         /// </summary>
         [JsonProperty("code")]
         public string  Code {get;set;}
         /// <summary>
-        ///  所属权限分组(权限空间)的 code
+        ///  角色 描述信息
+        /// </summary>
+        [JsonProperty("description")]
+        public string  Description {get;set;}
+        /// <summary>
+        ///  权限分组（权限空间） Code
         /// </summary>
         [JsonProperty("namespace")]
         public string  Namespace {get;set;}
         /// <summary>
-        ///  角色描述
+        ///  更新时间
         /// </summary>
-        [JsonProperty("description")]
-        public string  Description {get;set;}
+        [JsonProperty("updatedAt")]
+        public string  UpdatedAt {get;set;}
     }
 }

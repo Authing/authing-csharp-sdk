@@ -25,6 +25,11 @@ namespace Authing.CSharp.SDK.Models
         [JsonProperty("description")]
         public string  Description {get;set;}
         /// <summary>
+        ///  资源名称
+        /// </summary>
+        [JsonProperty("name")]
+        public string  Name {get;set;}
+        /// <summary>
         ///  资源定义的操作类型
         /// </summary>
         [JsonProperty("actions")]
@@ -35,7 +40,7 @@ namespace Authing.CSharp.SDK.Models
         [JsonProperty("apiIdentifier")]
         public string  ApiIdentifier {get;set;}
         /// <summary>
-        ///  所属权限分组的 code
+        ///  所属权限分组(权限空间)的 Code
         /// </summary>
         [JsonProperty("namespace")]
         public string  Namespace {get;set;}

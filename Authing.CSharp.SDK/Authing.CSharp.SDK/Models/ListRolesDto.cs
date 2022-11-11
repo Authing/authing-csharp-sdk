@@ -15,16 +15,6 @@ namespace Authing.CSharp.SDK.Models
     public partial class ListRolesDto
     {
         /// <summary>
-        ///  用于根据角色的 code 进行模糊搜索，可选。
-        /// </summary>
-        [JsonProperty("keywords")]
-        public string  Keywords {get;set;} 
-        /// <summary>
-        ///  所属权限分组的 code
-        /// </summary>
-        [JsonProperty("namespace")]
-        public string  Namespace {get;set;} 
-        /// <summary>
         ///  当前页数，从 1 开始
         /// </summary>
         [JsonProperty("page")]
@@ -34,5 +24,15 @@ namespace Authing.CSharp.SDK.Models
         /// </summary>
         [JsonProperty("limit")]
         public long  Limit {get;set;} =10;
+        /// <summary>
+        ///  用于根据角色的 code 或者名称进行模糊搜索，可选。
+        /// </summary>
+        [JsonProperty("keywords")]
+        public string  Keywords {get;set;} 
+        /// <summary>
+        ///  所属权限分组(权限空间)的 code
+        /// </summary>
+        [JsonProperty("namespace")]
+        public string  Namespace {get;set;} 
     }
 }

@@ -20,12 +20,17 @@ namespace Authing.CSharp.SDK.Models
         [JsonProperty("code")]
         public string  Code {get;set;}
         /// <summary>
+        ///  权限分组内角色名称
+        /// </summary>
+        [JsonProperty("name")]
+        public string  Name {get;set;}
+        /// <summary>
         ///  角色描述
         /// </summary>
         [JsonProperty("description")]
         public string  Description {get;set;}
         /// <summary>
-        ///  所属权限分组的 code
+        ///  所属权限分组(权限空间)的 code
         /// </summary>
         [JsonProperty("namespace")]
         public string  Namespace {get;set;}

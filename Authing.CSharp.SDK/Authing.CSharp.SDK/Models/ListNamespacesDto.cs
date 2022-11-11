@@ -10,20 +10,10 @@ using System.Runtime.Serialization;
 namespace Authing.CSharp.SDK.Models
 {
     /// <summary>
-    /// ListResourcesDto 的模型
+    /// ListNamespacesDto 的模型
     /// </summary>
-    public partial class ListResourcesDto
+    public partial class ListNamespacesDto
     {
-        /// <summary>
-        ///  所属权限分组(权限空间)的 Code
-        /// </summary>
-        [JsonProperty("namespace")]
-        public string  Namespace {get;set;} 
-        /// <summary>
-        ///  资源类型
-        /// </summary>
-        [JsonProperty("type")]
-        public string  Type {get;set;} 
         /// <summary>
         ///  当前页数，从 1 开始
         /// </summary>
@@ -34,5 +24,10 @@ namespace Authing.CSharp.SDK.Models
         /// </summary>
         [JsonProperty("limit")]
         public long  Limit {get;set;} =10;
+        /// <summary>
+        ///  搜索权限分组（权限空间） Code
+        /// </summary>
+        [JsonProperty("keywords")]
+        public string  Keywords {get;set;} 
     }
 }

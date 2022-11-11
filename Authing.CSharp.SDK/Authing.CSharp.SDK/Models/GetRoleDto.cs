@@ -15,12 +15,12 @@ namespace Authing.CSharp.SDK.Models
     public partial class GetRoleDto
     {
         /// <summary>
-        ///  权限分组内角色的唯一标识符
+        ///  权限分组(权限空间)内角色的唯一标识符
         /// </summary>
         [JsonProperty("code")]
         public string  Code {get;set;} 
         /// <summary>
-        ///  所属权限分组的 code
+        ///  所属权限分组(权限空间)的 Code
         /// </summary>
         [JsonProperty("namespace")]
         public string  Namespace {get;set;} 

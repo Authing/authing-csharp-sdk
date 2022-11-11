@@ -10,15 +10,10 @@ using System.Runtime.Serialization;
 namespace Authing.CSharp.SDK.Models
 {
     /// <summary>
-    /// CreateResourceDto 的模型
+    /// CommonResourceDto 的模型
     /// </summary>
-    public partial class CreateResourceDto
+    public partial class CommonResourceDto
     {
-        /// <summary>
-        ///  资源类型，如数据、API、按钮、菜单
-        /// </summary>
-        [JsonProperty("type")]
-        public type  Type {get;set;}
         /// <summary>
         ///  资源唯一标志符
         /// </summary>
@@ -35,6 +30,11 @@ namespace Authing.CSharp.SDK.Models
         [JsonProperty("name")]
         public string  Name {get;set;}
         /// <summary>
+        ///  资源类型，如数据、API、按钮、菜单
+        /// </summary>
+        [JsonProperty("type")]
+        public type  Type {get;set;}
+        /// <summary>
         ///  资源定义的操作类型
         /// </summary>
         [JsonProperty("actions")]
@@ -49,8 +49,43 @@ namespace Authing.CSharp.SDK.Models
         /// </summary>
         [JsonProperty("namespace")]
         public string  Namespace {get;set;}
+        /// <summary>
+        ///  租户应用是否关联自建应用资源
+        /// </summary>
+        [JsonProperty("linkedToTenant")]
+        public bool  LinkedToTenant {get;set;}
+        /// <summary>
+        ///  资源id
+        /// </summary>
+        [JsonProperty("id")]
+        public string  Id {get;set;}
+        /// <summary>
+        ///  权限应用id
+        /// </summary>
+        [JsonProperty("namespaceId")]
+        public long  NamespaceId {get;set;}
+        /// <summary>
+        ///  权限应用名称
+        /// </summary>
+        [JsonProperty("namespaceName")]
+        public string  NamespaceName {get;set;}
+        /// <summary>
+        ///  UserPool ID
+        /// </summary>
+        [JsonProperty("userPoolId")]
+        public string  UserPoolId {get;set;}
+        /// <summary>
+        ///  创建时间
+        /// </summary>
+        [JsonProperty("createdAt")]
+        public string  CreatedAt {get;set;}
+        /// <summary>
+        ///  更新时间
+        /// </summary>
+        [JsonProperty("updatedAt")]
+        public string  UpdatedAt {get;set;}
     }
-    public partial class CreateResourceDto
+    public partial class CommonResourceDto
     {
         /// <summary>
         ///  资源类型，如数据、API、按钮、菜单

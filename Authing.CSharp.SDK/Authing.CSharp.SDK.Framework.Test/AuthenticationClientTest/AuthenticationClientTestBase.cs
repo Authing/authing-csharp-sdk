@@ -17,20 +17,12 @@ namespace Authing.CSharp.SDK.Framework.Test.AuthenticationClientTest
         [SetUp]
         public void SetupClient()
         {
-            //client = new AuthenticationClient(new AuthenticationClientInitOptions
-            //{
-            //    AppId = "AUTHING_APP_ID",
-            //    AppSecret = "AUTHING_SECRET",
-            //    RedirectUri = "AUTHING_REDIRECTURI",
-            //    AppHost = @"AUTHING_HOST",
-            //});
-
             client = new AuthenticationClient(new AuthenticationClientInitOptions
             {
-                AppId = "62c39ad51b8ff7350ecc8783",
-                AppSecret = "d7374a3f352f0ba11631891868fc18bf",
-                RedirectUri = "https://www.baidu.com",
-                AppHost = @"https://lappblgpfpkhijib-demo.authing.cn",
+                AppId = "AUTHING_APP_ID",
+                AppSecret = "AUTHING_SECRET",
+                RedirectUri = "AUTHING_REDIRECTURI",
+                AppHost = @"AUTHING_HOST",
             });
         }
     }

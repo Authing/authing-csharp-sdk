@@ -10,17 +10,12 @@ using System.Runtime.Serialization;
 namespace Authing.CSharp.SDK.Models
 {
     /// <summary>
-    /// AuthorizeResourcesDto 的模型
+    /// CheckRoleParamsDto 的模型
     /// </summary>
-    public partial class AuthorizeResourcesDto
+    public partial class CheckRoleParamsDto
     {
         /// <summary>
-        ///  授权资源列表
-        /// </summary>
-        [JsonProperty("list")]
-        public List<AuthorizeResourceItem>  List {get;set;}
-        /// <summary>
-        ///  所属权限分组(权限空间)的 Code
+        ///  所属权限分组(权限空间)的 code
         /// </summary>
         [JsonProperty("namespace")]
         public string  Namespace {get;set;}

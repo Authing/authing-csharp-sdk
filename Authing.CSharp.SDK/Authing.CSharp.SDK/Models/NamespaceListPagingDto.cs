@@ -10,19 +10,19 @@ using System.Runtime.Serialization;
 namespace Authing.CSharp.SDK.Models
 {
     /// <summary>
-    /// AuthorizeResourcesDto 的模型
+    /// NamespaceListPagingDto 的模型
     /// </summary>
-    public partial class AuthorizeResourcesDto
+    public partial class NamespaceListPagingDto
     {
         /// <summary>
-        ///  授权资源列表
+        ///  记录总数
+        /// </summary>
+        [JsonProperty("totalCount")]
+        public long  TotalCount {get;set;}
+        /// <summary>
+        ///  响应数据
         /// </summary>
         [JsonProperty("list")]
-        public List<AuthorizeResourceItem>  List {get;set;}
-        /// <summary>
-        ///  所属权限分组(权限空间)的 Code
-        /// </summary>
-        [JsonProperty("namespace")]
-        public string  Namespace {get;set;}
+        public List<NamespacesListRespDto>  List {get;set;}
     }
 }

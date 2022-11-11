@@ -197,7 +197,7 @@ namespace Authing.CSharp.SDK.Services
         /// - `identity`: 用户的外部身份源信息，格式为 `<extIdpId>:<userIdInIdp>`，其中 `<extIdpId>` 为 Authing 身份源的 ID，`<userIdInIdp>` 为用户在外部身份源的 ID。
         /// 示例值：`62f20932716fbcc10d966ee5:ou_8bae746eac07cd2564654140d2a9ac61`。
         /// </param>
-        /// <param name="nameSpace">所属权限分组的 code</param>
+        /// <param name="nameSpace">所属权限分组(权限空间)的 Code</param>
         ///<returns>RolePaginatedRespDto</returns>
         public async Task<RolePaginatedRespDto> GetUserRoles(GetUserRolesDto reqDto)
         {
@@ -528,7 +528,7 @@ namespace Authing.CSharp.SDK.Services
         /// - `identity`: 用户的外部身份源信息，格式为 `<extIdpId>:<userIdInIdp>`，其中 `<extIdpId>` 为 Authing 身份源的 ID，`<userIdInIdp>` 为用户在外部身份源的 ID。
         /// 示例值：`62f20932716fbcc10d966ee5:ou_8bae746eac07cd2564654140d2a9ac61`。
         /// </param>
-        /// <param name="nameSpace">所属权限分组的 code</param>
+        /// <param name="nameSpace">所属权限分组(权限空间)的 Code</param>
         /// <param name="resourceType">资源类型，如 数据、API、菜单、按钮</param>
         ///<returns>AuthorizedResourcePaginatedRespDto</returns>
         public async Task<AuthorizedResourcePaginatedRespDto> GetUserAuthorizedResources(GetUserAuthorizedResourcesDto reqDto)
@@ -981,7 +981,7 @@ namespace Authing.CSharp.SDK.Services
         /// 获取分组被授权的资源列表
         ///</summary>
         /// <param name="code">分组 code</param>
-        /// <param name="nameSpace">所属权限分组的 code</param>
+        /// <param name="nameSpace">所属权限分组(权限空间)的 Code</param>
         /// <param name="resourceType">资源类型</param>
         ///<returns>AuthorizedResourceListRespDto</returns>
         public async Task<AuthorizedResourceListRespDto> GetGroupAuthorizedResources(GetGroupAuthorizedResourcesDto reqDto)
@@ -995,8 +995,8 @@ namespace Authing.CSharp.SDK.Services
         ///<summary>
         /// 获取角色详情
         ///</summary>
-        /// <param name="code">权限分组内角色的唯一标识符</param>
-        /// <param name="nameSpace">所属权限分组的 code</param>
+        /// <param name="code">权限分组(权限空间)内角色的唯一标识符</param>
+        /// <param name="nameSpace">所属权限分组(权限空间)的 Code</param>
         ///<returns>RoleSingleRespDto</returns>
         public async Task<RoleSingleRespDto> GetRole(GetRoleDto reqDto)
         {
@@ -1095,10 +1095,10 @@ namespace Authing.CSharp.SDK.Services
         ///<summary>
         /// 获取角色列表
         ///</summary>
-        /// <param name="keywords">用于根据角色的 code 进行模糊搜索，可选。</param>
-        /// <param name="nameSpace">所属权限分组的 code</param>
         /// <param name="page">当前页数，从 1 开始</param>
         /// <param name="limit">每页数目，最大不能超过 50，默认为 10</param>
+        /// <param name="keywords">用于根据角色的 code 或者名称进行模糊搜索，可选。</param>
+        /// <param name="nameSpace">所属权限分组(权限空间)的 code</param>
         ///<returns>RolePaginatedRespDto</returns>
         public async Task<RolePaginatedRespDto> ListRoles(ListRolesDto reqDto)
         {
@@ -1109,7 +1109,7 @@ namespace Authing.CSharp.SDK.Services
 
         }
         ///<summary>
-        /// 删除角色
+        /// 单个权限分组（权限空间）内删除角色
         ///</summary>
         /// <param name="requestBody"></param>
         ///<returns>IsSuccessRespDto</returns>
@@ -1142,6 +1142,30 @@ namespace Authing.CSharp.SDK.Services
             string httpResponse = await Request("POST", "/api/v3/update-role", requestBody).ConfigureAwait(false);
 
             IsSuccessRespDto result = m_JsonService.DeserializeObject<IsSuccessRespDto>(httpResponse);
+            return result;
+        }
+        ///<summary>
+        /// 跨权限分组（空间）删除角色
+        ///</summary>
+        /// <param name="requestBody"></param>
+        ///<returns>IsSuccessRespDto</returns>
+        public async Task<IsSuccessRespDto> DeleteRoles(DeleteRoleBatchDto requestBody)
+        {
+            string httpResponse = await Request("POST", "/api/v3/multiple-namespace-delete-roles-batch", requestBody).ConfigureAwait(false);
+
+            IsSuccessRespDto result = m_JsonService.DeserializeObject<IsSuccessRespDto>(httpResponse);
+            return result;
+        }
+        ///<summary>
+        /// 校验角色 Code 或者名称是否可用
+        ///</summary>
+        /// <param name="requestBody"></param>
+        ///<returns>RoleCheckParamsRespDto</returns>
+        public async Task<RoleCheckParamsRespDto> CheckParamsNamespace(CheckRoleParamsDto requestBody)
+        {
+            string httpResponse = await Request("POST", "/api/v3/check-role-params", requestBody).ConfigureAwait(false);
+
+            RoleCheckParamsRespDto result = m_JsonService.DeserializeObject<RoleCheckParamsRespDto>(httpResponse);
             return result;
         }
         ///<summary>
@@ -1422,7 +1446,7 @@ namespace Authing.CSharp.SDK.Services
         /// 获取资源详情
         ///</summary>
         /// <param name="code">资源唯一标志符</param>
-        /// <param name="nameSpace">所属权限分组的 code</param>
+        /// <param name="nameSpace">所属权限分组(权限空间)的 Code</param>
         ///<returns>ResourceRespDto</returns>
         public async Task<ResourceRespDto> GetResource(GetResourceDto reqDto)
         {
@@ -1436,7 +1460,7 @@ namespace Authing.CSharp.SDK.Services
         /// 批量获取资源详情
         ///</summary>
         /// <param name="codeList">资源 code 列表，批量可以使用逗号分隔</param>
-        /// <param name="nameSpace">所属权限分组的 code</param>
+        /// <param name="nameSpace">所属权限分组(权限空间)的 Code</param>
         ///<returns>ResourceListRespDto</returns>
         public async Task<ResourceListRespDto> GetResourcesBatch(GetResourcesBatchDto reqDto)
         {
@@ -1447,9 +1471,21 @@ namespace Authing.CSharp.SDK.Services
 
         }
         ///<summary>
+        /// 分页获取常规资源列表
+        ///</summary>
+        /// <param name="requestBody"></param>
+        ///<returns>CommonResourcePaginatedRespDto</returns>
+        public async Task<CommonResourcePaginatedRespDto> ListCommonResource(CommonListResourceDto requestBody)
+        {
+            string httpResponse = await Request("POST", "/api/v3/list-common-resource", requestBody).ConfigureAwait(false);
+
+            CommonResourcePaginatedRespDto result = m_JsonService.DeserializeObject<CommonResourcePaginatedRespDto>(httpResponse);
+            return result;
+        }
+        ///<summary>
         /// 分页获取资源列表
         ///</summary>
-        /// <param name="nameSpace">所属权限分组的 code</param>
+        /// <param name="nameSpace">所属权限分组(权限空间)的 Code</param>
         /// <param name="type">资源类型</param>
         /// <param name="page">当前页数，从 1 开始</param>
         /// <param name="limit">每页数目，最大不能超过 50，默认为 10</param>
@@ -1499,6 +1535,11 @@ namespace Authing.CSharp.SDK.Services
             return result;
         }
         ///<summary>
+        /// 批量删除资源
+        ///</summary>
+        /// <param name="requestBody"></param>
+        ///<returns>IsSuccessRespDto</returns>
+        ///<summary>
         /// 关联/取消关联应用资源到租户
         ///</summary>
         /// <param name="requestBody"></param>
@@ -1511,7 +1552,7 @@ namespace Authing.CSharp.SDK.Services
             return result;
         }
         ///<summary>
-        /// 创建权限分组
+        /// 创建权限分组（权限空间）
         ///</summary>
         /// <param name="requestBody"></param>
         ///<returns>NamespaceRespDto</returns>
@@ -1523,7 +1564,7 @@ namespace Authing.CSharp.SDK.Services
             return result;
         }
         ///<summary>
-        /// 批量创建权限分组
+        /// 批量创建权限分组（权限空间）
         ///</summary>
         /// <param name="requestBody"></param>
         ///<returns>IsSuccessRespDto</returns>
@@ -1535,7 +1576,7 @@ namespace Authing.CSharp.SDK.Services
             return result;
         }
         ///<summary>
-        /// 获取权限分组详情
+        /// 获取权限分组（权限空间）详情
         ///</summary>
         /// <param name="code">权限分组唯一标志符</param>
         ///<returns>NamespaceRespDto</returns>
@@ -1548,7 +1589,7 @@ namespace Authing.CSharp.SDK.Services
 
         }
         ///<summary>
-        /// 批量获取权限分组详情
+        /// 批量获取权限分组（权限空间）详情
         ///</summary>
         /// <param name="codeList">资源 code 列表，批量可以使用逗号分隔</param>
         ///<returns>NamespaceListRespDto</returns>
@@ -1561,7 +1602,7 @@ namespace Authing.CSharp.SDK.Services
 
         }
         ///<summary>
-        /// 修改权限分组信息
+        /// 修改权限分组（权限空间）信息
         ///</summary>
         /// <param name="requestBody"></param>
         ///<returns>UpdateNamespaceRespDto</returns>
@@ -1573,7 +1614,7 @@ namespace Authing.CSharp.SDK.Services
             return result;
         }
         ///<summary>
-        /// 删除权限分组信息
+        /// 删除权限分组（权限空间）信息
         ///</summary>
         /// <param name="requestBody"></param>
         ///<returns>IsSuccessRespDto</returns>
@@ -1585,7 +1626,7 @@ namespace Authing.CSharp.SDK.Services
             return result;
         }
         ///<summary>
-        /// 批量删除权限分组
+        /// 批量删除权限分组（权限空间）
         ///</summary>
         /// <param name="requestBody"></param>
         ///<returns>IsSuccessRespDto</returns>
@@ -1595,6 +1636,49 @@ namespace Authing.CSharp.SDK.Services
 
             IsSuccessRespDto result = m_JsonService.DeserializeObject<IsSuccessRespDto>(httpResponse);
             return result;
+        }
+        ///<summary>
+        /// 校验权限空间 Code 或者名称是否不重复
+        ///</summary>
+        /// <param name="requestBody"></param>
+        ///<returns>NamespaceCheckParamsRespDto</returns>
+        public async Task<NamespaceCheckParamsRespDto> CheckParamsNamespace1(CheckNamespaceParamsDto requestBody)
+        {
+            string httpResponse = await Request("POST", "/api/v3/check-namespace-params", requestBody).ConfigureAwait(false);
+
+            NamespaceCheckParamsRespDto result = m_JsonService.DeserializeObject<NamespaceCheckParamsRespDto>(httpResponse);
+            return result;
+        }
+        ///<summary>
+        /// 分页获取权限分组（权限空间）列表
+        ///</summary>
+        /// <param name="page">当前页数，从 1 开始</param>
+        /// <param name="limit">每页数目，最大不能超过 50，默认为 10</param>
+        /// <param name="keywords">搜索权限分组（权限空间） Code</param>
+        ///<returns>NamespaceListPaginatedRespDto</returns>
+        public async Task<NamespaceListPaginatedRespDto> ListNamespaces(ListNamespacesDto reqDto)
+        {
+            string httpResponse = await Request("GET", "/api/v3/list-namespaces", reqDto).ConfigureAwait(false);
+
+            NamespaceListPaginatedRespDto result = m_JsonService.DeserializeObject<NamespaceListPaginatedRespDto>(httpResponse);
+            return result;
+
+        }
+        ///<summary>
+        /// 分页权限分组（权限空间）下所有的角色列表
+        ///</summary>
+        /// <param name="code">权限分组唯一标志符</param>
+        /// <param name="page">当前页数，从 1 开始</param>
+        /// <param name="limit">每页数目，最大不能超过 50，默认为 10</param>
+        /// <param name="keywords">角色 Code 或者名称</param>
+        ///<returns>NamespaceRolesListPaginatedRespDto</returns>
+        public async Task<NamespaceRolesListPaginatedRespDto> ListNamespaceRoles(ListNamespaceRolesDto reqDto)
+        {
+            string httpResponse = await Request("GET", "/api/v3/list-namespace-roles", reqDto).ConfigureAwait(false);
+
+            NamespaceRolesListPaginatedRespDto result = m_JsonService.DeserializeObject<NamespaceRolesListPaginatedRespDto>(httpResponse);
+            return result;
+
         }
         ///<summary>
         /// 授权资源
@@ -1623,7 +1707,7 @@ namespace Authing.CSharp.SDK.Services
         /// - 如果是分组，为分组的 code，如 `developer`
         /// - 如果是部门，为部门的 ID，如 `6343bafc019xxxx889206c4c`
         /// </param>
-        /// <param name="nameSpace">所属权限分组的 code</param>
+        /// <param name="nameSpace">所属权限分组(权限空间)的 Code</param>
         /// <param name="resourceType">限定资源类型，如数据、API、按钮、菜单</param>
         /// <param name="resourceList">限定查询的资源列表，如果指定，只会返回所指定的资源列表。</param>
         /// <param name="withDenied">是否获取被拒绝的资源</param>

@@ -146,6 +146,18 @@ namespace Authing.CSharp.SDK.Framework.Test
         }
 
         /// <summary>
+        /// 分页获取常规资源列表
+        /// </summary>
+        /// <returns></returns>
+        [Test]
+        public async Task GetCommonResourceTest()
+        {
+            var res = await managementClient.ListCommonResource(new CommonListResourceDto { NamespaceCodeList="default,system",Page=1,Limit=10});
+
+            Assert.IsTrue(res.StatusCode == 200);
+        }
+
+        /// <summary>
         /// 2022-10-19 测试通过
         /// 分页获取资源
         /// </summary>
