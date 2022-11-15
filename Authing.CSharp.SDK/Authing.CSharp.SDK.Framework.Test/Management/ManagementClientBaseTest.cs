@@ -19,14 +19,15 @@ namespace Authing.CSharp.SDK.Framework.Test
 
         protected string UserOneId = "629487c14604f5ca85cbff80";
 
-        [SetUp]
-        public void Setup()
+        public ManagementClientBaseTest()
         {
             ManagementClientOptions options = new ManagementClientOptions()
             {
                 AccessKeyId = "AUTHING_USERPOOL_ID",
                 AccessKeySecret = "AUTHING_SECRET"
             };
+
+
 
             managementClient = new ManagementClient(options);
 

@@ -13,14 +13,43 @@ using System.Threading.Tasks;
 
 namespace Authing.CSharp.SDK.Framework.Test
 {
-    class OrganizationsManagementTest : ManagementClientBaseTest
+    [TestFixture]
+    class Organizations_Orgs_Test : ManagementClientBaseTest
     {
+        private OrganizationDto organizationDto;
+
+        [OneTimeSetUp]
+        public async Task CreateOrg()
+        {
+            CreateOrganizationReqDto reqDto = new CreateOrganizationReqDto()
+            {
+                OrganizationCode = "steamory",
+                OrganizationName = "蒸汽记忆",
+                Description = "组织描述信息",
+            };
+
+            OrganizationSingleRespDto dto = await managementClient.CreateOrganization(reqDto);
+
+            organizationDto = dto.Data;
+        }
+
+        [OneTimeTearDown]
+        public async Task DeleteOrg()
+        {
+            DeleteOrganizationReqDto reqDto = new DeleteOrganizationReqDto()
+            {
+                OrganizationCode = organizationDto.OrganizationCode
+            };
+
+            IsSuccessRespDto result = await managementClient.DeleteOrganization(reqDto);
+        }
+
         /// <summary>
         /// 2022-10-18 测试通过
         /// </summary>
         /// <returns></returns>
         [Test]
-        public async Task ListOrganizationsTest()
+        public async Task ListOrganizations_Return_GreaterThan_0()
         {
             using (CancellationTokenSource cts = new CancellationTokenSource())
             {
@@ -39,7 +68,7 @@ namespace Authing.CSharp.SDK.Framework.Test
         {
             OrganizationSingleRespDto dto = await managementClient.GetOrganization(new GetOrganizationDto
             {
-                OrganizationCode = "steamory"
+                OrganizationCode = organizationDto.OrganizationCode
             });
 
             Assert.NotNull(dto.Data);
@@ -54,7 +83,7 @@ namespace Authing.CSharp.SDK.Framework.Test
         {
             OrganizationListRespDto dto = await managementClient.GetOrganizationsBatch(new GetOrganizationBatchDto
             {
-                OrganizationCodeList = "steamory,ZtR0xCufNyOswzVSgPM3V6z02KRrxW",
+                OrganizationCodeList = organizationDto.OrganizationCode,
             });
 
             Assert.NotNull(dto.Data);
@@ -65,46 +94,21 @@ namespace Authing.CSharp.SDK.Framework.Test
         /// </summary>
         /// <returns></returns>
         [Test]
-        public async Task CreateOrganizationTest()
-        {
-            using (CancellationTokenSource cts = new CancellationTokenSource())
-            {
-
-                CreateOrganizationReqDto reqDto = new CreateOrganizationReqDto()
-                {
-                    OrganizationCode = "steamory",
-                    OrganizationName = "蒸汽记忆",
-                    Description = "组织描述信息",
-                    OpenDepartmentId = "60b49eb83fd80adb96f26e68"
-                };
-
-                OrganizationSingleRespDto dto = await managementClient.CreateOrganization(reqDto);
-
-                Assert.IsTrue(dto.Data.OrganizationName == "蒸汽记忆");
-            }
-        }
-
-        /// <summary>
-        /// 2022-10-18 测试通过
-        /// </summary>
-        /// <returns></returns>
-        [Test]
         public async Task UpdateOrganizationTest()
         {
-            using (CancellationTokenSource cts = new CancellationTokenSource())
+            UpdateOrganizationReqDto reqDto = new UpdateOrganizationReqDto()
             {
+                OrganizationCode = organizationDto.OrganizationCode,
+                OrganizationName = "蒸汽记忆",
+                OrganizationNewCode = "newSteamory"
+            };
 
-                UpdateOrganizationReqDto reqDto = new UpdateOrganizationReqDto()
-                {
-                    OrganizationCode = "steamory",
-                    OrganizationName = "蒸汽记忆",
-                    OrganizationNewCode = "newSteamory"
-                };
+            OrganizationSingleRespDto dto = await managementClient.UpdateOrganization(reqDto);
 
-                OrganizationSingleRespDto dto = await managementClient.UpdateOrganization(reqDto);
+            organizationDto = dto.Data;
 
-                Assert.IsTrue(dto.Data.OrganizationCode == "newSteamory");
-            }
+            Assert.IsTrue(dto.Data.OrganizationCode == "newSteamory");
+
         }
 
         /// <summary>
@@ -112,37 +116,14 @@ namespace Authing.CSharp.SDK.Framework.Test
         /// </summary>
         /// <returns></returns>
         [Test]
-        public async Task DeleteOrganizationTest()
+        [TestCase("蒸汽记忆")]
+        public async Task SearchOrganizationsTest(string keyword)
         {
             using (CancellationTokenSource cts = new CancellationTokenSource())
             {
-                OrganizationPaginatedRespDto dto = await managementClient.ListOrganizations(new ListOrganizationsDto { });
-
-                foreach (var item in dto.Data.List)
-                {
-                    DeleteOrganizationReqDto reqDto = new DeleteOrganizationReqDto()
-                    {
-                        OrganizationCode = item.OrganizationCode
-                    };
-
-                    IsSuccessRespDto result = managementClient.DeleteOrganization(reqDto).Result;
-
-                }
-            }
-        }
-
-        /// <summary>
-        /// 2022-10-18 测试通过
-        /// </summary>
-        /// <returns></returns>
-        [Test]
-        public async Task GetDepartmentTest()
-        {
-            using (CancellationTokenSource cts = new CancellationTokenSource())
-            {
-                DepartmentSingleRespDto dto = await managementClient.GetDepartment(new GetDepartmentDto { DepartmentCode = "9527", OrganizationCode = "steamory" });
-
-                Assert.IsTrue(dto.Data != null);
+                //蒸汽记忆
+                OrganizationPaginatedRespDto respDto = await managementClient.SearchOrganizations(new SearchOrganizationsDto { Keywords = keyword });
+                Assert.IsTrue(respDto.Data.TotalCount > 0);
             }
         }
 
@@ -158,12 +139,12 @@ namespace Authing.CSharp.SDK.Framework.Test
 
                 CreateDepartmentReqDto reqDto = new CreateDepartmentReqDto()
                 {
-                    ParentDepartmentId = "634e6a074033a8c4fe39f873",
-                    OrganizationCode = "steamory",
+                    ParentDepartmentId = organizationDto.DepartmentId,
+                    OrganizationCode = organizationDto.OrganizationCode,
                     Code = "9999",
                     Name = "开发部",
                     Description = "技术研发部门",
-                    OpenDepartmentId = "61b1caf3559b06c557799b37",
+                    OpenDepartmentId = Guid.NewGuid().ToString("N"),
                     DepartmentIdType = CreateDepartmentReqDto.departmentIdType.DEPARTMENT_ID
 
                 };
@@ -171,7 +152,74 @@ namespace Authing.CSharp.SDK.Framework.Test
                 DepartmentSingleRespDto dto = await managementClient.CreateDepartment(reqDto);
 
                 Assert.IsTrue(dto.Data.Name == "开发部");
+
             }
+        }
+
+
+
+    }
+
+    [TestFixture]
+    class Organizations_Department_Test : ManagementClientBaseTest
+    {
+        private OrganizationDto organizationDto;
+        private DepartmentDto departmentDto;
+
+        [OneTimeSetUp]
+        public async Task CreateDepartment()
+        {
+            //先建立组织结构
+
+            CreateOrganizationReqDto reqDto = new CreateOrganizationReqDto()
+            {
+                OrganizationCode = "steamory",
+                OrganizationName = "蒸汽记忆",
+                Description = "组织描述信息",
+            };
+
+            OrganizationSingleRespDto dto = await managementClient.CreateOrganization(reqDto);
+
+            organizationDto = dto.Data;
+
+            CreateDepartmentReqDto createDepartmentReqDto = new CreateDepartmentReqDto()
+            {
+                ParentDepartmentId = organizationDto.DepartmentId,
+                OrganizationCode = organizationDto.OrganizationCode,
+                Code = "9999",
+                Name = "开发部",
+                Description = "技术研发部门",
+                OpenDepartmentId = Guid.NewGuid().ToString("N"),
+                DepartmentIdType = CreateDepartmentReqDto.departmentIdType.DEPARTMENT_ID
+
+            };
+
+            DepartmentSingleRespDto departmentSingleRespDto = await managementClient.CreateDepartment(createDepartmentReqDto);
+
+            departmentDto = departmentSingleRespDto.Data;
+        }
+
+        [OneTimeTearDown]
+        public async Task DeleteDepartment()
+        {
+            //先删除部门，再删除组织机构
+            DeleteDepartmentReqDto reqDto = new DeleteDepartmentReqDto()
+            {
+
+                OrganizationCode = organizationDto.OrganizationCode,
+                DepartmentId = organizationDto.DepartmentId,
+                DepartmentIdType = DeleteDepartmentReqDto.departmentIdType.DEPARTMENT_ID
+            };
+
+            IsSuccessRespDto isSuccess = await managementClient.DeleteDepartment(reqDto);
+
+
+            DeleteOrganizationReqDto deleteOrganizationReqDto = new DeleteOrganizationReqDto()
+            {
+                OrganizationCode = organizationDto.OrganizationCode
+            };
+
+            IsSuccessRespDto result = await managementClient.DeleteOrganization(deleteOrganizationReqDto);
         }
 
         /// <summary>
@@ -179,6 +227,24 @@ namespace Authing.CSharp.SDK.Framework.Test
         /// </summary>
         /// <returns></returns>
         [Test]
+        [Order(1)]
+        public async Task GetDepartment_Return_Department_Test()
+        {
+            using (CancellationTokenSource cts = new CancellationTokenSource())
+            {
+                DepartmentSingleRespDto dto = await managementClient.GetDepartment(new GetDepartmentDto { DepartmentCode = departmentDto.Code, OrganizationCode = organizationDto.OrganizationCode });
+
+                Assert.IsTrue(dto.Data != null);
+            }
+        }
+
+
+        /// <summary>
+        /// 2022-10-18 测试通过
+        /// </summary>
+        /// <returns></returns>
+        [Test]
+        [Order(3)]
         public async Task UpdateDepartmentTest()
         {
             using (CancellationTokenSource cts = new CancellationTokenSource())
@@ -186,19 +252,18 @@ namespace Authing.CSharp.SDK.Framework.Test
 
                 UpdateDepartmentReqDto reqDto = new UpdateDepartmentReqDto()
                 {
-                    ParentDepartmentId = "634e6a074033a8c4fe39f873",
-                    DepartmentId = "634e6ab9f8e204e522c60dbe",
-                    OrganizationCode = "steamory",
-                    Code = "9999",
-                    Name = "开发部Update",
-                    Description = "技术研发部门Update",
-                    LeaderUserIds = new List<string> { "634e53bc7e8639080058c65a" },
+                    ParentDepartmentId = organizationDto.DepartmentId,
+                    DepartmentId = departmentDto.DepartmentId,
+                    OrganizationCode = organizationDto.OrganizationCode,
+                    Code = departmentDto.Code,
+                    Name = "开发部_Update",
+                    Description = "技术研发部门_Update",
                     DepartmentIdType = UpdateDepartmentReqDto.departmentIdType.DEPARTMENT_ID
                 };
 
                 DepartmentSingleRespDto dto = await managementClient.UpdateDepartment(reqDto);
 
-                Assert.IsTrue(dto.Data.Name == "开发部Update");
+                Assert.IsTrue(dto.Data.Name == "开发部_Update");
             }
         }
 
@@ -207,38 +272,16 @@ namespace Authing.CSharp.SDK.Framework.Test
         /// </summary>
         /// <returns></returns>
         [Test]
-        public async Task DeleteDepartmentTest()
-        {
-            using (CancellationTokenSource cts = new CancellationTokenSource())
-            {
-                DeleteDepartmentReqDto reqDto = new DeleteDepartmentReqDto()
-                {
-
-                    OrganizationCode = "steamory",
-                    DepartmentId = "634e6ab9f8e204e522c60dbe",
-                    DepartmentIdType = DeleteDepartmentReqDto.departmentIdType.DEPARTMENT_ID
-                };
-
-                IsSuccessRespDto isSuccess = await managementClient.DeleteDepartment(reqDto);
-
-                Assert.IsTrue(isSuccess.Data.Success);
-            }
-        }
-
-        /// <summary>
-        /// 2022-10-18 测试通过
-        /// </summary>
-        /// <returns></returns>
-        [Test]
-        public async Task SearchDepartmentsTest()
+        [Order(2)]
+        public async Task SearchDepartments_Return_GreaterThan_0_Test()
         {
             using (CancellationTokenSource cts = new CancellationTokenSource())
             {
                 SearchDepartmentsReqDto reqDto = new SearchDepartmentsReqDto()
                 {
 
-                    Keywords = "开发部",
-                    OrganizationCode = "steamory"
+                    Keywords = departmentDto.Name,
+                    OrganizationCode = organizationDto.OrganizationCode
                 };
 
                 DepartmentListRespDto respDto = await managementClient.SearchDepartments(reqDto);
@@ -251,6 +294,7 @@ namespace Authing.CSharp.SDK.Framework.Test
         /// </summary>
         /// <returns></returns>
         [Test]
+        [Order(4)]
         public async Task ListChildrenDepartmentsTest()
         {
             using (CancellationTokenSource cts = new CancellationTokenSource())
@@ -263,16 +307,22 @@ namespace Authing.CSharp.SDK.Framework.Test
 
         /// <summary>
         /// 2022-10-18 测试通过
+        /// 列出部门成员
         /// </summary>
         /// <returns></returns>
         [Test]
-        public async Task ListDepartmentMembersTest()
+        [Order(5)]
+        public async Task ListDepartmentMembers_Return_0()
         {
             using (CancellationTokenSource cts = new CancellationTokenSource())
             {
-                // "629872091ab96fdcc3904085", "999"
-                UserPaginatedRespDto respDto = await managementClient.ListDepartmentMembers(new ListDepartmentMembersDto { DepartmentId = "634e6a074033a8c4fe39f873", DepartmentIdType = "department_id", OrganizationCode = "steamory" });
-                Assert.IsTrue(respDto.Data.List.Count > 0);
+                UserPaginatedRespDto respDto = await managementClient.ListDepartmentMembers(new ListDepartmentMembersDto
+                {
+                    DepartmentId = departmentDto.DepartmentId,
+                    DepartmentIdType = "department_id",
+                    OrganizationCode = organizationDto.OrganizationCode
+                });
+                Assert.IsTrue(respDto.Data.List.Count == 0);
             }
         }
 
@@ -281,30 +331,252 @@ namespace Authing.CSharp.SDK.Framework.Test
         /// </summary>
         /// <returns></returns>
         [Test]
+        [Order(6)]
         public async Task ListDepartmentsMemebersIdsTest()
         {
             using (CancellationTokenSource cts = new CancellationTokenSource())
             {
-                //"629872091ab96fdcc3904085", "999"
-                var respDto = await managementClient.ListDepartmentMemberIds(new ListDepartmentMemberIdsDto { DepartmentId = "634e6a074033a8c4fe39f873", OrganizationCode = "steamory" });
+                var respDto = await managementClient.ListDepartmentMemberIds(new ListDepartmentMemberIdsDto
+                {
+                    DepartmentId = departmentDto.DepartmentId,
+                    OrganizationCode = organizationDto.OrganizationCode
+                });
                 Assert.IsTrue(respDto != null);
             }
         }
 
         /// <summary>
         /// 2022-10-18 测试通过
+        /// 获取父部门
         /// </summary>
         /// <returns></returns>
         [Test]
+        public async Task GetParentDepartmentTest()
+        {
+            using (CancellationTokenSource cts = new CancellationTokenSource())
+            {
+                //新建一个部门
+                CreateDepartmentReqDto reqDto = new CreateDepartmentReqDto()
+                {
+                    ParentDepartmentId = departmentDto.DepartmentId,
+                    OrganizationCode = organizationDto.OrganizationCode,
+                    Code = "0001",
+                    Name = "开发部_New",
+                    Description = "技术研发部门",
+                    OpenDepartmentId = Guid.NewGuid().ToString("N"),
+                    DepartmentIdType = CreateDepartmentReqDto.departmentIdType.DEPARTMENT_ID
+
+                };
+
+                DepartmentSingleRespDto dto = await managementClient.CreateDepartment(reqDto);
+
+                Assert.IsTrue(dto.StatusCode == 200);
+
+                DepartmentSingleRespDto respDto = await managementClient.GetParentDepartment(new GetParentDepartmentDto { DepartmentId = departmentDto.DepartmentId, OrganizationCode = organizationDto.OrganizationCode });
+                Assert.IsTrue(respDto.Data.DepartmentId != null);
+            }
+        }
+    }
+
+    class Organizations_Department_Delete_Test : ManagementClientBaseTest
+    {
+
+
+        /// <summary>
+        /// 2022-10-18 测试通过
+        /// </summary>
+        /// <returns></returns>
+        [Test]
+        public async Task DeleteDepartmentTest()
+        {
+            OrganizationDto organizationDto;
+            DepartmentDto departmentDto;
+
+            CreateOrganizationReqDto reqDto = new CreateOrganizationReqDto()
+            {
+                OrganizationCode = "steamory",
+                OrganizationName = "蒸汽记忆",
+                Description = "组织描述信息",
+            };
+
+            OrganizationSingleRespDto dto = await managementClient.CreateOrganization(reqDto);
+
+            organizationDto = dto.Data;
+
+            CreateDepartmentReqDto createDepartmentReqDto = new CreateDepartmentReqDto()
+            {
+                ParentDepartmentId = organizationDto.DepartmentId,
+                OrganizationCode = organizationDto.OrganizationCode,
+                Code = "9999",
+                Name = "开发部",
+                Description = "技术研发部门",
+                OpenDepartmentId = Guid.NewGuid().ToString("N"),
+                DepartmentIdType = CreateDepartmentReqDto.departmentIdType.DEPARTMENT_ID
+
+            };
+
+            DepartmentSingleRespDto departmentSingleRespDto = await managementClient.CreateDepartment(createDepartmentReqDto);
+
+            departmentDto = departmentSingleRespDto.Data;
+
+
+            DeleteDepartmentReqDto deleteDepartmentReqDto = new DeleteDepartmentReqDto()
+            {
+                OrganizationCode = organizationDto.OrganizationCode,
+                DepartmentId = departmentDto.DepartmentId,
+                DepartmentIdType = DeleteDepartmentReqDto.departmentIdType.DEPARTMENT_ID
+            };
+
+            IsSuccessRespDto isSuccess = await managementClient.DeleteDepartment(deleteDepartmentReqDto);
+
+            Assert.IsTrue(isSuccess.Data.Success);
+
+            //后续删除组织机构
+
+            DeleteOrganizationReqDto deleteOrganizationReqDto = new DeleteOrganizationReqDto
+            {
+                OrganizationCode = organizationDto.OrganizationCode
+            };
+
+            IsSuccessRespDto isSuccessRespDto = await managementClient.DeleteOrganization(deleteOrganizationReqDto);
+
+            Assert.IsTrue(isSuccess.Data.Success);
+
+        }
+    }
+
+    class Organization_Member_Test : ManagementClientBaseTest
+    {
+        private OrganizationDto organizationDto;
+        private DepartmentDto departmentDto;
+
+        private UserDto newAddUserOne;
+
+        private UserDto newAddUserTwo;
+
+        /// <summary>
+        /// 新建用户
+        /// </summary>
+        /// <returns></returns>
+        public async Task CreateUser()
+        {
+            CreateUserReqDto dto = new CreateUserReqDto()
+            {
+                Username = "testUser" + new Random().Next(200, 1000),
+                Status = CreateUserReqDto.status.ACTIVATED,
+                Password = "password",
+                Options = new CreateUserOptionsDto { DepartmentIdType = CreateUserOptionsDto.departmentIdType.DEPARTMENT_ID }
+            };
+
+            UserSingleRespDto userSingleRespDto = await managementClient.CreateUser(dto);
+
+            newAddUserOne = userSingleRespDto.Data;
+
+            dto = new CreateUserReqDto()
+            {
+                Username = "testUser" + new Random().Next(200, 1000),
+                Status = CreateUserReqDto.status.ACTIVATED,
+                Password = "password",
+                Options = new CreateUserOptionsDto { DepartmentIdType = CreateUserOptionsDto.departmentIdType.DEPARTMENT_ID }
+            };
+
+            userSingleRespDto = await managementClient.CreateUser(dto);
+
+            newAddUserTwo = userSingleRespDto.Data;
+
+        }
+
+        /// <summary>
+        /// 删除用户
+        /// </summary>
+        /// <returns></returns>
+        public async Task DeleteUser()
+        {
+            var result = await managementClient.DeleteUsersBatch(new DeleteUsersBatchDto
+            {
+                UserIds = new List<string> { newAddUserOne.UserId, newAddUserTwo.UserId }
+            });
+        }
+
+        [OneTimeSetUp]
+        public async Task CreateDepartment()
+        {
+            //先建立组织结构
+
+            await managementClient.DeleteOrganization(new DeleteOrganizationReqDto {OrganizationCode="steamory" });
+
+            CreateOrganizationReqDto reqDto = new CreateOrganizationReqDto()
+            {
+                OrganizationCode = "steamory",
+                OrganizationName = "蒸汽记忆",
+                Description = "组织描述信息",
+            };
+
+            OrganizationSingleRespDto dto = await managementClient.CreateOrganization(reqDto);
+
+            organizationDto = dto.Data;
+
+            CreateDepartmentReqDto createDepartmentReqDto = new CreateDepartmentReqDto()
+            {
+                ParentDepartmentId = organizationDto.DepartmentId,
+                OrganizationCode = organizationDto.OrganizationCode,
+                Code = "9999",
+                Name = "开发部",
+                Description = "技术研发部门",
+                OpenDepartmentId = Guid.NewGuid().ToString("N"),
+                DepartmentIdType = CreateDepartmentReqDto.departmentIdType.DEPARTMENT_ID
+
+            };
+
+            DepartmentSingleRespDto departmentSingleRespDto = await managementClient.CreateDepartment(createDepartmentReqDto);
+
+            //添加用户用于测试
+
+            departmentDto = departmentSingleRespDto.Data;
+
+            await CreateUser();
+        }
+
+        [OneTimeTearDown]
+        public async Task DeleteDepartment()
+        {
+            //先删除部门，再删除组织机构
+            DeleteDepartmentReqDto reqDto = new DeleteDepartmentReqDto()
+            {
+
+                OrganizationCode = organizationDto.OrganizationCode,
+                DepartmentId = organizationDto.DepartmentId,
+                DepartmentIdType = DeleteDepartmentReqDto.departmentIdType.DEPARTMENT_ID
+            };
+
+            IsSuccessRespDto isSuccess = await managementClient.DeleteDepartment(reqDto);
+
+
+            DeleteOrganizationReqDto deleteOrganizationReqDto = new DeleteOrganizationReqDto()
+            {
+                OrganizationCode = organizationDto.OrganizationCode
+            };
+
+            IsSuccessRespDto result = await managementClient.DeleteOrganization(deleteOrganizationReqDto);
+
+            await DeleteUser();
+        }
+
+        /// <summary>
+        /// 2022-10-18 测试通过
+        /// </summary>
+        /// <returns></returns>
+        [Test]
+        [Order(1)]
         public async Task AddDepartmentsMemebersTest()
         {
             using (CancellationTokenSource cts = new CancellationTokenSource())
             {
                 AddDepartmentMembersReqDto addDepartmentMembersReqDto = new AddDepartmentMembersReqDto()
                 {
-                    DepartmentId = "634e6ebe505d3a1d59cff9d6",
-                    OrganizationCode = "steamory",
-                    UserIds = new List<string> { "634e53a5aceca83ce91a4af1", "634cf7171d4ac32dbd620893" }
+                    DepartmentId = departmentDto.DepartmentId,
+                    OrganizationCode = organizationDto.OrganizationCode,
+                    UserIds = new List<string> { newAddUserOne.UserId, newAddUserTwo.UserId }
                 };
 
                 IsSuccessRespDto respDto = await managementClient.AddDepartmentMembers(addDepartmentMembersReqDto);
@@ -317,48 +589,17 @@ namespace Authing.CSharp.SDK.Framework.Test
         /// </summary>
         /// <returns></returns>
         [Test]
-        public async Task RemoveDepartmentsMemebersTest()
-        {
-            using (CancellationTokenSource cts = new CancellationTokenSource())
-            {
-                RemoveDepartmentMembersReqDto remove = new RemoveDepartmentMembersReqDto()
-                {
-                    DepartmentId = "634e6ebe505d3a1d59cff9d6",
-                    OrganizationCode = "steamory",
-                    UserIds = new List<string> { "634e53a5aceca83ce91a4af1", "634cf7171d4ac32dbd620893" }
-                };
-
-                IsSuccessRespDto respDto = await managementClient.RemoveDepartmentMembers(remove);
-                Assert.IsTrue(respDto.Data.Success);
-            }
-        }
-
-        /// <summary>
-        /// 2022-10-18 测试通过
-        /// </summary>
-        /// <returns></returns>
-        [Test]
-        public async Task GetParentDepartmentTest()
-        {
-            using (CancellationTokenSource cts = new CancellationTokenSource())
-            {
-                //"629872091ab96fdcc3904085", "999"
-                DepartmentSingleRespDto respDto = await managementClient.GetParentDepartment(new GetParentDepartmentDto { DepartmentId = "634e6ebe505d3a1d59cff9d6", OrganizationCode = "steamory" });
-                Assert.IsTrue(respDto.Data.DepartmentId != null);
-            }
-        }
-
-        /// <summary>
-        /// 2022-10-18 测试通过
-        /// </summary>
-        /// <returns></returns>
-        [Test]
+        [Order(2)]
         public async Task IsUserInDepartmentTest()
         {
             using (CancellationTokenSource cts = new CancellationTokenSource())
             {
-                //"630f01362bf642ea26e430fc", "steamory", "62df936ca8070667353d3942"
-                IsUserInDepartmentRespDto respDto = await managementClient.IsUserInDepartment(new IsUserInDepartmentDto { UserId = "634e53a5aceca83ce91a4af1", DepartmentId = "634e6ebe505d3a1d59cff9d6", OrganizationCode = "steamory" });
+                IsUserInDepartmentRespDto respDto = await managementClient.IsUserInDepartment(new IsUserInDepartmentDto
+                {
+                    UserId = newAddUserOne.UserId,
+                    DepartmentId = departmentDto.DepartmentId,
+                    OrganizationCode = organizationDto.OrganizationCode
+                });
                 Assert.IsTrue(respDto.Data.InDepartment);
             }
         }
@@ -368,11 +609,19 @@ namespace Authing.CSharp.SDK.Framework.Test
         /// </summary>
         /// <returns></returns>
         [Test]
-        public async Task SearchDepartmentMemebersTest()
+        [TestCase("testUser")]
+        [Order(3)]
+        public async Task SearchDepartmentMemebersTest(string keyword)
         {
             using (CancellationTokenSource cts = new CancellationTokenSource())
             {
-                UserPaginatedRespDto respDto = await managementClient.SearchDepartmentMembers(new SearchDepartmentMembersDto { DepartmentId = "62f49ebfe31a861ac9cca20e", DepartmentIdType = "department_id", Keywords = "qidong", OrganizationCode = "steamory" });
+                UserPaginatedRespDto respDto = await managementClient.SearchDepartmentMembers(new SearchDepartmentMembersDto
+                {
+                    DepartmentId = departmentDto.DepartmentId,
+                    DepartmentIdType = "department_id",
+                    Keywords = keyword,
+                    OrganizationCode = organizationDto.OrganizationCode
+                });
                 Assert.IsTrue(respDto.Data.TotalCount > 0);
             }
         }
@@ -382,15 +631,41 @@ namespace Authing.CSharp.SDK.Framework.Test
         /// </summary>
         /// <returns></returns>
         [Test]
-        public async Task SearchOrganizationsTest()
+        [Order(4)]
+        public async Task RemoveDepartmentsMemebersTest()
         {
-            using (CancellationTokenSource cts = new CancellationTokenSource())
+
+            //先让员工离职
+            var res=  await managementClient.ResignUserBatch(new ResignUserBatchReqDto 
             {
-                //蒸汽记忆
-                OrganizationPaginatedRespDto respDto = await managementClient.SearchOrganizations(new SearchOrganizationsDto { Keywords = "蒸汽记忆" });
-                Assert.IsTrue(respDto.Data.TotalCount > 0);
-            }
+                UserIds=new List<string> { newAddUserOne.UserId,newAddUserTwo.UserId}
+            });
+
+            RemoveDepartmentMembersReqDto remove = new RemoveDepartmentMembersReqDto()
+            {
+                DepartmentId = departmentDto.DepartmentId,
+                OrganizationCode = organizationDto.OrganizationCode,
+                UserIds = new List<string> { newAddUserOne.UserId, newAddUserTwo.UserId }
+            };
+
+            IsSuccessRespDto respDto = await managementClient.RemoveDepartmentMembers(remove);
+            Assert.IsTrue(respDto.Data.Success);
+
         }
+
+
+
+
+
+    }
+
+    class OrganizationsManagementTest : ManagementClientBaseTest
+    {
+
+
+
+
+
 
 
 

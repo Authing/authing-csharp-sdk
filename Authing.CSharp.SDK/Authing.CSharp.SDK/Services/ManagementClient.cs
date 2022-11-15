@@ -172,7 +172,7 @@ namespace Authing.CSharp.SDK.Services
         /// - `email`: 用户邮箱
         /// - `username`: 用户名
         /// - `external_id`: 用户在外部系统的 ID，对应 Authing 用户信息的 `externalId` 字段
-        /// - `identity`: 用户的外部身份源信息，格式为 `<extIdpId>:<userIdInIdp>`，其中 `<extIdpId>` 为 Authing 身份源的 ID，`<userIdInIdp>` 为用户在外部身份源的 ID。
+        /// - `identity`: 用户的外部身份源信息，格式为 <extIdpId>:<userIdInIdp>`，其中 `<extIdpId>` 为 Authing 身份源的 ID，`<userIdInIdp>` 为用户在外部身份源的 ID。
         /// 示例值：`62f20932716fbcc10d966ee5:ou_8bae746eac07cd2564654140d2a9ac61`。
         /// </param>
         ///<returns>IdentityListRespDto</returns>

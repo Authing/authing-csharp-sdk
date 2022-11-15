@@ -12,52 +12,87 @@ using System.Threading.Tasks;
 
 namespace Authing.CSharp.SDK.Framework.Test
 {
+    [TestFixture]
     class UserManagementUnitTest : ManagementClientBaseTest
     {
+        private UserDto newAddUser;
+
         /// <summary>
-        /// 2022-10-18 测试通过
+        /// 新建用户
         /// </summary>
         /// <returns></returns>
-        [Test]
-        public async Task GetUserBatchTest()
+        [SetUp,Category("user")]
+        public async Task CreateUser()
         {
-            using (CancellationTokenSource cts = new CancellationTokenSource())
+            CreateUserReqDto dto = new CreateUserReqDto()
             {
-                string userIds = "634e4a4e0cc273a3f9c4543e,634e4a42a27868cd8bfc54cd";
+                Username = "testUser" + new Random().Next(200, 1000),
+                Status = CreateUserReqDto.status.ACTIVATED,
+                Password = "password",
+                Options = new CreateUserOptionsDto { DepartmentIdType = CreateUserOptionsDto.departmentIdType.DEPARTMENT_ID }
+            };
 
-                UserListRespDto userListRespDto = await managementClient.GetUserBatch(new GetUserBatchDto { UserIds = userIds });
+            UserSingleRespDto userSingleRespDto = await managementClient.CreateUser(dto);
 
-                Assert.IsTrue(userListRespDto.Data.Count > 0);
-            }
+            newAddUser = userSingleRespDto.Data;
+        }
+
+        /// <summary>
+        /// 删除用户
+        /// </summary>
+        /// <returns></returns>
+        [TearDown]
+        public async Task DeleteUser()
+        {
+            var result = await managementClient.DeleteUsersBatch(new DeleteUsersBatchDto
+            {
+                UserIds = new List<string> { newAddUser.UserId }
+            });
         }
 
         /// <summary>
         /// 2022-10-18 测试通过
+        /// 通过批量获取用户获取新增的用户
         /// </summary>
         /// <returns></returns>
         [Test]
-        public async Task ListUsersTest()
+        public async Task Get_NewAddUser_Single_With_Batch_Return()
         {
-            using (CancellationTokenSource cts = new CancellationTokenSource())
+            string userIds = newAddUser.UserId;
+
+            UserListRespDto userListRespDto = await managementClient.GetUserBatch(new GetUserBatchDto { UserIds = userIds });
+
+            Assert.IsTrue(userListRespDto.Data.Count > 0);
+
+        }
+
+        /// <summary>
+        /// 2022-10-18 测试通过
+        /// 获取/搜索用户列表
+        /// </summary>
+        /// <returns></returns>
+        [Test]
+        public async Task ListUsers_Return_GreaterThan_0()
+        {
+            UserPaginatedRespDto userPaginatedRespDto = await managementClient.ListUsers(new ListUsersRequestDto
             {
-                UserPaginatedRespDto userPaginatedRespDto = await managementClient.ListUsers(new ListUsersRequestDto
+                Options = new ListUsersOptionsDto
                 {
-                    Options = new ListUsersOptionsDto
+                    Pagination = new PaginationDto
                     {
-                        Pagination = new PaginationDto
-                        {
-                            Limit = 50,
-                            Page = 1
-                        }
+                        Limit = 50,
+                        Page = 1
                     }
-                });
+                }
+            });
 
-                Assert.IsTrue(userPaginatedRespDto.Data.TotalCount > 0);
-            }
+            Assert.IsTrue(userPaginatedRespDto.Data.TotalCount > 0);
+
         }
 
         /// <summary>
         /// 2022-10-18 测试通过
+        /// 获取用户的外部身份源
         /// </summary>
         /// <returns></returns>
         [Test]
@@ -75,6 +110,7 @@ namespace Authing.CSharp.SDK.Framework.Test
 
         /// <summary>
         /// 2022-10-18 测试通过
+        /// 获取用户的角色列表
         /// </summary>
         /// <returns></returns>
         [Test]
@@ -82,6 +118,7 @@ namespace Authing.CSharp.SDK.Framework.Test
         {
             using (CancellationTokenSource cts = new CancellationTokenSource())
             {
+                //
 
                 RolePaginatedRespDto rolePaginatedRespDto = await managementClient.GetUserRoles(new GetUserRolesDto
                 { UserId = "634e4a4e0cc273a3f9c4543e", Namespace = "634cf98aa5b1455a52949d33" });
@@ -364,9 +401,9 @@ namespace Authing.CSharp.SDK.Framework.Test
         [Test]
         public async Task UpdateUserBatchTest()
         {
-            UserListRespDto dto = await managementClient.UpdateUserBatch(new UpdateUserBatchReqDto 
+            UserListRespDto dto = await managementClient.UpdateUserBatch(new UpdateUserBatchReqDto
             {
-                List=new List<UpdateUserInfoDto> 
+                List = new List<UpdateUserInfoDto>
                 {
                     new UpdateUserInfoDto
                     {
@@ -595,9 +632,9 @@ namespace Authing.CSharp.SDK.Framework.Test
         [Test]
         public async Task ListUsersLegacyTest()
         {
-            var dto = await managementClient.ListUsersLegacy(new ListUsersDto 
+            var dto = await managementClient.ListUsersLegacy(new ListUsersDto
             {
-               
+
             });
 
             Assert.IsTrue(dto.Data.TotalCount > 0);
