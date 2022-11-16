@@ -170,6 +170,10 @@ namespace Authing.CSharp.SDK.Framework.Test
         public async Task CreateDepartment()
         {
             //先建立组织结构
+            await managementClient.DeleteOrganization(new DeleteOrganizationReqDto 
+            {
+                OrganizationCode="steamory"
+            });
 
             CreateOrganizationReqDto reqDto = new CreateOrganizationReqDto()
             {
@@ -179,6 +183,8 @@ namespace Authing.CSharp.SDK.Framework.Test
             };
 
             OrganizationSingleRespDto dto = await managementClient.CreateOrganization(reqDto);
+
+            
 
             organizationDto = dto.Data;
 
@@ -295,13 +301,17 @@ namespace Authing.CSharp.SDK.Framework.Test
         /// <returns></returns>
         [Test]
         [Order(4)]
-        public async Task ListChildrenDepartmentsTest()
+        public async Task ListChildrenDepartments_Return_0_()
         {
             using (CancellationTokenSource cts = new CancellationTokenSource())
             {
                 //"steamory", "62986a99952bfd28c4f6afbe"
-                DepartmentPaginatedRespDto respDto = await managementClient.ListChildrenDepartments(new ListChildrenDepartmentsDto { OrganizationCode = "steamory", DepartmentId = "634e6a074033a8c4fe39f873" });
-                Assert.IsTrue(respDto.Data.List.Count > 0);
+                DepartmentPaginatedRespDto respDto = await managementClient.ListChildrenDepartments(new ListChildrenDepartmentsDto
+                {
+                    OrganizationCode = organizationDto.OrganizationCode,
+                    DepartmentId = departmentDto.DepartmentId
+                });
+                Assert.IsTrue(respDto.Data.List.Count == 0);
             }
         }
 
@@ -463,6 +473,7 @@ namespace Authing.CSharp.SDK.Framework.Test
             CreateUserReqDto dto = new CreateUserReqDto()
             {
                 Username = "testUser" + new Random().Next(200, 1000),
+                Name="qidong",
                 Status = CreateUserReqDto.status.ACTIVATED,
                 Password = "password",
                 Options = new CreateUserOptionsDto { DepartmentIdType = CreateUserOptionsDto.departmentIdType.DEPARTMENT_ID }
@@ -503,7 +514,7 @@ namespace Authing.CSharp.SDK.Framework.Test
         {
             //先建立组织结构
 
-            await managementClient.DeleteOrganization(new DeleteOrganizationReqDto {OrganizationCode="steamory" });
+            await managementClient.DeleteOrganization(new DeleteOrganizationReqDto { OrganizationCode = "steamory" });
 
             CreateOrganizationReqDto reqDto = new CreateOrganizationReqDto()
             {
@@ -609,7 +620,7 @@ namespace Authing.CSharp.SDK.Framework.Test
         /// </summary>
         /// <returns></returns>
         [Test]
-        [TestCase("testUser")]
+        [TestCase("qidong")]
         [Order(3)]
         public async Task SearchDepartmentMemebersTest(string keyword)
         {
@@ -636,9 +647,9 @@ namespace Authing.CSharp.SDK.Framework.Test
         {
 
             //先让员工离职
-            var res=  await managementClient.ResignUserBatch(new ResignUserBatchReqDto 
+            var res = await managementClient.ResignUserBatch(new ResignUserBatchReqDto
             {
-                UserIds=new List<string> { newAddUserOne.UserId,newAddUserTwo.UserId}
+                UserIds = new List<string> { newAddUserOne.UserId, newAddUserTwo.UserId }
             });
 
             RemoveDepartmentMembersReqDto remove = new RemoveDepartmentMembersReqDto()

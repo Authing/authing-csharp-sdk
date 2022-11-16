@@ -12,41 +12,17 @@ using System.Threading.Tasks;
 
 namespace Authing.CSharp.SDK.Framework.Test
 {
-    class GroupManagementTest : ManagementClientBaseTest
+    class GroupManagement_Create_Group_Test : ManagementClientBaseTest
     {
-        /// <summary>
-        /// 2022-10-18 测试通过
-        /// </summary>
-        /// <returns></returns>
-        [Test]
-        public async Task GetGroupTest()
+        private GroupDto _groupDto;
+
+        [OneTimeTearDown]
+        public async Task DeleteGroup()
         {
-            using (CancellationTokenSource cts = new CancellationTokenSource())
+            await managementClient.DeleteGroupsBatch(new DeleteGroupsReqDto
             {
-
-                GroupSingleRespDto dto = await managementClient.GetGroup(new GetGroupDto { Code = "developerUpdate" });
-
-                Assert.IsTrue(dto.Data.Code == "developerUpdate");
-            }
-        }
-
-        /// <summary>
-        /// 2022-10-18 测试通过
-        /// </summary>
-        /// <returns></returns>
-        /// <summary>
-        /// 2022-10-18 测试通过
-        /// </summary>
-        /// <returns></returns>
-        [Test]
-        public async Task ListGroupsTest()
-        {
-            using (CancellationTokenSource cts = new CancellationTokenSource())
-            {
-                GroupPaginatedRespDto dto = await managementClient.ListGroups(new ListGroupsDto { Page = 1, Limit = 10 });
-
-                Assert.IsTrue(dto.Data.TotalCount > 0);
-            }
+                CodeList = new List<string> { _groupDto.Code }
+            });
         }
 
         /// <summary>
@@ -54,6 +30,7 @@ namespace Authing.CSharp.SDK.Framework.Test
         /// </summary>
         /// <returns></returns>
         [Test]
+        [Order(1)]
         public async Task CreateGroupTest()
         {
             using (CancellationTokenSource cts = new CancellationTokenSource())
@@ -67,6 +44,8 @@ namespace Authing.CSharp.SDK.Framework.Test
 
                 GroupSingleRespDto dto = await managementClient.CreateGroup(createGroupReqDto);
 
+                _groupDto = dto.Data;
+
                 Assert.IsTrue(dto.Data.Code == "developer");
             }
         }
@@ -76,47 +55,18 @@ namespace Authing.CSharp.SDK.Framework.Test
         /// </summary>
         /// <returns></returns>
         [Test]
-        public async Task CreateGroupsBatchTest()
-        {
-            using (CancellationTokenSource cts = new CancellationTokenSource())
-            {
-                List<CreateGroupReqDto> group = new List<CreateGroupReqDto>()
-                {
-                    new CreateGroupReqDto()
-                    {
-                        Name = "developer" +new Random().Next(10,1000),
-                        Code = "developer"+new Random().Next(10,100) ,
-                        Description = "V3 测试添加 Group"
-                    }
-                };
-
-
-                CreateGroupBatchReqDto reqDto = new CreateGroupBatchReqDto()
-                {
-                    List = group
-                };
-
-                GroupListRespDto dto = await managementClient.CreateGroupsBatch(reqDto);
-
-                Assert.IsTrue(dto.Data.Count == 1);
-            }
-        }
-
-        /// <summary>
-        /// 2022-10-18 测试通过
-        /// </summary>
-        /// <returns></returns>
-        [Test]
-        public async Task UpdateGroupTest()
+        [Order(2)]
+        [TestCase("developerUpdate")]
+        public async Task UpdateGroupTest(string newCode)
         {
             using (CancellationTokenSource cts = new CancellationTokenSource())
             {
                 UpdateGroupReqDto dto = new UpdateGroupReqDto()
                 {
-                    Name = "开发者",
-                    Code = "developer",
+                    Name = _groupDto.Name,
+                    Code = _groupDto.Code,
                     Description = "developer 描述内容",
-                    NewCode = "developerUpdate"
+                    NewCode = newCode
                 };
 
                 GroupSingleRespDto groupSingle = await managementClient.UpdateGroup(dto);
@@ -130,19 +80,110 @@ namespace Authing.CSharp.SDK.Framework.Test
         /// </summary>
         /// <returns></returns>
         [Test]
-        public async Task DeleteGroupsBatchTest()
+        [Order(3)]
+        public async Task GetGroupTest()
         {
             using (CancellationTokenSource cts = new CancellationTokenSource())
             {
-                DeleteGroupsReqDto dto = new DeleteGroupsReqDto()
-                {
-                    CodeList = new List<string> { "developer", "developer57" }
-                };
 
-                IsSuccessRespDto isSuccess = await managementClient.DeleteGroupsBatch(dto);
+                GroupSingleRespDto dto = await managementClient.GetGroup(new GetGroupDto { Code = "developerUpdate" });
 
-                Assert.IsTrue(isSuccess.Data.Success);
+                Assert.IsTrue(dto.Data.Code == "developerUpdate");
             }
+        }
+
+
+        /// <summary>
+        /// 2022-10-18 测试通过
+        /// </summary>
+        /// <returns></returns>
+        [Test]
+        [Order(4)]
+        public async Task ListGroupsTest()
+        {
+            using (CancellationTokenSource cts = new CancellationTokenSource())
+            {
+                GroupPaginatedRespDto dto = await managementClient.ListGroups(new ListGroupsDto { Page = 1, Limit = 10 });
+
+                Assert.IsTrue(dto.Data.TotalCount > 0);
+            }
+        }
+    }
+
+    class GroupManagementTest : ManagementClientBaseTest
+    {
+        private string groupCodeOne;
+        private string groupCodeTwo;
+
+        private UserDto user;
+        public GroupManagementTest()
+        {
+            groupCodeOne = "developer" + new Random().Next(10, 1000);
+            groupCodeTwo = "developer" + new Random().Next(10, 1000);
+        }
+
+        [OneTimeSetUp]
+        public async Task AddUser()
+        {
+            CreateUserReqDto dto = new CreateUserReqDto()
+            {
+                Username = "testUser" + new Random().Next(200, 1000),
+                Name = "qidong",
+                Status = CreateUserReqDto.status.ACTIVATED,
+                Password = "password",
+                Options = new CreateUserOptionsDto { DepartmentIdType = CreateUserOptionsDto.departmentIdType.DEPARTMENT_ID }
+            };
+
+            UserSingleRespDto userSingleRespDto = await managementClient.CreateUser(dto);
+
+            user = userSingleRespDto.Data;
+        }
+
+        [OneTimeTearDown]
+        public async Task DeleteUser()
+        {
+            await managementClient.DeleteUsersBatch(new DeleteUsersBatchDto
+            {
+                UserIds = new List<string> { user.UserId }
+            });
+        }
+
+
+        /// <summary>
+        /// 2022-10-18 测试通过
+        /// </summary>
+        /// <returns></returns>
+        [Test]
+        [Order(1)]
+        public async Task CreateGroupsBatchTest()
+        {
+
+            List<CreateGroupReqDto> group = new List<CreateGroupReqDto>()
+            {
+                new CreateGroupReqDto()
+                {
+                    Name = groupCodeOne,
+                    Code = groupCodeOne,
+                    Description = "V3 测试添加 Group"
+                },
+                 new CreateGroupReqDto()
+                {
+                    Name = groupCodeTwo,
+                    Code = groupCodeTwo,
+                    Description = "V3 测试添加 Group"
+                },
+            };
+
+
+            CreateGroupBatchReqDto reqDto = new CreateGroupBatchReqDto()
+            {
+                List = group
+            };
+
+            GroupListRespDto dto = await managementClient.CreateGroupsBatch(reqDto);
+
+            Assert.IsTrue(dto.Data.Count == 1);
+
         }
 
         /// <summary>
@@ -150,6 +191,28 @@ namespace Authing.CSharp.SDK.Framework.Test
         /// </summary>
         /// <returns></returns>
         [Test]
+        [Order(2)]
+        public async Task ListGroupMembersTest()
+        {
+            using (CancellationTokenSource cts = new CancellationTokenSource())
+            {
+                string code = groupCodeOne;
+
+                UserPaginatedRespDto isSuccess = await managementClient.ListGroupMembers(new ListGroupMembersDto { Code = code });
+
+                Assert.IsTrue(isSuccess.Data.List.Count > 0);
+            }
+        }
+
+
+
+
+        /// <summary>
+        /// 2022-10-18 测试通过
+        /// </summary>
+        /// <returns></returns>
+        [Test]
+        [Order(3)]
         public async Task AddGroupMembersTest()
         {
 
@@ -157,8 +220,8 @@ namespace Authing.CSharp.SDK.Framework.Test
             {
                 AddGroupMembersReqDto dto = new AddGroupMembersReqDto()
                 {
-                    Code = "developerUpdate",
-                    UserIds = new List<string> { "634cf7171d4ac32dbd620893"}
+                    Code = groupCodeOne,
+                    UserIds = new List<string> { user.UserId }
                 };
 
                 IsSuccessRespDto isSuccess = await managementClient.AddGroupMembers(dto);
@@ -172,6 +235,7 @@ namespace Authing.CSharp.SDK.Framework.Test
         /// </summary>
         /// <returns></returns>
         [Test]
+        [Order(4)]
         public async Task RemoveGroupMembersTest()
         {
             using (CancellationTokenSource cts = new CancellationTokenSource())
@@ -179,8 +243,8 @@ namespace Authing.CSharp.SDK.Framework.Test
 
                 RemoveGroupMembersReqDto dto = new RemoveGroupMembersReqDto()
                 {
-                    Code = "developerUpdate",
-                    UserIds = new List<string> { "634cf7171d4ac32dbd620893" }
+                    Code = groupCodeOne,
+                    UserIds = new List<string> { user.UserId }
                 };
 
                 IsSuccessRespDto isSuccess = await managementClient.RemoveGroupMembers(dto);
@@ -189,38 +253,57 @@ namespace Authing.CSharp.SDK.Framework.Test
             }
         }
 
-        /// <summary>
-        /// 2022-10-18 测试通过
-        /// </summary>
-        /// <returns></returns>
-        [Test]
-        public async Task ListGroupMembersTest()
-        {
-            using (CancellationTokenSource cts = new CancellationTokenSource())
-            {
-                string code = "developerUpdate";
 
-                UserPaginatedRespDto isSuccess = await managementClient.ListGroupMembers(new ListGroupMembersDto { Code = code });
-
-                Assert.IsTrue(isSuccess.Data.List.Count > 0);
-            }
-        }
 
         /// <summary>
         /// 2022-10-18 测试通过
         /// </summary>
         /// <returns></returns>
         [Test]
-        public async Task GetGroupAuthorizedResourcesTest()
+        [Order(5)]
+        public async Task GetGroupAuthorizedResources_()
         {
             using (CancellationTokenSource cts = new CancellationTokenSource())
             {
-                string code = "developerUpdate";
+                string code = groupCodeOne;
 
-                AuthorizedResourceListRespDto dto = await managementClient.GetGroupAuthorizedResources(new GetGroupAuthorizedResourcesDto { Code = code, Namespace = "634cf98aa5b1455a52949d33" });
+                //await managementClient.CreateResource(new CreateResourceDto 
+                //{
+                //    x
+                //});
+
+                AuthorizedResourceListRespDto dto = await managementClient.GetGroupAuthorizedResources
+                    (
+                    new GetGroupAuthorizedResourcesDto
+                    {
+                        Code = code,
+                        Namespace = "634cf98aa5b1455a52949d33"
+                    });
 
                 Assert.IsTrue(dto.Data.Count == 1);
             }
         }
+
+        /// <summary>
+        /// 2022-10-18 测试通过
+        /// </summary>
+        /// <returns></returns>
+        [Test]
+        [Order(6)]
+        public async Task DeleteGroupsBatchTest()
+        {
+            using (CancellationTokenSource cts = new CancellationTokenSource())
+            {
+                DeleteGroupsReqDto dto = new DeleteGroupsReqDto()
+                {
+                    CodeList = new List<string> { groupCodeOne, groupCodeTwo }
+                };
+
+                IsSuccessRespDto isSuccess = await managementClient.DeleteGroupsBatch(dto);
+
+                Assert.IsTrue(isSuccess.Data.Success);
+            }
+        }
+
     }
 }
