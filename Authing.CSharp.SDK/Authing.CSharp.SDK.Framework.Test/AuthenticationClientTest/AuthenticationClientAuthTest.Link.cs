@@ -12,6 +12,7 @@ namespace Authing.CSharp.SDK.Framework.Test.AuthenticationClientTest
     public class LinkTest : AuthenticationClientTestBase
     {
         public string IdToken { get; set; }
+
         [SetUp]
         public async Task LoginTemp()
         {
