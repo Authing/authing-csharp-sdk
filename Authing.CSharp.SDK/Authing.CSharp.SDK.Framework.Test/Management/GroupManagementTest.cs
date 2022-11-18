@@ -118,8 +118,8 @@ namespace Authing.CSharp.SDK.Framework.Test
         private UserDto user;
         public GroupManagementTest()
         {
-            groupCodeOne = "developer" + new Random().Next(10, 1000);
-            groupCodeTwo = "developer" + new Random().Next(10, 1000);
+            groupCodeOne = "developer" + new Random().Next(10, 500);
+            groupCodeTwo = "developer" + new Random().Next(500, 1000);
         }
 
         [OneTimeSetUp]
@@ -182,7 +182,7 @@ namespace Authing.CSharp.SDK.Framework.Test
 
             GroupListRespDto dto = await managementClient.CreateGroupsBatch(reqDto);
 
-            Assert.IsTrue(dto.Data.Count == 1);
+            Assert.IsTrue(dto.Data.Count == 2);
 
         }
 
@@ -192,27 +192,6 @@ namespace Authing.CSharp.SDK.Framework.Test
         /// <returns></returns>
         [Test]
         [Order(2)]
-        public async Task ListGroupMembersTest()
-        {
-            using (CancellationTokenSource cts = new CancellationTokenSource())
-            {
-                string code = groupCodeOne;
-
-                UserPaginatedRespDto isSuccess = await managementClient.ListGroupMembers(new ListGroupMembersDto { Code = code });
-
-                Assert.IsTrue(isSuccess.Data.List.Count > 0);
-            }
-        }
-
-
-
-
-        /// <summary>
-        /// 2022-10-18 测试通过
-        /// </summary>
-        /// <returns></returns>
-        [Test]
-        [Order(3)]
         public async Task AddGroupMembersTest()
         {
 
@@ -227,6 +206,24 @@ namespace Authing.CSharp.SDK.Framework.Test
                 IsSuccessRespDto isSuccess = await managementClient.AddGroupMembers(dto);
 
                 Assert.IsTrue(isSuccess.Data.Success);
+            }
+        }
+
+        /// <summary>
+        /// 2022-10-18 测试通过
+        /// </summary>
+        /// <returns></returns>
+        [Test]
+        [Order(3)]
+        public async Task ListGroupMembersTest()
+        {
+            using (CancellationTokenSource cts = new CancellationTokenSource())
+            {
+                string code = groupCodeOne;
+
+                UserPaginatedRespDto isSuccess = await managementClient.ListGroupMembers(new ListGroupMembersDto { Code = code });
+
+                Assert.IsTrue(isSuccess.Data.List.Count > 0);
             }
         }
 
@@ -261,26 +258,63 @@ namespace Authing.CSharp.SDK.Framework.Test
         /// <returns></returns>
         [Test]
         [Order(5)]
-        public async Task GetGroupAuthorizedResources_()
+        [TestCase("default","groupRes")]
+        public async Task GetGroupAuthorizedResources_(string nameSpace,string groupRes)
         {
             using (CancellationTokenSource cts = new CancellationTokenSource())
             {
                 string code = groupCodeOne;
 
-                //await managementClient.CreateResource(new CreateResourceDto 
-                //{
-                //    x
-                //});
+                //新建资源
+              var res=  await managementClient.CreateResource(new CreateResourceDto
+                {
+                    Name="groupResource",
+                    Description="分组授予资源",
+                    Namespace= nameSpace,
+                    Type=CreateResourceDto.type.DATA,
+                    Code=groupRes
+                });
+
+                //授权给分组
+              var issuccess=  await managementClient.AuthorizeResources(new AuthorizeResourcesDto 
+                {
+                    Namespace=nameSpace,
+                    List=new List<AuthorizeResourceItem> 
+                    {
+                        new AuthorizeResourceItem
+                        {
+                            Resources=new List<ResourceItemDto>
+                            {
+                                new ResourceItemDto
+                                {
+                                    Code=groupRes,
+                                    ResourceType=ResourceItemDto.resourceType.DATA,
+                                    Actions=new List<string>{ "*"}
+                                }
+                            },
+                            TargetIdentifiers=new List<string> { code},
+                            TargetType=AuthorizeResourceItem.targetType.GROUP,
+                          
+                        }
+                    }
+                });
 
                 AuthorizedResourceListRespDto dto = await managementClient.GetGroupAuthorizedResources
                     (
                     new GetGroupAuthorizedResourcesDto
                     {
                         Code = code,
-                        Namespace = "634cf98aa5b1455a52949d33"
+                        Namespace = nameSpace
                     });
 
                 Assert.IsTrue(dto.Data.Count == 1);
+
+
+                await managementClient.DeleteResource(new DeleteResourceDto 
+                {
+                    Code=groupRes,
+                    Namespace=nameSpace
+                });
             }
         }
 
