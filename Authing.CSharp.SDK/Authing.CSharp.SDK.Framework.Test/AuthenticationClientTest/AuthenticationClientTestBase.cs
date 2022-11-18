@@ -14,7 +14,7 @@ namespace Authing.CSharp.SDK.Framework.Test.AuthenticationClientTest
         private string domain = "https://qidongtest.test2.authing-inc.co";
         private string redirectUri = "https://www.baidu.com";
 
-        [SetUp]
+        [OneTimeSetUp]
         public void SetupClient()
         {
             client = new AuthenticationClient(new AuthenticationClientInitOptions

@@ -1,5 +1,7 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using Authing.CSharp.SDK.Models;
+using Authing.CSharp.SDK.UtilsImpl;
 using NUnit.Framework;
 
 namespace Authing.CSharp.SDK.Framework.Test
@@ -7,14 +9,18 @@ namespace Authing.CSharp.SDK.Framework.Test
     public partial class AuthenticationClientAuthTest
     {
         /// <summary>
-        /// 2022-10-18 测试失败
+        /// 2022-11-17 测试失败
         /// 获取用户登录日志
         /// </summary>
         /// <returns></returns>
         [Test]
+        [Order(1)]
         public async Task GetUserLogs()
         {
-            var res = await client.GetLoginHistory();
+            DateTimeService DateTimeService = new DateTimeService();
+            var start = DateTimeService.DatetimeToUnixTimeMilllisecond(new DateTime(2022, 01, 01));
+            var stop = DateTimeService.DateTimeNowToTimestamp();
+            var res = await client.GetLoginHistory(stop,start);
             Assert.AreEqual(200, res.StatusCode);
         }
 
@@ -24,6 +30,7 @@ namespace Authing.CSharp.SDK.Framework.Test
         /// </summary>
         /// <returns></returns>
         [Test]
+        [Order(2)]
         public async Task GetLoggedInAppsTest()
         {
             var res = await client.GetLoggedInApps();
@@ -36,6 +43,7 @@ namespace Authing.CSharp.SDK.Framework.Test
         /// </summary>
         /// <returns></returns>
         [Test]
+        [Order(3)]
         public async Task GetAccessibleAppsTest()
         {
             var res = await client.GetAccessibleApps();
@@ -44,10 +52,11 @@ namespace Authing.CSharp.SDK.Framework.Test
 
         /// <summary>
         /// 2022-10-21 测试成功
-        /// 获取用户的租户列表
+        /// 获取用户分组列表
         /// </summary>
         /// <returns></returns>
         [Test]
+        [Order(4)]
         public async Task GetGroupListTest()
         {
             var res = await client.GetGroupList();
@@ -56,13 +65,14 @@ namespace Authing.CSharp.SDK.Framework.Test
 
         /// <summary>
         /// 2022-10-21 测试成功
-        /// 获取用户的租户列表
+        /// 获取用户角色列表
         /// </summary>
         /// <returns></returns>
         [Test]
+        [Order(5)]
         public async Task GetRoleListTest()
         {
-            var res = await client.GetRoleList();
+            var res = await client.GetRoleList("6375da1dff73acca94b3e25d");
             Assert.AreEqual(200, res.StatusCode);
         }
 
@@ -72,6 +82,7 @@ namespace Authing.CSharp.SDK.Framework.Test
         /// </summary>
         /// <returns></returns>
         [Test]
+        [Order(6)]
         public async Task GetTenantListTest()
         {
             var res = await client.GetTenantList();
@@ -84,6 +95,7 @@ namespace Authing.CSharp.SDK.Framework.Test
         /// </summary>
         /// <returns></returns>
         [Test]
+        [Order(7)]
         public async Task GetDepartmentListTest()
         {
             var res = await client.GetDepartmentList();
@@ -96,9 +108,10 @@ namespace Authing.CSharp.SDK.Framework.Test
         /// </summary>
         /// <returns></returns>
         [Test]
+        [Order(8)]
         public async Task GetAuthorizedResourcesTest()
         {
-            var res = await client.GetAuthorizedResources("API", "default");
+            var res = await client.GetAuthorizedResources();
             Assert.AreEqual(200, res.StatusCode);
         }
 
@@ -108,6 +121,7 @@ namespace Authing.CSharp.SDK.Framework.Test
         /// </summary>
         /// <returns></returns>
         [Test]
+        [Order(9)]
         public async Task GetProfileTest()
         {
             var res = await client.GetProfile();
@@ -120,6 +134,7 @@ namespace Authing.CSharp.SDK.Framework.Test
         /// </summary>
         /// <returns></returns>
         [Test]
+        [Order(10)]
         public async Task UpdateProfileTest()
         {
             var res = await client.UpdateProfile(new UpdateUserProfileDto()
@@ -210,6 +225,7 @@ namespace Authing.CSharp.SDK.Framework.Test
         /// </summary>
         /// <returns></returns>
         [Test]
+        [Order(11)]
         public async Task GetSecurityLevelTest()
         {
             var res = await client.GetSecurityLevel();
@@ -375,6 +391,7 @@ namespace Authing.CSharp.SDK.Framework.Test
         /// </summary>
         /// <returns></returns>
         [Test]
+        [Order(12)]
         public async Task GetSystemInfoTest()
         {
             var res = await client.GetSystemInfo();
@@ -387,6 +404,7 @@ namespace Authing.CSharp.SDK.Framework.Test
         /// </summary>
         /// <returns></returns>
         [Test]
+        [Order(13)]
         public async Task GetCountryListTest()
         {
             var res = await client.GetCountryList();

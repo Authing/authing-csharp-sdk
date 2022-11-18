@@ -10,6 +10,11 @@ namespace Authing.CSharp.SDK.Framework.Test
 {
     public partial class AuthenticationClientAuthTest
     {
+        /// <summary>
+        /// 2022-11-17 测试通过
+        /// 检查 Access token 或 Refresh token 的状态
+        /// </summary>
+        /// <returns></returns>
         [Test]
         public async Task introspectionTokenTest()
         {
