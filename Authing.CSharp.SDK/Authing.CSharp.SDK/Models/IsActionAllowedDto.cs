@@ -15,15 +15,15 @@ namespace Authing.CSharp.SDK.Models
     public partial class IsActionAllowedDto
     {
         /// <summary>
-        ///  资源对应的操作
-        /// </summary>
-        [JsonProperty("action")]
-        public string  Action {get;set;}
-        /// <summary>
         ///  资源标识符
         /// </summary>
         [JsonProperty("resource")]
         public string  Resource {get;set;}
+        /// <summary>
+        ///  资源对应的操作
+        /// </summary>
+        [JsonProperty("action")]
+        public string  Action {get;set;}
         /// <summary>
         ///  用户 ID
         /// </summary>

@@ -29,5 +29,10 @@ namespace Authing.CSharp.SDK.Models
         /// </summary>
         [JsonProperty("timeInterval")]
         public long  TimeInterval {get;set;}
+        /// <summary>
+        ///  时间长度单位。Second/Minute/Hour/Day，仅仅做显示，timeInterval的单位还是秒
+        /// </summary>
+        [JsonProperty("unit")]
+        public string  Unit {get;set;}
     }
 }

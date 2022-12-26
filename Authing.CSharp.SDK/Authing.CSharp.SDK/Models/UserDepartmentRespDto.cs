@@ -79,5 +79,20 @@ namespace Authing.CSharp.SDK.Models
         /// </summary>
         [JsonProperty("customData")]
         public object  CustomData {get;set;}
+        /// <summary>
+        ///  部门 ID 路径
+        /// </summary>
+        [JsonProperty("departmentIdPath")]
+        public List<string>  DepartmentIdPath {get;set;}
+        /// <summary>
+        ///  部门 Code 路径
+        /// </summary>
+        [JsonProperty("departmentCodePath")]
+        public List<string>  DepartmentCodePath {get;set;}
+        /// <summary>
+        ///  部门名路径
+        /// </summary>
+        [JsonProperty("departmentNamePath")]
+        public List<string>  DepartmentNamePath {get;set;}
     }
 }

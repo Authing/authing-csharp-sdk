@@ -54,6 +54,11 @@ namespace Authing.CSharp.SDK.Models
         /// </summary>
         [JsonProperty("extIdpConnLogo")]
         public string  ExtIdpConnLogo {get;set;}
+        /// <summary>
+        ///  是否允许身份源连接
+        /// </summary>
+        [JsonProperty("enabled")]
+        public bool  Enabled {get;set;}
     }
     public partial class ApplicationEnabledExtIdpConnDto
     {

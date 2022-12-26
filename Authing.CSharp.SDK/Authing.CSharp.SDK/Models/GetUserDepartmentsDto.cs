@@ -48,6 +48,11 @@ namespace Authing.CSharp.SDK.Models
         [JsonProperty("withCustomData")]
         public bool  WithCustomData {get;set;} 
         /// <summary>
+        ///  是否获取部门路径
+        /// </summary>
+        [JsonProperty("withDepartmentPaths")]
+        public bool  WithDepartmentPaths {get;set;} 
+        /// <summary>
         ///  排序依据，如 部门创建时间、加入部门时间、部门名称、部门标志符
         /// </summary>
         [JsonProperty("sortBy")]

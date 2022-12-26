@@ -34,5 +34,10 @@ namespace Authing.CSharp.SDK.Models
         /// </summary>
         [JsonProperty("description")]
         public string  Description {get;set;}
+        /// <summary>
+        ///  角色自动禁止时间，单位毫秒, 如果传null表示永久有效
+        /// </summary>
+        [JsonProperty("disableTime")]
+        public string  DisableTime {get;set;}
     }
 }

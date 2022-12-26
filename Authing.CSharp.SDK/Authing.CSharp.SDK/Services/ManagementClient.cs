@@ -172,7 +172,7 @@ namespace Authing.CSharp.SDK.Services
         /// - `email`: 用户邮箱
         /// - `username`: 用户名
         /// - `external_id`: 用户在外部系统的 ID，对应 Authing 用户信息的 `externalId` 字段
-        /// - `identity`: 用户的外部身份源信息，格式为 <extIdpId>:<userIdInIdp>`，其中 `<extIdpId>` 为 Authing 身份源的 ID，`<userIdInIdp>` 为用户在外部身份源的 ID。
+        /// - `identity`: 用户的外部身份源信息，格式为 `<extIdpId>:<userIdInIdp>`，其中 `<extIdpId>` 为 Authing 身份源的 ID，`<userIdInIdp>` 为用户在外部身份源的 ID。
         /// 示例值：`62f20932716fbcc10d966ee5:ou_8bae746eac07cd2564654140d2a9ac61`。
         /// </param>
         ///<returns>IdentityListRespDto</returns>
@@ -257,6 +257,7 @@ namespace Authing.CSharp.SDK.Services
         /// <param name="page">当前页数，从 1 开始</param>
         /// <param name="limit">每页数目，最大不能超过 50，默认为 10</param>
         /// <param name="withCustomData">是否获取自定义数据</param>
+        /// <param name="withDepartmentPaths">是否获取部门路径</param>
         /// <param name="sortBy">排序依据，如 部门创建时间、加入部门时间、部门名称、部门标志符</param>
         /// <param name="orderBy">增序或降序</param>
         ///<returns>UserDepartmentPaginatedRespDto</returns>
@@ -725,6 +726,18 @@ namespace Authing.CSharp.SDK.Services
             return result;
         }
         ///<summary>
+        /// 搜索部门
+        ///</summary>
+        /// <param name="requestBody"></param>
+        ///<returns>DepartmentListRespDto</returns>
+        public async Task<DepartmentListRespDto> SearchDepartmentsList(SearchDepartmentsListReqDto requestBody)
+        {
+            string httpResponse = await Request("POST", "/api/v3/search-departments-list", requestBody).ConfigureAwait(false);
+
+            DepartmentListRespDto result = m_JsonService.DeserializeObject<DepartmentListRespDto>(httpResponse);
+            return result;
+        }
+        ///<summary>
         /// 获取子部门列表
         ///</summary>
         /// <param name="organizationCode">组织 code</param>
@@ -858,6 +871,31 @@ namespace Authing.CSharp.SDK.Services
             IsUserInDepartmentRespDto result = m_JsonService.DeserializeObject<IsUserInDepartmentRespDto>(httpResponse);
             return result;
 
+        }
+        ///<summary>
+        /// 根据部门id查询部门
+        ///</summary>
+        /// <param name="departmentId">部门 ID</param>
+        ///<returns>DepartmentSingleRespDto</returns>
+        public async Task<DepartmentSingleRespDto> GetDepartmentById(GetDepartmentByIdDto reqDto)
+        {
+            string httpResponse = await Request("GET", "/api/v3/get-department-by-id", reqDto).ConfigureAwait(false);
+
+            DepartmentSingleRespDto result = m_JsonService.DeserializeObject<DepartmentSingleRespDto>(httpResponse);
+            return result;
+
+        }
+        ///<summary>
+        /// 根据组织树批量创建部门
+        ///</summary>
+        /// <param name="requestBody"></param>
+        ///<returns>CreateDepartmentTreeRespDto</returns>
+        public async Task<CreateDepartmentTreeRespDto> CreateDepartmentTree(CreateDepartmentTreeReqDto requestBody)
+        {
+            string httpResponse = await Request("POST", "/api/v3/create-department-tree", requestBody).ConfigureAwait(false);
+
+            CreateDepartmentTreeRespDto result = m_JsonService.DeserializeObject<CreateDepartmentTreeRespDto>(httpResponse);
+            return result;
         }
         ///<summary>
         /// 获取分组详情
@@ -1169,6 +1207,19 @@ namespace Authing.CSharp.SDK.Services
             return result;
         }
         ///<summary>
+        /// 获取角色授权列表
+        ///</summary>
+        /// <param name="requestBody"></param>
+        ///<returns>RoleListPageRespDto</returns>
+        public async Task<RoleListPageRespDto> ListRoleAssignments(ListRoleAssignmentsDto reqDto)
+        {
+            string httpResponse = await Request("GET", "/api/v3/list-role-assignments", reqDto).ConfigureAwait(false);
+
+            RoleListPageRespDto result = m_JsonService.DeserializeObject<RoleListPageRespDto>(httpResponse);
+            return result;
+
+        }
+        ///<summary>
         /// 获取身份源列表
         ///</summary>
         /// <param name="tenantId">租户 ID</param>
@@ -1473,14 +1524,18 @@ namespace Authing.CSharp.SDK.Services
         ///<summary>
         /// 分页获取常规资源列表
         ///</summary>
-        /// <param name="requestBody"></param>
+        /// <param name="page">当前页数，从 1 开始</param>
+        /// <param name="limit">每页数目，最大不能超过 50，默认为 10</param>
+        /// <param name="keyword">查询条件</param>
+        /// <param name="namespaceCodeList">权限空间列表</param>
         ///<returns>CommonResourcePaginatedRespDto</returns>
-        public async Task<CommonResourcePaginatedRespDto> ListCommonResource(CommonListResourceDto requestBody)
+        public async Task<CommonResourcePaginatedRespDto> ListCommonResource(ListCommonResourceDto reqDto)
         {
-            string httpResponse = await Request("POST", "/api/v3/list-common-resource", requestBody).ConfigureAwait(false);
+            string httpResponse = await Request("GET", "/api/v3/list-common-resource", reqDto).ConfigureAwait(false);
 
             CommonResourcePaginatedRespDto result = m_JsonService.DeserializeObject<CommonResourcePaginatedRespDto>(httpResponse);
             return result;
+
         }
         ///<summary>
         /// 分页获取资源列表
@@ -1539,6 +1594,13 @@ namespace Authing.CSharp.SDK.Services
         ///</summary>
         /// <param name="requestBody"></param>
         ///<returns>IsSuccessRespDto</returns>
+        public async Task<IsSuccessRespDto> DeleteResourcesByIdBatch(DeleteCommonResourcesBatchDto requestBody)
+        {
+            string httpResponse = await Request("POST", "/api/v3/delete-common-resources-batch", requestBody).ConfigureAwait(false);
+
+            IsSuccessRespDto result = m_JsonService.DeserializeObject<IsSuccessRespDto>(httpResponse);
+            return result;
+        }
         ///<summary>
         /// 关联/取消关联应用资源到租户
         ///</summary>
@@ -1552,7 +1614,7 @@ namespace Authing.CSharp.SDK.Services
             return result;
         }
         ///<summary>
-        /// 创建权限分组（权限空间）
+        /// 创建权限分组
         ///</summary>
         /// <param name="requestBody"></param>
         ///<returns>NamespaceRespDto</returns>
@@ -1564,7 +1626,7 @@ namespace Authing.CSharp.SDK.Services
             return result;
         }
         ///<summary>
-        /// 批量创建权限分组（权限空间）
+        /// 批量创建权限分组
         ///</summary>
         /// <param name="requestBody"></param>
         ///<returns>IsSuccessRespDto</returns>
@@ -1576,7 +1638,7 @@ namespace Authing.CSharp.SDK.Services
             return result;
         }
         ///<summary>
-        /// 获取权限分组（权限空间）详情
+        /// 获取权限分组详情
         ///</summary>
         /// <param name="code">权限分组唯一标志符</param>
         ///<returns>NamespaceRespDto</returns>
@@ -1589,9 +1651,9 @@ namespace Authing.CSharp.SDK.Services
 
         }
         ///<summary>
-        /// 批量获取权限分组（权限空间）详情
+        /// 批量获取权限分组详情
         ///</summary>
-        /// <param name="codeList">资源 code 列表，批量可以使用逗号分隔</param>
+        /// <param name="codeList">权限分组 code 列表，批量可以使用逗号分隔</param>
         ///<returns>NamespaceListRespDto</returns>
         public async Task<NamespaceListRespDto> GetNamespacesBatch(GetNamespacesBatchDto reqDto)
         {
@@ -1602,7 +1664,7 @@ namespace Authing.CSharp.SDK.Services
 
         }
         ///<summary>
-        /// 修改权限分组（权限空间）信息
+        /// 修改权限分组信息
         ///</summary>
         /// <param name="requestBody"></param>
         ///<returns>UpdateNamespaceRespDto</returns>
@@ -1614,7 +1676,7 @@ namespace Authing.CSharp.SDK.Services
             return result;
         }
         ///<summary>
-        /// 删除权限分组（权限空间）信息
+        /// 删除权限分组信息
         ///</summary>
         /// <param name="requestBody"></param>
         ///<returns>IsSuccessRespDto</returns>
@@ -1626,7 +1688,7 @@ namespace Authing.CSharp.SDK.Services
             return result;
         }
         ///<summary>
-        /// 批量删除权限分组（权限空间）
+        /// 批量删除权限分组
         ///</summary>
         /// <param name="requestBody"></param>
         ///<returns>IsSuccessRespDto</returns>
@@ -1638,23 +1700,11 @@ namespace Authing.CSharp.SDK.Services
             return result;
         }
         ///<summary>
-        /// 校验权限空间 Code 或者名称是否不重复
-        ///</summary>
-        /// <param name="requestBody"></param>
-        ///<returns>NamespaceCheckParamsRespDto</returns>
-        public async Task<NamespaceCheckParamsRespDto> CheckParamsNamespace1(CheckNamespaceParamsDto requestBody)
-        {
-            string httpResponse = await Request("POST", "/api/v3/check-namespace-params", requestBody).ConfigureAwait(false);
-
-            NamespaceCheckParamsRespDto result = m_JsonService.DeserializeObject<NamespaceCheckParamsRespDto>(httpResponse);
-            return result;
-        }
-        ///<summary>
-        /// 分页获取权限分组（权限空间）列表
+        /// 分页获取权限分组列表
         ///</summary>
         /// <param name="page">当前页数，从 1 开始</param>
         /// <param name="limit">每页数目，最大不能超过 50，默认为 10</param>
-        /// <param name="keywords">搜索权限分组（权限空间） Code</param>
+        /// <param name="keywords">搜索权限分组 Code</param>
         ///<returns>NamespaceListPaginatedRespDto</returns>
         public async Task<NamespaceListPaginatedRespDto> ListNamespaces(ListNamespacesDto reqDto)
         {
@@ -1665,7 +1715,7 @@ namespace Authing.CSharp.SDK.Services
 
         }
         ///<summary>
-        /// 分页权限分组（权限空间）下所有的角色列表
+        /// 分页权限分组下所有的角色列表
         ///</summary>
         /// <param name="code">权限分组唯一标志符</param>
         /// <param name="page">当前页数，从 1 开始</param>
@@ -2189,6 +2239,172 @@ namespace Authing.CSharp.SDK.Services
             return result;
         }
         ///<summary>
+        /// 创建 ASA 账号
+        ///</summary>
+        /// <param name="requestBody"></param>
+        ///<returns>AsaAccountSingleRespDto</returns>
+        public async Task<AsaAccountSingleRespDto> CreateAsaAccount(CreateAsaAccountDto requestBody)
+        {
+            string httpResponse = await Request("POST", "/api/v3/create-asa-account", requestBody).ConfigureAwait(false);
+
+            AsaAccountSingleRespDto result = m_JsonService.DeserializeObject<AsaAccountSingleRespDto>(httpResponse);
+            return result;
+        }
+        ///<summary>
+        /// 批量创建 ASA 账号
+        ///</summary>
+        /// <param name="requestBody"></param>
+        ///<returns>IsSuccessRespDto</returns>
+        public async Task<IsSuccessRespDto> CreateAsaAccountBatch(CreateAsaAccountsBatchDto requestBody)
+        {
+            string httpResponse = await Request("POST", "/api/v3/create-asa-accounts-batch", requestBody).ConfigureAwait(false);
+
+            IsSuccessRespDto result = m_JsonService.DeserializeObject<IsSuccessRespDto>(httpResponse);
+            return result;
+        }
+        ///<summary>
+        /// 更新 ASA 账号
+        ///</summary>
+        /// <param name="requestBody"></param>
+        ///<returns>AsaAccountSingleRespDto</returns>
+        public async Task<AsaAccountSingleRespDto> UpdateAsaAccount(UpdateAsaAccountDto requestBody)
+        {
+            string httpResponse = await Request("POST", "/api/v3/update-asa-account", requestBody).ConfigureAwait(false);
+
+            AsaAccountSingleRespDto result = m_JsonService.DeserializeObject<AsaAccountSingleRespDto>(httpResponse);
+            return result;
+        }
+        ///<summary>
+        /// 获取 ASA 账号列表
+        ///</summary>
+        /// <param name="appId">所属应用 ID</param>
+        /// <param name="page">当前页数，从 1 开始</param>
+        /// <param name="limit">每页数目，最大不能超过 50，默认为 10</param>
+        ///<returns>AsaAccountPaginatedRespDto</returns>
+        public async Task<AsaAccountPaginatedRespDto> ListAsaAccount(ListAsaAccountsDto reqDto)
+        {
+            string httpResponse = await Request("GET", "/api/v3/list-asa-accounts", reqDto).ConfigureAwait(false);
+
+            AsaAccountPaginatedRespDto result = m_JsonService.DeserializeObject<AsaAccountPaginatedRespDto>(httpResponse);
+            return result;
+
+        }
+        ///<summary>
+        /// 获取 ASA 账号
+        ///</summary>
+        /// <param name="appId">所属应用 ID</param>
+        /// <param name="accountId">ASA 账号 ID</param>
+        ///<returns>AsaAccountSingleRespDto</returns>
+        public async Task<AsaAccountSingleRespDto> GetAsaAccount(GetAsaAccountDto reqDto)
+        {
+            string httpResponse = await Request("GET", "/api/v3/get-asa-account", reqDto).ConfigureAwait(false);
+
+            AsaAccountSingleRespDto result = m_JsonService.DeserializeObject<AsaAccountSingleRespDto>(httpResponse);
+            return result;
+
+        }
+        ///<summary>
+        /// 批量获取 ASA 账号
+        ///</summary>
+        /// <param name="requestBody"></param>
+        ///<returns>AsaAccountListRespDto</returns>
+        public async Task<AsaAccountListRespDto> GetAsaAccountBatch(GetAsaAccountBatchDto requestBody)
+        {
+            string httpResponse = await Request("POST", "/api/v3/get-asa-accounts-batch", requestBody).ConfigureAwait(false);
+
+            AsaAccountListRespDto result = m_JsonService.DeserializeObject<AsaAccountListRespDto>(httpResponse);
+            return result;
+        }
+        ///<summary>
+        /// 删除 ASA 账号
+        ///</summary>
+        /// <param name="requestBody"></param>
+        ///<returns>IsSuccessRespDto</returns>
+        public async Task<IsSuccessRespDto> DeleteAsaAccount(DeleteAsaAccountDto requestBody)
+        {
+            string httpResponse = await Request("POST", "/api/v3/delete-asa-account", requestBody).ConfigureAwait(false);
+
+            IsSuccessRespDto result = m_JsonService.DeserializeObject<IsSuccessRespDto>(httpResponse);
+            return result;
+        }
+        ///<summary>
+        /// 批量删除 ASA 账号
+        ///</summary>
+        /// <param name="requestBody"></param>
+        ///<returns>IsSuccessRespDto</returns>
+        public async Task<IsSuccessRespDto> DeleteAsaAccountBatch(DeleteAsaAccountBatchDto requestBody)
+        {
+            string httpResponse = await Request("POST", "/api/v3/delete-asa-accounts-batch", requestBody).ConfigureAwait(false);
+
+            IsSuccessRespDto result = m_JsonService.DeserializeObject<IsSuccessRespDto>(httpResponse);
+            return result;
+        }
+        ///<summary>
+        /// 分配 ASA 账号
+        ///</summary>
+        /// <param name="requestBody"></param>
+        ///<returns>IsSuccessRespDto</returns>
+        public async Task<IsSuccessRespDto> AssignAsaAccount(AssignAsaAccountsDto requestBody)
+        {
+            string httpResponse = await Request("POST", "/api/v3/assign-asa-account", requestBody).ConfigureAwait(false);
+
+            IsSuccessRespDto result = m_JsonService.DeserializeObject<IsSuccessRespDto>(httpResponse);
+            return result;
+        }
+        ///<summary>
+        /// 取消分配 ASA 账号
+        ///</summary>
+        /// <param name="requestBody"></param>
+        ///<returns>IsSuccessRespDto</returns>
+        public async Task<IsSuccessRespDto> UnassignAsaAccount(AssignAsaAccountsDto requestBody)
+        {
+            string httpResponse = await Request("POST", "/api/v3/unassign-asa-account", requestBody).ConfigureAwait(false);
+
+            IsSuccessRespDto result = m_JsonService.DeserializeObject<IsSuccessRespDto>(httpResponse);
+            return result;
+        }
+        ///<summary>
+        /// 获取 ASA 账号分配的主体列表
+        ///</summary>
+        /// <param name="appId">所属应用 ID</param>
+        /// <param name="accountId">ASA 账号 ID</param>
+        /// <param name="page">当前页数，从 1 开始</param>
+        /// <param name="limit">每页数目，最大不能超过 50，默认为 10</param>
+        ///<returns>GetAsaAccountAssignedTargetRespDto</returns>
+        public async Task<GetAsaAccountAssignedTargetRespDto> GetAsaAccountAssignedTargets(GetAsaAccountAssignedTargetsDto reqDto)
+        {
+            string httpResponse = await Request("GET", "/api/v3/get-asa-account-assigned-targets", reqDto).ConfigureAwait(false);
+
+            GetAsaAccountAssignedTargetRespDto result = m_JsonService.DeserializeObject<GetAsaAccountAssignedTargetRespDto>(httpResponse);
+            return result;
+
+        }
+        ///<summary>
+        /// 获取主体被分配的 ASA 账号
+        ///</summary>
+        /// <param name="appId">所属应用 ID</param>
+        /// <param name="targetType">目标对象类型：
+        /// - `USER`: 用户
+        /// - `ROLE`: 角色
+        /// - `GROUP`: 分组
+        /// - `DEPARTMENT`: 部门
+        /// </param>
+        /// <param name="targetIdentifier">目标对象的唯一标志符：
+        /// - 如果是用户，为用户的 ID，如 `6343b98b7cfxxx9366e9b7c`
+        /// - 如果是角色，为角色的 code，如 `admin`
+        /// - 如果是分组，为分组的 code，如 `developer`
+        /// - 如果是部门，为部门的 ID，如 `6343bafc019xxxx889206c4c`
+        /// </param>
+        ///<returns>AsaAccountSingleNullableRespDto</returns>
+        public async Task<AsaAccountSingleNullableRespDto> GetAssignedAccount(GetAssignedAccountDto reqDto)
+        {
+            string httpResponse = await Request("GET", "/api/v3/get-assigned-account", reqDto).ConfigureAwait(false);
+
+            AsaAccountSingleNullableRespDto result = m_JsonService.DeserializeObject<AsaAccountSingleNullableRespDto>(httpResponse);
+            return result;
+
+        }
+        ///<summary>
         /// 获取安全配置
         ///</summary>
         ///<returns>SecuritySettingsRespDto</returns>
@@ -2234,6 +2450,457 @@ namespace Authing.CSharp.SDK.Services
             string httpResponse = await Request("POST", "/api/v3/update-global-mfa-settings", requestBody).ConfigureAwait(false);
 
             MFASettingsRespDto result = m_JsonService.DeserializeObject<MFASettingsRespDto>(httpResponse);
+            return result;
+        }
+        ///<summary>
+        /// 创建权限空间
+        ///</summary>
+        /// <param name="requestBody"></param>
+        ///<returns>CreatePermissionNamespaceResponseDto</returns>
+        public async Task<CreatePermissionNamespaceResponseDto> CreatePermissionNamespace(CreatePermissionNamespaceDto requestBody)
+        {
+            string httpResponse = await Request("POST", "/api/v3/create-permission-namespace", requestBody).ConfigureAwait(false);
+
+            CreatePermissionNamespaceResponseDto result = m_JsonService.DeserializeObject<CreatePermissionNamespaceResponseDto>(httpResponse);
+            return result;
+        }
+        ///<summary>
+        /// 批量创建权限空间
+        ///</summary>
+        /// <param name="requestBody"></param>
+        ///<returns>IsSuccessRespDto</returns>
+        public async Task<IsSuccessRespDto> CreatePermissionNamespacesBatch(CreatePermissionNamespacesBatchDto requestBody)
+        {
+            string httpResponse = await Request("POST", "/api/v3/create-permission-namespaces-batch", requestBody).ConfigureAwait(false);
+
+            IsSuccessRespDto result = m_JsonService.DeserializeObject<IsSuccessRespDto>(httpResponse);
+            return result;
+        }
+        ///<summary>
+        /// 获取权限空间详情
+        ///</summary>
+        /// <param name="code">权限空间 Code</param>
+        ///<returns>GetPermissionNamespaceResponseDto</returns>
+        public async Task<GetPermissionNamespaceResponseDto> GetPermissionNamespace(GetPermissionNamespaceDto reqDto)
+        {
+            string httpResponse = await Request("GET", "/api/v3/get-permission-namespace", reqDto).ConfigureAwait(false);
+
+            GetPermissionNamespaceResponseDto result = m_JsonService.DeserializeObject<GetPermissionNamespaceResponseDto>(httpResponse);
+            return result;
+
+        }
+        ///<summary>
+        /// 批量获取权限空间详情列表
+        ///</summary>
+        /// <param name="codes">权限空间 code 列表，批量可以使用逗号分隔</param>
+        ///<returns>GetPermissionNamespaceListResponseDto</returns>
+        public async Task<GetPermissionNamespaceListResponseDto> GetPermissionNamespacesBatch(GetPermissionNamespacesBatchDto reqDto)
+        {
+            string httpResponse = await Request("GET", "/api/v3/get-permission-namespaces-batch", reqDto).ConfigureAwait(false);
+
+            GetPermissionNamespaceListResponseDto result = m_JsonService.DeserializeObject<GetPermissionNamespaceListResponseDto>(httpResponse);
+            return result;
+
+        }
+        ///<summary>
+        /// 分页获取权限空间列表
+        ///</summary>
+        /// <param name="page">当前页数，从 1 开始</param>
+        /// <param name="limit">每页数目，最大不能超过 50，默认为 10</param>
+        /// <param name="query">权限空间 name</param>
+        ///<returns>PermissionNamespaceListPaginatedRespDto</returns>
+        public async Task<PermissionNamespaceListPaginatedRespDto> ListPermissionNamespaces(ListPermissionNamespacesDto reqDto)
+        {
+            string httpResponse = await Request("GET", "/api/v3/list-permission-namespaces", reqDto).ConfigureAwait(false);
+
+            PermissionNamespaceListPaginatedRespDto result = m_JsonService.DeserializeObject<PermissionNamespaceListPaginatedRespDto>(httpResponse);
+            return result;
+
+        }
+        ///<summary>
+        /// 修改权限空间
+        ///</summary>
+        /// <param name="requestBody"></param>
+        ///<returns>UpdatePermissionNamespaceResponseDto</returns>
+        public async Task<UpdatePermissionNamespaceResponseDto> UpdatePermissionNamespace(UpdatePermissionNamespaceDto requestBody)
+        {
+            string httpResponse = await Request("POST", "/api/v3/update-permission-namespace", requestBody).ConfigureAwait(false);
+
+            UpdatePermissionNamespaceResponseDto result = m_JsonService.DeserializeObject<UpdatePermissionNamespaceResponseDto>(httpResponse);
+            return result;
+        }
+        ///<summary>
+        /// 删除权限空间
+        ///</summary>
+        /// <param name="requestBody"></param>
+        ///<returns>IsSuccessRespDto</returns>
+        public async Task<IsSuccessRespDto> DeletePermissionNamespace(DeletePermissionNamespaceDto requestBody)
+        {
+            string httpResponse = await Request("POST", "/api/v3/delete-permission-namespace", requestBody).ConfigureAwait(false);
+
+            IsSuccessRespDto result = m_JsonService.DeserializeObject<IsSuccessRespDto>(httpResponse);
+            return result;
+        }
+        ///<summary>
+        /// 批量删除权限空间
+        ///</summary>
+        /// <param name="requestBody"></param>
+        ///<returns>IsSuccessRespDto</returns>
+        public async Task<IsSuccessRespDto> DeletePermissionNamespacesBatch(DeletePermissionNamespacesBatchDto requestBody)
+        {
+            string httpResponse = await Request("POST", "/api/v3/delete-permission-namespaces-batch", requestBody).ConfigureAwait(false);
+
+            IsSuccessRespDto result = m_JsonService.DeserializeObject<IsSuccessRespDto>(httpResponse);
+            return result;
+        }
+        ///<summary>
+        /// 校验权限空间 Code 或者名称是否可用
+        ///</summary>
+        /// <param name="requestBody"></param>
+        ///<returns>PermissionNamespaceCheckExistsRespDto</returns>
+        public async Task<PermissionNamespaceCheckExistsRespDto> CheckPermissionNamespaceExists(CheckPermissionNamespaceExistsDto requestBody)
+        {
+            string httpResponse = await Request("POST", "/api/v3/check-permission-namespace-exists", requestBody).ConfigureAwait(false);
+
+            PermissionNamespaceCheckExistsRespDto result = m_JsonService.DeserializeObject<PermissionNamespaceCheckExistsRespDto>(httpResponse);
+            return result;
+        }
+        ///<summary>
+        /// 分页查询权限空间下所有的角色列表
+        ///</summary>
+        /// <param name="code">权限分组唯一标志符 Code</param>
+        /// <param name="page">当前页数，从 1 开始</param>
+        /// <param name="limit">每页数目，最大不能超过 50，默认为 10</param>
+        /// <param name="query">角色 Code 或者名称</param>
+        ///<returns>PermissionNamespaceRolesListPaginatedRespDto</returns>
+        public async Task<PermissionNamespaceRolesListPaginatedRespDto> ListPermissionNamespaceRoles(ListPermissionNamespaceRolesDto reqDto)
+        {
+            string httpResponse = await Request("GET", "/api/v3/list-permission-namespace-roles", reqDto).ConfigureAwait(false);
+
+            PermissionNamespaceRolesListPaginatedRespDto result = m_JsonService.DeserializeObject<PermissionNamespaceRolesListPaginatedRespDto>(httpResponse);
+            return result;
+
+        }
+        ///<summary>
+        /// 创建数据资源
+        ///</summary>
+        /// <param name="requestBody"></param>
+        ///<returns>CreateDataResourceResponseDto</returns>
+        public async Task<CreateDataResourceResponseDto> CreateDataResource(CreateDataResourceDto requestBody)
+        {
+            string httpResponse = await Request("POST", "/api/v3/create-data-resource", requestBody).ConfigureAwait(false);
+
+            CreateDataResourceResponseDto result = m_JsonService.DeserializeObject<CreateDataResourceResponseDto>(httpResponse);
+            return result;
+        }
+        ///<summary>
+        /// 创建字符串数据资源
+        ///</summary>
+        /// <param name="requestBody"></param>
+        ///<returns>CreateStringDataResourceResponseDto</returns>
+        public async Task<CreateStringDataResourceResponseDto> CreateDataResourceByString(CreateStringDataResourceDto requestBody)
+        {
+            string httpResponse = await Request("POST", "/api/v3/create-string-data-resource", requestBody).ConfigureAwait(false);
+
+            CreateStringDataResourceResponseDto result = m_JsonService.DeserializeObject<CreateStringDataResourceResponseDto>(httpResponse);
+            return result;
+        }
+        ///<summary>
+        /// 创建数组数据资源
+        ///</summary>
+        /// <param name="requestBody"></param>
+        ///<returns>CreateArrayDataResourceResponseDto</returns>
+        public async Task<CreateArrayDataResourceResponseDto> CreateDataResourceByArray(CreateArrayDataResourceDto requestBody)
+        {
+            string httpResponse = await Request("POST", "/api/v3/create-array-data-resource", requestBody).ConfigureAwait(false);
+
+            CreateArrayDataResourceResponseDto result = m_JsonService.DeserializeObject<CreateArrayDataResourceResponseDto>(httpResponse);
+            return result;
+        }
+        ///<summary>
+        /// 创建树数据资源
+        ///</summary>
+        /// <param name="requestBody"></param>
+        ///<returns>CreateTreeDataResourceResponseDto</returns>
+        public async Task<CreateTreeDataResourceResponseDto> CreateDataResourceByTree(CreateTreeDataResourceDto requestBody)
+        {
+            string httpResponse = await Request("POST", "/api/v3/create-tree-data-resource", requestBody).ConfigureAwait(false);
+
+            CreateTreeDataResourceResponseDto result = m_JsonService.DeserializeObject<CreateTreeDataResourceResponseDto>(httpResponse);
+            return result;
+        }
+        ///<summary>
+        /// 获取数据资源列表
+        ///</summary>
+        /// <param name="page">当前页数，从 1 开始</param>
+        /// <param name="limit">每页数目，最大不能超过 50，默认为 10</param>
+        /// <param name="query">关键字搜索，可以是数据资源名称或者数据资源 Code</param>
+        /// <param name="namespaceCodes">权限数据所属权限空间 Code 列表</param>
+        ///<returns>ListDataResourcesPaginatedRespDto</returns>
+        public async Task<ListDataResourcesPaginatedRespDto> ListDataResources(ListDataResourcesDto reqDto)
+        {
+            string httpResponse = await Request("GET", "/api/v3/list-data-resources", reqDto).ConfigureAwait(false);
+
+            ListDataResourcesPaginatedRespDto result = m_JsonService.DeserializeObject<ListDataResourcesPaginatedRespDto>(httpResponse);
+            return result;
+
+        }
+        ///<summary>
+        /// 获取数据资源信息
+        ///</summary>
+        /// <param name="namespaceCode">数据资源所属的权限空间 Code</param>
+        /// <param name="resourceCode">数据资源 Code,权限空间内唯一</param>
+        ///<returns>GetDataResourceResponseDto</returns>
+        public async Task<GetDataResourceResponseDto> GetDataResource(GetDataResourceDto reqDto)
+        {
+            string httpResponse = await Request("GET", "/api/v3/get-data-resource", reqDto).ConfigureAwait(false);
+
+            GetDataResourceResponseDto result = m_JsonService.DeserializeObject<GetDataResourceResponseDto>(httpResponse);
+            return result;
+
+        }
+        ///<summary>
+        /// 修改数据资源
+        ///</summary>
+        /// <param name="requestBody"></param>
+        ///<returns>UpdateDataResourceResponseDto</returns>
+        public async Task<UpdateDataResourceResponseDto> UpdateDataResource(UpdateDataResourceDto requestBody)
+        {
+            string httpResponse = await Request("POST", "/api/v3/update-data-resource", requestBody).ConfigureAwait(false);
+
+            UpdateDataResourceResponseDto result = m_JsonService.DeserializeObject<UpdateDataResourceResponseDto>(httpResponse);
+            return result;
+        }
+        ///<summary>
+        /// 删除数据资源
+        ///</summary>
+        /// <param name="requestBody"></param>
+        ///<returns>CommonResponseDto</returns>
+        public async Task<CommonResponseDto> DeleteDataResource(DeleteDataResourceDto requestBody)
+        {
+            string httpResponse = await Request("POST", "/api/v3/delete-data-resource", requestBody).ConfigureAwait(false);
+
+            CommonResponseDto result = m_JsonService.DeserializeObject<CommonResponseDto>(httpResponse);
+            return result;
+        }
+        ///<summary>
+        /// 检查数据资源名称或者 Code 是否可用
+        ///</summary>
+        /// <param name="namespaceCode">数据资源所属的权限空间 Code</param>
+        /// <param name="resourceName">数据资源名称,权限空间内唯一</param>
+        /// <param name="resourceCode">数据资源 Code,权限空间内唯一</param>
+        ///<returns>CheckParamsDataResourceResponseDto</returns>
+        public async Task<CheckParamsDataResourceResponseDto> CheckDataResourceExists(CheckDataResourceExistsDto reqDto)
+        {
+            string httpResponse = await Request("GET", "/api/v3/check-data-resource-exists", reqDto).ConfigureAwait(false);
+
+            CheckParamsDataResourceResponseDto result = m_JsonService.DeserializeObject<CheckParamsDataResourceResponseDto>(httpResponse);
+            return result;
+
+        }
+        ///<summary>
+        /// 创建数据策略
+        ///</summary>
+        /// <param name="requestBody"></param>
+        ///<returns>CreateDataPolicyResponseDto</returns>
+        public async Task<CreateDataPolicyResponseDto> CreateDataPolicy(CreateDataPolicyDto requestBody)
+        {
+            string httpResponse = await Request("POST", "/api/v3/create-data-policy", requestBody).ConfigureAwait(false);
+
+            CreateDataPolicyResponseDto result = m_JsonService.DeserializeObject<CreateDataPolicyResponseDto>(httpResponse);
+            return result;
+        }
+        ///<summary>
+        /// 获取数据策略列表
+        ///</summary>
+        /// <param name="page">当前页数，从 1 开始</param>
+        /// <param name="limit">每页数目，最大不能超过 50，默认为 10</param>
+        /// <param name="query">数据策略名称关键字搜索</param>
+        ///<returns>ListDataPoliciesPaginatedRespDto</returns>
+        public async Task<ListDataPoliciesPaginatedRespDto> ListDataPolices(ListDataPoliciesDto reqDto)
+        {
+            string httpResponse = await Request("GET", "/api/v3/list-data-policies", reqDto).ConfigureAwait(false);
+
+            ListDataPoliciesPaginatedRespDto result = m_JsonService.DeserializeObject<ListDataPoliciesPaginatedRespDto>(httpResponse);
+            return result;
+
+        }
+        ///<summary>
+        /// 获取数据策略简略信息列表
+        ///</summary>
+        /// <param name="page">当前页数，从 1 开始</param>
+        /// <param name="limit">每页数目，最大不能超过 50，默认为 10</param>
+        /// <param name="query">数据策略名称关键字搜索</param>
+        ///<returns>ListSimpleDataPoliciesPaginatedRespDto</returns>
+        public async Task<ListSimpleDataPoliciesPaginatedRespDto> ListSimpleDataPolices(ListSimpleDataPoliciesDto reqDto)
+        {
+            string httpResponse = await Request("GET", "/api/v3/list-simple-data-policies", reqDto).ConfigureAwait(false);
+
+            ListSimpleDataPoliciesPaginatedRespDto result = m_JsonService.DeserializeObject<ListSimpleDataPoliciesPaginatedRespDto>(httpResponse);
+            return result;
+
+        }
+        ///<summary>
+        /// 获取数据策略信息
+        ///</summary>
+        /// <param name="policyId">数据策略 ID</param>
+        ///<returns>GetDataPolicyResponseDto</returns>
+        public async Task<GetDataPolicyResponseDto> GetDataPolicy(GetDataPolicyDto reqDto)
+        {
+            string httpResponse = await Request("GET", "/api/v3/get-data-policy", reqDto).ConfigureAwait(false);
+
+            GetDataPolicyResponseDto result = m_JsonService.DeserializeObject<GetDataPolicyResponseDto>(httpResponse);
+            return result;
+
+        }
+        ///<summary>
+        /// 修改数据策略
+        ///</summary>
+        /// <param name="requestBody"></param>
+        ///<returns>UpdateDataPolicyResponseDto</returns>
+        public async Task<UpdateDataPolicyResponseDto> UpdateDataPolicy(UpdateDataPolicyDto requestBody)
+        {
+            string httpResponse = await Request("POST", "/api/v3/update-data-policy", requestBody).ConfigureAwait(false);
+
+            UpdateDataPolicyResponseDto result = m_JsonService.DeserializeObject<UpdateDataPolicyResponseDto>(httpResponse);
+            return result;
+        }
+        ///<summary>
+        /// 删除数据策略
+        ///</summary>
+        /// <param name="requestBody"></param>
+        ///<returns>CommonResponseDto</returns>
+        public async Task<CommonResponseDto> DeleteDataPolicy(DeleteDataPolicyDto requestBody)
+        {
+            string httpResponse = await Request("POST", "/api/v3/delete-data-policy", requestBody).ConfigureAwait(false);
+
+            CommonResponseDto result = m_JsonService.DeserializeObject<CommonResponseDto>(httpResponse);
+            return result;
+        }
+        ///<summary>
+        /// 校验数据策略名称是否存在
+        ///</summary>
+        /// <param name="policyName">数据策略名称，用户池唯一</param>
+        ///<returns>CheckParamsDataPolicyResponseDto</returns>
+        public async Task<CheckParamsDataPolicyResponseDto> CheckDataPolicyExists(CheckDataPolicyExistsDto reqDto)
+        {
+            string httpResponse = await Request("GET", "/api/v3/check-data-policy-exists", reqDto).ConfigureAwait(false);
+
+            CheckParamsDataPolicyResponseDto result = m_JsonService.DeserializeObject<CheckParamsDataPolicyResponseDto>(httpResponse);
+            return result;
+
+        }
+        ///<summary>
+        /// 获取数据策略下所有的授权主体的信息
+        ///</summary>
+        /// <param name="policyId">数据策略 ID</param>
+        /// <param name="page">当前页数，从 1 开始</param>
+        /// <param name="limit">每页数目，最大不能超过 50，默认为 10</param>
+        /// <param name="query">主体名称</param>
+        /// <param name="targetType">主体类型,包括 USER、GROUP、ROLE、ORG 四种类型</param>
+        ///<returns>ListDataPolicySubjectPaginatedRespDto</returns>
+        public async Task<ListDataPolicySubjectPaginatedRespDto> ListDataPolicyTargets(ListDataPolicyTargetsDto reqDto)
+        {
+            string httpResponse = await Request("GET", "/api/v3/list-data-policy-targets", reqDto).ConfigureAwait(false);
+
+            ListDataPolicySubjectPaginatedRespDto result = m_JsonService.DeserializeObject<ListDataPolicySubjectPaginatedRespDto>(httpResponse);
+            return result;
+
+        }
+        ///<summary>
+        /// 授权数据策略
+        ///</summary>
+        /// <param name="requestBody"></param>
+        ///<returns>CommonResponseDto</returns>
+        public async Task<CommonResponseDto> AuthorizeDataPolicies(CreateAuthorizeDataPolicyDto requestBody)
+        {
+            string httpResponse = await Request("POST", "/api/v3/authorize-data-policies", requestBody).ConfigureAwait(false);
+
+            CommonResponseDto result = m_JsonService.DeserializeObject<CommonResponseDto>(httpResponse);
+            return result;
+        }
+        ///<summary>
+        /// 撤销数据策略
+        ///</summary>
+        /// <param name="requestBody"></param>
+        ///<returns>CommonResponseDto</returns>
+        public async Task<CommonResponseDto> RevokeDataPolicy(DeleteAuthorizeDataPolicyDto requestBody)
+        {
+            string httpResponse = await Request("POST", "/api/v3/revoke-data-policy", requestBody).ConfigureAwait(false);
+
+            CommonResponseDto result = m_JsonService.DeserializeObject<CommonResponseDto>(httpResponse);
+            return result;
+        }
+        ///<summary>
+        /// 获取用户权限列表
+        ///</summary>
+        /// <param name="requestBody"></param>
+        ///<returns>GetUserPermissionListRespDto</returns>
+        public async Task<GetUserPermissionListRespDto> GetUserPermissionList(GetUserPermissionListDto requestBody)
+        {
+            string httpResponse = await Request("POST", "/api/v3/get-user-permission-list", requestBody).ConfigureAwait(false);
+
+            GetUserPermissionListRespDto result = m_JsonService.DeserializeObject<GetUserPermissionListRespDto>(httpResponse);
+            return result;
+        }
+        ///<summary>
+        /// 判断用户权限
+        ///</summary>
+        /// <param name="requestBody"></param>
+        ///<returns>CheckPermissionRespDto</returns>
+        public async Task<CheckPermissionRespDto> CheckPermission(CheckPermissionDto requestBody)
+        {
+            string httpResponse = await Request("POST", "/api/v3/check-permission", requestBody).ConfigureAwait(false);
+
+            CheckPermissionRespDto result = m_JsonService.DeserializeObject<CheckPermissionRespDto>(httpResponse);
+            return result;
+        }
+        ///<summary>
+        /// 判断外部用户权限
+        ///</summary>
+        /// <param name="requestBody"></param>
+        ///<returns>CheckExternalUserPermissionRespDto</returns>
+        public async Task<CheckExternalUserPermissionRespDto> CheckExternalUserPermission(CheckExternalUserPermissionDto requestBody)
+        {
+            string httpResponse = await Request("POST", "/api/v3/check-external-user-permission", requestBody).ConfigureAwait(false);
+
+            CheckExternalUserPermissionRespDto result = m_JsonService.DeserializeObject<CheckExternalUserPermissionRespDto>(httpResponse);
+            return result;
+        }
+        ///<summary>
+        /// 获取用户指定资源权限列表
+        ///</summary>
+        /// <param name="requestBody"></param>
+        ///<returns>GetUserResourcePermissionListRespDto</returns>
+        public async Task<GetUserResourcePermissionListRespDto> GetUserResourcePermissionList(GetUserResourcePermissionListDto requestBody)
+        {
+            string httpResponse = await Request("POST", "/api/v3/get-user-resource-permission-list", requestBody).ConfigureAwait(false);
+
+            GetUserResourcePermissionListRespDto result = m_JsonService.DeserializeObject<GetUserResourcePermissionListRespDto>(httpResponse);
+            return result;
+        }
+        ///<summary>
+        /// 获取资源被授权的用户列表
+        ///</summary>
+        /// <param name="requestBody"></param>
+        ///<returns>ListResourceTargetsRespDto</returns>
+        public async Task<ListResourceTargetsRespDto> ListResourceTargets(ListResourceTargets requestBody)
+        {
+            string httpResponse = await Request("POST", "/api/v3/list-resource-targets", requestBody).ConfigureAwait(false);
+
+            ListResourceTargetsRespDto result = m_JsonService.DeserializeObject<ListResourceTargetsRespDto>(httpResponse);
+            return result;
+        }
+        ///<summary>
+        /// 判断用户在同层级资源下的权限
+        ///</summary>
+        /// <param name="requestBody"></param>
+        ///<returns>CheckUserSameLevelPermissionResponseDto</returns>
+        public async Task<CheckUserSameLevelPermissionResponseDto> CheckUserSameLevelPermission(CheckUserSameLevelPermissionDto requestBody)
+        {
+            string httpResponse = await Request("POST", "/api/v3/check-user-same-level-permission", requestBody).ConfigureAwait(false);
+
+            CheckUserSameLevelPermissionResponseDto result = m_JsonService.DeserializeObject<CheckUserSameLevelPermissionResponseDto>(httpResponse);
             return result;
         }
         ///<summary>
@@ -2533,6 +3200,57 @@ namespace Authing.CSharp.SDK.Services
             WebhookEventListRespDto result = m_JsonService.DeserializeObject<WebhookEventListRespDto>(httpResponse);
             return result;
 
+        }
+        ///<summary>
+        /// 获取协作管理员 AK/SK 列表
+        ///</summary>
+        /// <param name="userId">用户 ID</param>
+        ///<returns>ListAccessKeyResponseDto</returns>
+        public async Task<ListAccessKeyResponseDto> GetAccessKeyList(ListAccessKeyDto reqDto)
+        {
+            string httpResponse = await Request("GET", "/api/v3/list-access-key", reqDto).ConfigureAwait(false);
+
+            ListAccessKeyResponseDto result = m_JsonService.DeserializeObject<ListAccessKeyResponseDto>(httpResponse);
+            return result;
+
+        }
+        ///<summary>
+        /// 获取协作管理员 AK/Sk 详细信息
+        ///</summary>
+        /// <param name="userId">用户 ID</param>
+        /// <param name="accessKeyId">accessKeyId</param>
+        ///<returns>GetAccessKeyResponseDto</returns>
+        public async Task<GetAccessKeyResponseDto> GetAccessKey(GetAccessKeyDto reqDto)
+        {
+            string httpResponse = await Request("GET", "/api/v3/get-access-key", reqDto).ConfigureAwait(false);
+
+            GetAccessKeyResponseDto result = m_JsonService.DeserializeObject<GetAccessKeyResponseDto>(httpResponse);
+            return result;
+
+        }
+        ///<summary>
+        /// 创建协作管理员的 AK/SK
+        ///</summary>
+        /// <param name="requestBody"></param>
+        ///<returns>CreateAccessKeyResponseDto</returns>
+        public async Task<CreateAccessKeyResponseDto> CreateAccessKey(CreateAccessKeyDto requestBody)
+        {
+            string httpResponse = await Request("POST", "/api/v3/create-access-key", requestBody).ConfigureAwait(false);
+
+            CreateAccessKeyResponseDto result = m_JsonService.DeserializeObject<CreateAccessKeyResponseDto>(httpResponse);
+            return result;
+        }
+        ///<summary>
+        /// 删除协作管理员的 AK/SK
+        ///</summary>
+        /// <param name="requestBody"></param>
+        ///<returns>CommonResponseDto</returns>
+        public async Task<CommonResponseDto> DeleteAccessKey(DeleteAccessKeyDto requestBody)
+        {
+            string httpResponse = await Request("POST", "/api/v3/delete-access-key", requestBody).ConfigureAwait(false);
+
+            CommonResponseDto result = m_JsonService.DeserializeObject<CommonResponseDto>(httpResponse);
+            return result;
         }
     }
 }

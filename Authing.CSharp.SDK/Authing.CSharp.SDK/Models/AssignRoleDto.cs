@@ -25,6 +25,16 @@ namespace Authing.CSharp.SDK.Models
         [JsonProperty("code")]
         public string  Code {get;set;}
         /// <summary>
+        ///  主体过期时间毫秒值, 为 null 时永久有效
+        /// </summary>
+        [JsonProperty("endTime")]
+        public long  EndTime {get;set;}
+        /// <summary>
+        ///  主体加入时间毫秒值, 为 null 时立即加入
+        /// </summary>
+        [JsonProperty("enableTime")]
+        public long  EnableTime {get;set;}
+        /// <summary>
         ///  所属权限分组的 code
         /// </summary>
         [JsonProperty("namespace")]

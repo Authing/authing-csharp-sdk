@@ -172,12 +172,18 @@ namespace Authing.CSharp.SDK.Models
             RECOVER,
             [EnumMember(Value="disable")]
             DISABLE,
-            [EnumMember(Value="userEnable")]
-            USER_ENABLE,
+            [EnumMember(Value="enable")]
+            ENABLE,
             [EnumMember(Value="activate")]
             ACTIVATE,
             [EnumMember(Value="deactivate")]
             DEACTIVATE,
+            [EnumMember(Value="add")]
+            ADD,
+            [EnumMember(Value="remove")]
+            REMOVE,
+            [EnumMember(Value="query")]
+            QUERY,
         }
         /// <summary>
         ///  事件类型：
@@ -246,6 +252,24 @@ namespace Authing.CSharp.SDK.Models
             POLICY,
             [EnumMember(Value="customDomain")]
             CUSTOM_DOMAIN,
+            [EnumMember(Value="permitSpace")]
+            PERMIT_SPACE,
+            [EnumMember(Value="generalResource")]
+            GENERAL_RESOURCE,
+            [EnumMember(Value="generalResourceAuthorization")]
+            GENERAL_RESOURCE_AUTHORIZATION,
+            [EnumMember(Value="roleSubject")]
+            ROLE_SUBJECT,
+            [EnumMember(Value="subjectOfRole")]
+            SUBJECT_OF_ROLE,
+            [EnumMember(Value="dataResource")]
+            DATA_RESOURCE,
+            [EnumMember(Value="dataPolicy")]
+            DATA_POLICY,
+            [EnumMember(Value="authorization")]
+            AUTHORIZATION,
+            [EnumMember(Value="userAuthorization")]
+            USER_AUTHORIZATION,
         }
     }
 }

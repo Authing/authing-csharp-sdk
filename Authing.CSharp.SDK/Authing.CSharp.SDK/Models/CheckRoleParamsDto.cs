@@ -15,9 +15,19 @@ namespace Authing.CSharp.SDK.Models
     public partial class CheckRoleParamsDto
     {
         /// <summary>
-        ///  所属权限分组(权限空间)的 code
+        ///  权限分组（权限空间）内角色的唯一标识符
+        /// </summary>
+        [JsonProperty("code")]
+        public string  Code {get;set;}
+        /// <summary>
+        ///  所属权限分组(权限空间)的 Code
         /// </summary>
         [JsonProperty("namespace")]
         public string  Namespace {get;set;}
+        /// <summary>
+        ///  权限分组（权限空间）内角色名称
+        /// </summary>
+        [JsonProperty("name")]
+        public string  Name {get;set;}
     }
 }

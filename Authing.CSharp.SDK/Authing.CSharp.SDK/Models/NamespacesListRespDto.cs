@@ -15,27 +15,22 @@ namespace Authing.CSharp.SDK.Models
     public partial class NamespacesListRespDto
     {
         /// <summary>
-        ///  权限分组（权限空间） ID
-        /// </summary>
-        [JsonProperty("id")]
-        public string  Id {get;set;}
-        /// <summary>
-        ///  权限分组（权限空间） 名称
+        ///  权限分组 名称
         /// </summary>
         [JsonProperty("name")]
         public string  Name {get;set;}
         /// <summary>
-        ///  权限分组（权限空间） Code
+        ///  权限分组 Code
         /// </summary>
         [JsonProperty("code")]
         public string  Code {get;set;}
         /// <summary>
-        ///  权限分组（权限空间）描述信息
+        ///  权限分组描述信息
         /// </summary>
         [JsonProperty("description")]
         public string  Description {get;set;}
         /// <summary>
-        ///  权限分组（权限空间）状态：0 -> 关闭、1 -> 开启
+        ///  权限分组状态：0 -> 关闭、1 -> 开启
         /// </summary>
         [JsonProperty("status")]
         public long  Status {get;set;}

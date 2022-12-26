@@ -29,5 +29,10 @@ namespace Authing.CSharp.SDK.Models
         /// </summary>
         [JsonProperty("description")]
         public string  Description {get;set;}
+        /// <summary>
+        ///  分组类型
+        /// </summary>
+        [JsonProperty("type")]
+        public string  Type {get;set;}
     }
 }

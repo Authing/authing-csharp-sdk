@@ -25,7 +25,7 @@ namespace Authing.CSharp.SDK.Models
         [JsonProperty("limit")]
         public long  Limit {get;set;} =10;
         /// <summary>
-        ///  搜索权限分组（权限空间） Code
+        ///  搜索权限分组 Code
         /// </summary>
         [JsonProperty("keywords")]
         public string  Keywords {get;set;} 

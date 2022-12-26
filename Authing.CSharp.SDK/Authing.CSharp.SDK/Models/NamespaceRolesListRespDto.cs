@@ -35,7 +35,7 @@ namespace Authing.CSharp.SDK.Models
         [JsonProperty("description")]
         public string  Description {get;set;}
         /// <summary>
-        ///  权限分组（权限空间） Code
+        ///  权限分组 Code
         /// </summary>
         [JsonProperty("namespace")]
         public string  Namespace {get;set;}

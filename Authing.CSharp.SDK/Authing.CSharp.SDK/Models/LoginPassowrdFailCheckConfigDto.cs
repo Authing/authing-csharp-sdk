@@ -15,12 +15,12 @@ namespace Authing.CSharp.SDK.Models
     public partial class LoginPassowrdFailCheckConfigDto
     {
         /// <summary>
-        ///  是否开启登录失败次数限制。
+        ///  是否开启登录密码错误限制
         /// </summary>
         [JsonProperty("enabled")]
         public bool  Enabled {get;set;}
         /// <summary>
-        ///  在一定时间周期内，对于同一个 IP，最多因为密码错误导致登录失败多少次后会触发安全策略。
+        ///  密码错误次数最大限制
         /// </summary>
         [JsonProperty("limit")]
         public long  Limit {get;set;}
@@ -29,5 +29,10 @@ namespace Authing.CSharp.SDK.Models
         /// </summary>
         [JsonProperty("timeInterval")]
         public long  TimeInterval {get;set;}
+        /// <summary>
+        ///  时间长度单位。Second/Minute/Hour/Day，仅仅做显示，timeInterval的单位还是秒
+        /// </summary>
+        [JsonProperty("unit")]
+        public string  Unit {get;set;}
     }
 }

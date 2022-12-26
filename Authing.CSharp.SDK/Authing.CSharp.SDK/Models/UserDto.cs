@@ -339,8 +339,8 @@ namespace Authing.CSharp.SDK.Models
             REGISTER,
             [EnumMember(Value="adminCreated")]
             ADMIN_CREATED,
-            [EnumMember(Value="syncTask")]
-            SYNC_TASK,
+            [EnumMember(Value="sync")]
+            SYNC,
         }
     }
 }

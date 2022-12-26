@@ -15,6 +15,11 @@ namespace Authing.CSharp.SDK.Models
     public partial class CreateGroupReqDto
     {
         /// <summary>
+        ///  分组类型
+        /// </summary>
+        [JsonProperty("type")]
+        public string  Type {get;set;}
+        /// <summary>
         ///  分组描述
         /// </summary>
         [JsonProperty("description")]

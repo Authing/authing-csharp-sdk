@@ -35,7 +35,7 @@ namespace Authing.CSharp.SDK.Models
         [JsonProperty("requestId")]
         public string  RequestId {get;set;}
         /// <summary>
-        ///  数据
+        ///  响应数据
         /// </summary>
         [JsonProperty("data")]
         public NamespaceListPagingDto  Data {get;set;}

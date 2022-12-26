@@ -126,6 +126,10 @@ namespace Authing.CSharp.SDK.Framework.Test
         }
     }
 
+    /// <summary>
+    /// 权限分组的批量测试
+    /// </summary>
+
     class AccessControlManagement_NameSpace_Batch_Test : ManagementClientBaseTest
     {
         /// <summary>
@@ -219,6 +223,10 @@ namespace Authing.CSharp.SDK.Framework.Test
             }
         }
     }
+
+    /// <summary>
+    /// 单个资源的测试
+    /// </summary>
     [TestFixture]
     class AccessControlManagement_Single_Resource : ManagementClientBaseTest
     {
@@ -317,7 +325,7 @@ namespace Authing.CSharp.SDK.Framework.Test
         [Ignore("此接口在服务器没有更新")]
         public async Task GetCommonResourceTest()
         {
-            var res = await managementClient.ListCommonResource(new CommonListResourceDto { NamespaceCodeList = "default,system", Page = 1, Limit = 10 });
+            var res = await managementClient.ListCommonResource(new ListCommonResourceDto { NamespaceCodeList = "default,system", Page = 1, Limit = 10 });
 
             Assert.IsTrue(res.StatusCode == 200);
         }
@@ -487,7 +495,9 @@ namespace Authing.CSharp.SDK.Framework.Test
 
         /// <summary>
         /// 2022-10-19 测试成功
+        /// 2022-11-21 测试失败： TODO: 公有云测试失败
         /// 关联/取消资源到租户
+        ///
         /// </summary>
         /// <returns></returns>
         [Test,Order(10)]
@@ -528,6 +538,9 @@ namespace Authing.CSharp.SDK.Framework.Test
         }
     }
 
+    /// <summary>
+    /// 批量创建、获取、删除资源测试
+    /// </summary>
     [TestFixture]
     class AccessControlManagementTest : ManagementClientBaseTest
     {

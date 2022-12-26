@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace Authing.CSharp.SDK.Framework.Test
 {
-    class CustomFieldsManagementTest : ManagementClientBaseTest
+    class CustomUserFieldsManagement_Test : ManagementClientBaseTest
     {
         /// <summary>
         /// 2022-10-20 测试通过
@@ -29,7 +29,7 @@ namespace Authing.CSharp.SDK.Framework.Test
 
         /// <summary>
         /// 2022-10-20 测试通过
-        /// 设置用户自定义字段
+        /// 修改用户内置字段
         /// </summary>
         /// <returns></returns>
         [Test]
@@ -50,7 +50,7 @@ namespace Authing.CSharp.SDK.Framework.Test
 
         /// <summary>
         /// 2022-10-20 测试通过
-        /// 设置用户自定义字段
+        /// 获取用户自定义字段
         /// </summary>
         /// <returns></returns>
         [Test]
@@ -61,13 +61,52 @@ namespace Authing.CSharp.SDK.Framework.Test
             Assert.IsTrue(dto.Data.Count > 0);
         }
 
+
+    }
+
+    /// <summary>
+    /// 自定义字段的测试
+    /// </summary>
+    class CustomFieldsManagementTest : ManagementClientBaseTest
+    {
+        private string fieldKey = "auting_v3_key";
+        private string fieldLabel = "authing_v3_label";
+        private string fieldDescription = "authing_v3_test_descprition";
+
+        private UserDto user;
+
+        [OneTimeSetUp]
+        public async Task CreateUser()
+        {
+            CreateUserReqDto dto = new CreateUserReqDto()
+            {
+                Username = "testUser" + new Random().Next(200, 1000),
+                Status = CreateUserReqDto.status.ACTIVATED,
+                Password = "password",
+                Options = new CreateUserOptionsDto { DepartmentIdType = CreateUserOptionsDto.departmentIdType.DEPARTMENT_ID }
+            };
+
+            UserSingleRespDto userSingleRespDto = await managementClient.CreateUser(dto);
+
+            user = userSingleRespDto.Data;
+        }
+
+        [OneTimeTearDown]
+        public async Task DeleteUser()
+        {
+            await managementClient.DeleteUsersBatch(new DeleteUsersBatchDto
+            {
+                UserIds = new List<string> { user.UserId }
+            });
+        }
+
         /// <summary>
         /// 2022-10-20 测试通过
         /// 设置用户自定义字段
         /// </summary>
         /// <returns></returns>
-        [Test]
-        public void SetCustomFieldsTest()
+        [Test, Order(1)]
+        public async Task SetCustomFieldsTest()
         {
             SetCustomFieldsReqDto setCustomFieldsReqDto = new SetCustomFieldsReqDto()
             {
@@ -77,22 +116,22 @@ namespace Authing.CSharp.SDK.Framework.Test
                         {
                             TargetType=SetCustomFieldDto.targetType.USER,
                            DataType = SetCustomFieldDto.dataType.STRING,
-                           Description = "AuthingV3Test",
-                           Key = "AuhtingV3Key",
-                           Label = "AuthingV3",
+                           Description = fieldDescription,
+                           Key = fieldKey,
+                           Label = fieldLabel,
                            Encrypted=false,
                            Options = new List<CustomFieldSelectOption>
                            {
                                 new CustomFieldSelectOption
                                 {
-                                    Label = "ss", Value = "AuthingV3Value"
+                                    Label = "EnumLabel1", Value = "EnumLabelValue1"
                                 }
                             }
                         }
                     }
             };
 
-            CustomFieldListRespDto dto = managementClient.SetCustomFields(setCustomFieldsReqDto).Result;
+            CustomFieldListRespDto dto = await managementClient.SetCustomFields(setCustomFieldsReqDto);
             Assert.IsTrue(dto.Data.Count > 0);
         }
 
@@ -101,18 +140,14 @@ namespace Authing.CSharp.SDK.Framework.Test
         /// 设置自定义字段的值
         /// </summary>
         /// <returns></returns>
-        [Test]
-        public void SetCustomDataTest()
+        [Test, Order(2)]
+        public async Task SetCustomData_With_UserId_Test()
         {
-            using (CancellationTokenSource cts = new CancellationTokenSource())
+            SetCustomDataReqDto setCustomFieldsReqDto = new SetCustomDataReqDto()
             {
-
-                SetCustomDataReqDto setCustomFieldsReqDto = new SetCustomDataReqDto()
-                {
-                    TargetType = SetCustomDataReqDto.targetType.USER,
-                    TargetIdentifier = "634fc0a6ebc13285a2ac8dd2",
-                    Namespace = "default",
-                    List = new List<SetCustomDataDto>()
+                TargetType = SetCustomDataReqDto.targetType.USER,
+                TargetIdentifier = user.UserId,
+                List = new List<SetCustomDataDto>()
                     {
                         new SetCustomDataDto()
                         {
@@ -121,11 +156,10 @@ namespace Authing.CSharp.SDK.Framework.Test
                            Value="AuthingV3Value"
                         }
                     }
-                };
+            };
 
-                IsSuccessRespDto isSuccess = managementClient.SetCustomData(setCustomFieldsReqDto).Result;
-                Assert.IsTrue(isSuccess.Data.Success);
-            }
+            IsSuccessRespDto isSuccess = await managementClient.SetCustomData(setCustomFieldsReqDto);
+            Assert.IsTrue(isSuccess.Data.Success);
         }
 
         /// <summary>
@@ -133,14 +167,11 @@ namespace Authing.CSharp.SDK.Framework.Test
         /// 获取自定义字段的值
         /// </summary>
         /// <returns></returns>
-        [Test]
-        public void GetCustomData()
+        [Test, Order(3)]
+        public async Task GetCustomData_With_userId_Test()
         {
-            using (CancellationTokenSource cts = new CancellationTokenSource())
-            {
-                GetCustomDataRespDto getCustomDataRespDto = managementClient.GetCustomData(new GetCustomDataDto { Namespace = "default", TargetIdentifier = "634fc0a6ebc13285a2ac8dd2", TargetType = "USER" }).Result;
-                Assert.IsNotNull(getCustomDataRespDto.Data);
-            }
+            GetCustomDataRespDto getCustomDataRespDto = await managementClient.GetCustomData(new GetCustomDataDto { TargetIdentifier = user.UserId, TargetType = "USER" });
+            Assert.IsNotNull(getCustomDataRespDto.Data);
         }
     }
 }

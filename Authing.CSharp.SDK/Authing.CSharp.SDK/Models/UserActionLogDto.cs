@@ -175,6 +175,8 @@ namespace Authing.CSharp.SDK.Models
             DELETE_ACCOUNT,
             [EnumMember(Value="verifyFirstLogin")]
             VERIFY_FIRST_LOGIN,
+            [EnumMember(Value="securityResourceAccess")]
+            SECURITY_RESOURCE_ACCESS,
         }
     }
 }
