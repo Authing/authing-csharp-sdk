@@ -591,6 +591,23 @@ namespace Authing.CSharp.SDK.Framework.Test.Management
         }
 
         [Test]
+        public async Task ListDataPolicyTargetsTest()
+        {
+            ListSimpleDataPoliciesPaginatedRespDto polocyList = await managementClient.ListSimpleDataPolices(new ListSimpleDataPoliciesDto
+            {
+
+            });
+
+            ListDataPolicySubjectPaginatedRespDto result = await managementClient.ListDataPolicyTargets(new ListDataPolicyTargetsDto
+            {
+                PolicyId = polocyList.Data.List.First().PolicyId,
+                TargetType = "USER"
+            });
+
+            Assert.IsTrue(result.Data.TotalCount > 0);
+        }
+
+        [Test]
         public async Task GetUserPermissionListTest()
         {
             UserPaginatedRespDto res = await managementClient.ListUsers(new ListUsersRequestDto { });
@@ -731,25 +748,6 @@ namespace Authing.CSharp.SDK.Framework.Test.Management
         private string code = "examplePermissionCode";
         private string name = "examplePermissionNamespace";
         private string description = "examplePermissionDescription";
-
-        [SetUp]
-        public async Task CreatePermissionNamespaceTest()
-        {
-            CreatePermissionNamespaceResponseDto result = await managementClient.CreatePermissionNamespace(new CreatePermissionNamespaceDto { Code = code, Name = name, Description = description });
-
-            Assert.IsTrue(result.Data.Name == name);
-        }
-
-        [TearDown]
-        public async Task DeletePermissionNamespaceTest()
-        {
-            IsSuccessRespDto result = await managementClient.DeletePermissionNamespace(new DeletePermissionNamespaceDto
-            {
-                Code = code
-            });
-
-            Assert.IsTrue(result.Data.Success);
-        }
 
         [Test, Order(1)]
         public async Task CreatePermissionNamespacesBatchTest()
