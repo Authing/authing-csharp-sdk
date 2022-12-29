@@ -8,15 +8,16 @@
 		<PackageId>Authing.CSharp.SDK</PackageId>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<PackageReleaseNotes>
-Version 3.0.2
-- V3 修复标准协议调用失败的问题
+
+Version 3.0.3
+- V3 增加数据权限相关的接口
 
 </PackageReleaseNotes>
-		<Version>3.0.2</Version>
+		<Version>3.1.2</Version>
 		<PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
-		<FileVersion>3.0.2</FileVersion>
+		<FileVersion>3.1.2</FileVersion>
 		<Company>Authing</Company>
-		<AssemblyVersion>3.0.2</AssemblyVersion>
+		<AssemblyVersion>3.1.2</AssemblyVersion>
 		<Authors>Authing</Authors>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<Copyright>Beijing Steamory Technology Co. Ltd.</Copyright>
