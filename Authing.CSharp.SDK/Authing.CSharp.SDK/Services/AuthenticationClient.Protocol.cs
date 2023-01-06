@@ -124,7 +124,7 @@ namespace Authing.CSharp.SDK.Services
             switch (options.TokenEndPointAuthMethod)
             {
                 case TokenEndPointAuthMethod.CLIENT_SECRET_POST:
-                    jsonResult = await PostWithHostAsync(m_AppHost, url, new Dictionary<string, string>()
+                    jsonResult = await PostFormAsyncWithHost(m_AppHost, url, new Dictionary<string, string>()
                     {
                         { "client_id", options.AppId },
                         { "client_secret", options.AppSecret },
@@ -135,7 +135,7 @@ namespace Authing.CSharp.SDK.Services
                     return m_JsonService.DeserializeObject<CodeToTokenResponse>(jsonResult);
                 case TokenEndPointAuthMethod.CLIENT_SECRET_BASIC:
 
-                    jsonResult = await PostWithHostAsync(m_AppHost, url, new Dictionary<string, string>()
+                    jsonResult = await PostFormAsyncWithHost(m_AppHost, url, new Dictionary<string, string>()
                         {
                             { "grant_type", "authorization_code" },
                             { "code", code },
@@ -144,7 +144,7 @@ namespace Authing.CSharp.SDK.Services
                         $"Basic {Convert.ToBase64String(Encoding.UTF8.GetBytes($"{options.AppId}:{options.AppSecret}"))}"} }).ConfigureAwait(false);
                     return m_JsonService.DeserializeObject<CodeToTokenResponse>(jsonResult);
                 case TokenEndPointAuthMethod.NONE:
-                    jsonResult = await PostWithHostAsync(m_AppHost, url, new Dictionary<string, string>()
+                    jsonResult = await PostFormAsyncWithHost(m_AppHost, url, new Dictionary<string, string>()
                     {
                         { "client_id", options.AppId },
                         //{ "client_secret", Options.Secret },

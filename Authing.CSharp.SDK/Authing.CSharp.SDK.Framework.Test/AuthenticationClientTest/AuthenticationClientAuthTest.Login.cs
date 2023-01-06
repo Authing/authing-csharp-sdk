@@ -57,7 +57,7 @@ namespace Authing.CSharp.SDK.Framework.Test
         [Test]
         public async Task LoginByUserNameWithPassword()
         {
-            var res2 = await client.SignInByUsernamePassword("tmgg", "88886666");
+            var res2 = await client.SignInByUsernamePassword("tmgg", "88886666",new SignInOptionsDto { AutoRegister=true,PasswordEncryptType=SignInOptionsDto.passwordEncryptType.NONE});
             Assert.AreEqual(200, res2.StatusCode);
         }
 

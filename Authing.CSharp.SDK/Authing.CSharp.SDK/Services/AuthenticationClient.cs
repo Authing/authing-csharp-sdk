@@ -1345,7 +1345,8 @@ namespace Authing.CSharp.SDK.Services
                     Account = account,
                     Password = password
                 },
-                Options = option
+                Options = option,
+                
             };
 
             if (options.TokenEndPointAuthMethod == TokenEndPointAuthMethod.CLIENT_SECRET_POST)

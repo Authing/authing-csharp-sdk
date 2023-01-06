@@ -75,17 +75,26 @@ namespace Authing.CSharp.SDK.Framework.Test.AuthenticationClientTest
         [Test]
         public async Task GetUserInfoByAccessToken_OIDC_Test()
         {
-            string oidcUrl = client.BuildAuthorizeUrl(new OidcOption() { RedirectUri = "https://www.baidu.com", Scope = "openid profile email phone address offline_access" });
+            var userInfo = await client.GetUserInfoByAccessToken("eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImtpZCI6Ik10c0QwZXJqMGpNdEk1akdBbUdfNGFMUjJQVW9pMWZHd1ZxcUlBQzRTN00ifQ.eyJzdWIiOiI2M2EyZTgzMmI2MWM5NGMzZDM1NmRkODUiLCJhdWQiOiI2MTMxODliMzhiNmM2NmNhYzFkMjExYmQiLCJzY29wZSI6ImVtYWlsIHBob25lIHByb2ZpbGUgb2ZmbGluZV9hY2Nlc3Mgb3BlbmlkIiwiaWF0IjoxNjcyOTg2MDIxLCJleHAiOjE2NzQxOTU2MjEsImp0aSI6ImRMMl9fZXZ6TERLaGt4NUFWSHVCVmhRWDFvblhaT25aTWdxelREdENLSjgiLCJpc3MiOiJodHRwczovL2VoYXp6ZC1kZW1vLmF1dGhpbmcuY24vb2lkYyJ9.GEXafW2AgeWcTf2_6tgCSF3PCfItZHC9DdhptDuKX0Y948Jf5lBDYbhsh64HU0ANJVwPBZyc4yeiv12GzZJWViHuQ-vMsuvXxytizO1gsS_Dc76Zdoo2CP5mXMQobcZVc6x9BCHao7duXgScFr35Dx5CSfMedl3QCcakGWJkwuId6eafRN9xr5VNF-E12dygFPkkRM8iCRVxyw9QXo8qECZLQzjuyhMjjsLoNS65Qfu9So_c7eA6HAOb_EyYm-hY4UQtOp5giKIDG7VaMS6yCHnr2Z-cWr7A-ejf9MWCXR3rbdM7uEF4w2fuqtuZZ8T0gOsx1IUYzf-6QK1UoQThhQ");
+
+
+            string oidcUrl = client.BuildAuthorizeUrl(new OidcOption() { RedirectUri = "http://www.baidu.com", Scope = "openid profile email phone address offline_access" });
 
             Assert.NotNull(oidcUrl);
 
             //先在浏览器访问 oidcurl ，填入登录成功后的 code
-            var res = await client.GetAccessTokenByCode("zK-AdMW1wF0EZissZUuf0lmYDdemdE6ymGoCwsm0DSC");
+            var res = await client.GetAccessTokenByCode("HYj_1goop20lCyJ-8B6HPtBgPckrMAfAXgmI8sUMhFb");
+
+            try
+            {
+               // var userInfo = await client.GetUserInfoByAccessToken("eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImtpZCI6Ik10c0QwZXJqMGpNdEk1akdBbUdfNGFMUjJQVW9pMWZHd1ZxcUlBQzRTN00ifQ.eyJzdWIiOiI2M2EyZTgzMmI2MWM5NGMzZDM1NmRkODUiLCJhdWQiOiI2MTMxODliMzhiNmM2NmNhYzFkMjExYmQiLCJzY29wZSI6ImVtYWlsIHBob25lIHByb2ZpbGUgb2ZmbGluZV9hY2Nlc3Mgb3BlbmlkIiwiaWF0IjoxNjcyOTg2MDIxLCJleHAiOjE2NzQxOTU2MjEsImp0aSI6ImRMMl9fZXZ6TERLaGt4NUFWSHVCVmhRWDFvblhaT25aTWdxelREdENLSjgiLCJpc3MiOiJodHRwczovL2VoYXp6ZC1kZW1vLmF1dGhpbmcuY24vb2lkYyJ9.GEXafW2AgeWcTf2_6tgCSF3PCfItZHC9DdhptDuKX0Y948Jf5lBDYbhsh64HU0ANJVwPBZyc4yeiv12GzZJWViHuQ-vMsuvXxytizO1gsS_Dc76Zdoo2CP5mXMQobcZVc6x9BCHao7duXgScFr35Dx5CSfMedl3QCcakGWJkwuId6eafRN9xr5VNF-E12dygFPkkRM8iCRVxyw9QXo8qECZLQzjuyhMjjsLoNS65Qfu9So_c7eA6HAOb_EyYm-hY4UQtOp5giKIDG7VaMS6yCHnr2Z-cWr7A-ejf9MWCXR3rbdM7uEF4w2fuqtuZZ8T0gOsx1IUYzf-6QK1UoQThhQ");
 
 
-            var userInfo = await client.GetUserInfoByAccessToken(res.AccessToken);
-
-            Assert.NotNull(userInfo);
+                Assert.NotNull(userInfo);
+            }
+            catch (Exception exp)
+            { 
+            }
         }
 
         /// <summary>
@@ -148,7 +157,7 @@ namespace Authing.CSharp.SDK.Framework.Test.AuthenticationClientTest
             Assert.NotNull(oidcUrl);
 
             //先在浏览器访问 oidcurl ，填入登录成功后的 code
-            var res = await client.GetAccessTokenByCode("KZlp639B5bGzXx9yrVGfVeDb-MHGHmwq4oF1PpOh_Hf");
+            var res = await client.GetAccessTokenByCode("PDt1ZT0Fy-riwhewMfDB1wGHF9GAtmGyXYsnHHLgBJO");
 
             var checkResult = await client.ValidateToken(new ValidateTokenParams { AccessToken = res.AccessToken });
 

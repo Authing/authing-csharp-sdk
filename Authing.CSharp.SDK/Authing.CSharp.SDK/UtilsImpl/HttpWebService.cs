@@ -185,7 +185,7 @@ namespace Authing.CSharp.SDK.Utils
 
                 stringBuilder = new StringBuilder(stringBuilder.ToString().Trim('&'));
 
-                byte[] content = Encoding.UTF8.GetBytes(stringBuilder.ToString());
+                byte[] content = Encoding.Default.GetBytes(stringBuilder.ToString());
                 request.ContentLength = content.Length;
 
                 using (Stream reqStream = request.GetRequestStream())

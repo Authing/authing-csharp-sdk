@@ -20,11 +20,9 @@ namespace Authing.CSharp.SDK.Services
         {
             m_JsonService = jsonService;
 
-#if NET45_OR_GREATER
-            m_HttpService = HttpServiceFactory.Get(m_JsonService, Enums.HttpServiceType.HTTPCLIENT);
-#else
+
             m_HttpService = HttpServiceFactory.Get(m_JsonService, Enums.HttpServiceType.HTTPWEBREQUEST);
-#endif
+
         }
 
         protected string BuildHttpPostRequest(Dictionary<string, string> @params)

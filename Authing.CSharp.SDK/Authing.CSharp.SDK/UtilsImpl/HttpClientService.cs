@@ -1,4 +1,4 @@
-﻿#if NET48
+﻿#if NETSTANDARD2_0_OR_GREATER
 
 using Authing.CSharp.SDK.IServices;
 using System;
@@ -8,12 +8,11 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
-
 using System.Net.Http;
 
 namespace Authing.CSharp.SDK.UtilsImpl
 {
-    public class HttpClienService : IHttpService
+    public class HttpClientService : IHttpService
     {
         private static readonly HttpClient m_HttpClient;
         private readonly IJsonService m_JsonService;
@@ -23,18 +22,18 @@ namespace Authing.CSharp.SDK.UtilsImpl
         private int timeOut = 10 * 1000;
         private bool rejectUnauthorized = false;
 
-        static HttpClienService()
+        static HttpClientService()
         {
             ServicePointManager.DefaultConnectionLimit = 1024;
             m_HttpClient = new HttpClient(new HttpClientHandler()
             {
-                //Proxy = null,
-                //UseProxy = false,
-                //ServerCertificateCustomValidationCallback = delegate { return true; }
+                Proxy = null,
+                UseProxy = false,
+                ServerCertificateCustomValidationCallback = delegate { return true; }
             });
         }
 
-        public HttpClienService(IJsonService jsonService)
+        public HttpClientService(IJsonService jsonService)
         {
             m_JsonService = jsonService;
             m_HeadderDic = new Dictionary<string, string>();
@@ -59,7 +58,7 @@ namespace Authing.CSharp.SDK.UtilsImpl
                     }
                 }
             }
-            catch (TaskCanceledException)
+            catch (Exception exp)
             {
                 throw new Exception("网络连接超时");
             }
@@ -77,7 +76,6 @@ namespace Authing.CSharp.SDK.UtilsImpl
                 })
                 {
                     SetWebRequestHeader(request, bearerToken);
-                    request.Headers.Add("User-Agent", "PostmanRuntime/7.29.2");
 
                     using (HttpResponseMessage response = await m_HttpClient.SendAsync(request, cancelllationToken).ConfigureAwait(false))
                     {
@@ -191,7 +189,13 @@ namespace Authing.CSharp.SDK.UtilsImpl
 
             foreach (var item in m_HeadderDic)
             {
-                request.Headers.Add(item.Key, item.Value);
+                if (item.Key == "user-agent")
+                {
+                    request.Headers.UserAgent.ParseAdd(item.Value);
+                    continue;
+                }
+
+                    request.Headers.Add(item.Key, item.Value);
             }
 
             return request;

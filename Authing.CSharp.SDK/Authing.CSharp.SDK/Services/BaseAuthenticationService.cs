@@ -240,7 +240,8 @@ namespace Authing.CSharp.SDK.Services
 
             string osBit = Environment.Is64BitOperatingSystem ? "x64" : "x86";
             string version = $"authing-csharp-sdk:{System.Reflection.Assembly.GetExecutingAssembly().GetName().Version}";
-            string defaultUA = $"AuthingIdentityCloud ({Environment.OSVersion.VersionString}; {osBit}) .Net(v{Environment.Version}), authing-csharp-sdk:{System.Reflection.Assembly.GetExecutingAssembly().GetName().Version}";
+            //string defaultUA = $"AuthingIdentityCloud ({Environment.OSVersion.VersionString}; {osBit}) doNet(v{Environment.Version}), authing-csharp-sdk:{System.Reflection.Assembly.GetExecutingAssembly().GetName().Version}";
+            string defaultUA = $"AuthingIdentityCloud ({Environment.OSVersion.VersionString}; {osBit}) doNet(v)";
 
             m_HttpService.SetHeader("x-authing-sdk-version", version);
             m_HttpService.SetHeader("x-authing-app-id", options.AppId);

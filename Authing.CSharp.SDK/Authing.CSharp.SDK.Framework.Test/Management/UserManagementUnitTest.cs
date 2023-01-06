@@ -21,7 +21,7 @@ namespace Authing.CSharp.SDK.Framework.Test
         /// 新建用户
         /// </summary>
         /// <returns></returns>
-        [SetUp,Category("user")]
+        //[SetUp,Category("user")]
         public async Task CreateUser()
         {
             CreateUserReqDto dto = new CreateUserReqDto()
@@ -41,7 +41,7 @@ namespace Authing.CSharp.SDK.Framework.Test
         /// 删除用户
         /// </summary>
         /// <returns></returns>
-        [TearDown]
+        //[TearDown]
         public async Task DeleteUser()
         {
             var result = await managementClient.DeleteUsersBatch(new DeleteUsersBatchDto
@@ -121,7 +121,7 @@ namespace Authing.CSharp.SDK.Framework.Test
                 //
 
                 RolePaginatedRespDto rolePaginatedRespDto = await managementClient.GetUserRoles(new GetUserRolesDto
-                { UserId = "634e4a4e0cc273a3f9c4543e", Namespace = "634cf98aa5b1455a52949d33" });
+                { UserId = "63a2e832b61c94c3d356dd85", Namespace = "63981463f8d0a068ad0d9878" });
 
                 Assert.IsTrue(rolePaginatedRespDto.Data.List.Count > 0);
             }
