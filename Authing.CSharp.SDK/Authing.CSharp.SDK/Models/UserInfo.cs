@@ -78,7 +78,7 @@ namespace Authing.CSharp.SDK.Models.Authentication
         /// <summary>
         /// 头像链接，默认为 https://usercontents.authing.cn/authing-avatar.png
         /// </summary>
-        [JsonProperty("picture")]
+        [JsonProperty("photo")]
         public string Photo { get; set; }
 
         [JsonProperty("device")] public string Device { get; set; }
@@ -135,9 +135,6 @@ namespace Authing.CSharp.SDK.Models.Authentication
         /// </summary>
         [JsonProperty("birthdate")]
         public string Birthdate { get; set; }
-
-        [JsonProperty("zoneinfo")] 
-        public string Zoneinfo { get; set; }
 
         /// <summary>
         /// 时区
