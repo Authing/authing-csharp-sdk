@@ -9,15 +9,15 @@
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<PackageReleaseNotes>
 
-Version 3.1.3
-- V3 修复 OIDC 接口错误 GetAccessTokenByCode
+			Version 3.1.4
+			- V3 添加用户信息字段 GetUserInfoByAccessToken
 
-</PackageReleaseNotes>
-		<Version>3.1.3</Version>
+		</PackageReleaseNotes>
+		<Version>3.1.4</Version>
 		<PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
-		<FileVersion>3.1.3</FileVersion>
+		<FileVersion>3.1.4</FileVersion>
 		<Company>Authing</Company>
-		<AssemblyVersion>3.1.3</AssemblyVersion>
+		<AssemblyVersion>3.1.4</AssemblyVersion>
 		<Authors>Authing</Authors>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<Copyright>Beijing Steamory Technology Co. Ltd.</Copyright>
