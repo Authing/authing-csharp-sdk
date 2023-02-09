@@ -88,12 +88,6 @@ namespace Authing.CSharp.SDK.Models.Authentication
         [JsonProperty("company")] public string Company { get; set; }
 
         /// <summary>
-        /// 昵称，该字段不唯一。
-        /// </summary>
-        [JsonProperty("nickname")]
-        public string Nickname { get; set; }
-
-        /// <summary>
         /// 姓氏
         /// </summary>
         [JsonProperty("family_name")]
