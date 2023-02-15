@@ -33,6 +33,7 @@ public partial class SigninByMobileDto
 /// - `wechat_mini_program_code`: 微信小程序使用 code 登录
 /// - `wechat_mini_program_phone `: 微信小程序使用手机号登录
 /// - `google`: Google 移动端社会化登录
+/// - facebook: Facebook 移动端社会化登录
 /// 
     /// </summary>
     [JsonProperty("connection")]
@@ -93,6 +94,11 @@ public partial class SigninByMobileDto
     [JsonProperty("googlePayload")]
     public SignInByGooglePayloadDto  GooglePayload {get;set;}
     /// <summary>
+    /// Facebook 移动端社会化登录数据，当 connection 为 facebook 的时候必填
+    /// </summary>
+    [JsonProperty("facebookPayload")]
+    public SignInByFacebookPayloadDto FacebookPayload { get; set; }
+    /// <summary>
     ///  可选参数
     /// </summary>
     [JsonProperty("options")]
@@ -149,6 +155,8 @@ public partial class SigninByMobileDto
         WECHAT_MINI_PROGRAM_PHONE,
          [EnumMember(Value="google")]
         GOOGLE,
+         [EnumMember(Value = "facebook")]
+         FACEBOOK,
     }
 }
 }
