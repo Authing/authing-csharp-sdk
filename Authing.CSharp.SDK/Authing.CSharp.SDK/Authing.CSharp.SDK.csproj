@@ -9,15 +9,15 @@
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<PackageReleaseNotes>
 
-			Version 3.1.4
-			- V3 添加用户信息字段 GetUserInfoByAccessToken
+			Version 3.1.6
+			- V3 移动端社会化登录 SignInByMobile 增加对  Facebook 的登录支持
 
 		</PackageReleaseNotes>
-		<Version>3.1.4</Version>
+		<Version>3.1.6</Version>
 		<PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
-		<FileVersion>3.1.4</FileVersion>
+		<FileVersion>3.1.6</FileVersion>
 		<Company>Authing</Company>
-		<AssemblyVersion>3.1.4</AssemblyVersion>
+		<AssemblyVersion>3.1.6</AssemblyVersion>
 		<Authors>Authing</Authors>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<Copyright>Beijing Steamory Technology Co. Ltd.</Copyright>

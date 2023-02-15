@@ -9,20 +9,20 @@ namespace Authing.CSharp.SDK.Framework.Test.AuthenticationClientTest
     {
         protected AuthenticationClient client;
 
-        private string appId = "634cf98aa5b1455a52949d33";
-        private string appSecret = "327cdf9cc9cd7f738262f019b05b174d";
+        private string appId = "613189b38b6c66cac1d211bd";
+        private string appSecret = "33a067dbebb9195af3702fe9a5d29e84";
         private string domain = "https://qidongtest.test2.authing-inc.co";
-        private string redirectUri = "https://www.baidu.com";
+        private string redirectUri = "http://localhost:44300/auth/callback";
 
         [OneTimeSetUp]
         public void SetupClient()
         {
             client = new AuthenticationClient(new AuthenticationClientInitOptions
             {
-                AppId = "AUTHING_APP_ID",
-                AppSecret = "AUTHING_SECRET",
-                RedirectUri = "AUTHING_REDIRECTURI",
-                AppHost = @"AUTHING_HOST",
+                AppId = "613189b38b6c66cac1d211bd",
+                AppSecret = "33a067dbebb9195af3702fe9a5d29e84",
+                RedirectUri = "http://localhost:44300/auth/callback",
+                AppHost = @"https://ehazzd-demo.authing.cn",
             });
         }
     }
