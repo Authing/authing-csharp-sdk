@@ -304,38 +304,14 @@ Node.js(v14.18.0), authing-node-sdk: 0.0.19
 
             foreach (var e in sortedDictionary)
             {
-                if (e.Value.Contains(",") && method=="GET" && e.Key.Contains("codeList"))
+                queryBuilder.Append(e.Key);
+                if (null != e.Value)
                 {
-                    queryBuilder.Append(e.Key+"=");
-                    queryBuilder.Append("[");
-                    List<string> valueList = e.Value.Split(',').ToList<string>();
-                    for (int i=0; i<valueList.Count;i++)
-                    {
-                        
-
-                        if (!string.IsNullOrWhiteSpace(valueList[i]))
-                        {
-                            queryBuilder.Append("\"").Append(valueList[i]).Append("\"");
-                        }
-
-                        if (i<valueList.Count-1)
-                        queryBuilder.Append(",");
-                    }
-                    queryBuilder.Append("]");
-                    queryBuilder.Append(QUERY_SEPARATOR);
-                }
-                else
-                {
-                    queryBuilder.Append(e.Key);
-                    if (null != e.Value)
-                    {
-                        queryBuilder.Append("=").Append(e.Value);
-                    }
-
-
-                    queryBuilder.Append(QUERY_SEPARATOR);
+                    queryBuilder.Append("=").Append(e.Value);
                 }
 
+
+                queryBuilder.Append(QUERY_SEPARATOR);
             }
 
             var querystring = queryBuilder.ToString();
