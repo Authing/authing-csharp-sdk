@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.Serialization;
+using System.Security.Cryptography.X509Certificates;
 
 namespace Authing.CSharp.SDK.Models
 {
@@ -38,6 +39,6 @@ namespace Authing.CSharp.SDK.Models
         ///  响应数据
         /// </summary>
         [JsonProperty("data")]
-        public List<DepartmentDto>  Data {get;set;}
+        public DepartmentPagingDto Data {get;set;}
     }
 }

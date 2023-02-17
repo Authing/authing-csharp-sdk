@@ -1,4 +1,4 @@
-﻿#if NETSTANDARD2_0_OR_GREATER
+﻿
 
 using Authing.CSharp.SDK.IServices;
 using System;
@@ -29,7 +29,10 @@ namespace Authing.CSharp.SDK.UtilsImpl
             {
                 Proxy = null,
                 UseProxy = false,
-                ServerCertificateCustomValidationCallback = delegate { return true; }
+#if NET48_OR_GREATER
+               ServerCertificateCustomValidationCallback = delegate { return true; }
+#endif
+
             });
         }
 
@@ -244,5 +247,5 @@ namespace Authing.CSharp.SDK.UtilsImpl
 
 }
 
-#endif
+
 

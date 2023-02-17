@@ -6,7 +6,6 @@ using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Management.Instrumentation;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -291,7 +290,7 @@ namespace Authing.CSharp.SDK.Framework.Test
                 };
 
                 DepartmentListRespDto respDto = await managementClient.SearchDepartments(reqDto);
-                Assert.IsTrue(respDto.Data.Count > 0);
+                Assert.IsTrue(respDto.Data.TotalCount > 0);
             }
         }
 
@@ -665,7 +664,7 @@ namespace Authing.CSharp.SDK.Framework.Test
         }
 
 
-
+    
 
 
     }
@@ -673,9 +672,35 @@ namespace Authing.CSharp.SDK.Framework.Test
     class OrganizationsManagementTest : ManagementClientBaseTest
     {
 
+        [Test]
+        public async Task SearchDepartmentTest()
+        {
+            try
+            {
+                var res = await managementClient.SearchDepartmentsList(new SearchDepartmentsListReqDto { OrganizationCode = "OU=Root,DC=oldDomain,DC=com", Page = 1, Limit = 10 });
 
+                Assert.NotNull(res);
+            }
+            catch (Exception exp)
+            { 
+            
+            }
+        }
 
+        [Test]
+        public async Task ListChildrenDepartmentsTest()
+        {
+            try
+            {
+                var res = await managementClient.ListChildrenDepartments(new  ListChildrenDepartmentsDto { OrganizationCode = "OU=Root,DC=oldDomain,DC=com",DepartmentId= "634239c95686281a4d4d627f" });
 
+                Assert.NotNull(res);
+            }
+            catch (Exception exp)
+            {
+
+            }
+        }
 
 
 

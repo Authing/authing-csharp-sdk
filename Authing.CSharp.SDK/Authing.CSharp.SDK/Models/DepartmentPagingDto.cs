@@ -18,7 +18,7 @@ namespace Authing.CSharp.SDK.Models
         ///  总数
         /// </summary>
         [JsonProperty("totalCount")]
-        public bool  TotalCount {get;set;}
+        public int  TotalCount {get;set;}
         /// <summary>
         ///  响应数据
         /// </summary>

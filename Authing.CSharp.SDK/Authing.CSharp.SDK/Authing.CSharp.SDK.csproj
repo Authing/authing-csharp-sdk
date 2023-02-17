@@ -64,6 +64,10 @@
 		<Reference Include="System.Web" />
 	</ItemGroup>
 	
+		<ItemGroup Condition="'$(TargetFramework)' == 'net40'">
+		<PackageReference Include="Microsoft.Net.Http" Version="2.2.29" />
+	</ItemGroup>
+	
 	<ItemGroup Condition=" '$(TargetFramework)'=='net45'">
 		<Reference Include="System.Web" />
 	</ItemGroup>

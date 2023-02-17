@@ -14,7 +14,7 @@ namespace Authing.CSharp.SDK.Infrastructure
     {
         public static IHttpService Get(IJsonService jsonService, HttpServiceType httpService)
         {
-            return new HttpWebService(jsonService);
+            return new HttpClientService(jsonService);
         }
     }
 }

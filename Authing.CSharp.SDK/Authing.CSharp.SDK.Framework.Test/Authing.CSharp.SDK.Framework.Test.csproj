@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net48</TargetFramework>
+    <TargetFrameworks>net45</TargetFrameworks>
 
     <IsPackable>false</IsPackable>
   </PropertyGroup>
@@ -20,10 +20,23 @@
 
   <ItemGroup>
     <PackageReference Include="NUnit" Version="3.12.0" />
-    <PackageReference Include="NUnit3TestAdapter" Version="3.16.1" />
+	  <PackageReference Include="NUnit3TestAdapter" Version="4.2.1" />
+	  <PackageReference Include="NUnit.Analyzers" Version="3.3.0" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.5.0" />
-	  <PackageReference Include="Polly.Net40Async" Version="5.9.0" />
   </ItemGroup>
+
+	<ItemGroup Condition="'$(TargetFramework)' == 'net45'">
+
+	</ItemGroup>
+
+	<ItemGroup Condition="'$(TargetFramework)' == 'net40'">
+		<PackageReference Include="NUnit3TestAdapter" Version="3.16.1" />
+		<!--<PackageReference Include="Polly.Net40Async" Version="5.9.0" />-->
+	</ItemGroup>
+
+	<ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
+
+	</ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Authing.CSharp.SDK\Authing.CSharp.SDK.csproj" />

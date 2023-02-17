@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
-VisualStudioVersion = 16.0.32413.511
+VisualStudioVersion = 16.0.33130.400
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Authing.CSharp.SDK", "Authing.CSharp.SDK\Authing.CSharp.SDK.csproj", "{3479DEFA-5D22-4C65-8ECE-9B9D17A33031}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Authing.CSharp.SDK.Framework.Test", "Authing.CSharp.SDK.Framework.Test\Authing.CSharp.SDK.Framework.Test.csproj", "{1D105CE9-DBD6-4025-80F3-4ECF325B5BDE}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Authing.CSharp.SDK.Framework45.Test", "Authing.CSharp.SDK.Framework45.Test\Authing.CSharp.SDK.Framework45.Test.csproj", "{62DCF27B-9D73-4A3D-A077-EA2469EC0EF6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{1D105CE9-DBD6-4025-80F3-4ECF325B5BDE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1D105CE9-DBD6-4025-80F3-4ECF325B5BDE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1D105CE9-DBD6-4025-80F3-4ECF325B5BDE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{62DCF27B-9D73-4A3D-A077-EA2469EC0EF6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{62DCF27B-9D73-4A3D-A077-EA2469EC0EF6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{62DCF27B-9D73-4A3D-A077-EA2469EC0EF6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{62DCF27B-9D73-4A3D-A077-EA2469EC0EF6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
