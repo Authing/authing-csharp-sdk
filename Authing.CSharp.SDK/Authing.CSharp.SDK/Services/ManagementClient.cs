@@ -20,6 +20,17 @@ namespace Authing.CSharp.SDK.Services
         {
         }
 
+        /// <summary>
+        /// 订阅事件
+        /// </summary>
+        /// <param name="eventName">事件名称</param>
+        /// <param name="messageCallback">事件回调方法</param>
+        /// <param name="errorCallback">事件错误回调方法</param>
+        public void Sub(string eventName, Action<string> messageCallback, Action<string> errorCallback)
+        {
+            BaseSub(eventName, messageCallback, errorCallback);
+        }
+
         ///<summary>
         /// 获取/搜索用户列表
         ///</summary>

@@ -32,6 +32,11 @@ namespace Authing.CSharp.SDK.Models
         /// 返回的内容语言，默认为中文
         /// </summary>
         public ClientLang Lang { get; set; } = ClientLang.CN;
+
+        /// <summary>
+        /// 事件订阅的连接地址
+        /// </summary>
+        public string WebsocketUri { get; set; }
     }
 
     /// <summary>

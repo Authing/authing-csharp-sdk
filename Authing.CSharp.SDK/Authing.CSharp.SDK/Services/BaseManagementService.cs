@@ -9,6 +9,9 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using EngineIOSharp.Common.Enum;
+using SocketIOSharp.Client;
+using Newtonsoft.Json.Linq;
 
 namespace Authing.CSharp.SDK.Services
 {
@@ -17,6 +20,8 @@ namespace Authing.CSharp.SDK.Services
         protected readonly string m_UserPoolId;
         protected readonly string m_Secret;
 
+        protected readonly string m_WebsocketUri;
+
         protected GetManagementTokenRespDto m_TokenInfo;
 
         protected readonly string m_BaseUrl;
@@ -24,6 +29,11 @@ namespace Authing.CSharp.SDK.Services
         protected ClientLang clientLang;
 
         protected IDateTimeService m_DatetimeService;
+
+        protected Dictionary<string, SocketIOClient> socketIOClientDic;
+
+        protected Dictionary<string, Action<string>> messageCallbackDic;
+        protected Dictionary<string, Action<string>> errorCallbackDic;
 
         public BaseManagementService(ManagementClientOptions options) : base(new JsonService())
         {
@@ -40,6 +50,81 @@ namespace Authing.CSharp.SDK.Services
             clientLang = options.Lang;
 
             m_DatetimeService = new DateTimeService();
+
+            m_WebsocketUri = options.WebsocketUri;
+
+            if (!string.IsNullOrWhiteSpace(m_WebsocketUri))
+            {
+                socketIOClientDic = new Dictionary<string, SocketIOClient>();
+                messageCallbackDic = new Dictionary<string, Action<string>>();
+                errorCallbackDic = new Dictionary<string, Action<string>>();
+            }
+
+        }
+
+        public void BaseSub(string eventName, Action<string> messageCallback, Action<string> errorCallback)
+        {
+            if (string.IsNullOrWhiteSpace(m_WebsocketUri))
+            {
+                throw new Exception("Websocket 连接地址不能为空");
+            }
+
+            if (string.IsNullOrWhiteSpace(eventName))
+            {
+                throw new Exception("订阅事件不能为空");
+            }
+
+            if (socketIOClientDic == null)
+            {
+                socketIOClientDic = new Dictionary<string, SocketIOClient>();
+            }
+
+            if (socketIOClientDic.ContainsKey(eventName))
+            {
+                throw new Exception("已经对该事件添加订阅");
+            }
+
+            if (!messageCallbackDic.ContainsKey(eventName))
+            {
+                messageCallbackDic.Add(eventName, messageCallback);
+            }
+
+            if (!errorCallbackDic.ContainsKey(eventName))
+            {
+                errorCallbackDic.Add(eventName, errorCallback);
+            }
+
+            Dictionary<string, string> headers = new Dictionary<string, string>();
+            headers.Add("authorization", BuildAuthorization(m_UserPoolId, m_Secret, ComposeStringToSign("websocket", m_WebsocketUri, null, null)));
+
+            SocketIOClient socketIOClient = new SocketIOClient(new SocketIOClientOption(EngineIOScheme.https, m_WebsocketUri, 0, Path: eventName, ExtraHeaders: headers));
+
+            socketIOClientDic.Add(eventName, socketIOClient);
+            socketIOClientDic[eventName].Connect();
+            socketIOClientDic[eventName].On(Event.CONNECTION, () => { });
+            socketIOClientDic[eventName].On(Event.DISCONNECT, () => { });
+            socketIOClientDic[eventName].On(Event.ERROR, () =>
+            {
+                socketIOClientDic[eventName].Connect();
+            });
+
+            socketIOClientDic[eventName].On("message", (JToken[] data) =>
+            {
+                messageCallbackDic[eventName].Invoke(m_JsonService.SerializeObject(data));
+            });
+
+        }
+
+        protected void HandleWebsocketConnection()
+        {
+
+        }
+
+        protected void HandleWebsocketDisconnect()
+        { }
+
+        protected void HandleWebsocketError()
+        {
 
         }
 
@@ -151,6 +236,14 @@ Node.js(v14.18.0), authing-node-sdk: 0.0.19
             string cryptString = HmacSHA1Signer.SignString(result, m_Secret);
 
             m_HttpService.SetHeader("authorization", $"authing {m_UserPoolId}:{cryptString}");
+        }
+
+        protected string BuildAuthorization(string accessKeyId, string accessKeySecret, string stringToSign)
+        {
+            string cryptString = HmacSHA1Signer.SignString(stringToSign, accessKeySecret);
+            string auth = $"authing {accessKeyId}:{cryptString}";
+
+            return auth;
         }
 
         private string GenerateRandomString(int length = 30)
@@ -349,5 +442,12 @@ Node.js(v14.18.0), authing-node-sdk: 0.0.19
             m_TokenInfo = result;
 
         }
+    }
+
+    public static class Event
+    {
+        public static readonly string CONNECTION = "connection";
+        public static readonly string DISCONNECT = "disconnect";
+        public static readonly string ERROR = "error";
     }
 }
