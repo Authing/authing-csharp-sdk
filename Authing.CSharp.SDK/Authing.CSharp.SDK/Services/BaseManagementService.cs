@@ -96,9 +96,9 @@ namespace Authing.CSharp.SDK.Services
                 }
 
                 Dictionary<string, string> headers = new Dictionary<string, string>();
-                string authorization = BuildAuthorization(m_UserPoolId, m_Secret, ComposeStringToSign("websocket", m_WebsocketUri, null, null));
+                string authorization = BuildAuthorization(m_UserPoolId, m_Secret, ComposeStringToSign("websocket", "", null, null));
 
-                var ws = new WebSocket($"{m_WebsocketUri}?code={eventName}");
+                var ws = new WebSocket($"{m_WebsocketUri}/events/v1/management/sub?code={eventName}");
 
                 socketIOClientDic.Add(eventName, ws);
                 socketIOClientDic[eventName].CustomHeaders = new Dictionary<string, string>() { { "Authorization", authorization } };
@@ -237,7 +237,7 @@ namespace Authing.CSharp.SDK.Services
             m_HttpService.SetHeader("x-authing-signature-version", "1.0");
             m_HttpService.SetHeader("user-agent", defaultUA);
             m_HttpService.SetHeader("x-authing-sdk-version", version);
-            m_HttpService.SetHeader("date", utcTime.ToString());
+            m_HttpService.SetHeader("x-authing-date", utcTime.ToString());
             /*
              const DEFAULT_UA =
   `AuthingIdentityCloud (${os.platform()}; ${os.arch()}) ` +
@@ -308,8 +308,13 @@ Node.js(v14.18.0), authing-node-sdk: 0.0.19
         {
             var sb = new StringBuilder();
 
-            sb.Append(method.ToUpper());
+            if (method != "websocket")
+            {
+                method = method.ToUpper();
+            }
 
+            sb.Append(method);
+            sb.Append(HEADER_SEPARATOR);
             if (headers != null && headers.Count > 0)
             {
                 sb.Append(HEADER_SEPARATOR);
@@ -392,15 +397,15 @@ Node.js(v14.18.0), authing-node-sdk: 0.0.19
         {
             var queIndex = uri.IndexOf("?");
             string[] uriParts;
+            uriParts = new string[2];
             if (-1 != queIndex)
             {
-                uriParts = new string[2];
+                
                 uriParts[0] = uri.Substring(0, queIndex);
                 uriParts[1] = uri.Substring(queIndex + 1);
             }
             else
             {
-                uriParts = new string[1];
                 uriParts[0] = uri;
             }
 
@@ -409,45 +414,52 @@ Node.js(v14.18.0), authing-node-sdk: 0.0.19
 
         private string BuildQuerystring(string uri, Dictionary<string, string> queries)
         {
-            var uriParts = SplitSubResource(uri);
-
-            if (queries == null)
+            try
             {
-                return string.Join("", uriParts);
-            }
+                var uriParts = SplitSubResource(uri);
 
-            var sortMap = new Dictionary<string, string>(queries);
-            if (null != uriParts[1])
-            {
-                sortMap.Add(uriParts[1], null);
-            }
-
-            var queryBuilder = new StringBuilder(uriParts[0]);
-            var sortedDictionary = SortDictionary(sortMap);
-            if (0 < sortedDictionary.Count)
-            {
-                queryBuilder.Append("?");
-            }
-
-            foreach (var e in sortedDictionary)
-            {
-                queryBuilder.Append(e.Key);
-                if (null != e.Value)
+                if (queries == null)
                 {
-                    queryBuilder.Append("=").Append(e.Value);
+                    return string.Join("", uriParts);
                 }
 
+                var sortMap = new Dictionary<string, string>(queries);
+                if (null != uriParts[1])
+                {
+                    sortMap.Add(uriParts[1], null);
+                }
 
-                queryBuilder.Append(QUERY_SEPARATOR);
+                var queryBuilder = new StringBuilder(uriParts[0]);
+                var sortedDictionary = SortDictionary(sortMap);
+                if (0 < sortedDictionary.Count)
+                {
+                    queryBuilder.Append("?");
+                }
+
+                foreach (var e in sortedDictionary)
+                {
+                    queryBuilder.Append(e.Key);
+                    if (null != e.Value)
+                    {
+                        queryBuilder.Append("=").Append(e.Value);
+                    }
+
+
+                    queryBuilder.Append(QUERY_SEPARATOR);
+                }
+
+                var querystring = queryBuilder.ToString();
+                if (querystring.EndsWith(QUERY_SEPARATOR))
+                {
+                    querystring = querystring.Substring(0, querystring.Length - 1);
+                }
+
+                return querystring;
             }
-
-            var querystring = queryBuilder.ToString();
-            if (querystring.EndsWith(QUERY_SEPARATOR))
+            catch (Exception exp)
             {
-                querystring = querystring.Substring(0, querystring.Length - 1);
+                return "";
             }
-
-            return querystring;
         }
 
         private static IDictionary<string, string> SortDictionary(Dictionary<string, string> dic)

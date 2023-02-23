@@ -20,9 +20,9 @@ namespace Authing.CSharp.SDK.Framework.Test.Management
         {
             ManagementClientOptions options = new ManagementClientOptions()
             {
-                AccessKeyId = "63bb8382e310sss0a366d5fc",
-                AccessKeySecret = "qidong5566",
-                WebsocketUri = "ws://sxy21.cn:30301/events",
+                AccessKeyId = "63f60a8e31e6ebd92080dc7d",
+                AccessKeySecret = "00711487506bc4a92cfada3520b76d7f",
+                WebsocketUri = "wss://events.hydra.authing-inc.co",
                 
             };
 
@@ -37,7 +37,7 @@ namespace Authing.CSharp.SDK.Framework.Test.Management
         {
             try
             {
-                managementClient.Sub("authing.test.event", message =>
+                managementClient.Sub("authing.user.updated", message =>
                 {
                     Console.WriteLine(message);
                 }, error =>
