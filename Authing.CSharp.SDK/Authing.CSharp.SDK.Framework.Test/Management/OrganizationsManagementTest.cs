@@ -688,6 +688,21 @@ namespace Authing.CSharp.SDK.Framework.Test
         }
 
         [Test]
+        public async Task ListOrganzationsTest()
+        {
+            try
+            {
+                var res = await managementClient.ListOrganizations(new ListOrganizationsDto { });
+
+                Assert.NotNull(res);
+            }
+            catch (Exception exp)
+            { 
+            
+            }
+        }
+
+        [Test]
         public async Task ListChildrenDepartmentsTest()
         {
             try

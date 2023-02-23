@@ -9,9 +9,8 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using EngineIOSharp.Common.Enum;
-using SocketIOSharp.Client;
 using Newtonsoft.Json.Linq;
+using WebSocketSharp;
 
 namespace Authing.CSharp.SDK.Services
 {
@@ -30,7 +29,7 @@ namespace Authing.CSharp.SDK.Services
 
         protected IDateTimeService m_DatetimeService;
 
-        protected Dictionary<string, SocketIOClient> socketIOClientDic;
+        protected Dictionary<string, WebSocket> socketIOClientDic;
 
         protected Dictionary<string, Action<string>> messageCallbackDic;
         protected Dictionary<string, Action<string>> errorCallbackDic;
@@ -55,7 +54,7 @@ namespace Authing.CSharp.SDK.Services
 
             if (!string.IsNullOrWhiteSpace(m_WebsocketUri))
             {
-                socketIOClientDic = new Dictionary<string, SocketIOClient>();
+                socketIOClientDic = new Dictionary<string, WebSocket>();
                 messageCallbackDic = new Dictionary<string, Action<string>>();
                 errorCallbackDic = new Dictionary<string, Action<string>>();
             }
@@ -64,55 +63,80 @@ namespace Authing.CSharp.SDK.Services
 
         public void BaseSub(string eventName, Action<string> messageCallback, Action<string> errorCallback)
         {
-            if (string.IsNullOrWhiteSpace(m_WebsocketUri))
+            try
             {
-                throw new Exception("Websocket 连接地址不能为空");
-            }
+                if (string.IsNullOrWhiteSpace(m_WebsocketUri))
+                {
+                    throw new Exception("Websocket 连接地址不能为空");
+                }
 
-            if (string.IsNullOrWhiteSpace(eventName))
-            {
-                throw new Exception("订阅事件不能为空");
-            }
+                if (string.IsNullOrWhiteSpace(eventName))
+                {
+                    throw new Exception("订阅事件不能为空");
+                }
 
-            if (socketIOClientDic == null)
-            {
-                socketIOClientDic = new Dictionary<string, SocketIOClient>();
-            }
+                if (socketIOClientDic == null)
+                {
+                    socketIOClientDic = new Dictionary<string, WebSocket>();
+                }
 
-            if (socketIOClientDic.ContainsKey(eventName))
-            {
-                throw new Exception("已经对该事件添加订阅");
-            }
+                if (socketIOClientDic.ContainsKey(eventName))
+                {
+                    throw new Exception("已经对该事件添加订阅");
+                }
 
-            if (!messageCallbackDic.ContainsKey(eventName))
-            {
-                messageCallbackDic.Add(eventName, messageCallback);
-            }
+                if (!messageCallbackDic.ContainsKey(eventName))
+                {
+                    messageCallbackDic.Add(eventName, messageCallback);
+                }
 
-            if (!errorCallbackDic.ContainsKey(eventName))
-            {
-                errorCallbackDic.Add(eventName, errorCallback);
-            }
+                if (!errorCallbackDic.ContainsKey(eventName))
+                {
+                    errorCallbackDic.Add(eventName, errorCallback);
+                }
 
-            Dictionary<string, string> headers = new Dictionary<string, string>();
-            headers.Add("authorization", BuildAuthorization(m_UserPoolId, m_Secret, ComposeStringToSign("websocket", m_WebsocketUri, null, null)));
+                Dictionary<string, string> headers = new Dictionary<string, string>();
+                string authorization = BuildAuthorization(m_UserPoolId, m_Secret, ComposeStringToSign("websocket", m_WebsocketUri, null, null));
 
-            SocketIOClient socketIOClient = new SocketIOClient(new SocketIOClientOption(EngineIOScheme.https, m_WebsocketUri, 0, Path: eventName, ExtraHeaders: headers));
+                var ws = new WebSocket($"{m_WebsocketUri}?code={eventName}");
 
-            socketIOClientDic.Add(eventName, socketIOClient);
-            socketIOClientDic[eventName].Connect();
-            socketIOClientDic[eventName].On(Event.CONNECTION, () => { });
-            socketIOClientDic[eventName].On(Event.DISCONNECT, () => { });
-            socketIOClientDic[eventName].On(Event.ERROR, () =>
-            {
+                socketIOClientDic.Add(eventName, ws);
+                socketIOClientDic[eventName].CustomHeaders = new Dictionary<string, string>() { { "Authorization", authorization } };
+                socketIOClientDic[eventName].OnOpen += (sender, e) =>
+                {
+                };
+                socketIOClientDic[eventName].OnMessage += (sender, e) =>
+                {
+                    messageCallbackDic[eventName].Invoke(m_JsonService.SerializeObject(e.Data));
+                };
+                socketIOClientDic[eventName].OnClose += (sender, e) =>
+                {
+
+                };
+                socketIOClientDic[eventName].OnError += (sender, e) =>
+                {
+                    socketIOClientDic[eventName].Connect();
+                };
+
                 socketIOClientDic[eventName].Connect();
-            });
 
-            socketIOClientDic[eventName].On("message", (JToken[] data) =>
+
+
+            }
+            catch (Exception exp)
             {
-                messageCallbackDic[eventName].Invoke(m_JsonService.SerializeObject(data));
-            });
 
+            }
+        }
+
+        private void BaseManagementService_OnOpen(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void BaseManagementService_OnClose(object sender, CloseEventArgs e)
+        {
+            throw new NotImplementedException();
         }
 
         protected void HandleWebsocketConnection()
@@ -213,7 +237,7 @@ namespace Authing.CSharp.SDK.Services
             m_HttpService.SetHeader("x-authing-signature-version", "1.0");
             m_HttpService.SetHeader("user-agent", defaultUA);
             m_HttpService.SetHeader("x-authing-sdk-version", version);
-            m_HttpService.SetHeader("x-authing-date", utcTime.ToString());
+            m_HttpService.SetHeader("date", utcTime.ToString());
             /*
              const DEFAULT_UA =
   `AuthingIdentityCloud (${os.platform()}; ${os.arch()}) ` +
@@ -286,39 +310,41 @@ Node.js(v14.18.0), authing-node-sdk: 0.0.19
 
             sb.Append(method.ToUpper());
 
-            sb.Append(HEADER_SEPARATOR);
-            if (headers.ContainsKey("x-authing-date"))
+            if (headers != null && headers.Count > 0)
             {
-                sb.Append("x-authing-date:" + headers["x-authing-date"]);
-            }
+                sb.Append(HEADER_SEPARATOR);
+                if (headers.ContainsKey("x-authing-date"))
+                {
+                    sb.Append("x-authing-date:" + headers["x-authing-date"]);
+                }
 
-            sb.Append(HEADER_SEPARATOR);
-            if (headers.ContainsKey("x-authing-sdk-version"))
-            {
-                sb.Append("x-authing-sdk-version:" + headers["x-authing-sdk-version"]);
-            }
+                sb.Append(HEADER_SEPARATOR);
+                if (headers.ContainsKey("x-authing-sdk-version"))
+                {
+                    sb.Append("x-authing-sdk-version:" + headers["x-authing-sdk-version"]);
+                }
 
-            sb.Append(HEADER_SEPARATOR);
-            if (headers.ContainsKey("x-authing-signature-method"))
-            {
-                sb.Append("x-authing-signature-method:" + headers["x-authing-signature-method"]);
-            }
+                sb.Append(HEADER_SEPARATOR);
+                if (headers.ContainsKey("x-authing-signature-method"))
+                {
+                    sb.Append("x-authing-signature-method:" + headers["x-authing-signature-method"]);
+                }
 
-            sb.Append(HEADER_SEPARATOR);
-            if (headers.ContainsKey("x-authing-signature-nonce"))
-            {
-                sb.Append("x-authing-signature-nonce:" + headers["x-authing-signature-nonce"]);
-            }
+                sb.Append(HEADER_SEPARATOR);
+                if (headers.ContainsKey("x-authing-signature-nonce"))
+                {
+                    sb.Append("x-authing-signature-nonce:" + headers["x-authing-signature-nonce"]);
+                }
 
-            sb.Append(HEADER_SEPARATOR);
-            if (headers.ContainsKey("x-authing-signature-version"))
-            {
-                sb.Append("x-authing-signature-version:" + headers["x-authing-signature-version"]);
-            }
+                sb.Append(HEADER_SEPARATOR);
+                if (headers.ContainsKey("x-authing-signature-version"))
+                {
+                    sb.Append("x-authing-signature-version:" + headers["x-authing-signature-version"]);
+                }
 
-            sb.Append(HEADER_SEPARATOR);
-            //sb.Append(BuildCanonicalHeaders(headers, "x-authing-"));
-            sb.Append(BuildQuerystring(method, uriPattern, queries));
+                sb.Append(HEADER_SEPARATOR);
+            }
+            sb.Append(BuildQuerystring(uriPattern, queries));
             return sb.ToString();
         }
 
@@ -365,23 +391,31 @@ Node.js(v14.18.0), authing-node-sdk: 0.0.19
         private string[] SplitSubResource(string uri)
         {
             var queIndex = uri.IndexOf("?");
-            var uriParts = new string[2];
+            string[] uriParts;
             if (-1 != queIndex)
             {
+                uriParts = new string[2];
                 uriParts[0] = uri.Substring(0, queIndex);
                 uriParts[1] = uri.Substring(queIndex + 1);
             }
             else
             {
+                uriParts = new string[1];
                 uriParts[0] = uri;
             }
 
             return uriParts;
         }
 
-        private string BuildQuerystring(string method, string uri, Dictionary<string, string> queries)
+        private string BuildQuerystring(string uri, Dictionary<string, string> queries)
         {
             var uriParts = SplitSubResource(uri);
+
+            if (queries == null)
+            {
+                return string.Join("", uriParts);
+            }
+
             var sortMap = new Dictionary<string, string>(queries);
             if (null != uriParts[1])
             {

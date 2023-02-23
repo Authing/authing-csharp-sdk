@@ -23,6 +23,7 @@
 		<Copyright>Beijing Steamory Technology Co. Ltd.</Copyright>
 		<PackageIcon>AuthingIcon.png</PackageIcon>
 		<LangVersion>latest</LangVersion>
+		<GenerateDocumentationFile>False</GenerateDocumentationFile>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net5.0|AnyCPU'">
@@ -56,7 +57,8 @@
 
 	<ItemGroup>
 		<PackageReference Include="jose-jwt" Version="4.0.0" />
-		<PackageReference Include="Newtonsoft.Json" Version="13.0.1" />		<PackageReference Include="SocketIOSharp" Version="2.0.3" />
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+		<PackageReference Include="WebSocketSharp-netstandard-customheaders" Version="1.0.3" />
 
 	</ItemGroup>
 
