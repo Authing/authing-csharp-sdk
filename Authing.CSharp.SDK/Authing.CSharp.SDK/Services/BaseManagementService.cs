@@ -29,7 +29,7 @@ namespace Authing.CSharp.SDK.Services
 
         protected IDateTimeService m_DatetimeService;
 
-        protected Dictionary<string, WebSocket> socketIOClientDic;
+        protected Dictionary<string, WebSocket> websocketDic;
 
         protected Dictionary<string, Action<string>> messageCallbackDic;
         protected Dictionary<string, Action<string>> errorCallbackDic;
@@ -54,14 +54,14 @@ namespace Authing.CSharp.SDK.Services
 
             if (!string.IsNullOrWhiteSpace(m_WebsocketUri))
             {
-                socketIOClientDic = new Dictionary<string, WebSocket>();
+                websocketDic = new Dictionary<string, WebSocket>();
                 messageCallbackDic = new Dictionary<string, Action<string>>();
                 errorCallbackDic = new Dictionary<string, Action<string>>();
             }
 
         }
 
-        public void BaseSub(string eventName, Action<string> messageCallback, Action<string> errorCallback)
+        protected void BaseSub(string eventName, Action<string> messageCallback, Action<string> errorCallback)
         {
             try
             {
@@ -75,12 +75,12 @@ namespace Authing.CSharp.SDK.Services
                     throw new Exception("订阅事件不能为空");
                 }
 
-                if (socketIOClientDic == null)
+                if (websocketDic == null)
                 {
-                    socketIOClientDic = new Dictionary<string, WebSocket>();
+                    websocketDic = new Dictionary<string, WebSocket>();
                 }
 
-                if (socketIOClientDic.ContainsKey(eventName))
+                if (websocketDic.ContainsKey(eventName))
                 {
                     throw new Exception("已经对该事件添加订阅");
                 }
@@ -100,25 +100,25 @@ namespace Authing.CSharp.SDK.Services
 
                 var ws = new WebSocket($"{m_WebsocketUri}/events/v1/management/sub?code={eventName}");
 
-                socketIOClientDic.Add(eventName, ws);
-                socketIOClientDic[eventName].CustomHeaders = new Dictionary<string, string>() { { "Authorization", authorization } };
-                socketIOClientDic[eventName].OnOpen += (sender, e) =>
+                websocketDic.Add(eventName, ws);
+                websocketDic[eventName].CustomHeaders = new Dictionary<string, string>() { { "Authorization", authorization } };
+                websocketDic[eventName].OnOpen += (sender, e) =>
                 {
                 };
-                socketIOClientDic[eventName].OnMessage += (sender, e) =>
+                websocketDic[eventName].OnMessage += (sender, e) =>
                 {
                     messageCallbackDic[eventName].Invoke(m_JsonService.SerializeObject(e.Data));
                 };
-                socketIOClientDic[eventName].OnClose += (sender, e) =>
+                websocketDic[eventName].OnClose += (sender, e) =>
                 {
 
                 };
-                socketIOClientDic[eventName].OnError += (sender, e) =>
+                websocketDic[eventName].OnError += (sender, e) =>
                 {
-                    socketIOClientDic[eventName].Connect();
+                    websocketDic[eventName].Connect();
                 };
 
-                socketIOClientDic[eventName].Connect();
+                websocketDic[eventName].Connect();
 
 
 

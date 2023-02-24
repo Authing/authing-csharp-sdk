@@ -95,6 +95,11 @@ namespace Authing.CSharp.SDK.Models.Authentication
         /// 是否拒绝非法的 HTTPS 请求，默认为 true；如果是私有化部署的场景且证书不被信任，可以设置为 false
         /// </summary>
         public bool rejectUnauthorized { get; set; } = true;
+
+        /// <summary>
+        /// 订阅事件地址
+        /// </summary>
+        public string WebsocketUri { get; set; } 
     }
 
     /// <summary>

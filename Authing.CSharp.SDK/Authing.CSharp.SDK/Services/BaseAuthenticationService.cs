@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WebSocketSharp;
 
 namespace Authing.CSharp.SDK.Services
 {
@@ -17,11 +18,91 @@ namespace Authing.CSharp.SDK.Services
         protected readonly string m_AppId;
         private bool needBase64 = false;
         private AuthenticationClientInitOptions options;
+        private string m_WebsocketUri;
+
+        protected Dictionary<string, WebSocket> websocketDic;
+        protected Dictionary<string, Action<string>> messageCallbackDic;
+        protected Dictionary<string, Action<string>> errorCallbackDic;
 
         public BaseAuthenticationService(AuthenticationClientInitOptions options) : base(new JsonService())
         {
             this.options = options;
             m_AppHost = options.AppHost;
+
+            m_WebsocketUri = options.WebsocketUri;
+            if (!string.IsNullOrWhiteSpace(m_WebsocketUri))
+            {
+                websocketDic = new Dictionary<string, WebSocket>();
+                messageCallbackDic = new Dictionary<string, Action<string>>();
+                errorCallbackDic = new Dictionary<string, Action<string>>();
+            }
+        }
+        protected void BaseSub(string eventName, Action<string> messageCallback, Action<string> errorCallback)
+        {
+            try
+            {
+                if (string.IsNullOrWhiteSpace(m_WebsocketUri))
+                {
+                    throw new Exception("Websocket 连接地址不能为空");
+                }
+
+                if (string.IsNullOrWhiteSpace(eventName))
+                {
+                    throw new Exception("订阅事件不能为空");
+                }
+
+                if (websocketDic == null)
+                {
+                    websocketDic = new Dictionary<string, WebSocket>();
+                }
+
+                if (websocketDic.ContainsKey(eventName))
+                {
+                    throw new Exception("已经对该事件添加订阅");
+                }
+
+                if (!messageCallbackDic.ContainsKey(eventName))
+                {
+                    messageCallbackDic.Add(eventName, messageCallback);
+                }
+
+                if (!errorCallbackDic.ContainsKey(eventName))
+                {
+                    errorCallbackDic.Add(eventName, errorCallback);
+                }
+
+                Dictionary<string, string> headers = new Dictionary<string, string>();
+               
+                var ws = new WebSocket($"{m_WebsocketUri}/events/v1/authentication/sub?code={eventName}&token={m_AccessToken}");
+
+                websocketDic.Add(eventName, ws);
+
+                websocketDic[eventName].OnOpen += (sender, e) =>
+                {
+                };
+                websocketDic[eventName].OnMessage += (sender, e) =>
+                {
+                    messageCallbackDic[eventName].Invoke(m_JsonService.SerializeObject(e.Data));
+                };
+                websocketDic[eventName].OnClose += (sender, e) =>
+                {
+                    errorCallbackDic[eventName]?.Invoke(e.Reason);
+                };
+                websocketDic[eventName].OnError += (sender, e) =>
+                {
+                    errorCallbackDic[eventName]?.Invoke(e.Message);
+                    websocketDic[eventName].Connect();
+                };
+
+                websocketDic[eventName].Connect();
+
+
+
+            }
+            catch (Exception exp)
+            {
+
+            }
         }
 
         protected async Task<string> GetAsync(string apiPath)
