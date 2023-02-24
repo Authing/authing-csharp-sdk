@@ -24,6 +24,8 @@ namespace Authing.CSharp.SDK.Services
         protected Dictionary<string, Action<string>> messageCallbackDic;
         protected Dictionary<string, Action<string>> errorCallbackDic;
 
+
+
         public BaseAuthenticationService(AuthenticationClientInitOptions options) : base(new JsonService())
         {
             this.options = options;
@@ -101,7 +103,7 @@ namespace Authing.CSharp.SDK.Services
             }
             catch (Exception exp)
             {
-
+                throw exp;
             }
         }
 

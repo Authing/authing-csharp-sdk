@@ -31,6 +31,19 @@ namespace Authing.CSharp.SDK.Services
             BaseSub(eventName, messageCallback, errorCallback);
         }
 
+        /// <summary>
+        /// 发布事件
+        /// </summary>
+        /// <param name="eventcode"></param>
+        /// <param name="eventData"></param>
+        /// <returns></returns>
+        public async Task<CostGetAllRightItemRespDto> PubEvent(EventRequestDto eventRequestDto)
+        {
+            string httpResponse = await Request("POST", "/api/v3/pub-event", eventRequestDto).ConfigureAwait(false);
+            CostGetAllRightItemRespDto commonResponseDto = m_JsonService.DeserializeObject<CostGetAllRightItemRespDto>(httpResponse);
+            return commonResponseDto;
+        }
+
         ///<summary>
         /// 获取/搜索用户列表
         ///</summary>

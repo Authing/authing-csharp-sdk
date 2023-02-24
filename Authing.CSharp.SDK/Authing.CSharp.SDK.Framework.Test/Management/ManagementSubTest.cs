@@ -56,5 +56,11 @@ namespace Authing.CSharp.SDK.Framework.Test.Management
             }
            
         }
+
+        [Test]
+        public void PubTest()
+        { 
+            //managementClient.PubEvent("")
+        }
     }
 }

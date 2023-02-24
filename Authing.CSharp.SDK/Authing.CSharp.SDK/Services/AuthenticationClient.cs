@@ -95,6 +95,21 @@ namespace Authing.CSharp.SDK.Services
             BaseSub(eventName, messageCallback, errorCallback);
         }
 
+        /// <summary>
+        /// 发布事件
+        /// </summary>
+        /// <param name="eventcode"></param>
+        /// <param name="eventData"></param>
+        /// <returns></returns>
+        public async Task<CommonResponseDto> PubEvent(string eventcode, string eventData)
+        {
+            EventRequestDto eventRequestDto = new EventRequestDto { EventType = eventcode, EventData = eventData };
+
+            string httpResponse = await Request("POST", "/api/v3/pub-userEvent", eventRequestDto).ConfigureAwait(false);
+            CommonResponseDto commonResponseDto = m_JsonService.DeserializeObject<CommonResponseDto>(httpResponse);
+            return commonResponseDto;
+        }
+
 #if NET45
 
         /// <summary>
@@ -1357,7 +1372,7 @@ namespace Authing.CSharp.SDK.Services
                     Password = password
                 },
                 Options = option,
-                
+
             };
 
             if (options.TokenEndPointAuthMethod == TokenEndPointAuthMethod.CLIENT_SECRET_POST)
