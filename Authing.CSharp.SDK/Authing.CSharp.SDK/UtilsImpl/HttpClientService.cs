@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System.Net.Http;
+using Authing.CSharp.SDK.Utils;
 
 namespace Authing.CSharp.SDK.UtilsImpl
 {
@@ -21,6 +22,7 @@ namespace Authing.CSharp.SDK.UtilsImpl
         private readonly IServiceProvider m_ServiceProvider;
         private int timeOut = 10 * 1000;
         private bool rejectUnauthorized = false;
+        private readonly IDateTimeService m_DateTimerService;
 
         static HttpClientService()
         {
@@ -29,16 +31,17 @@ namespace Authing.CSharp.SDK.UtilsImpl
             {
                 Proxy = null,
                 UseProxy = false,
-#if NET48_OR_GREATER
+#if NETSTANDARD2_0
                ServerCertificateCustomValidationCallback = delegate { return true; }
 #endif
 
             });
         }
 
-        public HttpClientService(IJsonService jsonService)
+        public HttpClientService(IJsonService jsonService,IDateTimeService dateTimeService)
         {
             m_JsonService = jsonService;
+            m_DateTimerService = dateTimeService;
             m_HeadderDic = new Dictionary<string, string>();
         }
 
@@ -159,7 +162,7 @@ namespace Authing.CSharp.SDK.UtilsImpl
 
         public void SetBearerToken(string token)
         {
-            throw new NotImplementedException();
+            m_BearerToken = token;
         }
 
         public void ClearHeader()
@@ -198,7 +201,7 @@ namespace Authing.CSharp.SDK.UtilsImpl
                     continue;
                 }
 
-                    request.Headers.Add(item.Key, item.Value);
+                request.Headers.Add(item.Key, item.Value);
             }
 
             return request;

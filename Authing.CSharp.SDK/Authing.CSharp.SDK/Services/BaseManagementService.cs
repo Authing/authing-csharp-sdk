@@ -28,13 +28,14 @@ namespace Authing.CSharp.SDK.Services
         protected ClientLang clientLang;
 
         protected IDateTimeService m_DatetimeService;
+        protected AKSKService m_AKSKService;
 
         protected Dictionary<string, WebSocket> websocketDic;
 
         protected Dictionary<string, Action<string>> messageCallbackDic;
         protected Dictionary<string, Action<string>> errorCallbackDic;
 
-        public BaseManagementService(ManagementClientOptions options) : base(new JsonService())
+        public BaseManagementService(ManagementClientOptions options) : base(new JsonService(), new DateTimeService())
         {
             m_UserPoolId = options.AccessKeyId;
             m_Secret = options.AccessKeySecret;
@@ -49,6 +50,7 @@ namespace Authing.CSharp.SDK.Services
             clientLang = options.Lang;
 
             m_DatetimeService = new DateTimeService();
+            m_AKSKService = new AKSKService();
 
             m_WebsocketUri = options.WebsocketUri;
 
@@ -96,7 +98,7 @@ namespace Authing.CSharp.SDK.Services
                 }
 
                 Dictionary<string, string> headers = new Dictionary<string, string>();
-                string authorization = BuildAuthorization(m_UserPoolId, m_Secret, ComposeStringToSign("websocket", "", null, null));
+                string authorization = m_AKSKService.BuildAuthorization(m_UserPoolId, m_Secret, m_AKSKService.ComposeStringToSign("websocket", "", null, null));
 
                 var ws = new WebSocket($"{m_WebsocketUri}/events/v1/management/sub?code={eventName}");
 
@@ -104,6 +106,7 @@ namespace Authing.CSharp.SDK.Services
                 websocketDic[eventName].CustomHeaders = new Dictionary<string, string>() { { "Authorization", authorization } };
                 websocketDic[eventName].OnOpen += (sender, e) =>
                 {
+                    messageCallbackDic[eventName].Invoke("连接成功");
                 };
                 websocketDic[eventName].OnMessage += (sender, e) =>
                 {
@@ -111,10 +114,11 @@ namespace Authing.CSharp.SDK.Services
                 };
                 websocketDic[eventName].OnClose += (sender, e) =>
                 {
-
+                    messageCallbackDic[eventName].Invoke("连接关闭"+e.Reason);
                 };
                 websocketDic[eventName].OnError += (sender, e) =>
                 {
+                    messageCallbackDic[eventName].Invoke("连接发生错误"+e.Message);
                     websocketDic[eventName].Connect();
                 };
 
@@ -230,7 +234,7 @@ namespace Authing.CSharp.SDK.Services
             //string defaultUA = $"AuthingIdentityCloud ({Environment.OSVersion.VersionString}; {osBit}) .Net(v{Environment.Version}), authing-csharp-sdk:{System.Reflection.Assembly.GetExecutingAssembly().GetName().Version}";
             string defaultUA = $"AuthingIdentityCloud ({Environment.OSVersion.VersionString}; {osBit}) doNet";
             string version = $"authing-csharp-sdk:{System.Reflection.Assembly.GetExecutingAssembly().GetName().Version}";
-            string nonce = GenerateRandomString();
+            string nonce = m_AKSKService.GenerateRandomString();
 
             m_HttpService.SetHeader("x-authing-signature-nonce", nonce);
             m_HttpService.SetHeader("x-authing-signature-method", "HMAC-SHA1");
@@ -255,239 +259,14 @@ Node.js(v14.18.0), authing-node-sdk: 0.0.19
             dics.Add("x-authing-sdk-version", version);
             dics.Add("x-authing-date", utcTime.ToString());
 
-            string result = ComposeStringToSign(method, apiPath, queries, dics);
+            string result = m_AKSKService.ComposeStringToSign(method, apiPath, queries, dics);
 
             string cryptString = HmacSHA1Signer.SignString(result, m_Secret);
 
             m_HttpService.SetHeader("authorization", $"authing {m_UserPoolId}:{cryptString}");
         }
 
-        protected string BuildAuthorization(string accessKeyId, string accessKeySecret, string stringToSign)
-        {
-            string cryptString = HmacSHA1Signer.SignString(stringToSign, accessKeySecret);
-            string auth = $"authing {accessKeyId}:{cryptString}";
-
-            return auth;
-        }
-
-        private string GenerateRandomString(int length = 30)
-        {
-            var rd = new Random((int)DateTime.Now.Ticks);
-            var strAtt = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-            var resAtt = new Char[length];
-            rd.Next(0, 62);
-
-            var resStr = string.Join("", resAtt.Select(p => strAtt[rd.Next(0, 62)]).ToArray());
-            return resStr;
-        }
-
-        /// <summary>
-        /// 本时区日期时间转时间戳
-        /// </summary>
-        /// <param name="datetime"></param>
-        /// <returns>long=Int64</returns>
-        public static long DateTimeToTimestamp(DateTime datetime)
-        {
-            long epochTicks = new DateTime(1970, 1, 1).Ticks;
-            long unixTime = ((DateTime.UtcNow.Ticks - epochTicks) / TimeSpan.TicksPerMillisecond);
-
-            return unixTime;
-        }
-
-        protected const string QUERY_SEPARATOR = "&";
-        protected const string HEADER_SEPARATOR = "\n";
-
-        /// <summary>
-        /// 组装 Header
-        /// </summary>
-        /// <param name="uriPattern">api 路径</param>
-        /// <param name="queries">参数</param>
-        /// <param name="headers">头信息</param>
-        /// <returns></returns>
-        public string ComposeStringToSign(string method, string uriPattern, Dictionary<string, string> queries, Dictionary<string, string> headers)
-        {
-            var sb = new StringBuilder();
-
-            if (method != "websocket")
-            {
-                method = method.ToUpper();
-            }
-
-            sb.Append(method);
-            sb.Append(HEADER_SEPARATOR);
-            if (headers != null && headers.Count > 0)
-            {
-                sb.Append(HEADER_SEPARATOR);
-                if (headers.ContainsKey("x-authing-date"))
-                {
-                    sb.Append("x-authing-date:" + headers["x-authing-date"]);
-                }
-
-                sb.Append(HEADER_SEPARATOR);
-                if (headers.ContainsKey("x-authing-sdk-version"))
-                {
-                    sb.Append("x-authing-sdk-version:" + headers["x-authing-sdk-version"]);
-                }
-
-                sb.Append(HEADER_SEPARATOR);
-                if (headers.ContainsKey("x-authing-signature-method"))
-                {
-                    sb.Append("x-authing-signature-method:" + headers["x-authing-signature-method"]);
-                }
-
-                sb.Append(HEADER_SEPARATOR);
-                if (headers.ContainsKey("x-authing-signature-nonce"))
-                {
-                    sb.Append("x-authing-signature-nonce:" + headers["x-authing-signature-nonce"]);
-                }
-
-                sb.Append(HEADER_SEPARATOR);
-                if (headers.ContainsKey("x-authing-signature-version"))
-                {
-                    sb.Append("x-authing-signature-version:" + headers["x-authing-signature-version"]);
-                }
-
-                sb.Append(HEADER_SEPARATOR);
-            }
-            sb.Append(BuildQuerystring(uriPattern, queries));
-            return sb.ToString();
-        }
-
-        protected string BuildCanonicalHeaders(Dictionary<string, string> headers, string headerBegin)
-        {
-            var sortMap = new Dictionary<string, string>();
-            foreach (var e in headers)
-            {
-                var key = e.Key.ToLower();
-                var val = e.Value;
-                if (key.StartsWith(headerBegin))
-                {
-                    sortMap.Add(key, val);
-                }
-            }
-
-            var sortedDictionary = SortDictionary(sortMap);
-
-            var headerBuilder = new StringBuilder();
-            foreach (var e in sortedDictionary)
-            {
-                headerBuilder.Append(e.Key);
-                headerBuilder.Append(':').Append(e.Value);
-                headerBuilder.Append(HEADER_SEPARATOR);
-            }
-
-            return headerBuilder.ToString();
-        }
-
-        public static string ReplaceOccupiedParameters(string url, Dictionary<string, string> paths)
-        {
-            var result = url;
-            foreach (var entry in paths)
-            {
-                var key = entry.Key;
-                var value = entry.Value;
-                var target = "[" + key + "]";
-                result = result.Replace(target, value);
-            }
-
-            return result;
-        }
-
-        private string[] SplitSubResource(string uri)
-        {
-            var queIndex = uri.IndexOf("?");
-            string[] uriParts;
-            uriParts = new string[2];
-            if (-1 != queIndex)
-            {
-                
-                uriParts[0] = uri.Substring(0, queIndex);
-                uriParts[1] = uri.Substring(queIndex + 1);
-            }
-            else
-            {
-                uriParts[0] = uri;
-            }
-
-            return uriParts;
-        }
-
-        private string BuildQuerystring(string uri, Dictionary<string, string> queries)
-        {
-            try
-            {
-                var uriParts = SplitSubResource(uri);
-
-                if (queries == null)
-                {
-                    return string.Join("", uriParts);
-                }
-
-                var sortMap = new Dictionary<string, string>(queries);
-                if (null != uriParts[1])
-                {
-                    sortMap.Add(uriParts[1], null);
-                }
-
-                var queryBuilder = new StringBuilder(uriParts[0]);
-                var sortedDictionary = SortDictionary(sortMap);
-                if (0 < sortedDictionary.Count)
-                {
-                    queryBuilder.Append("?");
-                }
-
-                foreach (var e in sortedDictionary)
-                {
-                    queryBuilder.Append(e.Key);
-                    if (null != e.Value)
-                    {
-                        queryBuilder.Append("=").Append(e.Value);
-                    }
-
-
-                    queryBuilder.Append(QUERY_SEPARATOR);
-                }
-
-                var querystring = queryBuilder.ToString();
-                if (querystring.EndsWith(QUERY_SEPARATOR))
-                {
-                    querystring = querystring.Substring(0, querystring.Length - 1);
-                }
-
-                return querystring;
-            }
-            catch (Exception exp)
-            {
-                return "";
-            }
-        }
-
-        private static IDictionary<string, string> SortDictionary(Dictionary<string, string> dic)
-        {
-            IDictionary<string, string> sortedDictionary =
-                new SortedDictionary<string, string>(dic, StringComparer.Ordinal);
-            return sortedDictionary;
-        }
-
-
-
-        private async Task GetManagementToken(CancellationToken cancellationToken)
-        {
-            GetManagementAccessTokenDto dto = new GetManagementAccessTokenDto()
-            {
-                AccessKeyId = m_UserPoolId,
-                AccessKeySecret = m_Secret
-            };
-
-            string json = BuildHttpPostRequest(dto);
-
-            string httpResponse = await m_HttpService.PostAsync(m_BaseUrl, "/api/v3/get-management-token", json, cancellationToken).ConfigureAwait(false);
-
-            GetManagementTokenRespDto result = m_JsonService.DeserializeObject<GetManagementTokenRespDto>(httpResponse);
-
-            m_TokenInfo = result;
-
-        }
+      
     }
 
     public static class Event

@@ -1,5 +1,6 @@
 ﻿using Authing.CSharp.SDK.Infrastructure;
 using Authing.CSharp.SDK.IServices;
+using Authing.CSharp.SDK.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,16 +13,17 @@ namespace Authing.CSharp.SDK.Services
     {
         protected readonly IJsonService m_JsonService;
         protected readonly IHttpService m_HttpService;
+        protected readonly IDateTimeService m_DateTimeService;
 
         protected string m_AccessToken;
         protected long? TokenExpirAt;
 
-        public ServiceBase(IJsonService jsonService)
+        public ServiceBase(IJsonService jsonService,IDateTimeService dateTimeService)
         {
             m_JsonService = jsonService;
+            m_DateTimeService = dateTimeService;
 
-
-            m_HttpService = HttpServiceFactory.Get(m_JsonService, Enums.HttpServiceType.HTTPWEBREQUEST);
+            m_HttpService = HttpServiceFactory.Get(m_JsonService, Enums.HttpServiceType.HTTPWEBREQUEST, m_DateTimeService);
 
         }
 

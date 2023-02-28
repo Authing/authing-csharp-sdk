@@ -3,6 +3,7 @@ using Authing.CSharp.SDK.IServices;
 using Authing.CSharp.SDK.Models;
 using Authing.CSharp.SDK.Services;
 using Authing.CSharp.SDK.Utils;
+using Authing.CSharp.SDK.UtilsImpl;
 using NUnit.Framework;
 using System.Threading;
 
@@ -17,7 +18,7 @@ namespace Authing.CSharp.SDK.Framework.Test
         [Test]
         public void TestHttpPost()
         {
-            IHttpService httpService = HttpServiceFactory.Get(new JsonService(), Enums.HttpServiceType.HTTPCLIENT);
+            IHttpService httpService = HttpServiceFactory.Get(new JsonService(), Enums.HttpServiceType.HTTPCLIENT,new DateTimeService());
 
             using (CancellationTokenSource cts = new CancellationTokenSource())
             {
@@ -34,7 +35,7 @@ namespace Authing.CSharp.SDK.Framework.Test
         [Test]
         public void TestHttpWebPost()
         {
-            IHttpService httpService = HttpServiceFactory.Get(new JsonService(), Enums.HttpServiceType.HTTPWEBREQUEST);
+            IHttpService httpService = HttpServiceFactory.Get(new JsonService(), Enums.HttpServiceType.HTTPWEBREQUEST,new DateTimeService());
 
             using (CancellationTokenSource cts = new CancellationTokenSource())
             {

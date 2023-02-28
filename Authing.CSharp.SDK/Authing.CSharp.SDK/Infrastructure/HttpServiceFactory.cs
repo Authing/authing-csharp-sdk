@@ -12,9 +12,9 @@ namespace Authing.CSharp.SDK.Infrastructure
 {
     public static class HttpServiceFactory
     {
-        public static IHttpService Get(IJsonService jsonService, HttpServiceType httpService)
+        public static IHttpService Get(IJsonService jsonService, HttpServiceType httpService,IDateTimeService dateTimeService)
         {
-            return new HttpClientService(jsonService);
+            return new HttpClientService(jsonService, dateTimeService);
         }
     }
 }

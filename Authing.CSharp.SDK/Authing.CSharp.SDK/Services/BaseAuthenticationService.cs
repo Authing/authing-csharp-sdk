@@ -26,7 +26,7 @@ namespace Authing.CSharp.SDK.Services
 
 
 
-        public BaseAuthenticationService(AuthenticationClientInitOptions options) : base(new JsonService())
+        public BaseAuthenticationService(AuthenticationClientInitOptions options) : base(new JsonService(),new DateTimeService())
         {
             this.options = options;
             m_AppHost = options.AppHost;
@@ -39,7 +39,7 @@ namespace Authing.CSharp.SDK.Services
                 errorCallbackDic = new Dictionary<string, Action<string>>();
             }
         }
-        protected void BaseSub(string eventName, Action<string> messageCallback, Action<string> errorCallback)
+        protected void BaseSub(string eventName , Action<string> messageCallback, Action<string> errorCallback)
         {
             try
             {
@@ -75,7 +75,7 @@ namespace Authing.CSharp.SDK.Services
 
                 Dictionary<string, string> headers = new Dictionary<string, string>();
                
-                var ws = new WebSocket($"{m_WebsocketUri}/events/v1/authentication/sub?code={eventName}&token={m_AccessToken}");
+                var ws = new WebSocket($"{m_WebsocketUri}/events/v1/authentication/sub?code={eventName}&token={options.AccessToken}");
 
                 websocketDic.Add(eventName, ws);
 
@@ -324,7 +324,7 @@ namespace Authing.CSharp.SDK.Services
             string osBit = Environment.Is64BitOperatingSystem ? "x64" : "x86";
             string version = $"authing-csharp-sdk:{System.Reflection.Assembly.GetExecutingAssembly().GetName().Version}";
             //string defaultUA = $"AuthingIdentityCloud ({Environment.OSVersion.VersionString}; {osBit}) doNet(v{Environment.Version}), authing-csharp-sdk:{System.Reflection.Assembly.GetExecutingAssembly().GetName().Version}";
-            string defaultUA = $"AuthingIdentityCloud ({Environment.OSVersion.VersionString}; {osBit}) doNet(v)";
+            string defaultUA = $"AuthingIdentityCloud ({Environment.OSVersion.VersionString}; {osBit})";
 
             m_HttpService.SetHeader("x-authing-sdk-version", version);
             m_HttpService.SetHeader("x-authing-app-id", options.AppId);
