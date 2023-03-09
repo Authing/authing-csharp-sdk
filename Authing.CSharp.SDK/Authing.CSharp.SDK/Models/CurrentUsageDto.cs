@@ -18,26 +18,26 @@ namespace Authing.CSharp.SDK.Models
         ///  权益总量
         /// </summary>
         [JsonProperty("amount")]
-        public string  Amount {get;set;}
+        public string  Amount  {get;set;}
         /// <summary>
         ///  权益当前使用量
         /// </summary>
         [JsonProperty("current")]
-        public string  Current {get;set;}
+        public string  Current  {get;set;}
         /// <summary>
         ///  是否是体验期权益
         /// </summary>
         [JsonProperty("experience")]
-        public bool  Experience {get;set;}
+        public bool  Experience  {get;set;}
         /// <summary>
         ///  权益编码
         /// </summary>
         [JsonProperty("modelCode")]
-        public string  ModelCode {get;set;}
+        public string  ModelCode  {get;set;}
         /// <summary>
         ///  权益名称
         /// </summary>
         [JsonProperty("modelName")]
-        public string  ModelName {get;set;}
+        public string  ModelName  {get;set;}
     }
 }

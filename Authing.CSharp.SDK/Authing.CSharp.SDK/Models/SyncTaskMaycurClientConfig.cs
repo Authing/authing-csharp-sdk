@@ -18,16 +18,16 @@ namespace Authing.CSharp.SDK.Models
         ///  App Code
         /// </summary>
         [JsonProperty("app_code")]
-        public string  App_code {get;set;}
+        public string  App_code  {get;set;}
         /// <summary>
         ///  App Secret
         /// </summary>
         [JsonProperty("app_secret")]
-        public string  App_secret {get;set;}
+        public string  App_secret  {get;set;}
         /// <summary>
         ///  登录域名
         /// </summary>
         [JsonProperty("endpoint")]
-        public string  Endpoint {get;set;}
+        public string  Endpoint  {get;set;}
     }
 }

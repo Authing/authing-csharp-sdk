@@ -18,16 +18,16 @@ namespace Authing.CSharp.SDK.Models
         ///  权限空间 code
         /// </summary>
         [JsonProperty("namespaceCode")]
-        public string  NamespaceCode {get;set;}
+        public string  NamespaceCode  {get;set;}
         /// <summary>
         ///  数据资源权限操作列表
         /// </summary>
         [JsonProperty("actions")]
-        public List<string>  Actions {get;set;}
+        public List<string>  Actions  {get;set;}
         /// <summary>
         ///  资源路径
         /// </summary>
         [JsonProperty("resource")]
-        public string  Resource {get;set;}
+        public string  Resource  {get;set;}
     }
 }

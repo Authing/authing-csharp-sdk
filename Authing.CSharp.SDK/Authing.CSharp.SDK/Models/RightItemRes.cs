@@ -18,6 +18,6 @@ namespace Authing.CSharp.SDK.Models
         ///  响应数据
         /// </summary>
         [JsonProperty("rightsItems")]
-        public List<RightItemDto>  RightsItems {get;set;}
+        public List<RightItemDto>  RightsItems  {get;set;}
     }
 }

@@ -18,12 +18,12 @@ namespace Authing.CSharp.SDK.Models
         ///  应用访问授权策略
         /// </summary>
         [JsonProperty("permissionStrategy")]
-        public permissionStrategy  PermissionStrategy {get;set;}
+        public permissionStrategy  PermissionStrategy  {get;set;}
         /// <summary>
         ///  应用 ID
         /// </summary>
         [JsonProperty("appId")]
-        public string  AppId {get;set;}
+        public string  AppId  {get;set;}
     }
     public partial class UpdateApplicationPermissionStrategyDataDto
     {

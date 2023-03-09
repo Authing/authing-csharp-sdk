@@ -18,26 +18,26 @@ namespace Authing.CSharp.SDK.Models
         ///  User Name
         /// </summary>
         [JsonProperty("userName")]
-        public string  UserName {get;set;}
+        public string  UserName  {get;set;}
         /// <summary>
         ///  Ent Code
         /// </summary>
         [JsonProperty("entCode")]
-        public string  EntCode {get;set;}
+        public string  EntCode  {get;set;}
         /// <summary>
         ///  Api Code Employee
         /// </summary>
         [JsonProperty("apiCode_employee")]
-        public string  ApiCode_employee {get;set;}
+        public string  ApiCode_employee  {get;set;}
         /// <summary>
         ///  Api Code Department
         /// </summary>
         [JsonProperty("apiCode_department")]
-        public string  ApiCode_department {get;set;}
+        public string  ApiCode_department  {get;set;}
         /// <summary>
         ///  Private Key
         /// </summary>
         [JsonProperty("privateKey")]
-        public string  PrivateKey {get;set;}
+        public string  PrivateKey  {get;set;}
     }
 }

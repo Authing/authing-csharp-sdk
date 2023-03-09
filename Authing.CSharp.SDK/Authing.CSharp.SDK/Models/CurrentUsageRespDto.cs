@@ -18,6 +18,6 @@ namespace Authing.CSharp.SDK.Models
         ///  当前用量实体
         /// </summary>
         [JsonProperty("usages")]
-        public List<CurrentUsageDto>  Usages {get;set;}
+        public List<CurrentUsageDto>  Usages  {get;set;}
     }
 }

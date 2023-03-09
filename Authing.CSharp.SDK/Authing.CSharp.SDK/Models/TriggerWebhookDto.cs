@@ -18,16 +18,16 @@ namespace Authing.CSharp.SDK.Models
         ///  Webhook ID
         /// </summary>
         [JsonProperty("webhookId")]
-        public string  WebhookId {get;set;}
+        public string  WebhookId  {get;set;}
         /// <summary>
         ///  请求头
         /// </summary>
         [JsonProperty("requestHeaders")]
-        public object  RequestHeaders {get;set;}
+        public object  RequestHeaders  {get;set;}
         /// <summary>
         ///  请求体
         /// </summary>
         [JsonProperty("requestBody")]
-        public object  RequestBody {get;set;}
+        public object  RequestBody  {get;set;}
     }
 }

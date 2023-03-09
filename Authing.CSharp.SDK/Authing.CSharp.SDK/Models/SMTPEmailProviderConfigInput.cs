@@ -18,26 +18,26 @@ namespace Authing.CSharp.SDK.Models
         ///  SMTP 地址
         /// </summary>
         [JsonProperty("smtp_host")]
-        public string  Smtp_host {get;set;}
+        public string  Smtp_host  {get;set;}
         /// <summary>
         ///  SMTP 端口
         /// </summary>
         [JsonProperty("smtp_port")]
-        public long  Smtp_port {get;set;}
+        public long  Smtp_port  {get;set;}
         /// <summary>
         ///  用户名
         /// </summary>
         [JsonProperty("sender")]
-        public string  Sender {get;set;}
+        public string  Sender  {get;set;}
         /// <summary>
         ///  密码
         /// </summary>
         [JsonProperty("senderPass")]
-        public string  SenderPass {get;set;}
+        public string  SenderPass  {get;set;}
         /// <summary>
         ///  是否启用 SSL
         /// </summary>
         [JsonProperty("secure")]
-        public bool  Secure {get;set;}
+        public bool  Secure  {get;set;}
     }
 }

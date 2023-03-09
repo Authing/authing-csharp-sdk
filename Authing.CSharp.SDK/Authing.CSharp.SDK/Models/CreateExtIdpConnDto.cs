@@ -15,40 +15,45 @@ namespace Authing.CSharp.SDK.Models
     public partial class CreateExtIdpConnDto
     {
         /// <summary>
-        ///  连接的自定义配置信息
+        ///  身份源连接 ID
         /// </summary>
-        [JsonProperty("fields")]
-        public object  Fields {get;set;}
-        /// <summary>
-        ///  连接在登录页的显示名称
-        /// </summary>
-        [JsonProperty("displayName")]
-        public string  DisplayName {get;set;}
-        /// <summary>
-        ///  身份源连接标识
-        /// </summary>
-        [JsonProperty("identifier")]
-        public string  Identifier {get;set;}
+        [JsonProperty("extIdpId")]
+        public string  ExtIdpId  {get;set;}
         /// <summary>
         ///  身份源连接类型
         /// </summary>
         [JsonProperty("type")]
-        public type  Type {get;set;}
+        public type  Type  {get;set;}
         /// <summary>
-        ///  身份源连接 ID
+        ///  身份源连接标识
         /// </summary>
-        [JsonProperty("extIdpId")]
-        public string  ExtIdpId {get;set;}
+        [JsonProperty("identifier")]
+        public string  Identifier  {get;set;}
+        /// <summary>
+        ///  连接在登录页的显示名称
+        /// </summary>
+        [JsonProperty("displayName")]
+        public string  DisplayName  {get;set;}
+        /// <summary>
+        ///  连接的自定义配置信息
+        /// </summary>
+        [JsonProperty("fields")]
+        public object  Fields  {get;set;}
         /// <summary>
         ///  是否只支持登录
         /// </summary>
         [JsonProperty("loginOnly")]
-        public bool  LoginOnly {get;set;}
+        public bool  LoginOnly  {get;set;}
         /// <summary>
         ///  身份源图标
         /// </summary>
         [JsonProperty("logo")]
-        public string  Logo {get;set;}
+        public string  Logo  {get;set;}
+        /// <summary>
+        ///  租户 ID
+        /// </summary>
+        [JsonProperty("tenantId")]
+        public string  TenantId  {get;set;}
     }
     public partial class CreateExtIdpConnDto
     {
@@ -75,6 +80,8 @@ namespace Authing.CSharp.SDK.Models
             ALIPAY,
             [EnumMember(Value="facebook")]
             FACEBOOK,
+            [EnumMember(Value="facebook:mobile")]
+            FACEBOOK_MOBILE,
             [EnumMember(Value="twitter")]
             TWITTER,
             [EnumMember(Value="google:mobile")]
@@ -143,6 +150,12 @@ namespace Authing.CSharp.SDK.Models
             WELINK,
             [EnumMember(Value="ad-kerberos")]
             AD_KERBEROS,
+            [EnumMember(Value="huawei")]
+            HUAWEI,
+            [EnumMember(Value="honor")]
+            HONOR,
+            [EnumMember(Value="xiaomi")]
+            XIAOMI,
         }
     }
 }

@@ -18,21 +18,21 @@ namespace Authing.CSharp.SDK.Models
         ///  分页配置
         /// </summary>
         [JsonProperty("pagination")]
-        public PaginationDto  Pagination {get;set;}
+        public PaginationDto  Pagination  {get;set;}
         /// <summary>
         ///  是否获取自定义数据
         /// </summary>
         [JsonProperty("withCustomData")]
-        public bool  WithCustomData {get;set;}
+        public bool  WithCustomData  {get;set;}
         /// <summary>
         ///  是否获取 identities
         /// </summary>
         [JsonProperty("withIdentities")]
-        public bool  WithIdentities {get;set;}
+        public bool  WithIdentities  {get;set;}
         /// <summary>
         ///  是否获取部门 ID 列表
         /// </summary>
         [JsonProperty("withDepartmentIds")]
-        public bool  WithDepartmentIds {get;set;}
+        public bool  WithDepartmentIds  {get;set;}
     }
 }

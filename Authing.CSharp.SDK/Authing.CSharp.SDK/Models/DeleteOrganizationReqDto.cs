@@ -18,6 +18,11 @@ namespace Authing.CSharp.SDK.Models
         ///  组织 code
         /// </summary>
         [JsonProperty("organizationCode")]
-        public string  OrganizationCode {get;set;}
+        public string  OrganizationCode  {get;set;}
+        /// <summary>
+        ///  租户 ID
+        /// </summary>
+        [JsonProperty("tenantId")]
+        public string  TenantId  {get;set;}
     }
 }

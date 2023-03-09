@@ -18,11 +18,11 @@ namespace Authing.CSharp.SDK.Models
         ///  用户名
         /// </summary>
         [JsonProperty("sender")]
-        public string  Sender {get;set;}
+        public string  Sender  {get;set;}
         /// <summary>
         ///  SendGrid API Key，详情请见 [SendGrid 文档](https://docs.sendgrid.com/ui/account-and-settings/api-keys)。
         /// </summary>
         [JsonProperty("apikey")]
-        public string  Apikey {get;set;}
+        public string  Apikey  {get;set;}
     }
 }

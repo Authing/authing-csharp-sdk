@@ -15,24 +15,24 @@ namespace Authing.CSharp.SDK.Models
     public partial class AssociateTenantResourceDto
     {
         /// <summary>
-        ///  应用 ID
+        ///  资源 Code
         /// </summary>
-        [JsonProperty("appId")]
-        public string  AppId {get;set;}
+        [JsonProperty("code")]
+        public string  Code  {get;set;}
         /// <summary>
         ///  是否关联应用资源
         /// </summary>
         [JsonProperty("association")]
-        public bool  Association {get;set;}
+        public bool  Association  {get;set;}
         /// <summary>
-        ///  资源 Code
+        ///  应用 ID
         /// </summary>
-        [JsonProperty("code")]
-        public string  Code {get;set;}
+        [JsonProperty("appId")]
+        public string  AppId  {get;set;}
         /// <summary>
         ///  租户 ID
         /// </summary>
         [JsonProperty("tenantId")]
-        public string  TenantId {get;set;}
+        public string  TenantId  {get;set;}
     }
 }

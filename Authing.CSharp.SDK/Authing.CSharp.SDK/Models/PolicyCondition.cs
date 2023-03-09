@@ -18,17 +18,17 @@ namespace Authing.CSharp.SDK.Models
         ///  Condition Param
         /// </summary>
         [JsonProperty("param")]
-        public param  Param {get;set;}
+        public param  Param  {get;set;}
         /// <summary>
         ///  Condition Operator
         /// </summary>
         [JsonProperty("operator")]
-        public @operator  Operator {get;set;}
+        public @operator  Operator  {get;set;}
         /// <summary>
         ///  Condition Value
         /// </summary>
         [JsonProperty("value")]
-        public string  Value {get;set;}
+        public string  Value  {get;set;}
     }
     public partial class PolicyCondition
     {

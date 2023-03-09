@@ -18,7 +18,7 @@ namespace Authing.CSharp.SDK.Models
         ///  新的排序方式，按照函数 ID 的先后顺序进行排列。
         /// </summary>
         [JsonProperty("order")]
-        public List<string>  Order {get;set;}
+        public List<string>  Order  {get;set;}
         /// <summary>
         ///  函数的触发场景：
 /// - `PRE_REGISTER`: 注册前
@@ -31,7 +31,7 @@ namespace Authing.CSharp.SDK.Models
 /// 
         /// </summary>
         [JsonProperty("scene")]
-        public scene  Scene {get;set;}
+        public scene  Scene  {get;set;}
     }
     public partial class UpdatePipelineOrderDto
     {
@@ -62,6 +62,10 @@ namespace Authing.CSharp.SDK.Models
             PRE_OIDC_ACCESS_TOKEN_ISSUED,
             [EnumMember(Value="PRE_COMPLETE_USER_INFO")]
             PRE_COMPLETE_USER_INFO,
+            [EnumMember(Value="PRE_MFA_VERIFY")]
+            PRE_MFA_VERIFY,
+            [EnumMember(Value="POST_MFA_VERIFY")]
+            POST_MFA_VERIFY,
         }
     }
 }

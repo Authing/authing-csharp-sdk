@@ -18,36 +18,41 @@ namespace Authing.CSharp.SDK.Models
         ///  用户所拥有的 accessKeyId
         /// </summary>
         [JsonProperty("accessKeyId")]
-        public string  AccessKeyId {get;set;}
+        public string  AccessKeyId  {get;set;}
         /// <summary>
         ///  用户所拥有的 accessKeySecret
         /// </summary>
         [JsonProperty("accessKeySecret")]
-        public string  AccessKeySecret {get;set;}
+        public string  AccessKeySecret  {get;set;}
         /// <summary>
         ///  用户 ID
         /// </summary>
         [JsonProperty("userId")]
-        public string  UserId {get;set;}
+        public string  UserId  {get;set;}
         /// <summary>
         ///  创建时间
         /// </summary>
         [JsonProperty("createdAt")]
-        public string  CreatedAt {get;set;}
+        public string  CreatedAt  {get;set;}
         /// <summary>
         ///  accessKeyId 状态
         /// </summary>
         [JsonProperty("status")]
-        public string  Status {get;set;}
+        public string  Status  {get;set;}
         /// <summary>
         ///  最后使用时间
         /// </summary>
         [JsonProperty("lastDate")]
-        public string  LastDate {get;set;}
+        public string  LastDate  {get;set;}
         /// <summary>
         ///  accessKeyId 所在用户池
         /// </summary>
         [JsonProperty("userPoolId")]
-        public string  UserPoolId {get;set;}
+        public string  UserPoolId  {get;set;}
+        /// <summary>
+        ///  密钥是否启用
+        /// </summary>
+        [JsonProperty("enable")]
+        public bool  Enable  {get;set;}
     }
 }

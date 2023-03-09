@@ -18,6 +18,6 @@ namespace Authing.CSharp.SDK.Models
         ///  自定义字段列表
         /// </summary>
         [JsonProperty("list")]
-        public List<SetCustomFieldDto>  List {get;set;}
+        public List<SetCustomFieldDto>  List  {get;set;}
     }
 }

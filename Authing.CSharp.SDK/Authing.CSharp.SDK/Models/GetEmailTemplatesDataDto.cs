@@ -18,11 +18,11 @@ namespace Authing.CSharp.SDK.Models
         ///  模版列表
         /// </summary>
         [JsonProperty("templates")]
-        public List<EmailTemplateDto>  Templates {get;set;}
+        public List<EmailTemplateDto>  Templates  {get;set;}
         /// <summary>
         ///  模版类型列表
         /// </summary>
         [JsonProperty("categories")]
-        public List<EmailTemplateCategoryDto>  Categories {get;set;}
+        public List<EmailTemplateCategoryDto>  Categories  {get;set;}
     }
 }

@@ -18,37 +18,42 @@ namespace Authing.CSharp.SDK.Models
         ///  组织 code
         /// </summary>
         [JsonProperty("organizationCode")]
-        public string  OrganizationCode {get;set;}
+        public string  OrganizationCode  {get;set;}
         /// <summary>
         ///  是否获取自定义数据
         /// </summary>
         [JsonProperty("withCustomData")]
-        public bool  WithCustomData {get;set;}
+        public bool  WithCustomData  {get;set;}
         /// <summary>
         ///  当前页数，从 1 开始
         /// </summary>
         [JsonProperty("page")]
-        public long  Page {get;set;}
+        public long  Page  {get;set;}
         /// <summary>
         ///  每页数目，最大不能超过 50，默认为 10
         /// </summary>
         [JsonProperty("limit")]
-        public long  Limit {get;set;}
+        public long  Limit  {get;set;}
         /// <summary>
         ///  高级搜索
         /// </summary>
         [JsonProperty("advancedFilter")]
-        public List<SearchDepartmentsFilterItemDto>  AdvancedFilter {get;set;}
+        public List<SearchDepartmentsFilterItemDto>  AdvancedFilter  {get;set;}
         /// <summary>
         ///  排序依据，如 更新时间或创建时间
         /// </summary>
         [JsonProperty("sortBy")]
-        public sortBy  SortBy {get;set;}
+        public sortBy  SortBy  {get;set;}
         /// <summary>
         ///  增序或降序
         /// </summary>
         [JsonProperty("orderBy")]
-        public orderBy  OrderBy {get;set;}
+        public orderBy  OrderBy  {get;set;}
+        /// <summary>
+        ///  租户 ID
+        /// </summary>
+        [JsonProperty("tenantId")]
+        public string  TenantId  {get;set;}
     }
     public partial class SearchDepartmentsListReqDto
     {

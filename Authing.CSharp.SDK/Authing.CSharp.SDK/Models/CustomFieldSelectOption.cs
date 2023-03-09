@@ -18,11 +18,11 @@ namespace Authing.CSharp.SDK.Models
         ///  枚举值 value
         /// </summary>
         [JsonProperty("value")]
-        public string  Value {get;set;}
+        public string  Value  {get;set;}
         /// <summary>
         ///  枚举值 label
         /// </summary>
         [JsonProperty("label")]
-        public string  Label {get;set;}
+        public string  Label  {get;set;}
     }
 }

@@ -18,11 +18,11 @@ namespace Authing.CSharp.SDK.Models
         ///  成功执行的风险操作任务
         /// </summary>
         [JsonProperty("successList")]
-        public List<long>  SuccessList {get;set;}
+        public List<long>  SuccessList  {get;set;}
         /// <summary>
         ///  执行失败的风险操作任务
         /// </summary>
         [JsonProperty("faildList")]
-        public List<long>  FaildList {get;set;}
+        public List<long>  FaildList  {get;set;}
     }
 }

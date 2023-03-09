@@ -290,7 +290,7 @@ namespace Authing.CSharp.SDK.Framework.Test
                 };
 
                 DepartmentListRespDto respDto = await managementClient.SearchDepartments(reqDto);
-                Assert.IsTrue(respDto.Data.TotalCount > 0);
+                Assert.IsTrue(respDto.Data.Count > 0);
             }
         }
 

@@ -18,6 +18,6 @@ namespace Authing.CSharp.SDK.Models
         ///  检查结果列表
         /// </summary>
         [JsonProperty("checkResultList")]
-        public List<CheckPermissionsRespDto>  CheckResultList {get;set;}
+        public List<CheckPermissionsRespDto>  CheckResultList  {get;set;}
     }
 }

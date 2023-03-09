@@ -23,7 +23,7 @@ namespace Authing.CSharp.SDK.Models
 /// 
         /// </summary>
         [JsonProperty("targetType")]
-        public targetType  TargetType {get;set;}
+        public targetType  TargetType  {get;set;}
         /// <summary>
         ///  目标对象的唯一标志符：
 /// - 如果是用户，为用户的 ID，如 `6343b98b7cfxxx9366e9b7c`
@@ -33,7 +33,7 @@ namespace Authing.CSharp.SDK.Models
 /// 
         /// </summary>
         [JsonProperty("targetIdentifiers")]
-        public List<string>  TargetIdentifiers {get;set;}
+        public List<string>  TargetIdentifiers  {get;set;}
     }
     public partial class AssignAsaAccountItem
     {

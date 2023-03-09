@@ -22,7 +22,7 @@ namespace Authing.CSharp.SDK.Models
 /// 
         /// </summary>
         [JsonProperty("field")]
-        public string  Field {get;set;}
+        public string  Field  {get;set;}
         /// <summary>
         ///  运算符，可选值为：
 /// - `EQUAL`: 全等，适用于数字和字符串的全等匹配
@@ -34,12 +34,12 @@ namespace Authing.CSharp.SDK.Models
 /// 
         /// </summary>
         [JsonProperty("operator")]
-        public @operator  Operator {get;set;}
+        public @operator  Operator  {get;set;}
         /// <summary>
         ///  搜索值，不同的 `field` 对应的 `value` 类型可能不一样
         /// </summary>
         [JsonProperty("value")]
-        public object  Value {get;set;}
+        public object  Value  {get;set;}
     }
     public partial class SearchDepartmentsFilterItemDto
     {

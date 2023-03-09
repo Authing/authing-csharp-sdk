@@ -26,7 +26,7 @@ namespace Authing.CSharp.SDK.Models
 /// 
         /// </summary>
         [JsonProperty("userIdType")]
-        public userIdType  UserIdType {get;set;}
+        public userIdType  UserIdType  {get;set;}
     }
     public partial class ResetUserPrincipalAuthenticationInfoOptionsDto
     {

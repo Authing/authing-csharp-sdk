@@ -18,6 +18,6 @@ namespace Authing.CSharp.SDK.Models
         ///  参数列表
         /// </summary>
         [JsonProperty("list")]
-        public List<ImportOtpItemDto>  List {get;set;}
+        public List<ImportOtpItemDto>  List  {get;set;}
     }
 }

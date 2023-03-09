@@ -21,13 +21,17 @@ namespace Authing.CSharp.SDK.Framework.Test
 
         public ManagementClientBaseTest()
         {
+            //ManagementClientOptions options = new ManagementClientOptions()
+            //{
+            //    AccessKeyId = "AUTHING_USERPOOL_ID",
+            //    AccessKeySecret = "AUTHING_SECRET"
+            //};
+
             ManagementClientOptions options = new ManagementClientOptions()
             {
-                AccessKeyId = "AUTHING_USERPOOL_ID",
-                AccessKeySecret = "AUTHING_SECRET"
+                AccessKeyId = "63a94268af567d1008a91fd2",
+                AccessKeySecret = "32d1a8b39b2e956c69df7cff5b78c04e"
             };
-
-
 
             managementClient = new ManagementClient(options);
 

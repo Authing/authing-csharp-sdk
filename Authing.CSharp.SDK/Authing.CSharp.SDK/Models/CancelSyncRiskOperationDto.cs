@@ -18,6 +18,6 @@ namespace Authing.CSharp.SDK.Models
         ///  同步任务风险操作 ID
         /// </summary>
         [JsonProperty("syncRiskOperationIds")]
-        public List<long>  SyncRiskOperationIds {get;set;}
+        public List<long>  SyncRiskOperationIds  {get;set;}
     }
 }

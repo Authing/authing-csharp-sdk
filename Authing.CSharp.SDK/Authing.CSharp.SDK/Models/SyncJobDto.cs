@@ -18,22 +18,22 @@ namespace Authing.CSharp.SDK.Models
         ///  同步作业 ID
         /// </summary>
         [JsonProperty("syncJobId")]
-        public long  SyncJobId {get;set;}
+        public long  SyncJobId  {get;set;}
         /// <summary>
         ///  此同步作业对应的同步任务 ID
         /// </summary>
         [JsonProperty("syncTaskId")]
-        public long  SyncTaskId {get;set;}
+        public long  SyncTaskId  {get;set;}
         /// <summary>
         ///  创建时间
         /// </summary>
         [JsonProperty("createdAt")]
-        public string  CreatedAt {get;set;}
+        public string  CreatedAt  {get;set;}
         /// <summary>
         ///  更新时间
         /// </summary>
         [JsonProperty("updatedAt")]
-        public string  UpdatedAt {get;set;}
+        public string  UpdatedAt  {get;set;}
         /// <summary>
         ///  当前同步状态:
 /// - `free`: 空闲状态，从未执行
@@ -44,7 +44,7 @@ namespace Authing.CSharp.SDK.Models
 /// 
         /// </summary>
         [JsonProperty("syncStatus")]
-        public syncStatus  SyncStatus {get;set;}
+        public syncStatus  SyncStatus  {get;set;}
         /// <summary>
         ///  同步任务数据流向：
 /// - `upstream`: 作为上游，将数据同步到 Authing
@@ -52,7 +52,7 @@ namespace Authing.CSharp.SDK.Models
 /// 
         /// </summary>
         [JsonProperty("syncFlow")]
-        public syncFlow  SyncFlow {get;set;}
+        public syncFlow  SyncFlow  {get;set;}
         /// <summary>
         ///  同步任务触发类型：
 /// - `manually`: 手动触发执行
@@ -61,52 +61,52 @@ namespace Authing.CSharp.SDK.Models
 /// 
         /// </summary>
         [JsonProperty("syncTrigger")]
-        public syncTrigger  SyncTrigger {get;set;}
+        public syncTrigger  SyncTrigger  {get;set;}
         /// <summary>
         ///  需要同步的部门个数
         /// </summary>
         [JsonProperty("departmentCountAll")]
-        public long  DepartmentCountAll {get;set;}
+        public long  DepartmentCountAll  {get;set;}
         /// <summary>
         ///  成功同步的部门个数
         /// </summary>
         [JsonProperty("departmentCountSucc")]
-        public long  DepartmentCountSucc {get;set;}
+        public long  DepartmentCountSucc  {get;set;}
         /// <summary>
         ///  需要更新的部门个数
         /// </summary>
         [JsonProperty("departmentUpdateCountAll")]
-        public long  DepartmentUpdateCountAll {get;set;}
+        public long  DepartmentUpdateCountAll  {get;set;}
         /// <summary>
         ///  成功更新的部门个数
         /// </summary>
         [JsonProperty("departmentUpdateCountSucc")]
-        public long  DepartmentUpdateCountSucc {get;set;}
+        public long  DepartmentUpdateCountSucc  {get;set;}
         /// <summary>
         ///  需要同步的用户个数
         /// </summary>
         [JsonProperty("accountCountAll")]
-        public long  AccountCountAll {get;set;}
+        public long  AccountCountAll  {get;set;}
         /// <summary>
         ///  成功同步的用户个数
         /// </summary>
         [JsonProperty("accountCountSucc")]
-        public long  AccountCountSucc {get;set;}
+        public long  AccountCountSucc  {get;set;}
         /// <summary>
         ///  需要更新的用户个数
         /// </summary>
         [JsonProperty("accountUpdateCountAll")]
-        public long  AccountUpdateCountAll {get;set;}
+        public long  AccountUpdateCountAll  {get;set;}
         /// <summary>
         ///  成功更新的用户个数
         /// </summary>
         [JsonProperty("accountUpdateCountSucc")]
-        public long  AccountUpdateCountSucc {get;set;}
+        public long  AccountUpdateCountSucc  {get;set;}
         /// <summary>
         ///  错误信息
         /// </summary>
         [JsonProperty("errMsg")]
-        public string  ErrMsg {get;set;}
+        public string  ErrMsg  {get;set;}
     }
     public partial class SyncJobDto
     {

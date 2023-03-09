@@ -18,6 +18,6 @@ namespace Authing.CSharp.SDK.Models
         ///  响应数据
         /// </summary>
         [JsonProperty("records")]
-        public List<MauPeriodUsageHistoryDto>  Records {get;set;}
+        public List<MauPeriodUsageHistoryDto>  Records  {get;set;}
     }
 }

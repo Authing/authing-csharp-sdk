@@ -18,46 +18,46 @@ namespace Authing.CSharp.SDK.Models
         ///  请求 ID
         /// </summary>
         [JsonProperty("requestId")]
-        public string  RequestId {get;set;}
+        public string  RequestId  {get;set;}
         /// <summary>
         ///  客户端 IP
         /// </summary>
         [JsonProperty("clientIp")]
-        public string  ClientIp {get;set;}
+        public string  ClientIp  {get;set;}
         /// <summary>
-        ///  操作类型
+        ///  操作类型，例如 create、update、delete、login 等
         /// </summary>
         [JsonProperty("operationType")]
-        public string  OperationType {get;set;}
+        public string  OperationType  {get;set;}
         /// <summary>
-        ///  资源类型
+        ///  资源类型，例如 DATA、API、BUTTON 等
         /// </summary>
         [JsonProperty("resourceType")]
-        public string  ResourceType {get;set;}
+        public string  ResourceType  {get;set;}
         /// <summary>
         ///  管理员用户 ID
         /// </summary>
         [JsonProperty("userId")]
-        public string  UserId {get;set;}
+        public string  UserId  {get;set;}
         /// <summary>
         ///  请求是否成功
         /// </summary>
         [JsonProperty("success")]
-        public bool  Success {get;set;}
+        public bool  Success  {get;set;}
         /// <summary>
         ///  开始时间戳
         /// </summary>
         [JsonProperty("start")]
-        public long  Start {get;set;}
+        public long  Start  {get;set;}
         /// <summary>
         ///  结束时间戳
         /// </summary>
         [JsonProperty("end")]
-        public long  End {get;set;}
+        public long  End  {get;set;}
         /// <summary>
         ///  分页
         /// </summary>
         [JsonProperty("pagination")]
-        public ListWebhooksDto  Pagination {get;set;}
+        public ListWebhooksDto  Pagination  {get;set;}
     }
 }

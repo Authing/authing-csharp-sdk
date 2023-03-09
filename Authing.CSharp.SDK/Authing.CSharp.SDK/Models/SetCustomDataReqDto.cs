@@ -18,7 +18,7 @@ namespace Authing.CSharp.SDK.Models
         ///  自定义数据列表
         /// </summary>
         [JsonProperty("list")]
-        public List<SetCustomDataDto>  List {get;set;}
+        public List<SetCustomDataDto>  List  {get;set;}
         /// <summary>
         ///  目标对象的唯一标志符：
 /// - 如果是用户，为用户的 ID，如 `6343b98b7cfxxx9366e9b7c`
@@ -28,7 +28,7 @@ namespace Authing.CSharp.SDK.Models
 /// 
         /// </summary>
         [JsonProperty("targetIdentifier")]
-        public string  TargetIdentifier {get;set;}
+        public string  TargetIdentifier  {get;set;}
         /// <summary>
         ///  目标对象类型：
 /// - `USER`: 用户
@@ -38,12 +38,12 @@ namespace Authing.CSharp.SDK.Models
 /// 
         /// </summary>
         [JsonProperty("targetType")]
-        public targetType  TargetType {get;set;}
+        public targetType  TargetType  {get;set;}
         /// <summary>
         ///  所属权限分组的 code，当 target_type 为角色的时候需要填写，否则可以忽略
         /// </summary>
         [JsonProperty("namespace")]
-        public string  Namespace {get;set;}
+        public string  Namespace  {get;set;}
     }
     public partial class SetCustomDataReqDto
     {

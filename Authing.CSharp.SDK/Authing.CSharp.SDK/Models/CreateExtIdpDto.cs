@@ -15,20 +15,20 @@ namespace Authing.CSharp.SDK.Models
     public partial class CreateExtIdpDto
     {
         /// <summary>
-        ///  身份源连接类型
-        /// </summary>
-        [JsonProperty("type")]
-        public type  Type {get;set;}
-        /// <summary>
         ///  身份源名称
         /// </summary>
         [JsonProperty("name")]
-        public string  Name {get;set;}
+        public string  Name  {get;set;}
+        /// <summary>
+        ///  身份源连接类型
+        /// </summary>
+        [JsonProperty("type")]
+        public type  Type  {get;set;}
         /// <summary>
         ///  租户 ID
         /// </summary>
         [JsonProperty("tenantId")]
-        public string  TenantId {get;set;}
+        public string  TenantId  {get;set;}
     }
     public partial class CreateExtIdpDto
     {
@@ -93,6 +93,12 @@ namespace Authing.CSharp.SDK.Models
             INSTAGRAM,
             [EnumMember(Value="welink")]
             WELINK,
+            [EnumMember(Value="huawei")]
+            HUAWEI,
+            [EnumMember(Value="honor")]
+            HONOR,
+            [EnumMember(Value="xiaomi")]
+            XIAOMI,
         }
     }
 }

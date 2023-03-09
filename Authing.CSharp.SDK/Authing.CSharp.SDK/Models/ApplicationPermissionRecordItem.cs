@@ -18,27 +18,27 @@ namespace Authing.CSharp.SDK.Models
         ///  主体类型
         /// </summary>
         [JsonProperty("targetType")]
-        public targetType  TargetType {get;set;}
+        public targetType  TargetType  {get;set;}
         /// <summary>
         ///  权限分组 code，当主体类型为 "ROLE" 时必传
         /// </summary>
         [JsonProperty("namespaceCode")]
-        public string  NamespaceCode {get;set;}
+        public string  NamespaceCode  {get;set;}
         /// <summary>
         ///  当主体类型为 "ORG" 时，授权是否被子节点继承
         /// </summary>
         [JsonProperty("inheritByChildren")]
-        public bool  InheritByChildren {get;set;}
+        public bool  InheritByChildren  {get;set;}
         /// <summary>
         ///  主体标识列表，当主体类型为 "USER" 时，值应为用户 ID；当主体类型为 "GROUP" 时，值应为分组 code；当主体类型为 "ROLE" 时，值应为角色 code；当主体类型为 "ORG" 时，值应为组织节点 ID。最多 50 条。
         /// </summary>
         [JsonProperty("targetIdentifier")]
-        public List<string>  TargetIdentifier {get;set;}
+        public List<string>  TargetIdentifier  {get;set;}
         /// <summary>
         ///  授权作用，允许或拒绝
         /// </summary>
         [JsonProperty("effect")]
-        public effect  Effect {get;set;}
+        public effect  Effect  {get;set;}
     }
     public partial class ApplicationPermissionRecordItem
     {

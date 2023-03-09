@@ -18,6 +18,6 @@ namespace Authing.CSharp.SDK.Models
         ///  操作是否成功
         /// </summary>
         [JsonProperty("success")]
-        public bool  Success {get;set;}
+        public bool  Success  {get;set;}
     }
 }

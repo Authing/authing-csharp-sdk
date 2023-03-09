@@ -36,7 +36,7 @@ namespace Authing.CSharp.SDK.Models
 /// 
         /// </summary>
         [JsonProperty("field")]
-        public field  Field {get;set;}
+        public field  Field  {get;set;}
         /// <summary>
         ///  排序顺序：
 /// - `desc`: 按照从大到小降序。
@@ -44,7 +44,7 @@ namespace Authing.CSharp.SDK.Models
 /// 
         /// </summary>
         [JsonProperty("order")]
-        public order  Order {get;set;}
+        public order  Order  {get;set;}
     }
     public partial class SortingDto
     {

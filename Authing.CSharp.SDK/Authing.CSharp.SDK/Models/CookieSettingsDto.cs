@@ -18,11 +18,11 @@ namespace Authing.CSharp.SDK.Models
         ///  Cookie 有效时间：用户登录状态的有效时间（默认为 1209600 秒/ 14 天），过期后用户需要重新登录。对于应用面板及已加入应用面板的应用，将使用此 cookie  过期时间。
         /// </summary>
         [JsonProperty("cookieExpiresIn")]
-        public long  CookieExpiresIn {get;set;}
+        public long  CookieExpiresIn  {get;set;}
         /// <summary>
         ///  Cookie 过期时间基于浏览器会话：当前浏览器关闭后立即过期，下次打开需重新登录。
         /// </summary>
         [JsonProperty("cookieExpiresOnBrowserSession")]
-        public bool  CookieExpiresOnBrowserSession {get;set;}
+        public bool  CookieExpiresOnBrowserSession  {get;set;}
     }
 }

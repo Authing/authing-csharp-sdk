@@ -24,12 +24,12 @@ namespace Authing.CSharp.SDK.Models
 /// 
         /// </summary>
         [JsonProperty("cycle")]
-        public cycle  Cycle {get;set;}
+        public cycle  Cycle  {get;set;}
         /// <summary>
         ///  开始时间
         /// </summary>
         [JsonProperty("startTime")]
-        public long  StartTime {get;set;}
+        public long  StartTime  {get;set;}
     }
     public partial class SyncTaskTimedScheduler
     {

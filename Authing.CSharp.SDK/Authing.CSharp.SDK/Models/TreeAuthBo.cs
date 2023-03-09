@@ -18,21 +18,21 @@ namespace Authing.CSharp.SDK.Models
         ///  树资源节点路径
         /// </summary>
         [JsonProperty("nodePath")]
-        public string  NodePath {get;set;}
+        public string  NodePath  {get;set;}
         /// <summary>
         ///  树资源节点名称
         /// </summary>
         [JsonProperty("nodeName")]
-        public string  NodeName {get;set;}
+        public string  NodeName  {get;set;}
         /// <summary>
         ///  树资源节点操作权限列表
         /// </summary>
         [JsonProperty("nodeActions")]
-        public List<string>  NodeActions {get;set;}
+        public List<string>  NodeActions  {get;set;}
         /// <summary>
         ///  树资源节点 Value
         /// </summary>
         [JsonProperty("nodeValue")]
-        public string  NodeValue {get;set;}
+        public string  NodeValue  {get;set;}
     }
 }

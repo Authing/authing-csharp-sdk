@@ -18,6 +18,6 @@ namespace Authing.CSharp.SDK.Models
         ///  修改邮箱时是否验证旧邮箱
         /// </summary>
         [JsonProperty("verifyOldEmail")]
-        public bool  VerifyOldEmail {get;set;}
+        public bool  VerifyOldEmail  {get;set;}
     }
 }

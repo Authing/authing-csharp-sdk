@@ -18,11 +18,11 @@ namespace Authing.CSharp.SDK.Models
         ///  Access Token 内容
         /// </summary>
         [JsonProperty("access_token")]
-        public string  Access_token {get;set;}
+        public string  Access_token  {get;set;}
         /// <summary>
         ///  access_token 有效时间，默认为 7200 秒（两小时），过期之后应该重新获取新的 access_token。
         /// </summary>
         [JsonProperty("expires_in")]
-        public long  Expires_in {get;set;}
+        public long  Expires_in  {get;set;}
     }
 }

@@ -18,6 +18,6 @@ namespace Authing.CSharp.SDK.Models
         ///  数据策略 ID
         /// </summary>
         [JsonProperty("policyId")]
-        public string  PolicyId {get;set;}
+        public string  PolicyId  {get;set;}
     }
 }

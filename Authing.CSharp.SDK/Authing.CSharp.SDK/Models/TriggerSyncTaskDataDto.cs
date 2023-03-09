@@ -18,6 +18,6 @@ namespace Authing.CSharp.SDK.Models
         ///  此次执行同步任务的同步作业 ID
         /// </summary>
         [JsonProperty("syncJobId")]
-        public long  SyncJobId {get;set;}
+        public long  SyncJobId  {get;set;}
     }
 }

@@ -18,27 +18,27 @@ namespace Authing.CSharp.SDK.Models
         ///  邮件内容模版
         /// </summary>
         [JsonProperty("content")]
-        public string  Content {get;set;}
+        public string  Content  {get;set;}
         /// <summary>
         ///  邮件发件人名称
         /// </summary>
         [JsonProperty("sender")]
-        public string  Sender {get;set;}
+        public string  Sender  {get;set;}
         /// <summary>
         ///  邮件主题
         /// </summary>
         [JsonProperty("subject")]
-        public string  Subject {get;set;}
+        public string  Subject  {get;set;}
         /// <summary>
         ///  邮件模版名称
         /// </summary>
         [JsonProperty("name")]
-        public string  Name {get;set;}
+        public string  Name  {get;set;}
         /// <summary>
         ///  是否启用自定义模版
         /// </summary>
         [JsonProperty("customizeEnabled")]
-        public bool  CustomizeEnabled {get;set;}
+        public bool  CustomizeEnabled  {get;set;}
         /// <summary>
         ///  模版类型:
 /// - `WELCOME_EMAIL`: 欢迎邮件
@@ -59,17 +59,17 @@ namespace Authing.CSharp.SDK.Models
 /// 
         /// </summary>
         [JsonProperty("type")]
-        public type  Type {get;set;}
+        public type  Type  {get;set;}
         /// <summary>
         ///  验证码/邮件有效时间，只有验证类邮件才有有效时间。
         /// </summary>
         [JsonProperty("expiresIn")]
-        public long  ExpiresIn {get;set;}
+        public long  ExpiresIn  {get;set;}
         /// <summary>
         ///  完成邮件验证之后跳转到的地址，只针对 `FIRST_EMAIL_LOGIN_VERIFY` 和 `CONSOLE_CONDUCTED_VERIFY` 类型的模版有效。
         /// </summary>
         [JsonProperty("redirectTo")]
-        public string  RedirectTo {get;set;}
+        public string  RedirectTo  {get;set;}
         /// <summary>
         ///  模版渲染引擎。Authing 邮件模版目前支持两种渲染引擎：
 /// - `handlebar`: 详细使用方法请见：[handlebars 官方文档](https://handlebarsjs.com/)
@@ -79,7 +79,7 @@ namespace Authing.CSharp.SDK.Models
 /// 
         /// </summary>
         [JsonProperty("tplEngine")]
-        public tplEngine  TplEngine {get;set;}
+        public tplEngine  TplEngine  {get;set;}
     }
     public partial class UpdateEmailTemplateDto
     {

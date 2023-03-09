@@ -18,12 +18,12 @@ namespace Authing.CSharp.SDK.Models
         ///  资源
         /// </summary>
         [JsonProperty("resource")]
-        public string  Resource {get;set;}
+        public string  Resource  {get;set;}
         /// <summary>
         ///  权限分组
         /// </summary>
         [JsonProperty("namespace")]
-        public string  Namespace {get;set;}
+        public string  Namespace  {get;set;}
         /// <summary>
         ///  目标对象类型：
 /// - `USER`: 用户
@@ -33,17 +33,17 @@ namespace Authing.CSharp.SDK.Models
 /// 
         /// </summary>
         [JsonProperty("targetType")]
-        public targetType  TargetType {get;set;}
+        public targetType  TargetType  {get;set;}
         /// <summary>
         ///  当前页数，从 1 开始
         /// </summary>
         [JsonProperty("page")]
-        public long  Page {get;set;}
+        public long  Page  {get;set;}
         /// <summary>
         ///  每页数目，最大不能超过 50，默认为 10
         /// </summary>
         [JsonProperty("limit")]
-        public long  Limit {get;set;}
+        public long  Limit  {get;set;}
     }
     public partial class GetResourceAuthorizedTargetsDto
     {

@@ -18,16 +18,16 @@ namespace Authing.CSharp.SDK.Models
         ///  使用的设备类型
         /// </summary>
         [JsonProperty("device")]
-        public string  Device {get;set;}
+        public string  Device  {get;set;}
         /// <summary>
         ///  浏览器名称
         /// </summary>
         [JsonProperty("browser")]
-        public string  Browser {get;set;}
+        public string  Browser  {get;set;}
         /// <summary>
         ///  操作系统
         /// </summary>
         [JsonProperty("os")]
-        public string  Os {get;set;}
+        public string  Os  {get;set;}
     }
 }

@@ -1,17 +1,23 @@
-﻿using Newtonsoft.Json;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
+using System.Runtime.Serialization;
 
 namespace Authing.CSharp.SDK.Models
 {
-    public class SignInByFacebookPayloadDto
+    /// <summary>
+    /// SignInByFacebookPayloadDto 的模型
+    /// </summary>
+    public partial class SignInByFacebookPayloadDto
     {
         /// <summary>
-        ///  Facebook 移动端社会化登录获取到的 code
+        ///  Facebook 移动端社会化登录获取到的 access_token
         /// </summary>
         [JsonProperty("access_token")]
-        public string AccessToken { get; set; }
+        public string  Access_token  {get;set;}
     }
 }

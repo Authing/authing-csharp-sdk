@@ -7,16 +7,15 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.Serialization;
 
-
-   namespace Authing.CSharp.SDK.Models
-{
-/// <summary>
-/// SignInByMobileOptionsDto 的模型
-/// </summary>
-public partial class SignInByMobileOptionsDto
+namespace Authing.CSharp.SDK.Models
 {
     /// <summary>
-    ///  需要请求的权限，必须包含 openid。如果需要获取手机号和 email 需要包含 phone email；如果需要 refresh_token 需要包含 offline_access。多个 scope 请用空格分隔。id_token 解码后的内容中会包含这些 scope 对应的用户信息相关的字段。
+    /// SignInByMobileOptionsDto 的模型
+    /// </summary>
+    public partial class SignInByMobileOptionsDto
+    {
+        /// <summary>
+        ///  需要请求的权限，必须包含 openid。如果需要获取手机号和 email 需要包含 phone email；如果需要 refresh_token 需要包含 offline_access。多个 scope 请用空格分隔。id_token 解码后的内容中会包含这些 scope 对应的用户信息相关的字段。
 /// - `openid`: 必须包含。
 /// - `profile`: 返回 birthdate，family_name，gender，given_name，locale，middle_name，name，nickname，picture，preferred_username，profile，updated_at，website，zoneinfo 字段。
 /// - `username`: 返回 username。
@@ -28,23 +27,23 @@ public partial class SignInByMobileOptionsDto
 /// - `extended_fields`: 返回用户的扩展字段信息，内容为一个对象，key 为扩展字段名，value 为扩展字段值。
 /// - `tenant_id`: 返回用户的租户 ID。
 /// 
-    /// </summary>
-    [JsonProperty("scope")]
-    public string  Scope {get;set;}
-    /// <summary>
-    ///  额外请求上下文，将会传递到认证前和认证后的 [Pipeline](https://docs.authing.cn/v2/guides/pipeline/) 的 `context` 对象中。了解[如何在 Pipeline 的 `context` 参数中获取传入的额外 context](https://docs.authing.cn/v2/guides/pipeline/context-object.html)。
-    /// </summary>
-    [JsonProperty("context")]
-    public string  Context {get;set;}
-    /// <summary>
-    ///  租户 ID
-    /// </summary>
-    [JsonProperty("tenantId")]
-    public string  TenantId {get;set;}
-    /// <summary>
-    ///  设置额外的用户自定义数据，你需要先在 Authing 控制台[配置自定义数据](https://docs.authing.cn/v2/guides/users/user-defined-field/)。
-    /// </summary>
-    [JsonProperty("customData")]
-    public object  CustomData {get;set;}
-}
+        /// </summary>
+        [JsonProperty("scope")]
+        public string  Scope  {get;set;}
+        /// <summary>
+        ///  额外请求上下文，将会传递到认证前和认证后的 [Pipeline](https://docs.authing.cn/v2/guides/pipeline/) 的 `context` 对象中。了解[如何在 Pipeline 的 `context` 参数中获取传入的额外 context](https://docs.authing.cn/v2/guides/pipeline/context-object.html)。
+        /// </summary>
+        [JsonProperty("context")]
+        public string  Context  {get;set;}
+        /// <summary>
+        ///  租户 ID
+        /// </summary>
+        [JsonProperty("tenantId")]
+        public string  TenantId  {get;set;}
+        /// <summary>
+        ///  设置额外的用户自定义数据，你需要先在 Authing 控制台[配置自定义数据](https://docs.authing.cn/v2/guides/users/user-defined-field/)。
+        /// </summary>
+        [JsonProperty("customData")]
+        public object  CustomData  {get;set;}
+    }
 }

@@ -15,14 +15,19 @@ namespace Authing.CSharp.SDK.Models
     public partial class ListResourceTargetsDto
     {
         /// <summary>
-        ///  资源路径
+        ///  数据策略所属的数据资源路径列表
         /// </summary>
-        [JsonProperty("resource")]
-        public string  Resource {get;set;}
+        [JsonProperty("resources")]
+        public List<string>  Resources  {get;set;}
         /// <summary>
         ///  数据资源权限操作列表
         /// </summary>
-        [JsonProperty("actionAuthList")]
-        public List<ActionAuth>  ActionAuthList {get;set;}
+        [JsonProperty("actions")]
+        public List<string>  Actions  {get;set;}
+        /// <summary>
+        ///  权限空间 Code
+        /// </summary>
+        [JsonProperty("namespaceCode")]
+        public string  NamespaceCode  {get;set;}
     }
 }

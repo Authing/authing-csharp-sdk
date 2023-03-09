@@ -407,12 +407,10 @@ namespace Authing.CSharp.SDK.Framework.Test
 
                 IsSuccessRespDto dto = await managementClient.AuthorizeResources(authorizedResourceDto);
 
-                AuthorizedResourcePaginatedRespDto authorized = await managementClient.GetAuthorizedResources(new GetAuthorizedResourcesDto
+                AuthorizedResourcePaginatedRespDto authorized = await managementClient.GetAuthorizedResources(new GetMyAuthorizedResourcesDto
                 {
-                    TargetIdentifier = newAddUser.UserId,
                     Namespace = nameSpace,
                     ResourceType = "API",
-                    TargetType = "USER"
                 });
 
                 Assert.IsTrue(authorized.Data.List.Count > 0);

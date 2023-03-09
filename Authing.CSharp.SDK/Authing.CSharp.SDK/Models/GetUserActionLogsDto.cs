@@ -18,46 +18,46 @@ namespace Authing.CSharp.SDK.Models
         ///  请求 ID
         /// </summary>
         [JsonProperty("requestId")]
-        public string  RequestId {get;set;}
+        public string  RequestId  {get;set;}
         /// <summary>
         ///  客户端 IP
         /// </summary>
         [JsonProperty("clientIp")]
-        public string  ClientIp {get;set;}
+        public string  ClientIp  {get;set;}
         /// <summary>
-        ///  事件类型
+        ///  事件类型，用户的一系列操作，比如 login、logout、register、verifyMfa 等
         /// </summary>
         [JsonProperty("eventType")]
-        public string  EventType {get;set;}
+        public string  EventType  {get;set;}
         /// <summary>
         ///  用户 ID
         /// </summary>
         [JsonProperty("userId")]
-        public string  UserId {get;set;}
+        public string  UserId  {get;set;}
         /// <summary>
         ///  应用 ID
         /// </summary>
         [JsonProperty("appId")]
-        public string  AppId {get;set;}
+        public string  AppId  {get;set;}
         /// <summary>
         ///  开始时间戳
         /// </summary>
         [JsonProperty("start")]
-        public long  Start {get;set;}
+        public long  Start  {get;set;}
         /// <summary>
         ///  结束时间戳
         /// </summary>
         [JsonProperty("end")]
-        public long  End {get;set;}
+        public long  End  {get;set;}
         /// <summary>
         ///  请求是否成功
         /// </summary>
         [JsonProperty("success")]
-        public bool  Success {get;set;}
+        public bool  Success  {get;set;}
         /// <summary>
         ///  分页
         /// </summary>
         [JsonProperty("pagination")]
-        public ListWebhooksDto  Pagination {get;set;}
+        public ListWebhooksDto  Pagination  {get;set;}
     }
 }

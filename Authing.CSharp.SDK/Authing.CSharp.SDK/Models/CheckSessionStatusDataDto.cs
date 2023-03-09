@@ -18,6 +18,6 @@ namespace Authing.CSharp.SDK.Models
         ///  是否具有登录态
         /// </summary>
         [JsonProperty("active")]
-        public bool  Active {get;set;}
+        public bool  Active  {get;set;}
     }
 }

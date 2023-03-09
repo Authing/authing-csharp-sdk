@@ -18,6 +18,6 @@ namespace Authing.CSharp.SDK.Models
         ///  webhookId 数组
         /// </summary>
         [JsonProperty("webhookIds")]
-        public List<string>  WebhookIds {get;set;}
+        public List<string>  WebhookIds  {get;set;}
     }
 }

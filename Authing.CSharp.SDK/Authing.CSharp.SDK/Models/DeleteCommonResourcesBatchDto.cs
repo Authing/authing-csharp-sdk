@@ -18,6 +18,6 @@ namespace Authing.CSharp.SDK.Models
         ///  资源 id 列表
         /// </summary>
         [JsonProperty("ids")]
-        public List<string>  Ids {get;set;}
+        public List<string>  Ids  {get;set;}
     }
 }

@@ -18,7 +18,7 @@ namespace Authing.CSharp.SDK.Models
         ///  开启的注册方式
         /// </summary>
         [JsonProperty("enabledBasicRegisterMethods")]
-        public List<string>  EnabledBasicRegisterMethods {get;set;}
+        public List<string>  EnabledBasicRegisterMethods  {get;set;}
         /// <summary>
         ///  默认的注册类型
 /// - `PASSWORD`: 密码类型，支持邮箱 + 密码进行登录
@@ -26,7 +26,7 @@ namespace Authing.CSharp.SDK.Models
 /// 
         /// </summary>
         [JsonProperty("defaultRegisterMethod")]
-        public defaultRegisterMethod  DefaultRegisterMethod {get;set;}
+        public defaultRegisterMethod  DefaultRegisterMethod  {get;set;}
     }
     public partial class ApplicationRegisterConfig
     {

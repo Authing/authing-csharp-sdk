@@ -18,37 +18,37 @@ namespace Authing.CSharp.SDK.Models
         ///  用户 ID
         /// </summary>
         [JsonProperty("userId")]
-        public string  UserId {get;set;}
+        public string  UserId  {get;set;}
         /// <summary>
         ///  用户头像
         /// </summary>
         [JsonProperty("userAvatar")]
-        public string  UserAvatar {get;set;}
+        public string  UserAvatar  {get;set;}
         /// <summary>
         ///  用户显示名称，按照以下用户字段顺序进行展示：nickname > username > name > givenName > familyName -> email -> phone -> id
         /// </summary>
         [JsonProperty("userDisplayName")]
-        public string  UserDisplayName {get;set;}
+        public string  UserDisplayName  {get;set;}
         /// <summary>
         ///  用户登录次数
         /// </summary>
         [JsonProperty("userLoginsCount")]
-        public long  UserLoginsCount {get;set;}
+        public long  UserLoginsCount  {get;set;}
         /// <summary>
         ///  应用 ID
         /// </summary>
         [JsonProperty("appId")]
-        public string  AppId {get;set;}
+        public string  AppId  {get;set;}
         /// <summary>
         ///  应用名称
         /// </summary>
         [JsonProperty("appName")]
-        public string  AppName {get;set;}
+        public string  AppName  {get;set;}
         /// <summary>
         ///  客户端 IP，可根据登录时的客户端 IP 进行筛选。默认不传获取所有登录 IP 的登录历史。
         /// </summary>
         [JsonProperty("clientIp")]
-        public string  ClientIp {get;set;}
+        public string  ClientIp  {get;set;}
         /// <summary>
         ///  事件类型：
 /// - `login`: 登录
@@ -70,52 +70,52 @@ namespace Authing.CSharp.SDK.Models
 /// 
         /// </summary>
         [JsonProperty("eventType")]
-        public eventType  EventType {get;set;}
+        public eventType  EventType  {get;set;}
         /// <summary>
         ///  事件详情
         /// </summary>
         [JsonProperty("eventDetail")]
-        public string  EventDetail {get;set;}
+        public string  EventDetail  {get;set;}
         /// <summary>
         ///  是否成功
         /// </summary>
         [JsonProperty("success")]
-        public bool  Success {get;set;}
+        public bool  Success  {get;set;}
         /// <summary>
         ///  应用登录地址
         /// </summary>
         [JsonProperty("appLoginUrl")]
-        public string  AppLoginUrl {get;set;}
+        public string  AppLoginUrl  {get;set;}
         /// <summary>
         ///  应用 Logo
         /// </summary>
         [JsonProperty("appLogo")]
-        public string  AppLogo {get;set;}
+        public string  AppLogo  {get;set;}
         /// <summary>
         ///  User Agent
         /// </summary>
         [JsonProperty("userAgent")]
-        public string  UserAgent {get;set;}
+        public string  UserAgent  {get;set;}
         /// <summary>
         ///  解析过后的 User Agent
         /// </summary>
         [JsonProperty("parsedUserAgent")]
-        public ParsedUserAgent  ParsedUserAgent {get;set;}
+        public ParsedUserAgent  ParsedUserAgent  {get;set;}
         /// <summary>
         ///  地理位置
         /// </summary>
         [JsonProperty("geoip")]
-        public GeoIp  Geoip {get;set;}
+        public GeoIp  Geoip  {get;set;}
         /// <summary>
         ///  时间
         /// </summary>
         [JsonProperty("timestamp")]
-        public string  Timestamp {get;set;}
+        public string  Timestamp  {get;set;}
         /// <summary>
         ///  请求 ID
         /// </summary>
         [JsonProperty("requestId")]
-        public string  RequestId {get;set;}
+        public string  RequestId  {get;set;}
     }
     public partial class UserActionLogDto
     {

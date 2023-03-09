@@ -18,41 +18,41 @@ namespace Authing.CSharp.SDK.Models
         ///  订单号
         /// </summary>
         [JsonProperty("orderNo")]
-        public string  OrderNo {get;set;}
+        public string  OrderNo  {get;set;}
         /// <summary>
         ///  渠道订单号
         /// </summary>
         [JsonProperty("channelOrderNo")]
-        public string  ChannelOrderNo {get;set;}
+        public string  ChannelOrderNo  {get;set;}
         /// <summary>
         ///  渠道订单号
         /// </summary>
         [JsonProperty("paidAmount")]
-        public string  PaidAmount {get;set;}
+        public string  PaidAmount  {get;set;}
         /// <summary>
         ///  支付时间
         /// </summary>
         [JsonProperty("paidTime")]
-        public string  PaidTime {get;set;}
+        public string  PaidTime  {get;set;}
         /// <summary>
         ///  支付账号
         /// </summary>
         [JsonProperty("paidAccountNo")]
-        public string  PaidAccountNo {get;set;}
+        public string  PaidAccountNo  {get;set;}
         /// <summary>
         ///  支付状态
         /// </summary>
         [JsonProperty("payStatus")]
-        public string  PayStatus {get;set;}
+        public string  PayStatus  {get;set;}
         /// <summary>
         ///  创建时间
         /// </summary>
         [JsonProperty("createTime")]
-        public string  CreateTime {get;set;}
+        public string  CreateTime  {get;set;}
         /// <summary>
         ///  支付方式
         /// </summary>
         [JsonProperty("payType")]
-        public string  PayType {get;set;}
+        public string  PayType  {get;set;}
     }
 }

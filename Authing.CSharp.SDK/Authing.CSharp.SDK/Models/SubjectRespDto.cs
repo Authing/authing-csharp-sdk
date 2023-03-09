@@ -18,17 +18,17 @@ namespace Authing.CSharp.SDK.Models
         ///  主体 ID ，包含用户 ID、用户组 ID、角色 ID、组织机构 ID
         /// </summary>
         [JsonProperty("id")]
-        public string  Id {get;set;}
+        public string  Id  {get;set;}
         /// <summary>
         ///  主体类型,包括 USER、GROUP、ROLE、ORG 四种类型
         /// </summary>
         [JsonProperty("type")]
-        public type  Type {get;set;}
+        public type  Type  {get;set;}
         /// <summary>
         ///  主体名称，包含用户名称、用户组名称、角色名称、组织机构名称
         /// </summary>
         [JsonProperty("name")]
-        public string  Name {get;set;}
+        public string  Name  {get;set;}
     }
     public partial class SubjectRespDto
     {

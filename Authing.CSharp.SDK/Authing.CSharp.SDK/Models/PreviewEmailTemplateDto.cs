@@ -34,27 +34,27 @@ namespace Authing.CSharp.SDK.Models
 /// 
         /// </summary>
         [JsonProperty("type")]
-        public type  Type {get;set;}
+        public type  Type  {get;set;}
         /// <summary>
         ///  邮件内容模版，可选，如果不传默认使用用户池配置的邮件模版进行渲染。
         /// </summary>
         [JsonProperty("content")]
-        public string  Content {get;set;}
+        public string  Content  {get;set;}
         /// <summary>
         ///  邮件主题，可选，如果不传默认使用用户池配置的邮件模版进行渲染。
         /// </summary>
         [JsonProperty("subject")]
-        public string  Subject {get;set;}
+        public string  Subject  {get;set;}
         /// <summary>
         ///  邮件发件人名称，可选，如果不传默认使用用户池配置的邮件模版进行渲染。
         /// </summary>
         [JsonProperty("sender")]
-        public string  Sender {get;set;}
+        public string  Sender  {get;set;}
         /// <summary>
         ///  验证码/邮件有效时间，只有验证类邮件才有有效时间。可选，如果不传默认使用用户池配置的邮件模版进行渲染。
         /// </summary>
         [JsonProperty("expiresIn")]
-        public long  ExpiresIn {get;set;}
+        public long  ExpiresIn  {get;set;}
         /// <summary>
         ///  模版渲染引擎。Authing 邮件模版目前支持两种渲染引擎：
 /// - `handlebar`: 详细使用方法请见：[handlebars 官方文档](https://handlebarsjs.com/)
@@ -64,7 +64,7 @@ namespace Authing.CSharp.SDK.Models
 /// 
         /// </summary>
         [JsonProperty("tplEngine")]
-        public tplEngine  TplEngine {get;set;}
+        public tplEngine  TplEngine  {get;set;}
     }
     public partial class PreviewEmailTemplateDto
     {

@@ -18,6 +18,6 @@ namespace Authing.CSharp.SDK.Models
         ///  accessKeyId
         /// </summary>
         [JsonProperty("accessKeyId")]
-        public string  AccessKeyId {get;set;}
+        public string  AccessKeyId  {get;set;}
     }
 }

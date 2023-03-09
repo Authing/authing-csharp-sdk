@@ -18,22 +18,22 @@ namespace Authing.CSharp.SDK.Models
         ///  同步任务风险操作 ID
         /// </summary>
         [JsonProperty("syncRiskOperationId")]
-        public long  SyncRiskOperationId {get;set;}
+        public long  SyncRiskOperationId  {get;set;}
         /// <summary>
         ///  同步任务 ID
         /// </summary>
         [JsonProperty("syncTaskId")]
-        public long  SyncTaskId {get;set;}
+        public long  SyncTaskId  {get;set;}
         /// <summary>
         ///  创建时间
         /// </summary>
         [JsonProperty("createdAt")]
-        public string  CreatedAt {get;set;}
+        public string  CreatedAt  {get;set;}
         /// <summary>
         ///  更新时间
         /// </summary>
         [JsonProperty("updatedAt")]
-        public string  UpdatedAt {get;set;}
+        public string  UpdatedAt  {get;set;}
         /// <summary>
         ///  执行状态:
 /// - `PENDING`: 待执行
@@ -44,12 +44,12 @@ namespace Authing.CSharp.SDK.Models
 /// 
         /// </summary>
         [JsonProperty("status")]
-        public status  Status {get;set;}
+        public status  Status  {get;set;}
         /// <summary>
         ///  优先级，数字越小表示优先级越高。
         /// </summary>
         [JsonProperty("level")]
-        public long  Level {get;set;}
+        public long  Level  {get;set;}
         /// <summary>
         ///  操作对象类型:
 /// - `department`: 部门
@@ -57,22 +57,22 @@ namespace Authing.CSharp.SDK.Models
 /// 
         /// </summary>
         [JsonProperty("objectType")]
-        public objectType  ObjectType {get;set;}
+        public objectType  ObjectType  {get;set;}
         /// <summary>
         ///  操作对象（用户、分组、部门）名称
         /// </summary>
         [JsonProperty("objectName")]
-        public string  ObjectName {get;set;}
+        public string  ObjectName  {get;set;}
         /// <summary>
         ///  操作对象 ID
         /// </summary>
         [JsonProperty("objectId")]
-        public string  ObjectId {get;set;}
+        public string  ObjectId  {get;set;}
         /// <summary>
         ///  执行失败的错误信息
         /// </summary>
         [JsonProperty("errMsg")]
-        public string  ErrMsg {get;set;}
+        public string  ErrMsg  {get;set;}
     }
     public partial class SyncRiskOperationDto
     {

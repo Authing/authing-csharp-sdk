@@ -18,6 +18,6 @@ namespace Authing.CSharp.SDK.Models
         ///  角色 Code 和 namespace 列表
         /// </summary>
         [JsonProperty("roleList")]
-        public List<RoleCodeAndNamespaceDto>  RoleList {get;set;}
+        public List<RoleCodeAndNamespaceDto>  RoleList  {get;set;}
     }
 }

@@ -18,21 +18,21 @@ namespace Authing.CSharp.SDK.Models
         ///  套餐包编码
         /// </summary>
         [JsonProperty("code")]
-        public string  Code {get;set;}
+        public string  Code  {get;set;}
         /// <summary>
         ///  套餐结束时间
         /// </summary>
         [JsonProperty("endTime")]
-        public string  EndTime {get;set;}
+        public string  EndTime  {get;set;}
         /// <summary>
         ///  套餐逾期天数
         /// </summary>
         [JsonProperty("overdueDays")]
-        public string  OverdueDays {get;set;}
+        public string  OverdueDays  {get;set;}
         /// <summary>
         ///  套餐包信息
         /// </summary>
         [JsonProperty("goodsPackage")]
-        public GoodsPackageDto  GoodsPackage {get;set;}
+        public GoodsPackageDto  GoodsPackage  {get;set;}
     }
 }

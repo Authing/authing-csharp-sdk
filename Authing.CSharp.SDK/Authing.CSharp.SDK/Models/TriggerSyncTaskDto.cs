@@ -18,6 +18,6 @@ namespace Authing.CSharp.SDK.Models
         ///  同步任务 ID
         /// </summary>
         [JsonProperty("syncTaskId")]
-        public long  SyncTaskId {get;set;}
+        public long  SyncTaskId  {get;set;}
     }
 }

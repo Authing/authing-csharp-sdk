@@ -18,11 +18,11 @@ namespace Authing.CSharp.SDK.Models
         ///  用户名
         /// </summary>
         [JsonProperty("sender")]
-        public string  Sender {get;set;}
+        public string  Sender  {get;set;}
         /// <summary>
         ///  密码
         /// </summary>
         [JsonProperty("senderPass")]
-        public string  SenderPass {get;set;}
+        public string  SenderPass  {get;set;}
     }
 }

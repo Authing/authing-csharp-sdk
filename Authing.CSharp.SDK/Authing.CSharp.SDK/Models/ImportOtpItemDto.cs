@@ -18,11 +18,11 @@ namespace Authing.CSharp.SDK.Models
         ///  用户 ID
         /// </summary>
         [JsonProperty("userId")]
-        public string  UserId {get;set;}
+        public string  UserId  {get;set;}
         /// <summary>
         ///  OTP 数据
         /// </summary>
         [JsonProperty("otp")]
-        public ImportOtpItemDataDto  Otp {get;set;}
+        public ImportOtpItemDataDto  Otp  {get;set;}
     }
 }

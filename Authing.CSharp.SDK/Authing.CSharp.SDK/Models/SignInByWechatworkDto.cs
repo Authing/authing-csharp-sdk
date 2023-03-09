@@ -7,18 +7,17 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.Serialization;
 
-
-   namespace Authing.CSharp.SDK.Models
-{
-/// <summary>
-/// SignInByWechatworkDto 的模型
-/// </summary>
-public partial class SignInByWechatworkDto
+namespace Authing.CSharp.SDK.Models
 {
     /// <summary>
-    ///  企业微信移动端社会化登录返回的一次性临时 code
+    /// SignInByWechatworkDto 的模型
     /// </summary>
-    [JsonProperty("code")]
-    public string  Code {get;set;}
-}
+    public partial class SignInByWechatworkDto
+    {
+        /// <summary>
+        ///  企业微信移动端社会化登录返回的一次性临时 code
+        /// </summary>
+        [JsonProperty("code")]
+        public string  Code  {get;set;}
+    }
 }

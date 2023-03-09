@@ -7,18 +7,17 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.Serialization;
 
-
-   namespace Authing.CSharp.SDK.Models
-{
-/// <summary>
-/// CheckQrcodeStatusDto 的模型
-/// </summary>
-public partial class CheckQrcodeStatusDto
+namespace Authing.CSharp.SDK.Models
 {
     /// <summary>
-    ///  二维码唯一 ID
+    /// CheckQrcodeStatusDto 的模型
     /// </summary>
-    [JsonProperty("qrcodeId")]
-    public string  QrcodeId {get;set;} 
-}
+    public partial class CheckQrcodeStatusDto
+    {
+        /// <summary>
+        ///  二维码唯一 ID
+        /// </summary>
+        [JsonProperty("qrcodeId")]
+        public string  QrcodeId {get;set;} 
+    }
 }

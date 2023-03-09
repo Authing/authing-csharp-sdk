@@ -7,18 +7,17 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.Serialization;
 
-
-   namespace Authing.CSharp.SDK.Models
-{
-/// <summary>
-/// GetMyRoleListDto 的模型
-/// </summary>
-public partial class GetMyRoleListDto
+namespace Authing.CSharp.SDK.Models
 {
     /// <summary>
-    ///  所属权限分组的 code
+    /// GetMyRoleListDto 的模型
     /// </summary>
-    [JsonProperty("namespace")]
-    public string  Namespace {get;set;} 
-}
+    public partial class GetMyRoleListDto
+    {
+        /// <summary>
+        ///  所属权限分组(权限空间)的 Code
+        /// </summary>
+        [JsonProperty("namespace")]
+        public string  Namespace {get;set;} 
+    }
 }

@@ -18,22 +18,22 @@ namespace Authing.CSharp.SDK.Models
         ///  同步任务 ID
         /// </summary>
         [JsonProperty("syncTaskId")]
-        public long  SyncTaskId {get;set;}
+        public long  SyncTaskId  {get;set;}
         /// <summary>
         ///  创建时间
         /// </summary>
         [JsonProperty("createdAt")]
-        public string  CreatedAt {get;set;}
+        public string  CreatedAt  {get;set;}
         /// <summary>
         ///  更新时间
         /// </summary>
         [JsonProperty("updatedAt")]
-        public string  UpdatedAt {get;set;}
+        public string  UpdatedAt  {get;set;}
         /// <summary>
         ///  同步任务名称
         /// </summary>
         [JsonProperty("syncTaskName")]
-        public string  SyncTaskName {get;set;}
+        public string  SyncTaskName  {get;set;}
         /// <summary>
         ///  同步任务类型:
 /// - `lark`: 飞书
@@ -52,7 +52,7 @@ namespace Authing.CSharp.SDK.Models
 /// 
         /// </summary>
         [JsonProperty("syncTaskType")]
-        public syncTaskType  SyncTaskType {get;set;}
+        public syncTaskType  SyncTaskType  {get;set;}
         /// <summary>
         ///  同步任务数据流向：
 /// - `upstream`: 作为上游，将数据同步到 Authing
@@ -60,7 +60,7 @@ namespace Authing.CSharp.SDK.Models
 /// 
         /// </summary>
         [JsonProperty("syncFlow")]
-        public syncFlow  SyncFlow {get;set;}
+        public syncFlow  SyncFlow  {get;set;}
         /// <summary>
         ///  同步任务触发类型：
 /// - `manually`: 手动触发执行
@@ -69,17 +69,17 @@ namespace Authing.CSharp.SDK.Models
 /// 
         /// </summary>
         [JsonProperty("syncTrigger")]
-        public syncTrigger  SyncTrigger {get;set;}
+        public syncTrigger  SyncTrigger  {get;set;}
         /// <summary>
         ///  最近一次同步错误信息
         /// </summary>
         [JsonProperty("lastSyncMessage")]
-        public string  LastSyncMessage {get;set;}
+        public string  LastSyncMessage  {get;set;}
         /// <summary>
         ///  最近一次同步进度
         /// </summary>
         [JsonProperty("lastSyncRate")]
-        public long  LastSyncRate {get;set;}
+        public long  LastSyncRate  {get;set;}
         /// <summary>
         ///  最近一次同步状态:
 /// - `free`: 空闲状态，从未执行
@@ -90,32 +90,32 @@ namespace Authing.CSharp.SDK.Models
 /// 
         /// </summary>
         [JsonProperty("lastSyncStatus")]
-        public lastSyncStatus  LastSyncStatus {get;set;}
+        public lastSyncStatus  LastSyncStatus  {get;set;}
         /// <summary>
         ///  最近一次同步时间
         /// </summary>
         [JsonProperty("lastSyncTime")]
-        public string  LastSyncTime {get;set;}
+        public string  LastSyncTime  {get;set;}
         /// <summary>
         ///  此同步任务绑定的组织机构。针对上游同步，需执行一次同步任务之后才会绑定组织机构；针对下游同步，创建同步任务的时候就需要设置。
         /// </summary>
         [JsonProperty("organizationCode")]
-        public string  OrganizationCode {get;set;}
+        public string  OrganizationCode  {get;set;}
         /// <summary>
         ///  同步范围，**只针对下游同步任务有效**。为空表示同步整个组织机构。
         /// </summary>
         [JsonProperty("provisioningScope")]
-        public SyncTaskProvisioningScope  ProvisioningScope {get;set;}
+        public SyncTaskProvisioningScope  ProvisioningScope  {get;set;}
         /// <summary>
         ///  字段映射配置
         /// </summary>
         [JsonProperty("fieldMapping")]
-        public List<SyncTaskFieldMapping>  FieldMapping {get;set;}
+        public List<SyncTaskFieldMapping>  FieldMapping  {get;set;}
         /// <summary>
         ///  定时同步时间设置
         /// </summary>
         [JsonProperty("timedScheduler")]
-        public SyncTaskTimedScheduler  TimedScheduler {get;set;}
+        public SyncTaskTimedScheduler  TimedScheduler  {get;set;}
     }
     public partial class SyncTaskDto
     {

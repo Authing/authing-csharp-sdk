@@ -18,12 +18,12 @@ namespace Authing.CSharp.SDK.Models
         ///  身份源 ID
         /// </summary>
         [JsonProperty("identityId")]
-        public string  IdentityId {get;set;}
+        public string  IdentityId  {get;set;}
         /// <summary>
         ///  身份源连接 ID
         /// </summary>
         [JsonProperty("extIdpId")]
-        public string  ExtIdpId {get;set;}
+        public string  ExtIdpId  {get;set;}
         /// <summary>
         ///  外部身份源类型：
 /// - `wechat`: 微信
@@ -56,32 +56,37 @@ namespace Authing.CSharp.SDK.Models
 /// 
         /// </summary>
         [JsonProperty("provider")]
-        public provider  Provider {get;set;}
+        public provider  Provider  {get;set;}
         /// <summary>
         ///  Identity 类型，如 unionid, openid, primary
         /// </summary>
         [JsonProperty("type")]
-        public string  Type {get;set;}
+        public string  Type  {get;set;}
         /// <summary>
         ///  在外部身份源中的 ID
         /// </summary>
         [JsonProperty("userIdInIdp")]
-        public string  UserIdInIdp {get;set;}
+        public string  UserIdInIdp  {get;set;}
+        /// <summary>
+        ///  用户在 idp 中的身份信息
+        /// </summary>
+        [JsonProperty("userInfoInIdp")]
+        public User  UserInfoInIdp  {get;set;}
         /// <summary>
         ///  在外部身份源中的 Access Token（此参数只会在用户主动获取时返回，管理侧接口不会返回）。
         /// </summary>
         [JsonProperty("accessToken")]
-        public string  AccessToken {get;set;}
+        public string  AccessToken  {get;set;}
         /// <summary>
         ///  在外部身份源中的 Refresh Token（此参数只会在用户主动获取时返回，管理侧接口不会返回）。
         /// </summary>
         [JsonProperty("refreshToken")]
-        public string  RefreshToken {get;set;}
+        public string  RefreshToken  {get;set;}
         /// <summary>
         ///  身份来自的身份源连接 ID 列表
         /// </summary>
         [JsonProperty("originConnIds")]
-        public List<string>  OriginConnIds {get;set;}
+        public List<string>  OriginConnIds  {get;set;}
     }
     public partial class IdentityDto
     {
@@ -174,6 +179,12 @@ namespace Authing.CSharp.SDK.Models
             INSTAGRAM,
             [EnumMember(Value="welink")]
             WELINK,
+            [EnumMember(Value="huawei")]
+            HUAWEI,
+            [EnumMember(Value="honor")]
+            HONOR,
+            [EnumMember(Value="xiaomi")]
+            XIAOMI,
         }
     }
 }

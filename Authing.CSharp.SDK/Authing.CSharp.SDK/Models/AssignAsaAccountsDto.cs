@@ -18,16 +18,16 @@ namespace Authing.CSharp.SDK.Models
         ///  所属应用 ID
         /// </summary>
         [JsonProperty("appId")]
-        public string  AppId {get;set;}
+        public string  AppId  {get;set;}
         /// <summary>
         ///  要关联的账号 ID
         /// </summary>
         [JsonProperty("accountId")]
-        public string  AccountId {get;set;}
+        public string  AccountId  {get;set;}
         /// <summary>
         ///  关联对象列表
         /// </summary>
         [JsonProperty("targets")]
-        public List<AssignAsaAccountItem>  Targets {get;set;}
+        public List<AssignAsaAccountItem>  Targets  {get;set;}
     }
 }

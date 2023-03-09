@@ -18,6 +18,6 @@ namespace Authing.CSharp.SDK.Models
         ///  原来接口返回的 response 数据
         /// </summary>
         [JsonProperty("response")]
-        public Any  Response {get;set;}
+        public Any  Response  {get;set;}
     }
 }

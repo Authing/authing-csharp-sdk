@@ -18,37 +18,37 @@ namespace Authing.CSharp.SDK.Models
         ///  应用 ID
         /// </summary>
         [JsonProperty("appId")]
-        public string  AppId {get;set;}
+        public string  AppId  {get;set;}
         /// <summary>
         ///  应用唯一标志
         /// </summary>
         [JsonProperty("appIdentifier")]
-        public string  AppIdentifier {get;set;}
+        public string  AppIdentifier  {get;set;}
         /// <summary>
         ///  应用名称
         /// </summary>
         [JsonProperty("appName")]
-        public string  AppName {get;set;}
+        public string  AppName  {get;set;}
         /// <summary>
         ///  应用 Logo 链接
         /// </summary>
         [JsonProperty("appLogo")]
-        public string  AppLogo {get;set;}
+        public string  AppLogo  {get;set;}
         /// <summary>
         ///  应用描述信息
         /// </summary>
         [JsonProperty("appDescription")]
-        public string  AppDescription {get;set;}
+        public string  AppDescription  {get;set;}
         /// <summary>
         ///  应用类型
         /// </summary>
         [JsonProperty("appType")]
-        public appType  AppType {get;set;}
+        public appType  AppType  {get;set;}
         /// <summary>
         ///  是否为集成应用
         /// </summary>
         [JsonProperty("isIntegrateApp")]
-        public bool  IsIntegrateApp {get;set;}
+        public bool  IsIntegrateApp  {get;set;}
     }
     public partial class ApplicationSimpleInfoDto
     {
@@ -65,6 +65,8 @@ namespace Authing.CSharp.SDK.Models
             NATIVE,
             [EnumMember(Value="api")]
             API,
+            [EnumMember(Value="mini-program")]
+            MINI_PROGRAM,
         }
     }
 }

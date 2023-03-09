@@ -18,11 +18,11 @@ namespace Authing.CSharp.SDK.Models
         ///  OTP 密钥
         /// </summary>
         [JsonProperty("secret")]
-        public string  Secret {get;set;}
+        public string  Secret  {get;set;}
         /// <summary>
         ///  OTP Recovery Code
         /// </summary>
         [JsonProperty("recoveryCode")]
-        public string  RecoveryCode {get;set;}
+        public string  RecoveryCode  {get;set;}
     }
 }

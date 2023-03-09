@@ -18,6 +18,6 @@ namespace Authing.CSharp.SDK.Models
         ///  是否可用
         /// </summary>
         [JsonProperty("available")]
-        public bool  Available {get;set;}
+        public bool  Available  {get;set;}
     }
 }

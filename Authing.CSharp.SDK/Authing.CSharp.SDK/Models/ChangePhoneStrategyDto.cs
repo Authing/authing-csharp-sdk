@@ -18,6 +18,6 @@ namespace Authing.CSharp.SDK.Models
         ///  修改手机号时是否验证旧手机号
         /// </summary>
         [JsonProperty("verifyOldPhone")]
-        public bool  VerifyOldPhone {get;set;}
+        public bool  VerifyOldPhone  {get;set;}
     }
 }

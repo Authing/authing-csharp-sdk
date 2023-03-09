@@ -18,11 +18,11 @@ namespace Authing.CSharp.SDK.Models
         ///  数据资源名称或者 Code 校验是否有效
         /// </summary>
         [JsonProperty("isValid")]
-        public bool  IsValid {get;set;}
+        public bool  IsValid  {get;set;}
         /// <summary>
         ///  数据资源名称或者 Code 校验失败提示信息,如果校验成功, message 不返回
         /// </summary>
         [JsonProperty("message")]
-        public string  Message {get;set;}
+        public string  Message  {get;set;}
     }
 }

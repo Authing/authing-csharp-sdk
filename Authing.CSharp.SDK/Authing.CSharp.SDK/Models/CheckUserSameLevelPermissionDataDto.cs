@@ -18,6 +18,6 @@ namespace Authing.CSharp.SDK.Models
         ///  响应结果列表
         /// </summary>
         [JsonProperty("checkLevelResultList")]
-        public List<CheckUserSameLevelPermissionRespDto>  CheckLevelResultList {get;set;}
+        public List<CheckUserSameLevelPermissionRespDto>  CheckLevelResultList  {get;set;}
     }
 }

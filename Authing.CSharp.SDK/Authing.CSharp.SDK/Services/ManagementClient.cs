@@ -21,6 +21,431 @@ namespace Authing.CSharp.SDK.Services
         }
 
         ///<summary>
+        /// 岗位列表
+        ///</summary>
+        /// <param name="keywords">搜索岗位 code 或名称</param>
+        /// <param name="skipCount">是否统计岗位关联的部门数和用户数</param>
+        /// <param name="page">当前页数，从 1 开始</param>
+        /// <param name="limit">每页数目，最大不能超过 50，默认为 10</param>
+        ///<returns>PostPaginatedRespDto</returns>
+        public async Task<PostPaginatedRespDto> PostList(ListPostDto reqDto)
+        {
+            string httpResponse = await Request("GET", "/api/v3/list-post", reqDto).ConfigureAwait(false);
+
+            PostPaginatedRespDto result = m_JsonService.DeserializeObject<PostPaginatedRespDto>(httpResponse);
+            return result;
+
+        }
+        ///<summary>
+        /// 获取岗位
+        ///</summary>
+        /// <param name="code">岗位 code</param>
+        ///<returns>CreatePostDto</returns>
+        public async Task<GetPostRespDto> GetPost(GetPostDto reqDto)
+        {
+            string httpResponse = await Request("GET", "/api/v3/get-post", reqDto).ConfigureAwait(false);
+
+            GetPostRespDto result = m_JsonService.DeserializeObject<GetPostRespDto>(httpResponse);
+            return result;
+
+        }
+        ///<summary>
+        /// 获取用户关联岗位
+        ///</summary>
+        /// <param name="userId">用户 id</param>
+        ///<returns>CreatePostDto</returns>
+        public async Task<GetUserPostRespDto> GetUserPost(GetUserPostDto reqDto)
+        {
+            string httpResponse = await Request("GET", "/api/v3/get-user-post", reqDto).ConfigureAwait(false);
+
+            GetUserPostRespDto result = m_JsonService.DeserializeObject<GetUserPostRespDto>(httpResponse);
+            return result;
+
+        }
+        ///<summary>
+        /// 获取岗位信息
+        ///</summary>
+        /// <param name="requestBody"></param>
+        ///<returns>PostRespDto</returns>
+        public async Task<GetPostByIdRespDto> GetPostById(GetPostByIdListDto requestBody)
+        {
+            string httpResponse = await Request("POST", "/api/v3/get-post-by-id", requestBody).ConfigureAwait(false);
+
+            GetPostByIdRespDto result = m_JsonService.DeserializeObject<GetPostByIdRespDto>(httpResponse);
+            return result;
+        }
+        ///<summary>
+        /// 创建岗位
+        ///</summary>
+        /// <param name="requestBody"></param>
+        ///<returns>CreatePostRespDto</returns>
+        public async Task<CreatePostRespDto> CreatePost(CreatePostDto requestBody)
+        {
+            string httpResponse = await Request("POST", "/api/v3/create-post", requestBody).ConfigureAwait(false);
+
+            CreatePostRespDto result = m_JsonService.DeserializeObject<CreatePostRespDto>(httpResponse);
+            return result;
+        }
+        ///<summary>
+        /// 更新岗位信息
+        ///</summary>
+        /// <param name="requestBody"></param>
+        ///<returns>CreatePostRespDto</returns>
+        public async Task<UpdatePostRespDto> UpdatePost(CreatePostDto requestBody)
+        {
+            string httpResponse = await Request("POST", "/api/v3/update-post", requestBody).ConfigureAwait(false);
+
+            UpdatePostRespDto result = m_JsonService.DeserializeObject<UpdatePostRespDto>(httpResponse);
+            return result;
+        }
+        ///<summary>
+        /// 删除岗位
+        ///</summary>
+        /// <param name="requestBody"></param>
+        ///<returns>CommonResponseDto</returns>
+        public async Task<CommonResponseDto> RemovePost(RemovePostDto requestBody)
+        {
+            string httpResponse = await Request("POST", "/api/v3/remove-post", requestBody).ConfigureAwait(false);
+
+            CommonResponseDto result = m_JsonService.DeserializeObject<CommonResponseDto>(httpResponse);
+            return result;
+        }
+        ///<summary>
+        /// 用户关联岗位
+        ///</summary>
+        /// <param name="requestBody"></param>
+        ///<returns>CommonResponseDto</returns>
+        public async Task<CommonResponseDto> UserConnectionPost(UserConnectionPostDto requestBody)
+        {
+            string httpResponse = await Request("POST", "/api/v3/user-connection-post", requestBody).ConfigureAwait(false);
+
+            CommonResponseDto result = m_JsonService.DeserializeObject<CommonResponseDto>(httpResponse);
+            return result;
+        }
+        ///<summary>
+        /// 获取同步任务详情
+        ///</summary>
+        /// <param name="syncTaskId">同步任务 ID</param>
+        ///<returns>SyncTaskSingleRespDto</returns>
+        public async Task<SyncTaskSingleRespDto> GetSyncTask(GetSyncTaskDto reqDto)
+        {
+            string httpResponse = await Request("GET", "/api/v3/get-sync-task", reqDto).ConfigureAwait(false);
+
+            SyncTaskSingleRespDto result = m_JsonService.DeserializeObject<SyncTaskSingleRespDto>(httpResponse);
+            return result;
+
+        }
+        ///<summary>
+        /// 获取同步任务列表
+        ///</summary>
+        /// <param name="page">当前页数，从 1 开始</param>
+        /// <param name="limit">每页数目，最大不能超过 50，默认为 10</param>
+        ///<returns>SyncTaskPaginatedRespDto</returns>
+        public async Task<SyncTaskPaginatedRespDto> ListSyncTasks(ListSyncTasksDto reqDto)
+        {
+            string httpResponse = await Request("GET", "/api/v3/list-sync-tasks", reqDto).ConfigureAwait(false);
+
+            SyncTaskPaginatedRespDto result = m_JsonService.DeserializeObject<SyncTaskPaginatedRespDto>(httpResponse);
+            return result;
+
+        }
+        ///<summary>
+        /// 创建同步任务
+        ///</summary>
+        /// <param name="requestBody"></param>
+        ///<returns>SyncTaskPaginatedRespDto</returns>
+        public async Task<SyncTaskPaginatedRespDto> CreateSyncTask(CreateSyncTaskDto requestBody)
+        {
+            string httpResponse = await Request("POST", "/api/v3/create-sync-task", requestBody).ConfigureAwait(false);
+
+            SyncTaskPaginatedRespDto result = m_JsonService.DeserializeObject<SyncTaskPaginatedRespDto>(httpResponse);
+            return result;
+        }
+        ///<summary>
+        /// 修改同步任务
+        ///</summary>
+        /// <param name="requestBody"></param>
+        ///<returns>SyncTaskPaginatedRespDto</returns>
+        public async Task<SyncTaskPaginatedRespDto> UpdateSyncTask(UpdateSyncTaskDto requestBody)
+        {
+            string httpResponse = await Request("POST", "/api/v3/update-sync-task", requestBody).ConfigureAwait(false);
+
+            SyncTaskPaginatedRespDto result = m_JsonService.DeserializeObject<SyncTaskPaginatedRespDto>(httpResponse);
+            return result;
+        }
+        ///<summary>
+        /// 执行同步任务
+        ///</summary>
+        /// <param name="requestBody"></param>
+        ///<returns>TriggerSyncTaskRespDto</returns>
+        public async Task<TriggerSyncTaskRespDto> TriggerSyncTask(TriggerSyncTaskDto requestBody)
+        {
+            string httpResponse = await Request("POST", "/api/v3/trigger-sync-task", requestBody).ConfigureAwait(false);
+
+            TriggerSyncTaskRespDto result = m_JsonService.DeserializeObject<TriggerSyncTaskRespDto>(httpResponse);
+            return result;
+        }
+        ///<summary>
+        /// 获取同步作业详情
+        ///</summary>
+        /// <param name="syncJobId">同步作业 ID</param>
+        ///<returns>SyncJobSingleRespDto</returns>
+        public async Task<SyncJobSingleRespDto> GetSyncJob(GetSyncJobDto reqDto)
+        {
+            string httpResponse = await Request("GET", "/api/v3/get-sync-job", reqDto).ConfigureAwait(false);
+
+            SyncJobSingleRespDto result = m_JsonService.DeserializeObject<SyncJobSingleRespDto>(httpResponse);
+            return result;
+
+        }
+        ///<summary>
+        /// 获取同步作业详情
+        ///</summary>
+        /// <param name="syncTaskId">同步任务 ID</param>
+        /// <param name="page">当前页数，从 1 开始</param>
+        /// <param name="limit">每页数目，最大不能超过 50，默认为 10</param>
+        /// <param name="syncTrigger">同步任务触发类型：
+        /// - `manually`: 手动触发执行
+        /// - `timed`: 定时触发
+        /// - `automatic`: 根据事件自动触发
+        /// </param>
+        ///<returns>SyncJobPaginatedRespDto</returns>
+        public async Task<SyncJobPaginatedRespDto> ListSyncJobs(ListSyncJobsDto reqDto)
+        {
+            string httpResponse = await Request("GET", "/api/v3/list-sync-jobs", reqDto).ConfigureAwait(false);
+
+            SyncJobPaginatedRespDto result = m_JsonService.DeserializeObject<SyncJobPaginatedRespDto>(httpResponse);
+            return result;
+
+        }
+        ///<summary>
+        /// 获取同步作业详情
+        ///</summary>
+        /// <param name="syncJobId">同步作业 ID</param>
+        /// <param name="page">当前页数，从 1 开始</param>
+        /// <param name="limit">每页数目，最大不能超过 50，默认为 10</param>
+        /// <param name="success">根据是否操作成功进行筛选</param>
+        /// <param name="action">根据操作类型进行筛选：
+        /// - `CreateUser`: 创建用户
+        /// - `UpdateUser`: 修改用户信息
+        /// - `DeleteUser`: 删除用户
+        /// - `UpdateUserIdentifier`: 修改用户唯一标志符
+        /// - `ChangeUserDepartment`: 修改用户部门
+        /// - `CreateDepartment`: 创建部门
+        /// - `UpdateDepartment`: 修改部门信息
+        /// - `DeleteDepartment`: 删除部门
+        /// - `MoveDepartment`: 移动部门
+        /// - `UpdateDepartmentLeader`: 同步部门负责人
+        /// - `CreateGroup`: 创建分组
+        /// - `UpdateGroup`: 修改分组
+        /// - `DeleteGroup`: 删除分组
+        /// - `Updateless`: 无更新
+        /// </param>
+        /// <param name="objectType">操作对象类型:
+        /// - `department`: 部门
+        /// - `user`: 用户
+        /// </param>
+        ///<returns>TriggerSyncTaskRespDto</returns>
+        public async Task<TriggerSyncTaskRespDto> ListSyncJobLogs(ListSyncJobLogsDto reqDto)
+        {
+            string httpResponse = await Request("GET", "/api/v3/list-sync-job-logs", reqDto).ConfigureAwait(false);
+
+            TriggerSyncTaskRespDto result = m_JsonService.DeserializeObject<TriggerSyncTaskRespDto>(httpResponse);
+            return result;
+
+        }
+        ///<summary>
+        /// 获取同步风险操作列表
+        ///</summary>
+        /// <param name="syncTaskId">同步任务 ID</param>
+        /// <param name="page">当前页数，从 1 开始</param>
+        /// <param name="limit">每页数目，最大不能超过 50，默认为 10</param>
+        /// <param name="status">根据执行状态筛选</param>
+        /// <param name="objectType">根据操作对象类型，默认获取所有类型的记录：
+        /// - `department`: 部门
+        /// - `user`: 用户
+        /// </param>
+        ///<returns>SyncRiskOperationPaginatedRespDto</returns>
+        public async Task<SyncRiskOperationPaginatedRespDto> ListSyncRiskOperations(ListSyncRiskOperationsDto reqDto)
+        {
+            string httpResponse = await Request("GET", "/api/v3/list-sync-risk-operations", reqDto).ConfigureAwait(false);
+
+            SyncRiskOperationPaginatedRespDto result = m_JsonService.DeserializeObject<SyncRiskOperationPaginatedRespDto>(httpResponse);
+            return result;
+
+        }
+        ///<summary>
+        /// 执行同步风险操作
+        ///</summary>
+        /// <param name="requestBody"></param>
+        ///<returns>TriggerSyncRiskOperationsRespDto</returns>
+        public async Task<TriggerSyncRiskOperationsRespDto> TriggerSyncRiskOperations(TriggerSyncRiskOperationDto requestBody)
+        {
+            string httpResponse = await Request("POST", "/api/v3/trigger-sync-risk-operations", requestBody).ConfigureAwait(false);
+
+            TriggerSyncRiskOperationsRespDto result = m_JsonService.DeserializeObject<TriggerSyncRiskOperationsRespDto>(httpResponse);
+            return result;
+        }
+        ///<summary>
+        /// 取消同步风险操作
+        ///</summary>
+        /// <param name="requestBody"></param>
+        ///<returns>CancelSyncRiskOperationsRespDto</returns>
+        public async Task<CancelSyncRiskOperationsRespDto> CancelSyncRiskOperation(CancelSyncRiskOperationDto requestBody)
+        {
+            string httpResponse = await Request("POST", "/api/v3/cancel-sync-risk-operation", requestBody).ConfigureAwait(false);
+
+            CancelSyncRiskOperationsRespDto result = m_JsonService.DeserializeObject<CancelSyncRiskOperationsRespDto>(httpResponse);
+            return result;
+        }
+        ///<summary>
+        /// 注册
+        ///</summary>
+        /// <param name="requestBody"></param>
+        ///<returns>UserSingleRespDto</returns>
+        public async Task<UserSingleRespDto> SignUp(SignUpDto requestBody)
+        {
+            string httpResponse = await Request("POST", "/api/v3/signup", requestBody).ConfigureAwait(false);
+
+            UserSingleRespDto result = m_JsonService.DeserializeObject<UserSingleRespDto>(httpResponse);
+            return result;
+        }
+        ///<summary>
+        /// 注册
+        ///</summary>
+        /// <param name="requestBody"></param>
+        ///<returns>UserSingleRespDto</returns>
+        public async Task<UserSingleRespDto> SignUp1(SignUpDto requestBody)
+        {
+            string httpResponse = await Request("POST", "/api/v3/signup", requestBody).ConfigureAwait(false);
+
+            UserSingleRespDto result = m_JsonService.DeserializeObject<UserSingleRespDto>(httpResponse);
+            return result;
+        }
+        ///<summary>
+        /// 获取登录日志
+        ///</summary>
+        /// <param name="appId">应用 ID，可根据应用 ID 筛选。默认不传获取所有应用的登录历史。</param>
+        /// <param name="clientIp">客户端 IP，可根据登录时的客户端 IP 进行筛选。默认不传获取所有登录 IP 的登录历史。</param>
+        /// <param name="success">是否登录成功，可根据是否登录成功进行筛选。默认不传获取的记录中既包含成功也包含失败的的登录历史。</param>
+        /// <param name="start">开始时间，为单位为毫秒的时间戳</param>
+        /// <param name="end">结束时间，为单位为毫秒的时间戳</param>
+        /// <param name="page">当前页数，从 1 开始</param>
+        /// <param name="limit">每页数目，最大不能超过 50，默认为 10</param>
+        ///<returns>GetLoginHistoryRespDto</returns>
+        public async Task<GetLoginHistoryRespDto> GetLoginHistory(GetMyLoginHistoryDto reqDto)
+        {
+            string httpResponse = await Request("GET", "/api/v3/get-my-login-history", reqDto).ConfigureAwait(false);
+
+            GetLoginHistoryRespDto result = m_JsonService.DeserializeObject<GetLoginHistoryRespDto>(httpResponse);
+            return result;
+
+        }
+        ///<summary>
+        /// 获取登录应用
+        ///</summary>
+        ///<returns>GetLoggedInAppsRespDto</returns>
+        public async Task<GetLoggedInAppsRespDto> GetLoggedInApps()
+        {
+            string httpResponse = await Request("GET", "/api/v3/get-my-logged-in-apps").ConfigureAwait(false);
+
+            GetLoggedInAppsRespDto result = m_JsonService.DeserializeObject<GetLoggedInAppsRespDto>(httpResponse);
+            return result;
+
+        }
+        ///<summary>
+        /// 获取具备访问权限的应用
+        ///</summary>
+        ///<returns>GetAccessibleAppsRespDto</returns>
+        public async Task<GetAccessibleAppsRespDto> GetAccessibleApps()
+        {
+            string httpResponse = await Request("GET", "/api/v3/get-my-accessible-apps").ConfigureAwait(false);
+
+            GetAccessibleAppsRespDto result = m_JsonService.DeserializeObject<GetAccessibleAppsRespDto>(httpResponse);
+            return result;
+
+        }
+        ///<summary>
+        /// 获取租户列表
+        ///</summary>
+        ///<returns>GetTenantListRespDto</returns>
+        public async Task<GetTenantListRespDto> GetTenantList()
+        {
+            string httpResponse = await Request("GET", "/api/v3/get-my-tenant-list").ConfigureAwait(false);
+
+            GetTenantListRespDto result = m_JsonService.DeserializeObject<GetTenantListRespDto>(httpResponse);
+            return result;
+
+        }
+        ///<summary>
+        /// 获取租户列表
+        ///</summary>
+        ///<returns>GetTenantListRespDto</returns>
+        public async Task<GetTenantListRespDto> GetTenantList1()
+        {
+            string httpResponse = await Request("GET", "/api/v3/get-my-tenant-list").ConfigureAwait(false);
+
+            GetTenantListRespDto result = m_JsonService.DeserializeObject<GetTenantListRespDto>(httpResponse);
+            return result;
+
+        }
+        ///<summary>
+        /// 获取角色列表
+        ///</summary>
+        /// <param name="nameSpace">所属权限分组(权限空间)的 Code</param>
+        ///<returns>RoleListRespDto</returns>
+        public async Task<RoleListRespDto> GetRoleList(GetMyRoleListDto reqDto)
+        {
+            string httpResponse = await Request("GET", "/api/v3/get-my-role-list", reqDto).ConfigureAwait(false);
+
+            RoleListRespDto result = m_JsonService.DeserializeObject<RoleListRespDto>(httpResponse);
+            return result;
+
+        }
+        ///<summary>
+        /// 获取分组列表
+        ///</summary>
+        ///<returns>GroupListRespDto</returns>
+        public async Task<GroupListRespDto> GetGroupList()
+        {
+            string httpResponse = await Request("GET", "/api/v3/get-my-group-list").ConfigureAwait(false);
+
+            GroupListRespDto result = m_JsonService.DeserializeObject<GroupListRespDto>(httpResponse);
+            return result;
+
+        }
+        ///<summary>
+        /// 获取部门列表
+        ///</summary>
+        /// <param name="page">当前页数，从 1 开始</param>
+        /// <param name="limit">每页数目，最大不能超过 50，默认为 10</param>
+        /// <param name="withCustomData">是否获取部门的自定义数据</param>
+        /// <param name="sortBy">排序依据，如 部门创建时间、加入部门时间、部门名称、部门标志符</param>
+        /// <param name="orderBy">增序或降序</param>
+        ///<returns>UserDepartmentPaginatedRespDto</returns>
+        public async Task<UserDepartmentPaginatedRespDto> GetDepartmentList(GetMyDepartmentListDto reqDto)
+        {
+            string httpResponse = await Request("GET", "/api/v3/get-my-department-list", reqDto).ConfigureAwait(false);
+
+            UserDepartmentPaginatedRespDto result = m_JsonService.DeserializeObject<UserDepartmentPaginatedRespDto>(httpResponse);
+            return result;
+
+        }
+        ///<summary>
+        /// 获取被授权的资源列表
+        ///</summary>
+        /// <param name="nameSpace">所属权限分组(权限空间)的 Code</param>
+        /// <param name="resourceType">资源类型，如 数据、API、菜单、按钮</param>
+        ///<returns>AuthorizedResourcePaginatedRespDto</returns>
+        public async Task<AuthorizedResourcePaginatedRespDto> GetAuthorizedResources(GetMyAuthorizedResourcesDto reqDto)
+        {
+            string httpResponse = await Request("GET", "/api/v3/get-my-authorized-resources", reqDto).ConfigureAwait(false);
+
+            AuthorizedResourcePaginatedRespDto result = m_JsonService.DeserializeObject<AuthorizedResourcePaginatedRespDto>(httpResponse);
+            return result;
+
+        }
+        ///<summary>
         /// 获取/搜索用户列表
         ///</summary>
         /// <param name="requestBody"></param>
@@ -565,12 +990,50 @@ namespace Authing.CSharp.SDK.Services
             return result;
         }
         ///<summary>
+        /// 获取用户绑定 OTP 的秘钥
+        ///</summary>
+        /// <param name="userId">用户 ID</param>
+        /// <param name="userIdType">用户 ID 类型，默认值为 `user_id`，可选值为：
+        /// - `user_id`: Authing 用户 ID，如 `6319a1504f3xxxxf214dd5b7`
+        /// - `phone`: 用户手机号
+        /// - `email`: 用户邮箱
+        /// - `username`: 用户名
+        /// - `external_id`: 用户在外部系统的 ID，对应 Authing 用户信息的 `externalId` 字段
+        /// - `identity`: 用户的外部身份源信息，格式为 `<extIdpId>:<userIdInIdp>`，其中 `<extIdpId>` 为 Authing 身份源的 ID，`<userIdInIdp>` 为用户在外部身份源的 ID。
+        /// 示例值：`62f20932716fbcc10d966ee5:ou_8bae746eac07cd2564654140d2a9ac61`。
+        /// </param>
+        ///<returns>GetOtpSecretRespDto</returns>
+        public async Task<GetOtpSecretRespDto> GetOtpSecretByUser(GetOtpSecretByUserDto reqDto)
+        {
+            string httpResponse = await Request("GET", "/api/v3/get-otp-secret-by-user", reqDto).ConfigureAwait(false);
+
+            GetOtpSecretRespDto result = m_JsonService.DeserializeObject<GetOtpSecretRespDto>(httpResponse);
+            return result;
+
+        }
+        ///<summary>
         /// 获取组织机构详情
         ///</summary>
         /// <param name="organizationCode">组织 Code（organizationCode）</param>
         /// <param name="withCustomData">是否获取自定义数据</param>
+        /// <param name="tenantId">租户 ID</param>
         ///<returns>OrganizationSingleRespDto</returns>
         public async Task<OrganizationSingleRespDto> GetOrganization(GetOrganizationDto reqDto)
+        {
+            string httpResponse = await Request("GET", "/api/v3/get-organization", reqDto).ConfigureAwait(false);
+
+            OrganizationSingleRespDto result = m_JsonService.DeserializeObject<OrganizationSingleRespDto>(httpResponse);
+            return result;
+
+        }
+        ///<summary>
+        /// 获取组织机构详情
+        ///</summary>
+        /// <param name="organizationCode">组织 Code（organizationCode）</param>
+        /// <param name="withCustomData">是否获取自定义数据</param>
+        /// <param name="tenantId">租户 ID</param>
+        ///<returns>OrganizationSingleRespDto</returns>
+        public async Task<OrganizationSingleRespDto> GetOrganization1(GetOrganizationDto reqDto)
         {
             string httpResponse = await Request("GET", "/api/v3/get-organization", reqDto).ConfigureAwait(false);
 
@@ -583,6 +1046,7 @@ namespace Authing.CSharp.SDK.Services
         ///</summary>
         /// <param name="organizationCodeList">组织 Code（organizationCode）列表</param>
         /// <param name="withCustomData">是否获取自定义数据</param>
+        /// <param name="tenantId">租户 ID</param>
         ///<returns>OrganizationListRespDto</returns>
         public async Task<OrganizationListRespDto> GetOrganizationsBatch(GetOrganizationBatchDto reqDto)
         {
@@ -599,8 +1063,26 @@ namespace Authing.CSharp.SDK.Services
         /// <param name="limit">每页数目，最大不能超过 50，默认为 10</param>
         /// <param name="fetchAll">拉取所有</param>
         /// <param name="withCustomData">是否获取自定义数据</param>
+        /// <param name="tenantId">租户 ID</param>
         ///<returns>OrganizationPaginatedRespDto</returns>
         public async Task<OrganizationPaginatedRespDto> ListOrganizations(ListOrganizationsDto reqDto)
+        {
+            string httpResponse = await Request("GET", "/api/v3/list-organizations", reqDto).ConfigureAwait(false);
+
+            OrganizationPaginatedRespDto result = m_JsonService.DeserializeObject<OrganizationPaginatedRespDto>(httpResponse);
+            return result;
+
+        }
+        ///<summary>
+        /// 获取组织机构列表
+        ///</summary>
+        /// <param name="page">当前页数，从 1 开始</param>
+        /// <param name="limit">每页数目，最大不能超过 50，默认为 10</param>
+        /// <param name="fetchAll">拉取所有</param>
+        /// <param name="withCustomData">是否获取自定义数据</param>
+        /// <param name="tenantId">租户 ID</param>
+        ///<returns>OrganizationPaginatedRespDto</returns>
+        public async Task<OrganizationPaginatedRespDto> ListOrganizations1(ListOrganizationsDto reqDto)
         {
             string httpResponse = await Request("GET", "/api/v3/list-organizations", reqDto).ConfigureAwait(false);
 
@@ -651,6 +1133,7 @@ namespace Authing.CSharp.SDK.Services
         /// <param name="page">当前页数，从 1 开始</param>
         /// <param name="limit">每页数目，最大不能超过 50，默认为 10</param>
         /// <param name="withCustomData">是否获取自定义数据</param>
+        /// <param name="tenantId">租户 ID</param>
         ///<returns>OrganizationPaginatedRespDto</returns>
         public async Task<OrganizationPaginatedRespDto> SearchOrganizations(SearchOrganizationsDto reqDto)
         {
@@ -668,8 +1151,27 @@ namespace Authing.CSharp.SDK.Services
         /// <param name="departmentCode">部门 code。departmentId 和 departmentCode 必传其一。</param>
         /// <param name="departmentIdType">此次调用中使用的部门 ID 的类型</param>
         /// <param name="withCustomData">是否获取自定义数据</param>
+        /// <param name="tenantId">租户 ID</param>
         ///<returns>DepartmentSingleRespDto</returns>
         public async Task<DepartmentSingleRespDto> GetDepartment(GetDepartmentDto reqDto)
+        {
+            string httpResponse = await Request("GET", "/api/v3/get-department", reqDto).ConfigureAwait(false);
+
+            DepartmentSingleRespDto result = m_JsonService.DeserializeObject<DepartmentSingleRespDto>(httpResponse);
+            return result;
+
+        }
+        ///<summary>
+        /// 获取部门信息
+        ///</summary>
+        /// <param name="organizationCode">组织 code</param>
+        /// <param name="departmentId">部门 ID，根部门传 `root`。departmentId 和 departmentCode 必传其一。</param>
+        /// <param name="departmentCode">部门 code。departmentId 和 departmentCode 必传其一。</param>
+        /// <param name="departmentIdType">此次调用中使用的部门 ID 的类型</param>
+        /// <param name="withCustomData">是否获取自定义数据</param>
+        /// <param name="tenantId">租户 ID</param>
+        ///<returns>DepartmentSingleRespDto</returns>
+        public async Task<DepartmentSingleRespDto> GetDepartment1(GetDepartmentDto reqDto)
         {
             string httpResponse = await Request("GET", "/api/v3/get-department", reqDto).ConfigureAwait(false);
 
@@ -690,6 +1192,18 @@ namespace Authing.CSharp.SDK.Services
             return result;
         }
         ///<summary>
+        /// 创建部门
+        ///</summary>
+        /// <param name="requestBody"></param>
+        ///<returns>DepartmentSingleRespDto</returns>
+        public async Task<DepartmentSingleRespDto> CreateDepartment1(CreateDepartmentReqDto requestBody)
+        {
+            string httpResponse = await Request("POST", "/api/v3/create-department", requestBody).ConfigureAwait(false);
+
+            DepartmentSingleRespDto result = m_JsonService.DeserializeObject<DepartmentSingleRespDto>(httpResponse);
+            return result;
+        }
+        ///<summary>
         /// 修改部门
         ///</summary>
         /// <param name="requestBody"></param>
@@ -702,11 +1216,35 @@ namespace Authing.CSharp.SDK.Services
             return result;
         }
         ///<summary>
+        /// 修改部门
+        ///</summary>
+        /// <param name="requestBody"></param>
+        ///<returns>DepartmentSingleRespDto</returns>
+        public async Task<DepartmentSingleRespDto> UpdateDepartment1(UpdateDepartmentReqDto requestBody)
+        {
+            string httpResponse = await Request("POST", "/api/v3/update-department", requestBody).ConfigureAwait(false);
+
+            DepartmentSingleRespDto result = m_JsonService.DeserializeObject<DepartmentSingleRespDto>(httpResponse);
+            return result;
+        }
+        ///<summary>
         /// 删除部门
         ///</summary>
         /// <param name="requestBody"></param>
         ///<returns>IsSuccessRespDto</returns>
         public async Task<IsSuccessRespDto> DeleteDepartment(DeleteDepartmentReqDto requestBody)
+        {
+            string httpResponse = await Request("POST", "/api/v3/delete-department", requestBody).ConfigureAwait(false);
+
+            IsSuccessRespDto result = m_JsonService.DeserializeObject<IsSuccessRespDto>(httpResponse);
+            return result;
+        }
+        ///<summary>
+        /// 删除部门
+        ///</summary>
+        /// <param name="requestBody"></param>
+        ///<returns>IsSuccessRespDto</returns>
+        public async Task<IsSuccessRespDto> DeleteDepartment1(DeleteDepartmentReqDto requestBody)
         {
             string httpResponse = await Request("POST", "/api/v3/delete-department", requestBody).ConfigureAwait(false);
 
@@ -746,8 +1284,28 @@ namespace Authing.CSharp.SDK.Services
         /// <param name="excludeVirtualNode">是否要排除虚拟组织</param>
         /// <param name="onlyVirtualNode">是否只包含虚拟组织</param>
         /// <param name="withCustomData">是否获取自定义数据</param>
+        /// <param name="tenantId">租户 ID</param>
         ///<returns>DepartmentPaginatedRespDto</returns>
         public async Task<DepartmentPaginatedRespDto> ListChildrenDepartments(ListChildrenDepartmentsDto reqDto)
+        {
+            string httpResponse = await Request("GET", "/api/v3/list-children-departments", reqDto).ConfigureAwait(false);
+
+            DepartmentPaginatedRespDto result = m_JsonService.DeserializeObject<DepartmentPaginatedRespDto>(httpResponse);
+            return result;
+
+        }
+        ///<summary>
+        /// 获取子部门列表
+        ///</summary>
+        /// <param name="organizationCode">组织 code</param>
+        /// <param name="departmentId">需要获取的部门 ID</param>
+        /// <param name="departmentIdType">此次调用中使用的部门 ID 的类型</param>
+        /// <param name="excludeVirtualNode">是否要排除虚拟组织</param>
+        /// <param name="onlyVirtualNode">是否只包含虚拟组织</param>
+        /// <param name="withCustomData">是否获取自定义数据</param>
+        /// <param name="tenantId">租户 ID</param>
+        ///<returns>DepartmentPaginatedRespDto</returns>
+        public async Task<DepartmentPaginatedRespDto> ListChildrenDepartments1(ListChildrenDepartmentsDto reqDto)
         {
             string httpResponse = await Request("GET", "/api/v3/list-children-departments", reqDto).ConfigureAwait(false);
 
@@ -769,8 +1327,33 @@ namespace Authing.CSharp.SDK.Services
         /// <param name="withCustomData">是否获取自定义数据</param>
         /// <param name="withIdentities">是否获取 identities</param>
         /// <param name="withDepartmentIds">是否获取部门 ID 列表</param>
+        /// <param name="tenantId">租户 ID</param>
         ///<returns>UserPaginatedRespDto</returns>
         public async Task<UserPaginatedRespDto> ListDepartmentMembers(ListDepartmentMembersDto reqDto)
+        {
+            string httpResponse = await Request("GET", "/api/v3/list-department-members", reqDto).ConfigureAwait(false);
+
+            UserPaginatedRespDto result = m_JsonService.DeserializeObject<UserPaginatedRespDto>(httpResponse);
+            return result;
+
+        }
+        ///<summary>
+        /// 获取部门成员列表
+        ///</summary>
+        /// <param name="organizationCode">组织 code</param>
+        /// <param name="departmentId">部门 ID，根部门传 `root`</param>
+        /// <param name="sortBy">排序依据</param>
+        /// <param name="orderBy">增序还是倒序</param>
+        /// <param name="departmentIdType">此次调用中使用的部门 ID 的类型</param>
+        /// <param name="includeChildrenDepartments">是否包含子部门的成员</param>
+        /// <param name="page">当前页数，从 1 开始</param>
+        /// <param name="limit">每页数目，最大不能超过 50，默认为 10</param>
+        /// <param name="withCustomData">是否获取自定义数据</param>
+        /// <param name="withIdentities">是否获取 identities</param>
+        /// <param name="withDepartmentIds">是否获取部门 ID 列表</param>
+        /// <param name="tenantId">租户 ID</param>
+        ///<returns>UserPaginatedRespDto</returns>
+        public async Task<UserPaginatedRespDto> ListDepartmentMembers1(ListDepartmentMembersDto reqDto)
         {
             string httpResponse = await Request("GET", "/api/v3/list-department-members", reqDto).ConfigureAwait(false);
 
@@ -784,6 +1367,7 @@ namespace Authing.CSharp.SDK.Services
         /// <param name="organizationCode">组织 code</param>
         /// <param name="departmentId">部门 ID，根部门传 `root`</param>
         /// <param name="departmentIdType">此次调用中使用的部门 ID 的类型</param>
+        /// <param name="tenantId">租户 ID</param>
         ///<returns>UserIdListRespDto</returns>
         public async Task<UserIdListRespDto> ListDepartmentMemberIds(ListDepartmentMemberIdsDto reqDto)
         {
@@ -806,6 +1390,7 @@ namespace Authing.CSharp.SDK.Services
         /// <param name="withCustomData">是否获取自定义数据</param>
         /// <param name="withIdentities">是否获取 identities</param>
         /// <param name="withDepartmentIds">是否获取部门 ID 列表</param>
+        /// <param name="tenantId">租户 ID</param>
         ///<returns>UserPaginatedRespDto</returns>
         public async Task<UserPaginatedRespDto> SearchDepartmentMembers(SearchDepartmentMembersDto reqDto)
         {
@@ -846,6 +1431,7 @@ namespace Authing.CSharp.SDK.Services
         /// <param name="departmentId">部门 ID</param>
         /// <param name="departmentIdType">此次调用中使用的部门 ID 的类型</param>
         /// <param name="withCustomData">是否获取自定义数据</param>
+        /// <param name="tenantId">租户 ID</param>
         ///<returns>DepartmentSingleRespDto</returns>
         public async Task<DepartmentSingleRespDto> GetParentDepartment(GetParentDepartmentDto reqDto)
         {
@@ -863,6 +1449,7 @@ namespace Authing.CSharp.SDK.Services
         /// <param name="departmentId">部门 ID，根部门传 `root`。departmentId 和 departmentCode 必传其一。</param>
         /// <param name="departmentIdType">此次调用中使用的部门 ID 的类型</param>
         /// <param name="includeChildrenDepartments">是否包含子部门</param>
+        /// <param name="tenantId">租户 ID</param>
         ///<returns>IsUserInDepartmentRespDto</returns>
         public async Task<IsUserInDepartmentRespDto> IsUserInDepartment(IsUserInDepartmentDto reqDto)
         {
@@ -876,6 +1463,7 @@ namespace Authing.CSharp.SDK.Services
         /// 根据部门id查询部门
         ///</summary>
         /// <param name="departmentId">部门 ID</param>
+        /// <param name="tenantId">租户 ID</param>
         ///<returns>DepartmentSingleRespDto</returns>
         public async Task<DepartmentSingleRespDto> GetDepartmentById(GetDepartmentByIdDto reqDto)
         {
@@ -1234,6 +1822,20 @@ namespace Authing.CSharp.SDK.Services
 
         }
         ///<summary>
+        /// 获取身份源列表
+        ///</summary>
+        /// <param name="tenantId">租户 ID</param>
+        /// <param name="appId">应用 ID</param>
+        ///<returns>ExtIdpListPaginatedRespDto</returns>
+        public async Task<ExtIdpListPaginatedRespDto> ListExtIdp1(ListExtIdpDto reqDto)
+        {
+            string httpResponse = await Request("GET", "/api/v3/list-ext-idp", reqDto).ConfigureAwait(false);
+
+            ExtIdpListPaginatedRespDto result = m_JsonService.DeserializeObject<ExtIdpListPaginatedRespDto>(httpResponse);
+            return result;
+
+        }
+        ///<summary>
         /// 获取身份源详情
         ///</summary>
         /// <param name="id">身份源 ID</param>
@@ -1242,6 +1844,22 @@ namespace Authing.CSharp.SDK.Services
         /// <param name="type">身份源类型</param>
         ///<returns>ExtIdpDetailSingleRespDto</returns>
         public async Task<ExtIdpDetailSingleRespDto> GetExtIdp(GetExtIdpDto reqDto)
+        {
+            string httpResponse = await Request("GET", "/api/v3/get-ext-idp", reqDto).ConfigureAwait(false);
+
+            ExtIdpDetailSingleRespDto result = m_JsonService.DeserializeObject<ExtIdpDetailSingleRespDto>(httpResponse);
+            return result;
+
+        }
+        ///<summary>
+        /// 获取身份源详情
+        ///</summary>
+        /// <param name="id">身份源 ID</param>
+        /// <param name="tenantId">租户 ID</param>
+        /// <param name="appId">应用 ID</param>
+        /// <param name="type">身份源类型</param>
+        ///<returns>ExtIdpDetailSingleRespDto</returns>
+        public async Task<ExtIdpDetailSingleRespDto> GetExtIdp1(GetExtIdpDto reqDto)
         {
             string httpResponse = await Request("GET", "/api/v3/get-ext-idp", reqDto).ConfigureAwait(false);
 
@@ -1262,11 +1880,35 @@ namespace Authing.CSharp.SDK.Services
             return result;
         }
         ///<summary>
+        /// 创建身份源
+        ///</summary>
+        /// <param name="requestBody"></param>
+        ///<returns>ExtIdpSingleRespDto</returns>
+        public async Task<ExtIdpSingleRespDto> CreateExtIdp1(CreateExtIdpDto requestBody)
+        {
+            string httpResponse = await Request("POST", "/api/v3/create-ext-idp", requestBody).ConfigureAwait(false);
+
+            ExtIdpSingleRespDto result = m_JsonService.DeserializeObject<ExtIdpSingleRespDto>(httpResponse);
+            return result;
+        }
+        ///<summary>
         /// 更新身份源配置
         ///</summary>
         /// <param name="requestBody"></param>
         ///<returns>ExtIdpSingleRespDto</returns>
         public async Task<ExtIdpSingleRespDto> UpdateExtIdp(UpdateExtIdpDto requestBody)
+        {
+            string httpResponse = await Request("POST", "/api/v3/update-ext-idp", requestBody).ConfigureAwait(false);
+
+            ExtIdpSingleRespDto result = m_JsonService.DeserializeObject<ExtIdpSingleRespDto>(httpResponse);
+            return result;
+        }
+        ///<summary>
+        /// 更新身份源配置
+        ///</summary>
+        /// <param name="requestBody"></param>
+        ///<returns>ExtIdpSingleRespDto</returns>
+        public async Task<ExtIdpSingleRespDto> UpdateExtIdp1(UpdateExtIdpDto requestBody)
         {
             string httpResponse = await Request("POST", "/api/v3/update-ext-idp", requestBody).ConfigureAwait(false);
 
@@ -1286,11 +1928,35 @@ namespace Authing.CSharp.SDK.Services
             return result;
         }
         ///<summary>
+        /// 删除身份源
+        ///</summary>
+        /// <param name="requestBody"></param>
+        ///<returns>IsSuccessRespDto</returns>
+        public async Task<IsSuccessRespDto> DeleteExtIdp1(DeleteExtIdpDto requestBody)
+        {
+            string httpResponse = await Request("POST", "/api/v3/delete-ext-idp", requestBody).ConfigureAwait(false);
+
+            IsSuccessRespDto result = m_JsonService.DeserializeObject<IsSuccessRespDto>(httpResponse);
+            return result;
+        }
+        ///<summary>
         /// 在某个已有身份源下创建新连接
         ///</summary>
         /// <param name="requestBody"></param>
         ///<returns>ExtIdpConnDetailSingleRespDto</returns>
         public async Task<ExtIdpConnDetailSingleRespDto> CreateExtIdpConn(CreateExtIdpConnDto requestBody)
+        {
+            string httpResponse = await Request("POST", "/api/v3/create-ext-idp-conn", requestBody).ConfigureAwait(false);
+
+            ExtIdpConnDetailSingleRespDto result = m_JsonService.DeserializeObject<ExtIdpConnDetailSingleRespDto>(httpResponse);
+            return result;
+        }
+        ///<summary>
+        /// 在某个已有身份源下创建新连接
+        ///</summary>
+        /// <param name="requestBody"></param>
+        ///<returns>ExtIdpConnDetailSingleRespDto</returns>
+        public async Task<ExtIdpConnDetailSingleRespDto> CreateExtIdpConn1(CreateExtIdpConnDto requestBody)
         {
             string httpResponse = await Request("POST", "/api/v3/create-ext-idp-conn", requestBody).ConfigureAwait(false);
 
@@ -1310,11 +1976,35 @@ namespace Authing.CSharp.SDK.Services
             return result;
         }
         ///<summary>
+        /// 更新身份源连接
+        ///</summary>
+        /// <param name="requestBody"></param>
+        ///<returns>ExtIdpConnDetailSingleRespDto</returns>
+        public async Task<ExtIdpConnDetailSingleRespDto> UpdateExtIdpConn1(UpdateExtIdpConnDto requestBody)
+        {
+            string httpResponse = await Request("POST", "/api/v3/update-ext-idp-conn", requestBody).ConfigureAwait(false);
+
+            ExtIdpConnDetailSingleRespDto result = m_JsonService.DeserializeObject<ExtIdpConnDetailSingleRespDto>(httpResponse);
+            return result;
+        }
+        ///<summary>
         /// 删除身份源连接
         ///</summary>
         /// <param name="requestBody"></param>
         ///<returns>IsSuccessRespDto</returns>
         public async Task<IsSuccessRespDto> DeleteExtIdpConn(DeleteExtIdpConnDto requestBody)
+        {
+            string httpResponse = await Request("POST", "/api/v3/delete-ext-idp-conn", requestBody).ConfigureAwait(false);
+
+            IsSuccessRespDto result = m_JsonService.DeserializeObject<IsSuccessRespDto>(httpResponse);
+            return result;
+        }
+        ///<summary>
+        /// 删除身份源连接
+        ///</summary>
+        /// <param name="requestBody"></param>
+        ///<returns>IsSuccessRespDto</returns>
+        public async Task<IsSuccessRespDto> DeleteExtIdpConn1(DeleteExtIdpConnDto requestBody)
         {
             string httpResponse = await Request("POST", "/api/v3/delete-ext-idp-conn", requestBody).ConfigureAwait(false);
 
@@ -1334,11 +2024,35 @@ namespace Authing.CSharp.SDK.Services
             return result;
         }
         ///<summary>
+        /// 身份源连接开关
+        ///</summary>
+        /// <param name="requestBody"></param>
+        ///<returns>IsSuccessRespDto</returns>
+        public async Task<IsSuccessRespDto> ChangeExtIdpConnState1(ChangeExtIdpConnStateDto requestBody)
+        {
+            string httpResponse = await Request("POST", "/api/v3/change-ext-idp-conn-state", requestBody).ConfigureAwait(false);
+
+            IsSuccessRespDto result = m_JsonService.DeserializeObject<IsSuccessRespDto>(httpResponse);
+            return result;
+        }
+        ///<summary>
         /// 租户关联身份源
         ///</summary>
         /// <param name="requestBody"></param>
         ///<returns>IsSuccessRespDto</returns>
         public async Task<IsSuccessRespDto> ChangeExtIdpConnAssociationState(ChangeExtIdpAssociationStateDto requestBody)
+        {
+            string httpResponse = await Request("POST", "/api/v3/change-ext-idp-conn-association-state", requestBody).ConfigureAwait(false);
+
+            IsSuccessRespDto result = m_JsonService.DeserializeObject<IsSuccessRespDto>(httpResponse);
+            return result;
+        }
+        ///<summary>
+        /// 租户关联身份源
+        ///</summary>
+        /// <param name="requestBody"></param>
+        ///<returns>IsSuccessRespDto</returns>
+        public async Task<IsSuccessRespDto> ChangeExtIdpConnAssociationState1(ChangeExtIdpAssociationStateDto requestBody)
         {
             string httpResponse = await Request("POST", "/api/v3/change-ext-idp-conn-association-state", requestBody).ConfigureAwait(false);
 
@@ -1363,6 +2077,23 @@ namespace Authing.CSharp.SDK.Services
 
         }
         ///<summary>
+        /// 租户控制台获取身份源列表
+        ///</summary>
+        /// <param name="tenantId">租户 ID</param>
+        /// <param name="appId">应用 ID</param>
+        /// <param name="type">身份源类型</param>
+        /// <param name="page">当前页数，从 1 开始</param>
+        /// <param name="limit">每页数目，最大不能超过 50，默认为 10</param>
+        ///<returns>ExtIdpListPaginatedRespDto</returns>
+        public async Task<ExtIdpListPaginatedRespDto> ListTenantExtIdp1(ListTenantExtIdpDto reqDto)
+        {
+            string httpResponse = await Request("GET", "/api/v3/list-tenant-ext-idp", reqDto).ConfigureAwait(false);
+
+            ExtIdpListPaginatedRespDto result = m_JsonService.DeserializeObject<ExtIdpListPaginatedRespDto>(httpResponse);
+            return result;
+
+        }
+        ///<summary>
         /// 身份源下应用的连接详情
         ///</summary>
         /// <param name="id">身份源 ID</param>
@@ -1371,6 +2102,22 @@ namespace Authing.CSharp.SDK.Services
         /// <param name="type">身份源类型</param>
         ///<returns>ExtIdpListPaginatedRespDto</returns>
         public async Task<ExtIdpListPaginatedRespDto> ExtIdpConnStateByApps(ExtIdpConnAppsDto reqDto)
+        {
+            string httpResponse = await Request("GET", "/api/v3/ext-idp-conn-apps", reqDto).ConfigureAwait(false);
+
+            ExtIdpListPaginatedRespDto result = m_JsonService.DeserializeObject<ExtIdpListPaginatedRespDto>(httpResponse);
+            return result;
+
+        }
+        ///<summary>
+        /// 身份源下应用的连接详情
+        ///</summary>
+        /// <param name="id">身份源 ID</param>
+        /// <param name="tenantId">租户 ID</param>
+        /// <param name="appId">应用 ID</param>
+        /// <param name="type">身份源类型</param>
+        ///<returns>ExtIdpListPaginatedRespDto</returns>
+        public async Task<ExtIdpListPaginatedRespDto> ExtIdpConnStateByApps1(ExtIdpConnAppsDto reqDto)
         {
             string httpResponse = await Request("GET", "/api/v3/ext-idp-conn-apps", reqDto).ConfigureAwait(false);
 
@@ -1538,6 +2285,22 @@ namespace Authing.CSharp.SDK.Services
 
         }
         ///<summary>
+        /// 分页获取常规资源列表
+        ///</summary>
+        /// <param name="page">当前页数，从 1 开始</param>
+        /// <param name="limit">每页数目，最大不能超过 50，默认为 10</param>
+        /// <param name="keyword">查询条件</param>
+        /// <param name="namespaceCodeList">权限空间列表</param>
+        ///<returns>CommonResourcePaginatedRespDto</returns>
+        public async Task<CommonResourcePaginatedRespDto> ListCommonResource1(ListCommonResourceDto reqDto)
+        {
+            string httpResponse = await Request("GET", "/api/v3/list-common-resource", reqDto).ConfigureAwait(false);
+
+            CommonResourcePaginatedRespDto result = m_JsonService.DeserializeObject<CommonResourcePaginatedRespDto>(httpResponse);
+            return result;
+
+        }
+        ///<summary>
         /// 分页获取资源列表
         ///</summary>
         /// <param name="nameSpace">所属权限分组(权限空间)的 Code</param>
@@ -1546,6 +2309,22 @@ namespace Authing.CSharp.SDK.Services
         /// <param name="limit">每页数目，最大不能超过 50，默认为 10</param>
         ///<returns>ResourcePaginatedRespDto</returns>
         public async Task<ResourcePaginatedRespDto> ListResources(ListResourcesDto reqDto)
+        {
+            string httpResponse = await Request("GET", "/api/v3/list-resources", reqDto).ConfigureAwait(false);
+
+            ResourcePaginatedRespDto result = m_JsonService.DeserializeObject<ResourcePaginatedRespDto>(httpResponse);
+            return result;
+
+        }
+        ///<summary>
+        /// 分页获取资源列表
+        ///</summary>
+        /// <param name="nameSpace">所属权限分组(权限空间)的 Code</param>
+        /// <param name="type">资源类型</param>
+        /// <param name="page">当前页数，从 1 开始</param>
+        /// <param name="limit">每页数目，最大不能超过 50，默认为 10</param>
+        ///<returns>ResourcePaginatedRespDto</returns>
+        public async Task<ResourcePaginatedRespDto> ListResources1(ListResourcesDto reqDto)
         {
             string httpResponse = await Request("GET", "/api/v3/list-resources", reqDto).ConfigureAwait(false);
 
@@ -1594,7 +2373,7 @@ namespace Authing.CSharp.SDK.Services
         ///</summary>
         /// <param name="requestBody"></param>
         ///<returns>IsSuccessRespDto</returns>
-        public async Task<IsSuccessRespDto> DeleteResourcesByIdBatch(DeleteCommonResourcesBatchDto requestBody)
+        public async Task<IsSuccessRespDto> BatchDeleteCommonResource(DeleteCommonResourcesBatchDto requestBody)
         {
             string httpResponse = await Request("POST", "/api/v3/delete-common-resources-batch", requestBody).ConfigureAwait(false);
 
@@ -1607,6 +2386,18 @@ namespace Authing.CSharp.SDK.Services
         /// <param name="requestBody"></param>
         ///<returns>IsSuccessRespDto</returns>
         public async Task<IsSuccessRespDto> AssociateTenantResource(AssociateTenantResourceDto requestBody)
+        {
+            string httpResponse = await Request("POST", "/api/v3/associate-tenant-resource", requestBody).ConfigureAwait(false);
+
+            IsSuccessRespDto result = m_JsonService.DeserializeObject<IsSuccessRespDto>(httpResponse);
+            return result;
+        }
+        ///<summary>
+        /// 关联/取消关联应用资源到租户
+        ///</summary>
+        /// <param name="requestBody"></param>
+        ///<returns>IsSuccessRespDto</returns>
+        public async Task<IsSuccessRespDto> AssociateTenantResource1(AssociateTenantResourceDto requestBody)
         {
             string httpResponse = await Request("POST", "/api/v3/associate-tenant-resource", requestBody).ConfigureAwait(false);
 
@@ -1743,6 +2534,18 @@ namespace Authing.CSharp.SDK.Services
             return result;
         }
         ///<summary>
+        /// 授权资源
+        ///</summary>
+        /// <param name="requestBody"></param>
+        ///<returns>IsSuccessRespDto</returns>
+        public async Task<IsSuccessRespDto> AuthorizeResources1(AuthorizeResourcesDto requestBody)
+        {
+            string httpResponse = await Request("POST", "/api/v3/authorize-resources", requestBody).ConfigureAwait(false);
+
+            IsSuccessRespDto result = m_JsonService.DeserializeObject<IsSuccessRespDto>(httpResponse);
+            return result;
+        }
+        ///<summary>
         /// 获取某个主体被授权的资源列表
         ///</summary>
         /// <param name="targetType">目标对象类型：
@@ -1762,7 +2565,7 @@ namespace Authing.CSharp.SDK.Services
         /// <param name="resourceList">限定查询的资源列表，如果指定，只会返回所指定的资源列表。</param>
         /// <param name="withDenied">是否获取被拒绝的资源</param>
         ///<returns>AuthorizedResourcePaginatedRespDto</returns>
-        public async Task<AuthorizedResourcePaginatedRespDto> GetAuthorizedResources(GetAuthorizedResourcesDto reqDto)
+        public async Task<AuthorizedResourcePaginatedRespDto> GetAuthorizedResources1(GetAuthorizedResourcesDto reqDto)
         {
             string httpResponse = await Request("GET", "/api/v3/get-authorized-resources", reqDto).ConfigureAwait(false);
 
@@ -1783,6 +2586,18 @@ namespace Authing.CSharp.SDK.Services
             return result;
         }
         ///<summary>
+        /// 判断用户是否对某个资源的某个操作有权限
+        ///</summary>
+        /// <param name="requestBody"></param>
+        ///<returns>IsActionAllowedRespDtp</returns>
+        public async Task<IsActionAllowedRespDtp> IsActionAllowed1(IsActionAllowedDto requestBody)
+        {
+            string httpResponse = await Request("POST", "/api/v3/is-action-allowed", requestBody).ConfigureAwait(false);
+
+            IsActionAllowedRespDtp result = m_JsonService.DeserializeObject<IsActionAllowedRespDtp>(httpResponse);
+            return result;
+        }
+        ///<summary>
         /// 获取资源被授权的主体
         ///</summary>
         /// <param name="requestBody"></param>
@@ -1792,182 +2607,6 @@ namespace Authing.CSharp.SDK.Services
             string httpResponse = await Request("POST", "/api/v3/get-resource-authorized-targets", requestBody).ConfigureAwait(false);
 
             GetResourceAuthorizedTargetRespDto result = m_JsonService.DeserializeObject<GetResourceAuthorizedTargetRespDto>(httpResponse);
-            return result;
-        }
-        ///<summary>
-        /// 获取同步任务详情
-        ///</summary>
-        /// <param name="syncTaskId">同步任务 ID</param>
-        ///<returns>SyncTaskSingleRespDto</returns>
-        public async Task<SyncTaskSingleRespDto> GetSyncTask(GetSyncTaskDto reqDto)
-        {
-            string httpResponse = await Request("GET", "/api/v3/get-sync-task", reqDto).ConfigureAwait(false);
-
-            SyncTaskSingleRespDto result = m_JsonService.DeserializeObject<SyncTaskSingleRespDto>(httpResponse);
-            return result;
-
-        }
-        ///<summary>
-        /// 获取同步任务列表
-        ///</summary>
-        /// <param name="page">当前页数，从 1 开始</param>
-        /// <param name="limit">每页数目，最大不能超过 50，默认为 10</param>
-        ///<returns>SyncTaskPaginatedRespDto</returns>
-        public async Task<SyncTaskPaginatedRespDto> ListSyncTasks(ListSyncTasksDto reqDto)
-        {
-            string httpResponse = await Request("GET", "/api/v3/list-sync-tasks", reqDto).ConfigureAwait(false);
-
-            SyncTaskPaginatedRespDto result = m_JsonService.DeserializeObject<SyncTaskPaginatedRespDto>(httpResponse);
-            return result;
-
-        }
-        ///<summary>
-        /// 创建同步任务
-        ///</summary>
-        /// <param name="requestBody"></param>
-        ///<returns>SyncTaskPaginatedRespDto</returns>
-        public async Task<SyncTaskPaginatedRespDto> CreateSyncTask(CreateSyncTaskDto requestBody)
-        {
-            string httpResponse = await Request("POST", "/api/v3/create-sync-task", requestBody).ConfigureAwait(false);
-
-            SyncTaskPaginatedRespDto result = m_JsonService.DeserializeObject<SyncTaskPaginatedRespDto>(httpResponse);
-            return result;
-        }
-        ///<summary>
-        /// 修改同步任务
-        ///</summary>
-        /// <param name="requestBody"></param>
-        ///<returns>SyncTaskPaginatedRespDto</returns>
-        public async Task<SyncTaskPaginatedRespDto> UpdateSyncTask(UpdateSyncTaskDto requestBody)
-        {
-            string httpResponse = await Request("POST", "/api/v3/update-sync-task", requestBody).ConfigureAwait(false);
-
-            SyncTaskPaginatedRespDto result = m_JsonService.DeserializeObject<SyncTaskPaginatedRespDto>(httpResponse);
-            return result;
-        }
-        ///<summary>
-        /// 执行同步任务
-        ///</summary>
-        /// <param name="requestBody"></param>
-        ///<returns>TriggerSyncTaskRespDto</returns>
-        public async Task<TriggerSyncTaskRespDto> TriggerSyncTask(TriggerSyncTaskDto requestBody)
-        {
-            string httpResponse = await Request("POST", "/api/v3/trigger-sync-task", requestBody).ConfigureAwait(false);
-
-            TriggerSyncTaskRespDto result = m_JsonService.DeserializeObject<TriggerSyncTaskRespDto>(httpResponse);
-            return result;
-        }
-        ///<summary>
-        /// 获取同步作业详情
-        ///</summary>
-        /// <param name="syncJobId">同步作业 ID</param>
-        ///<returns>SyncJobSingleRespDto</returns>
-        public async Task<SyncJobSingleRespDto> GetSyncJob(GetSyncJobDto reqDto)
-        {
-            string httpResponse = await Request("GET", "/api/v3/get-sync-job", reqDto).ConfigureAwait(false);
-
-            SyncJobSingleRespDto result = m_JsonService.DeserializeObject<SyncJobSingleRespDto>(httpResponse);
-            return result;
-
-        }
-        ///<summary>
-        /// 获取同步作业详情
-        ///</summary>
-        /// <param name="syncTaskId">同步任务 ID</param>
-        /// <param name="page">当前页数，从 1 开始</param>
-        /// <param name="limit">每页数目，最大不能超过 50，默认为 10</param>
-        /// <param name="syncTrigger">同步任务触发类型：
-        /// - `manually`: 手动触发执行
-        /// - `timed`: 定时触发
-        /// - `automatic`: 根据事件自动触发
-        /// </param>
-        ///<returns>SyncJobPaginatedRespDto</returns>
-        public async Task<SyncJobPaginatedRespDto> ListSyncJobs(ListSyncJobsDto reqDto)
-        {
-            string httpResponse = await Request("GET", "/api/v3/list-sync-jobs", reqDto).ConfigureAwait(false);
-
-            SyncJobPaginatedRespDto result = m_JsonService.DeserializeObject<SyncJobPaginatedRespDto>(httpResponse);
-            return result;
-
-        }
-        ///<summary>
-        /// 获取同步作业详情
-        ///</summary>
-        /// <param name="syncJobId">同步作业 ID</param>
-        /// <param name="page">当前页数，从 1 开始</param>
-        /// <param name="limit">每页数目，最大不能超过 50，默认为 10</param>
-        /// <param name="success">根据是否操作成功进行筛选</param>
-        /// <param name="action">根据操作类型进行筛选：
-        /// - `CreateUser`: 创建用户
-        /// - `UpdateUser`: 修改用户信息
-        /// - `DeleteUser`: 删除用户
-        /// - `UpdateUserIdentifier`: 修改用户唯一标志符
-        /// - `ChangeUserDepartment`: 修改用户部门
-        /// - `CreateDepartment`: 创建部门
-        /// - `UpdateDepartment`: 修改部门信息
-        /// - `DeleteDepartment`: 删除部门
-        /// - `MoveDepartment`: 移动部门
-        /// - `UpdateDepartmentLeader`: 同步部门负责人
-        /// - `CreateGroup`: 创建分组
-        /// - `UpdateGroup`: 修改分组
-        /// - `DeleteGroup`: 删除分组
-        /// - `Updateless`: 无更新
-        /// </param>
-        /// <param name="objectType">操作对象类型:
-        /// - `department`: 部门
-        /// - `user`: 用户
-        /// </param>
-        ///<returns>TriggerSyncTaskRespDto</returns>
-        public async Task<TriggerSyncTaskRespDto> ListSyncJobLogs(ListSyncJobLogsDto reqDto)
-        {
-            string httpResponse = await Request("GET", "/api/v3/list-sync-job-logs", reqDto).ConfigureAwait(false);
-
-            TriggerSyncTaskRespDto result = m_JsonService.DeserializeObject<TriggerSyncTaskRespDto>(httpResponse);
-            return result;
-
-        }
-        ///<summary>
-        /// 获取同步风险操作列表
-        ///</summary>
-        /// <param name="syncTaskId">同步任务 ID</param>
-        /// <param name="page">当前页数，从 1 开始</param>
-        /// <param name="limit">每页数目，最大不能超过 50，默认为 10</param>
-        /// <param name="status">根据执行状态筛选</param>
-        /// <param name="objectType">根据操作对象类型，默认获取所有类型的记录：
-        /// - `department`: 部门
-        /// - `user`: 用户
-        /// </param>
-        ///<returns>SyncRiskOperationPaginatedRespDto</returns>
-        public async Task<SyncRiskOperationPaginatedRespDto> ListSyncRiskOperations(ListSyncRiskOperationsDto reqDto)
-        {
-            string httpResponse = await Request("GET", "/api/v3/list-sync-risk-operations", reqDto).ConfigureAwait(false);
-
-            SyncRiskOperationPaginatedRespDto result = m_JsonService.DeserializeObject<SyncRiskOperationPaginatedRespDto>(httpResponse);
-            return result;
-
-        }
-        ///<summary>
-        /// 执行同步风险操作
-        ///</summary>
-        /// <param name="requestBody"></param>
-        ///<returns>TriggerSyncRiskOperationsRespDto</returns>
-        public async Task<TriggerSyncRiskOperationsRespDto> TriggerSyncRiskOperations(TriggerSyncRiskOperationDto requestBody)
-        {
-            string httpResponse = await Request("POST", "/api/v3/trigger-sync-risk-operations", requestBody).ConfigureAwait(false);
-
-            TriggerSyncRiskOperationsRespDto result = m_JsonService.DeserializeObject<TriggerSyncRiskOperationsRespDto>(httpResponse);
-            return result;
-        }
-        ///<summary>
-        /// 取消同步风险操作
-        ///</summary>
-        /// <param name="requestBody"></param>
-        ///<returns>CancelSyncRiskOperationsRespDto</returns>
-        public async Task<CancelSyncRiskOperationsRespDto> CancelSyncRiskOperation(CancelSyncRiskOperationDto requestBody)
-        {
-            string httpResponse = await Request("POST", "/api/v3/cancel-sync-risk-operation", requestBody).ConfigureAwait(false);
-
-            CancelSyncRiskOperationsRespDto result = m_JsonService.DeserializeObject<CancelSyncRiskOperationsRespDto>(httpResponse);
             return result;
         }
         ///<summary>
@@ -2068,6 +2707,19 @@ namespace Authing.CSharp.SDK.Services
 
         }
         ///<summary>
+        /// 获取应用详情
+        ///</summary>
+        /// <param name="appId">应用 ID</param>
+        ///<returns>ApplicationSingleRespDto</returns>
+        public async Task<ApplicationSingleRespDto> GetApplication1(GetApplicationDto reqDto)
+        {
+            string httpResponse = await Request("GET", "/api/v3/get-application", reqDto).ConfigureAwait(false);
+
+            ApplicationSingleRespDto result = m_JsonService.DeserializeObject<ApplicationSingleRespDto>(httpResponse);
+            return result;
+
+        }
+        ///<summary>
         /// 获取应用列表
         ///</summary>
         /// <param name="page">当前页数，从 1 开始</param>
@@ -2099,6 +2751,19 @@ namespace Authing.CSharp.SDK.Services
 
         }
         ///<summary>
+        /// 获取应用简单信息
+        ///</summary>
+        /// <param name="appId">应用 ID</param>
+        ///<returns>ApplicationSimpleInfoSingleRespDto</returns>
+        public async Task<ApplicationSimpleInfoSingleRespDto> GetApplicationSimpleInfo1(GetApplicationSimpleInfoDto reqDto)
+        {
+            string httpResponse = await Request("GET", "/api/v3/get-application-simple-info", reqDto).ConfigureAwait(false);
+
+            ApplicationSimpleInfoSingleRespDto result = m_JsonService.DeserializeObject<ApplicationSimpleInfoSingleRespDto>(httpResponse);
+            return result;
+
+        }
+        ///<summary>
         /// 获取应用简单信息列表
         ///</summary>
         /// <param name="page">当前页数，从 1 开始</param>
@@ -2120,12 +2785,12 @@ namespace Authing.CSharp.SDK.Services
         /// 创建应用
         ///</summary>
         /// <param name="requestBody"></param>
-        ///<returns>ApplicationPaginatedRespDto</returns>
-        public async Task<ApplicationPaginatedRespDto> CreateApplication(CreateApplicationDto requestBody)
+        ///<returns>CreateApplicationRespDto</returns>
+        public async Task<CreateApplicationRespDto> CreateApplication(CreateApplicationDto requestBody)
         {
             string httpResponse = await Request("POST", "/api/v3/create-application", requestBody).ConfigureAwait(false);
 
-            ApplicationPaginatedRespDto result = m_JsonService.DeserializeObject<ApplicationPaginatedRespDto>(httpResponse);
+            CreateApplicationRespDto result = m_JsonService.DeserializeObject<CreateApplicationRespDto>(httpResponse);
             return result;
         }
         ///<summary>
@@ -2215,11 +2880,35 @@ namespace Authing.CSharp.SDK.Services
             return result;
         }
         ///<summary>
+        /// 授权应用访问权限
+        ///</summary>
+        /// <param name="requestBody"></param>
+        ///<returns>IsSuccessRespDto</returns>
+        public async Task<IsSuccessRespDto> AuthorizeApplicationAccess1(AuthorizeApplicationAccessDto requestBody)
+        {
+            string httpResponse = await Request("POST", "/api/v3/authorize-application-access", requestBody).ConfigureAwait(false);
+
+            IsSuccessRespDto result = m_JsonService.DeserializeObject<IsSuccessRespDto>(httpResponse);
+            return result;
+        }
+        ///<summary>
         /// 删除应用访问授权记录
         ///</summary>
         /// <param name="requestBody"></param>
         ///<returns>IsSuccessRespDto</returns>
         public async Task<IsSuccessRespDto> RevokeApplicationAccess(RevokeApplicationAccessDto requestBody)
+        {
+            string httpResponse = await Request("POST", "/api/v3/revoke-application-access", requestBody).ConfigureAwait(false);
+
+            IsSuccessRespDto result = m_JsonService.DeserializeObject<IsSuccessRespDto>(httpResponse);
+            return result;
+        }
+        ///<summary>
+        /// 删除应用访问授权记录
+        ///</summary>
+        /// <param name="requestBody"></param>
+        ///<returns>IsSuccessRespDto</returns>
+        public async Task<IsSuccessRespDto> RevokeApplicationAccess1(RevokeApplicationAccessDto requestBody)
         {
             string httpResponse = await Request("POST", "/api/v3/revoke-application-access", requestBody).ConfigureAwait(false);
 
@@ -2236,6 +2925,86 @@ namespace Authing.CSharp.SDK.Services
             string httpResponse = await Request("POST", "/api/v3/check-domain-available", requestBody).ConfigureAwait(false);
 
             CheckDomainAvailableSecretRespDto result = m_JsonService.DeserializeObject<CheckDomainAvailableSecretRespDto>(httpResponse);
+            return result;
+        }
+        ///<summary>
+        /// 获取租户应用列表
+        ///</summary>
+        /// <param name="page">获取应用列表的页码</param>
+        /// <param name="limit">每页获取的应用数量</param>
+        /// <param name="keywords">搜索关键字</param>
+        /// <param name="ssoEnabled">应用是否加入单点登录</param>
+        ///<returns>TenantApplicationListPaginatedRespDto</returns>
+        public async Task<TenantApplicationListPaginatedRespDto> ListTenantApplications(ListTenantApplicationsDto reqDto)
+        {
+            string httpResponse = await Request("GET", "/api/v3/list-tenant-applications", reqDto).ConfigureAwait(false);
+
+            TenantApplicationListPaginatedRespDto result = m_JsonService.DeserializeObject<TenantApplicationListPaginatedRespDto>(httpResponse);
+            return result;
+
+        }
+        ///<summary>
+        /// 获取租户应用列表
+        ///</summary>
+        /// <param name="page">获取应用列表的页码</param>
+        /// <param name="limit">每页获取的应用数量</param>
+        /// <param name="keywords">搜索关键字</param>
+        /// <param name="ssoEnabled">应用是否加入单点登录</param>
+        ///<returns>TenantApplicationListPaginatedRespDto</returns>
+        public async Task<TenantApplicationListPaginatedRespDto> ListTenantApplications1(ListTenantApplicationsDto reqDto)
+        {
+            string httpResponse = await Request("GET", "/api/v3/list-tenant-applications", reqDto).ConfigureAwait(false);
+
+            TenantApplicationListPaginatedRespDto result = m_JsonService.DeserializeObject<TenantApplicationListPaginatedRespDto>(httpResponse);
+            return result;
+
+        }
+        ///<summary>
+        /// 更新应用登录页配置
+        ///</summary>
+        /// <param name="requestBody"></param>
+        ///<returns>IsSuccessRespDto</returns>
+        public async Task<IsSuccessRespDto> UpdateLoginPageConfig(UpdateLoginConfigDto requestBody)
+        {
+            string httpResponse = await Request("POST", "/api/v3/update-login-page-config", requestBody).ConfigureAwait(false);
+
+            IsSuccessRespDto result = m_JsonService.DeserializeObject<IsSuccessRespDto>(httpResponse);
+            return result;
+        }
+        ///<summary>
+        /// 获取用户池租户配置信息
+        ///</summary>
+        ///<returns>UserPoolTenantConfigDtoRespDto</returns>
+        public async Task<UserPoolTenantConfigDtoRespDto> UserpollTenantConfig()
+        {
+            string httpResponse = await Request("GET", "/api/v3/userpool-tenant-config").ConfigureAwait(false);
+
+            UserPoolTenantConfigDtoRespDto result = m_JsonService.DeserializeObject<UserPoolTenantConfigDtoRespDto>(httpResponse);
+            return result;
+
+        }
+        ///<summary>
+        /// 更新用户池租户配置信息
+        ///</summary>
+        /// <param name="requestBody"></param>
+        ///<returns>IsSuccessRespDto</returns>
+        public async Task<IsSuccessRespDto> UpdateUserPoolTenantConfig(UpdateUserPoolTenantLoginConfigDto requestBody)
+        {
+            string httpResponse = await Request("POST", "/api/v3/update-userpool-tenant-config", requestBody).ConfigureAwait(false);
+
+            IsSuccessRespDto result = m_JsonService.DeserializeObject<IsSuccessRespDto>(httpResponse);
+            return result;
+        }
+        ///<summary>
+        /// 设置用户池多租户身份源连接
+        ///</summary>
+        /// <param name="requestBody"></param>
+        ///<returns>IsSuccessRespDto</returns>
+        public async Task<IsSuccessRespDto> ChangeUserpoolTenanExtIdpConnState(ChangeUserPoolTenantExtIdpConnDto requestBody)
+        {
+            string httpResponse = await Request("POST", "/api/v3/change-userpool-tenant-ext-idp-conn-state", requestBody).ConfigureAwait(false);
+
+            IsSuccessRespDto result = m_JsonService.DeserializeObject<IsSuccessRespDto>(httpResponse);
             return result;
         }
         ///<summary>
@@ -2450,6 +3219,581 @@ namespace Authing.CSharp.SDK.Services
             string httpResponse = await Request("POST", "/api/v3/update-global-mfa-settings", requestBody).ConfigureAwait(false);
 
             MFASettingsRespDto result = m_JsonService.DeserializeObject<MFASettingsRespDto>(httpResponse);
+            return result;
+        }
+        ///<summary>
+        /// 创建租户
+        ///</summary>
+        /// <param name="requestBody"></param>
+        ///<returns>CreateTenantRespDto</returns>
+        public async Task<CreateTenantRespDto> CreateTenant(CreateTenantDto requestBody)
+        {
+            string httpResponse = await Request("POST", "/api/v3/create-tenant", requestBody).ConfigureAwait(false);
+
+            CreateTenantRespDto result = m_JsonService.DeserializeObject<CreateTenantRespDto>(httpResponse);
+            return result;
+        }
+        ///<summary>
+        /// 创建租户
+        ///</summary>
+        /// <param name="requestBody"></param>
+        ///<returns>CreateTenantRespDto</returns>
+        public async Task<CreateTenantRespDto> CreateTenant1(CreateTenantDto requestBody)
+        {
+            string httpResponse = await Request("POST", "/api/v3/create-tenant", requestBody).ConfigureAwait(false);
+
+            CreateTenantRespDto result = m_JsonService.DeserializeObject<CreateTenantRespDto>(httpResponse);
+            return result;
+        }
+        ///<summary>
+        /// 更新租户数据
+        ///</summary>
+        /// <param name="requestBody"></param>
+        ///<returns>IsSuccessRespDto</returns>
+        public async Task<IsSuccessRespDto> UpdateTenant(UpdateTenantDto requestBody)
+        {
+            string httpResponse = await Request("POST", "/api/v3/update-tenant", requestBody).ConfigureAwait(false);
+
+            IsSuccessRespDto result = m_JsonService.DeserializeObject<IsSuccessRespDto>(httpResponse);
+            return result;
+        }
+        ///<summary>
+        /// 更新租户数据
+        ///</summary>
+        /// <param name="requestBody"></param>
+        ///<returns>IsSuccessRespDto</returns>
+        public async Task<IsSuccessRespDto> UpdateTenant1(UpdateTenantDto requestBody)
+        {
+            string httpResponse = await Request("POST", "/api/v3/update-tenant", requestBody).ConfigureAwait(false);
+
+            IsSuccessRespDto result = m_JsonService.DeserializeObject<IsSuccessRespDto>(httpResponse);
+            return result;
+        }
+        ///<summary>
+        /// 删除租户
+        ///</summary>
+        /// <param name="requestBody"></param>
+        ///<returns>IsSuccessRespDto</returns>
+        public async Task<IsSuccessRespDto> DeleteTenant(DeleteTenantDto requestBody)
+        {
+            string httpResponse = await Request("POST", "/api/v3/delete-tenant", requestBody).ConfigureAwait(false);
+
+            IsSuccessRespDto result = m_JsonService.DeserializeObject<IsSuccessRespDto>(httpResponse);
+            return result;
+        }
+        ///<summary>
+        /// 删除租户
+        ///</summary>
+        /// <param name="requestBody"></param>
+        ///<returns>IsSuccessRespDto</returns>
+        public async Task<IsSuccessRespDto> DeleteTenant1(DeleteTenantDto requestBody)
+        {
+            string httpResponse = await Request("POST", "/api/v3/delete-tenant", requestBody).ConfigureAwait(false);
+
+            IsSuccessRespDto result = m_JsonService.DeserializeObject<IsSuccessRespDto>(httpResponse);
+            return result;
+        }
+        ///<summary>
+        /// 获取/搜索租户列表
+        ///</summary>
+        /// <param name="keywords">搜索关键字</param>
+        /// <param name="withMembersCount">是否增加返回租户成员统计</param>
+        /// <param name="withAppDetail">增加返回租户下 app 简单信息</param>
+        /// <param name="withCreatorDetail">增加返回租户下创建者简单信息</param>
+        /// <param name="withSourceAppDetail">增加返回租户下来源 app 简单信息</param>
+        /// <param name="page">页码</param>
+        /// <param name="limit">每页获取的数据量</param>
+        ///<returns>TenantListPaginatedRespDto</returns>
+        public async Task<TenantListPaginatedRespDto> ListTenants(ListTenantsDto reqDto)
+        {
+            string httpResponse = await Request("GET", "/api/v3/list-tenants", reqDto).ConfigureAwait(false);
+
+            TenantListPaginatedRespDto result = m_JsonService.DeserializeObject<TenantListPaginatedRespDto>(httpResponse);
+            return result;
+
+        }
+        ///<summary>
+        /// 获取/搜索租户列表
+        ///</summary>
+        /// <param name="keywords">搜索关键字</param>
+        /// <param name="withMembersCount">是否增加返回租户成员统计</param>
+        /// <param name="withAppDetail">增加返回租户下 app 简单信息</param>
+        /// <param name="withCreatorDetail">增加返回租户下创建者简单信息</param>
+        /// <param name="withSourceAppDetail">增加返回租户下来源 app 简单信息</param>
+        /// <param name="page">页码</param>
+        /// <param name="limit">每页获取的数据量</param>
+        ///<returns>TenantListPaginatedRespDto</returns>
+        public async Task<TenantListPaginatedRespDto> ListTenants1(ListTenantsDto reqDto)
+        {
+            string httpResponse = await Request("GET", "/api/v3/list-tenants", reqDto).ConfigureAwait(false);
+
+            TenantListPaginatedRespDto result = m_JsonService.DeserializeObject<TenantListPaginatedRespDto>(httpResponse);
+            return result;
+
+        }
+        ///<summary>
+        /// 获取租户详情
+        ///</summary>
+        /// <param name="tenantId">租户 ID</param>
+        /// <param name="withMembersCount">是否增加返回租户成员统计</param>
+        /// <param name="withAppDetail">增加返回租户关联应用简单信息</param>
+        /// <param name="withCreatorDetail">增加返回租户下创建者简单信息</param>
+        /// <param name="withSourceAppDetail">增加返回租户来源应用简单信息</param>
+        ///<returns>TenantSingleRespDto</returns>
+        public async Task<TenantSingleRespDto> GetTenant(GetTenantDto reqDto)
+        {
+            string httpResponse = await Request("GET", "/api/v3/get-tenant", reqDto).ConfigureAwait(false);
+
+            TenantSingleRespDto result = m_JsonService.DeserializeObject<TenantSingleRespDto>(httpResponse);
+            return result;
+
+        }
+        ///<summary>
+        /// 获取租户详情
+        ///</summary>
+        /// <param name="tenantId">租户 ID</param>
+        /// <param name="withMembersCount">是否增加返回租户成员统计</param>
+        /// <param name="withAppDetail">增加返回租户关联应用简单信息</param>
+        /// <param name="withCreatorDetail">增加返回租户下创建者简单信息</param>
+        /// <param name="withSourceAppDetail">增加返回租户来源应用简单信息</param>
+        ///<returns>TenantSingleRespDto</returns>
+        public async Task<TenantSingleRespDto> GetTenant1(GetTenantDto reqDto)
+        {
+            string httpResponse = await Request("GET", "/api/v3/get-tenant", reqDto).ConfigureAwait(false);
+
+            TenantSingleRespDto result = m_JsonService.DeserializeObject<TenantSingleRespDto>(httpResponse);
+            return result;
+
+        }
+        ///<summary>
+        /// 导入租户
+        ///</summary>
+        /// <param name="requestBody"></param>
+        ///<returns>any</returns>
+        public async Task<object> ImportTenant(ImportTenantDto requestBody)
+        {
+            string httpResponse = await Request("POST", "/api/v3/import-tenant", requestBody).ConfigureAwait(false);
+
+            object result = m_JsonService.DeserializeObject<object>(httpResponse);
+            return result;
+        }
+        ///<summary>
+        /// 导入租户历史
+        ///</summary>
+        /// <param name="page">页码</param>
+        /// <param name="limit">每页获取的数据量</param>
+        ///<returns>any</returns>
+        public async Task<object> ImportTenantHistory(ImportTenantHistoryDto reqDto)
+        {
+            string httpResponse = await Request("GET", "/api/v3/import-tenant-history", reqDto).ConfigureAwait(false);
+
+            object result = m_JsonService.DeserializeObject<object>(httpResponse);
+            return result;
+
+        }
+        ///<summary>
+        /// 导入租户通知用户列表
+        ///</summary>
+        /// <param name="importId">导入记录 id</param>
+        /// <param name="page">页码</param>
+        /// <param name="limit">每页获取的数据量</param>
+        ///<returns>any</returns>
+        public async Task<object> ImportTenantNotifyUser(ImportTenantNotifyUserDto reqDto)
+        {
+            string httpResponse = await Request("GET", "/api/v3/import-tenant-notify-user", reqDto).ConfigureAwait(false);
+
+            object result = m_JsonService.DeserializeObject<object>(httpResponse);
+            return result;
+
+        }
+        ///<summary>
+        /// 导入租户通知邮箱用户
+        ///</summary>
+        /// <param name="requestBody"></param>
+        ///<returns>any</returns>
+        public async Task<object> SendEmailBatch(SendManyTenantEmailDto requestBody)
+        {
+            string httpResponse = await Request("POST", "/api/v3/send-email-batch", requestBody).ConfigureAwait(false);
+
+            object result = m_JsonService.DeserializeObject<object>(httpResponse);
+            return result;
+        }
+        ///<summary>
+        /// 导入租户短信通知用户
+        ///</summary>
+        /// <param name="requestBody"></param>
+        ///<returns>any</returns>
+        public async Task<object> SendSmsBatch(SendManyTenantSmsDto requestBody)
+        {
+            string httpResponse = await Request("POST", "/api/v3/send-sms-batch", requestBody).ConfigureAwait(false);
+
+            object result = m_JsonService.DeserializeObject<object>(httpResponse);
+            return result;
+        }
+        ///<summary>
+        /// 获取租户管理员列表
+        ///</summary>
+        /// <param name="requestBody"></param>
+        ///<returns>TenantUserListPaginatedRespDto</returns>
+        public async Task<TenantUserListPaginatedRespDto> ListTenantAdmin(ListTenantAdminDto requestBody)
+        {
+            string httpResponse = await Request("POST", "/api/v3/list-tenant-admin", requestBody).ConfigureAwait(false);
+
+            TenantUserListPaginatedRespDto result = m_JsonService.DeserializeObject<TenantUserListPaginatedRespDto>(httpResponse);
+            return result;
+        }
+        ///<summary>
+        /// 获取租户管理员列表
+        ///</summary>
+        /// <param name="requestBody"></param>
+        ///<returns>TenantUserListPaginatedRespDto</returns>
+        public async Task<TenantUserListPaginatedRespDto> ListTenantAdmin1(ListTenantAdminDto requestBody)
+        {
+            string httpResponse = await Request("POST", "/api/v3/list-tenant-admin", requestBody).ConfigureAwait(false);
+
+            TenantUserListPaginatedRespDto result = m_JsonService.DeserializeObject<TenantUserListPaginatedRespDto>(httpResponse);
+            return result;
+        }
+        ///<summary>
+        /// 设置租户管理员
+        ///</summary>
+        /// <param name="requestBody"></param>
+        ///<returns>CommonResponseDto</returns>
+        public async Task<CommonResponseDto> SetTenantAdmin(RemoveTenantUsersDto requestBody)
+        {
+            string httpResponse = await Request("POST", "/api/v3/set-tenant-admin", requestBody).ConfigureAwait(false);
+
+            CommonResponseDto result = m_JsonService.DeserializeObject<CommonResponseDto>(httpResponse);
+            return result;
+        }
+        ///<summary>
+        /// 设置租户管理员
+        ///</summary>
+        /// <param name="requestBody"></param>
+        ///<returns>CommonResponseDto</returns>
+        public async Task<CommonResponseDto> SetTenantAdmin1(RemoveTenantUsersDto requestBody)
+        {
+            string httpResponse = await Request("POST", "/api/v3/set-tenant-admin", requestBody).ConfigureAwait(false);
+
+            CommonResponseDto result = m_JsonService.DeserializeObject<CommonResponseDto>(httpResponse);
+            return result;
+        }
+        ///<summary>
+        /// 取消设置租户管理员
+        ///</summary>
+        /// <param name="requestBody"></param>
+        ///<returns>CommonResponseDto</returns>
+        public async Task<CommonResponseDto> DeleteTenantAdmin(GetTenantUserDto requestBody)
+        {
+            string httpResponse = await Request("POST", "/api/v3/delete-tenant-admin", requestBody).ConfigureAwait(false);
+
+            CommonResponseDto result = m_JsonService.DeserializeObject<CommonResponseDto>(httpResponse);
+            return result;
+        }
+        ///<summary>
+        /// 取消设置租户管理员
+        ///</summary>
+        /// <param name="requestBody"></param>
+        ///<returns>CommonResponseDto</returns>
+        public async Task<CommonResponseDto> DeleteTenantAdmin1(GetTenantUserDto requestBody)
+        {
+            string httpResponse = await Request("POST", "/api/v3/delete-tenant-admin", requestBody).ConfigureAwait(false);
+
+            CommonResponseDto result = m_JsonService.DeserializeObject<CommonResponseDto>(httpResponse);
+            return result;
+        }
+        ///<summary>
+        /// 批量移除租户成员
+        ///</summary>
+        /// <param name="requestBody"></param>
+        ///<returns>CommonResponseDto</returns>
+        public async Task<CommonResponseDto> DeleteTenantUser(RemoveTenantUsersDto requestBody)
+        {
+            string httpResponse = await Request("POST", "/api/v3/delete-tenant-user", requestBody).ConfigureAwait(false);
+
+            CommonResponseDto result = m_JsonService.DeserializeObject<CommonResponseDto>(httpResponse);
+            return result;
+        }
+        ///<summary>
+        /// 生成一个邀请租户成员的链接
+        ///</summary>
+        /// <param name="requestBody"></param>
+        ///<returns>InviteTenantUsersRespDto</returns>
+        public async Task<InviteTenantUsersRespDto> GenerateInviteTenantUserLink(GenerateInviteTenantUserLink requestBody)
+        {
+            string httpResponse = await Request("POST", "/api/v3/generate-invite-tenant-user-link", requestBody).ConfigureAwait(false);
+
+            InviteTenantUsersRespDto result = m_JsonService.DeserializeObject<InviteTenantUsersRespDto>(httpResponse);
+            return result;
+        }
+        ///<summary>
+        /// 获取可访问的租户控制台列表
+        ///</summary>
+        /// <param name="keywords">搜索关键字</param>
+        /// <param name="page">页码</param>
+        /// <param name="limit">每页获取的数据量</param>
+        ///<returns>InviteTenantUserRecordListRespDto</returns>
+        public async Task<InviteTenantUserRecordListRespDto> ListInviteTennatUserRecords(ListInviteTenantUserRecordsDto reqDto)
+        {
+            string httpResponse = await Request("GET", "/api/v3/list-invite-tenant-user-records", reqDto).ConfigureAwait(false);
+
+            InviteTenantUserRecordListRespDto result = m_JsonService.DeserializeObject<InviteTenantUserRecordListRespDto>(httpResponse);
+            return result;
+
+        }
+        ///<summary>
+        /// 获取多租户管理员用户列表
+        ///</summary>
+        /// <param name="keywords">搜索关键字</param>
+        /// <param name="page">页码</param>
+        /// <param name="limit">每页获取的数据量</param>
+        ///<returns>MultipleTenantAdminPaginatedRespDto</returns>
+        public async Task<MultipleTenantAdminPaginatedRespDto> ListMultipleTenantAdmin(ListMultipleTenantAdminsDto reqDto)
+        {
+            string httpResponse = await Request("GET", "/api/v3/list-multiple-tenant-admins", reqDto).ConfigureAwait(false);
+
+            MultipleTenantAdminPaginatedRespDto result = m_JsonService.DeserializeObject<MultipleTenantAdminPaginatedRespDto>(httpResponse);
+            return result;
+
+        }
+        ///<summary>
+        /// 创建多租户管理员用户
+        ///</summary>
+        /// <param name="requestBody"></param>
+        ///<returns>CommonResponseDto</returns>
+        public async Task<CommonResponseDto> CreateMultipleTenantAdmin(CreateMultipleTenantAdminDto requestBody)
+        {
+            string httpResponse = await Request("POST", "/api/v3/create-multiple-tenant-admin", requestBody).ConfigureAwait(false);
+
+            CommonResponseDto result = m_JsonService.DeserializeObject<CommonResponseDto>(httpResponse);
+            return result;
+        }
+        ///<summary>
+        /// 获取多租户管理员用户列表
+        ///</summary>
+        /// <param name="userId">用户 ID</param>
+        ///<returns>MultipleTenantAdminPaginatedRespDto</returns>
+        public async Task<MultipleTenantAdminPaginatedRespDto> GetMultipleTenantAdmin(GetMultipleTenantAdminDto reqDto)
+        {
+            string httpResponse = await Request("GET", "/api/v3/get-multiple-tenant-admin", reqDto).ConfigureAwait(false);
+
+            MultipleTenantAdminPaginatedRespDto result = m_JsonService.DeserializeObject<MultipleTenantAdminPaginatedRespDto>(httpResponse);
+            return result;
+
+        }
+        ///<summary>
+        /// 更新多租户管理员用户
+        ///</summary>
+        /// <param name="userId">用户 ID</param>
+        /// <param name="requestBody"></param>
+        ///<returns>CommonResponseDto</returns>
+        public async Task<CommonResponseDto> UpdateMultipleTenantAdmin(UpdateMultipleTenantAdminDto requestBody)
+        {
+            string httpResponse = await Request("POST", "/api/v3/update-multiple-tenant-admin", requestBody).ConfigureAwait(false);
+
+            CommonResponseDto result = m_JsonService.DeserializeObject<CommonResponseDto>(httpResponse);
+            return result;
+        }
+        ///<summary>
+        /// 删除多租户管理员用户
+        ///</summary>
+        /// <param name="userId">用户 ID</param>
+        ///<returns>CommonResponseDto</returns>
+        public async Task<CommonResponseDto> DeleteMultipleTenantAdmin(string userId)
+        {
+            string httpResponse = await Request("POST", "/api/v3/delete-multiple-tenant-admin", userId).ConfigureAwait(false);
+
+            CommonResponseDto result = m_JsonService.DeserializeObject<CommonResponseDto>(httpResponse);
+            return result;
+        }
+        ///<summary>
+        /// 获取协作管理员用户列表
+        ///</summary>
+        /// <param name="keywords">搜索关键字</param>
+        /// <param name="external">是否外部</param>
+        /// <param name="page">页码</param>
+        /// <param name="limit">每页获取的数据量</param>
+        ///<returns>TenantCooperatorPaginatedRespDto</returns>
+        public async Task<TenantCooperatorPaginatedRespDto> ListTenantCooperators(ListTenantCooperatorsDto reqDto)
+        {
+            string httpResponse = await Request("GET", "/api/v3/list-tenant-cooperators", reqDto).ConfigureAwait(false);
+
+            TenantCooperatorPaginatedRespDto result = m_JsonService.DeserializeObject<TenantCooperatorPaginatedRespDto>(httpResponse);
+            return result;
+
+        }
+        ///<summary>
+        /// 获取一个协调管理员
+        ///</summary>
+        /// <param name="userId">用户 ID</param>
+        ///<returns>TenantCooperatorSingleRespDto</returns>
+        public async Task<TenantCooperatorSingleRespDto> GetTenantCooperator(GetTenantCooperatorDto reqDto)
+        {
+            string httpResponse = await Request("GET", "/api/v3/get-tenant-cooperator", reqDto).ConfigureAwait(false);
+
+            TenantCooperatorSingleRespDto result = m_JsonService.DeserializeObject<TenantCooperatorSingleRespDto>(httpResponse);
+            return result;
+
+        }
+        ///<summary>
+        /// 获取一个协调管理员拥有的列表
+        ///</summary>
+        /// <param name="userId">用户 ID</param>
+        ///<returns>TenantCooperatorSingleRespDto</returns>
+        public async Task<TenantCooperatorSingleRespDto> GetTenantCooperatorMenu(GetTenantCooperatorMenuDto reqDto)
+        {
+            string httpResponse = await Request("GET", "/api/v3/get-tenant-cooperator-menu", reqDto).ConfigureAwait(false);
+
+            TenantCooperatorSingleRespDto result = m_JsonService.DeserializeObject<TenantCooperatorSingleRespDto>(httpResponse);
+            return result;
+
+        }
+        ///<summary>
+        /// 创建协调管理员
+        ///</summary>
+        /// <param name="requestBody"></param>
+        ///<returns>CommonResponseDto</returns>
+        public async Task<CommonResponseDto> CreateTenantCooperator(CreateTenantCooperatorDto requestBody)
+        {
+            string httpResponse = await Request("POST", "/api/v3/create-tenant-cooperator", requestBody).ConfigureAwait(false);
+
+            CommonResponseDto result = m_JsonService.DeserializeObject<CommonResponseDto>(httpResponse);
+            return result;
+        }
+        ///<summary>
+        /// 更新协调管理员
+        ///</summary>
+        /// <param name="userId">用户 ID</param>
+        /// <param name="requestBody"></param>
+        ///<returns>CommonResponseDto</returns>
+        public async Task<CommonResponseDto> UpdateTenantCooperator(UpdateTenantCooperatorDto requestBody)
+        {
+            string httpResponse = await Request("POST", "/api/v3/update-tenant-cooperator", requestBody).ConfigureAwait(false);
+
+            CommonResponseDto result = m_JsonService.DeserializeObject<CommonResponseDto>(httpResponse);
+            return result;
+        }
+        ///<summary>
+        /// 删除协调管理员
+        ///</summary>
+        /// <param name="userId">用户 ID</param>
+        ///<returns>CommonResponseDto</returns>
+        public async Task<CommonResponseDto> DeleteTenantCooperator(string userId)
+        {
+            string httpResponse = await Request("POST", "/api/v3/delete-tenant-cooperator", userId).ConfigureAwait(false);
+
+            CommonResponseDto result = m_JsonService.DeserializeObject<CommonResponseDto>(httpResponse);
+            return result;
+        }
+        ///<summary>
+        /// 发送邀请租户用户邮件
+        ///</summary>
+        /// <param name="requestBody"></param>
+        ///<returns>CommonResponseDto</returns>
+        public async Task<CommonResponseDto> SendInviteTenantUserEmail(sendInviteTenantUserEmailDto requestBody)
+        {
+            string httpResponse = await Request("POST", "/api/v3/send-invite-tenant-user-email", requestBody).ConfigureAwait(false);
+
+            CommonResponseDto result = m_JsonService.DeserializeObject<CommonResponseDto>(httpResponse);
+            return result;
+        }
+        ///<summary>
+        /// 添加租户成员
+        ///</summary>
+        /// <param name="requestBody"></param>
+        ///<returns>CommonResponseDto</returns>
+        public async Task<CommonResponseDto> AddTenantUsers(AddTenantUsersDto requestBody)
+        {
+            string httpResponse = await Request("POST", "/api/v3/add-tenant-users", requestBody).ConfigureAwait(false);
+
+            CommonResponseDto result = m_JsonService.DeserializeObject<CommonResponseDto>(httpResponse);
+            return result;
+        }
+        ///<summary>
+        /// 批量移除租户成员
+        ///</summary>
+        /// <param name="requestBody"></param>
+        ///<returns>CommonResponseDto</returns>
+        public async Task<CommonResponseDto> RemoveTenantUsers(RemoveTenantUsersDto requestBody)
+        {
+            string httpResponse = await Request("POST", "/api/v3/remove-tenant-users", requestBody).ConfigureAwait(false);
+
+            CommonResponseDto result = m_JsonService.DeserializeObject<CommonResponseDto>(httpResponse);
+            return result;
+        }
+        ///<summary>
+        /// 更新租户成员
+        ///</summary>
+        /// <param name="requestBody"></param>
+        ///<returns>CommonResponseDto</returns>
+        public async Task<CommonResponseDto> UpdateTenantUser(UpdateTenantUserDto requestBody)
+        {
+            string httpResponse = await Request("POST", "/api/v3/update-tenant-user", requestBody).ConfigureAwait(false);
+
+            CommonResponseDto result = m_JsonService.DeserializeObject<CommonResponseDto>(httpResponse);
+            return result;
+        }
+        ///<summary>
+        /// 创建租户成员
+        ///</summary>
+        /// <param name="requestBody"></param>
+        ///<returns>TenantUserDto</returns>
+        public async Task<TenantUserDto> CreateTenantUser(CreateTenantUserReqDto requestBody)
+        {
+            string httpResponse = await Request("POST", "/api/v3/create-tenant-user", requestBody).ConfigureAwait(false);
+
+            TenantUserDto result = m_JsonService.DeserializeObject<TenantUserDto>(httpResponse);
+            return result;
+        }
+        ///<summary>
+        /// 获取/搜索租户成员列表
+        ///</summary>
+        /// <param name="requestBody"></param>
+        ///<returns>TenantUserListPaginatedRespDto</returns>
+        public async Task<TenantUserListPaginatedRespDto> ListTenantUsers(ListTenantUserDto requestBody)
+        {
+            string httpResponse = await Request("POST", "/api/v3/list-tenant-users", requestBody).ConfigureAwait(false);
+
+            TenantUserListPaginatedRespDto result = m_JsonService.DeserializeObject<TenantUserListPaginatedRespDto>(httpResponse);
+            return result;
+        }
+        ///<summary>
+        /// 获取单个租户成员
+        ///</summary>
+        /// <param name="tenantId">租户 ID</param>
+        /// <param name="linkUserId">关联的用户池级别的用户 ID</param>
+        /// <param name="memberId">租户成员 ID</param>
+        ///<returns>TenantUserSingleRespDto</returns>
+        public async Task<TenantUserSingleRespDto> GetTenantUser(GetTenantUserDto reqDto)
+        {
+            string httpResponse = await Request("GET", "/api/v3/get-tenant-user", reqDto).ConfigureAwait(false);
+
+            TenantUserSingleRespDto result = m_JsonService.DeserializeObject<TenantUserSingleRespDto>(httpResponse);
+            return result;
+
+        }
+        ///<summary>
+        /// 租户部门下添加成员
+        ///</summary>
+        /// <param name="requestBody"></param>
+        ///<returns>IsSuccessRespDto</returns>
+        public async Task<IsSuccessRespDto> AddTenantDepartmentMembers(AddTenantDepartmentMembersReqDto requestBody)
+        {
+            string httpResponse = await Request("POST", "/api/v3/add-tenant-department-members", requestBody).ConfigureAwait(false);
+
+            IsSuccessRespDto result = m_JsonService.DeserializeObject<IsSuccessRespDto>(httpResponse);
+            return result;
+        }
+        ///<summary>
+        /// 租户部门下删除成员
+        ///</summary>
+        /// <param name="requestBody"></param>
+        ///<returns>IsSuccessRespDto</returns>
+        public async Task<IsSuccessRespDto> RemoveTenantDepartmentMembers(RemoveTenantDepartmentMembersReqDto requestBody)
+        {
+            string httpResponse = await Request("POST", "/api/v3/remove-tenant-department-members", requestBody).ConfigureAwait(false);
+
+            IsSuccessRespDto result = m_JsonService.DeserializeObject<IsSuccessRespDto>(httpResponse);
             return result;
         }
         ///<summary>
@@ -2778,7 +4122,7 @@ namespace Authing.CSharp.SDK.Services
             return result;
         }
         ///<summary>
-        /// 校验数据策略名称是否存在
+        /// 校验数据策略名称是否有效
         ///</summary>
         /// <param name="policyName">数据策略名称，用户池唯一</param>
         ///<returns>CheckParamsDataPolicyResponseDto</returns>
@@ -2884,7 +4228,7 @@ namespace Authing.CSharp.SDK.Services
         ///</summary>
         /// <param name="requestBody"></param>
         ///<returns>ListResourceTargetsRespDto</returns>
-        public async Task<ListResourceTargetsRespDto> ListResourceTargets(ListResourceTargets requestBody)
+        public async Task<ListResourceTargetsRespDto> ListResourceTargets(ListResourceTargetsDto requestBody)
         {
             string httpResponse = await Request("POST", "/api/v3/list-resource-targets", requestBody).ConfigureAwait(false);
 
@@ -2892,7 +4236,31 @@ namespace Authing.CSharp.SDK.Services
             return result;
         }
         ///<summary>
-        /// 判断用户在同层级资源下的权限
+        /// 获取用户授权资源的结构列表
+        ///</summary>
+        /// <param name="requestBody"></param>
+        ///<returns>GetUserResourceStructRespDto</returns>
+        public async Task<GetUserResourceStructRespDto> GetUserResourceStruct(GetUserResourceStructDto requestBody)
+        {
+            string httpResponse = await Request("POST", "/api/v3/get-user-resource-struct", requestBody).ConfigureAwait(false);
+
+            GetUserResourceStructRespDto result = m_JsonService.DeserializeObject<GetUserResourceStructRespDto>(httpResponse);
+            return result;
+        }
+        ///<summary>
+        /// 获取外部用户授权资源的结构列表
+        ///</summary>
+        /// <param name="requestBody"></param>
+        ///<returns>GetExternalUserResourceStructRespDto</returns>
+        public async Task<GetExternalUserResourceStructRespDto> GetExternalUserResourceStruct(GetExternalUserResourceStructDto requestBody)
+        {
+            string httpResponse = await Request("POST", "/api/v3/get-external-user-resource-struct", requestBody).ConfigureAwait(false);
+
+            GetExternalUserResourceStructRespDto result = m_JsonService.DeserializeObject<GetExternalUserResourceStructRespDto>(httpResponse);
+            return result;
+        }
+        ///<summary>
+        /// 判断用户在树资源同层级下的权限
         ///</summary>
         /// <param name="requestBody"></param>
         ///<returns>CheckUserSameLevelPermissionResponseDto</returns>
@@ -2992,6 +4360,268 @@ namespace Authing.CSharp.SDK.Services
             CostGetOrderPayDetailRespDto result = m_JsonService.DeserializeObject<CostGetOrderPayDetailRespDto>(httpResponse);
             return result;
 
+        }
+
+        ///<summary>
+        /// 创建自定义事件应用
+        ///</summary>
+        /// <param name="requestBody"></param>
+        ///<returns>any</returns>
+        public async Task<object> CreateEventApp(CreateEventAppDto requestBody)
+        {
+            string httpResponse = await Request("POST", "/api/v3/create-event-app", requestBody).ConfigureAwait(false);
+
+            object result = m_JsonService.DeserializeObject<object>(httpResponse);
+            return result;
+        }
+        ///<summary>
+        /// 获取事件应用列表
+        ///</summary>
+        ///<returns>EventAppPaginatedRespDto</returns>
+        public async Task<EventAppPaginatedRespDto> ListEventApps()
+        {
+            string httpResponse = await Request("GET", "/api/v3/list-event-apps").ConfigureAwait(false);
+
+            EventAppPaginatedRespDto result = m_JsonService.DeserializeObject<EventAppPaginatedRespDto>(httpResponse);
+            return result;
+
+        }
+        ///<summary>
+        /// 获取事件列表
+        ///</summary>
+        /// <param name="page">当前页数，从 1 开始</param>
+        /// <param name="limit">每页数目，最大不能超过 50，默认为 10</param>
+        /// <param name="app">应用类型</param>
+        ///<returns>OpenEventPaginatedRespDto</returns>
+        public async Task<OpenEventPaginatedRespDto> ListEvents(ListEventsDto reqDto)
+        {
+            string httpResponse = await Request("GET", "/api/v3/list-events", reqDto).ConfigureAwait(false);
+
+            OpenEventPaginatedRespDto result = m_JsonService.DeserializeObject<OpenEventPaginatedRespDto>(httpResponse);
+            return result;
+
+        }
+        ///<summary>
+        /// 定义自定义事件
+        ///</summary>
+        /// <param name="requestBody"></param>
+        ///<returns>CommonResponseDto</returns>
+        public async Task<CommonResponseDto> DefineEvent(DefineEventDto requestBody)
+        {
+            string httpResponse = await Request("POST", "/api/v3/define-event", requestBody).ConfigureAwait(false);
+
+            CommonResponseDto result = m_JsonService.DeserializeObject<CommonResponseDto>(httpResponse);
+            return result;
+        }
+        ///<summary>
+        /// 推送自定义事件
+        ///</summary>
+        /// <param name="requestBody"></param>
+        ///<returns>PubEventRespDto</returns>
+        public async Task<PubEventRespDto> VerifyEvent(PubEventDto requestBody)
+        {
+            string httpResponse = await Request("POST", "/api/v3/pub-event", requestBody).ConfigureAwait(false);
+
+            PubEventRespDto result = m_JsonService.DeserializeObject<PubEventRespDto>(httpResponse);
+            return result;
+        }
+        ///<summary>
+        /// 认证端推送自定义事件
+        ///</summary>
+        /// <param name="requestBody"></param>
+        ///<returns>PubEventRespDto</returns>
+        public async Task<PubEventRespDto> PubUserEvent(PubEventDto requestBody)
+        {
+            string httpResponse = await Request("POST", "/api/v3/pub-userEvent", requestBody).ConfigureAwait(false);
+
+            PubEventRespDto result = m_JsonService.DeserializeObject<PubEventRespDto>(httpResponse);
+            return result;
+        }
+        ///<summary>
+        /// 使用用户凭证登录
+        ///</summary>
+        /// <param name="requestBody"></param>
+        ///<returns>LoginTokenRespDto</returns>
+        public async Task<LoginTokenRespDto> SignInByCredentials(SigninByCredentialsDto requestBody)
+        {
+            string httpResponse = await Request("POST", "/api/v3/signin", requestBody).ConfigureAwait(false);
+
+            LoginTokenRespDto result = m_JsonService.DeserializeObject<LoginTokenRespDto>(httpResponse);
+            return result;
+        }
+        ///<summary>
+        /// 使用用户凭证登录
+        ///</summary>
+        /// <param name="requestBody"></param>
+        ///<returns>LoginTokenRespDto</returns>
+        public async Task<LoginTokenRespDto> SignInByCredentials1(SigninByCredentialsDto requestBody)
+        {
+            string httpResponse = await Request("POST", "/api/v3/signin", requestBody).ConfigureAwait(false);
+
+            LoginTokenRespDto result = m_JsonService.DeserializeObject<LoginTokenRespDto>(httpResponse);
+            return result;
+        }
+        ///<summary>
+        /// 使用移动端社会化登录
+        ///</summary>
+        /// <param name="requestBody"></param>
+        ///<returns>LoginTokenRespDto</returns>
+        public async Task<LoginTokenRespDto> SignInByMobile(SigninByMobileDto requestBody)
+        {
+            string httpResponse = await Request("POST", "/api/v3/signin-by-mobile", requestBody).ConfigureAwait(false);
+
+            LoginTokenRespDto result = m_JsonService.DeserializeObject<LoginTokenRespDto>(httpResponse);
+            return result;
+        }
+        ///<summary>
+        /// 获取支付宝 AuthInfo
+        ///</summary>
+        /// <param name="extIdpConnidentifier">外部身份源连接标志符</param>
+        ///<returns>GetAlipayAuthInfoRespDto</returns>
+        public async Task<GetAlipayAuthInfoRespDto> GetAlipayAuthInfo(GetAlipayAuthinfoDto reqDto)
+        {
+            string httpResponse = await Request("GET", "/api/v3/get-alipay-authinfo", reqDto).ConfigureAwait(false);
+
+            GetAlipayAuthInfoRespDto result = m_JsonService.DeserializeObject<GetAlipayAuthInfoRespDto>(httpResponse);
+            return result;
+
+        }
+        ///<summary>
+        /// 生成用于登录的二维码
+        ///</summary>
+        /// <param name="requestBody"></param>
+        ///<returns>GeneQRCodeRespDto</returns>
+        public async Task<GeneQRCodeRespDto> GeneQrCode(GenerateQrcodeDto requestBody)
+        {
+            string httpResponse = await Request("POST", "/api/v3/gene-qrcode", requestBody).ConfigureAwait(false);
+
+            GeneQRCodeRespDto result = m_JsonService.DeserializeObject<GeneQRCodeRespDto>(httpResponse);
+            return result;
+        }
+        ///<summary>
+        /// 查询二维码状态
+        ///</summary>
+        /// <param name="qrcodeId">二维码唯一 ID</param>
+        ///<returns>CheckQRCodeStatusRespDto</returns>
+        public async Task<CheckQRCodeStatusRespDto> CheckQrCodeStatus(CheckQrcodeStatusDto reqDto)
+        {
+            string httpResponse = await Request("GET", "/api/v3/check-qrcode-status", reqDto).ConfigureAwait(false);
+
+            CheckQRCodeStatusRespDto result = m_JsonService.DeserializeObject<CheckQRCodeStatusRespDto>(httpResponse);
+            return result;
+
+        }
+        ///<summary>
+        /// 使用二维码 ticket 换取 TokenSet
+        ///</summary>
+        /// <param name="requestBody"></param>
+        ///<returns>LoginTokenRespDto</returns>
+        public async Task<LoginTokenRespDto> ExchangeTokenSetWithQrCodeTicket(ExchangeTokenSetWithQRcodeTicketDto requestBody)
+        {
+            string httpResponse = await Request("POST", "/api/v3/exchange-tokenset-with-qrcode-ticket", requestBody).ConfigureAwait(false);
+
+            LoginTokenRespDto result = m_JsonService.DeserializeObject<LoginTokenRespDto>(httpResponse);
+            return result;
+        }
+        ///<summary>
+        /// 自建 APP 扫码登录：APP 端修改二维码状态
+        ///</summary>
+        /// <param name="requestBody"></param>
+        ///<returns>CommonResponseDto</returns>
+        public async Task<CommonResponseDto> ChangeQrCodeStatus(ChangeQRCodeStatusDto requestBody)
+        {
+            string httpResponse = await Request("POST", "/api/v3/change-qrcode-status", requestBody).ConfigureAwait(false);
+
+            CommonResponseDto result = m_JsonService.DeserializeObject<CommonResponseDto>(httpResponse);
+            return result;
+        }
+        ///<summary>
+        /// 推送登录
+        ///</summary>
+        /// <param name="requestBody"></param>
+        ///<returns>GenePushCodeRespDto</returns>
+        public async Task<GenePushCodeRespDto> SignInByPush(SignInByPushDto requestBody)
+        {
+            string httpResponse = await Request("POST", "/api/v3/signin-by-push", requestBody).ConfigureAwait(false);
+
+            GenePushCodeRespDto result = m_JsonService.DeserializeObject<GenePushCodeRespDto>(httpResponse);
+            return result;
+        }
+        ///<summary>
+        /// 查询推送码状态
+        ///</summary>
+        /// <param name="pushCodeId">推送码（推送登录唯一 ID）</param>
+        ///<returns>CheckPushCodeStatusRespDto</returns>
+        public async Task<CheckPushCodeStatusRespDto> CheckPushCodeStatus(CheckPushcodeStatusDto reqDto)
+        {
+            string httpResponse = await Request("GET", "/api/v3/check-pushcode-status", reqDto).ConfigureAwait(false);
+
+            CheckPushCodeStatusRespDto result = m_JsonService.DeserializeObject<CheckPushCodeStatusRespDto>(httpResponse);
+            return result;
+
+        }
+        ///<summary>
+        /// 推送登录：APP 端修改推送码状态
+        ///</summary>
+        /// <param name="requestBody"></param>
+        ///<returns>CommonResponseDto</returns>
+        public async Task<CommonResponseDto> ChangePushCodeStatus(ChangePushCodeStatusDto requestBody)
+        {
+            string httpResponse = await Request("POST", "/api/v3/change-pushcode-status", requestBody).ConfigureAwait(false);
+
+            CommonResponseDto result = m_JsonService.DeserializeObject<CommonResponseDto>(httpResponse);
+            return result;
+        }
+        ///<summary>
+        /// 获取快速认证二维码数据
+        ///</summary>
+        /// <param name="requestBody"></param>
+        ///<returns>GeneFastpassQRCodeRespDto</returns>
+        public async Task<GeneFastpassQRCodeRespDto> GeneFastpassQrcodeInfo(SignInFastpassDto requestBody)
+        {
+            string httpResponse = await Request("POST", "/api/v3/gene-fastpass-qrcode-info", requestBody).ConfigureAwait(false);
+
+            GeneFastpassQRCodeRespDto result = m_JsonService.DeserializeObject<GeneFastpassQRCodeRespDto>(httpResponse);
+            return result;
+        }
+        ///<summary>
+        /// 获取快速认证的应用列表
+        ///</summary>
+        /// <param name="qrcodeId"></param>
+        /// <param name="appId"></param>
+        ///<returns>GetFastpassQRCodeRelationAppsRespDto</returns>
+        public async Task<GetFastpassQRCodeRelationAppsRespDto> GetFastpassParams(GetFastpassClientAppsDto reqDto)
+        {
+            string httpResponse = await Request("GET", "/api/v3/get-fastpass-client-apps", reqDto).ConfigureAwait(false);
+
+            GetFastpassQRCodeRelationAppsRespDto result = m_JsonService.DeserializeObject<GetFastpassQRCodeRelationAppsRespDto>(httpResponse);
+            return result;
+
+        }
+        ///<summary>
+        /// 查询个人中心「快速认证二维码」的状态
+        ///</summary>
+        /// <param name="qrcodeId">二维码唯一 ID</param>
+        ///<returns>CheckQRCodeStatusRespDto</returns>
+        public async Task<CheckQRCodeStatusRespDto> GetQrCodeStatus(GetAppLoginQrcodeStatusDto reqDto)
+        {
+            string httpResponse = await Request("GET", "/api/v3/get-app-login-qrcode-status", reqDto).ConfigureAwait(false);
+
+            CheckQRCodeStatusRespDto result = m_JsonService.DeserializeObject<CheckQRCodeStatusRespDto>(httpResponse);
+            return result;
+
+        }
+        ///<summary>
+        /// APP 端扫码登录
+        ///</summary>
+        /// <param name="requestBody"></param>
+        ///<returns>LoginTokenRespDto</returns>
+        public async Task<LoginTokenRespDto> QrCodeAppLogin(AppQRCodeLoginDto requestBody)
+        {
+            string httpResponse = await Request("POST", "/api/v3/qrcode-app-login", requestBody).ConfigureAwait(false);
+
+            LoginTokenRespDto result = m_JsonService.DeserializeObject<LoginTokenRespDto>(httpResponse);
+            return result;
         }
         ///<summary>
         /// 创建 Pipeline 函数
@@ -3204,7 +4834,10 @@ namespace Authing.CSharp.SDK.Services
         ///<summary>
         /// 获取协作管理员 AK/SK 列表
         ///</summary>
-        /// <param name="userId">用户 ID</param>
+        /// <param name="userId">密钥所属用户 ID</param>
+        /// <param name="tenantId">密钥所属租户 ID</param>
+        /// <param name="type">密钥类型</param>
+        /// <param name="status">AccessKey 状态，activated：已激活，staging：分级（可轮换），revoked：已撤销</param>
         ///<returns>ListAccessKeyResponseDto</returns>
         public async Task<ListAccessKeyResponseDto> GetAccessKeyList(ListAccessKeyDto reqDto)
         {
@@ -3215,7 +4848,7 @@ namespace Authing.CSharp.SDK.Services
 
         }
         ///<summary>
-        /// 获取协作管理员 AK/Sk 详细信息
+        /// 获取协作管理员 AK/SK 详细信息
         ///</summary>
         /// <param name="userId">用户 ID</param>
         /// <param name="accessKeyId">accessKeyId</param>
@@ -3250,6 +4883,31 @@ namespace Authing.CSharp.SDK.Services
             string httpResponse = await Request("POST", "/api/v3/delete-access-key", requestBody).ConfigureAwait(false);
 
             CommonResponseDto result = m_JsonService.DeserializeObject<CommonResponseDto>(httpResponse);
+            return result;
+        }
+        ///<summary>
+        /// 更新一个管理员 AccessKey
+        ///</summary>
+        /// <param name="requestBody"></param>
+        ///<returns>IsSuccessRespDto</returns>
+        public async Task<IsSuccessRespDto> UpdateAccessKey(UpdateAccessKeyDto requestBody)
+        {
+            string httpResponse = await Request("POST", "/api/v3/update-access-key", requestBody).ConfigureAwait(false);
+
+            IsSuccessRespDto result = m_JsonService.DeserializeObject<IsSuccessRespDto>(httpResponse);
+            return result;
+        }
+
+        ///<summary>
+        /// 更新一个管理员 AccessKey
+        ///</summary>
+        /// <param name="requestBody"></param>
+        ///<returns>IsSuccessRespDto</returns>
+        public async Task<IsSuccessRespDto> UpdateAccessKey1(UpdateAccessKeyDto requestBody)
+        {
+            string httpResponse = await Request("POST", "/api/v3/update-access-key", requestBody).ConfigureAwait(false);
+
+            IsSuccessRespDto result = m_JsonService.DeserializeObject<IsSuccessRespDto>(httpResponse);
             return result;
         }
     }

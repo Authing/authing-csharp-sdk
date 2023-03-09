@@ -18,6 +18,6 @@ namespace Authing.CSharp.SDK.Models
         ///  应用 ID
         /// </summary>
         [JsonProperty("appId")]
-        public string  AppId {get;set;}
+        public string  AppId  {get;set;}
     }
 }

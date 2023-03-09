@@ -18,16 +18,16 @@ namespace Authing.CSharp.SDK.Models
         ///  Endpoint
         /// </summary>
         [JsonProperty("endpoint")]
-        public string  Endpoint {get;set;}
+        public string  Endpoint  {get;set;}
         /// <summary>
         ///  Account
         /// </summary>
         [JsonProperty("account")]
-        public string  Account {get;set;}
+        public string  Account  {get;set;}
         /// <summary>
         ///  Password
         /// </summary>
         [JsonProperty("password")]
-        public string  Password {get;set;}
+        public string  Password  {get;set;}
     }
 }

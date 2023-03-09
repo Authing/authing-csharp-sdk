@@ -18,6 +18,6 @@ namespace Authing.CSharp.SDK.Models
         ///  树资源授权列表
         /// </summary>
         [JsonProperty("authList")]
-        public List<TreeAuthBo>  AuthList {get;set;}
+        public List<TreeAuthBo>  AuthList  {get;set;}
     }
 }

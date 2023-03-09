@@ -8,13 +8,6 @@ using System.Threading.Tasks;
 
 namespace Authing.CSharp.SDK.Framework.Test.Management
 {
-    public class TreeDataSource
-    {
-        public string code { get; set; }
-        public string name { get; set; }
-        public string value { get; set; }
-        public List<TreeDataSource> children { get; set; }
-    }
     public partial class DataResourceManagementTest : ManagementClientBaseTest
     {
         private string code = "examplePermissionCode";
@@ -42,7 +35,8 @@ namespace Authing.CSharp.SDK.Framework.Test.Management
         {
             PermissionNamespaceRolesListPaginatedRespDto result = await managementClient.ListPermissionNamespaceRoles(new ListPermissionNamespaceRolesDto
             {
-                Code = code
+                Code = "examplePermissionNamespace",
+                Query="exampleRole"
             });
 
             Assert.IsTrue(result.Data.TotalCount == 0);
@@ -375,16 +369,16 @@ namespace Authing.CSharp.SDK.Framework.Test.Management
                 ResourceCode = "tree1",
                 Type = CreateDataResourceDto.type.TREE,
                 Description = "这是一个数据资源树类型创建",
-                Struct = new List<TreeDataSource>
-                { new TreeDataSource {code="tree1",name="tree1",value="tree1",
-                    children=new List<TreeDataSource>
+                Struct = new List<DataResourceTreeStructs>
+                { new DataResourceTreeStructs {Code="tree1",Name="tree1",Value="tree1",
+                    Children=new List<object>
                     {
-                        new TreeDataSource
-                        { code="tree2",name="tree2",value="tree2",
-                            children=new List<TreeDataSource>
+                        new DataResourceTreeStructs
+                        { Code="tree2",Name="tree2",Value="tree2",
+                            Children=new List<object>
                             {
-                                new TreeDataSource
-                                { code="tree3",name="tree3",value="tree3"}
+                                new DataResourceTreeStructs
+                                { Code="tree3",Name="tree3",Value="tree3"}
                             }
                         }
                     }
@@ -674,7 +668,7 @@ namespace Authing.CSharp.SDK.Framework.Test.Management
         [Test]
         public async Task ListResourceTargetsTest()
         {
-            ListResourceTargetsRespDto result = await managementClient.ListResourceTargets(new ListResourceTargets
+            ListResourceTargetsRespDto result = await managementClient.ListResourceTargets(new ListResourceTargetsDto
             {
                 NamespaceCode = code,
                 Actions = new List<string> { "read" },
@@ -740,6 +734,29 @@ namespace Authing.CSharp.SDK.Framework.Test.Management
             Assert.IsTrue(res.StatusCode == 200);
         }
 
+        [Test]
+        public async Task GetExternalUserResourceStructTest()
+        {
+            GetExternalUserResourceStructRespDto result = await managementClient.GetExternalUserResourceStruct(new GetExternalUserResourceStructDto
+            {
+                NamespaceCode = code,
+                ExternalId = "",
+                ResourceCode = ""
+            });
+        }
+
+        [Test]
+        public async Task GetUserResourceStructTest()
+        {
+            GetUserResourceStructRespDto result = await managementClient.GetUserResourceStruct(new GetUserResourceStructDto
+            {
+                NamespaceCode = "examplePermissionNamespace",
+                UserId = "63721xxxxxxxxxxxxdde14a3",
+                ResourceCode = "exampleStrResourceCode"
+            });
+
+
+        }
 
     }
 

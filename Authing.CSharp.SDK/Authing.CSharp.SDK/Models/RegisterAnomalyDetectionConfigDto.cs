@@ -18,16 +18,16 @@ namespace Authing.CSharp.SDK.Models
         ///  是否开启频繁注册限制
         /// </summary>
         [JsonProperty("enabled")]
-        public bool  Enabled {get;set;}
+        public bool  Enabled  {get;set;}
         /// <summary>
         ///  在一定时间周期内，对于同一个 IP，最多只能注册多少次。
         /// </summary>
         [JsonProperty("limit")]
-        public long  Limit {get;set;}
+        public long  Limit  {get;set;}
         /// <summary>
         ///  限定周期时间长度，单位为秒。
         /// </summary>
         [JsonProperty("timeInterval")]
-        public long  TimeInterval {get;set;}
+        public long  TimeInterval  {get;set;}
     }
 }

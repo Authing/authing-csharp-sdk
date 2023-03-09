@@ -18,6 +18,6 @@ namespace Authing.CSharp.SDK.Models
         ///  权限空间列表
         /// </summary>
         [JsonProperty("list")]
-        public List<CreatePermissionNamespacesBatchItemDto>  List {get;set;}
+        public List<CreatePermissionNamespacesBatchItemDto>  List  {get;set;}
     }
 }

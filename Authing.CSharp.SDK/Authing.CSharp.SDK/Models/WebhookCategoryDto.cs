@@ -18,16 +18,16 @@ namespace Authing.CSharp.SDK.Models
         ///  Webhook 类型名称
         /// </summary>
         [JsonProperty("name")]
-        public string  Name {get;set;}
+        public string  Name  {get;set;}
         /// <summary>
         ///  Webhook 类型英文名称
         /// </summary>
         [JsonProperty("nameEn")]
-        public string  NameEn {get;set;}
+        public string  NameEn  {get;set;}
         /// <summary>
         ///  Webhook 类型
         /// </summary>
         [JsonProperty("value")]
-        public string  Value {get;set;}
+        public string  Value  {get;set;}
     }
 }

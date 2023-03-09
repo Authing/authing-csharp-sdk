@@ -18,7 +18,7 @@ namespace Authing.CSharp.SDK.Models
         ///  用户唯一标志，可以是用户 ID、用户名、邮箱、手机号、外部 ID、在外部身份源的 ID。
         /// </summary>
         [JsonProperty("userId")]
-        public string  UserId {get;set;}
+        public string  UserId  {get;set;}
         /// <summary>
         ///  用户 ID 类型，默认值为 `user_id`，可选值为：
 /// - `user_id`: Authing 用户 ID，如 `6319a1504f3xxxxf214dd5b7`
@@ -31,7 +31,7 @@ namespace Authing.CSharp.SDK.Models
 /// 
         /// </summary>
         [JsonProperty("userIdType")]
-        public userIdType  UserIdType {get;set;}
+        public userIdType  UserIdType  {get;set;}
     }
     public partial class ResignUserReqDto
     {

@@ -18,11 +18,11 @@ namespace Authing.CSharp.SDK.Models
         ///  分类列表
         /// </summary>
         [JsonProperty("categories")]
-        public List<WebhookCategoryDto>  Categories {get;set;}
+        public List<WebhookCategoryDto>  Categories  {get;set;}
         /// <summary>
         ///  事件列表
         /// </summary>
         [JsonProperty("events")]
-        public List<WebhookEventDto>  Events {get;set;}
+        public List<WebhookEventDto>  Events  {get;set;}
     }
 }

@@ -21,12 +21,12 @@ namespace Authing.CSharp.SDK.Models
 /// 
         /// </summary>
         [JsonProperty("displayAt")]
-        public List<string>  DisplayAt {get;set;}
+        public List<string>  DisplayAt  {get;set;}
         /// <summary>
         ///  是否要求必须勾选
         /// </summary>
         [JsonProperty("isRequired")]
-        public bool  IsRequired {get;set;}
+        public bool  IsRequired  {get;set;}
         /// <summary>
         ///  此协议针对什么语言有效:
 /// - `zh-CN`: 简体中文
@@ -36,12 +36,12 @@ namespace Authing.CSharp.SDK.Models
 /// 
         /// </summary>
         [JsonProperty("lang")]
-        public lang  Lang {get;set;}
+        public lang  Lang  {get;set;}
         /// <summary>
         ///  此协议针对什么语言有效
         /// </summary>
         [JsonProperty("content")]
-        public string  Content {get;set;}
+        public string  Content  {get;set;}
     }
     public partial class ApplicationAgreementDto
     {

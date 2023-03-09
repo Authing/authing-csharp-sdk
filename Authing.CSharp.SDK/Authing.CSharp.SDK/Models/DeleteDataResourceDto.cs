@@ -18,11 +18,11 @@ namespace Authing.CSharp.SDK.Models
         ///  数据资源 Code,权限空间内唯一
         /// </summary>
         [JsonProperty("resourceCode")]
-        public string  ResourceCode {get;set;}
+        public string  ResourceCode  {get;set;}
         /// <summary>
         ///  数据资源所属的权限空间 Code
         /// </summary>
         [JsonProperty("namespaceCode")]
-        public string  NamespaceCode {get;set;}
+        public string  NamespaceCode  {get;set;}
     }
 }

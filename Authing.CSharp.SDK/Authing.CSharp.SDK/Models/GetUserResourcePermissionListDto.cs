@@ -15,19 +15,19 @@ namespace Authing.CSharp.SDK.Models
     public partial class GetUserResourcePermissionListDto
     {
         /// <summary>
-        ///  资源路径列表
+        ///  资源路径列表,**树资源需到具体树节点**
         /// </summary>
         [JsonProperty("resources")]
-        public List<string>  Resources {get;set;}
+        public List<string>  Resources  {get;set;}
         /// <summary>
         ///  用户 ID
         /// </summary>
         [JsonProperty("userId")]
-        public string  UserId {get;set;}
+        public string  UserId  {get;set;}
         /// <summary>
         ///  权限空间 Code
         /// </summary>
         [JsonProperty("namespaceCode")]
-        public string  NamespaceCode {get;set;}
+        public string  NamespaceCode  {get;set;}
     }
 }

@@ -18,11 +18,11 @@ namespace Authing.CSharp.SDK.Models
         ///  用户 ID 数组
         /// </summary>
         [JsonProperty("userIds")]
-        public List<string>  UserIds {get;set;}
+        public List<string>  UserIds  {get;set;}
         /// <summary>
         ///  分组 code
         /// </summary>
         [JsonProperty("code")]
-        public string  Code {get;set;}
+        public string  Code  {get;set;}
     }
 }

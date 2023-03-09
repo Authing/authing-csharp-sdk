@@ -18,17 +18,17 @@ namespace Authing.CSharp.SDK.Models
         ///  函数 ID
         /// </summary>
         [JsonProperty("funcId")]
-        public string  FuncId {get;set;}
+        public string  FuncId  {get;set;}
         /// <summary>
         ///  函数名称
         /// </summary>
         [JsonProperty("funcName")]
-        public string  FuncName {get;set;}
+        public string  FuncName  {get;set;}
         /// <summary>
         ///  函数描述
         /// </summary>
         [JsonProperty("funcDescription")]
-        public string  FuncDescription {get;set;}
+        public string  FuncDescription  {get;set;}
         /// <summary>
         ///  函数的触发场景：
 /// - `PRE_REGISTER`: 注册前
@@ -41,37 +41,37 @@ namespace Authing.CSharp.SDK.Models
 /// 
         /// </summary>
         [JsonProperty("scene")]
-        public scene  Scene {get;set;}
+        public scene  Scene  {get;set;}
         /// <summary>
         ///  函数创建时间
         /// </summary>
         [JsonProperty("createdAt")]
-        public string  CreatedAt {get;set;}
+        public string  CreatedAt  {get;set;}
         /// <summary>
         ///  函数修改时间
         /// </summary>
         [JsonProperty("updatedAt")]
-        public string  UpdatedAt {get;set;}
+        public string  UpdatedAt  {get;set;}
         /// <summary>
         ///  是否异步执行。设置为异步执行的函数不会阻塞整个流程的执行，适用于异步通知的场景，比如飞书群通知、钉钉群通知等。
         /// </summary>
         [JsonProperty("isAsynchronous")]
-        public bool  IsAsynchronous {get;set;}
+        public bool  IsAsynchronous  {get;set;}
         /// <summary>
         ///  函数运行超时时间，最短为 1 秒，最长为 60 秒，默认为 3 秒。
         /// </summary>
         [JsonProperty("timeout")]
-        public long  Timeout {get;set;}
+        public long  Timeout  {get;set;}
         /// <summary>
         ///  如果函数运行超时，是否终止整个流程，默认为否。
         /// </summary>
         [JsonProperty("terminateOnTimeout")]
-        public bool  TerminateOnTimeout {get;set;}
+        public bool  TerminateOnTimeout  {get;set;}
         /// <summary>
         ///  函数源代码
         /// </summary>
         [JsonProperty("sourceCode")]
-        public string  SourceCode {get;set;}
+        public string  SourceCode  {get;set;}
         /// <summary>
         ///  函数当前状态：
 /// - `uploading`: 上传中
@@ -80,17 +80,17 @@ namespace Authing.CSharp.SDK.Models
 /// 
         /// </summary>
         [JsonProperty("status")]
-        public status  Status {get;set;}
+        public status  Status  {get;set;}
         /// <summary>
         ///  上传失败的错误提示
         /// </summary>
         [JsonProperty("uploadErrMsg")]
-        public string  UploadErrMsg {get;set;}
+        public string  UploadErrMsg  {get;set;}
         /// <summary>
         ///  此 Pipeline 是否被启用
         /// </summary>
         [JsonProperty("enabled")]
-        public bool  Enabled {get;set;}
+        public bool  Enabled  {get;set;}
     }
     public partial class PipelineFunctionDto
     {
@@ -121,6 +121,10 @@ namespace Authing.CSharp.SDK.Models
             PRE_OIDC_ACCESS_TOKEN_ISSUED,
             [EnumMember(Value="PRE_COMPLETE_USER_INFO")]
             PRE_COMPLETE_USER_INFO,
+            [EnumMember(Value="PRE_MFA_VERIFY")]
+            PRE_MFA_VERIFY,
+            [EnumMember(Value="POST_MFA_VERIFY")]
+            POST_MFA_VERIFY,
         }
         /// <summary>
         ///  函数当前状态：

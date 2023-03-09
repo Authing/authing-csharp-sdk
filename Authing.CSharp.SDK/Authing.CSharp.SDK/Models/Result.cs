@@ -18,21 +18,21 @@ namespace Authing.CSharp.SDK.Models
         ///  新增用户数
         /// </summary>
         [JsonProperty("addUser")]
-        public long  AddUser {get;set;}
+        public long  AddUser  {get;set;}
         /// <summary>
         ///  更新用户数
         /// </summary>
         [JsonProperty("updateUser")]
-        public long  UpdateUser {get;set;}
+        public long  UpdateUser  {get;set;}
         /// <summary>
         ///  新增部门数
         /// </summary>
         [JsonProperty("addDepartment")]
-        public long  AddDepartment {get;set;}
+        public long  AddDepartment  {get;set;}
         /// <summary>
         ///  更新部门数
         /// </summary>
         [JsonProperty("updateDepartment")]
-        public long  UpdateDepartment {get;set;}
+        public long  UpdateDepartment  {get;set;}
     }
 }

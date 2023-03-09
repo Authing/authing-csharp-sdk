@@ -18,7 +18,7 @@ namespace Authing.CSharp.SDK.Models
         ///  是否启用，如果不启用，将默认使用 Authing 内置的邮件服务
         /// </summary>
         [JsonProperty("enabled")]
-        public bool  Enabled {get;set;}
+        public bool  Enabled  {get;set;}
         /// <summary>
         ///  第三方邮件服务商类型:
 /// - `custom`: 自定义 SMTP 邮件服务
@@ -28,27 +28,27 @@ namespace Authing.CSharp.SDK.Models
 /// 
         /// </summary>
         [JsonProperty("type")]
-        public type  Type {get;set;}
+        public type  Type  {get;set;}
         /// <summary>
         ///  SMTP 邮件服务配置
         /// </summary>
         [JsonProperty("smtpConfig")]
-        public SMTPEmailProviderConfig  SmtpConfig {get;set;}
+        public SMTPEmailProviderConfig  SmtpConfig  {get;set;}
         /// <summary>
         ///  SendGrid 邮件服务配置
         /// </summary>
         [JsonProperty("sendGridConfig")]
-        public SendGridEmailProviderConfig  SendGridConfig {get;set;}
+        public SendGridEmailProviderConfig  SendGridConfig  {get;set;}
         /// <summary>
         ///  阿里企业邮件服务配置
         /// </summary>
         [JsonProperty("aliExmailConfig")]
-        public AliExmailEmailProviderConfig  AliExmailConfig {get;set;}
+        public AliExmailEmailProviderConfig  AliExmailConfig  {get;set;}
         /// <summary>
         ///  腾讯企业邮件服务配置
         /// </summary>
         [JsonProperty("tencentExmailConfig")]
-        public TencentExmailEmailProviderConfig  TencentExmailConfig {get;set;}
+        public TencentExmailEmailProviderConfig  TencentExmailConfig  {get;set;}
     }
     public partial class EmailProviderDto
     {

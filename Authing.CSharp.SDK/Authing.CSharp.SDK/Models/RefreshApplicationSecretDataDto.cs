@@ -18,6 +18,6 @@ namespace Authing.CSharp.SDK.Models
         ///  新的应用密钥
         /// </summary>
         [JsonProperty("secret")]
-        public string  Secret {get;set;}
+        public string  Secret  {get;set;}
     }
 }

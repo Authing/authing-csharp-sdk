@@ -15,9 +15,24 @@ namespace Authing.CSharp.SDK.Models
     public partial class ListAccessKeyDto
     {
         /// <summary>
-        ///  用户 ID
+        ///  密钥所属用户 ID
         /// </summary>
         [JsonProperty("userId")]
         public string  UserId {get;set;} 
+        /// <summary>
+        ///  密钥所属租户 ID
+        /// </summary>
+        [JsonProperty("tenantId")]
+        public string  TenantId {get;set;} 
+        /// <summary>
+        ///  密钥类型
+        /// </summary>
+        [JsonProperty("type")]
+        public string  Type {get;set;} 
+        /// <summary>
+        ///  AccessKey 状态，activated：已激活，staging：分级（可轮换），revoked：已撤销
+        /// </summary>
+        [JsonProperty("status")]
+        public string  Status {get;set;} 
     }
 }

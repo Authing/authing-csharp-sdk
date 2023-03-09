@@ -18,12 +18,12 @@ namespace Authing.CSharp.SDK.Models
         ///  是否允许用户自助解锁账号。
         /// </summary>
         [JsonProperty("enabled")]
-        public bool  Enabled {get;set;}
+        public bool  Enabled  {get;set;}
         /// <summary>
         ///  自助解锁方式，目前支持原密码 + 验证码和验证码两种方式。
         /// </summary>
         [JsonProperty("strategy")]
-        public strategy  Strategy {get;set;}
+        public strategy  Strategy  {get;set;}
     }
     public partial class SelfUnlockAccountConfigDto
     {

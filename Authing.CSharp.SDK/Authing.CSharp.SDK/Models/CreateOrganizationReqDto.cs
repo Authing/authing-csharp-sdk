@@ -18,26 +18,36 @@ namespace Authing.CSharp.SDK.Models
         ///  组织名称
         /// </summary>
         [JsonProperty("organizationName")]
-        public string  OrganizationName {get;set;}
+        public string  OrganizationName  {get;set;}
         /// <summary>
         ///  组织 code
         /// </summary>
         [JsonProperty("organizationCode")]
-        public string  OrganizationCode {get;set;}
+        public string  OrganizationCode  {get;set;}
         /// <summary>
         ///  组织描述信息
         /// </summary>
         [JsonProperty("description")]
-        public string  Description {get;set;}
+        public string  Description  {get;set;}
         /// <summary>
         ///  根节点自定义 ID
         /// </summary>
         [JsonProperty("openDepartmentId")]
-        public string  OpenDepartmentId {get;set;}
+        public string  OpenDepartmentId  {get;set;}
         /// <summary>
         ///  多语言设置
         /// </summary>
         [JsonProperty("i18n")]
-        public OrganizationNameI18nDto  I18n {get;set;}
+        public OrganizationNameI18nDto  I18n  {get;set;}
+        /// <summary>
+        ///  租户 ID
+        /// </summary>
+        [JsonProperty("tenantId")]
+        public string  TenantId  {get;set;}
+        /// <summary>
+        ///  岗位 id 列表
+        /// </summary>
+        [JsonProperty("postIdList")]
+        public string  PostIdList  {get;set;}
     }
 }

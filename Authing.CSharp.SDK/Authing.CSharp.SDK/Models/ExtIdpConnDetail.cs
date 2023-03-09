@@ -18,47 +18,47 @@ namespace Authing.CSharp.SDK.Models
         ///  身份源连接 id
         /// </summary>
         [JsonProperty("id")]
-        public string  Id {get;set;}
+        public string  Id  {get;set;}
         /// <summary>
         ///  身份源连接类型
         /// </summary>
         [JsonProperty("type")]
-        public type  Type {get;set;}
+        public type  Type  {get;set;}
         /// <summary>
         ///  身份源 ID
         /// </summary>
         [JsonProperty("extIdpId")]
-        public string  ExtIdpId {get;set;}
+        public string  ExtIdpId  {get;set;}
         /// <summary>
         ///  身份源连接图标
         /// </summary>
         [JsonProperty("logo")]
-        public string  Logo {get;set;}
+        public string  Logo  {get;set;}
         /// <summary>
         ///  身份源连接标识
         /// </summary>
         [JsonProperty("identifier")]
-        public string  Identifier {get;set;}
+        public string  Identifier  {get;set;}
         /// <summary>
         ///  身份源连接在登录页的显示名称
         /// </summary>
         [JsonProperty("displayName")]
-        public string  DisplayName {get;set;}
+        public string  DisplayName  {get;set;}
         /// <summary>
         ///  是否只支持登录
         /// </summary>
         [JsonProperty("loginOnly")]
-        public bool  LoginOnly {get;set;}
+        public bool  LoginOnly  {get;set;}
         /// <summary>
         ///  账号关联模式
         /// </summary>
         [JsonProperty("associationMode")]
-        public associationMode  AssociationMode {get;set;}
+        public associationMode  AssociationMode  {get;set;}
         /// <summary>
         ///  账号绑定方式
         /// </summary>
         [JsonProperty("challengeBindingMethods")]
-        public List<string>  ChallengeBindingMethods {get;set;}
+        public List<string>  ChallengeBindingMethods  {get;set;}
     }
     public partial class ExtIdpConnDetail
     {
@@ -85,6 +85,8 @@ namespace Authing.CSharp.SDK.Models
             ALIPAY,
             [EnumMember(Value="facebook")]
             FACEBOOK,
+            [EnumMember(Value="facebook:mobile")]
+            FACEBOOK_MOBILE,
             [EnumMember(Value="twitter")]
             TWITTER,
             [EnumMember(Value="google:mobile")]
@@ -153,6 +155,12 @@ namespace Authing.CSharp.SDK.Models
             WELINK,
             [EnumMember(Value="ad-kerberos")]
             AD_KERBEROS,
+            [EnumMember(Value="huawei")]
+            HUAWEI,
+            [EnumMember(Value="honor")]
+            HONOR,
+            [EnumMember(Value="xiaomi")]
+            XIAOMI,
         }
         /// <summary>
         ///  账号关联模式

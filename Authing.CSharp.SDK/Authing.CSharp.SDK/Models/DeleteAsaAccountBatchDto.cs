@@ -18,11 +18,11 @@ namespace Authing.CSharp.SDK.Models
         ///  ASA 账号 ID 列表
         /// </summary>
         [JsonProperty("accountIds")]
-        public List<string>  AccountIds {get;set;}
+        public List<string>  AccountIds  {get;set;}
         /// <summary>
         ///  所属应用 ID
         /// </summary>
         [JsonProperty("appId")]
-        public string  AppId {get;set;}
+        public string  AppId  {get;set;}
     }
 }

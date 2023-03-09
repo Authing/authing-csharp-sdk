@@ -18,11 +18,11 @@ namespace Authing.CSharp.SDK.Models
         ///  用户 ID 列表
         /// </summary>
         [JsonProperty("userIds")]
-        public List<string>  UserIds {get;set;}
+        public List<string>  UserIds  {get;set;}
         /// <summary>
         ///  权限空间 Code 列表
         /// </summary>
         [JsonProperty("namespaceCodes")]
-        public List<string>  NamespaceCodes {get;set;}
+        public List<string>  NamespaceCodes  {get;set;}
     }
 }

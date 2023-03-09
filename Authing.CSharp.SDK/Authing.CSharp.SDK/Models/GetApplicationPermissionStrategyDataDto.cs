@@ -18,7 +18,7 @@ namespace Authing.CSharp.SDK.Models
         ///  应用访问授权策略
         /// </summary>
         [JsonProperty("permissionStrategy")]
-        public permissionStrategy  PermissionStrategy {get;set;}
+        public permissionStrategy  PermissionStrategy  {get;set;}
     }
     public partial class GetApplicationPermissionStrategyDataDto
     {

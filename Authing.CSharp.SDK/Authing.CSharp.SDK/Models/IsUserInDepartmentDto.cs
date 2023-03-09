@@ -39,5 +39,10 @@ namespace Authing.CSharp.SDK.Models
         /// </summary>
         [JsonProperty("includeChildrenDepartments")]
         public bool  IncludeChildrenDepartments {get;set;} 
+        /// <summary>
+        ///  租户 ID
+        /// </summary>
+        [JsonProperty("tenantId")]
+        public string  TenantId {get;set;} 
     }
 }

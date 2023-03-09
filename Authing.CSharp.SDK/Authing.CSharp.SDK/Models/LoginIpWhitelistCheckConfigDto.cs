@@ -18,11 +18,11 @@ namespace Authing.CSharp.SDK.Models
         ///  是否开启登录 ip 白名单验证
         /// </summary>
         [JsonProperty("enabled")]
-        public bool  Enabled {get;set;}
+        public bool  Enabled  {get;set;}
         /// <summary>
         ///  人机验证 ip 白名单
         /// </summary>
         [JsonProperty("ipWhitelist")]
-        public string  IpWhitelist {get;set;}
+        public string  IpWhitelist  {get;set;}
     }
 }

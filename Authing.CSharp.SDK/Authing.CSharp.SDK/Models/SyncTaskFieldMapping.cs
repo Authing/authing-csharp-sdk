@@ -18,11 +18,11 @@ namespace Authing.CSharp.SDK.Models
         ///  源字段
         /// </summary>
         [JsonProperty("expression")]
-        public string  Expression {get;set;}
+        public string  Expression  {get;set;}
         /// <summary>
         ///  转换后的字段
         /// </summary>
         [JsonProperty("targetKey")]
-        public string  TargetKey {get;set;}
+        public string  TargetKey  {get;set;}
     }
 }

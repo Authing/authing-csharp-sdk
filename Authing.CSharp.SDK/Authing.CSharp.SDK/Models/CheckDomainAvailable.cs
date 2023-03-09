@@ -18,6 +18,6 @@ namespace Authing.CSharp.SDK.Models
         ///  域名
         /// </summary>
         [JsonProperty("domain")]
-        public string  Domain {get;set;}
+        public string  Domain  {get;set;}
     }
 }

@@ -18,7 +18,7 @@ namespace Authing.CSharp.SDK.Models
         ///  下次登录要求重置密码
         /// </summary>
         [JsonProperty("resetPasswordOnNextLogin")]
-        public bool  ResetPasswordOnNextLogin {get;set;}
+        public bool  ResetPasswordOnNextLogin  {get;set;}
         /// <summary>
         ///  密码加密类型，支持使用 RSA256 和国密 SM2 算法进行加密。默认为 `none` 不加密。
 /// - `none`: 不对密码进行加密，使用明文进行传输。
@@ -27,17 +27,17 @@ namespace Authing.CSharp.SDK.Models
 /// 
         /// </summary>
         [JsonProperty("passwordEncryptType")]
-        public passwordEncryptType  PasswordEncryptType {get;set;}
+        public passwordEncryptType  PasswordEncryptType  {get;set;}
         /// <summary>
         ///  是否自动生成密码
         /// </summary>
         [JsonProperty("autoGeneratePassword")]
-        public bool  AutoGeneratePassword {get;set;}
+        public bool  AutoGeneratePassword  {get;set;}
         /// <summary>
         ///  重置密码发送邮件和手机号选项
         /// </summary>
         [JsonProperty("sendPasswordResetedNotification")]
-        public SendResetPasswordNotificationDto  SendPasswordResetedNotification {get;set;}
+        public SendResetPasswordNotificationDto  SendPasswordResetedNotification  {get;set;}
     }
     public partial class UpdateUserBatchOptionsDto
     {

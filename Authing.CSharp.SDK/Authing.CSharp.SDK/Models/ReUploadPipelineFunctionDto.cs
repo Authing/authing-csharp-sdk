@@ -18,6 +18,6 @@ namespace Authing.CSharp.SDK.Models
         ///  Pipeline 函数 ID
         /// </summary>
         [JsonProperty("funcId")]
-        public string  FuncId {get;set;}
+        public string  FuncId  {get;set;}
     }
 }

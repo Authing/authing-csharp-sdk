@@ -18,21 +18,21 @@ namespace Authing.CSharp.SDK.Models
         ///  权益编码
         /// </summary>
         [JsonProperty("rightsModelCode")]
-        public string  RightsModelCode {get;set;}
+        public string  RightsModelCode  {get;set;}
         /// <summary>
         ///  权益名称
         /// </summary>
         [JsonProperty("rightsModelName")]
-        public string  RightsModelName {get;set;}
+        public string  RightsModelName  {get;set;}
         /// <summary>
         ///  权益数据类型
         /// </summary>
         [JsonProperty("dataType")]
-        public string  DataType {get;set;}
+        public string  DataType  {get;set;}
         /// <summary>
         ///  权益值
         /// </summary>
         [JsonProperty("dataValue")]
-        public string  DataValue {get;set;}
+        public string  DataValue  {get;set;}
     }
 }

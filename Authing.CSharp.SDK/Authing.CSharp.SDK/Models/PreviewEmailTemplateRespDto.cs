@@ -18,6 +18,6 @@ namespace Authing.CSharp.SDK.Models
         ///  响应数据
         /// </summary>
         [JsonProperty("data")]
-        public PreviewEmailTemplateDataDto  Data {get;set;}
+        public PreviewEmailTemplateDataDto  Data  {get;set;}
     }
 }

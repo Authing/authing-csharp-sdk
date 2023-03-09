@@ -7,18 +7,17 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.Serialization;
 
-
-   namespace Authing.CSharp.SDK.Models
-{
-/// <summary>
-/// SignInByApplePayloadDto 的模型
-/// </summary>
-public partial class SignInByApplePayloadDto
+namespace Authing.CSharp.SDK.Models
 {
     /// <summary>
-    ///  苹果移动端社会化登录返回的一次性临时 code
+    /// SignInByApplePayloadDto 的模型
     /// </summary>
-    [JsonProperty("code")]
-    public string  Code {get;set;}
-}
+    public partial class SignInByApplePayloadDto
+    {
+        /// <summary>
+        ///  苹果移动端社会化登录返回的一次性临时 code
+        /// </summary>
+        [JsonProperty("code")]
+        public string  Code  {get;set;}
+    }
 }

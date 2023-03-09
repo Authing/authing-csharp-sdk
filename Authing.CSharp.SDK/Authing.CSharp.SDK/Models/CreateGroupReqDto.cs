@@ -18,21 +18,21 @@ namespace Authing.CSharp.SDK.Models
         ///  分组类型
         /// </summary>
         [JsonProperty("type")]
-        public string  Type {get;set;}
+        public string  Type  {get;set;}
         /// <summary>
         ///  分组描述
         /// </summary>
         [JsonProperty("description")]
-        public string  Description {get;set;}
+        public string  Description  {get;set;}
         /// <summary>
         ///  分组名称
         /// </summary>
         [JsonProperty("name")]
-        public string  Name {get;set;}
+        public string  Name  {get;set;}
         /// <summary>
         ///  分组 code
         /// </summary>
         [JsonProperty("code")]
-        public string  Code {get;set;}
+        public string  Code  {get;set;}
     }
 }

@@ -18,6 +18,6 @@ namespace Authing.CSharp.SDK.Models
         ///  账号信息，一般为包含 "account", "password" key 的键值对
         /// </summary>
         [JsonProperty("accountInfo")]
-        public object  AccountInfo {get;set;}
+        public object  AccountInfo  {get;set;}
     }
 }

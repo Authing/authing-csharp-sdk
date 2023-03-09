@@ -18,7 +18,7 @@ namespace Authing.CSharp.SDK.Models
         ///  用户 ID 数组
         /// </summary>
         [JsonProperty("userIds")]
-        public List<string>  UserIds {get;set;}
+        public List<string>  UserIds  {get;set;}
         /// <summary>
         ///  用户 ID 类型，默认值为 `user_id`，可选值为：
 /// - `user_id`: Authing 用户 ID，如 `6319a1504f3xxxxf214dd5b7`
@@ -31,7 +31,7 @@ namespace Authing.CSharp.SDK.Models
 /// 
         /// </summary>
         [JsonProperty("userIdType")]
-        public userIdType  UserIdType {get;set;}
+        public userIdType  UserIdType  {get;set;}
     }
     public partial class ResignUserBatchReqDto
     {

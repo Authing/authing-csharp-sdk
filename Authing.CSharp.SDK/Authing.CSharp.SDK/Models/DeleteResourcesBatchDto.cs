@@ -18,16 +18,16 @@ namespace Authing.CSharp.SDK.Models
         ///  所属权限分组(权限空间)的 Code
         /// </summary>
         [JsonProperty("namespace")]
-        public string  Namespace {get;set;}
+        public string  Namespace  {get;set;}
         /// <summary>
         ///  资源 Code 列表
         /// </summary>
         [JsonProperty("codeList")]
-        public List<string>  CodeList {get;set;}
+        public List<string>  CodeList  {get;set;}
         /// <summary>
         ///  资源 Id 列表
         /// </summary>
         [JsonProperty("ids")]
-        public List<string>  Ids {get;set;}
+        public List<string>  Ids  {get;set;}
     }
 }

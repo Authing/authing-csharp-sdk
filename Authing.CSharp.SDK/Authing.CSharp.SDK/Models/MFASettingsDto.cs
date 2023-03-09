@@ -18,6 +18,6 @@ namespace Authing.CSharp.SDK.Models
         ///  开启的 MFA 认证因素列表
         /// </summary>
         [JsonProperty("enabledFactors")]
-        public List<string>  EnabledFactors {get;set;}
+        public List<string>  EnabledFactors  {get;set;}
     }
 }

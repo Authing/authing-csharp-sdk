@@ -18,12 +18,12 @@ namespace Authing.CSharp.SDK.Models
         ///  是否开启自定义 CSS
         /// </summary>
         [JsonProperty("customCSSEnabled")]
-        public bool  CustomCSSEnabled {get;set;}
+        public bool  CustomCSSEnabled  {get;set;}
         /// <summary>
         ///  自定义 CSS 内容
         /// </summary>
         [JsonProperty("customCSS")]
-        public string  CustomCSS {get;set;}
+        public string  CustomCSS  {get;set;}
         /// <summary>
         ///  Guard 版本：
 /// - `Advanced`: 高级版
@@ -31,12 +31,12 @@ namespace Authing.CSharp.SDK.Models
 /// 
         /// </summary>
         [JsonProperty("guardVersion")]
-        public guardVersion  GuardVersion {get;set;}
+        public guardVersion  GuardVersion  {get;set;}
         /// <summary>
         ///  自定义加载图标，当登录框加载时会展示
         /// </summary>
         [JsonProperty("customLoadingImage")]
-        public string  CustomLoadingImage {get;set;}
+        public string  CustomLoadingImage  {get;set;}
         /// <summary>
         ///  自定义登录页背景，示例：
 /// - 图片背景：`url(https://files.authing.co/user-contents/photos/6c6b3726-4a04-4ba7-b686-1a275f81a47a.png) center/cover`
@@ -44,12 +44,12 @@ namespace Authing.CSharp.SDK.Models
 /// 
         /// </summary>
         [JsonProperty("customBackground")]
-        public string  CustomBackground {get;set;}
+        public string  CustomBackground  {get;set;}
         /// <summary>
         ///  是否显示切换语言按钮
         /// </summary>
         [JsonProperty("showChangeLanguageButton")]
-        public bool  ShowChangeLanguageButton {get;set;}
+        public bool  ShowChangeLanguageButton  {get;set;}
         /// <summary>
         ///  默认语言:
 /// - `zh-CN`: 简体中文
@@ -59,32 +59,32 @@ namespace Authing.CSharp.SDK.Models
 /// 
         /// </summary>
         [JsonProperty("defaultLanguage")]
-        public defaultLanguage  DefaultLanguage {get;set;}
+        public defaultLanguage  DefaultLanguage  {get;set;}
         /// <summary>
         ///  是否显示忘记密码按钮
         /// </summary>
         [JsonProperty("showForgetPasswordButton")]
-        public bool  ShowForgetPasswordButton {get;set;}
+        public bool  ShowForgetPasswordButton  {get;set;}
         /// <summary>
         ///  是否显示企业身份源登录方式
         /// </summary>
         [JsonProperty("showEnterpriseConnections")]
-        public bool  ShowEnterpriseConnections {get;set;}
+        public bool  ShowEnterpriseConnections  {get;set;}
         /// <summary>
         ///  是否显示社会化登录方式
         /// </summary>
         [JsonProperty("showSocialConnections")]
-        public bool  ShowSocialConnections {get;set;}
+        public bool  ShowSocialConnections  {get;set;}
         /// <summary>
         ///  是否展示登录注册协议
         /// </summary>
         [JsonProperty("showAgreement")]
-        public bool  ShowAgreement {get;set;}
+        public bool  ShowAgreement  {get;set;}
         /// <summary>
         ///  展示的登录注册协议列表
         /// </summary>
         [JsonProperty("agreements")]
-        public List<ApplicationAgreementDto>  Agreements {get;set;}
+        public List<ApplicationAgreementDto>  Agreements  {get;set;}
     }
     public partial class ApplicationBrandingConfig
     {

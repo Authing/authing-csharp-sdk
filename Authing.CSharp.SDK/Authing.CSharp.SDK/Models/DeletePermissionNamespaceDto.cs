@@ -18,6 +18,6 @@ namespace Authing.CSharp.SDK.Models
         ///  权限空间 Code
         /// </summary>
         [JsonProperty("code")]
-        public string  Code {get;set;}
+        public string  Code  {get;set;}
     }
 }

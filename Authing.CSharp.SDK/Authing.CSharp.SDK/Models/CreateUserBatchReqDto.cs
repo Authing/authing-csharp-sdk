@@ -18,11 +18,11 @@ namespace Authing.CSharp.SDK.Models
         ///  用户列表
         /// </summary>
         [JsonProperty("list")]
-        public List<CreateUserInfoDto>  List {get;set;}
+        public List<CreateUserInfoDto>  List  {get;set;}
         /// <summary>
         ///  可选参数
         /// </summary>
         [JsonProperty("options")]
-        public CreateUserOptionsDto  Options {get;set;}
+        public CreateUserOptionsDto  Options  {get;set;}
     }
 }

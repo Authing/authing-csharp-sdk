@@ -18,26 +18,26 @@ namespace Authing.CSharp.SDK.Models
         ///  企业 ID（CorpId）
         /// </summary>
         [JsonProperty("corpId")]
-        public string  CorpId {get;set;}
+        public string  CorpId  {get;set;}
         /// <summary>
         ///  钉钉应用的 AppKey
         /// </summary>
         [JsonProperty("appKey")]
-        public string  AppKey {get;set;}
+        public string  AppKey  {get;set;}
         /// <summary>
         ///  钉钉应用的 AppSecret
         /// </summary>
         [JsonProperty("appSecret")]
-        public string  AppSecret {get;set;}
+        public string  AppSecret  {get;set;}
         /// <summary>
         ///  加密 aes_key
         /// </summary>
         [JsonProperty("aes_key")]
-        public string  Aes_key {get;set;}
+        public string  Aes_key  {get;set;}
         /// <summary>
         ///  签名 token
         /// </summary>
         [JsonProperty("token")]
-        public string  Token {get;set;}
+        public string  Token  {get;set;}
     }
 }

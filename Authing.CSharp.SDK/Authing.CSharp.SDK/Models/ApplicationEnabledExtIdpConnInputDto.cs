@@ -18,6 +18,6 @@ namespace Authing.CSharp.SDK.Models
         ///  身份源连接 ID
         /// </summary>
         [JsonProperty("extIdpConnId")]
-        public string  ExtIdpConnId {get;set;}
+        public string  ExtIdpConnId  {get;set;}
     }
 }

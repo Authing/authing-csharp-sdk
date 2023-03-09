@@ -18,11 +18,11 @@ namespace Authing.CSharp.SDK.Models
         ///  总数
         /// </summary>
         [JsonProperty("totalCount")]
-        public int  TotalCount {get;set;}
+        public bool  TotalCount  {get;set;}
         /// <summary>
         ///  响应数据
         /// </summary>
         [JsonProperty("list")]
-        public List<DepartmentDto>  List {get;set;}
+        public List<DepartmentDto>  List  {get;set;}
     }
 }

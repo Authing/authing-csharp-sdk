@@ -18,17 +18,17 @@ namespace Authing.CSharp.SDK.Models
         ///  主体类型
         /// </summary>
         [JsonProperty("targetType")]
-        public targetType  TargetType {get;set;}
+        public targetType  TargetType  {get;set;}
         /// <summary>
         ///  主体唯一标志符
         /// </summary>
         [JsonProperty("targetIdentifier")]
-        public string  TargetIdentifier {get;set;}
+        public string  TargetIdentifier  {get;set;}
         /// <summary>
         ///  操作列表
         /// </summary>
         [JsonProperty("actions")]
-        public List<string>  Actions {get;set;}
+        public List<string>  Actions  {get;set;}
     }
     public partial class ResourceAuthorizedTargetDto
     {

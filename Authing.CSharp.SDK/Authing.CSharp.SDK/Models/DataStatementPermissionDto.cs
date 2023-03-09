@@ -18,12 +18,12 @@ namespace Authing.CSharp.SDK.Models
         ///  数据资源权限操作：ALLOW（允许）/DENY（拒绝）
         /// </summary>
         [JsonProperty("effect")]
-        public effect  Effect {get;set;}
+        public effect  Effect  {get;set;}
         /// <summary>
         ///  资源权限列表，字符串数据资源和数组数据资源，没有 path 路径
         /// </summary>
         [JsonProperty("permissions")]
-        public List<string>  Permissions {get;set;}
+        public List<string>  Permissions  {get;set;}
     }
     public partial class DataStatementPermissionDto
     {

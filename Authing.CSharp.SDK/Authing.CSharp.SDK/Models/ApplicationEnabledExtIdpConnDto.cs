@@ -18,47 +18,47 @@ namespace Authing.CSharp.SDK.Models
         ///  是否为社会化登录身份源连接
         /// </summary>
         [JsonProperty("isSocial")]
-        public bool  IsSocial {get;set;}
+        public bool  IsSocial  {get;set;}
         /// <summary>
         ///  身份源 ID
         /// </summary>
         [JsonProperty("extIdpId")]
-        public string  ExtIdpId {get;set;}
+        public string  ExtIdpId  {get;set;}
         /// <summary>
         ///  身份源类型
         /// </summary>
         [JsonProperty("extIdpType")]
-        public extIdpType  ExtIdpType {get;set;}
+        public extIdpType  ExtIdpType  {get;set;}
         /// <summary>
         ///  身份源连接 ID
         /// </summary>
         [JsonProperty("extIdpConnId")]
-        public string  ExtIdpConnId {get;set;}
+        public string  ExtIdpConnId  {get;set;}
         /// <summary>
         ///  身份源连接类型
         /// </summary>
         [JsonProperty("extIdpConnType")]
-        public extIdpConnType  ExtIdpConnType {get;set;}
+        public extIdpConnType  ExtIdpConnType  {get;set;}
         /// <summary>
         ///  身份源连接可读唯一标志
         /// </summary>
         [JsonProperty("extIdpConnIdentifier")]
-        public string  ExtIdpConnIdentifier {get;set;}
+        public string  ExtIdpConnIdentifier  {get;set;}
         /// <summary>
         ///  微信
         /// </summary>
         [JsonProperty("extIdpConnDisplayName")]
-        public string  ExtIdpConnDisplayName {get;set;}
+        public string  ExtIdpConnDisplayName  {get;set;}
         /// <summary>
         ///  身份源连接 Logo
         /// </summary>
         [JsonProperty("extIdpConnLogo")]
-        public string  ExtIdpConnLogo {get;set;}
+        public string  ExtIdpConnLogo  {get;set;}
         /// <summary>
         ///  是否允许身份源连接
         /// </summary>
         [JsonProperty("enabled")]
-        public bool  Enabled {get;set;}
+        public bool  Enabled  {get;set;}
     }
     public partial class ApplicationEnabledExtIdpConnDto
     {
@@ -123,6 +123,12 @@ namespace Authing.CSharp.SDK.Models
             INSTAGRAM,
             [EnumMember(Value="welink")]
             WELINK,
+            [EnumMember(Value="huawei")]
+            HUAWEI,
+            [EnumMember(Value="honor")]
+            HONOR,
+            [EnumMember(Value="xiaomi")]
+            XIAOMI,
         }
         /// <summary>
         ///  身份源连接类型
@@ -147,6 +153,8 @@ namespace Authing.CSharp.SDK.Models
             ALIPAY,
             [EnumMember(Value="facebook")]
             FACEBOOK,
+            [EnumMember(Value="facebook:mobile")]
+            FACEBOOK_MOBILE,
             [EnumMember(Value="twitter")]
             TWITTER,
             [EnumMember(Value="google:mobile")]
@@ -215,6 +223,12 @@ namespace Authing.CSharp.SDK.Models
             WELINK,
             [EnumMember(Value="ad-kerberos")]
             AD_KERBEROS,
+            [EnumMember(Value="huawei")]
+            HUAWEI,
+            [EnumMember(Value="honor")]
+            HONOR,
+            [EnumMember(Value="xiaomi")]
+            XIAOMI,
         }
     }
 }
