@@ -20,12 +20,12 @@ namespace Authing.CSharp.SDK.Models
         [JsonProperty("namespaceCode")]
         public string  NamespaceCode {get;set;} 
         /// <summary>
-        ///  数据资源名称,权限空间内唯一
+        ///  数据资源名称, 权限空间内唯一
         /// </summary>
         [JsonProperty("resourceName")]
         public string  ResourceName {get;set;} 
         /// <summary>
-        ///  数据资源 Code,权限空间内唯一
+        ///  数据资源 Code, 权限空间内唯一
         /// </summary>
         [JsonProperty("resourceCode")]
         public string  ResourceCode {get;set;} 

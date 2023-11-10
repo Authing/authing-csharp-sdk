@@ -1,0 +1,28 @@
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Runtime.Serialization;
+
+namespace Authing.CSharp.SDK.Models
+{
+    /// <summary>
+    /// DeleteCustomFieldsReqDto 的模型
+    /// </summary>
+    public partial class DeleteCustomFieldsReqDto
+    {
+        /// <summary>
+        ///  租户 ID
+        /// </summary>
+        [JsonProperty("tenantId")]
+        public string  TenantId {get;set;}
+        /// <summary>
+        ///  自定义字段列表
+        /// </summary>
+        [JsonProperty("list")]
+        public List<DeleteCustomFieldDto>  List {get;set;}
+    }
+}

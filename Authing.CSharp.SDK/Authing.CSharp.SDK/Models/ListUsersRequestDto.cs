@@ -25,6 +25,11 @@ namespace Authing.CSharp.SDK.Models
         [JsonProperty("advancedFilter")]
         public List<ListUsersAdvancedFilterItemDto>  AdvancedFilter {get;set;}
         /// <summary>
+        ///  使用 ES 查询语句执行搜索命令
+        /// </summary>
+        [JsonProperty("searchQuery")]
+        public object  SearchQuery {get;set;}
+        /// <summary>
         ///  可选项
         /// </summary>
         [JsonProperty("options")]

@@ -65,6 +65,10 @@ namespace Authing.CSharp.SDK.Models
             NATIVE,
             [EnumMember(Value="api")]
             API,
+            [EnumMember(Value="mfa")]
+            MFA,
+            [EnumMember(Value="mini-program")]
+            MINI_PROGRAM,
         }
     }
 }

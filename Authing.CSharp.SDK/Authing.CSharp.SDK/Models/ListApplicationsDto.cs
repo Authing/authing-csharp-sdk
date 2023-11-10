@@ -44,5 +44,10 @@ namespace Authing.CSharp.SDK.Models
         /// </summary>
         [JsonProperty("keywords")]
         public string  Keywords {get;set;} 
+        /// <summary>
+        ///  搜索应用，true：搜索所有应用, 默认为 false
+        /// </summary>
+        [JsonProperty("all")]
+        public bool  All {get;set;} 
     }
 }

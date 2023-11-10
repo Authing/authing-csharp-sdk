@@ -9,34 +9,27 @@
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<PackageReleaseNotes>
 
-			Version 3.2.0
-			- 管理端、认证端增加事件的订阅和发布的接口。
+			Version 3.2.1
+			- 常规更新接口。
 
 		</PackageReleaseNotes>
-		<Version>3.2.0</Version>
+		<Version>3.2.1</Version>
 		<PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
-		<FileVersion>3.2.0</FileVersion>
+		<FileVersion>3.2.1</FileVersion>
 		<Company>Authing</Company>
-		<AssemblyVersion>3.2.0</AssemblyVersion>
+		<AssemblyVersion>3.2.1</AssemblyVersion>
 		<Authors>Authing</Authors>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<Copyright>Beijing Steamory Technology Co. Ltd.</Copyright>
 		<PackageIcon>AuthingIcon.png</PackageIcon>
 		<LangVersion>latest</LangVersion>
 		<GenerateDocumentationFile>True</GenerateDocumentationFile>
+		<SignAssembly>true</SignAssembly>
+		<AssemblyOriginatorKeyFile>Authing.CSharp.SDK.pfx</AssemblyOriginatorKeyFile>
 	</PropertyGroup>
 
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net5.0|AnyCPU'">
-	  <DocumentationFile>..\Authing.CSharp.SDK.xml</DocumentationFile>
-	</PropertyGroup>
-
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net5.0|AnyCPU'">
-	  <DocumentationFile>D:\Authing\SDK\V3\authing-csharp-sdk\Authing.CSharp.SDK\Authing.CSharp.SDK\Authing.CSharp.SDK.xml</DocumentationFile>
-	  <OutputPath>build\</OutputPath>
-	</PropertyGroup>
-
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net40|AnyCPU'">
-	  <DocumentationFile>D:\Authing\SDK\V3\authing-csharp-sdk-release\Authing.CSharp.SDK\Authing.CSharp.SDK\Authing.CSharp.SDK.xml</DocumentationFile>
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net40|AnyCPU'">
+	  <DocumentationFile>D:\Authing\SDK\V3\CSharpSDK\authing-csharp-sdk-master\Authing.CSharp.SDK\Authing.CSharp.SDK\Authing.CSharp.SDK.xml</DocumentationFile>
 	</PropertyGroup>
 
 	<ItemGroup>

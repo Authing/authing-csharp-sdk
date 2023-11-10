@@ -6,7 +6,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.Serialization;
-using System.Security.Cryptography.X509Certificates;
 
 namespace Authing.CSharp.SDK.Models
 {
@@ -26,7 +25,7 @@ namespace Authing.CSharp.SDK.Models
         [JsonProperty("message")]
         public string  Message {get;set;}
         /// <summary>
-        ///  细分错误码，可通过此错误码得到具体的错误类型。
+        ///  细分错误码，可通过此错误码得到具体的错误类型。详情可以查看开发准备中的 apiCode 细分说明
         /// </summary>
         [JsonProperty("apiCode")]
         public long  ApiCode {get;set;}
@@ -39,6 +38,6 @@ namespace Authing.CSharp.SDK.Models
         ///  响应数据
         /// </summary>
         [JsonProperty("data")]
-        public DepartmentPagingDto Data {get;set;}
+        public List<DepartmentDto>  Data {get;set;}
     }
 }

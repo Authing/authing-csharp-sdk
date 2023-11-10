@@ -15,7 +15,7 @@ namespace Authing.CSharp.SDK.Models
     public partial class CheckExternalUserPermissionDto
     {
         /// <summary>
-        ///  数据资源路径列表,
+        ///  资源路径列表,**树资源需到具体树节点**
         /// </summary>
         [JsonProperty("resources")]
         public List<string>  Resources {get;set;}
@@ -34,5 +34,15 @@ namespace Authing.CSharp.SDK.Models
         /// </summary>
         [JsonProperty("namespaceCode")]
         public string  NamespaceCode {get;set;}
+        /// <summary>
+        ///  是否开启条件判断，默认 true 开启
+        /// </summary>
+        [JsonProperty("judgeConditionEnabled")]
+        public bool  JudgeConditionEnabled {get;set;}
+        /// <summary>
+        ///  条件环境属性，若开启条件判断则使用
+        /// </summary>
+        [JsonProperty("authEnvParams")]
+        public AuthEnvParams  AuthEnvParams {get;set;}
     }
 }

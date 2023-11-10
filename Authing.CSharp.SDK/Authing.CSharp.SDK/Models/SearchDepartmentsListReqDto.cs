@@ -25,6 +25,11 @@ namespace Authing.CSharp.SDK.Models
         [JsonProperty("withCustomData")]
         public bool  WithCustomData {get;set;}
         /// <summary>
+        ///  是否获取 部门信息
+        /// </summary>
+        [JsonProperty("withPost")]
+        public bool  WithPost {get;set;}
+        /// <summary>
         ///  当前页数，从 1 开始
         /// </summary>
         [JsonProperty("page")]
@@ -49,6 +54,16 @@ namespace Authing.CSharp.SDK.Models
         /// </summary>
         [JsonProperty("orderBy")]
         public orderBy  OrderBy {get;set;}
+        /// <summary>
+        ///  排序设置，可以设置多项按照多个字段进行排序
+        /// </summary>
+        [JsonProperty("sort")]
+        public List<DepartmentSortingDto>  Sort {get;set;}
+        /// <summary>
+        ///  租户 ID
+        /// </summary>
+        [JsonProperty("tenantId")]
+        public string  TenantId {get;set;}
     }
     public partial class SearchDepartmentsListReqDto
     {

@@ -19,5 +19,10 @@ namespace Authing.CSharp.SDK.Models
         /// </summary>
         [JsonProperty("code")]
         public string  Code {get;set;} 
+        /// <summary>
+        ///  是否获取自定义数据
+        /// </summary>
+        [JsonProperty("withCustomData")]
+        public bool  WithCustomData {get;set;} 
     }
 }

@@ -15,6 +15,11 @@ namespace Authing.CSharp.SDK.Models
     public partial class RoleDto
     {
         /// <summary>
+        ///  角色 ID
+        /// </summary>
+        [JsonProperty("id")]
+        public string  Id {get;set;}
+        /// <summary>
         ///  权限分组(权限空间)内角色的唯一标识符 Code
         /// </summary>
         [JsonProperty("code")]

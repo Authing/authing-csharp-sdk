@@ -60,6 +60,12 @@ namespace Authing.CSharp.SDK.Models
             DEPARTMENT_ID,
             [EnumMember(Value="open_department_id")]
             OPEN_DEPARTMENT_ID,
+            [EnumMember(Value="sync_relation")]
+            SYNC_RELATION,
+            [EnumMember(Value="custom_field")]
+            CUSTOM_FIELD,
+            [EnumMember(Value="code")]
+            CODE,
         }
         /// <summary>
         ///  密码加密类型，支持使用 RSA256 和国密 SM2 算法进行加密。默认为 `none` 不加密。

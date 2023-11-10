@@ -25,7 +25,7 @@ namespace Authing.CSharp.SDK.Models
         [JsonProperty("clientIp")]
         public string  ClientIp {get;set;}
         /// <summary>
-        ///  事件类型
+        ///  事件类型，用户的一系列操作，比如 login、logout、register、verifyMfa 等
         /// </summary>
         [JsonProperty("eventType")]
         public string  EventType {get;set;}

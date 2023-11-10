@@ -15,7 +15,7 @@ namespace Authing.CSharp.SDK.Models
     public partial class UserDto
     {
         /// <summary>
-        ///  用户唯一标志，可以是用户 ID、用户名、邮箱、手机号、外部 ID、在外部身份源的 ID。
+        ///  用户的唯一标志，可以是用户 ID、用户名、邮箱、手机号、externalId、在外部身份源的 ID，详情见 userIdType 字段的说明。默认为用户 id 。
         /// </summary>
         [JsonProperty("userId")]
         public string  UserId {get;set;}
@@ -259,6 +259,11 @@ namespace Authing.CSharp.SDK.Models
         [JsonProperty("resetPasswordOnNextLogin")]
         public bool  ResetPasswordOnNextLogin {get;set;}
         /// <summary>
+        ///  注册方式
+        /// </summary>
+        [JsonProperty("registerSource")]
+        public List<string>  RegisterSource {get;set;}
+        /// <summary>
         ///  用户所属部门 ID 列表
         /// </summary>
         [JsonProperty("departmentIds")]
@@ -269,15 +274,30 @@ namespace Authing.CSharp.SDK.Models
         [JsonProperty("identities")]
         public List<IdentityDto>  Identities {get;set;}
         /// <summary>
+        ///  用户身份证号码
+        /// </summary>
+        [JsonProperty("identityNumber")]
+        public string  IdentityNumber {get;set;}
+        /// <summary>
         ///  用户的扩展字段数据
         /// </summary>
         [JsonProperty("customData")]
         public object  CustomData {get;set;}
         /// <summary>
+        ///  用户关联的部门 Id
+        /// </summary>
+        [JsonProperty("postIdList")]
+        public List<string>  PostIdList {get;set;}
+        /// <summary>
         ///  用户状态上次修改时间
         /// </summary>
         [JsonProperty("statusChangedAt")]
         public string  StatusChangedAt {get;set;}
+        /// <summary>
+        ///  用户租户 ID
+        /// </summary>
+        [JsonProperty("tenantId")]
+        public string  TenantId {get;set;}
     }
     public partial class UserDto
     {

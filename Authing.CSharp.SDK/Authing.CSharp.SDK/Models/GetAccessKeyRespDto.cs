@@ -49,5 +49,10 @@ namespace Authing.CSharp.SDK.Models
         /// </summary>
         [JsonProperty("userPoolId")]
         public string  UserPoolId {get;set;}
+        /// <summary>
+        ///  密钥是否启用
+        /// </summary>
+        [JsonProperty("enable")]
+        public bool  Enable {get;set;}
     }
 }

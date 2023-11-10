@@ -674,7 +674,7 @@ namespace Authing.CSharp.SDK.Framework.Test.Management
         [Test]
         public async Task ListResourceTargetsTest()
         {
-            ListResourceTargetsRespDto result = await managementClient.ListResourceTargets(new ListResourceTargets
+            ListResourceTargetsRespDto result = await managementClient.ListResourceTargets(new ListResourceTargetsDto
             {
                 NamespaceCode = code,
                 Actions = new List<string> { "read" },

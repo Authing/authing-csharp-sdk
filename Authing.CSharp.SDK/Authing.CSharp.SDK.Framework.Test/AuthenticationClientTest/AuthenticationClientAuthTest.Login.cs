@@ -7,6 +7,39 @@ namespace Authing.CSharp.SDK.Framework.Test
 {
     public partial class AuthenticationClientAuthTest
     {
+        [Test]
+        public async Task LoginByAccountPassword_Normal()
+        {
+            var res = await client.SignInByAccountPassword("qidong5566", "3866364");
+
+            Assert.AreEqual(200, res.StatusCode);
+        }
+
+        [Test]
+        public async Task LoginByAccountPassword_With_Options()
+        {
+            SignInOptionsDto option = new SignInOptionsDto();
+            option.PasswordEncryptType = SignInOptionsDto.passwordEncryptType.NONE;
+
+            var res = await client.SignInByUsernamePassword("qidong88999", "3866364");
+
+            Assert.AreEqual(200, res.StatusCode);
+
+        }
+
+        [Test]
+        public async Task LoginByUsernamePassword_With_Options()
+        {
+            SignInOptionsDto option = new SignInOptionsDto();
+            option.PasswordEncryptType = SignInOptionsDto.passwordEncryptType.NONE;
+            option.AutoRegister = true;
+
+            var res = await client.SignInByUsernamePassword("qidong8898899", "3866364",option);
+
+            Assert.AreEqual(200, res.StatusCode);
+
+        }
+
         /// <summary>
         /// 2022-10-17 测试通过
         /// 通过邮箱密码登录

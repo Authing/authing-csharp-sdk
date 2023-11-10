@@ -15,7 +15,7 @@ namespace Authing.CSharp.SDK.Models
     public partial class UpdateDataResourceDto
     {
         /// <summary>
-        ///  数据资源 Code,权限空间内唯一
+        ///  数据资源 Code, 权限空间内唯一
         /// </summary>
         [JsonProperty("resourceCode")]
         public string  ResourceCode {get;set;}
@@ -25,7 +25,7 @@ namespace Authing.CSharp.SDK.Models
         [JsonProperty("namespaceCode")]
         public string  NamespaceCode {get;set;}
         /// <summary>
-        ///  数据资源名称,权限空间内唯一
+        ///  数据资源名称, 权限空间内唯一
         /// </summary>
         [JsonProperty("resourceName")]
         public string  ResourceName {get;set;}
@@ -35,7 +35,7 @@ namespace Authing.CSharp.SDK.Models
         [JsonProperty("description")]
         public string  Description {get;set;}
         /// <summary>
-        ///  数据资源节点类型，支持字符串（STRING）、树结构（TREE）和数组结构（ARRAY）。
+        ///  数据资源结构，支持字符串（STRING）、树结构（TREE）和数组结构（ARRAY）。
         /// </summary>
         [JsonProperty("struct")]
         public object  Struct {get;set;}

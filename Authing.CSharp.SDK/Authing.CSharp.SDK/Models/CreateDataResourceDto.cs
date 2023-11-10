@@ -20,22 +20,22 @@ namespace Authing.CSharp.SDK.Models
         [JsonProperty("actions")]
         public List<string>  Actions {get;set;}
         /// <summary>
-        ///  数据资源节点类型，支持字符串（STRING）、树结构（TREE）和数组结构（ARRAY）。
+        ///  数据资源结构，支持字符串（STRING）、树结构（TREE）和数组结构（ARRAY）。
         /// </summary>
         [JsonProperty("struct")]
-        public object Struct {get;set;}
+        public object  Struct {get;set;}
         /// <summary>
         ///  数据资源类型，目前支持树结构（TREE）、字符串（STRING）、数组（ARRAY）
         /// </summary>
         [JsonProperty("type")]
         public type  Type {get;set;}
         /// <summary>
-        ///  数据资源 Code,权限空间内唯一
+        ///  数据资源 Code, 权限空间内唯一
         /// </summary>
         [JsonProperty("resourceCode")]
         public string  ResourceCode {get;set;}
         /// <summary>
-        ///  数据资源名称,权限空间内唯一
+        ///  数据资源名称, 权限空间内唯一
         /// </summary>
         [JsonProperty("resourceName")]
         public string  ResourceName {get;set;}

@@ -9,8 +9,8 @@ namespace Authing.CSharp.SDK.Framework.Test.AuthenticationClientTest
     {
         protected AuthenticationClient client;
 
-        private string appId = "613189b38b6c66cac1d211bd";
-        private string appSecret = "33a067dbebb9195af3702fe9a5d29e84";
+        private string appId = "64d5f75a31a9c7c81bae7627";
+        private string appSecret = "162e97160cf15a486f04e7cef1fd623c";
         private string domain = "https://qidongtest.test2.authing-inc.co";
         private string redirectUri = "http://localhost:44300/auth/callback";
 
@@ -19,10 +19,10 @@ namespace Authing.CSharp.SDK.Framework.Test.AuthenticationClientTest
         {
             client = new AuthenticationClient(new AuthenticationClientInitOptions
             {
-                AppId = "63f46b89989965fea854adb3",
-                AppSecret = "6d32fcb07096247d3e9a2398168778e7",
-                RedirectUri = "http://localhost:44302/auth/callback",
-                AppHost = @"https://caslogindemo.authing.cn",
+                AppId = "64d5f75a31a9c7c81bae7627",
+                AppSecret = "162e97160cf15a486f04e7cef1fd623c",
+                RedirectUri = "https://console.authing.cn/console/get-started/64d5f75a31a9c7c81bae7627",
+                AppHost = @"https://sdktest.authing.cn",
             });
         }
     }

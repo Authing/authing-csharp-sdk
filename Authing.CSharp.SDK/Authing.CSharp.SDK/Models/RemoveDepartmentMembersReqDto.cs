@@ -34,6 +34,11 @@ namespace Authing.CSharp.SDK.Models
         /// </summary>
         [JsonProperty("departmentIdType")]
         public departmentIdType  DepartmentIdType {get;set;}
+        /// <summary>
+        ///  租户 ID
+        /// </summary>
+        [JsonProperty("tenantId")]
+        public string  TenantId {get;set;}
     }
     public partial class RemoveDepartmentMembersReqDto
     {
@@ -46,6 +51,12 @@ namespace Authing.CSharp.SDK.Models
             DEPARTMENT_ID,
             [EnumMember(Value="open_department_id")]
             OPEN_DEPARTMENT_ID,
+            [EnumMember(Value="sync_relation")]
+            SYNC_RELATION,
+            [EnumMember(Value="custom_field")]
+            CUSTOM_FIELD,
+            [EnumMember(Value="code")]
+            CODE,
         }
     }
 }

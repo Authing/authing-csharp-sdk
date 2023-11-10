@@ -18,6 +18,6 @@ namespace Authing.CSharp.SDK.Models
         ///  用户授权列表
         /// </summary>
         [JsonProperty("authUserList")]
-        public List<ListResourceTargetsDto>  AuthUserList {get;set;}
+        public List<ListResourceTargetsDtoResp>  AuthUserList {get;set;}
     }
 }

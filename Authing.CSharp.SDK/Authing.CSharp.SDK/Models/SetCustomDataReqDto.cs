@@ -40,6 +40,11 @@ namespace Authing.CSharp.SDK.Models
         [JsonProperty("targetType")]
         public targetType  TargetType {get;set;}
         /// <summary>
+        ///  租户 ID
+        /// </summary>
+        [JsonProperty("tenantId")]
+        public string  TenantId {get;set;}
+        /// <summary>
         ///  所属权限分组的 code，当 target_type 为角色的时候需要填写，否则可以忽略
         /// </summary>
         [JsonProperty("namespace")]

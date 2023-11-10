@@ -23,10 +23,17 @@ namespace Authing.CSharp.SDK.Models
 /// - `external_id`: 用户在外部系统的 ID，对应 Authing 用户信息的 `externalId` 字段
 /// - `identity`: 用户的外部身份源信息，格式为 `<extIdpId>:<userIdInIdp>`，其中 `<extIdpId>` 为 Authing 身份源的 ID，`<userIdInIdp>` 为用户在外部身份源的 ID。
 /// 示例值：`62f20932716fbcc10d966ee5:ou_8bae746eac07cd2564654140d2a9ac61`。
+/// - `sync_relation`: 用户的外部身份源信息，格式为 `<provier>:<userIdInIdp>`，其中 `<provier>` 为同步身份源类型，如 wechatwork, lark；`<userIdInIdp>` 为用户在外部身份源的 ID。
+/// 示例值：`lark:ou_8bae746eac07cd2564654140d2a9ac61`。
 /// 
         /// </summary>
         [JsonProperty("userIdType")]
         public userIdType  UserIdType {get;set;}
+        /// <summary>
+        ///  设置用户首次登录要求重置密码
+        /// </summary>
+        [JsonProperty("resetPasswordOnFirstLogin")]
+        public bool  ResetPasswordOnFirstLogin {get;set;}
         /// <summary>
         ///  下次登录要求重置密码
         /// </summary>
@@ -63,6 +70,8 @@ namespace Authing.CSharp.SDK.Models
 /// - `external_id`: 用户在外部系统的 ID，对应 Authing 用户信息的 `externalId` 字段
 /// - `identity`: 用户的外部身份源信息，格式为 `<extIdpId>:<userIdInIdp>`，其中 `<extIdpId>` 为 Authing 身份源的 ID，`<userIdInIdp>` 为用户在外部身份源的 ID。
 /// 示例值：`62f20932716fbcc10d966ee5:ou_8bae746eac07cd2564654140d2a9ac61`。
+/// - `sync_relation`: 用户的外部身份源信息，格式为 `<provier>:<userIdInIdp>`，其中 `<provier>` 为同步身份源类型，如 wechatwork, lark；`<userIdInIdp>` 为用户在外部身份源的 ID。
+/// 示例值：`lark:ou_8bae746eac07cd2564654140d2a9ac61`。
 /// 
         /// </summary>
         public enum userIdType
@@ -79,6 +88,10 @@ namespace Authing.CSharp.SDK.Models
             USERNAME,
             [EnumMember(Value="identity")]
             IDENTITY,
+            [EnumMember(Value="sync_relation")]
+            SYNC_RELATION,
+            [EnumMember(Value="custom_field")]
+            CUSTOM_FIELD,
         }
         /// <summary>
         ///  密码加密类型，支持使用 RSA256 和国密 SM2 算法进行加密。默认为 `none` 不加密。

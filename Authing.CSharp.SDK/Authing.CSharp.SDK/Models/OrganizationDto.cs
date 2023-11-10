@@ -79,5 +79,25 @@ namespace Authing.CSharp.SDK.Models
         /// </summary>
         [JsonProperty("customData")]
         public object  CustomData {get;set;}
+        /// <summary>
+        ///  租户 ID
+        /// </summary>
+        [JsonProperty("tenantId")]
+        public string  TenantId {get;set;}
+        /// <summary>
+        ///  岗位 id 列表
+        /// </summary>
+        [JsonProperty("postIdList")]
+        public List<string>  PostIdList {get;set;}
+        /// <summary>
+        ///  状态
+        /// </summary>
+        [JsonProperty("status")]
+        public string  Status {get;set;}
+        /// <summary>
+        ///  访问限制
+        /// </summary>
+        [JsonProperty("allow")]
+        public string  Allow {get;set;}
     }
 }

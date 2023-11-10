@@ -15,6 +15,11 @@ namespace Authing.CSharp.SDK.Models
     public partial class SetCustomDataDto
     {
         /// <summary>
+        ///  租户 ID
+        /// </summary>
+        [JsonProperty("tenantId")]
+        public string  TenantId {get;set;}
+        /// <summary>
         ///  字段 key，不能和内置字段的 key 冲突
         /// </summary>
         [JsonProperty("key")]

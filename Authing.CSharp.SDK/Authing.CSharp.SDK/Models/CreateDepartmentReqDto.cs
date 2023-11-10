@@ -15,20 +15,25 @@ namespace Authing.CSharp.SDK.Models
     public partial class CreateDepartmentReqDto
     {
         /// <summary>
-        ///  父部门 id
+        ///  组织 Code（organizationCode）
         /// </summary>
-        [JsonProperty("parentDepartmentId")]
-        public string  ParentDepartmentId {get;set;}
+        [JsonProperty("organizationCode")]
+        public string  OrganizationCode {get;set;}
         /// <summary>
         ///  部门名称
         /// </summary>
         [JsonProperty("name")]
         public string  Name {get;set;}
         /// <summary>
-        ///  组织 Code（organizationCode）
+        ///  父部门 id
         /// </summary>
-        [JsonProperty("organizationCode")]
-        public string  OrganizationCode {get;set;}
+        [JsonProperty("parentDepartmentId")]
+        public string  ParentDepartmentId {get;set;}
+        /// <summary>
+        ///  元数据信息
+        /// </summary>
+        [JsonProperty("metadata")]
+        public object  Metadata {get;set;}
         /// <summary>
         ///  自定义部门 ID，用于存储自定义的 ID
         /// </summary>
@@ -64,6 +69,16 @@ namespace Authing.CSharp.SDK.Models
         /// </summary>
         [JsonProperty("departmentIdType")]
         public departmentIdType  DepartmentIdType {get;set;}
+        /// <summary>
+        ///  岗位 id 列表
+        /// </summary>
+        [JsonProperty("postIdList")]
+        public List<string>  PostIdList {get;set;}
+        /// <summary>
+        ///  租户 ID
+        /// </summary>
+        [JsonProperty("tenantId")]
+        public string  TenantId {get;set;}
     }
     public partial class CreateDepartmentReqDto
     {
@@ -76,6 +91,12 @@ namespace Authing.CSharp.SDK.Models
             DEPARTMENT_ID,
             [EnumMember(Value="open_department_id")]
             OPEN_DEPARTMENT_ID,
+            [EnumMember(Value="sync_relation")]
+            SYNC_RELATION,
+            [EnumMember(Value="custom_field")]
+            CUSTOM_FIELD,
+            [EnumMember(Value="code")]
+            CODE,
         }
     }
 }

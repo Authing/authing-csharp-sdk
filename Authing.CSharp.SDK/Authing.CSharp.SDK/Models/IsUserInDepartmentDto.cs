@@ -15,7 +15,7 @@ namespace Authing.CSharp.SDK.Models
     public partial class IsUserInDepartmentDto
     {
         /// <summary>
-        ///  用户唯一标志，可以是用户 ID、用户名、邮箱、手机号、外部 ID、在外部身份源的 ID。
+        ///  用户的唯一标志，可以是用户 ID、用户名、邮箱、手机号、externalId、在外部身份源的 ID，详情见 userIdType 字段的说明。默认为用户 id 。
         /// </summary>
         [JsonProperty("userId")]
         public string  UserId {get;set;} 
@@ -39,5 +39,10 @@ namespace Authing.CSharp.SDK.Models
         /// </summary>
         [JsonProperty("includeChildrenDepartments")]
         public bool  IncludeChildrenDepartments {get;set;} 
+        /// <summary>
+        ///  租户 ID
+        /// </summary>
+        [JsonProperty("tenantId")]
+        public string  TenantId {get;set;} 
     }
 }

@@ -29,5 +29,20 @@ namespace Authing.CSharp.SDK.Models
         /// </summary>
         [JsonProperty("limit")]
         public long  Limit {get;set;} =10;
+        /// <summary>
+        ///  是否展示元数据内容
+        /// </summary>
+        [JsonProperty("withMetadata")]
+        public bool  WithMetadata {get;set;} 
+        /// <summary>
+        ///  是否获取自定义数据
+        /// </summary>
+        [JsonProperty("withCustomData")]
+        public bool  WithCustomData {get;set;} 
+        /// <summary>
+        ///  是否拍平扩展字段
+        /// </summary>
+        [JsonProperty("flatCustomData")]
+        public bool  FlatCustomData {get;set;} 
     }
 }

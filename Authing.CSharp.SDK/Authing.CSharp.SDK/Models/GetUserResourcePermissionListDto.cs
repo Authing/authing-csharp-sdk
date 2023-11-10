@@ -15,7 +15,7 @@ namespace Authing.CSharp.SDK.Models
     public partial class GetUserResourcePermissionListDto
     {
         /// <summary>
-        ///  资源路径列表
+        ///  资源路径列表,**树资源需到具体树节点**
         /// </summary>
         [JsonProperty("resources")]
         public List<string>  Resources {get;set;}

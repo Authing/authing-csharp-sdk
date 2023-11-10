@@ -140,6 +140,10 @@ namespace Authing.CSharp.SDK.Models
             NATIVE,
             [EnumMember(Value="api")]
             API,
+            [EnumMember(Value="mfa")]
+            MFA,
+            [EnumMember(Value="mini-program")]
+            MINI_PROGRAM,
         }
         /// <summary>
         ///  默认应用协议类型

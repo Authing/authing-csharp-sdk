@@ -25,6 +25,11 @@ namespace Authing.CSharp.SDK.Models
         [JsonProperty("departmentId")]
         public string  DepartmentId {get;set;} 
         /// <summary>
+        ///  部门的状态
+        /// </summary>
+        [JsonProperty("status")]
+        public bool  Status {get;set;} 
+        /// <summary>
         ///  此次调用中使用的部门 ID 的类型
         /// </summary>
         [JsonProperty("departmentIdType")]
@@ -44,5 +49,10 @@ namespace Authing.CSharp.SDK.Models
         /// </summary>
         [JsonProperty("withCustomData")]
         public bool  WithCustomData {get;set;} 
+        /// <summary>
+        ///  租户 ID
+        /// </summary>
+        [JsonProperty("tenantId")]
+        public string  TenantId {get;set;} 
     }
 }

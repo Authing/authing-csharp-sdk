@@ -15,6 +15,11 @@ namespace Authing.CSharp.SDK.Models
     public partial class CreateOrganizationReqDto
     {
         /// <summary>
+        ///  元数据信息
+        /// </summary>
+        [JsonProperty("metadata")]
+        public object  Metadata {get;set;}
+        /// <summary>
         ///  组织名称
         /// </summary>
         [JsonProperty("organizationName")]
@@ -39,5 +44,15 @@ namespace Authing.CSharp.SDK.Models
         /// </summary>
         [JsonProperty("i18n")]
         public OrganizationNameI18nDto  I18n {get;set;}
+        /// <summary>
+        ///  租户 ID
+        /// </summary>
+        [JsonProperty("tenantId")]
+        public string  TenantId {get;set;}
+        /// <summary>
+        ///  岗位 id 列表
+        /// </summary>
+        [JsonProperty("postIdList")]
+        public List<string>  PostIdList {get;set;}
     }
 }

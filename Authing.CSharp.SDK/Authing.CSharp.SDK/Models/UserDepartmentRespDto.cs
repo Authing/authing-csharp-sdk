@@ -25,6 +25,11 @@ namespace Authing.CSharp.SDK.Models
         [JsonProperty("departmentId")]
         public string  DepartmentId {get;set;}
         /// <summary>
+        ///  是否为根部门
+        /// </summary>
+        [JsonProperty("isRoot")]
+        public bool  IsRoot {get;set;}
+        /// <summary>
         ///  部门创建时间
         /// </summary>
         [JsonProperty("createdAt")]

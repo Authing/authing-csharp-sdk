@@ -34,5 +34,10 @@ namespace Authing.CSharp.SDK.Models
         /// </summary>
         [JsonProperty("idpLogo")]
         public string  IdpLogo {get;set;}
+        /// <summary>
+        ///  身份源 id
+        /// </summary>
+        [JsonProperty("idpId")]
+        public string  IdpId {get;set;}
     }
 }

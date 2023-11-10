@@ -15,7 +15,7 @@ namespace Authing.CSharp.SDK.Framework.Test.Management
     /// </summary>
     class ApplicationManagement_Test : ManagementClientBaseTest
     {
-        private ApplicationDto app;
+        private CreateApplicationRespDataDto app;
         private string appName;
         private string appIdentifier;
 
@@ -50,7 +50,7 @@ namespace Authing.CSharp.SDK.Framework.Test.Management
         [Test, Order(1),Ignore("报场景值错误 showChangeLanguageButton")]
         public async Task CreateApplicationTest()
         {
-            ApplicationPaginatedRespDto dto = await managementClient.CreateApplication(new CreateApplicationDto
+            CreateApplicationRespDto dto = await managementClient.CreateApplication(new CreateApplicationDto
             {
                 AppName = appName,
                 AppIdentifier = appIdentifier,
@@ -69,7 +69,7 @@ namespace Authing.CSharp.SDK.Framework.Test.Management
                 }
             });
 
-            app = dto.Data.List.FirstOrDefault();
+            app = dto.Data;
 
             Assert.NotNull(dto);
         }

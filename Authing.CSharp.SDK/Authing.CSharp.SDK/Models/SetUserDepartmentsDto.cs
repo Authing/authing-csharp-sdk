@@ -15,15 +15,15 @@ namespace Authing.CSharp.SDK.Models
     public partial class SetUserDepartmentsDto
     {
         /// <summary>
+        ///  用户的唯一标志，可以是用户 ID、用户名、邮箱、手机号、externalId、在外部身份源的 ID，详情见 userIdType 字段的说明。默认为用户 id 。
+        /// </summary>
+        [JsonProperty("userId")]
+        public string  UserId {get;set;}
+        /// <summary>
         ///  部门信息
         /// </summary>
         [JsonProperty("departments")]
         public List<SetUserDepartmentDto>  Departments {get;set;}
-        /// <summary>
-        ///  用户唯一标志，可以是用户 ID、用户名、邮箱、手机号、外部 ID、在外部身份源的 ID。
-        /// </summary>
-        [JsonProperty("userId")]
-        public string  UserId {get;set;}
         /// <summary>
         ///  可选参数
         /// </summary>

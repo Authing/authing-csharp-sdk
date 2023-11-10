@@ -15,15 +15,20 @@ namespace Authing.CSharp.SDK.Models
     public partial class UpdateDepartmentReqDto
     {
         /// <summary>
+        ///  组织 Code（organizationCode）
+        /// </summary>
+        [JsonProperty("organizationCode")]
+        public string  OrganizationCode {get;set;}
+        /// <summary>
         ///  部门系统 ID（为 Authing 系统自动生成，不可修改）
         /// </summary>
         [JsonProperty("departmentId")]
         public string  DepartmentId {get;set;}
         /// <summary>
-        ///  组织 Code（organizationCode）
+        ///  元数据信息
         /// </summary>
-        [JsonProperty("organizationCode")]
-        public string  OrganizationCode {get;set;}
+        [JsonProperty("metadata")]
+        public object  Metadata {get;set;}
         /// <summary>
         ///  部门负责人 ID
         /// </summary>
@@ -45,6 +50,11 @@ namespace Authing.CSharp.SDK.Models
         [JsonProperty("i18n")]
         public DepartmentI18nDto  I18n {get;set;}
         /// <summary>
+        ///  部门状态
+        /// </summary>
+        [JsonProperty("status")]
+        public bool  Status {get;set;}
+        /// <summary>
         ///  部门名称
         /// </summary>
         [JsonProperty("name")]
@@ -64,6 +74,16 @@ namespace Authing.CSharp.SDK.Models
         /// </summary>
         [JsonProperty("customData")]
         public object  CustomData {get;set;}
+        /// <summary>
+        ///  岗位 id 列表
+        /// </summary>
+        [JsonProperty("postIdList")]
+        public List<string>  PostIdList {get;set;}
+        /// <summary>
+        ///  租户 ID
+        /// </summary>
+        [JsonProperty("tenantId")]
+        public string  TenantId {get;set;}
     }
     public partial class UpdateDepartmentReqDto
     {
@@ -76,6 +96,12 @@ namespace Authing.CSharp.SDK.Models
             DEPARTMENT_ID,
             [EnumMember(Value="open_department_id")]
             OPEN_DEPARTMENT_ID,
+            [EnumMember(Value="sync_relation")]
+            SYNC_RELATION,
+            [EnumMember(Value="custom_field")]
+            CUSTOM_FIELD,
+            [EnumMember(Value="code")]
+            CODE,
         }
     }
 }

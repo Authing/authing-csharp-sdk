@@ -75,6 +75,21 @@ namespace Authing.CSharp.SDK.Models
         [JsonProperty("visibleInUserCenter")]
         public bool  VisibleInUserCenter {get;set;}
         /// <summary>
+        ///  校验规则
+        /// </summary>
+        [JsonProperty("validateRules")]
+        public object  ValidateRules {get;set;}
+        /// <summary>
+        ///  App Id 列表
+        /// </summary>
+        [JsonProperty("appIds")]
+        public List<string>  AppIds {get;set;}
+        /// <summary>
+        ///  脱敏
+        /// </summary>
+        [JsonProperty("desensitization")]
+        public bool  Desensitization {get;set;}
+        /// <summary>
         ///  枚举值类型选择项
         /// </summary>
         [JsonProperty("options")]

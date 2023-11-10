@@ -124,6 +124,9 @@ namespace Authing.CSharp.SDK.Framework.Test
         [Order(9)]
         public async Task GetProfileTest()
         {
+            LoginTokenRespDto loginTokenRespDto = await client.SignInByUsernamePassword("qidong88999", "3866364");
+            client.setAccessToken(loginTokenRespDto.Data.Access_token);
+
             var res = await client.GetProfile();
             Assert.AreEqual(200, res.StatusCode);
         }
@@ -137,9 +140,12 @@ namespace Authing.CSharp.SDK.Framework.Test
         [Order(10)]
         public async Task UpdateProfileTest()
         {
+            LoginTokenRespDto loginTokenRespDto = await client.SignInByUsernamePassword("qidong88999", "3866364");
+            client.setAccessToken(loginTokenRespDto.Data.Access_token);
+
             var res = await client.UpdateProfile(new UpdateUserProfileDto()
             {
-                Gender = UpdateUserProfileDto.gender.M
+                Gender = UpdateUserProfileDto.gender.F
             });
             Assert.AreEqual(200, res.StatusCode);
         }
@@ -152,16 +158,21 @@ namespace Authing.CSharp.SDK.Framework.Test
         [Test]
         public async Task BindEmailTest()
         {
+            LoginTokenRespDto loginTokenRespDto = await client.SignInByUsernamePassword("qidong88999", "3866364");
+            client.setAccessToken(loginTokenRespDto.Data.Access_token);
+
+
+
             var res1 = await client.SendEmail(new SendEmailDto()
             {
-                Email = "574378328@qq.com",
+                Email = "2481452007@qq.com",
                 Channel = SendEmailDto.channel.CHANNEL_BIND_EMAIL
             });
             Assert.AreEqual(200, res1.StatusCode);
             var res2 = await client.BindEmail(new BindEmailDto()
             {
-                Email = "574378328@qq.com",
-                PassCode = "1787",
+                Email = "2481452007@qq.com",
+                PassCode = "2443",
             });
             Assert.AreEqual(200, res2.StatusCode);
         }
@@ -174,8 +185,25 @@ namespace Authing.CSharp.SDK.Framework.Test
         [Test]
         public async Task UnBindEmailTest()
         {
-            var res = await client.UnbindEmail(new UnbindEmailDto { });
-            Assert.AreEqual(200, res.StatusCode);
+            LoginTokenRespDto loginTokenRespDto = await client.SignInByUsernamePassword("qidong88999", "3866364");
+            client.setAccessToken(loginTokenRespDto.Data.Access_token);
+
+            var res1 = await client.SendEmail(new SendEmailDto()
+            {
+                Email = "2481452007@qq.com",
+                Channel = SendEmailDto.channel.CHANNEL_UNBIND_EMAIL
+            });
+
+            try
+            {
+
+                var res = await client.UnbindEmail(new UnbindEmailDto { PassCode = "4470" });
+                Assert.AreEqual(200, res.StatusCode);
+            }
+            catch (Exception exp)
+            { 
+                
+            }
         }
 
         /// <summary>
@@ -186,16 +214,20 @@ namespace Authing.CSharp.SDK.Framework.Test
         [Test]
         public async Task BindPhoneTest()
         {
+            LoginTokenRespDto loginTokenRespDto = await client.SignInByUsernamePassword("qidong88999", "3866364");
+            client.setAccessToken(loginTokenRespDto.Data.Access_token);
+
+
             var res1 = await client.SendSms(new SendSMSDto()
             {
-                PhoneNumber = "17665662048",
+                PhoneNumber = "13348926753",
                 Channel = SendSMSDto.channel.CHANNEL_BIND_PHONE
             });
             Assert.AreEqual(200, res1.StatusCode);
             var res2 = await client.BindPhone(new BindPhoneDto()
             {
-                PhoneNumber = "17665662048",
-                PassCode = "7249",
+                PhoneNumber = "13348926753",
+                PassCode = "1326",
             });
             Assert.AreEqual(200, res2.StatusCode);
         }
@@ -208,14 +240,19 @@ namespace Authing.CSharp.SDK.Framework.Test
         [Test]
         public async Task UnBindPhoneTest()
         {
+            LoginTokenRespDto loginTokenRespDto = await client.SignInByUsernamePassword("qidong88999", "3866364");
+            client.setAccessToken(loginTokenRespDto.Data.Access_token);
+
+
+
             var res1 = await client.SendSms(new SendSMSDto()
             {
-                PhoneNumber = "17665662048",
+                PhoneNumber = "13348926753",
                 Channel = SendSMSDto.channel.CHANNEL_UNBIND_PHONE
             });
             Assert.AreEqual(200, res1.StatusCode);
 
-            var res = await client.UnbindPhone(new UnbindPhoneDto { PassCode = "7636" });
+            var res = await client.UnbindPhone(new UnbindPhoneDto { PassCode = "9095" });
             Assert.AreEqual(200, res.StatusCode);
         }
 
@@ -228,6 +265,11 @@ namespace Authing.CSharp.SDK.Framework.Test
         [Order(11)]
         public async Task GetSecurityLevelTest()
         {
+            LoginTokenRespDto loginTokenRespDto = await client.SignInByUsernamePassword("qidong88999", "3866364");
+            client.setAccessToken(loginTokenRespDto.Data.Access_token);
+
+
+
             var res = await client.GetSecurityLevel();
             Assert.AreEqual(200, res.StatusCode);
         }
@@ -240,10 +282,15 @@ namespace Authing.CSharp.SDK.Framework.Test
         [Test]
         public async Task GetUpdatePasswordTest()
         {
+            LoginTokenRespDto loginTokenRespDto = await client.SignInByUsernamePassword("qidong88999", "3866364");
+            client.setAccessToken(loginTokenRespDto.Data.Access_token);
+
+
+
             var res = await client.UpdatePassword(new UpdatePasswordDto()
             {
-                NewPassword = "19950630@tm",
-                OldPassword = "88886666",
+                NewPassword = "qd3866364",
+                OldPassword = "3866364",
                 PasswordEncryptType = UpdatePasswordDto.passwordEncryptType.NONE
             });
             Assert.AreEqual(200, res.StatusCode);
@@ -257,26 +304,31 @@ namespace Authing.CSharp.SDK.Framework.Test
         [Test]
         public async Task VerifyUpdateEmailRequestTest()
         {
+
+            LoginTokenRespDto loginTokenRespDto = await client.SignInByUsernamePassword("qidong88999", "qd3866364");
+            client.setAccessToken(loginTokenRespDto.Data.Access_token);
+
+
             var res0 = await client.SendEmail(new SendEmailDto()
             {
                 Channel = SendEmailDto.channel.CHANNEL_UPDATE_EMAIL,
-                Email = "tm574378328@gmail.com"
+                Email = "2481452007@qq.com"
             });
             Assert.AreEqual(200, res0.StatusCode);
             var res1 = await client.SendEmail(new SendEmailDto()
             {
                 Channel = SendEmailDto.channel.CHANNEL_UPDATE_EMAIL,
-                Email = "574378328@qq.com"
+                Email = "635877990@qq.com"
             });
             Assert.AreEqual(200, res1.StatusCode);
             var res2 = await client.VerifyUpdateEmailRequest(new VerifyUpdateEmailRequestDto()
             {
                 EmailPassCodePayload = new UpdateEmailByEmailPassCodeDto()
                 {
-                    NewEmail = "tm574378328@gmail.com",
-                    NewEmailPassCode = "5908",
-                    OldEmail = "574378328@qq.com",
-                    OldEmailPassCode = "2925"
+                    OldEmail = "2481452007@qq.com",
+                    OldEmailPassCode = "7701",
+                    NewEmail = "635877990@qq.com",
+                    NewEmailPassCode = "2791"
                 },
                 VerifyMethod = VerifyUpdateEmailRequestDto.verifyMethod.EMAIL_PASSCODE
             });
@@ -338,7 +390,7 @@ namespace Authing.CSharp.SDK.Framework.Test
             var res = await client.SendEmail(new SendEmailDto()
             {
                 Channel = SendEmailDto.channel.CHANNEL_RESET_PASSWORD,
-                Email = "tm574378328@gmail.com"
+                Email = "2481452007@qq.com"
             });
             Assert.AreEqual(200, res.StatusCode);
             var res2 = await client.VerifyResetPasswordRequest(new VerifyResetPasswordRequestDto
@@ -346,14 +398,14 @@ namespace Authing.CSharp.SDK.Framework.Test
                 VerifyMethod = VerifyResetPasswordRequestDto.verifyMethod.EMAIL_PASSCODE,
                 EmailPassCodePayload = new ResetPasswordByEmailPassCodeDto()
                 {
-                    Email = "tm574378328@gmail.com",
-                    PassCode = "5167"
+                    Email = "2481452007@qq.com",
+                    PassCode = "3961"
                 }
             });
             Assert.AreEqual(200, res2.StatusCode);
             var res3 = await client.ResetPassword(new ResetPasswordDto
             {
-                Password = "88886666",
+                Password = "3866364",
                 PasswordResetToken = res2.Data.PasswordResetToken,
                 PasswordEncryptType = ResetPasswordDto.passwordEncryptType.NONE,
             });

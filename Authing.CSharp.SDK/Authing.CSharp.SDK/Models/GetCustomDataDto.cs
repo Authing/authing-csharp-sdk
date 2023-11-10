@@ -15,6 +15,11 @@ namespace Authing.CSharp.SDK.Models
     public partial class GetCustomDataDto
     {
         /// <summary>
+        ///  租户 ID
+        /// </summary>
+        [JsonProperty("tenantId")]
+        public string  TenantId {get;set;} 
+        /// <summary>
         ///  目标对象类型：
 /// - `USER`: 用户
 /// - `ROLE`: 角色

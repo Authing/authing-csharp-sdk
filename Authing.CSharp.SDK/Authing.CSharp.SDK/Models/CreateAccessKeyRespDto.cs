@@ -20,6 +20,11 @@ namespace Authing.CSharp.SDK.Models
         [JsonProperty("accessKeyId")]
         public string  AccessKeyId {get;set;}
         /// <summary>
+        ///  用户所拥有的 accessKeySecret
+        /// </summary>
+        [JsonProperty("accessKeySecret")]
+        public string  AccessKeySecret {get;set;}
+        /// <summary>
         ///  用户 ID
         /// </summary>
         [JsonProperty("userId")]
@@ -44,5 +49,10 @@ namespace Authing.CSharp.SDK.Models
         /// </summary>
         [JsonProperty("userPoolId")]
         public string  UserPoolId {get;set;}
+        /// <summary>
+        ///  密钥是否启用
+        /// </summary>
+        [JsonProperty("enable")]
+        public bool  Enable {get;set;}
     }
 }

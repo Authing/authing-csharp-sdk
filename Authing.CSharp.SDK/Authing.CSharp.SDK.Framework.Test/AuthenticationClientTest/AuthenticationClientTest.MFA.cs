@@ -10,10 +10,17 @@ namespace Authing.CSharp.SDK.Framework.Test.AuthenticationClientTest
         [SetUp]
         public async Task LoginTemp()
         {
-            LoginTokenRespDto loginTokenRespDto = await client.SignInByAccountPassword("tmgg", "88886666");
+            LoginTokenRespDto loginTokenRespDto = await client.SignInByUsernamePassword("DESKTOP-P62L2ES\\ai-pc", "qd3866364");
             Assert.IsNotNull(loginTokenRespDto);
             client.setAccessToken(loginTokenRespDto.Data.Access_token);
         }
+
+        [Test]
+        public async Task SendSMSCodeTest()
+        {
+           var result= await client.SendSms(new SendSMSDto { Channel = SendSMSDto.channel.CHANNEL_VERIFY_MFA, PhoneNumber = "13348926753" });
+            Assert.IsTrue(result.StatusCode == 200);
+        }   
 
         /// <summary>
         /// 2022-10-18 测试通过

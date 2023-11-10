@@ -15,6 +15,11 @@ namespace Authing.CSharp.SDK.Models
     public partial class GroupDto
     {
         /// <summary>
+        ///  分组 ID
+        /// </summary>
+        [JsonProperty("id")]
+        public string  Id {get;set;}
+        /// <summary>
         ///  分组 code
         /// </summary>
         [JsonProperty("code")]
@@ -34,5 +39,15 @@ namespace Authing.CSharp.SDK.Models
         /// </summary>
         [JsonProperty("type")]
         public string  Type {get;set;}
+        /// <summary>
+        ///  分组元数据信息
+        /// </summary>
+        [JsonProperty("metadataSource")]
+        public List<string>  MetadataSource {get;set;}
+        /// <summary>
+        ///  成员列表
+        /// </summary>
+        [JsonProperty("members")]
+        public List<UserDto>  Members {get;set;}
     }
 }

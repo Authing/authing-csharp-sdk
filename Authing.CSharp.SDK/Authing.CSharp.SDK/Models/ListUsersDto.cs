@@ -45,6 +45,11 @@ namespace Authing.CSharp.SDK.Models
         [JsonProperty("withCustomData")]
         public bool  WithCustomData {get;set;} 
         /// <summary>
+        ///  是否获取 部门信息
+        /// </summary>
+        [JsonProperty("withPost")]
+        public bool  WithPost {get;set;} 
+        /// <summary>
         ///  是否获取 identities
         /// </summary>
         [JsonProperty("withIdentities")]

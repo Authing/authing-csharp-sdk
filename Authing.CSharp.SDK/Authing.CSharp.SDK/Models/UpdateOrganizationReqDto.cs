@@ -40,6 +40,11 @@ namespace Authing.CSharp.SDK.Models
         [JsonProperty("i18n")]
         public OrganizationNameI18nDto  I18n {get;set;}
         /// <summary>
+        ///  租户 ID
+        /// </summary>
+        [JsonProperty("tenantId")]
+        public string  TenantId {get;set;}
+        /// <summary>
         ///  新组织 code
         /// </summary>
         [JsonProperty("organizationNewCode")]
@@ -49,5 +54,10 @@ namespace Authing.CSharp.SDK.Models
         /// </summary>
         [JsonProperty("organizationName")]
         public string  OrganizationName {get;set;}
+        /// <summary>
+        ///  岗位 id 列表
+        /// </summary>
+        [JsonProperty("postIdList")]
+        public List<string>  PostIdList {get;set;}
     }
 }

@@ -175,7 +175,7 @@ namespace Authing.CSharp.SDK.Models
         [JsonProperty("region")]
         public string  Region {get;set;}
         /// <summary>
-        ///  用户密码。我们使用 HTTPS 协议对密码进行安全传输，可以在一定程度上保证安全性。如果你还需要更高级别的安全性，我们还支持 RSA256 和国密 SM2 两种方式对密码进行加密。详情见 `passwordEncryptType` 参数。
+        ///  用户密码，默认为明文。我们使用 HTTPS 协议对密码进行安全传输，可以在一定程度上保证安全性。如果你还需要更高级别的安全性，我们还支持 RSA256 和国密 SM2 两种方式对密码进行加密。详情见 `passwordEncryptType` 参数。
         /// </summary>
         [JsonProperty("password")]
         public string  Password {get;set;}
@@ -205,10 +205,20 @@ namespace Authing.CSharp.SDK.Models
         [JsonProperty("customData")]
         public object  CustomData {get;set;}
         /// <summary>
+        ///  数据对象数据，传入的对象中的 key 必须先在用户池定义相关自定义字段
+        /// </summary>
+        [JsonProperty("metadataSource")]
+        public object  MetadataSource {get;set;}
+        /// <summary>
         ///  第三方身份源（建议调用绑定接口进行绑定）
         /// </summary>
         [JsonProperty("identities")]
         public List<CreateIdentityDto>  Identities {get;set;}
+        /// <summary>
+        ///  用户身份证号码
+        /// </summary>
+        [JsonProperty("identityNumber")]
+        public string  IdentityNumber {get;set;}
     }
     public partial class CreateUserInfoDto
     {

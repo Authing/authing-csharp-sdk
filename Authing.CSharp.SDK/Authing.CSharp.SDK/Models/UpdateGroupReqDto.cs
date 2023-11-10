@@ -34,5 +34,10 @@ namespace Authing.CSharp.SDK.Models
         /// </summary>
         [JsonProperty("newCode")]
         public string  NewCode {get;set;}
+        /// <summary>
+        ///  自定义数据，传入的对象中的 key 必须先在用户池定义相关自定义字段
+        /// </summary>
+        [JsonProperty("customData")]
+        public object  CustomData {get;set;}
     }
 }

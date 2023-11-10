@@ -65,6 +65,11 @@ namespace Authing.CSharp.SDK.Models
         [JsonProperty("code")]
         public string  Code {get;set;}
         /// <summary>
+        ///  父部门 code
+        /// </summary>
+        [JsonProperty("parentDepartmentCode")]
+        public string  ParentDepartmentCode {get;set;}
+        /// <summary>
         ///  部门人数（仅包含直属成员）
         /// </summary>
         [JsonProperty("membersCount")]
@@ -89,5 +94,25 @@ namespace Authing.CSharp.SDK.Models
         /// </summary>
         [JsonProperty("customData")]
         public object  CustomData {get;set;}
+        /// <summary>
+        ///  部门关联的岗位
+        /// </summary>
+        [JsonProperty("posts")]
+        public List<string>  Posts {get;set;}
+        /// <summary>
+        ///  岗位 id 列表
+        /// </summary>
+        [JsonProperty("postIdList")]
+        public List<string>  PostIdList {get;set;}
+        /// <summary>
+        ///  部门状态
+        /// </summary>
+        [JsonProperty("status")]
+        public bool  Status {get;set;}
+        /// <summary>
+        ///  访问限制
+        /// </summary>
+        [JsonProperty("allow")]
+        public string  Allow {get;set;}
     }
 }

@@ -63,6 +63,11 @@ namespace Authing.CSharp.SDK.Models
         [JsonProperty("userIdInIdp")]
         public string  UserIdInIdp {get;set;}
         /// <summary>
+        ///  用户在 idp 中的身份信息
+        /// </summary>
+        [JsonProperty("userInfoInIdp")]
+        public object  UserInfoInIdp {get;set;}
+        /// <summary>
         ///  在外部身份源中的 Access Token（此参数只会在用户主动获取时返回，管理侧接口不会返回）。
         /// </summary>
         [JsonProperty("accessToken")]
@@ -169,6 +174,26 @@ namespace Authing.CSharp.SDK.Models
             INSTAGRAM,
             [EnumMember(Value="welink")]
             WELINK,
+            [EnumMember(Value="huawei")]
+            HUAWEI,
+            [EnumMember(Value="honor")]
+            HONOR,
+            [EnumMember(Value="xiaomi")]
+            XIAOMI,
+            [EnumMember(Value="oppo")]
+            OPPO,
+            [EnumMember(Value="aws")]
+            AWS,
+            [EnumMember(Value="amazon")]
+            AMAZON,
+            [EnumMember(Value="douyin")]
+            DOUYIN,
+            [EnumMember(Value="kuaishou")]
+            KUAISHOU,
+            [EnumMember(Value="line")]
+            LINE,
+            [EnumMember(Value="sdbz")]
+            SDBZ,
         }
     }
 }

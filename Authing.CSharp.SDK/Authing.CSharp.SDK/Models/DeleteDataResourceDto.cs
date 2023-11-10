@@ -15,7 +15,7 @@ namespace Authing.CSharp.SDK.Models
     public partial class DeleteDataResourceDto
     {
         /// <summary>
-        ///  数据资源 Code,权限空间内唯一
+        ///  数据资源 Code, 权限空间内唯一
         /// </summary>
         [JsonProperty("resourceCode")]
         public string  ResourceCode {get;set;}

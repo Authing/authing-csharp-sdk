@@ -62,6 +62,10 @@ namespace Authing.CSharp.SDK.Models
             PRE_OIDC_ACCESS_TOKEN_ISSUED,
             [EnumMember(Value="PRE_COMPLETE_USER_INFO")]
             PRE_COMPLETE_USER_INFO,
+            [EnumMember(Value="PRE_MFA_VERIFY")]
+            PRE_MFA_VERIFY,
+            [EnumMember(Value="POST_MFA_VERIFY")]
+            POST_MFA_VERIFY,
         }
     }
 }
