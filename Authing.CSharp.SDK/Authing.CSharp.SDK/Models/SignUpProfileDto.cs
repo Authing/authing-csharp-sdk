@@ -159,6 +159,8 @@ public partial class SignUpProfileDto
         F,
          [EnumMember(Value="U")]
         U,
+        [EnumMember(Value="W")]
+        W,
     }
 }
 }

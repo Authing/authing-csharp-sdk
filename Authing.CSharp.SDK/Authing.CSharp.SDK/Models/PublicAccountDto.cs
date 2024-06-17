@@ -332,6 +332,8 @@ namespace Authing.CSharp.SDK.Models
             F,
             [EnumMember(Value="U")]
             U,
+            [EnumMember(Value="W")]
+            W,
         }
         /// <summary>
         ///  来源类型:

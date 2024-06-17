@@ -99,6 +99,8 @@ public partial class UpdateUserProfileDto
         F,
          [EnumMember(Value="U")]
         U,
+        [EnumMember(Value="W")]
+        W,
     }
 }
 }
