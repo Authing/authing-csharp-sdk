@@ -48,7 +48,7 @@ namespace Authing.CSharp.SDK.Models
         ///  账户当前状态
         /// </summary>
         [JsonProperty("status")]
-        public status  Status {get;set;}
+        public status?  Status {get;set;}
         /// <summary>
         ///  邮箱是否验证
         /// </summary>
@@ -98,7 +98,7 @@ namespace Authing.CSharp.SDK.Models
         ///  性别
         /// </summary>
         [JsonProperty("gender")]
-        public gender  Gender {get;set;}
+        public gender?  Gender {get;set;}
         /// <summary>
         ///  用户名，用户池内唯一
         /// </summary>
